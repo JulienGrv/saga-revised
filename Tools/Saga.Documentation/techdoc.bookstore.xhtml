@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xslt/techdoc.xsl"?>
+<page logo="techdoc">
+  <title>Fileformat: Bookstore</title>
+  <paragraph>The bookstore fileformat is used to configure the Npcfunction 'SkillmasterConversation'. Used by the SkillMaster npc's.</paragraph>
+  <code><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE shop [
+	<!ELEMENT shop (item*)>
+	<!ELEMENT item CDATA #REQUIRED>
+]>
+<shop>
+	<item>16056</item>
+	<item>16057</item>
+	<item>16058</item>
+	<item>16066</item>
+	<item>16067</item>
+	<item>16068</item>
+	<item>16080</item>
+	<item>16081</item>
+	<item>16082</item>
+</shop>
+]]></code>
+
+  <paragraph>In the example above you see the internal file format used to configure the ‘BookStoreConversation’ element. This will show a normal bookstore shop normally used to sell skill books by a skillmaster npc. It’s similar to as the shop list but the bookstore only has a infinite stock available. This means the count attribute as we can use that in the shoplist will be ignored. </paragraph>
+  <paragraph>The bookstore are automatically filters the items per job. The bookstore can sell other items besides skill books as long as one of the listed jobs can use the item.</paragraph>
+  <paragraph>In order to change the prices  of item at which the shop sells the item you need to modify the items.dat in the client side files. We recommend not to alter the client as it makes updating very complicated for your server.</paragraph>
+
+</page>

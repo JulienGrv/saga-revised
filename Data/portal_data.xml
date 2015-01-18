@@ -1,0 +1,362 @@
+﻿<?xml version="1.0"?>
+<portalDB>
+
+<!-- dumbie's portals (27-December-2007) -->
+<!-- Cave Of Emir Entrance (Hodemimes) (hod_f02) -->
+  <portal>
+    <fromid>2</fromid>
+    <toid>4</toid>
+    <x>129968.4</x>
+    <y>9629.531</y>
+    <z>3834.672</z>
+  </portal>
+
+<!-- Cave Of Emir Lv1 - Entrance/Inside (hod_d01) -->
+  <portal>
+    <fromid>4</fromid>
+    <toid>2</toid>
+    <x>-25802.36</x>
+    <y>41597.22</y>
+    <z>4070.806</z>
+  </portal>
+
+<!-- Cave Of Emir Lv2 - to Lv1 Entrance (hod_d02) -->
+  <portal>
+    <fromid>17</fromid>
+    <toid>4</toid>
+    <x>109267.9</x>
+    <y>-12413.71</y>
+    <z>801.352</z>
+  </portal>
+
+<!-- Cave Of Emir Lv1 - to Lv2 (hod_d01) -->
+  <portal>
+    <fromid>4</fromid>
+    <toid>5</toid>
+    <mapid>17</mapid>
+    <x>22493.71</x>
+    <y>39650.96</y>
+    <z>-2854.218</z>
+  </portal>
+
+<!-- Cave Of Emir Lv2 - to Lv3 (hod_d02) -->
+  <portal>
+    <fromid>17</fromid>
+    <toid>6</toid>
+    <mapid>18</mapid>
+    <x>28736.82</x>
+    <y>63470.52</y>
+    <z>795.624</z>
+  </portal>
+
+<!-- Cave Of Emir Lv3 - to Lv2 Entrance (hod_d03) -->
+  <portal>
+    <fromid>18</fromid>
+    <toid>5</toid>
+    <mapid>17</mapid>
+    <x>19447.25</x>
+    <y>25557.67</y>
+    <z>-3101.937</z>
+  </portal>
+
+<!-- Cave Of Emir Lv2 - Restore/Save Point (hod_d02) -->
+  <portal>
+    <fromid>17</fromid>
+    <toid>5</toid>
+    <mapid>17</mapid>
+    <x>11148.58</x>
+    <y>35859.94</y>
+    <z>-2339.781</z>
+  </portal>
+
+<!-- Prontera Culvert Entrance (prt_f01) -->
+  <portal>
+    <fromid>5</fromid>
+    <toid>15</toid>
+    <mapid>9</mapid>
+    <x>1385.597</x>
+    <y>9605.264</y>
+    <z>27.522</z>
+  </portal>
+
+<!-- Prontera Culvert Inside (prt_d01) -->
+  <portal>
+    <fromid>9</fromid>
+    <toid>11</toid>
+    <mapid>5</mapid>
+    <x>1907.499</x>
+    <y>21622.2</y>
+    <z>12436.13</z>
+  </portal>
+
+<!-- Cognito Harbor to Town - Middle (hod_f01_02) -->
+  <portal>
+    <fromid>13</fromid>
+    <toid>16</toid>
+    <mapid>12</mapid>
+    <x>11608.36</x>
+    <y>-2358.078</y>
+    <z>7001.61</z>
+  </portal>
+
+<!-- Cognito Town to Harbor - Middle (hod_f01_01) -->
+  <portal>
+    <fromid>12</fromid>
+    <toid>17</toid>
+    <mapid>13</mapid>
+    <x>-14837.26</x>
+    <y>-32984.41</y>
+    <z>2301.012</z>
+  </portal>
+
+<!-- Cognito Harbor to Field 02 (hod_f01_02) -->
+  <portal>
+    <fromid>13</fromid>
+    <toid>18</toid>
+    <mapid>14</mapid>
+    <x>-52806.23</x>
+    <y>-67795.13</y>
+    <z>-21357.72</z>
+  </portal>
+
+<!-- Cognito Field 02 to Harbor (cog_f02) -->
+  <portal>
+    <fromid>14</fromid>
+    <toid>17</toid>
+    <mapid>13</mapid>
+    <x>7815.597</x>
+    <y>2245.609</y>
+    <z>-4004.08</z>
+  </portal>
+
+<!-- Cognito Field 02 to Field 03 (cog_f02) -->
+  <portal>
+    <fromid>14</fromid>
+    <toid>19</toid>
+    <mapid>15</mapid>
+    <x>-49911.95</x>
+    <y>-5901.297</y>
+    <z>-5891.184</z>
+  </portal>
+
+<!-- Cognito Field 03 to Field 02 (cog_f03) -->
+  <portal>
+    <fromid>15</fromid>
+    <toid>18</toid>
+    <mapid>14</mapid>
+    <x>42170.1</x>
+    <y>-20799.02</y>
+    <z>-20854.34</z>
+  </portal>
+
+<!-- Cognito Field 03 to Mari Dungeon (cog_f03) -->
+  <portal>
+    <fromid>15</fromid>
+    <toid>20</toid>
+    <mapid>16</mapid>
+    <x>-934.557</x>
+    <y>-23586.32</y>
+    <z>1032.058</z>
+  </portal>
+
+<!-- Cognito Mari Dungeon to Field 03 (hod_d01) -->
+  <portal>
+    <fromid>16</fromid>
+    <toid>19</toid>
+    <mapid>15</mapid>
+    <x>-33677.78</x>
+    <y>-27751.73</y>
+    <z>-5757.794</z>
+  </portal>
+
+<!-- Cognito Field 03 to Forest of Echoes (cog_f03) -->
+  <portal>
+    <fromid>15</fromid>
+    <toid>26</toid>
+    <mapid>24</mapid>
+    <x>-11689.35</x>
+    <y>-53149.34</y>
+    <z>-26395.44</z>
+  </portal>
+
+<!-- Forest of Echoes to Cognito Field 03  (echo_f01) -->
+  <portal>
+    <fromid>24</fromid>
+    <toid>19</toid>
+    <mapid>15</mapid>
+    <x>40242.2</x>
+    <y>53422.49</y>
+    <z>-8527.588</z>
+  </portal>
+
+<!-- Forest of Echoes to Blue Echo  (echo_f01) -->
+  <portal>
+    <fromid>24</fromid>
+    <toid>27</toid>
+    <mapid>25</mapid>
+    <x>17678.63</x>
+    <y>1357.404</y>
+    <z>99.596</z>
+  </portal>
+
+<!-- Blue Echo to Forest of Echoes (echo_d01) -->
+  <portal>
+    <fromid>25</fromid>
+    <toid>26</toid>
+    <mapid>24</mapid>
+    <x>13624.78</x>
+    <y>-1530.607</y>
+    <z>-26149.06</z>
+  </portal>
+
+<!-- Alfheim to Alfheim Field (alf_f01_t) -->
+  <portal>
+    <fromid>20</fromid>
+    <toid>23</toid>
+    <mapid>21</mapid>
+    <x>-29905.04</x>
+    <y>-54125.59</y>
+    <z>903</z>
+  </portal>
+
+<!-- Alfheim Field to Alfheim (alf_f02) -->
+  <portal>
+    <fromid>21</fromid>
+    <toid>22</toid>
+    <mapid>20</mapid>
+    <x>-24755.17</x>
+    <y>-23105.92</y>
+    <z>11107.34</z>
+  </portal>
+
+<!-- Alfheim Field to Alfheim Dungeon (alf_f02) -->
+  <portal>
+    <fromid>21</fromid>
+    <toid>24</toid>
+    <mapid>23</mapid>
+    <x>37686.16</x>
+    <y>-52592.97</y>
+    <z>-6479.923</z>
+  </portal>
+
+<!-- Alfheim Dungeon to Alfheim Field (alf_d01) -->
+  <portal>
+    <fromid>23</fromid>
+    <toid>23</toid>
+    <mapid>21</mapid>
+    <x>4797.845</x>
+    <y>38380.87</y>
+    <z>-759.76</z>
+  </portal>
+
+<!-- Poro Island to Alfheim Field (alf_f03) -->
+  <portal>
+    <fromid>22</fromid>
+    <toid>23</toid>
+    <mapid>21</mapid>
+    <x>37826.04</x>
+    <y>-1110.653</y>
+    <z>-1897.235</z>
+  </portal>
+
+<!-- Saga Portals (28-November-2007) -->
+  <portal>
+    <fromid>3</fromid>
+    <toid>1</toid>
+    <x>15673.520</x>
+    <y>12201.660</y>
+    <z>-10686.740</z>
+  </portal>
+  <portal>
+    <fromid>1</fromid>
+    <toid>3</toid>
+    <x>-28321.180</x>
+    <y>3550.376</y>
+    <z>3375.525</z>
+  </portal>
+  <portal>
+    <fromid>1</fromid>
+    <toid>2</toid>
+    <x>47901.710</x>
+    <y>-37088.170</y>
+    <z>5599.010</z>
+  </portal>
+  <portal>
+    <fromid>2</fromid>
+    <toid>1</toid>
+    <x>-19186.230</x>
+    <y>-5819.471</y>
+    <z>-10071.270</z>
+  </portal>
+  <portal>
+    <fromid>11</fromid>
+    <toid>3</toid>
+    <x>-6558.26</x>
+    <y>14842.21</y>
+    <z>4322.328</z>
+  </portal>
+  <portal>
+    <fromid>6</fromid>
+    <toid>11</toid>
+    <mapid>5</mapid>
+    <x>14040.89</x>
+    <y>103591.9</y>
+    <z>4230.5</z>
+  </portal>
+  <portal>
+    <fromid>6</fromid>
+    <toid>13</toid>
+    <mapid>7</mapid>
+    <x>51343</x>
+    <y>-1687</y>
+    <z>7506</z>
+  </portal>
+  <portal>
+    <fromid>5</fromid>
+    <toid>12</toid>
+    <mapid>6</mapid>
+    <x>-15084</x>
+    <y>-57807</y>
+    <z>3372.8</z>
+  </portal>
+  <portal>
+    <fromid>5</fromid>
+    <toid>14</toid>
+    <mapid>8</mapid>
+    <x>55910</x>
+    <y>35784</y>
+    <z>-11393</z>
+  </portal>
+  <portal>
+    <fromid>7</fromid>
+    <toid>12</toid>
+    <mapid>6</mapid>
+    <x>-51358</x>
+    <y>24168</y>
+    <z>1740</z>
+  </portal>
+  <portal>
+    <fromid>7</fromid>
+    <toid>14</toid>
+    <mapid>8</mapid>
+    <x>29020</x>
+    <y>54401</y>
+    <z>-12550</z>
+  </portal>
+  <portal>
+    <fromid>8</fromid>
+    <toid>11</toid>
+    <mapid>5</mapid>
+    <x>219</x>
+    <y>86109</y>
+    <z>4233</z>
+  </portal>
+  <portal>
+    <fromid>8</fromid>
+    <toid>13</toid>
+    <mapid>7</mapid>
+    <x>-12084</x>
+    <y>-54846</y>
+    <z>1140</z>
+  </portal>
+</portalDB>

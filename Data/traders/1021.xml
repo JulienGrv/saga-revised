@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<trader>
+	<trades id="13">
+		<trade type="single" fee="0" refund="0">59</trade>
+		<trade type="single" fee="0" refund="0">63</trade>
+		<trade type="single" fee="0" refund="0">67</trade>
+		<trade type="single" fee="0" refund="0">71</trade>
+		<trade type="single" fee="0" refund="0">75</trade>
+		<trade type="single" fee="0" refund="0">79</trade>
+	</trades>
+	<production>
+		<item trade="59" group="0" count="1">2010007</item>
+		<item trade="63" group="0" count="1">2010016</item>
+		<item trade="67" group="0" count="1">2010025</item>
+		<item trade="71" group="0" count="1">2010031</item>
+		<item trade="75" group="0" count="1">2010040</item>
+		<item trade="79" group="0" count="1">2010049</item>
+	</production>
+	<supplement>
+		<item trade="59" group="0" count="2">1700098</item>
+		<item trade="59" group="0" count="10">1700058</item>
+		<item trade="59" group="0" count="3">1700069</item>
+		<item trade="59" group="0" count="2">1700043</item>
+		<item trade="63" group="0" count="2">1700098</item>
+		<item trade="63" group="0" count="10">1700058</item>
+		<item trade="63" group="0" count="3">1700070</item>
+		<item trade="63" group="0" count="10">9446</item>
+		<item trade="67" group="0" count="2">1700098</item>
+		<item trade="67" group="0" count="10">1700058</item>
+		<item trade="67" group="0" count="3">1700068</item>
+		<item trade="67" group="0" count="2">1700053</item>
+		<item trade="71" group="0" count="2">1700098</item>
+		<item trade="71" group="0" count="10">1700058</item>
+		<item trade="71" group="0" count="3">1700072</item>
+		<item trade="71" group="0" count="10">10547</item>
+		<item trade="75" group="0" count="2">1700098</item>
+		<item trade="75" group="0" count="10">1700058</item>
+		<item trade="75" group="0" count="3">1700071</item>
+		<item trade="75" group="0" count="10">9421</item>
+		<item trade="79" group="0" count="2">1700098</item>
+		<item trade="79" group="0" count="10">1700058</item>
+		<item trade="79" group="0" count="3">1700068</item>
+		<item trade="79" group="0" count="2">9486</item>
+	</supplement>
+</trader>

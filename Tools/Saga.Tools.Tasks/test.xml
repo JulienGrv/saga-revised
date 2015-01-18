@@ -1,0 +1,1820 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Packets>
+	<ClientSide>
+		<Name>CMSG_QUESTCOMPLETE</Name>
+		<Identifier>00A1</Identifier>
+		<Remarks>None</Remarks>
+		<Name>CMSG_QUESTCONFIRM</Name>
+		<Identifier>00A2</Identifier>
+		<Remarks>None</Remarks>
+		<Name>CMSG_QUESTCONFIRMCANCEL</Name>
+		<Identifier>00A3</Identifier>
+		<Remarks>None</Remarks>
+		<Name>CMSG_QUESTITEMSTART</Name>
+		<Identifier>00A4</Identifier>
+		<Remarks>None</Remarks>
+		<Name>CMSG_SKILLCAST</Name>
+		<Identifier>00C9</Identifier>
+		<Remarks>None</Remarks>
+		<Name>CMSG_MOVEMENTSTART</Name>
+		<Identifier>0302</Identifier>
+		<Remarks>
+ This packet is send by the player as result of the player is 
+ moving. 
+ </Remarks>
+		<Name>CMSG_MOVEMENTSTOPPED</Name>
+		<Identifier>0303</Identifier>
+		<Remarks>
+ This packet is sent as a result of the given player has stopped moving.
+ </Remarks>
+		<Name>CMSG_SENDYAW</Name>
+		<Identifier>0304</Identifier>
+		<Remarks>
+ This packet is send by the player as a result of his direction changes.
+ </Remarks>
+		<Name>CMSG_ACTORCHANGESTATEL</Name>
+		<Identifier>0305</Identifier>
+		<Remarks>
+ Thia packet is sent by the player to indicate he/she is changing 
+ her state. For example when the player switches from sitting to 
+ lying position.
+ </Remarks>
+		<Name>CMSG_USEPORTAL</Name>
+		<Identifier>0306</Identifier>
+		<Remarks>
+ This packet is send by the player as a result of the player using a 
+ portal. And wished to be warped to a other map.
+ </Remarks>
+		<Name>CMSG_JOBCHANGE</Name>
+		<Identifier>0307</Identifier>
+		<Remarks>
+ This packet is send by the player as a request to change jobs. 
+ It describes information like which weapon to change on what slot.
+ How to rename the weapon, if to change the weapon, to which job you
+ want to change.
+ </Remarks>
+		<Name>CMSG_SENDHOMEPOINT</Name>
+		<Identifier>0308</Identifier>
+		<Remarks>
+ This packet is sent by the client as a result of you have died and clicked 
+ on the desired warping spot. If the user doesn't click on either of the buttons
+ withing 30 minutes, it get's warped to their save-location.
+ </Remarks>
+		<Name>CMSG_STATUPDATE</Name>
+		<Identifier>0309</Identifier>
+		<Remarks>
+ This function is sent by the player to indicate he/she has updated her 
+ stats.
+ </Remarks>
+		<Name>CMSG_SHOWLOVE</Name>
+		<Identifier>030C</Identifier>
+		<Remarks>
+ This packet is send by the player as a request of showing love for a 
+ female/male
+ </Remarks>
+		<Name>CMSG_SHOWLOVECONFIRM</Name>
+		<Identifier>030D</Identifier>
+		<Remarks>
+ This packet is send by the player as a confirms a showlove request
+ female/male
+ </Remarks>
+		<Name>CMSG_ACTORFALL</Name>
+		<Identifier>030E</Identifier>
+		<Remarks>
+ This packet is invoked after the user has felt from a 
+ long distance.
+ </Remarks>
+		<Name>CMSG_SELECTJOB</Name>
+		<Identifier>0311</Identifier>
+		<Remarks>
+ This packet is sent by the client when the click on a job in the available
+ job-list when changing. It then calculates the costs to change to the 
+ given job and returns the costs with packet.
+ </Remarks>
+		<Name>CMSG_SENDCHAT</Name>
+		<Identifier>0401</Identifier>
+		<Remarks>
+ This packet is sent by a use when he or she wants says something.
+ </Remarks>
+		<Name>CMSG_SENDWHISPER</Name>
+		<Identifier>0402</Identifier>
+		<Remarks>
+ Thia packet is sent to player as a result of a personal message whisper.
+ </Remarks>
+		<Name>CMSG_SORTINVENTORYLIST</Name>
+		<Identifier>0504</Identifier>
+		<Remarks>
+ This packet is sent as indication by the player that he/she wishes to upgrade 
+ her weapon level.
+ </Remarks>
+		<Name>CMSG_SORTSTORAGELIST</Name>
+		<Identifier>0505</Identifier>
+		<Remarks>
+ This packet is sent as indication by the player that he/she wishes sort their
+ storage list (Items in warehouse).
+ </Remarks>
+		<Name>CMSG_DELETEITEM</Name>
+		<Identifier>0507</Identifier>
+		<Remarks>
+ This packet is send by the player to indicate he/she wished to
+ discard the speciafied item. Note Quest Items cannot be discarded 
+ if the quest is active.
+ </Remarks>
+		<Name>CMSG_REPAIRITEM</Name>
+		<Identifier>0508</Identifier>
+		<Remarks>
+ This packet is used by the by the client as a request to repair the 
+ speciafied equipements or weaponary.
+ </Remarks>
+		<Name>CMSG_WEAPONSMOVE</Name>
+		<Identifier>050B</Identifier>
+		<Remarks>
+ This packet is sent as a result of moving your weapon. In this context
+ to move your weapon it does not mean, to swap the primairy with seccondairy weapon, 
+ no it means to change the index of the primairy or seccondairy weapon.
+ </Remarks>
+		<Name>CMSG_MOVEITEM</Name>
+		<Identifier>050B</Identifier>
+		<Remarks>
+ This packet is sent by the player as he/she requests to move a item. 
+ Movement in this context is expressed as Inventory -&gt; Storage and vice versa.
+ Or Inventory to storage and Vice Versa.
+ </Remarks>
+		<Name>CMSG_WEAPONSWITCH</Name>
+		<Identifier>050D</Identifier>
+		<Remarks>
+ This packet is sent as indication by the player that he/she wished to swap
+ the primairy weapon with the seccondairy weaponset.
+ </Remarks>
+		<Name>CMSG_WEAPONUPGRADE</Name>
+		<Identifier>050F</Identifier>
+		<Remarks>
+ This packet is sent as indication by the player that he/she wishes to upgrade 
+ her weapon level.
+ </Remarks>
+		<Name>CMSG_WEAPONCHANGESUFFIX</Name>
+		<Identifier>0515</Identifier>
+		<Remarks>
+ This packet is sent as indication by the player that he/she wishes to change 
+ the weapon suffix of the speciafied weapon.
+ </Remarks>
+		<Name>CMSG_WEAPONCHANGESUFFIX2</Name>
+		<Identifier>0515</Identifier>
+		<Remarks>
+ This packet is sent as indication by the player that he/she wishes to change 
+ the weapon suffix of the speciafied weapon.
+ </Remarks>
+		<Name>CMSG_USEMAP</Name>
+		<Identifier>0517</Identifier>
+		<Remarks>
+ This packet is send by the player as a result of he/she attempts to use
+ a map to reveal a hidden section of the map.
+ </Remarks>
+		<Name>CMSG_WEAPONAUGE</Name>
+		<Identifier>0517</Identifier>
+		<Remarks>
+ This packet is sent by the client as a result to change the weapons auge for
+ the speciafied weapon in your weaponary-list. 
+ </Remarks>
+		<Name>CMSG_USEDYE</Name>
+		<Identifier>0519</Identifier>
+		<Remarks>
+ This packet is send by the player as a result of he/she attempts to use
+ a dye item.
+ </Remarks>
+		<Name>CMSG_STATRESETPOTION</Name>
+		<Identifier>051A</Identifier>
+		<Remarks>
+ This packet is sent as indication by the player that he/she wishes to reset 
+ their assigned stat points.
+ </Remarks>
+		<Name>CMSG_USEWEAPONADMISSION</Name>
+		<Identifier>051B</Identifier>
+		<Remarks>
+ This packet is send by the player as a result of he/she attempts to use
+ an addmission of weapon item. This increased the maximum count a player 
+ can use of weapons.
+ </Remarks>
+		<Name>CMSG_USESUPPLEMENTSTONE</Name>
+		<Identifier>051B</Identifier>
+		<Remarks>
+ This packet is sent by the client when he or she wishes to 
+ enchant their armor using a supplement stone.
+ </Remarks>
+		<Name>CMSG_NPCCHAT</Name>
+		<Identifier>0601</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he or she want
+ to chat with the npc.
+ </Remarks>
+		<Name>CMSG_NPCMENU</Name>
+		<Identifier>0604</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he or she want
+ to use the item on the submenu.
+ </Remarks>
+		<Name>CMSG_PERSONALREQUEST</Name>
+		<Identifier>0605</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he or she has confirmed or denied the 
+ as a respons on the question the client asked.
+ </Remarks>
+		<Name>CMSG_NPCLOCATIONSELECT</Name>
+		<Identifier>0606</Identifier>
+		<Remarks>
+ This packet is sent when the user has selected a location
+ on the locationguide button
+ </Remarks>
+		<Name>CMSG_HATEINFO</Name>
+		<Identifier>0607</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he or she want
+ know what the current hate is of the selected monster.
+ </Remarks>
+		<Name>CMSG_ATTRIBUTES</Name>
+		<Identifier>0608</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he or she want
+ know wants to get some additional target information 
+ about their monster.
+ </Remarks>
+		<Name>CMSG_SUPPLYSELECT</Name>
+		<Identifier>060B</Identifier>
+		<Remarks>
+ This packet is sent when the user has selected 
+ item on the supply menu. This triggers
+ </Remarks>
+		<Name>CMSG_SUPPLYEXCHANGE</Name>
+		<Identifier>060D</Identifier>
+		<Remarks>
+ This packet is sent when the user confirms to trade
+ her goods against the selected goods.
+ </Remarks>
+		<Name>CMSG_NPCSHOPSELL</Name>
+		<Identifier>0611</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he or she want
+ know wants to sell a item (stack it on the rebuy list) to
+ the npc.
+ </Remarks>
+		<Name>CMSG_NPCSHOPBUY</Name>
+		<Identifier>0612</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he or she want
+ know wants to buy a item from the list.
+ </Remarks>
+		<Name>CMSG_NPCREBUY</Name>
+		<Identifier>0613</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he or she want
+ to rebuy the item they sold before.
+ </Remarks>
+		<Name>CMSG_DROPSELECT</Name>
+		<Identifier>0614</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he or she want
+ know wants to obtain a selected drop on the droplist.
+ </Remarks>
+		<Name>CMSG_DROPLIST</Name>
+		<Identifier>0614</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he or she want
+ know wants view the droplist of the requested mob.
+ </Remarks>
+		<Name>CMSG_SELECTEVENTINFO</Name>
+		<Identifier>0615</Identifier>
+		<Remarks>
+ This packet is sent by a use when he or she wants to participate 
+ in the event
+ </Remarks>
+		<Name>CMSG_SELECTBUTTON</Name>
+		<Identifier>0615</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he or she want
+ to use the selected button.
+ </Remarks>
+		<Name>CMSG_RECEIVEEVENTITEM</Name>
+		<Identifier>0616</Identifier>
+		<Remarks>
+ This packet is sent when the user has selected a event reward.
+ </Remarks>
+		<Name>CMSG_WARP</Name>
+		<Identifier>0617</Identifier>
+		<Remarks>
+ This packet is sent when the user has selected a warp location.
+ </Remarks>
+		<Name>CMSG_REQUESTTRADE</Name>
+		<Identifier>0801</Identifier>
+		<Remarks>
+ This packet is sent by a player when he/she clicks on a local user
+ and presses the "Request to trade" button. Basicly meaning local 
+ trading invitation.
+ </Remarks>
+		<Name>CMSG_TRADEINVITATIONRESULT</Name>
+		<Identifier>0802</Identifier>
+		<Remarks>
+ This packet is sent by the invitee of the trading invitation
+ to announce if he/she agrees with the trade.
+ </Remarks>
+		<Name>CMSG_TRADEITEM</Name>
+		<Identifier>0803</Identifier>
+		<Remarks>
+ This packet is sent by a player to indicate to set an item
+ to trade.
+ </Remarks>
+		<Name>CMSG_TRADEZENY</Name>
+		<Identifier>0804</Identifier>
+		<Remarks>
+ This packet is sent by a player to indicate to set an amount of money
+ to trade.
+ </Remarks>
+		<Name>CMSG_TRADECONTENTCONFIRM</Name>
+		<Identifier>0805</Identifier>
+		<Remarks>
+ This packet is sent by an player to indicate he/she 
+ is agreeing to the content they see. Once both parties agree
+ they'll be asked to confirm another time. 
+ </Remarks>
+		<Name>CMSG_SKILLCASTCANCEL</Name>
+		<Identifier>0904</Identifier>
+		<Remarks>
+ This packet is sent by the client when he/she cancels/interups 
+ her casted skill. For example when you move and your skill is 
+ casted you'll cancel your skills
+ </Remarks>
+		<Name>CMSG_OFFENSIVESKILLUSE</Name>
+		<Identifier>0905</Identifier>
+		<Remarks>
+ This packet is sent to the client to do a direct skill. 
+ Skills that are castes are first sent using a CMSG_SKILLCAST
+ and when the casting time is due the client sents this packet.
+ </Remarks>
+		<Name>CMSG_SKILLTOGLE</Name>
+		<Identifier>0906</Identifier>
+		<Remarks>
+ Haven't seen this packet in work myself yet.
+ </Remarks>
+		<Name>CMSG_ITEMTOGLE</Name>
+		<Identifier>090A</Identifier>
+		<Remarks>
+ This packet is sent to the client to activate a item that has 
+ an skill. Example items would be potions.
+ </Remarks>
+		<Name>CMSG_SKILLLEARN</Name>
+		<Identifier>090C</Identifier>
+		<Remarks>
+ This packet is sent by the client after
+ invoking a new skillbook item. The index is the 
+ index of the item in the inventory.
+ </Remarks>
+		<Name>CMSG_SETSPECIALSKILL</Name>
+		<Identifier>090D</Identifier>
+		<Remarks>
+ This packet is sent when setting a special skill from the speciafied 
+ slot. This packet can be sent during the skillmaster.
+ </Remarks>
+		<Name>CMSG_REMOVESPECIALSKILL</Name>
+		<Identifier>090E</Identifier>
+		<Remarks>
+ This packet is sent when removing a special skill from the speciafied 
+ slot. This packet can be sent during the skillmaster.
+ </Remarks>
+		<Name>CMSG_WANSTSETSPECIALLITY</Name>
+		<Identifier>0911</Identifier>
+		<Remarks>
+ This packet indicates that the user should has added a new 
+ special skill. When adding a special skill to your list it 
+ requires you to have 250 rufi. 
+
+ If you do not have it your request will be denied using the 
+ responding packt.
+ </Remarks>
+		<Name>CMSG_ADDSHORTCUT</Name>
+		<Identifier>0A01</Identifier>
+		<Remarks>
+ This packet is depreciated since CB2. The client still preserves the packet however.
+ due this reason this function is purely implacated for show.
+ </Remarks>
+		<Name>CMSG_DELETESHORTCUT</Name>
+		<Identifier>0A02</Identifier>
+		<Remarks>
+ This packet is depreciated since CB2. The client still preserves the packet however.
+ due this reason this function is purely implacated for show.
+ </Remarks>
+		<Name>CMSG_REQUESTINBOX</Name>
+		<Identifier>0C01</Identifier>
+		<Remarks>
+ This packet sent by the user to indicate he or she wants
+ to see her inbox.
+ </Remarks>
+		<Name>CMSG_SENDMAIL</Name>
+		<Identifier>0C02</Identifier>
+		<Remarks>
+ This packet sent by the user to indicate he or she wants
+ to wants to send a new mail.
+ </Remarks>
+		<Name>CMSG_GETMAIL</Name>
+		<Identifier>0C03</Identifier>
+		<Remarks>
+ This packet sent by the user to indicate he or she wants to see the full contents 
+ of the requested mail found in their inbox
+ </Remarks>
+		<Name>CMSG_GETITEMATTACHMENT</Name>
+		<Identifier>0C04</Identifier>
+		<Remarks>
+ This packet sent by the user to indicate he or she want to delete 
+ the obtain the item from the selected mail.
+ </Remarks>
+		<Name>CMSG_REQUESTOUTBOX</Name>
+		<Identifier>0C05</Identifier>
+		<Remarks>
+ This packet sent by the user to indicate he or she wants
+ to see her oubox.
+ </Remarks>
+		<Name>CMSG_GETZENYATTACHMENT</Name>
+		<Identifier>0C05</Identifier>
+		<Remarks>
+ This packet sent by the user to indicate he or she wants
+ to obtain the zeny attachment of the selected mailitem.
+ </Remarks>
+		<Name>CMSG_DELETEMAIL</Name>
+		<Identifier>0C06</Identifier>
+		<Remarks>
+ This packet sent by the user to indicate he or she want to delete 
+ the selected mail.
+ </Remarks>
+		<Name>CMSG_MAILCANCEL</Name>
+		<Identifier>0C08</Identifier>
+		<Remarks>
+ This packet sent by the user to indicate he or she wants to cancel sending the pending 
+ sended mail once it's sended it's not posible to cancel it.
+ </Remarks>
+		<Name>CMSG_GETMAILOUTBOX</Name>
+		<Identifier>0C09</Identifier>
+		<Remarks>
+ This packet sent by the user to indicate he or she wants to see the full contents 
+ of the requested mail found in their inbox
+ </Remarks>
+		<Name>CMSG_MAILCLEAR</Name>
+		<Identifier>0C0A</Identifier>
+		<Remarks>
+ This packet sent by the user to indicate he or she wants to cancel sending the pending 
+ and retrieve the items. The items are sended back using a new mail item towards the 
+ user.
+ </Remarks>
+		<Name>CMSG_PARTYINVITE_LOCAL</Name>
+		<Identifier>0E01</Identifier>
+		<Remarks>
+ This packet is sent by the user to to invite a player
+ that is in local sight.
+ </Remarks>
+		<Name>CMSG_PARTYINVITE</Name>
+		<Identifier>0E02</Identifier>
+		<Remarks>
+ This packet is sent by the user to invite a player to a party.
+ If the inviter is not yet in a party, a new party will be formed.
+ </Remarks>
+		<Name>CMSG_PARTYINVITATIONACCEPT</Name>
+		<Identifier>0E03</Identifier>
+		<Remarks>
+ This packet is sent by the user to indicate he or she
+ has accepted the invitation.
+ </Remarks>
+		<Name>CMSG_PARTYQUIT</Name>
+		<Identifier>0E04</Identifier>
+		<Remarks>
+ This packet is sent by the user to indicate he/she wishes
+ to quit the party.
+ </Remarks>
+		<Name>CMSG_PARTYKICK</Name>
+		<Identifier>0E05</Identifier>
+		<Remarks>
+ This packet is sent by the user to kick a user with the speciafied
+ index.
+ </Remarks>
+		<Name>CMSG_PARTYMODE</Name>
+		<Identifier>0E06</Identifier>
+		<Remarks>
+ This packet is sent to the user to indicate the
+ party mode of the users party is changed.
+ </Remarks>
+		<Name>CMSG_PARTYSETLEADER</Name>
+		<Identifier>0E07</Identifier>
+		<Remarks>
+ This packet is sent by the user to indicate who should be
+ the next party leader.
+ </Remarks>
+		<Name>CMSG_PARTYINVITECANCEL</Name>
+		<Identifier>0E08</Identifier>
+		<Remarks>
+ This packet is sent by the player that she cancels the party
+ </Remarks>
+		<Name>CMSG_MARKETSEARCH</Name>
+		<Identifier>0F01</Identifier>
+		<Remarks>
+ This packet is sent by the client when he/she requests a new
+ search. 
+ </Remarks>
+		<Name>CMSG_MARKETBUY</Name>
+		<Identifier>0F02</Identifier>
+		<Remarks>
+ This packet is sent to the player when a person want to buy a item from the market
+ </Remarks>
+		<Name>CMSG_MARKETSEARCHOWNERITEMS</Name>
+		<Identifier>0F03</Identifier>
+		<Remarks>
+ This packet is sent by the client when he/she requests his/hers own 
+ items to retrieve. This packet is normally only retrieved once.
+ search. 
+ </Remarks>
+		<Name>CMSG_MARKETREGISTER</Name>
+		<Identifier>0F04</Identifier>
+		<Remarks>
+ This packet is sent by the client when he/she wants to register 
+ an new item on the market.
+ </Remarks>
+		<Name>CMSG_MARKETDELETEITEM</Name>
+		<Identifier>0F05</Identifier>
+		<Remarks>
+ This packet is sent to the player when a person want to delete an 
+ item from the market. Note that he/she can only delete his own items.
+ </Remarks>
+		<Name>CMSG_MARKETMESSAGE</Name>
+		<Identifier>0F06</Identifier>
+		<Remarks>
+ This packet is sent by the client when he/she wants to set the comment 
+ </Remarks>
+		<Name>CMSG_MARKETGETCOMMENT</Name>
+		<Identifier>0F07</Identifier>
+		<Remarks>
+ This packet is sent to the player when a person wants to retrieve 
+ of another player.
+ </Remarks>
+		<Name>CMSG_MARKETOWNERCOMMENT</Name>
+		<Identifier>0F08</Identifier>
+		<Remarks>
+ This packet is sent by the client when he/she requests his/hers own 
+ comment in the auction house.
+ search. 
+ </Remarks>
+		<Name>CMSG_FRIENDLIST_REGISTER</Name>
+		<Identifier>1201</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to 
+ add a new friend to the friendlist. The client than waits for
+ a valid response of SMSG_FRIENDLIST_REGISTER.
+ 
+ Important: the packet is accociated with the characters name
+ not a characters id and also the client allows you to sent
+ empty names. The correct approach to handle this is to discard
+ the packet without a response.
+ </Remarks>
+		<Name>CMSG_FRIENDLIST_REGISTER</Name>
+		<Identifier>1201</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to 
+ add a new friend to the friendlist. The client than waits for
+ a valid response of SMSG_FRIENDLIST_REGISTER.
+ 
+ Important: the packet is accociated with the characters name
+ not a characters id and also the client allows you to sent
+ empty names. The correct approach to handle this is to discard
+ the packet without a response.
+ </Remarks>
+		<Name>CMSG_FRIENDLIST_UNREGISTER</Name>
+		<Identifier>1202</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to 
+ delete a existing name on the friendlist. The client than waits for
+ a valid response of SMSG_FRIENDLIST_UNREGISTER.
+ 
+ Important: the packet is accociated with the characters name
+ not a characters id and also the client allows you to sent
+ empty names. The correct approach to handle this is to discard
+ the packet without a response.
+ </Remarks>
+		<Name>CMSG_FRIENDLIST_UNREGISTER</Name>
+		<Identifier>1202</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to 
+ delete a existing name on the friendlist. The client than waits for
+ a valid response of SMSG_FRIENDLIST_UNREGISTER.
+ 
+ Important: the packet is accociated with the characters name
+ not a characters id and also the client allows you to sent
+ empty names. The correct approach to handle this is to discard
+ the packet without a response.
+ </Remarks>
+		<Name>CMSG_FRIENDLIST_REFRESH</Name>
+		<Identifier>1203</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to refresh
+ the friendlist for her/him. The client expects to get a valid response 
+ of SMSG_FRIENDLIST_REFRESH.
+ </Remarks>
+		<Name>CMSG_FRIENDLIST_REFRESH</Name>
+		<Identifier>1203</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to refresh
+ the friendlist for her/him. The client expects to get a valid response 
+ of SMSG_FRIENDLIST_REFRESH.
+ </Remarks>
+		<Name>CMSG_BLACKLIST_REGISTER</Name>
+		<Identifier>1204</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to 
+ add a new characer to the blacklist. The client than waits for
+ a valid response of SMSG_BLACKLIST_REGISTER.
+ 
+ Important: the packet is accociated with the characters name
+ not a characters id and also the client allows you to sent
+ empty names. The correct approach to handle this is to discard
+ the packet without a response.
+ </Remarks>
+		<Name>CMSG_BLACKLIST_REGISTER</Name>
+		<Identifier>1204</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to 
+ add a new characer to the blacklist. The client than waits for
+ a valid response of SMSG_BLACKLIST_REGISTER.
+ 
+ Important: the packet is accociated with the characters name
+ not a characters id and also the client allows you to sent
+ empty names. The correct approach to handle this is to discard
+ the packet without a response.
+ </Remarks>
+		<Name>CMSG_BLACKLIST_UNREGISTER</Name>
+		<Identifier>1205</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to 
+ delete a existing name on the blacklist. The client than waits for
+ a valid response of SMSG_BLACKLIST_UNREGISTER.
+ 
+ Important: the packet is accociated with the characters name
+ not a characters id and also the client allows you to sent
+ empty names. The correct approach to handle this is to discard
+ the packet without a response.
+ </Remarks>
+		<Name>CMSG_BLACKLIST_UNREGISTER</Name>
+		<Identifier>1205</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to 
+ delete a existing name on the blacklist. The client than waits for
+ a valid response of SMSG_BLACKLIST_UNREGISTER.
+ 
+ Important: the packet is accociated with the characters name
+ not a characters id and also the client allows you to sent
+ empty names. The correct approach to handle this is to discard
+ the packet without a response.
+ </Remarks>
+		<Name>CMSG_BLACKLIST_REFRESH</Name>
+		<Identifier>1206</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to refresh
+ the blacklist for her/him. The client expects to get a valid response 
+ of SMSG_BLACKLIST_REFRESH.
+ </Remarks>
+		<Name>CMSG_BLACKLIST_REFRESH</Name>
+		<Identifier>1206</Identifier>
+		<Remarks>
+ This packet is sent by the client to indicate he/she wants to refresh
+ the blacklist for her/him. The client expects to get a valid response 
+ of SMSG_BLACKLIST_REFRESH.
+ </Remarks>
+	</ClientSide>
+	<ServerSide>
+		<Name>SMSG_WEAPONUNLOCK</Name>
+		<Identifier>0053</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_QUESTCANCEL</Name>
+		<Identifier>0092</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_QUESTCOMPLETE</Name>
+		<Identifier>0093</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_QUESTCONFIRM</Name>
+		<Identifier>0094</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_QUESTFAIL</Name>
+		<Identifier>0095</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_QUESTINFO</Name>
+		<Identifier>0096</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_QUESTLIST</Name>
+		<Identifier>0097</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_QUESTNPCNOTE</Name>
+		<Identifier>0099</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_QUESTREMOVE</Name>
+		<Identifier>009A</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_QUESTREWITEM</Name>
+		<Identifier>009B</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_QUESTSTEPUPDATE</Name>
+		<Identifier>009C</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_QUESTSUBSTEPUPDATE</Name>
+		<Identifier>009D</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_REMOVENAVIGATIONPOINT</Name>
+		<Identifier>009E</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_REMOVENAVIGATIONPOINT2</Name>
+		<Identifier>009F</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_TRADEINVITATION</Name>
+		<Identifier>00A6</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_TRADEITEM</Name>
+		<Identifier>00A7</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_TRADEITEMOTHER</Name>
+		<Identifier>00A8</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_TRADERESULT2</Name>
+		<Identifier>00AA</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_TRADEZENY</Name>
+		<Identifier>00AB</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_TRADEZENYOTHER</Name>
+		<Identifier>00AC</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_ADDSPECIALSKILLREPLY</Name>
+		<Identifier>00B2</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_ITEMTOGGLE</Name>
+		<Identifier>00B4</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_LIVINGSKILL</Name>
+		<Identifier>00B6</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_REMOVESPECIALSKILL</Name>
+		<Identifier>00B9</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SENDBOOKLIST</Name>
+		<Identifier>00BA</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SENDSPECIALSKILLS</Name>
+		<Identifier>00BB</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SETSPECIALSKILL</Name>
+		<Identifier>00BC</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SKILLADD</Name>
+		<Identifier>00BD</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SKILLCAST</Name>
+		<Identifier>00BE</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SKILLCASTCANCEL</Name>
+		<Identifier>00BF</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SKILLEFFECT</Name>
+		<Identifier>00C0</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SKILLLEARN</Name>
+		<Identifier>00C1</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SKILLREMOVE</Name>
+		<Identifier>00C2</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SKILLTOGLE</Name>
+		<Identifier>00C3</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SPECIALSKILLS</Name>
+		<Identifier>00C4</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SCENARIOCOMPLETE</Name>
+		<Identifier>0118</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SCENARIOEVENT</Name>
+		<Identifier>0119</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SCENARIOEVENTBEGIN</Name>
+		<Identifier>011A</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SCENARIOEVENTEND</Name>
+		<Identifier>011B</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SCENARIOMSG</Name>
+		<Identifier>011C</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SCENARIOSTEPCOMPLETE</Name>
+		<Identifier>011D</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SCENARIOSTEPUPDATE</Name>
+		<Identifier>011E</Identifier>
+		<Remarks>None</Remarks>
+		<Name>SMSG_SENDSTART</Name>
+		<Identifier>0301</Identifier>
+		<Remarks>
+ This packet is used to send to players to indicate they are transfering servers/maps.
+ For the client it indicates to release old resources like item actors, waypoints. 
+
+ The server could probally make use for this tranfer the players data to another sharded 
+ zone server in the future.
+ </Remarks>
+		<Name>SMSG_CHARACTERINFO</Name>
+		<Identifier>0302</Identifier>
+		<Remarks>
+ This packet is send to sent new character information to yourself and people who
+ can see you. This packet contains information as your name, gender, virtually 
+ anything to render yourself.
+ </Remarks>
+		<Name>SMSG_ACTORINFO</Name>
+		<Identifier>0303</Identifier>
+		<Remarks>
+ This is used to send the acotr information for the speciafied Actor.
+ </Remarks>
+		<Name>SMSG_ACTORDELETE</Name>
+		<Identifier>0304</Identifier>
+		<Remarks>
+ This packet is sent to player who used be able to see the speciafied
+ player but now can't see him anymore as a result of moving. It releases any
+ assiciated resources related to the player (client-side).
+ </Remarks>
+		<Name>SMSG_ACTORMOVEMENTSTART</Name>
+		<Identifier>0305</Identifier>
+		<Remarks>
+ This is a test
+ 
+ Haha.
+ </Remarks>
+		<Name>SMSG_MOVEMENTSTART</Name>
+		<Identifier>0305</Identifier>
+		<Remarks>
+ This function indicated a movement start of the given actor
+ to start moving to the given position. The actor is here speciafied 
+ as a actor of the player class.
+ </Remarks>
+		<Name>SMSG_MOVEMENTSTOPPED</Name>
+		<Identifier>0306</Identifier>
+		<Remarks>
+ This function is used to indacte the given actor stopped moving.
+ </Remarks>
+		<Name>SMSG_UPDATEYAW</Name>
+		<Identifier>0307</Identifier>
+		<Remarks>
+ This packet updates the yaw of your character. This packet is used
+ to notify the surrounding people you have changed your facing 
+ direction.
+ </Remarks>
+		<Name>SMSG_CHARSTATUS</Name>
+		<Identifier>0308</Identifier>
+		<Remarks>
+ This packet is send to the player to notify himself of his active changes. 
+ These changes can be JEXP, EXP, HP, SP,  the Flag "FieldOfSignt" indicates 
+ what to display.
+ 
+ 1 = Joblvl up, 2 = Jexp, 16 = CLvl up, 32 = Cexp
+ </Remarks>
+		<Name>SMSG_ACTORCHANGESTATE</Name>
+		<Identifier>0309</Identifier>
+		<Remarks>
+ This packet is send to every player surrounding the speciafied player
+ to indicate he/she has updated their current actor state. For example
+ player a was sitting and is now going to lay.
+ </Remarks>
+		<Name>SMSG_ACTORSELECTION</Name>
+		<Identifier>030B</Identifier>
+		<Remarks>
+ This is packet is send by to the speciafied actor to indicate he/she
+ should select the speciafied player. This pop-ups the selection stuff,
+ there should also be a equiavelent for deselecting.
+ </Remarks>
+		<Name>SMSG_LEVELUP</Name>
+		<Identifier>030C</Identifier>
+		<Remarks>
+ LevelType speciafies for what type of level up. 
+ 1 determines a base level up
+ 2 determines a job level up
+ </Remarks>
+		<Name>SMSG_CHANGEQUIPMENT</Name>
+		<Identifier>030D</Identifier>
+		<Remarks>
+ This packet is broadcasted to all players in the regional range who
+ are able to see the player. This packet indicates that the user is
+ switching equipment. 
+ 
+ For example player a wares a hat and now switched to bunny ears. This 
+ packet is then send to notify other actors you're switching gears./// 
+ </Remarks>
+		<Name>SMSG_EXTSTATS</Name>
+		<Identifier>030F</Identifier>
+		<Remarks>
+ This packet sends the extended character stats. This packet contains
+ information about base stats, bonusses.
+ </Remarks>
+		<Name>SMSG_BATTLESTATS</Name>
+		<Identifier>0310</Identifier>
+		<Remarks>
+ This packet is sent to send your battle stats. These battlestats consist 
+ out of the resistances, defense, flee.
+ </Remarks>
+		<Name>SMSG_JOBCHANGED</Name>
+		<Identifier>0311</Identifier>
+		<Remarks>
+ This packet is used to indicate the given actor has changed their jobs. This
+ packet is expected to send to player after it invokes a request to change their
+ current job class.
+ </Remarks>
+		<Name>SMSG_CHANGEJOB</Name>
+		<Identifier>0312</Identifier>
+		<Remarks>
+ This packet contains a list of all posible jobs you are
+ allowed to switch/change to.
+ </Remarks>
+		<Name>SMSG_TIMEWEATHER</Name>
+		<Identifier>0313</Identifier>
+		<Remarks>
+ This packet updates the current time/weather. This packet should be send for 
+ on maploading and when the weather changes.
+ </Remarks>
+		<Name>SMSG_KAFTRAHOMEPOINT</Name>
+		<Identifier>0314</Identifier>
+		<Remarks>
+ This packet sets the positions of your
+ katra-homepoint
+ </Remarks>
+		<Name>SMSG_ACTORTELEPORT</Name>
+		<Identifier>0315</Identifier>
+		<Remarks>
+ This packet is used to teleport a user to another set of 
+ x,y,z coords on the same map. This will result in the client 
+ NOT to release all resources but to reuse them.
+ </Remarks>
+		<Name>SMSG_HEALRESULT</Name>
+		<Identifier>0316</Identifier>
+		<Remarks>
+ This packet defines the the result of the performed heal operation.
+ </Remarks>
+		<Name>SMSG_SHOWMAPINFO</Name>
+		<Identifier>0317</Identifier>
+		<Remarks>
+ This packet is sent after the maploading. It's internal data 
+ indicates which regions of the given map are visible by the player. 
+ As we all know as you progress futher in the game some part of the 
+ maps need certain maps to have been learned.
+ </Remarks>
+		<Name>SMSG_WIDEMOVEMENTSTART</Name>
+		<Identifier>0319</Identifier>
+		<Remarks>
+ A wide movement used by ships and trains.
+ </Remarks>
+		<Name>SMSG_WIDEMOVEMENTSTOP</Name>
+		<Identifier>031A</Identifier>
+		<Remarks>
+ This packet sets a position and yaw. Probably
+ WideMovementStop function? 
+ </Remarks>
+		<Name>SMSG_PORTALFAIL</Name>
+		<Identifier>031B</Identifier>
+		<Remarks>
+ This packet is sent when portal information could not be found.
+ direction.
+ </Remarks>
+		<Name>SMSG_RETURNMAPLIST</Name>
+		<Identifier>031C</Identifier>
+		<Remarks>
+ This packet indactes the respawn maps for when you die/use the promise stone.
+ The IsSaveLocationSet indicate if the user can be warped to their save 
+ locations when they die.
+ 
+ The from map indicates the save-position.
+ The to-map indicates the catheleya-position.
+ </Remarks>
+		<Name>SMSG_REQUESTSHOWLOVE</Name>
+		<Identifier>031D</Identifier>
+		<Remarks>
+ This packet is sent to request new love comitment.
+ </Remarks>
+		<Name>SMSG_RESPONSESHOWLOVE</Name>
+		<Identifier>031E</Identifier>
+		<Remarks>
+ This packet is sent to request new love comitment.
+ </Remarks>
+		<Name>SMSG_TAKEDAMAGE</Name>
+		<Identifier>031F</Identifier>
+		<Remarks>
+ This function inidactes you have taken damage. This can either be 
+ because you just felt. Or because you suffer from lack of ogygen.
+ </Remarks>
+		<Name>SMSG_ACTORDIVE</Name>
+		<Identifier>0320</Identifier>
+		<Remarks>
+ This packet is send by the player as a result of either going to dive 
+ underwater or the player was diving and has reached the surface. This
+ function needs to trigger the rightfull regenarations
+ </Remarks>
+		<Name>SMSG_JOBLEVELS</Name>
+		<Identifier>0321</Identifier>
+		<Remarks>
+ This is a test
+ 
+ Haha.
+ </Remarks>
+		<Name>SMSG_SENDMONEYFORJOB</Name>
+		<Identifier>0323</Identifier>
+		<Remarks>
+ This function returns the required money to transfer jobs. The formulla to change
+ jobs is something along the lines of:
+ 
+ ((joblvl - 5) * 300) + ( nSummedSkillLvl - nSkills  ) * 100
+ </Remarks>
+		<Name>SMSG_SENDCHAT</Name>
+		<Identifier>0401</Identifier>
+		<Remarks>
+ Thia packet is sent by the player to indicate he/she is changing 
+ her state. For example when the player switches from sitting to 
+ lying position.
+ </Remarks>
+		<Name>SMSG_SENDWHISPER</Name>
+		<Identifier>0402</Identifier>
+		<Remarks>
+ Thia packet is sent to player as a result of a personal message whisper.
+ </Remarks>
+		<Name>SMSG_WHISPERERROR</Name>
+		<Identifier>0403</Identifier>
+		<Remarks>
+ Thia packet is sent to player as a result of a personal message whisper.
+ 
+ Results: 
+ 1 - Unable to find whisper target
+ 2 - Target does not accept whispers
+ 3 - Can't send a PM to somebody in your blacklist
+ </Remarks>
+		<Name>SMSG_MOVEREPLY</Name>
+		<Identifier>0501</Identifier>
+		<Remarks>
+ This packet is sent as a reply to indicate the movement is sucessfull 
+ or has some errors. The client after the request to move the item will 
+ block all other packets untill he/she has attained this packet.
+ </Remarks>
+		<Name>SMSG_INVENTORYLIST</Name>
+		<Identifier>0502</Identifier>
+		<Remarks>
+ This function send the inventory list of the speciafied player this is apart
+ of the map-loading function. Should be send once and all other item interaction
+ is handeld incrementally.
+ </Remarks>
+		<Name>SMSG_STORAGELIST</Name>
+		<Identifier>0503</Identifier>
+		<Remarks>
+ This packet is used to show the storage list to the player. This is sent 
+ everytime the player opens his storage.
+ </Remarks>
+		<Name>SMSG_ADDITEM</Name>
+		<Identifier>0506</Identifier>
+		<Remarks>
+ This packet is sent to the speciafied player to add a item-resource to
+ the speciafied container. Container 2 speciafies the inventory, while container 3
+ speciafies the storage.
+ </Remarks>
+		<Name>SMSG_DELETEITEM</Name>
+		<Identifier>0507</Identifier>
+		<Remarks>
+ This packet is sent to speciafied player to indicate to release 
+ resources for the associated item-resource on the client. As a result
+ it deletes the item. The item can be deleted with numerous of reason,
+ item traded or sold to a npc 
+ </Remarks>
+		<Name>SMSG_WEAPONMOVE</Name>
+		<Identifier>0508</Identifier>
+		<Remarks>
+ This packet is the result of the weaponmove packet send by the player. 
+ It indicates how to change current weapon.
+ </Remarks>
+		<Name>SMSG_WEAPONSWITCH</Name>
+		<Identifier>050A</Identifier>
+		<Remarks>
+ This packet is sent to the player to indicate she/he
+ is switching weapons. To other people in the viewrange
+ are updated using SMSG_SHOWWEAPON
+ </Remarks>
+		<Name>SMSG_WEAPONCREATE</Name>
+		<Identifier>050B</Identifier>
+		<Remarks>
+ This packet is sent to user to create a new weapon. The new
+ weapon will be created on the speciafied index.
+ </Remarks>
+		<Name>SMSG_WEAPONMAX</Name>
+		<Identifier>050D</Identifier>
+		<Remarks>
+ This packet is sent to the user to resize the
+ number of unlocked weapons.After this is unlocked
+ you can use weapons on the slots less than maximum count.
+ </Remarks>
+		<Name>SMSG_SHOWWEAPON</Name>
+		<Identifier>050E</Identifier>
+		<Remarks>
+ This packet that indicates to change
+ the auge of the weapon.
+ </Remarks>
+		<Name>SMSG_ENCHANTMENT</Name>
+		<Identifier>050F</Identifier>
+		<Remarks>
+ This packet is used to set a speciafied enchantement to
+ the speciafied weapon.
+ </Remarks>
+		<Name>SMSG_WEAPONLIST</Name>
+		<Identifier>0510</Identifier>
+		<Remarks>
+ This packet sends the current weaponary list and 
+ their information. This function is send as beeing apart of the 
+ map-load function. All other weapon updates should be incremental.
+ </Remarks>
+		<Name>SMSG_SHOPLIST</Name>
+		<Identifier>0511</Identifier>
+		<Remarks>
+ This packet shows the shoplist with available items which can be bought by
+ the player. The shoplist are used by npc by either the type of a shop, catheleya
+ or skillmaster.
+ </Remarks>
+		<Name>SMSG_EQUIPMENTLIST</Name>
+		<Identifier>0512</Identifier>
+		<Remarks>
+ This packet sends the equipment list in total to the speciafied player. This packet should be
+ send as part of the map-loading function.
+ </Remarks>
+		<Name>SMSG_ITEMADJUST</Name>
+		<Identifier>0513</Identifier>
+		<Remarks>
+ This function adjust a item, a item could be adjusted for exp, lvl, duration. 
+ This packet is used by repair (blacksmith) functions, and equipment/weaponary
+ duration loss.
+ </Remarks>
+		<Name>SMSG_UPDATEITEM</Name>
+		<Identifier>0513</Identifier>
+		<Remarks>
+ This packet is used to update the item in the the 
+ speciafied container most common usage is the update
+ the items count for various reaons.
+ 
+ </Remarks>
+		<Name>SMSG_MOVEITEM</Name>
+		<Identifier>0514</Identifier>
+		<Remarks>
+ This function is used to swap a item. In this given context "to swap"
+ the item indicates a event where the user equips/unequips a item.
+ </Remarks>
+		<Name>SMSG_SENDZENY</Name>
+		<Identifier>0515</Identifier>
+		<Remarks>
+ This packet is sent by the client to set the amount of zeny. Note
+ that the speciafied value is a absolute value and not a incremental 
+ value.
+ </Remarks>
+		<Name>SMSG_WEAPONADJUST</Name>
+		<Identifier>0516</Identifier>
+		<Remarks>
+ This packet adjusts the weapon, the weapon can be adjusted for various reasons:
+ Exp, durabillity, Weapon. The value is pinpointed in affection of the pinpointed 
+ function (reason to upate).
+ </Remarks>
+		<Name>SMSG_WEAPONUPGRADE</Name>
+		<Identifier>0517</Identifier>
+		<Remarks>
+ This packet that indicates wheter or not a upgrade has been sucessfull.
+ </Remarks>
+		<Name>SMSG_NPCDROPLISTRESULT</Name>
+		<Identifier>0518</Identifier>
+		<Remarks>
+ This packet is used to send to the user after she has invoked a 
+ request to open the drop-list for the dead target. The client 
+ blocks all other trafic.
+ </Remarks>
+		<Name>SMSG_WAREHOUSEMONEY.</Name>
+		<Identifier>0519</Identifier>
+		<Remarks>
+ This packet creates a new weapon
+ </Remarks>
+		<Name>SMSG_WAREHOUSEMONEY2</Name>
+		<Identifier>051A</Identifier>
+		<Remarks>
+ This packet creates a new weapon
+ </Remarks>
+		<Name>SMSG_ADDITIONLIST</Name>
+		<Identifier>051B</Identifier>
+		<Remarks>
+ This function sends over a list of visible additions. There is a maximum of 255 additons
+ that can be visible by the client. Note this list is only meant for yourself.
+ </Remarks>
+		<Name>SMSG_ADDITIONBEGIN</Name>
+		<Identifier>051C</Identifier>
+		<Remarks>
+ This function add a speciafied addition to the actor. Once duration reaches 
+ 0 it does not automaticly delete it waits till you send a packet to delete
+ the speciafied addition.
+ </Remarks>
+		<Name>SMSG_ADDITIONEND</Name>
+		<Identifier>051D</Identifier>
+		<Remarks>
+ This packet is sent to delete the addition icon for a given player. The deletion 
+ of this icon may occur due the additions active time expired.
+ </Remarks>
+		<Name>SMSG_WEAPONCHANGE</Name>
+		<Identifier>051E</Identifier>
+		<Remarks>
+ This packet is sent to your character to indicate a weaonchange has occured.
+ </Remarks>
+		<Name>SMSG_WEAPONNAME</Name>
+		<Identifier>0520</Identifier>
+		<Remarks>
+ This packet creates a new weapon
+ </Remarks>
+		<Name>SMSG_WEAPONNEWCHANGESUFFIX</Name>
+		<Identifier>0520</Identifier>
+		<Remarks>
+ This packet set the weaponname and suffix
+ </Remarks>
+		<Name>SMSG_UNKNOWNERROR</Name>
+		<Identifier>0521</Identifier>
+		<Remarks>
+ No information
+ </Remarks>
+		<Name>SMSG_SHOWMAP</Name>
+		<Identifier>0522</Identifier>
+		<Remarks>
+ This packet is sent to the player to reveal a unrevealed piece of region on
+ there map. After the unrevealed region is learned it is always known and should be
+ send over with with the mapload function.
+ </Remarks>
+		<Name>SMSG_WEAPONCHANGESUFFIX</Name>
+		<Identifier>0524</Identifier>
+		<Remarks>
+ This packet adjusts the weapon's suffix.
+ </Remarks>
+		<Name>SMSG_USEDYEITEM</Name>
+		<Identifier>0525</Identifier>
+		<Remarks />
+		<Name>SMSG_USEQUESTITEM</Name>
+		<Identifier>0526</Identifier>
+		<Remarks>
+ This packet is sent as a return message on the client rigth after 0x0709 (CMSG_QUESTSTART)
+ has been invoked. Posible it's been used for other purposes as well.
+ </Remarks>
+		<Name>SMSG_USESUPPLEMENTSTONE</Name>
+		<Identifier>0527</Identifier>
+		<Remarks>
+ This packet that indicates wheter or not a upgrade has been sucessfull.
+ </Remarks>
+		<Name>SMSG_SENDINVENTORY</Name>
+		<Identifier>0601</Identifier>
+		<Remarks>
+ This packet sent the drop list of the user. Packet should be 
+ renamed to SMSG_DROPLIST.
+ </Remarks>
+		<Name>SMSG_NPCCHAT</Name>
+		<Identifier>0602</Identifier>
+		<Remarks>
+ This packet makes the npc start a dialog.
+ </Remarks>
+		<Name>SMSG_NPCMENU</Name>
+		<Identifier>0603</Identifier>
+		<Remarks>
+ This packet shows a set of submenu items.
+ </Remarks>
+		<Name>SMSG_NPCSPEECH</Name>
+		<Identifier>0605</Identifier>
+		<Remarks>
+ This packet makes a npc output the requested speech script (dialoge)
+ </Remarks>
+		<Name>SMSG_NPCASKLOCATION</Name>
+		<Identifier>0606</Identifier>
+		<Remarks>
+ No information yet. To be believed to do something related to the old guard functionallity.
+ Which will show you some 'hot' places or provide information about them.
+ </Remarks>
+		<Name>SMSG_NPCASKLOCATIONSRC</Name>
+		<Identifier>0607</Identifier>
+		<Remarks>
+ No information yet. To be believed to do something related to the old guard functionallity.
+ Which will show you some 'hot' places or provide information about them.
+ </Remarks>
+		<Name>SMSG_HATEINFO</Name>
+		<Identifier>0609</Identifier>
+		<Remarks>
+ This packet is sends out the current hateinfo of a monster towards a player.
+ Once the player starts a fight the client broadcasts a message every tick to 
+ request the hate. This is done to save the server processing power and memory 
+ of keeping track al the hate.
+ </Remarks>
+		<Name>SMSG_SHOPZENYUPDATE</Name>
+		<Identifier>060A</Identifier>
+		<Remarks>
+ This packet updates the amount of zeny a shopping npc has. This packet should 
+ be send on every item your buy/sell. And should be broadcasted to every player 
+ who references the shop as a target.
+ </Remarks>
+		<Name>SMSG_NPCINFO</Name>
+		<Identifier>060B</Identifier>
+		<Remarks>
+ This packet makes a new npc appear. 
+ Currently there are 1 unknown field.
+ </Remarks>
+		<Name>SMSG_ITEMINFO</Name>
+		<Identifier>060C</Identifier>
+		<Remarks>
+ This packet adds a new action object with a known. 
+ Still quite a lot is unknown.
+ </Remarks>
+		<Name>SMSG_LISTSPECIALSKILLS</Name>
+		<Identifier>060C</Identifier>
+		<Remarks>
+ This packet sends a list of all saved special skills to 
+ the character.
+ </Remarks>
+		<Name>SMSG_REBUYLIST</Name>
+		<Identifier>060D</Identifier>
+		<Remarks>
+ This show your characters rebuy list.
+ </Remarks>
+		<Name>SMSG_ACTORUPDATEICON</Name>
+		<Identifier>060E</Identifier>
+		<Remarks>
+ This updates the current npc's icon. The icon in a bit flag enumation:
+ 1 - Official Quest
+ 2 - Personal Quest
+ 3 - Both quests
+ 4 - Dead
+ </Remarks>
+		<Name>SMSG_KAFTRASAVEPOSITION</Name>
+		<Identifier>0611</Identifier>
+		<Remarks>
+ This packet indicates that the user has saved their new
+ position.
+ </Remarks>
+		<Name>SMSG_ITEMUPDATE</Name>
+		<Identifier>0612</Identifier>
+		<Remarks>
+ This packet updates a actionobject (read as mapobject). They are used in conjunction with 
+ quests to activate a object once the quest is activated.
+ </Remarks>
+		<Name>SMSG_ACTORANIMATION</Name>
+		<Identifier>0613</Identifier>
+		<Remarks>
+ Invokes a packet to do some animiation. We should confirm it's packets 
+ useabillity and capacities.
+ </Remarks>
+		<Name>SMSG_SUPPLYLIST</Name>
+		<Identifier>0615</Identifier>
+		<Remarks>
+ This packet shows a equipment trading list. This is a single list of where multiple items can 
+ be gained in contradiction with our other list which is only 1 item.
+ </Remarks>
+		<Name>SMSG_SUPPLYMENU</Name>
+		<Identifier>0616</Identifier>
+		<Remarks>
+ This shows a sublist of a trade-menu. You can choose which trade you want to see
+ and the list of required items is shown.
+ </Remarks>
+		<Name>SMSG_EQUIPMENTTRADINGLIST</Name>
+		<Identifier>0617</Identifier>
+		<Remarks>
+ This packets sents a list of items that can be traded. Still need to implament 
+ this so both trading windows can be used.
+ </Remarks>
+		<Name>SMSG_SUPPLYLISTRESULT</Name>
+		<Identifier>0618</Identifier>
+		<Remarks>
+ This show a fail/succes message if the trade is sucessfully. 
+ </Remarks>
+		<Name>SMSG_CHANGEATKTYPE</Name>
+		<Identifier>061A</Identifier>
+		<Remarks>
+ No information available. 
+ Still figuring out what it does and when it get's send
+ </Remarks>
+		<Name>SMSG_EVENTINFO</Name>
+		<Identifier>061B</Identifier>
+		<Remarks>
+ This shows you a list of events to which you can participate.
+ After this the packet 0x061E is sent (EVENTINFO2) in the event 
+ that is currently visible on kro2.
+ </Remarks>
+		<Name>SMSG_EVENTUSERNAME</Name>
+		<Identifier>061C</Identifier>
+		<Remarks>
+ This shows a 'alert' window with either "player %s participated with the event" or "unable to find player."
+ We believe this is for some event invitation purpose.
+ </Remarks>
+		<Name>SMSG_EVENTSUCCESS</Name>
+		<Identifier>061D</Identifier>
+		<Remarks>
+ This shows a message in the system chat of "you've succesfully participated with the event". 
+ This packet is most likely to be used in conjunction with the SMSG_USERNAME.
+ </Remarks>
+		<Name>SMSG_EVENTINFO2</Name>
+		<Identifier>061E</Identifier>
+		<Remarks>
+ This packet shows you a list of items.
+ Due lack of information how this works is still unknown
+ </Remarks>
+		<Name>SMSG_EVENTCUPONRESULT</Name>
+		<Identifier>061F</Identifier>
+		<Remarks>
+ This packet is supposed to show some failure/success message after you selected a item
+ that is sent using SMSG_EVENTINFO2 packet.
+ </Remarks>
+		<Name>SMSG_WARPDIALOG</Name>
+		<Identifier>0620</Identifier>
+		<Remarks>
+ This packet shows a list of warp locations where you can choose 
+ where to warp too.
+ </Remarks>
+		<Name>SMSG_LEAVENPC</Name>
+		<Identifier>0621</Identifier>
+		<Remarks>
+ This packet forces your to terminiate conversation with the npc.
+ At the moment this is only used in conjunction with the warper npc 
+ where you need to leave your current npc convo before beeing warped.
+ </Remarks>
+		<Name>SMSG_SENDNAVIGATIONPOINT</Name>
+		<Identifier>070B</Identifier>
+		<Remarks>
+ This packet sents a list of navigation points of activated
+ npc's for the current map. If the list needs to be modified
+ you need to clear the list before.
+ </Remarks>
+		<Name>SMSG_QUESTNOTE</Name>
+		<Identifier>070D</Identifier>
+		<Remarks>
+ This packet is sent in conjunction with npc note
+ this indicates that the following steps are beeing 
+ logged in a history.
+ </Remarks>
+		<Name>SMSG_TRADERESULT</Name>
+		<Identifier>0801</Identifier>
+		<Remarks>
+ This packet is sent to the client to indicate if the trade failed
+ or was a success.
+ </Remarks>
+		<Name>SMSG_TRADECONFIRM</Name>
+		<Identifier>0807</Identifier>
+		<Remarks>
+ This packet is sent to confirm the trade is okay.
+ </Remarks>
+		<Name>SMSG_OFFENSIVESKILLFAILED</Name>
+		<Identifier>0907</Identifier>
+		<Remarks>
+ This packet is sent to the client as a reply to their request
+ to use a skill which has failed.
+ </Remarks>
+		<Name>SMSG_OFFENSIVESKILL</Name>
+		<Identifier>0908</Identifier>
+		<Remarks>
+ This packet is sent towards clients as a indication the selected
+ user has performed a skill.
+ </Remarks>
+		<Name>SMSG_BATTLESKILL</Name>
+		<Identifier>090A</Identifier>
+		<Remarks>
+ Sends over a list of available skills to the character. This can be
+ active, passive or supportive skills.
+ </Remarks>
+		<Name>SMSG_ADDSHORTCUT</Name>
+		<Identifier>0A01</Identifier>
+		<Remarks>
+ This packet is depreciated since CB2. The client still preserves the packet however.
+ due this reason this function is purely implacated for show.
+ </Remarks>
+		<Name>SMSG_DELETESHORTCUT</Name>
+		<Identifier>0A02</Identifier>
+		<Remarks>
+ This packet is depreciated since CB2. The client still preserves the packet however.
+ due this reason this function is purely implacated for show.
+ </Remarks>
+		<Name>SMSG_MAILSENDAWNSER</Name>
+		<Identifier>0C02</Identifier>
+		<Remarks>
+ This packet is sent to the client as an reply indicating if you sent
+ the mail.
+ </Remarks>
+		<Name>SMSG_MAILERROR</Name>
+		<Identifier>0C03</Identifier>
+		<Remarks>
+ Not quite sure what it does
+ </Remarks>
+		<Name>SMSG_MAILDATA</Name>
+		<Identifier>0C03</Identifier>
+		<Remarks>
+ This packet is sent over the mail data of a inbox item.
+ </Remarks>
+		<Name>SMSG_MAILITEMAWNSER</Name>
+		<Identifier>0C04</Identifier>
+		<Remarks>
+ This packet is sent over as an reply indicating if an error occures
+ when retrieving the item.
+ </Remarks>
+		<Name>SMSG_MAILZENYAWNSER</Name>
+		<Identifier>0C05</Identifier>
+		<Remarks>
+ This packet is sent to the client as an reply indicating if you could 
+ retrieve the zeny fromthe mail.
+ </Remarks>
+		<Name>SMSG_MAILDELETEAWNSER</Name>
+		<Identifier>0C06</Identifier>
+		<Remarks>
+ This packet is sent over as an reply indicating if the mail item
+ could be deleted.
+ </Remarks>
+		<Name>SMSG_MAILLIST</Name>
+		<Identifier>0C07</Identifier>
+		<Remarks>
+ This packet is sent over all the items in the inbox tab.
+ </Remarks>
+		<Name>SMSG_MAILLISTOUTBOX</Name>
+		<Identifier>0C07</Identifier>
+		<Remarks>
+ This packet is sent over all the items in the outbox tab.
+ </Remarks>
+		<Name>SMSG_MAILOUTDATA</Name>
+		<Identifier>0C09</Identifier>
+		<Remarks>
+ This packet is sent containing the full data of a mailitem.
+ </Remarks>
+		<Name>SMSG_MAILCANCELAWNSER</Name>
+		<Identifier>0C0A</Identifier>
+		<Remarks>
+ This packet is sent over as an reply indicating if the mail item
+ could be canceled.
+ </Remarks>
+		<Name>SMSG_MAILCLEARAWNSER</Name>
+		<Identifier>0C0A</Identifier>
+		<Remarks>
+ This packet is sent over as an reply indicating if the mail item
+ could be cleared
+ </Remarks>
+		<Name>SMSG_MAILAUCTION</Name>
+		<Identifier>0C0B</Identifier>
+		<Remarks>
+ This packet is sent to the client as an reply on the auction house causing a new mail 
+ item to be added to your maillist. Note that this packet is incremental.
+ </Remarks>
+		<Name>SMSG_MAILARRIVED</Name>
+		<Identifier>0C0B</Identifier>
+		<Remarks>
+ This packet is to indicate a relative new packet arrival.
+ </Remarks>
+		<Name>SMSG_PARTYINVITATION</Name>
+		<Identifier>0D01</Identifier>
+		<Remarks>
+ This packet is sent to invite a person by it's name.
+ </Remarks>
+		<Name>SMSG_PARTYINVITATIONRESULT</Name>
+		<Identifier>0D02</Identifier>
+		<Remarks>
+ This packet is sent to indicate if the party invivitation is 
+ agreed or denied.
+ </Remarks>
+		<Name>SMSG_PARTYQUIT</Name>
+		<Identifier>0D03</Identifier>
+		<Remarks>
+ This packet is sent to all players in a party to indicate a existing party
+ members has quite the party.
+ </Remarks>
+		<Name>SMSG_PARTYMEMBERINFO</Name>
+		<Identifier>0D04</Identifier>
+		<Remarks>
+ This packet is sent to a player to set a list of users
+ that are in the party.
+ 
+ At offset 39 of each member info. There is a field we'll be refering to 
+ zone state. In our expierence it's a byte long. The value of this byte is 
+ depending on which map you're on. 
+ 
+ In SMSG_MAPSTART this same value is also saved. When the field in SMSG_MAPSTART
+ and in the party related packets differ. The minimap won't display any additional
+ members.
+ 
+ </Remarks>
+		<Name>SMSG_PARTYNEWMEMBER</Name>
+		<Identifier>0D05</Identifier>
+		<Remarks>
+ This packet is sent to all party members to indicate a new party 
+ member should be added to their list.
+ </Remarks>
+		<Name>SMSG_PARTYUNKNOWN</Name>
+		<Identifier>0D06</Identifier>
+		<Remarks>
+ What this packet does is not yet know. We believe it is needed
+ to be able to see party members on the minimap.
+ </Remarks>
+		<Name>SMSG_PARTYSETLEADER</Name>
+		<Identifier>0D07</Identifier>
+		<Remarks>
+ This packet is sent to all party members to indicate the party
+ is switching party leader.
+ </Remarks>
+		<Name>SMSG_PARTYMODE</Name>
+		<Identifier>0D08</Identifier>
+		<Remarks>
+ This packet appears is broadcasted to all players in a party to
+ indicate party settings have changed
+ </Remarks>
+		<Name>SMSG_PARTYMEMBERHPINFO</Name>
+		<Identifier>0D09</Identifier>
+		<Remarks>
+ This packet is broadcasted to all players in a party to update the hp of a current 
+ player. This mostly seems to be sent after regeneration.
+ </Remarks>
+		<Name>SMSG_PARTYMEMBERSPINFO</Name>
+		<Identifier>0D0A</Identifier>
+		<Remarks>
+ This packet is broadcasted to all players in a party to update the sp of a current 
+ player. This mostly seems to be sent after regeneration.
+ </Remarks>
+		<Name>SMSG_PARTYMEMBERCLVL</Name>
+		<Identifier>0D0B</Identifier>
+		<Remarks>
+ This packet is broadcasted to all players in a party to update the characters base level
+ player. This packet should be sent when obtaining a new character level.
+ </Remarks>
+		<Name>SMSG_PARTYMEMBERJOB</Name>
+		<Identifier>0D0C</Identifier>
+		<Remarks>
+ This packet is broadcasted to all players in a party to update the job of your
+ character.
+ </Remarks>
+		<Name>SMSG_PARTYMEMBERJLVL</Name>
+		<Identifier>0D0D</Identifier>
+		<Remarks>
+ This packet is broadcasted to all players in a party to update the job lvel
+ of your character.
+ </Remarks>
+		<Name>SMSG_PARTYMEMBERU2</Name>
+		<Identifier>0D0E</Identifier>
+		<Remarks>
+ Some packet related to job changing.
+ </Remarks>
+		<Name>SMSG_PARTYMEMBERU3</Name>
+		<Identifier>0D13</Identifier>
+		<Remarks>
+ Some packet related target
+ </Remarks>
+		<Name>SMSG_PARTYMEMBERMAPCHANGE</Name>
+		<Identifier>0D14</Identifier>
+		<Remarks>
+ This packet appears to be broadcasted when you switch a nap/zone.
+ </Remarks>
+		<Name>SMSG_PARTMEMBERLOCATION</Name>
+		<Identifier>0D15</Identifier>
+		<Remarks>
+ This packet sents out the new x and y position on the minimap
+ to display for a certain character.
+ </Remarks>
+		<Name>SMSG_PARTYDISMISSED</Name>
+		<Identifier>0D16</Identifier>
+		<Remarks>
+ This packet is sent to indicate the party should be dismissed.
+ There is also party quiting which leads to if you're only one left
+ inside the party the party should be dismissed.
+ </Remarks>
+		<Name>SMSG_PARTYMEMBERLOOT</Name>
+		<Identifier>0D17</Identifier>
+		<Remarks>
+ This packet is broadcasted to all players in a party whenever he/she obtains a 
+ item he/she looted.
+ </Remarks>
+		<Name>SMSG_PARTYMEMBERDIED</Name>
+		<Identifier>0D18</Identifier>
+		<Remarks>
+ Packet that indicates the player has died.
+ </Remarks>
+		<Name>SMSG_ERROR</Name>
+		<Identifier>0E08</Identifier>
+		<Remarks />
+		<Name>SMSG_INITIALIZESCENARIO</Name>
+		<Identifier>1001</Identifier>
+		<Remarks>
+ This packet is sent to the user as a indication to initialize
+ a scenario quest.
+ </Remarks>
+		<Name>SMSG_MARKETSEARCH</Name>
+		<Identifier>1101</Identifier>
+		<Remarks>
+ This contains all the search results from the attemted search. Most of the 
+ stuff there. According to the old saga's code the bytes after the itemid would be
+ the name of the item used for sortations.
+ </Remarks>
+		<Name>SMSG_MARKETBUY</Name>
+		<Identifier>1102</Identifier>
+		<Remarks>
+ This packet is send to notify the user he has successfully bought the item or
+ a unknown database error has appeared.
+ </Remarks>
+		<Name>SMSG_MARKETOWNERSEARCH</Name>
+		<Identifier>1103</Identifier>
+		<Remarks>
+ This contains a list of items used to be owned by the current user.
+ </Remarks>
+		<Name>SMSG_MARKETREGISTER</Name>
+		<Identifier>1104</Identifier>
+		<Remarks>
+ This will add the speciafied item to the list of owned items.
+ </Remarks>
+		<Name>SMSG_MARKETDELETEITEM</Name>
+		<Identifier>1105</Identifier>
+		<Remarks>
+ This deleted a item from your owners list. This packet is mostly send 
+ with SMSG_MARKETMAIL which notify's the user of a new mail. The item which
+ is deleted is sent over it by mail.
+ </Remarks>
+		<Name>SMSG_MARKETMESSAGERESULT</Name>
+		<Identifier>1106</Identifier>
+		<Remarks>
+ Note quite sure what this packet really does. But seems to work in
+ conjunction with owner-based message retrieving. 
+ </Remarks>
+		<Name>SMSG_MARKETCOMMENT</Name>
+		<Identifier>1107</Identifier>
+		<Remarks>
+ This sends the comment message by a user when they
+ request to see it.
+ </Remarks>
+		<Name>SMSG_MARKETMESSAGE</Name>
+		<Identifier>1108</Identifier>
+		<Remarks>
+ This sends the comment message by a user when they
+ request to see it.
+ </Remarks>
+		<Name>SMSG_MARKETSTART</Name>
+		<Identifier>1109</Identifier>
+		<Remarks>
+ This packet will invoke the client to show the market dialog. Where you
+ can register items and or buy new ones. When the market is started the 
+ items are not automaticly displayed.
+ </Remarks>
+		<Name>SMSG_FRIENDLIST_REGISTER</Name>
+		<Identifier>1301</Identifier>
+		<Remarks>
+ This packet is sent by the server to the client as a response on CMSG_FRIENDLIST_REGISTER to indicate
+ a new character should be added to the friendlist. Note that this will add 1 character 
+ incremental to the list.
+ 
+ You can use the result field to discard the adding and show the reason 
+ why. Supported reasons: 0 Ok, 1 Character Not found, 2 List full, 3 Already added, 4 Unable to add yourself, 5 Does not exists unable to remove
+ </Remarks>
+		<Name>SMSG_FRIENDLIST_UNREGISTER</Name>
+		<Identifier>1302</Identifier>
+		<Remarks>
+ This packet is sent by the server to the client to indicate
+ a to indicate a person should be removed from the friendlist.
+ 
+ You can use the result field to discard the adding and show the reason 
+ why. Supported reasons: 0 Ok, 1 Character Not found, 2 List full, 3 Already added, 4 Unable to add yourself, 5 Does not exists unable to remove
+ </Remarks>
+		<Name>SMSG_FRIENDLIST_REFRESH</Name>
+		<Identifier>1303</Identifier>
+		<Remarks>
+ This packet is sent by the server as a response 
+ on packet CMSG_FRIENDLIST_REFRESH. The packet sents over a full copy 
+ of the friendlist with updated values.
+ 
+ The maximum size of the blacklist is 10 characters.
+ </Remarks>
+		<Name>SMSG_BLACKLIST_REGISTER</Name>
+		<Identifier>1304</Identifier>
+		<Remarks>
+ This packet is sent by the server to the client as a response on CMSG_BLACKLIST_REGISTER to indicate
+ a new character should be added to the blacklist. Note that this will add 1 character 
+ incremental to the list.
+ 
+ You can use the result field to discard the adding and show the reason 
+ why. Supported reasons: 0 Ok, 1 Character Not found, 2 List full, 3 Already added, 4 Unable to add yourself, 5 Does not exists unable to remove
+ </Remarks>
+		<Name>SMSG_BLACKLIST_UNREGISTER</Name>
+		<Identifier>1305</Identifier>
+		<Remarks>
+ This packet is sent by the server to the client to indicate
+ a to indicate a person should be removed from the blacklist.
+ 
+ You can use the result field to discard the adding and show the reason 
+ why. Supported reasons: 0 Ok, 1 Character Not found, 2 List full, 3 Already added, 4 Unable to add yourself, 5 Does not exists unable to remove
+ </Remarks>
+		<Name>SMSG_BLACKLIST_REFRESH</Name>
+		<Identifier>1306</Identifier>
+		<Remarks>
+ This packet is sent by the server as a response 
+ on packet CMSG_BLACKLIST_REFRESH. The packet sents over a full copy 
+ of the blacklist with updated values.
+ 
+ The maximum size of the blacklist is 10 characters.
+ </Remarks>
+		<Name>SMSG_FRIENDLIST_LOGINNOTIFY</Name>
+		<Identifier>1307</Identifier>
+		<Remarks>
+ This packet is sent by the server to the client to notify that their friend has loged on.
+ The person will only see the msg displayed if they have the option enabled client side to be notified
+ of friend logons.
+ 
+ The packet I had captured had 23 bytes of 0x00 after the friend name.
+ Another packet was similiar but last byte was 0x01... perhaps friend log off packet?
+ This implementation currently doesnt include that empty wasted space and still works.
+ </Remarks>
+	</ServerSide>
+</Packets>

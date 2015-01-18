@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<guide menu="10">
+  <point type="map">1</point> <!-- Prontera Knights ID44 //-->
+  <point type="map">1</point> <!-- South of Prontera ID59 //-->
+  <point type="map">1</point> <!-- Sara Tristan's Tomb ID89 //-->
+  <point type="map">1</point> <!-- Prontera Harbor ID51 //-->
+  <point type="map">1</point> <!-- Developed Land of Ericson ID53 //-->
+  <point type="map">1</point> <!-- Prontera South Coast Poring Island ID56 //-->
+  <point type="map">1</point> <!-- Achim's Farm Mitch's Farm ID55 //-->
+  <point type="map">1</point> <!-- Forest of Briston ID58 //-->
+</guide>

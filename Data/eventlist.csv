@@ -1,0 +1,5 @@
+EventId,Name,StartDate,EndDate,StartTime,EndTime,Use Date,Use Time,Monday,Thuesday,Wednesday,Thursday,Friday,Saturday,Sunday
+2,Event A,3/6/2009,2/6/2010,15:00,16:00,0,0,0,0,0,0,0,0,0
+4,Event B,3/6/2008,4/6/2008,15:00,16:00,1,1,1,1,1,1,1,1,1
+8,Event C,3/6/2008,4/6/2008,15:00,16:00,1,1,1,1,1,1,1,1,1
+16,Event D,3/6/2008,20/6/2010,15:00,16:00,1,1,1,1,1,1,1,1,1

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Kaftra> 
+  <Gossip>2408</Gossip>
+  <EverydayConversation>2409</EverydayConversation>
+  <EverydayConversation>2410</EverydayConversation>
+  <Storage>2509</Storage>
+  <KaftraService>2507</KaftraService>
+  <SaveLocation>2508</SaveLocation>
+</Kaftra>

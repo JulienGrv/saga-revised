@@ -1,0 +1,13 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup>
+      <ExternalExclude Include="$(MSBuildStartupDirectory)\External Projects\**\\*.*"></ExternalExclude>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectFiles Include="$(MSBuildStartupDirectory)\**\*.pdb" Exclude="@(ExternalExclude)" />
+      <ProjectFiles Include="$(MSBuildStartupDirectory)\**\obj\*.*" Exclude="@(ExternalExclude)" />
+      <ProjectFiles Include="$(MSBuildStartupDirectory)\**\bin\*.*" Exclude="@(ExternalExclude)" />
+    </ItemGroup>  
+    <Target Name="build">
+      <Delete Files="@(ProjectFiles)" />
+    </Target>
+</Project>

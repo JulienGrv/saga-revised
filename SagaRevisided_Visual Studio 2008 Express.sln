@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C# Express 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Shared.Definitions", "Shared\Saga.Shared.Definitions\Saga.Shared.Definitions.csproj", "{DBBE5A5F-9C3B-4785-91A9-0A5245B2F3BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Authentication", "Saga.Authentication\Saga.Authentication.csproj", "{B90A5397-1F86-4A7D-967A-AFD174D52E7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Gateway", "Saga.Gateway\Saga.Gateway.csproj", "{9D81F036-5CD7-403D-90E2-3382D97996B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Shared.NetworkCore", "Shared\Saga.Shared\Saga.Shared.NetworkCore.csproj", "{45C7E3E6-825A-4AB2-8E60-69131B596229}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Scripting", "Saga.Scripting\Saga.Scripting.csproj", "{677C799E-7E37-405F-BDFD-C5DAA40B4CF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Map", "Saga.Map\Saga.Map.csproj", "{D6A5EC6A-4B52-4A6D-B35F-5D5A213BB0A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Tools.DBInstaller", "Tools\Saga.Tools.DBInstaller\Saga.Tools.DBInstaller.csproj", "{F9EDA482-7095-41F2-9779-6489B361D76F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Tools.QuestExtractor", "Tools\Saga.Tools.QuestExtractor\Saga.Tools.QuestExtractor.csproj", "{4DA99418-52F3-4294-B69C-3432EB917853}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Tools.QuestIndexer", "Tools\Saga.Tools.QuestIndexer\Saga.Tools.QuestIndexer.csproj", "{1E8544EF-866D-430D-BEA9-5FA6ACE91D05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Tools.DBEquipement", "Tools\Saga.Tools.DBEquipement\Saga.Tools.DBEquipement.csproj", "{A2EC0645-22DF-4234-91E8-22616854E1B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Tools.TableRestruction", "Tools\Saga.Tools.TableRestruction\Saga.Tools.TableRestruction.csproj", "{487ED1F0-C8BA-49FC-9013-AE130D436C68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBBE5A5F-9C3B-4785-91A9-0A5245B2F3BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBBE5A5F-9C3B-4785-91A9-0A5245B2F3BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBBE5A5F-9C3B-4785-91A9-0A5245B2F3BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBBE5A5F-9C3B-4785-91A9-0A5245B2F3BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B90A5397-1F86-4A7D-967A-AFD174D52E7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B90A5397-1F86-4A7D-967A-AFD174D52E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B90A5397-1F86-4A7D-967A-AFD174D52E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B90A5397-1F86-4A7D-967A-AFD174D52E7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D81F036-5CD7-403D-90E2-3382D97996B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D81F036-5CD7-403D-90E2-3382D97996B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D81F036-5CD7-403D-90E2-3382D97996B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D81F036-5CD7-403D-90E2-3382D97996B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C7E3E6-825A-4AB2-8E60-69131B596229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C7E3E6-825A-4AB2-8E60-69131B596229}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C7E3E6-825A-4AB2-8E60-69131B596229}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C7E3E6-825A-4AB2-8E60-69131B596229}.Release|Any CPU.Build.0 = Release|Any CPU
+		{677C799E-7E37-405F-BDFD-C5DAA40B4CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{677C799E-7E37-405F-BDFD-C5DAA40B4CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{677C799E-7E37-405F-BDFD-C5DAA40B4CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{677C799E-7E37-405F-BDFD-C5DAA40B4CF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6A5EC6A-4B52-4A6D-B35F-5D5A213BB0A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6A5EC6A-4B52-4A6D-B35F-5D5A213BB0A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6A5EC6A-4B52-4A6D-B35F-5D5A213BB0A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6A5EC6A-4B52-4A6D-B35F-5D5A213BB0A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9EDA482-7095-41F2-9779-6489B361D76F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9EDA482-7095-41F2-9779-6489B361D76F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9EDA482-7095-41F2-9779-6489B361D76F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9EDA482-7095-41F2-9779-6489B361D76F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DA99418-52F3-4294-B69C-3432EB917853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DA99418-52F3-4294-B69C-3432EB917853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DA99418-52F3-4294-B69C-3432EB917853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DA99418-52F3-4294-B69C-3432EB917853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E8544EF-866D-430D-BEA9-5FA6ACE91D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E8544EF-866D-430D-BEA9-5FA6ACE91D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E8544EF-866D-430D-BEA9-5FA6ACE91D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E8544EF-866D-430D-BEA9-5FA6ACE91D05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2EC0645-22DF-4234-91E8-22616854E1B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2EC0645-22DF-4234-91E8-22616854E1B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2EC0645-22DF-4234-91E8-22616854E1B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2EC0645-22DF-4234-91E8-22616854E1B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{487ED1F0-C8BA-49FC-9013-AE130D436C68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{487ED1F0-C8BA-49FC-9013-AE130D436C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{487ED1F0-C8BA-49FC-9013-AE130D436C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{487ED1F0-C8BA-49FC-9013-AE130D436C68}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

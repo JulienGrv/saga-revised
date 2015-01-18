@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Authentication.Data.Mysql", "Saga.Authentication.Data.Mysql\Saga.Authentication.Data.Mysql.csproj", "{0991B3C8-35C7-47E0-B504-33E7D01644E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Map.Data.Mysql", "Saga.Map.Data.Mysql\Saga.Map.Data.Mysql.csproj", "{CA43AC53-C4B5-4616-B2DB-7428E298C16A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Map.Data.LuaQuest", "Saga.Map.Data.LuaQuest\Saga.Map.Data.LuaQuest.csproj", "{6ADF2790-9163-434E-B67C-CA237CC306DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Map.Plugins", "Saga.Map.Plugins\Saga.Map.Plugins.csproj", "{C04111A2-8FE8-4E6E-9B36-A4BECB3BC694}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0991B3C8-35C7-47E0-B504-33E7D01644E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0991B3C8-35C7-47E0-B504-33E7D01644E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0991B3C8-35C7-47E0-B504-33E7D01644E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0991B3C8-35C7-47E0-B504-33E7D01644E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA43AC53-C4B5-4616-B2DB-7428E298C16A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA43AC53-C4B5-4616-B2DB-7428E298C16A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA43AC53-C4B5-4616-B2DB-7428E298C16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA43AC53-C4B5-4616-B2DB-7428E298C16A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ADF2790-9163-434E-B67C-CA237CC306DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ADF2790-9163-434E-B67C-CA237CC306DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ADF2790-9163-434E-B67C-CA237CC306DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ADF2790-9163-434E-B67C-CA237CC306DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C04111A2-8FE8-4E6E-9B36-A4BECB3BC694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C04111A2-8FE8-4E6E-9B36-A4BECB3BC694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C04111A2-8FE8-4E6E-9B36-A4BECB3BC694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C04111A2-8FE8-4E6E-9B36-A4BECB3BC694}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Saga.Authentication.Properties" GeneratedClassName="Authentication">
+  <Profiles />
+  <Settings>
+    <Setting Name="CRCKEY" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">A928CDC9DBE8751B3BC99EB65AE07E0C849CE739</Value>
+    </Setting>
+    <Setting Name="GUID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">969170651B6090625BE559B81239C6BA6F1A116C</Value>
+    </Setting>
+    <Setting Name="RequiredAge" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

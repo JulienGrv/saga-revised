@@ -1,0 +1,693 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D6A5EC6A-4B52-4A6D-B35F-5D5A213BB0A5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Saga.Map</RootNamespace>
+    <AssemblyName>Saga.Map</AssemblyName>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <SignAssembly>false</SignAssembly>
+    <ApplicationIcon>Icon2.ico</ApplicationIcon>
+    <StartupObject>Saga.Map.Singleton</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <AssemblyOriginatorKeyFile>saga.pfx</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <CodeAnalysisRules>-Microsoft.Design#CA1012;-Microsoft.Design#CA2210;-Microsoft.Design#CA1040;-Microsoft.Design#CA1005;-Microsoft.Design#CA1020;-Microsoft.Design#CA1021;-Microsoft.Design#CA1010;-Microsoft.Design#CA1011;-Microsoft.Design#CA1009;-Microsoft.Design#CA1050;-Microsoft.Design#CA1026;-Microsoft.Design#CA1019;-Microsoft.Design#CA1031;-Microsoft.Design#CA1047;-Microsoft.Design#CA1000;-Microsoft.Design#CA1048;-Microsoft.Design#CA1051;-Microsoft.Design#CA1002;-Microsoft.Design#CA1061;-Microsoft.Design#CA1006;-Microsoft.Design#CA1046;-Microsoft.Design#CA1045;-Microsoft.Design#CA1065;-Microsoft.Design#CA1038;-Microsoft.Design#CA1008;-Microsoft.Design#CA1028;-Microsoft.Design#CA1064;-Microsoft.Design#CA1004;-Microsoft.Design#CA1035;-Microsoft.Design#CA1063;-Microsoft.Design#CA1032;-Microsoft.Design#CA1023;-Microsoft.Design#CA1033;-Microsoft.Design#CA1039;-Microsoft.Design#CA1016;-Microsoft.Design#CA1014;-Microsoft.Design#CA1017;-Microsoft.Design#CA1018;-Microsoft.Design#CA1027;-Microsoft.Design#CA1059;-Microsoft.Design#CA1060;-Microsoft.Design#CA1034;-Microsoft.Design#CA1013;-Microsoft.Design#CA1036;-Microsoft.Design#CA1044;-Microsoft.Design#CA1041;-Microsoft.Design#CA1025;-Microsoft.Design#CA1052;-Microsoft.Design#CA1053;-Microsoft.Design#CA1057;-Microsoft.Design#CA1058;-Microsoft.Design#CA1001;-Microsoft.Design#CA1049;-Microsoft.Design#CA1054;-Microsoft.Design#CA1056;-Microsoft.Design#CA1055;-Microsoft.Design#CA1030;-Microsoft.Design#CA1003;-Microsoft.Design#CA1007;-Microsoft.Design#CA1043;-Microsoft.Design#CA1024;-Microsoft.Globalization#CA1301;-Microsoft.Globalization#CA1302;-Microsoft.Globalization#CA1308;-Microsoft.Globalization#CA1306;-Microsoft.Globalization#CA1304;-Microsoft.Globalization#CA1305;-Microsoft.Globalization#CA2101;-Microsoft.Globalization#CA1300;-Microsoft.Globalization#CA1307;-Microsoft.Globalization#CA1309;-Microsoft.Interoperability#CA1403;-Microsoft.Interoperability#CA1406;-Microsoft.Interoperability#CA1413;-Microsoft.Interoperability#CA1402;-Microsoft.Interoperability#CA1407;-Microsoft.Interoperability#CA1404;-Microsoft.Interoperability#CA1410;-Microsoft.Interoperability#CA1411;-Microsoft.Interoperability#CA1405;-Microsoft.Interoperability#CA1409;-Microsoft.Interoperability#CA1415;-Microsoft.Interoperability#CA1408;-Microsoft.Interoperability#CA1414;-Microsoft.Interoperability#CA1412;-Microsoft.Interoperability#CA1400;-Microsoft.Interoperability#CA1401;-Microsoft.Maintainability#CA1506;-Microsoft.Maintainability#CA1502;-Microsoft.Maintainability#CA1501;-Microsoft.Maintainability#CA1505;-Microsoft.Maintainability#CA1504;-Microsoft.Maintainability#CA1500;-Microsoft.Mobility#CA1600;-Microsoft.Mobility#CA1601;-Microsoft.Naming#CA1702;-Microsoft.Naming#CA1700;-Microsoft.Naming#CA1712;-Microsoft.Naming#CA1713;-Microsoft.Naming#CA1714;-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1704;-Microsoft.Naming#CA1708;-Microsoft.Naming#CA1715;-Microsoft.Naming#CA1710;-Microsoft.Naming#CA1720;-Microsoft.Naming#CA1707;-Microsoft.Naming#CA1722;-Microsoft.Naming#CA1711;-Microsoft.Naming#CA1716;-Microsoft.Naming#CA1717;-Microsoft.Naming#CA1725;-Microsoft.Naming#CA1719;-Microsoft.Naming#CA1721;-Microsoft.Naming#CA1701;-Microsoft.Naming#CA1703;-Microsoft.Naming#CA1724;-Microsoft.Naming#CA1726;-Microsoft.Performance#CA1809;-Microsoft.Performance#CA1811;-Microsoft.Performance#CA1812;-Microsoft.Performance#CA1813;-Microsoft.Performance#CA1823;-Microsoft.Performance#CA1800;-Microsoft.Performance#CA1805;-Microsoft.Performance#CA1810;-Microsoft.Performance#CA1824;-Microsoft.Performance#CA1822;-Microsoft.Performance#CA1815;-Microsoft.Performance#CA1814;-Microsoft.Performance#CA1819;-Microsoft.Performance#CA1821;-Microsoft.Performance#CA1804;-Microsoft.Performance#CA1820;-Microsoft.Performance#CA1802;-Microsoft.Reliability#CA2001;-Microsoft.Reliability#CA2002;-Microsoft.Reliability#CA2003;-Microsoft.Reliability#CA2004;-Microsoft.Reliability#CA2006;-Microsoft.Security#CA2116;-Microsoft.Security#CA2117;-Microsoft.Security#CA2105;-Microsoft.Security#CA2115;-Microsoft.Security#CA2102;-Microsoft.Security#CA2104;-Microsoft.Security#CA2122;-Microsoft.Security#CA2114;-Microsoft.Security#CA2123;-Microsoft.Security#CA2111;-Microsoft.Security#CA2108;-Microsoft.Security#CA2107;-Microsoft.Security#CA2103;-Microsoft.Security#CA2118;-Microsoft.Security#CA2109;-Microsoft.Security#CA2119;-Microsoft.Security#CA2106;-Microsoft.Security#CA2112;-Microsoft.Security#CA2120;-Microsoft.Security#CA2121;-Microsoft.Security#CA2126;-Microsoft.Security#CA2124;-Microsoft.Security#CA2127;-Microsoft.Security#CA2128;-Microsoft.Security#CA2129;-Microsoft.Usage#CA2243;-Microsoft.Usage#CA2236;-Microsoft.Usage#CA1816;-Microsoft.Usage#CA2227;-Microsoft.Usage#CA2213;-Microsoft.Usage#CA2216;-Microsoft.Usage#CA2214;-Microsoft.Usage#CA2222;-Microsoft.Usage#CA1806;-Microsoft.Usage#CA2217;-Microsoft.Usage#CA2212;-Microsoft.Usage#CA2219;-Microsoft.Usage#CA2201;-Microsoft.Usage#CA2228;-Microsoft.Usage#CA2221;-Microsoft.Usage#CA2220;-Microsoft.Usage#CA2240;-Microsoft.Usage#CA2229;-Microsoft.Usage#CA2238;-Microsoft.Usage#CA2207;-Microsoft.Usage#CA2208;-Microsoft.Usage#CA2235;-Microsoft.Usage#CA2237;-Microsoft.Usage#CA2232;-Microsoft.Usage#CA2223;-Microsoft.Usage#CA2211;-Microsoft.Usage#CA2233;-Microsoft.Usage#CA2225;-Microsoft.Usage#CA2226;-Microsoft.Usage#CA2231;-Microsoft.Usage#CA2224;-Microsoft.Usage#CA2218;-Microsoft.Usage#CA2234;-Microsoft.Usage#CA2239;-Microsoft.Usage#CA2200;-Microsoft.Usage#CA1801;-Microsoft.Usage#CA2242;-Microsoft.Usage#CA2205;-Microsoft.Usage#CA2230</CodeAnalysisRules>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <DocumentationFile>
+    </DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRules>-Microsoft.Design#CA1012;-Microsoft.Design#CA2210;-Microsoft.Design#CA1040;-Microsoft.Design#CA1005;-Microsoft.Design#CA1020;-Microsoft.Design#CA1021;-Microsoft.Design#CA1010;-Microsoft.Design#CA1011;-Microsoft.Design#CA1009;-Microsoft.Design#CA1050;-Microsoft.Design#CA1026;-Microsoft.Design#CA1019;-Microsoft.Design#CA1031;-Microsoft.Design#CA1047;-Microsoft.Design#CA1000;-Microsoft.Design#CA1048;-Microsoft.Design#CA1051;-Microsoft.Design#CA1002;-Microsoft.Design#CA1061;-Microsoft.Design#CA1006;-Microsoft.Design#CA1046;-Microsoft.Design#CA1045;-Microsoft.Design#CA1065;-Microsoft.Design#CA1038;-Microsoft.Design#CA1008;-Microsoft.Design#CA1028;-Microsoft.Design#CA1064;-Microsoft.Design#CA1004;-Microsoft.Design#CA1035;-Microsoft.Design#CA1063;-Microsoft.Design#CA1032;-Microsoft.Design#CA1023;-Microsoft.Design#CA1033;-Microsoft.Design#CA1039;-Microsoft.Design#CA1016;-Microsoft.Design#CA1014;-Microsoft.Design#CA1017;-Microsoft.Design#CA1018;-Microsoft.Design#CA1027;-Microsoft.Design#CA1059;-Microsoft.Design#CA1060;-Microsoft.Design#CA1034;-Microsoft.Design#CA1013;-Microsoft.Design#CA1036;-Microsoft.Design#CA1044;-Microsoft.Design#CA1041;-Microsoft.Design#CA1025;-Microsoft.Design#CA1052;-Microsoft.Design#CA1053;-Microsoft.Design#CA1057;-Microsoft.Design#CA1058;-Microsoft.Design#CA1001;-Microsoft.Design#CA1049;-Microsoft.Design#CA1054;-Microsoft.Design#CA1056;-Microsoft.Design#CA1055;-Microsoft.Design#CA1030;-Microsoft.Design#CA1003;-Microsoft.Design#CA1007;-Microsoft.Design#CA1043;-Microsoft.Design#CA1024;-Microsoft.Globalization#CA1301;-Microsoft.Globalization#CA1302;-Microsoft.Globalization#CA1308;-Microsoft.Globalization#CA1306;-Microsoft.Globalization#CA1304;-Microsoft.Globalization#CA1305;-Microsoft.Globalization#CA2101;-Microsoft.Globalization#CA1300;-Microsoft.Globalization#CA1307;-Microsoft.Globalization#CA1309;-Microsoft.Interoperability#CA1403;-Microsoft.Interoperability#CA1406;-Microsoft.Interoperability#CA1413;-Microsoft.Interoperability#CA1402;-Microsoft.Interoperability#CA1407;-Microsoft.Interoperability#CA1404;-Microsoft.Interoperability#CA1410;-Microsoft.Interoperability#CA1411;-Microsoft.Interoperability#CA1405;-Microsoft.Interoperability#CA1409;-Microsoft.Interoperability#CA1415;-Microsoft.Interoperability#CA1408;-Microsoft.Interoperability#CA1414;-Microsoft.Interoperability#CA1412;-Microsoft.Interoperability#CA1400;-Microsoft.Interoperability#CA1401;-Microsoft.Maintainability#CA1506;-Microsoft.Maintainability#CA1502;-Microsoft.Maintainability#CA1501;-Microsoft.Maintainability#CA1505;-Microsoft.Maintainability#CA1504;-Microsoft.Maintainability#CA1500;-Microsoft.Mobility#CA1600;-Microsoft.Mobility#CA1601;-Microsoft.Naming#CA1702;-Microsoft.Naming#CA1700;-Microsoft.Naming#CA1712;-Microsoft.Naming#CA1713;-Microsoft.Naming#CA1714;-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1704;-Microsoft.Naming#CA1708;-Microsoft.Naming#CA1715;-Microsoft.Naming#CA1710;-Microsoft.Naming#CA1720;-Microsoft.Naming#CA1707;-Microsoft.Naming#CA1722;-Microsoft.Naming#CA1711;-Microsoft.Naming#CA1716;-Microsoft.Naming#CA1717;-Microsoft.Naming#CA1725;-Microsoft.Naming#CA1719;-Microsoft.Naming#CA1721;-Microsoft.Naming#CA1701;-Microsoft.Naming#CA1703;-Microsoft.Naming#CA1724;-Microsoft.Naming#CA1726;-Microsoft.Performance#CA1809;-Microsoft.Performance#CA1811;-Microsoft.Performance#CA1812;-Microsoft.Performance#CA1813;-Microsoft.Performance#CA1823;-Microsoft.Performance#CA1800;-Microsoft.Performance#CA1805;-Microsoft.Performance#CA1810;-Microsoft.Performance#CA1824;-Microsoft.Performance#CA1822;-Microsoft.Performance#CA1815;-Microsoft.Performance#CA1814;-Microsoft.Performance#CA1819;-Microsoft.Performance#CA1821;-Microsoft.Performance#CA1804;-Microsoft.Performance#CA1820;-Microsoft.Performance#CA1802;-Microsoft.Portability#CA1901;-Microsoft.Portability#CA1900;-Microsoft.Reliability#CA2001;-Microsoft.Reliability#CA2002;-Microsoft.Reliability#CA2003;-Microsoft.Reliability#CA2004;-Microsoft.Reliability#CA2006</CodeAnalysisRules>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Documentation|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Mono %28debug%29|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Mono %28debug%29\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRules>-Microsoft.Design#CA1012;-Microsoft.Design#CA2210;-Microsoft.Design#CA1040;-Microsoft.Design#CA1005;-Microsoft.Design#CA1020;-Microsoft.Design#CA1021;-Microsoft.Design#CA1010;-Microsoft.Design#CA1011;-Microsoft.Design#CA1009;-Microsoft.Design#CA1050;-Microsoft.Design#CA1026;-Microsoft.Design#CA1019;-Microsoft.Design#CA1031;-Microsoft.Design#CA1047;-Microsoft.Design#CA1000;-Microsoft.Design#CA1048;-Microsoft.Design#CA1051;-Microsoft.Design#CA1002;-Microsoft.Design#CA1061;-Microsoft.Design#CA1006;-Microsoft.Design#CA1046;-Microsoft.Design#CA1045;-Microsoft.Design#CA1065;-Microsoft.Design#CA1038;-Microsoft.Design#CA1008;-Microsoft.Design#CA1028;-Microsoft.Design#CA1064;-Microsoft.Design#CA1004;-Microsoft.Design#CA1035;-Microsoft.Design#CA1063;-Microsoft.Design#CA1032;-Microsoft.Design#CA1023;-Microsoft.Design#CA1033;-Microsoft.Design#CA1039;-Microsoft.Design#CA1016;-Microsoft.Design#CA1014;-Microsoft.Design#CA1017;-Microsoft.Design#CA1018;-Microsoft.Design#CA1027;-Microsoft.Design#CA1059;-Microsoft.Design#CA1060;-Microsoft.Design#CA1034;-Microsoft.Design#CA1013;-Microsoft.Design#CA1036;-Microsoft.Design#CA1044;-Microsoft.Design#CA1041;-Microsoft.Design#CA1025;-Microsoft.Design#CA1052;-Microsoft.Design#CA1053;-Microsoft.Design#CA1057;-Microsoft.Design#CA1058;-Microsoft.Design#CA1001;-Microsoft.Design#CA1049;-Microsoft.Design#CA1054;-Microsoft.Design#CA1056;-Microsoft.Design#CA1055;-Microsoft.Design#CA1030;-Microsoft.Design#CA1003;-Microsoft.Design#CA1007;-Microsoft.Design#CA1043;-Microsoft.Design#CA1024;-Microsoft.Globalization#CA1301;-Microsoft.Globalization#CA1302;-Microsoft.Globalization#CA1308;-Microsoft.Globalization#CA1306;-Microsoft.Globalization#CA1304;-Microsoft.Globalization#CA1305;-Microsoft.Globalization#CA2101;-Microsoft.Globalization#CA1300;-Microsoft.Globalization#CA1307;-Microsoft.Globalization#CA1309;-Microsoft.Interoperability#CA1403;-Microsoft.Interoperability#CA1406;-Microsoft.Interoperability#CA1413;-Microsoft.Interoperability#CA1402;-Microsoft.Interoperability#CA1407;-Microsoft.Interoperability#CA1404;-Microsoft.Interoperability#CA1410;-Microsoft.Interoperability#CA1411;-Microsoft.Interoperability#CA1405;-Microsoft.Interoperability#CA1409;-Microsoft.Interoperability#CA1415;-Microsoft.Interoperability#CA1408;-Microsoft.Interoperability#CA1414;-Microsoft.Interoperability#CA1412;-Microsoft.Interoperability#CA1400;-Microsoft.Interoperability#CA1401;-Microsoft.Maintainability#CA1506;-Microsoft.Maintainability#CA1502;-Microsoft.Maintainability#CA1501;-Microsoft.Maintainability#CA1505;-Microsoft.Maintainability#CA1504;-Microsoft.Maintainability#CA1500;-Microsoft.Mobility#CA1600;-Microsoft.Mobility#CA1601;-Microsoft.Naming#CA1702;-Microsoft.Naming#CA1700;-Microsoft.Naming#CA1712;-Microsoft.Naming#CA1713;-Microsoft.Naming#CA1714;-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1704;-Microsoft.Naming#CA1708;-Microsoft.Naming#CA1715;-Microsoft.Naming#CA1710;-Microsoft.Naming#CA1720;-Microsoft.Naming#CA1707;-Microsoft.Naming#CA1722;-Microsoft.Naming#CA1711;-Microsoft.Naming#CA1716;-Microsoft.Naming#CA1717;-Microsoft.Naming#CA1725;-Microsoft.Naming#CA1719;-Microsoft.Naming#CA1721;-Microsoft.Naming#CA1701;-Microsoft.Naming#CA1703;-Microsoft.Naming#CA1724;-Microsoft.Naming#CA1726;-Microsoft.Performance#CA1809;-Microsoft.Performance#CA1811;-Microsoft.Performance#CA1812;-Microsoft.Performance#CA1813;-Microsoft.Performance#CA1823;-Microsoft.Performance#CA1800;-Microsoft.Performance#CA1805;-Microsoft.Performance#CA1810;-Microsoft.Performance#CA1824;-Microsoft.Performance#CA1822;-Microsoft.Performance#CA1815;-Microsoft.Performance#CA1814;-Microsoft.Performance#CA1819;-Microsoft.Performance#CA1821;-Microsoft.Performance#CA1804;-Microsoft.Performance#CA1820;-Microsoft.Performance#CA1802;-Microsoft.Reliability#CA2001;-Microsoft.Reliability#CA2002;-Microsoft.Reliability#CA2003;-Microsoft.Reliability#CA2004;-Microsoft.Reliability#CA2006;-Microsoft.Security#CA2116;-Microsoft.Security#CA2117;-Microsoft.Security#CA2105;-Microsoft.Security#CA2115;-Microsoft.Security#CA2102;-Microsoft.Security#CA2104;-Microsoft.Security#CA2122;-Microsoft.Security#CA2114;-Microsoft.Security#CA2123;-Microsoft.Security#CA2111;-Microsoft.Security#CA2108;-Microsoft.Security#CA2107;-Microsoft.Security#CA2103;-Microsoft.Security#CA2118;-Microsoft.Security#CA2109;-Microsoft.Security#CA2119;-Microsoft.Security#CA2106;-Microsoft.Security#CA2112;-Microsoft.Security#CA2120;-Microsoft.Security#CA2121;-Microsoft.Security#CA2126;-Microsoft.Security#CA2124;-Microsoft.Security#CA2127;-Microsoft.Security#CA2128;-Microsoft.Security#CA2129;-Microsoft.Usage#CA2243;-Microsoft.Usage#CA2236;-Microsoft.Usage#CA1816;-Microsoft.Usage#CA2227;-Microsoft.Usage#CA2213;-Microsoft.Usage#CA2216;-Microsoft.Usage#CA2214;-Microsoft.Usage#CA2222;-Microsoft.Usage#CA1806;-Microsoft.Usage#CA2217;-Microsoft.Usage#CA2212;-Microsoft.Usage#CA2219;-Microsoft.Usage#CA2201;-Microsoft.Usage#CA2228;-Microsoft.Usage#CA2221;-Microsoft.Usage#CA2220;-Microsoft.Usage#CA2240;-Microsoft.Usage#CA2229;-Microsoft.Usage#CA2238;-Microsoft.Usage#CA2207;-Microsoft.Usage#CA2208;-Microsoft.Usage#CA2235;-Microsoft.Usage#CA2237;-Microsoft.Usage#CA2232;-Microsoft.Usage#CA2223;-Microsoft.Usage#CA2211;-Microsoft.Usage#CA2233;-Microsoft.Usage#CA2225;-Microsoft.Usage#CA2226;-Microsoft.Usage#CA2231;-Microsoft.Usage#CA2224;-Microsoft.Usage#CA2218;-Microsoft.Usage#CA2234;-Microsoft.Usage#CA2239;-Microsoft.Usage#CA2200;-Microsoft.Usage#CA1801;-Microsoft.Usage#CA2242;-Microsoft.Usage#CA2205;-Microsoft.Usage#CA2230</CodeAnalysisRules>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="PrimaryTypes\BaseMob.cs" />
+    <Compile Include="Configuration\Config.Factory.CharacterConfiguration.cs" />
+    <Compile Include="Configuration\Config.Manager.Database.cs" />
+    <Compile Include="Configuration\Config.Factory.Addition.cs" />
+    <Compile Include="Configuration\Config.Factory.Exptable.cs" />
+    <Compile Include="Configuration\Config.Factory.Items.cs" />
+    <Compile Include="Configuration\Config.Factory.Portals.cs" />
+    <Compile Include="Configuration\Config.Factory.SpawnMobs.cs" />
+    <Compile Include="Configuration\Config.Factory.SpawnWorldObjects.cs" />
+    <Compile Include="Configuration\Config.Factory.Spells.cs" />
+    <Compile Include="Configuration\Config.Factory.Warp.cs" />
+    <Compile Include="Configuration\Config.Factory.Weaponary.cs" />
+    <Compile Include="Configuration\Config.Factory.Zone.cs" />
+    <Compile Include="Configuration\Config.Base.cs" />
+    <Compile Include="Configuration\Config.Manager.Quest.cs" />
+    <Compile Include="Configuration\Config.Manager.Scripting.cs" />
+    <Compile Include="Configuration\Config.Factory.Templates.cs" />
+    <Compile Include="Netwok\Internal Client\InternalClient Characters.cs" />
+    <Compile Include="Netwok\Internal Client\InternalClient-Core.cs" />
+    <None Include="Tables\Table Quest\Quest.TakeItem.cs" />
+    <Compile Include="Tables\Table Quest\Quest.GiveItem.cs" />
+    <Compile Include="Utils\Enumarations\ItemUpdateReasons.cs" />
+    <Compile Include="Utils\Enumarations\JobTypes.cs" />
+    <Compile Include="Utils\Enumarations\TradeResults.cs" />
+    <Compile Include="Utils\Enumarations\TradeSupplyErrors.cs" />
+    <Compile Include="Utils\Enumarations\WeaponTypes.cs" />
+    <Compile Include="Utils\Interfaces\IDatabase.cs" />
+    <Compile Include="Utils\Interfaces\OpenBook.cs" />
+    <Compile Include="Utils\Definitions\Misc\AdditionState.cs" />
+    <Compile Include="Utils\Definitions\Misc\AuctionArgument.cs" />
+    <Compile Include="Utils\Definitions\Misc\MediumReference.cs" />
+    <Compile Include="Utils\Definitions\Misc\Heightmap.cs" />
+    <Compile Include="Utils\Definitions\Misc\PartySession.cs" />
+    <Compile Include="Utils\Definitions\Misc\Pool.cs" />
+    <Compile Include="PrimaryTypes\Rag2Item.cs" />
+    <Compile Include="Utils\Definitions\Misc\ShipZone.cs" />
+    <Compile Include="Utils\Definitions\Misc\Skill.cs" />
+    <Compile Include="Utils\Definitions\Misc\TradeSession.cs" />
+    <Compile Include="PrimaryTypes\Weapon.cs" />
+    <Compile Include="Utils\Definitions\Misc\Rag2Container.cs" />
+    <Compile Include="Utils\Library\Common.Actions.cs" />
+    <Compile Include="Utils\Library\Common.Skills.cs" />
+    <Compile Include="Utils\Library\Common.Experience.cs" />
+    <Compile Include="Utils\Library\Common.Errors.cs" />
+    <Compile Include="Tables\Table Additions\Addition.Attack.cs" />
+    <Compile Include="Netwok\Client\Client Friendlist.cs" />
+    <Compile Include="Netwok\Client\Client Misc Movement.cs" />
+    <Compile Include="Netwok\Client\Client Misc Itemusage.cs" />
+    <Compile Include="Netwok\Client\Client Misc Npc.cs" />
+    <Compile Include="Netwok\Client\Client Trading.cs" />
+    <Compile Include="Netwok\Client\Client Skill.cs" />
+    <Compile Include="Netwok\Client\Client Shortcut.cs" />
+    <Compile Include="Netwok\Client\Client Mail.cs" />
+    <Compile Include="Netwok\Client\Client Market.cs" />
+    <Compile Include="Netwok\Client\Client Party.cs" />
+    <Compile Include="Netwok\Client\Client-Core.cs" />
+    <Compile Include="Netwok\Client\Client Questing.cs" />
+    <Compile Include="Netwok\Client\Client Chatting.cs" />
+    <Compile Include="Utils\Enumarations\AdditionBonus.cs" />
+    <Compile Include="Utils\Enumarations\Reasons_CharInfo.cs" />
+    <Compile Include="Utils\Enumarations\GeneralErrors.cs" />
+    <Compile Include="Utils\Enumarations\Reasons_TakeDamage.cs" />
+    <Compile Include="Utils\Enumarations\Stances.cs" />
+    <Compile Include="Utils\Enumarations\WeatherTypes.cs" />
+    <Compile Include="Utils\Interfaces\IArtificialIntelligence.cs" />
+    <Compile Include="PrimaryTypes\MapObject.cs" />
+    <Compile Include="Utils\Definitions\Misc\Mail.cs" />
+    <Compile Include="Utils\Definitions\Misc\MarketSearchArgument.cs" />
+    <Compile Include="Tables\Table Quest\Quest.CurrentNPC.cs" />
+    <Compile Include="Tables\Table Quest\Quest.InsertQuest.cs" />
+    <Compile Include="Tables\Table Quest\Quest.Questcomplete.cs" />
+    <Compile Include="Tables\Table Quest\Quest.GiveExp.cs" />
+    <Compile Include="Tables\Table Quest\Quest.GiveZeny.cs" />
+    <None Include="Tables\Table Quest\Quest.AddSubStep.cs" />
+    <Compile Include="Tables\Table Quest\Quest.AddStep.cs" />
+    <None Include="Tables\Table Quest\Quest.LastDialog.cs" />
+    <Compile Include="Tables\Table Quest\Quest.NPCDialog.cs" />
+    <Compile Include="Tables\Table Quest\Quest.GetCurrentStep.cs" />
+    <Compile Include="Tables\Table Quest\Quest.IsSubStepComplete.cs" />
+    <Compile Include="Tables\Table Quest\Quest.FindQuestItem.cs" />
+    <Compile Include="Tables\Table Quest\Quest.Substepcomplete.cs" />
+    <Compile Include="Tables\Table Quest\Quest.Stepcomplete.cs" />
+    <None Include="Tables\Table Quest\Quest.Conversation.cs" />
+    <Compile Include="Tables\Table Quest\Quest.Elemenation.cs" />
+    <Compile Include="Tables\Table Quest\Quest.Clearwaypoint.cs" />
+    <Compile Include="Tables\Table Quest\Quest.Addwapoint.cs" />
+    <Compile Include="Utils\Library\Common.Internal.cs" />
+    <Compile Include="Utils\Library\Common.Special.cs" />
+    <Compile Include="Utils\Library\Mathemetics.Vector.cs" />
+    <Compile Include="Utils\Library\Mathemetics.Yaw.cs" />
+    <Compile Include="Utils\Enumarations\DialogTypes.cs" />
+    <Compile Include="PrimaryTypes\Zone.cs" />
+    <Compile Include="Utils\Resources\SingletonNotificationStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SingletonNotificationStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="World Tasks\Tasks.DynamicWeather.cs" />
+    <Compile Include="World Tasks\Tasks.Lifecycle.cs" />
+    <Compile Include="World Tasks\Tasks.AI.cs" />
+    <Compile Include="World Tasks\Tasks.Respawn.cs" />
+    <Compile Include="World Tasks\Tasks.Corpses.cs" />
+    <Compile Include="Utils\Library\CommonDialogs.cs" />
+    <Compile Include="Utils\Library\CommonFunctions.cs" />
+    <Compile Include="PrimaryTypes\Character.cs" />
+    <Compile Include="Utils\Interfaces\ILootable.cs" />
+    <Compile Include="PrimaryTypes\MapItem.cs" />
+    <Compile Include="Utils\Interfaces\ISelectable.cs" />
+    <Compile Include="PrimaryTypes\Monster.cs" />
+    <Compile Include="Utils\Definitions\Misc\SpellArgument.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CodeAnalysis.xml" />
+    <Content Include="Icon2.ico" />
+    <Content Include="ndoc.xml" />
+    <Content Include="Properties\SagaMap.sdm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Config.CustomSingletonManagers.cs" />
+    <Compile Include="Configuration\Config.Manager.Network.cs" />
+    <Compile Include="Configuration\Config.Factory.Events.cs" />
+    <Compile Include="Configuration\Config.Manager.Console.cs" />
+    <Compile Include="Configuration\Config.ServerVars.cs" />
+    <Compile Include="Netwok\Internal Packets\CMSG_CHARACTERLOGIN.cs" />
+    <Compile Include="Netwok\Internal Packets\CMSG_SETRATES.cs" />
+    <Compile Include="Netwok\Internal Packets\SMSG_CHARACTERLOGINREPLY.cs" />
+    <Compile Include="Packets\0x00\CMSG_WORLDINSTANCEACK.cs" />
+    <Compile Include="Packets\0x00\CMSG_KILLSESSION.cs" />
+    <Compile Include="Packets\0x00\CMSG_PING.cs" />
+    <Compile Include="Packets\0x00\SMSG_RELEASESESSION.cs" />
+    <Compile Include="Packets\0x00\SMSG_PONG.cs" />
+    <Compile Include="Packets\0x05\SMSG_USEQUESTITEM.cs" />
+    <Compile Include="Packets\0x05\SMSG_SHOWWEAPON.cs" />
+    <Compile Include="Packets\0x06\CMSG_RECEIVEEVENTITEM.cs" />
+    <Compile Include="Packets\0x07\CMSG_QUESTITEMSTART.cs" />
+    <Compile Include="Packets\0x11\CMSG_TAKESCREENSHOT.cs" />
+    <Compile Include="Packets\0x11\CMSG_SELECTCHANNEL.cs" />
+    <Compile Include="Packets\0x12\SMSG_SCREENSHOTALLOWED.cs" />
+    <Compile Include="PrimaryTypes\LootCollection.cs" />
+    <Compile Include="PrimaryTypes\Regiontree.cs" />
+    <Compile Include="Packets\0x05\CMSG_STATRESETPOTION.cs" />
+    <Compile Include="PrimaryTypes\BattleStatus.cs" />
+    <Compile Include="PrimaryTypes\Tempalte.BaseNpc.cs" />
+    <Compile Include="Tables\Table Npc Functions\Func.ShopConversation.cs" />
+    <Compile Include="Tables\Table Npc Functions\Func.Auctioneer.cs" />
+    <Compile Include="Tables\Table Npc Functions\Func.CatheleyaConversation.cs" />
+    <Compile Include="Tables\Table Npc Functions\Func.EverydayConversation.cs" />
+    <Compile Include="Managers\World Factory\Factory.EventManager.cs" />
+    <Compile Include="Managers\World Factory\Factory.ItemDrops.cs" />
+    <Compile Include="Managers\World Factory\Factory.CharacterConfiguration.cs" />
+    <Compile Include="Managers\World Factory\Factory.SpawnMultiWorldObjects.cs" />
+    <Compile Include="Managers\World Factory\Factory.SpawnWorldObjects.cs" />
+    <Compile Include="Managers\World Factory\Factory.Weaponary.cs" />
+    <Compile Include="Managers\World Factory\Factory.Items.cs" />
+    <Compile Include="Managers\World Managers\Managers.ConsoleCommands.cs" />
+    <Compile Include="Managers\World Managers\Managers.ScriptCompiling.cs" />
+    <Compile Include="Managers\World Factory\Factory.Warps.cs" />
+    <Compile Include="Managers\World Factory\Factory.Zones.cs" />
+    <Compile Include="Managers\World Managers\Managers.Quests.cs" />
+    <Compile Include="Managers\World Managers\Managers.Tasks.cs" />
+    <Compile Include="Managers\World Managers\Managers.Database.cs" />
+    <Compile Include="Managers\World Factory\Factory.Portal.cs" />
+    <Compile Include="Managers\World Factory\Factory.Spells.cs" />
+    <Compile Include="Managers\World Factory\Factory.SpawnTemplates.cs" />
+    <Compile Include="Managers\World Factory\Factory.StatusByLevel.cs" />
+    <Compile Include="Managers\World Factory\Factory.Additions.cs" />
+    <Compile Include="Managers\World Managers\Managers.NetworkService.cs" />
+    <Compile Include="Packets\0x06\CMSG_NPCLOCATIONSELECT.cs" />
+    <Compile Include="Packets\0x10\SMSG_SCENARIOSTEPUPDATE.cs" />
+    <Compile Include="Packets\0x10\SMSG_SCENARIOMSG.cs" />
+    <Compile Include="Packets\0x10\SMSG_INITIALIZESCENARIO.cs" />
+    <Compile Include="Packets\0x10\SMSG_SCENARIOCOMPLETE.cs" />
+    <Compile Include="Packets\0x10\SMSG_SCENARIOEVENTBEGIN.cs" />
+    <Compile Include="Packets\0x10\SMSG_SCENARIOEVENTEND.cs" />
+    <Compile Include="Packets\0x10\SMSG_SCENARIOSTEPCOMPLETE.cs" />
+    <Compile Include="Tables\Table Npc Functions\Func.BlackSmith.cs" />
+    <Compile Include="Packets\0x00\CMSG_FINDCHARACTERDETAILS.cs" />
+    <Compile Include="Packets\0x00\CMSG_FINDCHARACTERS.cs" />
+    <Compile Include="Packets\0x00\CMSG_INTERNAL_CHARACTERCREATE.cs" />
+    <Compile Include="Packets\0x00\CMSG_INTERNAL_CHARACTERDELETE.cs" />
+    <Compile Include="Packets\0x00\CMSG_LOGIN.cs" />
+    <Compile Include="Packets\0x00\SMSG_FINDCHARACTERS.cs" />
+    <Compile Include="Packets\0x00\SMSG_INTERNAL_CHARACTERDELETEREPLY.cs" />
+    <Compile Include="Packets\0x00\SMSG_WORLDINSTANCE.cs" />
+    <Compile Include="Packets\0x03\CMSG_SHOWLOVE.cs" />
+    <Compile Include="Packets\0x03\CMSG_SHOWLOVECONFIRM.cs" />
+    <Compile Include="Packets\0x03\SMSG_KAFTRAHOMEPOINT.cs" />
+    <Compile Include="Packets\0x03\SMSG_PORTALFAIL.cs" />
+    <Compile Include="Packets\0x03\SMSG_RESPONSESHOWLOVE.cs" />
+    <Compile Include="Packets\0x03\SMSG_REQUESTSHOWLOVE.cs" />
+    <Compile Include="Packets\0x05\CMSG_USEWEAPONADMISSION.cs" />
+    <Compile Include="Packets\0x05\CMSG_WEAPONCHANGESUFFIX2.cs" />
+    <Compile Include="Packets\0x05\CMSG_SORTSTORAGELIST.cs" />
+    <Compile Include="Packets\0x05\SMSG_WEAPONNEWCHANGESUFFIX.cs" />
+    <Compile Include="Packets\0x05\SMSG_WEAPONMAX.cs" />
+    <Compile Include="Packets\0x05\SMSG_UNKNOWNERROR.cs" />
+    <Compile Include="Packets\0x05\SMSG_WAREHOUSEMONEY2.cs" />
+    <Compile Include="Packets\0x05\SMSG_WAREHOUSEMONEY..cs" />
+    <Compile Include="Packets\0x05\SMSG_WEAPONNAME.cs" />
+    <Compile Include="Packets\0x05\SMSG_WEAPONCREATE.cs" />
+    <Compile Include="Packets\0x06\CMSG_ATTRIBUTES.cs" />
+    <Compile Include="Packets\0x03\SMSG_WIDEMOVEMENTSTOP.cs" />
+    <Compile Include="Packets\0x05\CMSG_USESUPPLEMENTSTONE.cs" />
+    <Compile Include="Packets\0x05\SMSG_USESUPPLEMENTSTONE.cs" />
+    <Compile Include="Packets\0x06\CMSG_SELECTEVENTINFO.cs" />
+    <Compile Include="Packets\0x06\SMSG_KAFTRASAVEPOSITION.cs" />
+    <Compile Include="Packets\0x06\SMSG_NPCASKLOCATIONSRC.cs" />
+    <Compile Include="Packets\0x06\SMSG_NPCASKLOCATION.cs" />
+    <Compile Include="Packets\0x06\SMSG_CHANGEATKTYPE.cs" />
+    <Compile Include="Packets\0x06\SMSG_EVENTUSERNAME.cs" />
+    <Compile Include="Packets\0x06\SMSG_EVENTCUPONRESULT.cs" />
+    <Compile Include="Packets\0x06\SMSG_EVENTSUCCESS.cs" />
+    <Compile Include="Packets\0x06\SMSG_EVENTINFO2.cs" />
+    <Compile Include="Packets\0x06\SMSG_EVENTINFO.cs" />
+    <Compile Include="Packets\0x06\SMSG_EQUIPMENTTRADINGLIST.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTFAIL.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTNOTE.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTNPCNOTE.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTREWITEM.cs" />
+    <Compile Include="Packets\0x08\CMSG_TRADECONTENTCONFIRM.cs" />
+    <Compile Include="Packets\0x08\CSMG_TRADECCANCEL.cs" />
+    <Compile Include="Packets\0x08\CSMG_TRADECONFIRM.cs" />
+    <Compile Include="Packets\0x09\CMSG_WANSTSETSPECIALLITY.cs" />
+    <Compile Include="Packets\0x0A\CMSG_ADDSHORTCUT.cs" />
+    <Compile Include="Packets\0x0A\CMSG_DELETESHORTCUT.cs" />
+    <Compile Include="Packets\0x0A\SMSG_DELETESHORTCUT.cs" />
+    <Compile Include="Packets\0x0A\SMSG_ADDSHORTCUT.cs" />
+    <Compile Include="Packets\0x0D\SMSG_13_PARTYMEMBERU3.cs" />
+    <Compile Include="Packets\0x0D\SMSG_18_PARTYMEMBERDIED.cs" />
+    <Compile Include="Packets\0x0D\SMSG_0E_PARTYMEMBERU2.cs" />
+    <Compile Include="Packets\0x0D\SMSG_0D_PARTYMEMBERJLVL.cs" />
+    <Compile Include="Packets\0x0D\SMSG_0C_PARTYMEMBERJOB.cs" />
+    <Compile Include="Packets\0x0D\SMSG_0B_PARTYMEMBERCLVL.cs" />
+    <Compile Include="Packets\0x0D\SMSG_0A_PARTYMEMBERSPINFO.cs" />
+    <Compile Include="Packets\0x0D\SMSG_09_PARTYMEMBERHPINFO.cs" />
+    <Compile Include="Packets\0x0D\SMSG_06_PARTYUNKNOWN.cs" />
+    <Compile Include="Packets\0x0D\SMSG_14_PARTYMEMBERMAPCHANGE.cs" />
+    <Compile Include="Packets\0x0D\SMSG_15_PARTMEMBERLOCATION.cs" />
+    <Compile Include="Packets\0x0D\SMSG_17_PARTYMEMBERLOOT.cs" />
+    <Compile Include="Packets\0x0D\SMSG_07_PARTYSETLEADER.cs" />
+    <Compile Include="Packets\0x0F\CMSG_MARKETOWNERCOMMENT.cs" />
+    <Compile Include="Packets\0x0F\CMSG_MARKETSEARCHOWNERITEMS.cs" />
+    <Compile Include="Packets\0x13\SMSG_FRIENDLIST_LOGINNOTIFY.cs" />
+    <Compile Include="Tables\Table Events\Event.RewardList.cs" />
+    <Compile Include="Tables\Table Events\Event.Participate.cs" />
+    <Compile Include="Tables\Table Npc Functions\Func.KaftraConversation.cs" />
+    <Compile Include="Tables\Table Npc Functions\Func.LocationConversation.cs" />
+    <Compile Include="Tables\Table Npc Functions\Func.QuestConversation.cs" />
+    <Compile Include="Tables\Table Npc Functions\Func.SkillMasterConversation.cs" />
+    <Compile Include="Tables\Table Npc Functions\Func.TraderConversation.cs" />
+    <Compile Include="Tables\Table Npc Functions\Func.WarperConversation.cs" />
+    <Compile Include="Tables\Table Quest\Quest.Fail.cs" />
+    <Compile Include="Tables\Table Quest\Quest.NpcGiveItem.cs" />
+    <Compile Include="Tables\Table Quest\Quest.FreeInventoryCount.cs" />
+    <Compile Include="Tables\Table Quest\Quest.RestoreDiscardableItem.cs" />
+    <Compile Include="Tables\Table Quest\Quest.NpcTakeItem.cs" />
+    <Compile Include="Tables\Table Quest\Quest.CheckUserInventory.cs" />
+    <Compile Include="PrimaryTypes\Actor.cs" />
+    <Compile Include="PrimaryTypes\Addition.cs" />
+    <Compile Include="Utils\Enumarations\SkillContext.cs" />
+    <Compile Include="Utils\Enumarations\SearchFlags.cs" />
+    <Compile Include="Utils\Structures\AdditionTypes.cs" />
+    <Compile Include="Utils\Structures\BaseTradelist.cs" />
+    <None Include="Utils\Structures\FSMbase.cs" />
+    <Compile Include="Utils\Structures\HateCollection.cs" />
+    <Compile Include="Utils\Structures\JobChangeCollection.cs" />
+    <Compile Include="Utils\Structures\NpcFunction.cs" />
+    <Compile Include="Utils\Structures\Rotator.cs" />
+    <None Include="World Tasks\Tasks.Router.cs" />
+    <Compile Include="Utils\Structures\TradelistContainer.cs" />
+    <Compile Include="Utils\Definitions\IO\GuideReader.cs" />
+    <Compile Include="Utils\Definitions\IO\TraderReader.cs" />
+    <Compile Include="Utils\Definitions\IO\ShopReader.cs" />
+    <Compile Include="Utils\Definitions\Misc\CommaDelimitedString.cs" />
+    <Compile Include="Utils\Definitions\IO\DialogReader.cs" />
+    <Compile Include="Utils\Definitions\Paths\Path.Waypoints.cs" />
+    <Compile Include="Utils\Enumarations\ZoneType.cs" />
+    <Compile Include="Utils\Interfaces\IQueryProvider.cs" />
+    <Compile Include="Netwok\Client\Client Scenario.cs" />
+    <Compile Include="Packets\0x00\SMSG_KICKSESSION.cs" />
+    <Compile Include="Packets\0x00\SMSG_FINDCHARACTERDETAILS.cs" />
+    <Compile Include="Packets\0x00\SMSG_MAINTENANCELEAVE.cs" />
+    <Compile Include="Packets\0x00\SMSG_MAINTENANCEENTER.cs" />
+    <Compile Include="Packets\0x01\CMSG_CHAR_CREATE.cs" />
+    <Compile Include="Packets\0x01\CMSG_CHAR_CREATEREPLY.cs" />
+    <Compile Include="Packets\0x01\CMSG_CHAR_DELETE.cs" />
+    <Compile Include="Packets\0x01\CMSG_CHAR_GET.cs" />
+    <Compile Include="Packets\0x01\CMSG_CHAR_REQUESTLIST.cs" />
+    <Compile Include="Packets\0x01\CMSG_CHAR_SELECT.cs" />
+    <Compile Include="Packets\0x01\SMSG_CHAR_CREATEREPLY.cs" />
+    <Compile Include="Packets\0x01\SMSG_CHAR_SENDDATA.cs" />
+    <Compile Include="Packets\0x01\SMSG_CHAR_SENDLIST.cs" />
+    <Compile Include="Packets\0x03\CMSG_ACTORCHANGESTATEL.cs" />
+    <Compile Include="Packets\0x03\CMSG_ACTORFALL.cs" />
+    <Compile Include="Packets\0x03\CMSG_JOBCHANGE.cs" />
+    <Compile Include="Packets\0x03\CMSG_MOVEMENTSTART.cs" />
+    <Compile Include="Packets\0x03\CMSG_MOVEMENTSTOPPED.cs" />
+    <Compile Include="Packets\0x03\CMSG_SELECTJOB.cs" />
+    <Compile Include="Packets\0x03\CMSG_SENDHOMEPOINT.cs" />
+    <Compile Include="Packets\0x03\CMSG_SENDYAW.cs" />
+    <Compile Include="Packets\0x03\CMSG_STATUPDATE.cs" />
+    <Compile Include="Packets\0x03\CMSG_USEPORTAL.cs" />
+    <Compile Include="Packets\0x03\SMSG_ACTORCHANGESTATE.cs" />
+    <Compile Include="Packets\0x03\SMSG_ACTORDELETE.cs" />
+    <Compile Include="Packets\0x03\SMSG_ACTORDIVE.cs" />
+    <Compile Include="Packets\0x03\SMSG_ACTORINFO.cs" />
+    <Compile Include="Packets\0x03\SMSG_ACTORMOVEMENTSTART.cs" />
+    <Compile Include="Packets\0x03\SMSG_ACTORSELECTION.cs" />
+    <Compile Include="Packets\0x03\SMSG_ACTORTELEPORT.cs" />
+    <Compile Include="Packets\0x03\SMSG_BATTLESTATS.cs" />
+    <Compile Include="Packets\0x03\SMSG_CHANGEJOB.cs" />
+    <Compile Include="Packets\0x03\SMSG_CHANGEQUIPMENT.cs" />
+    <Compile Include="Packets\0x03\SMSG_CHARACTERINFO.cs" />
+    <Compile Include="Packets\0x03\SMSG_CHARSTATUS.cs" />
+    <Compile Include="Packets\0x03\SMSG_EXTSTATS.cs" />
+    <Compile Include="Packets\0x03\SMSG_HEALRESULT.cs" />
+    <Compile Include="Packets\0x03\SMSG_JOBCHANGED.cs" />
+    <Compile Include="Packets\0x03\SMSG_JOBLEVELS.cs" />
+    <Compile Include="Packets\0x03\SMSG_LEVELUP.cs" />
+    <Compile Include="Packets\0x03\SMSG_MOVEMENTSTART.cs" />
+    <Compile Include="Packets\0x03\SMSG_MOVEMENTSTOPPED.cs" />
+    <Compile Include="Packets\0x03\SMSG_RETURNMAPLIST.cs" />
+    <Compile Include="Packets\0x03\SMSG_SENDMONEYFORJOB.cs" />
+    <Compile Include="Packets\0x03\SMSG_SENDSTART.cs" />
+    <Compile Include="Packets\0x03\SMSG_SHOWMAPINFO.cs" />
+    <Compile Include="Packets\0x03\SMSG_TAKEDAMAGE.cs" />
+    <Compile Include="Packets\0x03\SMSG_TIMEWEATHER.cs" />
+    <Compile Include="Packets\0x03\SMSG_UPDATEYAW.cs" />
+    <Compile Include="Packets\0x03\SMSG_WIDEMOVEMENTSTART.cs" />
+    <Compile Include="Packets\0x04\CMSG_SENDWHISPER.cs" />
+    <Compile Include="Packets\0x04\SMSG_SENDCHAT.cs" />
+    <Compile Include="Packets\0x04\SMSG_SENDWHISPER.cs" />
+    <Compile Include="Packets\0x04\SMSG_WHISPERERROR.cs" />
+    <Compile Include="Packets\0x05\CMSG_DELETEITEM.cs" />
+    <Compile Include="Packets\0x05\CMSG_MOVEITEM.cs" />
+    <Compile Include="Packets\0x05\CMSG_REPAIRITEM.cs" />
+    <Compile Include="Packets\0x05\CMSG_USEMAP.cs" />
+    <Compile Include="Packets\0x05\CMSG_WEAPONAUGE.cs" />
+    <Compile Include="Packets\0x05\CMSG_WEAPONSMOVE.cs" />
+    <Compile Include="Packets\0x05\CMSG_WEAPONSWITCH.cs" />
+    <Compile Include="Packets\0x05\CMSG_WEAPONCHANGESUFFIX.cs" />
+    <Compile Include="Packets\0x05\CMSG_WEAPONUPGRADE.cs" />
+    <Compile Include="Packets\0x05\CMSG_USEDYE.cs" />
+    <Compile Include="Packets\0x05\CMSG_SORTINVENTORYLIST.cs" />
+    <Compile Include="Packets\0x05\SMSG_USEDYEITEM.cs" />
+    <Compile Include="Packets\0x05\SMSG_WEAPONUPGRADE.cs" />
+    <Compile Include="Packets\0x05\SMSG_WEAPONCHANGESUFFIX.cs" />
+    <Compile Include="Packets\0x05\SMSG_ADDITEM.cs" />
+    <Compile Include="Packets\0x05\SMSG_ADDITIONEND.cs" />
+    <Compile Include="Packets\0x05\SMSG_DELETEITEM.cs" />
+    <Compile Include="Packets\0x05\SMSG_ENCHANTMENT.cs" />
+    <Compile Include="Packets\0x05\SMSG_EQUIPMENTLIST.cs" />
+    <Compile Include="Packets\0x05\SMSG_ADDITIONBEGIN.cs" />
+    <Compile Include="Packets\0x05\SMSG_INVENTORYLIST.cs" />
+    <Compile Include="Packets\0x05\SMSG_ITEMADJUST.cs" />
+    <Compile Include="Packets\0x05\SMSG_MOVEITEM.cs" />
+    <Compile Include="Packets\0x05\SMSG_MOVEREPLY.cs" />
+    <Compile Include="Packets\0x05\SMSG_NPCDROPLISTRESULT.cs" />
+    <Compile Include="Packets\0x05\SMSG_SENDZENY.cs" />
+    <Compile Include="Packets\0x05\SMSG_SHOPLIST.cs" />
+    <Compile Include="Packets\0x05\SMSG_SHOWMAP.cs" />
+    <Compile Include="Packets\0x05\SMSG_STORAGELIST.cs" />
+    <Compile Include="Packets\0x05\SMSG_UPDATEITEM.cs" />
+    <Compile Include="Packets\0x05\SMSG_WEAPONADJUST.cs" />
+    <Compile Include="Packets\0x05\SMSG_WEAPONCHANGE.cs" />
+    <Compile Include="Packets\0x05\SMSG_WEAPONLIST.cs" />
+    <Compile Include="Packets\0x05\SMSG_WEAPONMOVE.cs" />
+    <Compile Include="Packets\0x05\SMSG_WEAPONSWITCH.cs" />
+    <Compile Include="Packets\0x05\SMSG_ADDITIONLIST.cs" />
+    <Compile Include="Packets\0x06\CMSG_DROPLIST.cs" />
+    <Compile Include="Packets\0x06\CMSG_DROPSELECT.cs" />
+    <Compile Include="Packets\0x06\CMSG_HATEINFO.cs" />
+    <Compile Include="Packets\0x06\CMSG_NPCCHAT.cs" />
+    <Compile Include="Packets\0x06\CMSG_NPCMENU.cs" />
+    <Compile Include="Packets\0x06\CMSG_NPCREBUY.cs" />
+    <Compile Include="Packets\0x06\CMSG_NPCSHOPBUY.cs" />
+    <Compile Include="Packets\0x06\CMSG_NPCSHOPSELL.cs" />
+    <Compile Include="Packets\0x06\CMSG_PERSONALREQUEST.cs" />
+    <Compile Include="Packets\0x06\CMSG_SELECTBUTTON.cs" />
+    <Compile Include="Packets\0x06\CMSG_SENDCHAT.cs" />
+    <Compile Include="Packets\0x06\CMSG_SUPPLYEXCHANGE.cs" />
+    <Compile Include="Packets\0x06\CMSG_SUPPLYSELECT.cs" />
+    <Compile Include="Packets\0x06\CMSG_WARP.cs" />
+    <Compile Include="Packets\0x06\SMSG_ACTORANIMATION.cs" />
+    <Compile Include="Packets\0x06\SMSG_ACTORUPDATEICON.cs" />
+    <Compile Include="Packets\0x06\SMSG_HATEINFO.cs" />
+    <Compile Include="Packets\0x06\SMSG_ITEMINFO.cs" />
+    <Compile Include="Packets\0x06\SMSG_ITEMUPDATE.cs" />
+    <Compile Include="Packets\0x06\SMSG_LEAVENPC.cs" />
+    <Compile Include="Packets\0x06\SMSG_NPCCHAT.cs" />
+    <Compile Include="Packets\0x06\SMSG_NPCINFO.cs" />
+    <Compile Include="Packets\0x06\SMSG_NPCMENU.cs" />
+    <Compile Include="Packets\0x06\SMSG_NPCSPEECH.cs" />
+    <Compile Include="Packets\0x06\SMSG_REBUYLIST.cs" />
+    <Compile Include="Packets\0x06\SMSG_SENDINVENTORY.cs" />
+    <Compile Include="Packets\0x06\SMSG_SHOPZENYUPDATE.cs" />
+    <Compile Include="Packets\0x06\SMSG_SUPPLYLIST.cs" />
+    <Compile Include="Packets\0x06\SMSG_SUPPLYLISTRESULT.cs" />
+    <Compile Include="Packets\0x06\SMSG_SUPPLYMENU.cs" />
+    <Compile Include="Packets\0x06\SMSG_WARPDIALOG.cs" />
+    <Compile Include="Packets\0x07\CMSG_QUESTCOMPLETE.cs" />
+    <Compile Include="Packets\0x07\CMSG_QUESTCONFIRM.cs" />
+    <Compile Include="Packets\0x07\CMSG_QUESTCONFIRMCANCEL.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTCANCEL.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTCOMPLETE.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTCONFIRM.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTINFO.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTLIST.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTREMOVE.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTSTEPUPDATE.cs" />
+    <Compile Include="Packets\0x07\SMSG_QUESTSUBSTEPUPDATE.cs" />
+    <Compile Include="Packets\0x07\SMSG_REMOVENAVIGATIONPOINT.cs" />
+    <Compile Include="Packets\0x07\SMSG_SENDNAVIGATIONPOINT.cs" />
+    <Compile Include="Packets\0x08\CMSG_REQUESTTRADE.cs" />
+    <Compile Include="Packets\0x08\CMSG_TRADEINVITATIONRESULT.cs" />
+    <Compile Include="Packets\0x08\CMSG_TRADEZENY.cs" />
+    <Compile Include="Packets\0x08\CMSG_TRADEITEM.cs" />
+    <Compile Include="Packets\0x08\SMSG_TRADEITEMOTHER.cs" />
+    <Compile Include="Packets\0x08\SMSG_TRADEITEM.cs" />
+    <Compile Include="Packets\0x08\SMSG_TRADECONFIRM.cs" />
+    <Compile Include="Packets\0x08\SMSG_TRADEINVITATION.cs" />
+    <Compile Include="Packets\0x08\SMSG_TRADERESULT.cs" />
+    <Compile Include="Packets\0x08\SMSG_TRADERESULT2.cs" />
+    <Compile Include="Packets\0x08\SMSG_TRADEZENY.cs" />
+    <Compile Include="Packets\0x08\SMSG_TRADEZENYOTHER.cs" />
+    <Compile Include="Packets\0x09\CMSG_ITEMTOGLE.cs" />
+    <Compile Include="Packets\0x09\CMSG_OFFENSIVESKILLUSE.cs" />
+    <Compile Include="Packets\0x09\CMSG_SKILLCAST.cs" />
+    <Compile Include="Packets\0x09\CMSG_SKILLCASTCANCEL.cs" />
+    <Compile Include="Packets\0x09\CMSG_SKILLLEARN.cs" />
+    <Compile Include="Packets\0x09\CMSG_SKILLTOGLE.cs" />
+    <Compile Include="Packets\0x09\CMSG_SETSPECIALSKILL.cs" />
+    <Compile Include="Packets\0x09\CMSG_REMOVESPECIALSKILL.cs" />
+    <Compile Include="Packets\0x09\SMSG_ITEMTOGGLE.cs" />
+    <Compile Include="Packets\0x09\SMSG_REMOVESPECIALSKILL.cs" />
+    <Compile Include="Packets\0x09\SMSG_LISTSPECIALSKILLS.cs" />
+    <Compile Include="Packets\0x09\SMSG_SETSPECIALSKILL.cs" />
+    <Compile Include="Packets\0x09\SMSG_ADDSPECIALSKILLREPLY.cs" />
+    <Compile Include="Packets\0x09\SMSG_SKILLREMOVE.cs" />
+    <Compile Include="Packets\0x09\SMSG_BATTLESKILL.cs" />
+    <Compile Include="Packets\0x09\SMSG_OFFENSIVESKILL.cs" />
+    <Compile Include="Packets\0x09\SMSG_OFFENSIVESKILLFAILED.cs" />
+    <Compile Include="Packets\0x09\SMSG_SENDBOOKLIST.cs" />
+    <Compile Include="Packets\0x09\SMSG_SENDSPECIALSKILLS.cs" />
+    <Compile Include="Packets\0x09\SMSG_SKILLADD.cs" />
+    <Compile Include="Packets\0x09\SMSG_SKILLCAST.cs" />
+    <Compile Include="Packets\0x09\SMSG_SKILLCASTCANCEL.cs" />
+    <Compile Include="Packets\0x09\SMSG_SKILLEFFECT.cs" />
+    <Compile Include="Packets\0x09\SMSG_SKILLLEARN.cs" />
+    <Compile Include="Packets\0x09\SMSG_SKILLTOGLE.cs" />
+    <Compile Include="Packets\0x0C\CMSG_GETMAIL.cs" />
+    <Compile Include="Packets\0x0C\CMSG_GETMAILOUTBOX.cs" />
+    <Compile Include="Packets\0x0C\CMSG_REQUESTINBOX.cs" />
+    <Compile Include="Packets\0x0C\CMSG_REQUESTOUTBOX.cs" />
+    <Compile Include="Packets\0x0C\CMSG_SENDMAIL.cs" />
+    <Compile Include="Packets\0x0C\CMSG_GETZENYATTACHMENT.cs" />
+    <Compile Include="Packets\0x0C\CMSG_GETITEMATTACHMENT.cs" />
+    <Compile Include="Packets\0x0C\CMSG_DELETEMAIL.cs" />
+    <Compile Include="Packets\0x0C\CMSG_MAILCLEAR.cs" />
+    <Compile Include="Packets\0x0C\CMSG_MAILCANCEL.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILCANCELAWNSER.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILCLEARAWNSER.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILITEMAWNSER.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILARRIVED.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILAUCTION.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILDATA.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILDELETEAWNSER.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILERROR.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILLIST.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILLISTOUTBOX.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILOUTDATA.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILSENDAWNSER.cs" />
+    <Compile Include="Packets\0x0C\SMSG_MAILZENYAWNSER.cs" />
+    <Compile Include="Packets\0x0D\SMSG_08_PARTYMODE.cs" />
+    <Compile Include="Packets\0x0D\SMSG_16_PARTYDISMISSED.cs" />
+    <Compile Include="Packets\0x0D\SMSG_05_PARTYNEWMEMBER.cs" />
+    <Compile Include="Packets\0x0D\SMSG_02_PARTYINVITATIONRESULT.cs" />
+    <Compile Include="Packets\0x0D\SMSG_01_PARTYINVITATION.cs" />
+    <Compile Include="Packets\0x0D\SMSG_04_PARTYMEMBERINFO.cs" />
+    <Compile Include="Packets\0x0D\SMSG_03_PARTYQUIT.cs" />
+    <Compile Include="Packets\0x0E\CMSG_PARTYINVITE.cs" />
+    <Compile Include="Packets\0x0E\CMSG_PARTYINVITECANCEL.cs" />
+    <Compile Include="Packets\0x0E\CMSG_PARTYQUIT.cs" />
+    <Compile Include="Packets\0x0E\CMSG_PARTYKICK.cs" />
+    <Compile Include="Packets\0x0E\CMSG_PARTYMODE.cs" />
+    <Compile Include="Packets\0x0E\CMSG_PARTYINVITATIONACCEPT.cs" />
+    <Compile Include="Packets\0x0E\CMSG_PARTYINVITE_LOCAL.cs" />
+    <Compile Include="Packets\0x0E\CMSG_PARTYSETLEADER.cs" />
+    <Compile Include="Packets\0x0E\SMSG_ERROR.cs" />
+    <Compile Include="Packets\0x0F\CMSG_MARKETBUY.cs" />
+    <Compile Include="Packets\0x0F\CMSG_MARKETDELETEITEM.cs" />
+    <Compile Include="Packets\0x0F\CMSG_MARKETGETCOMMENT.cs" />
+    <Compile Include="Packets\0x0F\CMSG_MARKETMESSAGE.cs" />
+    <Compile Include="Packets\0x0F\CMSG_MARKETREGISTER.cs" />
+    <Compile Include="Packets\0x0F\CMSG_MARKETSEARCH.cs" />
+    <Compile Include="Packets\0x0F\SMSG_MARKETBUY.cs" />
+    <Compile Include="Packets\0x0F\SMSG_MARKETCOMMENT.cs" />
+    <Compile Include="Packets\0x0F\SMSG_MARKETDELETEITEM.cs" />
+    <Compile Include="Packets\0x0F\SMSG_MARKETMESSAGE.cs" />
+    <Compile Include="Packets\0x0F\SMSG_MARKETMESSAGERESULT.cs" />
+    <Compile Include="Packets\0x0F\SMSG_MARKETOWNERSEARCH.cs" />
+    <Compile Include="Packets\0x0F\SMSG_MARKETREGISTER.cs" />
+    <Compile Include="Packets\0x0F\SMSG_MARKETSEARCH.cs" />
+    <Compile Include="Packets\0x0F\SMSG_MARKETSTART.cs" />
+    <Compile Include="Packets\0x12\CMSG_BLACKLIST_REFRESH.cs" />
+    <Compile Include="Packets\0x12\CMSG_BLACKLIST_REGISTER.cs" />
+    <Compile Include="Packets\0x12\CMSG_BLACKLIST_UNREGISTER.cs" />
+    <Compile Include="Packets\0x12\CMSG_FRIENDLIST_REFRESH.cs" />
+    <Compile Include="Packets\0x12\CMSG_FRIENDLIST_REGISTER.cs" />
+    <Compile Include="Packets\0x12\CMSG_FRIENDLIST_UNREGISTER.cs" />
+    <Compile Include="Packets\0x13\SMSG_BLACKLIST_REFRESH.cs" />
+    <Compile Include="Packets\0x13\SMSG_BLACKLIST_REGISTER.cs" />
+    <Compile Include="Packets\0x13\SMSG_BLACKLIST_UNREGISTER.cs" />
+    <Compile Include="Packets\0x13\SMSG_FRIENDLIST_REFRESH.cs" />
+    <Compile Include="Packets\0x13\SMSG_FRIENDLIST_REGISTER.cs" />
+    <Compile Include="Packets\0x13\SMSG_FRIENDLIST_UNREGISTER.cs" />
+    <None Include="saga.pfx" />
+    <Compile Include="Tables\Table Quest\Quest.FindPosition.cs" />
+    <Compile Include="Tables\Table Quest\Quest.UserUpdateActionObjectType.cs" />
+    <Compile Include="Tables\Table ScenarioQuest\ScenarioQuest.AddStep.cs" />
+    <Compile Include="Tables\Table ScenarioQuest\ScenarioQuest.CurrentStep.cs" />
+    <Compile Include="Tables\Table ScenarioQuest\ScenarioQuest.StartEvent.cs" />
+    <Compile Include="Tables\Table ScenarioQuest\ScenarioQuest.InsertQuest.cs" />
+    <Compile Include="Tables\Table ScenarioQuest\ScenarioQuest.QuestComplete.cs" />
+    <Compile Include="Tables\Table ScenarioQuest\ScenarioQuest.StepComplete.cs" />
+    <Compile Include="Utils\Enumarations\PartyErrors.cs" />
+    <Compile Include="Utils\Definitions\Misc\BoundingBox.cs" />
+    <Compile Include="Utils\Definitions\Misc\MailItem.cs" />
+    <Compile Include="Utils\Definitions\Misc\Matrix.cs" />
+    <Compile Include="Utils\Definitions\Misc\QueryParameterCollection.cs" />
+    <Compile Include="Utils\Library\Common.Durabillity.cs" />
+    <Compile Include="Utils\Library\Common.Items.cs" />
+    <Compile Include="Utils\Library\Generator.Random.cs" />
+    <Compile Include="Utils\Structures\BaseShopCollection.cs" />
+    <Compile Include="Utils\Structures\BookstoreCollection.cs" />
+    <Compile Include="Utils\Structures\Rag2Collection.cs" />
+    <Compile Include="Utils\Structures\ShopCollection.cs" />
+    <Compile Include="Utils\Structures\EventItem.cs" />
+    <Compile Include="Utils\Structures\GMCommand.cs" />
+    <Compile Include="Utils\Structures\Point.cs" />
+    <Compile Include="Utils\Structures\Shoplist.cs" />
+    <Compile Include="Utils\Structures\Structures.cs" />
+    <Compile Include="Utils\Structures\WeaponCollection.cs" />
+    <Compile Include="World Tasks\Tasks.RefreshNpc.cs" />
+    <Compile Include="World Tasks\Tasks.Maintaince.cs" />
+    <Compile Include="World Tasks\Tasks.Battlethread.cs" />
+    <Compile Include="World Tasks\Tasks.MailService.cs" />
+    <Compile Include="World Tasks\Tasks.Shipservice.cs" />
+    <Compile Include="World Tasks\Tasks.WorldTime.cs" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Saga.Shared.Definitions\Saga.Shared.Definitions.csproj">
+      <Project>{DBBE5A5F-9C3B-4785-91A9-0A5245B2F3BC}</Project>
+      <Name>Saga.Shared.Definitions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared\Saga.Shared\Saga.Shared.NetworkCore.csproj">
+      <Project>{45C7E3E6-825A-4AB2-8E60-69131B596229}</Project>
+      <Name>Saga.Shared.NetworkCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utils\Resources\SingletonNotificationStrings.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SingletonNotificationStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v2.0.50727\System.configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <!-- Start custom -->
+  <PropertyGroup>
+    <SagaRoot>$(ProjectDir)../</SagaRoot>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- End of custom -->
+  <PropertyGroup>
+    <PostBuildEvent>CD "$(SolutionDir)"
+COPY /Y "$(ProjectDir)$(OutDir)$(TargetFileName)" /B "Binary\$(TargetFileName)" /B
+COPY /Y "$(ProjectDir)$(OutDir)*.dll" /B "Binary\*.dll" /B
+COPY /Y "$(ProjectDir)$(OutDir)*.pdb" /B "Binary\*.pdb" /B
+COPY /Y "Dependecies\*.dll" /B "Binary\*.dll" /B</PostBuildEvent>
+  </PropertyGroup>
+</Project>

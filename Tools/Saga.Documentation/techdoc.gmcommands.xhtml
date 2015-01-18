@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xslt/techdoc.xsl"?>
+<page logo="techdoc">
+  <title>Commands: gmcommands reference</title>
+
+  <paragraph>[GM01] Shows your current position</paragraph>
+  <code><![CDATA[!pos
+
+]]></code>
+
+  <paragraph>[GM01] Get's the current number of connected character</paragraph>
+  <code><![CDATA[!worldload
+
+]]></code>
+
+  <paragraph>[GM05] Warps yourself to the speciafied map</paragraph>
+  <code><![CDATA[!warptomap 1
+
+]]></code>
+
+  <paragraph>[GM05] Warps yourself to another player</paragraph>
+  <code><![CDATA[!pjump charactername
+
+]]></code>
+
+  <paragraph>[GM10] Warps a player to yourself</paragraph>
+  <code><![CDATA[!pcall charactername
+
+]]></code>
+
+  <paragraph>[GM10] Set's the walking speed of your character</paragraph>
+  <code><![CDATA[!speed 300
+
+]]></code>
+
+  <paragraph>[GM10] Resets the global gametime</paragraph>
+  <code><![CDATA[!time 20-60-60
+
+]]></code>
+
+  <paragraph>[GM10] Shows when the next maintaince is scheduled</paragraph>
+  <code><![CDATA[!showmaintenance
+
+]]></code>
+
+  <paragraph>[GM30] Kicks a player with a speciafied name</paragraph>
+  <code><![CDATA[!kick charactername
+
+]]></code>
+
+  <paragraph>[GM30] Spawns a npc or mapobject with the speciafied id. Use 1 as first digit to load a npc and 2 to load a item.</paragraph>
+  <code><![CDATA[!spawn 0 10407
+
+]]></code>
+
+  <paragraph>[GM30] Unspawns a the selected actor of the character</paragraph>
+  <code><![CDATA[!unspawn
+
+]]></code>
+
+  <paragraph>[GM33] Broadcast an annouchement to all users</paragraph>
+  <code><![CDATA[!b message to broadcast
+
+]]></code>
+
+  <paragraph>[GM33] Mutes the speciafied character for an hour.</paragraph>
+  <code><![CDATA[!mute charactername
+
+]]></code>
+
+  <paragraph>[GM50] Set's the an temp gm level of the character. The information will be lost after the client closes.</paragraph>
+  <code><![CDATA[!setgmlvl 21 charactername
+
+]]></code>
+
+  <paragraph>[GM55] Gives an item to the event rewards list.</paragraph>
+  <code><![CDATA[!item 30000 1 charactername
+
+]]></code>
+
+  <paragraph>[GM90] Repopulates the world.</paragraph>
+  <code><![CDATA[!repopulate
+
+]]></code>
+
+  <paragraph>[GM90] Kicks all player connected to the server except yourself.</paragraph>
+  <code><![CDATA[!kickall
+
+]]></code>
+
+  <paragraph>[GM90] Schedules the next maintaince. Use a date in the past to cancel it. Two hours prior to the actual downtime players will be notified by an intergrated broadcast around every half hour.</paragraph>
+  <code><![CDATA[!schedulemaintenance 2008-07-31 18:00
+
+]]></code>
+
+  <paragraph>[GM99] Forces the garbage collector to run.</paragraph>
+  <code><![CDATA[!gc
+
+]]></code>
+
+</page>

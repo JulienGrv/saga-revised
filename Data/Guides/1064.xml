@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<guide menu="2">
+  <point type="map">1</point>
+  <point type="npc">1140</point>
+  <point type="npc">1145</point> 
+  <point type="map">1</point>
+</guide>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Blacksmith> 
+  <Gossip>1780</Gossip>
+  <EverydayConversation>823</EverydayConversation>
+  <BlackSmithMenu>1842</BlackSmithMenu>
+  <WeaponTypeChange>1851</WeaponTypeChange>
+  <SuffixChange>500</SuffixChange>
+  <WeaponUpgrade>1848</WeaponUpgrade>
+  <RepairEquipment>1845</RepairEquipment>
+</Blacksmith>

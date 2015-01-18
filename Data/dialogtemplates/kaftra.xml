@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Kaftra> 
+  <Gossip>500</Gossip>
+  <EverydayConversation>500</EverydayConversation>
+  <SaveLocation>500</SaveLocation>
+  <Storage>500</Storage>
+  <KaftraService>500</KaftraService>
+</Kaftra>

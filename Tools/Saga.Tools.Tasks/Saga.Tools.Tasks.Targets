@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    
+  <PropertyGroup>
+    <SagaTasksPath Condition="'$(SagaTasksPath)' == ''">$(MSBuildProjectDirectory)</SagaTasksPath>
+    <SagaTasksLib>$(SagaTasksPath)\Saga.Tools.Tasks.dll</SagaTasksLib>
+  </PropertyGroup>
+
+  <UsingTask AssemblyFile="$(SagaTasksLib)" TaskName="Saga.Tools.Tasks.PacketDocumentation" />
+
+</Project>

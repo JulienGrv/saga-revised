@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SkillMaster> 
+  <Gossip>500</Gossip>
+  <EverydayConversation>500</EverydayConversation>
+  <ShowSkillMasterMenu>500</Shop>
+  <ChangeJob>500</ChangeJob>
+  <SpecialAbillities>500</SpecialAbillities>
+  <Skillbook>500</Skillbook>
+</SkillMaster>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<trader>
+	<trades id="1">
+		<trade type="single" fee="0" refund="0">1</trade>
+		<trade type="single" fee="0" refund="0">2</trade>
+		<trade type="single" fee="0" refund="0">3</trade>
+		<trade type="single" fee="0" refund="0">4</trade>
+		<trade type="single" fee="0" refund="0">5</trade>
+		<trade type="grouped" fee="0" refund="0">6</trade>
+	</trades>
+	<production>
+		<item trade="1" group="0" count="1">9343</item>
+		<item trade="2" group="0" count="1">9343</item>
+		<item trade="3" group="0" count="1">9343</item>
+		<item trade="4" group="0" count="1">9343</item>
+		<item trade="5" group="0" count="1">9343</item>
+		<item trade="6" group="1" count="0">496</item>
+		<item trade="6" group="2" count="0">502</item>
+		<item trade="6" group="3" count="0">515</item>
+		<item trade="6" group="4" count="0">529</item>
+	</production>
+	<supplement>
+		<item trade="1" group="0" count="20">9338</item>
+		<item trade="2" group="0" count="14">9339</item>
+		<item trade="3" group="0" count="12">9340</item>
+		<item trade="4" group="0" count="10">9341</item>
+		<item trade="5" group="0" count="8">9342</item>
+		<item trade="6" group="1" count="20">9343</item>
+		<item trade="6" group="2" count="20">9343</item>
+		<item trade="6" group="3" count="20">9343</item>
+		<item trade="6" group="4" count="20">9343</item>
+	</supplement>
+</trader>

@@ -1,0 +1,83 @@
+﻿<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Fileformat: Lootcollection</title>
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+  </head>
+  <body>
+    <table class="container" cellspacing="0">
+      <tr>
+        <td style="padding:0px; margin:0px;">
+          <div class="overlay_top">
+            <div class="overlay_bottom">
+              <table class="container" cellspacing="0">
+                <tr>
+                  <td class="container_corner_upper_left"></td>
+                  <td class="container_top">
+                    <div style="padding-left:130px; position:relative; top:10px;"><a href="Introduction.html" class="menulink">Main</a> |
+  <a href="eula.html" class="menulink">Eula</a> |
+  <a href="changelog.html" class="menulink">Changelog</a> |
+  <a href="features.html" class="menulink">Features</a> |
+  <a href="todo.html" class="menulink">Project Status</a> |
+  <a href="toc.techdoc.html" class="menulink">Technical Documentation</a></div>
+                  </td>
+                  <td class="container_corner_upper_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_left"></td>
+                  <td valign="top">
+                    <div><img class="pagetitle" src="Images/menu_large/techdoc.png"></div>
+                    <div>
+  <h2>Fileformat: Lootcollection</h2>
+  <p>The lootcollection fileformat is used to configure the their standard loot (non quest loot). The lootcollections are placed under the ~data/loot/{npcid}.xml</p>
+  <code><pre class="code">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;!DOCTYPE lootitems [
+	&lt;!ELEMENT lootitems (item*)&gt;
+	&lt;!ELEMENT item CDATA #REQUIRED&gt;
+	&lt;!ATTLIST item rate CDATA #REQUIRED&gt;
+]&gt;
+&lt;lootitems&gt;
+   &lt;item rate="3876"&gt;2020001&lt;/item&gt;
+   &lt;item rate="989"&gt;2020002&lt;/item&gt;
+   &lt;item rate="797"&gt;9504&lt;/item&gt;
+   &lt;item rate="172"&gt;530432&lt;/item&gt;
+   &lt;item rate="115"&gt;450027&lt;/item&gt;
+   &lt;item rate="144"&gt;500196&lt;/item&gt;
+   &lt;item rate="365"&gt;51500004&lt;/item&gt;
+   &lt;item rate="144"&gt;100109&lt;/item&gt;
+   &lt;item rate="96"&gt;350014&lt;/item&gt;
+   &lt;item rate="96"&gt;1700069&lt;/item&gt;
+   &lt;item rate="480"&gt;9493&lt;/item&gt;
+   &lt;item rate="144"&gt;450144&lt;/item&gt;
+   &lt;item rate="427"&gt;9449&lt;/item&gt;
+   &lt;item rate="144"&gt;100112&lt;/item&gt;
+   &lt;item rate="28"&gt;2735&lt;/item&gt;
+&lt;/lootitems&gt;
+</pre></code>
+
+  <p>In the example above you see the internal file format used to configure the item loot the default item loot of our monsters. Note that loot related to quests are not in here this means that any loot involving quest items should be filtered out. </p>
+  <p>Loot that involves quests are often activated in the quest as soon as the quest end the additional loot caused by the quest will be deactivated. This causes your monster to have both a separate loot for daily means and for quests. Separating these two collections from each other clearly has its benefits. Its easier to update the monsters item drop/drop ratios while keeping the quests intact. And vice versa its easier to add a monsters quest interaction while there is no other information available about him.</p>
+  <p>The drop ratio is based on a number between 0 and 10000. If the random number is lower or equal than the speciafied dropratio the item will be droped. Therefor the higher the dropratio the more chance the item has of beeing dropped.</p>
+
+
+</div>
+                    <div style="height:70px; width:100%;"><a href="#" class="footerlink">Top</a></div>
+                  </td>
+                  <td class="container_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_corner_lower_left"></td>
+                  <td class="container_bottom"></td>
+                  <td class="container_corner_lower_right"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="page_footer"><img src="images/logo-rev-low.png"></td>
+      </tr>
+    </table>
+  </body>
+</html>

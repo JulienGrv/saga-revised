@@ -1,0 +1,749 @@
+ID,AI Path,Name,HP,SP,Level,CEXP,JEXP,WEXP,Def,Flee,AtkMin,AtkMax,Cri,Hit,ASPD,SightRange,Size,WalkSpeed,RunSpeed,AIMode
+1000,Saga.Templates.ShopableTrader,Misha Berardini,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1001,Saga.Templates.ShopableTrader,Klaret Natali se Pruysenaere,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1002,Saga.Templates.Kaftra,Shelphy Adriana,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1003,Saga.Templates.Npc,Scacciano Morrigan,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1004,Saga.Templates.Npc,Averro Reinhold,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1005,Saga.Templates.BlackSmith,Zarko Ruzolli,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1006,Saga.Templates.ShopableTrader,Mainhared Anselm,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1007,Saga.Templates.ShopableTrader,Magnet Wihelmina,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1008,Saga.Templates.Kaftra,Mr. Pitt,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1009,Saga.Templates.Npc,Volker Stanwood,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1010,Saga.Templates.Npc,Regina Salisbury,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1011,Saga.Templates.BlackSmith,HolGran,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1012,Saga.Templates.Npc,Monika Reynolds,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1013,Saga.Templates.Npc,Pelshia Hiltrud,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1014,Saga.Templates.Npc,Joachim Tristan,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1015,Saga.Templates.Npc,Hozent Byain,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1016,Saga.Templates.Npc,Siglet Jungteibe,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1017,Saga.Templates.ShopableTrader,Raid_Nifingr,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1018,Saga.Templates.BlackSmith,Netyr Rid,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1019,Saga.Templates.Npc,Harot Sabirine,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1020,Saga.Templates.Kaftra,Migo Alfred,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1021,Saga.Templates.ShopableTrader,Dereck Kroff,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1022,Saga.Templates.ShopableTrader,Cheyenne Yule,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1023,Saga.Templates.Kaftra,Ireyneal Sheel,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1024,Saga.Templates.Npc,Pretan Cornit,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1025,Saga.Templates.Npc,Gretchel Ortrud,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1026,Saga.Templates.BlackSmith,Moritz Blauvelt,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1028,Saga.Templates.Kaftra,Aili Weller,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1049,Saga.Templates.SkillMaster,Miroslav Baum,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1050,Saga.Templates.SkillMaster,Heinrich Hansel,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1051,Saga.Templates.Npc,Nikki Rozense,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1053,Saga.Templates.SkillMaster,Jurgen Hartevelt,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1054,Saga.Templates.Npc,Alina Meiwes,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1055,Saga.Templates.Auctioneer,Oscar Eatone,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1056,Saga.Templates.Auctioneer,Emma Whitlef,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1057,Saga.Templates.Auctioneer,Alix Reed,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1058,Saga.Templates.Auctioneer,Heidi Bath,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1059,Saga.Templates.Npc,Alfons Marsh,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1060,Saga.Templates.Npc,Sigiswald Mann,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1062,Saga.Templates.Guide,Ivo Stover,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1063,Saga.Templates.Npc,Kwanto Randal,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1064,Saga.Templates.Guide,Birsha,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1065,Saga.Templates.Npc,Arolas Botolph,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1066,Saga.Templates.Npc,Kundi Dunstan,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1067,Saga.Templates.Npc,Vester Ling,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1068,Saga.Templates.Npc,Quadro Mann,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1069,Saga.Templates.Npc,Seraphina Falke,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1070,Saga.Templates.Npc,Vanda Acton,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1071,Saga.Templates.Npc,Irma Swane,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1072,Saga.Templates.Guide,Bonifaz Knapp,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1073,Saga.Templates.Npc,Toska Alden,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1074,Saga.Templates.Npc,Zilbert Huntington,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1075,Saga.Templates.Guide,Nado Archibald,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1076,Saga.Templates.Npc,Zoschka Whiting,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1077,Saga.Templates.Npc,Magnilda Haswell,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1078,Saga.Templates.Npc,Ludwig Frisby,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1079,Saga.Templates.Npc,Lothair Eaton,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1080,Saga.Templates.Npc,Achim,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1081,Saga.Templates.Npc,Mitzi,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1082,Saga.Templates.Npc,Sabena Denton,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1083,Saga.Templates.Guide,Aronos Dodd,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1084,Saga.Templates.Npc,Carlo Gifford,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1085,Saga.Templates.Npc,Kurt Stover,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1089,Saga.Templates.Npc,Hanne William,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1090,Saga.Templates.Trader,Pikas Wibert,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1091,Saga.Templates.Npc,Trusa Ralph,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1092,Saga.Templates.Npc,Shantos Kebby,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1093,Saga.Templates.Guide,Binta Heaton,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1094,Saga.Templates.Guide,Prado Alden,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1095,Saga.Templates.Npc,Kuno Aston,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1096,Saga.Templates.Guide,Zipu Hanse,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1097,Saga.Templates.Npc,Arno Ling,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1098,Saga.Templates.Npc,Rufus Haw,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1099,Saga.Templates.Npc,Orak Edith,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1101,Saga.Templates.Npc,AstorEim,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1102,Saga.Templates.Npc,OphelIconium,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1104,Saga.Templates.Npc,Hugo Helfried,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1105,Saga.Templates.Npc,HelgiPhilippus,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1106,Saga.Templates.Npc,AnglachelFalchion,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1107,Saga.Templates.Npc,Azoth Hohenheim,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1108,Saga.Templates.Npc,Seah Iconium,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1109,Saga.Templates.Npc,Brionac Jungteibe,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1110,Saga.Templates.Npc,Rhegium Dor,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1111,Saga.Templates.Npc,MessahGath,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1112,Saga.Templates.Npc,Isidor Dering,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1113,Saga.Templates.Npc,,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1116,Saga.Templates.Npc,,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1121,Saga.Templates.Npc,Quill Ramsden,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1123,Saga.Templates.Npc,Binta Granger,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1127,Saga.Templates.Npc,Mastis,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1128,Saga.Templates.Npc,Jacques,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1135,Saga.Templates.Npc,Portman Heisude,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1139,Saga.Templates.Npc,Redick Dass,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1140,Saga.Actors.Wayendi,Waynedi Arga,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1143,Saga.Templates.Npc,Adria Sill,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1144,Saga.Templates.Npc,Donas,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1145,Saga.Templates.Npc,Aigor Derleth,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1146,Saga.Templates.Npc,Conrad,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1147,Saga.Templates.Npc,Sally,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1148,Saga.Templates.Npc,Whitney,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1149,Saga.Templates.Npc,Cody Isaiah,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1151,Saga.Templates.Npc,Sophie Tristan,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1152,Saga.Templates.Npc,Helena,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1153,Saga.Templates.Npc,Reymond,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1154,Saga.Templates.Npc,Parios,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1155,Saga.Templates.Npc,Glasshood,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1156,Saga.Templates.Npc,Miu,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1158,Saga.Templates.Npc,Egon,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1159,Saga.Templates.Npc,Ditrahel,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1160,Saga.Templates.Npc,Paskel,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1161,Saga.Templates.Npc,Rekard,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1162,Saga.Templates.Npc,Anne,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1163,Saga.Templates.Npc,Polix,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1164,Saga.Templates.Npc,Nernst,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1165,Saga.Templates.Npc,Clerd,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1166,Saga.Templates.Guide,Knightdagger,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1167,Saga.Templates.Npc,Nolang,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1168,Saga.Templates.Npc,Denev,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1170,Saga.Templates.Npc,Eind,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1171,Saga.Templates.Npc,Teos,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1173,Saga.Templates.Npc,Rein,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1174,Saga.Templates.Npc,Dein,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1175,Saga.Templates.Npc,Echlo,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1176,Saga.Templates.Npc,Sef Coward,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1177,Saga.Templates.Npc,Rita,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1178,Saga.Templates.Npc,Oliver,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1179,Saga.Templates.Npc,Alef,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1180,Saga.Templates.Npc,Otto,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1181,Saga.Templates.Npc,Yan,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1182,Saga.Templates.Npc,Mikel,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1183,Saga.Templates.Npc,Tilo,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1184,Saga.Templates.Npc,Artnaf,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1185,Saga.Templates.Npc,Edmund Veervon,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1186,Saga.Templates.Npc,Hanna,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1187,Saga.Templates.Npc,Sandor,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1188,Saga.Templates.Npc,Emiel,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1189,Saga.Templates.Npc,Evy,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1190,Saga.Templates.Npc,Ruud,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1191,Saga.Templates.Npc,Sneaker,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1192,Saga.Templates.Npc,Bruger,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1193,Saga.Templates.Npc,Maien,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1194,Saga.Templates.Npc,Berickson,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1196,Saga.Templates.Npc,Anche,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1197,Saga.Templates.Npc,Silvia,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1198,Saga.Templates.Npc,Lucia Haswell,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1199,Saga.Templates.Npc,Lia,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1200,Saga.Templates.Npc,Heinz Schtufelt,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1201,Saga.Templates.Npc,Jojeff Hofman,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1202,Saga.Templates.Npc,Lungberk,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1203,Saga.Templates.Npc,Claus,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1204,Saga.Templates.Npc,Benjei,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1206,Saga.Templates.Npc,Dieter,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1208,Saga.Templates.Npc,,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1209,Saga.Templates.Npc,Seberin,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1210,Saga.Templates.Npc,Fabian,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1211,Saga.Templates.Npc,Holstein,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1213,Saga.Templates.Catheleya,Neil,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1214,Saga.Templates.Catheleya,Riam,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1215,Saga.Templates.Catheleya,Adrian,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1216,Saga.Templates.Catheleya,Thara,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1217,Saga.Templates.Catheleya,Eric,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1218,Saga.Templates.Catheleya,Julia,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1219,Saga.Templates.Catheleya,Jerad,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1223,Saga.Templates.Npc,Mayer,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1224,Saga.Scripting.CaveOfEmir.Lentz,Lentz Bartul,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1225,Saga.Templates.Shop,Corina Orgden,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1226,Saga.Templates.Auctioneer,Tevez West,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1228,Saga.Templates.Trader,Menno Buckstone,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1229,Saga.Templates.Trader,Elisa,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1230,Saga.Templates.Npc,Rossen Bice,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1231,Saga.Templates.Npc,Tobi Hull,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1232,Saga.Templates.Npc,Mark Olin,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1235,Saga.Templates.Npc,Lime Sasha,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1236,Saga.Templates.Npc,Tteu,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1237,Saga.Templates.Npc,Chyu,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1239,Saga.Templates.Npc,LetteEir,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1240,Saga.Templates.Npc,MeilianLindi,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1241,Saga.Templates.Npc,NokkbiKarl,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1242,Saga.Templates.Auctioneer,HoondMakkus,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1243,Saga.Templates.SkillMaster,Ruis Lainmeire,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1244,Saga.Templates.Npc,WittMaxen,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1245,Saga.Templates.Npc,Angelinne,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1246,Saga.Templates.Npc,GromwellBartus,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1247,Saga.Templates.Npc,TarosMaskald,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1248,Saga.Templates.Catheleya,Eitri Vin,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1249,Saga.Templates.Catheleya,Bruecke Walter,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1250,Saga.Scripting.Alfheim.Eglon,Eglon,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1251,Saga.Templates.Shop,Negus Tradjie,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1252,Saga.Templates.Npc,Konze,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1253,Saga.Templates.Npc,Gogonyak,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1254,Saga.Templates.BlackSmith,Roy,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1256,Saga.Templates.Npc,Mysterious Cat,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1257,Saga.Templates.Npc,Emmental Cole,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1258,Saga.Templates.Npc,Pablo,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1259,Saga.Templates.Npc,Kareem Abdul,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1260,Saga.Templates.Npc,Nanna Etan,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1261,Saga.Templates.Npc,Irpa,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1262,Saga.Templates.Npc,Dubaba,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1263,Saga.Templates.Npc,Latzi Yobb,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1264,Saga.Templates.Npc,Latti Yobb,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1265,Saga.Templates.Npc,Pritz Leodolf,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1266,Saga.Templates.Npc,Victor Hajelm,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1267,Saga.Templates.Catheleya,Ercert,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1268,Saga.Scripting.ForestOfEcho.Yordi,Yordi,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1270,Saga.Templates.Warper,Raul Dietrich,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1271,Saga.Templates.Warper,Tibo Pascal,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1272,Saga.Templates.Warper,Erskine Lyndon,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1273,Saga.Templates.Warper,Martin Yaw,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1274,Saga.Templates.Warper,Chris Seidel,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1275,Saga.Templates.Warper,Hault Montgomery,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1276,Saga.Templates.Warper,Xeno Miller,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1277,Saga.Templates.Warper,Frank Burbley,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1278,Saga.Templates.Warper,XenoMiller,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1279,Saga.Templates.Warper,Dave maul,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1280,Saga.Templates.Warper,Joaquin Baumann,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1281,Saga.Templates.Warper,Gabor Klein,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1282,Saga.Templates.Warper,Willhelm Howke,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1283,Saga.Templates.Npc,FredyFink,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1284,Saga.Templates.Warper,Poal Blumfeld,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1285,Saga.Templates.Warper,Sam Ramon,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1286,Saga.Templates.Warper,Jason Quincy,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1287,Saga.Templates.Warper,Dick Henry,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1288,Saga.Templates.Warper,Bill Slinger,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1289,Saga.Templates.Warper,Michael Jean,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1290,Saga.Templates.Warper,Benjamin Meier,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1292,Saga.Templates.Warper,Oliver Graf,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1293,Saga.Templates.Warper,Cymon Lucy,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1294,Saga.Templates.Warper,Rodrigo Diaz,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1295,Saga.Templates.Warper,Nicholas Sid,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1296,Saga.Templates.Npc,Mario Hogarth,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1297,Saga.Templates.Warper,Benjamin Meier,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1298,Saga.Templates.Warper,Bobby Grant,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1299,Saga.Templates.Warper,Matt Sinclair,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1300,Saga.Templates.Warper,Don Marilo,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1301,Saga.Templates.Warper,Raleigh Homer,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1302,Saga.Templates.Warper,Scott Lawrence,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1303,Saga.Templates.Warper,Chester Cook,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1304,Saga.Templates.Warper,Mulder Louth,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1305,Saga.Templates.Warper,Ivan Moulton,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1306,Saga.Templates.Warper,Emile Skinner,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1307,Saga.Templates.Warper,Noah Stauffer,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1308,Saga.Templates.Warper,Elias Rasch,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1309,Saga.Templates.Warper,Trianoton,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1310,Saga.Templates.Warper,Mel,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1311,Saga.Templates.Warper,Pran,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1312,Saga.Templates.Warper,Ivadel,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1313,Saga.Templates.Trader,Mei-ryn,8587,8687,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1314,Saga.Templates.Trader,Theon Stratos,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1315,Saga.Scripting.ForestOfEcho.Trader,Hazy Mark,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1316,Saga.Templates.Shop,ClairLyster,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1317,Saga.Scripting.ForestOfEcho.Trader,Coil,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1319,Saga.Scripting.ForestOfEcho.Trader,Malena,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1321,Saga.Scripting.ForestOfEcho.Trader,Torres,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1322,Saga.Scripting.ForestOfEcho.Trader,Pym,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1323,Saga.Scripting.ForestOfEcho.Trader,Neville,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1324,Saga.Scripting.ForestOfEcho.Trader,Milla,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1325,Saga.Scripting.ForestOfEcho.Trader,Cleo,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1326,Saga.Scripting.ForestOfEcho.Trader,Florence,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1327,Saga.Templates.Trader,Marlay,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1328,Saga.Templates.Trader,Nickel,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1329,Saga.Templates.Trader,Yankivic,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1330,Saga.Templates.Trader,Jericho,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1331,Saga.Templates.Trader,Colin,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1332,Saga.Templates.Trader,Hera,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1333,Saga.Templates.Trader,Jasmine,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1334,Saga.Templates.Trader,Kyra,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1335,Saga.Templates.Trader,Eppie,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1336,Saga.Templates.Trader,Olive,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1337,Saga.Templates.Catheleya,Etttore Soap,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1338,Saga.Templates.Warper,Michelle Gellar,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1341,Saga.Templates.Npc,Erik Levy,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1342,Saga.Templates.Npc,Wallenstein,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+1343,Saga.Templates.Shop,Hildegarde,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+10000,Saga.Templates.RandomizedMonster,Pukui,177,100,1,16,6,1,1,10,4,29,0,25,1400,1600,40,300,490,0
+10001,Saga.Templates.RandomizedMonster,Pukui,268,100,2,16,10,1,3,20,4,29,1,38,1400,1600,40,300,490,0
+10002,Saga.Templates.RandomizedMonster,Unripe PukuPuku,177,100,1,1,3,1,10,10,3,20,0,25,1400,1600,40,300,490,0
+10003,Saga.Templates.RandomizedMonster,Unripe PukuPuku,268,100,2,90,35,1,11,20,10,35,1,38,1400,1600,40,300,490,0
+10004,Saga.Templates.RandomizedMonster,Unripe PukuPuku,351,100,3,68,21,1,12,30,4,37,1,51,1400,1600,40,300,490,0
+10005,Saga.Templates.RandomizedMonster,Pukui,639,100,6,66,26,2,15,60,13,53,3,90,1400,1600,60,300,450,0
+10006,Saga.Templates.RandomizedMonster,PukuPuku,639,100,6,106,42,2,15,60,21,57,3,90,1400,2200,60,300,490,0
+10007,Saga.Templates.RandomizedMonster,PukuPuku,741,100,7,106,42,4,16,70,16,59,3,103,1400,2200,60,300,490,0
+10008,Saga.Templates.RandomizedMonster,KuiKui,824,100,8,106,42,4,17,80,19,69,4,116,1400,1600,70,300,490,0
+10009,Saga.Templates.RandomizedMonster,PuiPui,824,100,8,122,48,4,17,80,19,76,4,116,1400,1600,60,300,490,0
+10010,Saga.Templates.RandomizedMonster,PuiPui,861,100,9,128,50,4,18,90,20,71,4,129,1400,1600,60,300,490,0
+10011,Saga.Templates.RandomizedMonster,Boss Pukui,1478,100,11,90,35,4,20,110,42,110,5,155,1400,3400,70,300,490,0
+10012,Saga.Templates.RandomizedMonster,Wicked Star,351,100,3,48,18,4,12,30,4,47,1,51,1400,1800,80,300,490,0
+10013,Saga.Templates.RandomizedMonster,Wicked Star,444,100,4,36,14,4,13,40,5,46,2,64,1400,1800,80,300,490,0
+10014,Saga.Templates.RandomizedMonster,Wicked Star,552,100,5,51,20,4,14,50,5,46,2,77,1400,1800,80,300,490,0
+10015,Saga.Templates.RandomizedMonster,Vadon Fry,351,100,3,36,14,2,48,30,4,39,1,51,1400,1800,70,300,490,0
+10016,Saga.Templates.RandomizedMonster,Vadon Fry,444,100,4,36,14,4,49,40,5,39,2,64,1400,1800,70,300,490,0
+10017,Saga.Templates.RandomizedMonster,Vadon,444,100,4,50,18,4,49,40,5,47,2,64,1400,1800,90,300,490,0
+10018,Saga.Templates.RandomizedMonster,Vadon,552,100,5,64,24,4,51,50,6,47,2,77,1400,1800,90,300,490,0
+10019,Saga.Templates.RandomizedMonster,VadonVadon,1977,100,12,170,68,8,61,120,31,90,6,168,1400,1200,130,300,490,0
+10020,Saga.Templates.RandomizedMonster,VadonVadon,2053,100,13,230,94,8,1,130,32,96,6,181,1400,1200,130,300,490,0
+10021,Saga.Templates.RandomizedMonster,Cornutus,828,100,5,66,26,4,68,50,6,53,2,77,1400,1200,80,300,490,0
+10022,Saga.Templates.RandomizedMonster,Cornutus,958,100,6,66,26,4,70,60,6,53,3,90,1400,1200,80,300,490,0
+10023,Saga.Templates.RandomizedMonster,Coralictus,1291,100,9,86,34,4,76,90,26,71,4,129,1400,1200,80,300,490,0
+10024,Saga.Templates.RandomizedMonster,Coralictus,1591,100,10,71,28,4,78,100,31,70,5,142,1400,1200,80,300,490,0
+10025,Saga.Templates.RandomizedMonster,Coralictus,1774,100,11,86,34,4,80,110,33,81,5,155,1400,1200,80,300,490,0
+10026,Saga.Templates.RandomizedMonster,Chonchon Fry,268,100,2,26,8,2,0,130,7,35,1,38,1400,2000,40,300,490,0
+10027,Saga.Templates.RandomizedMonster,Chonchon Fry,351,100,3,26,10,2,0,145,12,35,1,51,1400,1000,40,300,490,0
+10028,Saga.Templates.RandomizedMonster,Chonchon,861,100,9,128,50,4,0,235,22,69,4,129,1400,2000,70,300,490,0
+10029,Saga.Templates.RandomizedMonster,Chonchon,1061,100,10,132,88,4,0,250,39,80,5,142,1400,1000,70,300,450,0
+10030,Saga.Templates.RandomizedMonster,Exiled Merman,1061,100,10,172,68,8,78,100,30,92,5,142,1400,900,100,300,300,1
+10031,Saga.Templates.RandomizedMonster,Exiled Merman,1183,100,11,180,70,8,80,110,30,89,5,155,1400,900,100,300,300,1
+10032,Saga.Templates.RandomizedMonster,Straggled Merman Soldier,1183,100,11,100,40,4,80,110,38,81,5,155,1400,1800,140,300,490,0
+10033,Saga.Templates.RandomizedMonster,Straggled Merman Soldier,1318,100,12,128,50,8,107,94,42,93,6,168,1400,1800,140,300,490,0
+10034,Saga.Templates.RandomizedMonster,Be Chased Mermaid,1076,100,9,126,48,6,18,45,29,102,4,129,1400,1800,120,300,490,1
+10035,Saga.Templates.RandomizedMonster,Be Chased Mermaid,1326,100,10,102,38,6,19,50,36,102,5,142,1400,1800,120,300,490,1
+10036,Saga.Templates.RandomizedMonster,Straggling Mermaid Archer,1478,100,11,85,34,3,20,55,47,120,5,155,1400,1800,160,300,490,1
+10037,Saga.Templates.RandomizedMonster,Straggling Mermaid Archer,1647,100,12,85,34,3,21,60,52,116,6,168,1400,1800,160,300,490,1
+10038,Saga.Templates.RandomizedMonster,Apprentice Mermain Wizard,1647,100,12,55,22,3,0,243,53,110,6,168,1400,1800,100,300,100,1
+10039,Saga.Templates.RandomizedMonster,Apprentice Mermain Wizard,1711,100,13,86,35,3,0,257,58,135,6,181,1400,1800,100,300,490,1
+10040,Saga.Templates.RandomizedMonster,Marine Sphere,552,100,5,38,14,4,14,50,6,46,2,77,1400,800,0,0,0,0
+10041,Saga.Templates.RandomizedMonster,Marine Sphere,639,100,6,64,26,4,15,60,8,53,3,90,1400,800,0,0,0,0
+10042,Saga.Templates.RandomizedMonster,Marine Sphere Imago,639,100,6,72,26,4,15,60,17,56,3,90,1400,800,0,0,0,0
+10043,Saga.Templates.RandomizedMonster,Marine Sphere Imago,741,100,7,86,32,4,16,70,28,58,3,103,1400,800,0,0,0,0
+10044,Saga.Templates.RandomizedMonster,Rainbow Fish,268,100,2,18,7,2,11,20,15,39,1,38,1400,1600,100,300,100,0
+10045,Saga.Templates.RandomizedMonster,Rainbow Fish,351,100,3,22,8,2,12,30,14,36,1,51,1400,1600,100,300,490,0
+10046,Saga.Templates.RandomizedMonster,Tropical Smell,351,100,3,18,6,2,12,30,18,29,1,51,1400,1600,110,300,490,0
+10047,Saga.Templates.RandomizedMonster,Tropical Smell,444,100,4,30,10,2,13,40,18,38,2,64,1400,1600,110,300,490,0
+10048,Saga.Templates.RandomizedMonster,Sapphire Trilogy,444,100,4,34,12,4,13,40,21,47,2,64,1400,1600,110,300,490,0
+10049,Saga.Templates.RandomizedMonster,Sapphire Trilogy,552,100,5,46,18,4,14,50,23,43,2,77,1400,1600,110,300,490,0
+10050,Saga.Templates.RandomizedMonster,Tropical Hydra,555,100,4,24,8,2,13,20,10,51,2,64,1400,800,100,0,0,0
+10051,Saga.Templates.RandomizedMonster,Tropical Hydra,690,100,5,38,14,2,14,25,10,56,2,77,1400,800,100,0,0,0
+10052,Saga.Templates.RandomizedMonster,Black Stripe Tuna,741,100,7,102,40,4,16,70,16,57,3,103,1400,800,300,300,490,0
+10053,Saga.Templates.RandomizedMonster,Black Stripe Tuna,824,100,8,102,40,4,17,80,20,62,4,116,1400,800,300,300,490,0
+10054,Saga.Templates.RandomizedMonster,Hodemimes Blue Shark,1030,100,8,128,50,4,74,80,33,86,4,36,1400,900,300,300,490,0
+10055,Saga.Templates.RandomizedMonster,Hodemimes Blue Shark,1076,100,9,128,50,4,76,90,31,84,4,41,1400,900,300,300,490,0
+10056,Saga.Templates.RandomizedMonster,White Thunder - The Royal Shark,1326,100,10,74,29,4,78,100,45,103,5,46,1400,1000,700,300,490,0
+10057,Saga.Templates.RandomizedMonster,Beacon Eater,1318,100,12,105,42,4,82,120,40,139,6,168,1400,1700,500,300,490,0
+10058,Saga.Templates.RandomizedMonster,Giant Piranha,1236,100,8,64,24,4,17,80,16,49,4,116,1400,400,300,300,490,0
+10059,Saga.Templates.RandomizedMonster,Cave Puffer,1061,100,10,172,68,8,19,100,34,83,5,142,1400,700,60,300,490,0
+10060,Saga.Templates.RandomizedMonster,Cave Puffer,1183,100,11,172,68,8,20,110,38,92,5,155,1400,700,60,300,490,0
+10061,Saga.Templates.RandomizedMonster,Rodha Frog,1183,100,11,206,80,8,20,110,38,96,5,155,1400,800,100,300,490,0
+10062,Saga.Templates.RandomizedMonster,Rodha Frog,1318,100,12,200,80,8,21,120,42,93,6,168,1400,800,100,300,490,0
+10063,Saga.Templates.RandomizedMonster,Frog Overseer,1883,100,14,270,106,8,86,140,64,159,7,194,1400,1000,200,300,490,0
+10064,Saga.Templates.RandomizedMonster,Flatro,1183,100,11,128,50,8,0,265,37,82,5,155,1400,600,160,300,490,0
+10065,Saga.Templates.RandomizedMonster,Flatro,1318,100,12,170,68,8,0,280,41,101,6,168,1400,600,160,300,490,0
+10066,Saga.Templates.RandomizedMonster,Sea Flatro,1318,100,12,170,68,8,0,280,42,76,6,168,1400,600,200,300,490,0
+10067,Saga.Templates.RandomizedMonster,Sea Flatro,1369,100,13,230,94,8,0,295,42,103,6,181,1400,600,200,300,490,0
+10068,Saga.Templates.RandomizedMonster,Vadon-Z,2260,100,15,135,53,4,100,150,38,80,7,207,1400,1800,600,300,1100,0
+10069,Saga.Templates.RandomizedMonster,Poring,2053,100,13,270,106,8,22,130,29,128,6,181,1400,800,0,300,490,0
+10070,Saga.Templates.RandomizedMonster,Poring,2260,100,14,324,127,8,23,140,29,112,7,194,1400,800,60,300,490,0
+10071,Saga.Templates.RandomizedMonster,Poporing,3714,100,20,530,213,26,28,190,66,177,9,259,1400,800,60,300,490,0
+10072,Saga.Templates.RandomizedMonster,Poporing,3853,100,21,696,276,26,29,200,71,185,10,272,1400,800,60,300,490,0
+10073,Saga.Templates.RandomizedMonster,Poporing,3853,100,21,696,276,26,30,210,65,179,10,285,1400,800,60,300,490,0
+10074,Saga.Templates.RandomizedMonster,Drops,2677,100,15,362,144,16,24,150,40,127,7,207,1400,800,60,300,490,0
+10075,Saga.Templates.RandomizedMonster,Drops,2839,100,16,362,144,16,25,160,49,128,8,220,1400,800,60,300,490,0
+10076,Saga.Templates.RandomizedMonster,Marin,2260,100,14,294,104,16,23,140,36,123,7,194,1400,800,60,300,450,0
+10077,Saga.Templates.RandomizedMonster,Marin,2677,100,15,345,136,16,24,150,35,122,7,207,1400,800,60,300,450,0
+10078,Saga.Templates.RandomizedMonster,Marin,2839,100,16,408,163,16,25,160,37,119,8,220,1400,800,60,300,450,0
+10079,Saga.Templates.RandomizedMonster,Marin,1322,100,17,208,208,2,26,170,70,93,8,233,1400,800,60,300,490,0
+10080,Saga.Templates.RandomizedMonster,Hugeling,4329,100,24,380,150,11,106,240,78,193,12,324,1400,800,60,200,450,0
+10081,Saga.Templates.RandomizedMonster,Spore,1507,100,16,266,105,16,25,160,36,112,8,220,1400,800,70,300,490,0
+10082,Saga.Templates.RandomizedMonster,Spore,1785,100,17,315,154,16,26,170,37,121,8,233,1400,800,70,300,490,0
+10083,Saga.Templates.RandomizedMonster,Fungus,2189,100,19,580,230,22,28,190,39,158,9,259,1400,800,80,300,490,0
+10084,Saga.Templates.RandomizedMonster,Fungus,2476,100,20,520,210,22,29,200,51,166,10,272,1400,800,80,300,490,0
+10085,Saga.Templates.RandomizedMonster,Fungus,2569,100,21,580,230,22,30,210,50,187,10,285,1400,800,80,300,490,0
+10086,Saga.Templates.RandomizedMonster,Poison Spore,2476,100,21,696,276,26,30,210,65,188,10,285,1400,800,76,300,490,0
+10087,Saga.Templates.RandomizedMonster,Poison Spore,2569,100,22,696,276,26,31,220,68,178,11,298,1400,800,76,300,490,0
+10088,Saga.Templates.RandomizedMonster,Dospore,1785,100,16,345,136,16,27,180,47,127,9,246,1400,1000,140,300,490,0
+10089,Saga.Templates.RandomizedMonster,Parronite,3226,100,16,215,86,14,67,160,48,102,8,220,1400,600,180,300,100,0
+10090,Saga.Templates.RandomizedMonster,Parronite,3283,100,17,246,99,7,69,170,65,119,8,233,1400,600,180,300,100,0
+10091,Saga.Templates.RandomizedMonster,Parronite,3226,100,18,215,86,7,70,180,48,114,9,246,1400,600,180,300,100,0
+10092,Saga.Templates.RandomizedMonster,Zadoras Grunt,1884,100,23,440,285,2,104,230,107,138,11,114,1400,1400,240,300,490,0
+10093,Saga.Templates.RandomizedMonster,Zadoras Grunt,1938,100,24,480,294,2,106,240,110,142,12,119,1400,1400,240,300,490,0
+10094,Saga.Templates.RandomizedMonster,Zadoras Warrior,1569,100,24,480,302,2,0,460,105,132,12,324,1400,1400,260,300,490,0
+10095,Saga.Templates.RandomizedMonster,Zadoras Warrior,1686,100,25,520,324,2,0,475,110,138,12,337,1400,1400,260,300,490,0
+10096,Saga.Templates.RandomizedMonster,Zadoras Grunt Baby,1540,100,20,328,214,2,29,200,80,104,10,272,1400,1400,100,300,490,0
+10097,Saga.Templates.RandomizedMonster,Zadoras Grunt Baby,1615,100,21,376,376,2,30,210,83,108,10,285,1400,1400,100,300,490,0
+10098,Saga.Templates.RandomizedMonster,Hazel,1318,100,12,240,93,8,0,280,17,105,6,168,1400,1100,60,300,490,0
+10099,Saga.Templates.RandomizedMonster,Hazel,1369,100,13,177,72,8,0,295,37,105,6,181,1400,1100,60,300,490,0
+10100,Saga.Templates.RandomizedMonster,Gangster Of the Black Cat with R,2189,100,19,260,105,11,88,150,76,177,7,207,1400,1300,60,300,450,0
+10101,Saga.Templates.RandomizedMonster,Gangster Of the Black Cat with R,2476,100,20,260,105,11,90,160,78,170,8,220,1400,1300,60,300,450,0
+10102,Saga.Templates.RandomizedMonster,Footpad Of the Black Cat with Re,2736,100,19,260,105,11,0,340,75,218,8,220,1400,1300,80,300,490,0
+10103,Saga.Templates.RandomizedMonster,Footpad Of the Black Cat with Re,3095,100,20,273,110,11,0,355,78,212,8,233,1400,1300,80,300,490,0
+10104,Saga.Templates.RandomizedMonster,Magician Of the Black Cat with R,2189,100,19,184,74,5,0,327,35,62,9,246,1400,1300,70,300,490,0
+10105,Saga.Templates.RandomizedMonster,Magician Of the Black Cat with R,2476,100,20,204,81,8,0,341,39,88,9,259,1400,1300,70,300,490,0
+10106,Saga.Templates.RandomizedMonster,Pirate Of the Black Cat with Red,3283,100,19,273,110,11,92,170,62,177,8,83,1400,1300,50,300,450,0
+10107,Saga.Templates.RandomizedMonster,Pirate Of the Black Cat with Red,3714,100,20,273,110,11,94,180,59,180,9,88,1400,1300,50,300,450,0
+10108,Saga.Templates.RandomizedMonster,Midgarts Brown Wolf,2736,100,18,624,252,26,94,180,79,221,9,88,1400,1100,240,200,450,0
+10109,Saga.Templates.RandomizedMonster,Midgarts Brown Wolf,3095,100,19,624,252,26,96,190,79,218,9,93,1400,1100,240,200,450,0
+10110,Saga.Templates.RandomizedMonster,Midgarts Brown Wolf,3095,100,19,624,252,26,96,190,100,218,9,93,1400,1100,240,200,450,0
+10111,Saga.Templates.RandomizedMonster,Swamp Wolf,2189,100,22,580,230,22,102,220,50,214,11,109,1400,1100,280,300,450,0
+10112,Saga.Templates.RandomizedMonster,Swamp Wolf,2476,100,23,580,230,22,104,230,58,263,11,114,1400,1100,280,300,450,0
+10113,Saga.Templates.RandomizedMonster,Corad The Red Wolf,3367,100,22,336,131,11,102,220,115,205,11,109,1400,1200,240,200,450,0
+10114,Saga.Templates.RandomizedMonster,Stony Spider,2839,100,16,456,184,16,96,190,46,139,9,259,1400,800,170,300,490,0
+10115,Saga.Templates.RandomizedMonster,Stony Spider,2844,100,17,520,198,22,98,200,47,139,10,272,1400,800,170,300,490,0
+10116,Saga.Templates.RandomizedMonster,Potemkin,1369,100,14,240,93,8,86,140,37,124,7,194,1400,1100,200,300,490,0
+10117,Saga.Templates.RandomizedMonster,Potemkin,1507,100,15,270,106,8,88,150,44,119,7,207,1400,1100,200,300,490,0
+10118,Saga.Templates.RandomizedMonster,Midgarts White Sheep,1507,100,14,225,90,10,23,140,44,119,7,194,1400,1100,200,300,490,0
+10119,Saga.Templates.RandomizedMonster,Midgarts White Sheep,1785,100,15,300,120,14,24,150,44,129,7,207,1400,1100,200,300,490,0
+10120,Saga.Templates.RandomizedMonster,Milk Cow,1507,100,15,225,90,10,24,150,44,115,7,207,1400,1000,340,300,490,0
+10121,Saga.Templates.RandomizedMonster,Milk Cow,1785,100,16,162,34,8,25,160,45,120,8,220,1400,1000,340,300,490,0
+10122,Saga.Templates.RandomizedMonster,Remnants Of the Udar Bandit,2844,100,17,276,110,14,0,355,44,161,8,233,1400,1000,80,300,490,0
+10123,Saga.Templates.RandomizedMonster,Remnants Of the Udar Bandit,3226,100,18,235,95,14,0,370,48,149,9,246,1400,1000,80,300,490,0
+10124,Saga.Templates.RandomizedMonster,Remnants Of the Udar Bandit,3283,100,19,246,99,7,0,385,51,180,9,259,1400,1000,80,300,490,0
+10125,Saga.Templates.RandomizedMonster,Remnants Of the Udar Bandit Fema,2370,100,16,235,95,14,0,340,55,162,8,220,1400,1000,60,300,490,0
+10126,Saga.Templates.RandomizedMonster,Remnants Of the Udar Bandit Fema,2688,100,17,350,140,14,0,355,54,186,8,233,1400,1000,60,300,490,0
+10127,Saga.Templates.RandomizedMonster,Remnants Of the Udar Bandit Fema,2736,100,18,258,104,14,0,370,57,183,9,246,1400,1000,60,300,490,0
+10128,Saga.Templates.RandomizedMonster,Ringleader Of the Udar Bandit,1435,100,20,298,298,2,0,400,91,115,10,272,1400,1000,100,300,490,0
+10129,Saga.Templates.RandomizedMonster,Thief Bug Egg,2844,100,17,87,35,7,69,170,68,84,8,233,1400,800,0,0,0,0
+10130,Saga.Templates.RandomizedMonster,Thief Bug Egg,3226,100,18,184,184,2,70,180,58,129,9,246,1400,800,0,0,0,0
+10131,Saga.Templates.RandomizedMonster,Thief Bug Larva,3226,100,19,276,110,14,72,190,46,149,9,259,1400,1000,0,300,450,0
+10132,Saga.Templates.RandomizedMonster,Thief Bug Larva,3283,100,20,246,95,7,73,200,50,158,10,272,1400,1000,0,300,450,0
+10133,Saga.Templates.RandomizedMonster,Thief Bug Female,3226,100,21,290,115,11,75,210,49,166,10,285,1400,1000,0,300,490,0
+10134,Saga.Templates.RandomizedMonster,Thief Bug Female,3714,100,22,260,105,11,76,220,54,128,11,298,1400,1000,0,300,490,0
+10135,Saga.Templates.RandomizedMonster,Thief Bug Female,3853,100,23,290,115,11,78,230,61,146,11,311,1400,1000,0,300,490,0
+10136,Saga.Templates.RandomizedMonster,Thief Bug Male,2736,100,22,235,95,11,76,220,96,182,11,298,1400,1000,0,200,450,0
+10137,Saga.Templates.RandomizedMonster,Thief Bug Male,3095,100,23,260,105,11,78,230,95,195,11,311,1400,1000,0,300,490,0
+10138,Saga.Templates.RandomizedMonster,Thief Bug Male,3211,100,24,290,115,11,79,240,103,215,12,324,1400,1000,0,300,490,0
+10139,Saga.Templates.RandomizedMonster,Culvert Thief Bug Female,3853,100,25,520,269,2,81,250,79,134,12,337,1400,1000,0,300,490,0
+10140,Saga.Templates.RandomizedMonster,Culvert Thief Bug Female,4041,100,26,320,125,11,82,260,78,181,13,350,1400,1000,0,300,490,0
+10141,Saga.Templates.RandomizedMonster,Culvert Thief Bug Male,3211,100,26,560,279,2,82,260,116,168,13,350,1400,1000,160,300,490,0
+10142,Saga.Templates.RandomizedMonster,Culvert Thief Bug Male,3367,100,27,640,312,2,84,270,137,173,13,363,1400,1000,160,300,490,0
+10143,Saga.Templates.RandomizedMonster,Golden Thief Bug,3961,100,30,880,330,2,88,300,112,174,15,402,1400,1200,0,0,0,0
+10144,Saga.Templates.RandomizedMonster,Midgarts Gray Field Mouse,1647,100,12,115,47,4,0,280,46,130,6,168,1400,1200,60,300,490,0
+10145,Saga.Templates.RandomizedMonster,Midgarts Gray Field Mouse,1711,100,13,120,49,4,0,295,53,125,6,181,1400,1200,60,300,490,0
+10146,Saga.Templates.RandomizedMonster,Town Mouse,1883,100,14,135,53,4,0,310,60,139,7,194,1400,1200,70,300,490,0
+10147,Saga.Templates.RandomizedMonster,Culvert Gutter Mouse,2694,100,27,480,221,11,0,505,87,122,13,363,1400,1200,90,300,490,0
+10148,Saga.Templates.RandomizedMonster,Culvert Gutter Mouse,2815,100,28,540,289,2,0,520,99,202,14,376,1400,1200,90,300,3512,0
+10149,Saga.Templates.RandomizedMonster,Steel Chonchon,2053,100,13,122,48,4,0,295,28,105,6,181,1400,1000,50,300,490,0
+10150,Saga.Templates.RandomizedMonster,Steel Chonchon,2260,100,14,74,29,4,0,310,31,107,7,194,1400,1000,50,300,490,0
+10151,Saga.Templates.RandomizedMonster,Blow Chonchon,2736,100,28,540,231,2,0,520,120,150,14,376,1400,1000,100,300,490,0
+10152,Saga.Templates.RandomizedMonster,Blow Chonchon,3095,100,29,600,264,2,0,535,125,155,14,389,1400,1000,100,300,490,0
+10153,Saga.Templates.RandomizedMonster,Long Vadon,1883,100,10,150,60,5,58,100,41,138,5,142,1400,600,120,300,100,0
+10154,Saga.Templates.RandomizedMonster,Long Vadon,2231,100,11,150,60,7,60,110,35,139,5,155,1400,600,120,300,100,0
+10155,Saga.Templates.RandomizedMonster,Long Vadon,1647,100,12,127,51,7,61,120,34,121,6,168,1400,600,120,300,100,0
+10156,Saga.Templates.RandomizedMonster,Hydra,1647,100,12,85,34,3,21,60,61,110,6,168,1400,800,0,0,0,0
+10157,Saga.Templates.RandomizedMonster,Hydra,1711,100,13,114,45,3,22,65,49,121,6,181,1400,800,0,0,0,0
+10158,Saga.Templates.RandomizedMonster,Hydra,1883,100,14,114,45,3,23,70,54,140,7,194,1400,800,0,0,0,0
+10159,Saga.Templates.RandomizedMonster,Gray Saw Shark,1896,100,17,199,80,14,92,170,54,139,8,83,1400,1000,500,300,490,0
+10160,Saga.Templates.RandomizedMonster,Gray Saw Shark,2151,100,18,235,95,7,94,180,48,207,9,88,1400,1000,500,300,490,0
+10161,Saga.Templates.RandomizedMonster,Gray Saw Shark,2189,100,19,258,104,3073,96,190,52,180,9,93,1400,1000,500,300,490,0
+10162,Saga.Templates.RandomizedMonster,Emerald Tuna,520,100,5,13,13,2,14,50,31,45,2,77,1400,800,360,300,490,0
+10163,Saga.Templates.RandomizedMonster,Emerald Tuna,562,100,6,17,17,2,15,60,35,48,3,90,1400,800,360,300,490,0
+10164,Saga.Templates.RandomizedMonster,White Stripe Tuna,14011,100,7,3502,1167,2,16,70,427,765,3,103,1400,800,300,300,490,0
+10165,Saga.Templates.RandomizedMonster,White Stripe Tuna,13753,100,8,3438,1146,2,17,80,467,785,4,116,1400,800,300,300,490,0
+10166,Saga.Templates.RandomizedMonster,Inky,11461,100,8,2292,1041,2,17,80,574,1023,4,116,1400,800,60,300,450,0
+10167,Saga.Templates.RandomizedMonster,Inky,12277,100,9,2455,1116,2,18,90,574,1023,4,129,1400,800,60,300,490,0
+10168,Saga.Templates.RandomizedMonster,White Tailed Stirge,942,100,12,84,84,2,21,120,54,72,6,168,1400,800,50,0,0,0
+10169,Saga.Templates.RandomizedMonster,White Tailed Stirge,1046,100,13,104,104,2,22,130,57,76,6,181,1400,800,50,0,0,0
+10170,Saga.Templates.RandomizedMonster,Snowball,400,100,3,6,6,2,12,30,25,36,1,51,1400,1600,140,300,490,0
+10171,Saga.Templates.RandomizedMonster,Snowball,458,100,4,9,9,2,13,40,28,39,2,64,1400,1600,140,300,490,0
+10172,Saga.Templates.RandomizedMonster,Alfheim Yetrang,340,100,2,4,4,2,11,20,22,31,1,38,1400,1100,60,300,490,0
+10173,Saga.Templates.RandomizedMonster,Alfheim Yetrang,400,100,3,6,6,2,12,30,25,36,1,51,1400,1100,60,300,490,0
+10174,Saga.Templates.RandomizedMonster,Alfheim Yetrang,458,100,4,9,9,2,13,40,28,39,2,64,1400,1100,60,300,490,0
+10175,Saga.Templates.RandomizedMonster,Polar Bear Male,18490,100,67,4622,1540,2,74,80,573,889,4,116,1400,1100,200,300,450,0
+10176,Saga.Templates.RandomizedMonster,Polar Bear Male,18051,100,68,4512,1504,2,76,90,654,818,4,129,1400,1100,200,300,450,0
+10177,Saga.Templates.RandomizedMonster,Polar Bear Female,17862,100,66,4465,1488,2,72,70,672,838,3,103,1400,1100,180,300,490,0
+10178,Saga.Templates.RandomizedMonster,Polar Bear Female,18490,100,67,4622,1540,2,74,80,672,838,4,116,1400,1100,180,300,100,0
+10179,Saga.Templates.RandomizedMonster,Polar Bear Baby,11532,100,65,2306,1048,2,66,40,537,1017,2,64,1400,1100,100,300,490,0
+10180,Saga.Templates.RandomizedMonster,Polar Bear Baby,11908,100,66,4200,1082,46,68,50,537,1017,2,77,1400,1100,100,300,490,0
+10181,Saga.Templates.RandomizedMonster,Polar Bear Baby,12327,100,67,2465,1120,45,70,60,537,1017,3,90,1400,1100,100,300,490,0
+10182,Saga.Templates.RandomizedMonster,Papa Poroporo,17862,100,67,4464,1488,2,16,70,510,850,3,103,1400,1100,80,300,490,0
+10183,Saga.Templates.RandomizedMonster,Papa Poroporo,18490,100,67,4622,1540,2,17,80,510,862,4,116,1400,1100,80,300,490,0
+10184,Saga.Templates.RandomizedMonster,Mama Poroporo,18490,100,67,4622,1540,2,17,80,643,1068,4,116,1400,1100,110,300,490,0
+10185,Saga.Templates.RandomizedMonster,Mama Poroporo,18051,100,67,4512,1504,2,18,90,889,1124,4,129,1400,1100,110,300,490,0
+10186,Saga.Templates.RandomizedMonster,Little Poroporo,11532,100,65,2306,1048,2,14,50,436,821,2,77,1400,1100,80,300,490,0
+10187,Saga.Templates.RandomizedMonster,Little Poroporo,11908,100,66,2381,1082,2,15,60,452,971,3,90,1400,1100,80,300,490,0
+10188,Saga.Templates.RandomizedMonster,Duck Wing Poroporo,14415,100,65,3603,1201,2,0,205,573,1138,3,103,1400,1400,180,300,490,0
+10189,Saga.Templates.RandomizedMonster,Duck Wing Poroporo,14885,100,66,3721,1240,2,0,220,573,1183,4,116,1400,1400,180,300,490,0
+10190,Saga.Templates.RandomizedMonster,Duck Wing Poroporo,14885,100,66,3721,1240,2,0,235,573,1288,4,129,1400,1400,180,300,490,0
+10191,Saga.Templates.RandomizedMonster,Gentle Poroporo,11908,100,66,4200,1700,2,0,201,623,928,4,129,1400,1100,80,300,100,0
+10192,Saga.Templates.RandomizedMonster,Gentle Poroporo,12327,100,67,2465,1120,2,0,215,623,928,5,142,1400,1100,80,300,100,0
+10193,Saga.Templates.RandomizedMonster,Battle Poroporo,14940,100,69,4980,1245,2,76,90,1234,2118,4,129,1400,1200,130,300,490,0
+10194,Saga.Templates.RandomizedMonster,Battle Poroporo,17156,100,70,4289,1429,2,78,100,1355,2625,5,142,1400,1200,130,300,490,0
+10195,Saga.Templates.RandomizedMonster,Battle Poroporo,17156,100,70,4289,1429,2,80,110,1435,1435,5,155,1400,1200,130,300,490,0
+10196,Saga.Templates.RandomizedMonster,The King of Poroporo - Putangka,16882,100,70,6480,2388,63,21,120,1235,1635,6,168,1400,1200,700,300,490,0
+10197,Saga.Templates.RandomizedMonster,Birch Goblin First,17902,100,74,3554,1184,2,21,120,445,646,6,168,1400,1100,0,0,0,0
+10198,Saga.Templates.RandomizedMonster,Birch Goblin First,18447,100,75,3729,1243,2,22,130,445,686,6,181,1400,1100,0,0,0,0
+10199,Saga.Templates.RandomizedMonster,Birch Goblin Second,17331,100,173,3804,1268,2,80,110,445,646,5,155,1400,1100,0,0,0,0
+10200,Saga.Templates.RandomizedMonster,Birch Goblin Second,17902,100,74,4159,1386,2,82,120,445,1646,6,168,1400,1100,0,0,0,0
+10201,Saga.Templates.RandomizedMonster,Birch Goblin Third,17638,100,71,5879,1763,2,78,100,546,1486,5,46,1400,1100,60,300,490,0
+10202,Saga.Templates.RandomizedMonster,Birch Goblin Third,16882,100,72,5627,1688,2,80,110,546,1086,5,52,1400,1100,60,300,490,0
+10203,Saga.Templates.RandomizedMonster,Birch Goblin Fourth,20587,100,70,6862,1583,2,76,90,763,1288,4,129,1400,1100,60,300,490,0
+10204,Saga.Templates.RandomizedMonster,Birch Goblin Fourth,21166,100,71,7055,1628,2,78,100,856,1249,5,142,1400,1100,60,300,490,0
+10205,Saga.Templates.RandomizedMonster,Birch Goblin Fifth,13506,100,61,3367,1125,2,0,190,684,1475,3,90,1400,1100,0,300,490,0
+10206,Saga.Templates.RandomizedMonster,Birch Goblin Fifth,13792,100,62,3550,1400,79,0,205,764,1449,3,103,1400,1100,0,300,490,0
+10207,Saga.Templates.RandomizedMonster,Birch Goblin Sixth,11952,100,69,2390,1086,2,68,50,973,1053,2,77,1400,1100,0,300,490,0
+10208,Saga.Templates.RandomizedMonster,Birch Goblin Sixth,13725,100,70,3431,1143,2,70,60,1461,1719,3,90,1400,1100,0,300,490,0
+10209,Saga.Templates.RandomizedMonster,Birch Goblin Last,10587,100,60,3461,1350,79,13,40,706,1065,2,64,1400,1100,0,300,490,0
+10210,Saga.Templates.RandomizedMonster,Birch Goblin Last,10805,100,61,3484,720,79,14,50,683,1254,2,77,1400,1100,0,0,0,0
+10211,Saga.Templates.RandomizedMonster,Birch Goblin Magician,16882,100,72,5627,1688,2,0,173,363,780,3,103,1400,1100,0,300,490,0
+10212,Saga.Templates.RandomizedMonster,Birch Goblin Magician,17331,100,73,5777,1733,2,0,187,463,775,4,116,1400,1100,0,300,490,0
+10213,Saga.Templates.RandomizedMonster,Birch Goblin Magician,18423,100,73,6141,1842,2,0,201,463,795,4,129,1400,1100,0,0,0,0
+10214,Saga.Templates.RandomizedMonster,Birch Goblin Wizard,15101,100,11,6404,1921,2,0,229,463,795,5,155,1400,1100,0,0,0,0
+10215,Saga.Templates.RandomizedMonster,Birch Goblin Wizard,19965,100,12,6504,1941,2,0,243,463,795,6,168,1400,1100,0,0,0,0
+10216,Saga.Templates.RandomizedMonster,Birch Goblin Wizard,15101,100,13,6788,2036,2,0,257,463,795,6,181,1400,1100,0,0,0,0
+10217,Saga.Templates.RandomizedMonster,Snow Shellfish,562,100,6,17,17,2,52,60,35,48,3,90,1400,600,0,0,0,0
+10218,Saga.Templates.RandomizedMonster,Snow Shellfish,649,100,7,24,24,2,54,70,38,52,3,103,1400,600,0,0,0,0
+10219,Saga.Templates.RandomizedMonster,Bobon,7471,100,48,1350,543,34,10,10,531,849,0,25,1400,1000,0,300,490,0
+10220,Saga.Templates.RandomizedMonster,Bobon,7833,100,49,1425,570,34,11,20,420,652,1,38,1400,1000,0,300,490,0
+10221,Saga.Templates.RandomizedMonster,Wormtail Baby,11749,100,49,1900,760,46,62,20,289,551,1,5,1400,1100,0,300,490,0
+10222,Saga.Templates.RandomizedMonster,Wormtail Baby,12880,100,50,2576,1170,2,64,30,339,549,1,10,1400,1100,0,300,490,0
+10223,Saga.Templates.RandomizedMonster,Wormtail,12427,100,51,2485,1129,2,70,60,358,627,3,26,1400,1100,0,300,490,0
+10224,Saga.Templates.RandomizedMonster,Wormtail,13096,100,52,2619,1190,2,72,70,379,621,3,31,1400,1100,0,300,490,0
+10225,Saga.Templates.RandomizedMonster,Cray,12277,100,57,2455,1116,2,52,60,720,1232,3,90,1400,600,240,300,490,0
+10226,Saga.Templates.RandomizedMonster,Cray,12212,100,58,3097,1260,67,54,70,739,935,3,103,1400,600,240,300,490,0
+10227,Saga.Templates.RandomizedMonster,Geographer,10655,100,53,2450,1000,56,13,20,602,915,2,64,1400,800,140,300,490,0
+10228,Saga.Templates.RandomizedMonster,Geographer,10702,100,54,2450,1000,56,14,25,821,821,2,77,1400,800,140,300,490,0
+10229,Saga.Templates.RandomizedMonster,Geographer,10702,100,55,2450,1000,56,15,30,462,935,3,90,1400,800,140,300,490,0
+10230,Saga.Templates.RandomizedMonster,Geographer,10702,100,56,2450,1000,56,16,35,646,1051,3,103,1400,800,140,300,490,0
+10231,Saga.Templates.RandomizedMonster,Francoou,11461,100,56,2292,764,2,21,60,462,935,6,168,1400,800,0,0,0,0
+10232,Saga.Templates.RandomizedMonster,Francoou,12277,100,57,2455,1116,2,22,65,462,935,6,181,1400,800,0,0,0,0
+10233,Saga.Templates.RandomizedMonster,Savage Baby,14011,100,55,3402,1322,67,76,90,484,641,4,129,1400,1100,90,300,490,0
+10234,Saga.Templates.RandomizedMonster,Savage Baby,13753,100,56,2700,1050,80,78,100,423,671,5,142,1400,1100,90,300,490,0
+10235,Saga.Templates.RandomizedMonster,Savage Baby,13753,100,57,3402,1322,67,80,110,434,664,5,155,1400,1100,90,300,490,0
+10236,Saga.Templates.RandomizedMonster,Willow,18447,100,75,4611,1537,2,63,130,527,1578,6,181,1400,1700,0,300,490,0
+10237,Saga.Templates.RandomizedMonster,Willow,18876,100,76,4719,1573,2,64,140,539,898,7,194,1400,1700,0,300,490,0
+10238,Saga.Templates.RandomizedMonster,The Spirit of_Gigantic Tree - Man,18922,100,78,6307,1455,2,66,150,639,1098,7,207,1400,1600,2,300,490,0
+10239,Saga.Templates.RandomizedMonster,Stainer Fry,10913,100,52,2182,727,2,57,90,325,725,4,129,1400,1000,60,300,490,0
+10240,Saga.Templates.RandomizedMonster,Stainer Fry,10655,1000,53,2350,950,56,58,100,400,785,5,142,1400,1000,60,300,490,0
+10241,Saga.Templates.RandomizedMonster,Stainer,10655,100,53,2131,710,2,60,110,547,612,5,155,1400,1000,90,300,490,0
+10242,Saga.Templates.RandomizedMonster,Stainer,10702,100,54,2140,713,2,61,120,547,860,6,168,1400,1000,90,300,490,0
+10243,Saga.Templates.RandomizedMonster,Creamy,14322,100,74,3580,1193,2,0,310,447,675,7,194,1400,1000,0,300,100,0
+10244,Saga.Templates.RandomizedMonster,Zinopa,9169,100,56,2940,1207,67,60,10,458,1511,0,25,1400,1100,60,300,490,0
+10245,Saga.Templates.RandomizedMonster,Zinopa,9822,100,57,2940,1207,67,62,20,414,1528,1,38,1400,1100,60,300,490,0
+10246,Saga.Templates.RandomizedMonster,Mejonora,21166,100,71,7055,1628,2,10,10,572,1007,0,25,1400,1700,100,300,100,0
+10247,Saga.Templates.RandomizedMonster,Mejonora,20259,100,72,6753,1558,2,11,20,522,1095,1,38,1400,1700,100,300,100,0
+10248,Saga.Templates.RandomizedMonster,Andanora,13506,100,72,3376,1125,2,10,10,462,773,0,25,1400,1700,50,300,490,0
+10249,Saga.Templates.RandomizedMonster,Andanora,13865,100,73,3466,1155,2,11,20,462,673,1,38,1400,1700,50,300,490,0
+10250,Saga.Templates.RandomizedMonster,Bud of Tomengory,10702,100,54,1928,787,42,10,10,409,695,0,25,1400,800,70,0,0,0
+10251,Saga.Templates.RandomizedMonster,Bud of Tomengory,14011,100,55,1837,750,56,11,20,600,926,1,38,1400,800,70,300,490,0
+10252,Saga.Templates.RandomizedMonster,Chonchon Fry,351,100,3,26,12,2,48,30,8,35,1,51,1400,1000,40,300,490,0
+10253,Saga.Templates.RandomizedMonster,Chonchon,1183,100,11,180,70,8,60,110,41,81,5,155,1400,1000,70,300,490,0
+10254,Saga.Templates.RandomizedMonster,Poring,1092,100,14,124,124,2,23,140,60,80,7,194,1400,800,0,0,0,0
+10255,Saga.Templates.RandomizedMonster,Chonchon,1183,100,11,172,68,8,60,110,45,95,5,155,1400,1000,70,300,490,0
+10256,Saga.Templates.RandomizedMonster,Chicken,177,100,1,16,6,2,1,10,11,29,0,25,1400,1600,40,300,490,0
+10257,Saga.Templates.RandomizedMonster,Pukui,552,100,6,66,26,4,15,60,15,53,3,90,1400,1600,60,300,450,0
+10258,Saga.Templates.RandomizedMonster,PukuPuku,824,100,8,102,40,4,16,70,26,67,3,103,1400,1100,60,300,490,0
+10259,Saga.Templates.RandomizedMonster,Rainbow Fish,444,100,4,30,10,2,12,30,15,39,1,51,1400,800,100,300,490,0
+10260,Saga.Templates.RandomizedMonster,Member of Bluish green Bandit (Male),741,100,7,106,42,4,16,70,21,63,3,103,1400,2000,80,300,200,0
+10261,Saga.Templates.RandomizedMonster,Member of Bluish green Bandit (Male),824,100,8,106,42,4,17,80,21,64,4,116,1400,2000,80,300,200,0
+10262,Saga.Templates.RandomizedMonster,Member of Bluish green Bandit (Female),741,100,7,106,42,4,16,70,21,63,3,103,1400,2000,60,300,200,0
+10263,Saga.Templates.RandomizedMonster,Member of Bluish green Bandit (Female),824,100,8,146,59,5,17,80,22,68,4,116,1400,2000,60,300,200,0
+10264,Saga.Templates.RandomizedMonster,Leader of Bluish green Bandit,1291,100,9,246,92,8,18,90,27,50,4,129,1400,2000,100,300,100,0
+10265,Saga.Templates.RandomizedMonster,Dopori,1893,100,16,170,68,7,1,10,51,111,0,25,1400,1600,40,300,100,0
+10266,Saga.Templates.RandomizedMonster,Midgarts Grey Wolf,2736,100,19,442,178,22,1,10,83,213,0,25,1400,1600,40,300,490,0
+10267,Saga.Templates.RandomizedMonster,Midgarts Grey Wolf,3095,100,19,442,178,22,1,10,86,213,0,25,1400,1600,40,300,490,0
+10268,Saga.Templates.RandomizedMonster,Successor of Corad,3095,100,23,442,178,22,102,220,101,210,11,109,1400,1600,240,300,490,0
+10269,Saga.Templates.RandomizedMonster,Lai Wolf,3095,100,20,273,110,20,102,220,101,214,11,109,1400,1600,240,300,490,0
+10270,Saga.Templates.RandomizedMonster,Rei Wolf,2476,100,20,273,110,20,102,220,64,202,11,109,1400,1600,240,300,490,0
+10271,Saga.Templates.RandomizedMonster,Dewy Wolf,3095,100,20,624,252,26,102,220,90,215,11,109,1400,1600,240,300,490,0
+10272,Saga.Templates.RandomizedMonster,Qui Wolf,3095,100,20,624,252,26,102,220,101,165,11,109,1400,1600,240,300,490,0
+10273,Saga.Templates.RandomizedMonster,Bloodysea Gang Zadoras Grunt,2569,100,21,640,250,22,1,10,66,284,0,25,1400,1600,40,300,490,0
+10274,Saga.Templates.RandomizedMonster,Bloodysea Gang Zadoras Grunt,2694,100,21,640,250,22,1,10,78,298,0,25,1400,1600,40,300,490,0
+10275,Saga.Templates.RandomizedMonster,Bloodysea Gang Zadoras Warrior,3211,100,21,435,172,16,1,10,106,285,0,25,1400,1600,40,300,490,0
+10276,Saga.Templates.RandomizedMonster,Bloodysea Gang Zadoras Warrior,3367,100,21,640,250,22,1,10,121,263,0,25,1400,1600,40,300,490,0
+10277,Saga.Templates.RandomizedMonster,Bloodysea Gang Zadoras Baby,3095,100,20,492,194,22,1,10,54,134,0,25,1400,1600,40,300,490,0
+10278,Saga.Templates.RandomizedMonster,Bloodysea Gang Zadoras Baby,3211,100,20,492,194,22,1,10,54,140,0,25,1400,1600,40,300,490,0
+10279,Saga.Templates.RandomizedMonster,Doubleaxe Gang Zadoras Grunt,2694,100,22,840,336,26,1,10,57,310,0,25,1400,1600,40,300,490,0
+10280,Saga.Templates.RandomizedMonster,Doubleaxe Gang Zadoras Grunt,2815,100,22,700,280,22,1,10,80,297,0,25,1400,1600,40,300,490,0
+10281,Saga.Templates.RandomizedMonster,Doubleaxe Gang Zadoras Warrior,3367,100,22,840,336,26,1,10,122,294,0,25,1400,1600,40,300,490,0
+10282,Saga.Templates.RandomizedMonster,Doubleaxe Gang Zadoras Warrior,3518,100,22,700,280,22,1,10,112,306,0,25,1400,1600,40,300,490,0
+10283,Saga.Templates.RandomizedMonster,Doubleaxe Gang Zadoras Baby,3211,100,21,768,300,26,1,10,50,146,0,25,1400,1600,40,300,490,0
+10284,Saga.Templates.RandomizedMonster,Doubleaxe Gang Zadoras Baby,3367,100,21,768,300,26,1,10,53,147,0,25,1400,1600,40,300,490,0
+10285,Saga.Templates.RandomizedMonster,Bloodymaul,3518,100,23,350,140,11,1,10,116,288,0,25,1400,1600,40,74,450,0
+10287,Saga.Templates.RandomizedMonster,Kerpalos,3607,100,24,760,300,16,1,10,104,331,0,25,1400,1600,40,300,490,0
+10289,Saga.Templates.RandomizedMonster,Member of Yellow Cape Cat Gang,1896,100,17,430,172,14,18,90,59,147,4,129,1400,1200,100,300,490,0
+10290,Saga.Templates.RandomizedMonster,Member of Yellow Cape Cat Gang,2151,100,18,430,172,14,18,90,59,148,4,129,1400,1200,100,300,490,0
+10291,Saga.Templates.RandomizedMonster,Footpad of Yellow Cape Cat Gang,2370,100,17,430,172,15,18,90,60,183,4,129,1400,1200,100,300,490,0
+10292,Saga.Templates.RandomizedMonster,Footpad of Yellow Cape Cat Gang,2688,100,18,452,183,15,18,90,59,184,4,129,1400,1200,100,300,490,0
+10293,Saga.Templates.RandomizedMonster,Kuaong,2151,100,18,430,172,14,1,10,62,204,0,25,1400,1600,40,300,490,0
+10294,Saga.Templates.RandomizedMonster,Member of Blue Cape Cat Gang,2688,100,18,398,160,14,18,90,62,182,4,129,1400,1200,100,300,490,0
+10295,Saga.Templates.RandomizedMonster,Member of Blue Cape Cat Gang,2736,100,19,398,160,14,18,90,69,188,4,129,1400,1200,100,300,490,0
+10296,Saga.Templates.RandomizedMonster,Footpad of Blue Cape Cat Gang,3226,100,18,398,160,16,18,90,46,154,4,129,1400,1200,100,300,490,0
+10297,Saga.Templates.RandomizedMonster,Footpad of Blue Cape Cat Gang,3283,100,19,470,190,14,18,90,49,158,4,129,1400,1200,100,300,490,0
+10298,Saga.Templates.RandomizedMonster,Nwaong,2736,100,19,246,99,7,1,10,104,174,0,25,1400,1600,40,300,490,0
+10299,Saga.Templates.RandomizedMonster,Kyaong,3095,100,20,195,78,8,1,10,68,112,0,25,1400,1600,40,300,490,0
+10301,Saga.Templates.RandomizedMonster,Cyaton,3853,100,21,246,97,11,102,220,83,132,11,109,1400,1600,240,150,490,0
+10302,Saga.Templates.RandomizedMonster,Pudding,2569,100,21,696,276,26,1,10,73,158,0,25,1400,1600,40,300,490,0
+10303,Saga.Templates.RandomizedMonster,Straggled Merman Guard,1181,100,10,145,62,3,0,0,28,47,0,0,1400,2000,100,300,490,0
+10304,Saga.Templates.RandomizedMonster,Straggled Merman Guard,1183,100,11,180,70,8,0,0,39,92,0,0,1400,2000,100,300,490,0
+10305,Saga.Templates.RandomizedMonster,Straggling Mermaid Bowman,177,100,1,16,6,2,1,10,11,29,0,25,1400,1600,40,300,490,1
+10306,Saga.Templates.RandomizedMonster,Straggling Mermaid Bowman,177,100,1,16,6,2,1,10,11,29,0,25,1400,1600,40,300,490,1
+10307,Saga.Templates.RandomizedMonster,Probational Mermaid Magician,1326,100,10,108,42,6,0,0,37,114,0,0,1400,2000,100,300,490,0
+10308,Saga.Templates.RandomizedMonster,Probational Mermaid Magician,1478,100,11,128,50,6,0,0,54,112,0,0,1400,2000,100,300,490,0
+10309,Saga.Templates.RandomizedMonster,Coius,3283,100,19,246,99,7,1,10,61,104,0,25,1400,1600,40,300,490,0
+10312,Saga.Templates.RandomizedMonster,Sios,2736,100,19,246,99,7,1,10,116,135,0,25,1400,1600,40,300,490,0
+10314,Saga.Templates.RandomizedMonster,Kayne,2476,100,20,260,105,11,1,10,99,167,0,25,1400,1600,40,300,490,0
+10315,Saga.Templates.RandomizedMonster,Karyuso,1478,100,11,146,56,8,0,0,48,73,0,0,1400,2000,100,300,490,0
+10317,Saga.Templates.RandomizedMonster,Tulang,1478,100,11,146,56,8,0,0,49,71,0,0,1400,2000,100,300,490,0
+10319,Saga.Templates.RandomizedMonster,Recoba,887,100,11,108,42,6,0,0,48,88,0,0,1400,2000,100,300,100,0
+10320,Saga.Templates.RandomizedMonster,Wild Twitter,3265,100,26,1080,432,38,1,10,122,259,0,25,1400,1600,40,300,490,0
+10321,Saga.Templates.RandomizedMonster,Wild Twitter,3435,100,27,1164,468,38,1,10,124,261,0,25,1400,1600,40,300,490,0
+10322,Saga.Templates.RandomizedMonster,Blut Twitter,4293,100,27,1050,420,32,1,10,161,330,0,25,1400,1600,40,300,490,1
+10323,Saga.Templates.RandomizedMonster,Blut Twitter,4496,100,28,1260,504,38,1,10,168,340,0,25,1400,1600,40,300,490,1
+10324,Saga.Templates.RandomizedMonster,Rusty Pinoli,4081,100,26,970,390,32,1,10,155,322,0,25,1400,1600,40,300,490,0
+10325,Saga.Templates.RandomizedMonster,Rusty Pinoli,4293,100,27,1018,408,32,1,10,155,312,0,25,1400,1600,40,300,490,0
+10326,Saga.Templates.RandomizedMonster,Entraion Egg,4897,100,26,1034,414,32,1,10,98,172,0,25,1400,1600,40,0,0,0
+10327,Saga.Templates.RandomizedMonster,Entraion Egg,5152,100,26,525,210,16,1,10,102,253,0,25,1400,1600,40,300,490,0
+10328,Saga.Templates.RandomizedMonster,Entraion Larva,5395,100,28,525,210,16,1,10,104,237,0,25,1400,1600,40,300,490,0
+10329,Saga.Templates.RandomizedMonster,Devil Entraion,5793,100,30,655,260,22,1,10,122,319,0,25,1400,1600,40,300,490,0
+10330,Saga.Templates.RandomizedMonster,Devil Entraion,6168,100,31,1310,520,44,1,10,126,319,0,25,1400,1600,40,300,490,0
+10331,Saga.Templates.RandomizedMonster,Sootwormer,5395,100,28,565,225,16,1,10,104,273,0,25,1400,1600,40,300,490,0
+10332,Saga.Templates.RandomizedMonster,Sootwormer,5317,100,29,1130,450,32,1,10,109,281,0,25,1400,1600,40,300,490,0
+10333,Saga.Templates.RandomizedMonster,Gremlin Navy,3597,100,28,565,225,22,1,10,137,270,0,25,1400,1600,40,300,490,0
+10334,Saga.Templates.RandomizedMonster,Gremlin Navy,3545,100,20,565,225,16,1,10,140,273,0,25,1400,1600,40,300,490,0
+10335,Saga.Templates.RandomizedMonster,Heavy Gremlin,5317,100,29,1130,450,32,1,10,109,310,0,25,1400,1600,40,300,490,0
+10336,Saga.Templates.RandomizedMonster,Heavy Gremlin,5793,100,30,1210,480,44,1,10,109,307,0,25,1400,1600,40,300,490,0
+10337,Saga.Templates.RandomizedMonster,Pietube,5317,100,29,1130,450,32,1,10,109,285,0,25,1400,1600,40,300,490,0
+10338,Saga.Templates.RandomizedMonster,Pietube,5793,100,30,1210,480,44,1,10,120,300,0,25,1400,1600,40,300,490,0
+10339,Saga.Templates.RandomizedMonster,Brutal Gremlin,4827,4827,30,1210,480,44,1,10,207,456,0,25,1400,1600,40,300,490,0
+10340,Saga.Templates.RandomizedMonster,Brutal Gremlin,5140,100,31,687,273,22,1,10,209,494,0,25,1400,1600,40,300,490,0
+10341,Saga.Templates.RandomizedMonster,Hammerrick,5140,100,31,1310,520,44,1,10,222,416,0,25,1400,1600,40,300,490,0
+10342,Saga.Templates.RandomizedMonster,Hammerrick,5205,100,32,700,280,22,1,10,231,432,0,25,1400,1600,40,300,490,0
+10343,Saga.Templates.RandomizedMonster,PI-07S,5793,100,30,635,252,22,1,10,130,280,0,25,1400,1600,40,300,490,0
+10344,Saga.Templates.RandomizedMonster,Zigmo,5387,100,33,787,315,22,1,10,249,432,0,25,1400,1600,40,300,100,0
+10345,Saga.Templates.RandomizedMonster,Blut Runner,4827,100,30,655,260,22,1,10,205,380,0,25,1400,1600,40,300,490,0
+10346,Saga.Templates.RandomizedMonster,Blut Runner,5140,100,31,687,273,22,1,10,208,401,0,25,1400,1600,40,300,490,0
+10347,Saga.Templates.RandomizedMonster,Pinoly Hopper,5140,100,31,735,294,22,1,10,216,414,0,25,1400,1600,40,300,490,0
+10348,Saga.Templates.RandomizedMonster,Pinoly Hopper,5205,100,32,735,294,22,1,10,227,441,0,25,1400,1600,40,300,490,0
+10349,Saga.Templates.RandomizedMonster,Carrion Crow,4112,100,31,735,294,22,1,10,129,347,0,25,1400,1600,40,300,490,0
+10350,Saga.Templates.RandomizedMonster,Carrion Crow,4164,100,32,735,294,22,1,10,135,336,0,25,1400,1600,40,300,490,0
+10351,Saga.Templates.RandomizedMonster,Desdoves Long Tail Mouse,4112,100,31,770,308,22,1,10,129,345,0,25,1400,1600,40,300,490,0
+10352,Saga.Templates.RandomizedMonster,Desdoves Long Tail Mouse,4164,100,32,770,308,22,1,10,129,325,0,25,1400,1600,40,300,490,0
+10353,Saga.Templates.RandomizedMonster,Gearbaz,5140,100,31,655,260,22,1,10,215,332,0,25,1400,1600,40,300,490,0
+10354,Saga.Templates.RandomizedMonster,Gearbaz,5205,100,32,1400,560,44,1,10,227,419,0,25,1400,1600,40,300,490,0
+10355,Saga.Templates.RandomizedMonster,Ashwormer,6246,100,32,750,300,22,1,10,136,333,0,25,1400,1600,40,300,490,0
+10356,Saga.Templates.RandomizedMonster,Ashwormer,6465,100,33,750,300,22,1,10,143,288,0,25,1400,1600,40,300,490,0
+10357,Saga.Templates.RandomizedMonster,Giant Crow,4164,100,1,750,300,22,1,10,136,324,0,25,1400,1600,40,300,490,0
+10358,Saga.Templates.RandomizedMonster,Giant Crow,4310,100,1,750,300,22,1,10,137,320,0,25,1400,1600,40,300,100,0
+10359,Saga.Templates.RandomizedMonster,Nunlif Soldier,4310,100,34,840,336,22,1,10,189,377,0,25,1400,1600,40,300,490,0
+10360,Saga.Templates.RandomizedMonster,Nunlif Soldier,4310,100,35,840,336,22,1,10,189,379,0,25,1400,1600,40,300,490,0
+10361,Saga.Templates.RandomizedMonster,Nunlif Soldier,4253,100,34,840,336,22,1,10,194,377,0,25,1400,1600,40,300,490,0
+10362,Saga.Templates.RandomizedMonster,Nunlif Soldier,4253,100,34,840,336,22,1,10,190,383,0,25,1400,1600,40,300,490,0
+10363,Saga.Templates.RandomizedMonster,Rag Bone,5316,100,34,1600,640,44,1,10,251,417,0,25,1400,1600,40,300,490,0
+10364,Saga.Templates.RandomizedMonster,Nunlif Trooper,6379,100,34,897,357,29,1,10,149,574,0,25,1400,1600,40,300,490,0
+10365,Saga.Templates.RandomizedMonster,Nunlif Trooper,6379,100,34,897,357,29,1,10,148,483,0,25,1400,1600,40,300,490,0
+10366,Saga.Templates.RandomizedMonster,Nunlif Trooper,5104,100,34,897,357,29,1,10,148,597,0,25,1400,1600,40,300,490,0
+10367,Saga.Templates.RandomizedMonster,Nunlif Trooper,5104,100,34,897,357,29,1,10,148,597,0,25,1400,1600,40,300,490,0
+10368,Saga.Templates.RandomizedMonster,Nunlif Medic,3189,100,34,762,303,24,1,10,148,301,0,25,1400,1600,40,300,490,0
+10369,Saga.Templates.RandomizedMonster,Nunlif Medic,3189,100,34,726,289,18,1,10,158,195,0,25,1400,1600,40,300,490,0
+10370,Saga.Templates.RandomizedMonster,Nunlif Medic,3828,100,35,762,303,24,1,10,151,269,0,25,1400,1600,40,300,490,0
+10371,Saga.Templates.RandomizedMonster,Nunlif Medic,3828,100,35,762,303,24,1,10,152,232,0,25,1400,1600,40,300,490,0
+10372,Saga.Templates.RandomizedMonster,Nunlif Squad Leader,3730,100,36,869,347,24,1,10,168,320,0,25,1400,1600,40,300,490,0
+10373,Saga.Templates.RandomizedMonster,Nunlif Squad Leader,4048,100,37,961,331,24,1,10,164,304,0,25,1400,1600,40,300,490,0
+10374,Saga.Templates.RandomizedMonster,Udo the Detonater,5473,100,38,936,369,24,1,10,124,365,0,25,1400,1600,40,300,490,0
+10375,Saga.Templates.RandomizedMonster,Thara Frog,2569,100,21,183,97,1,1,10,56,125,0,25,1400,1600,40,300,490,0
+10376,Saga.Templates.RandomizedMonster,Thara Frog,2694,100,22,320,125,11,1,10,111,195,0,25,1400,1600,40,300,490,0
+10377,Saga.Templates.RandomizedMonster,White Fin Merman,2569,100,21,290,115,11,1,10,93,131,0,25,1400,1600,40,300,490,0
+10378,Saga.Templates.RandomizedMonster,White Fin Merman,2694,100,22,320,125,11,1,10,97,159,0,25,1400,1600,40,300,490,0
+10379,Saga.Templates.RandomizedMonster,Cave Shark,3518,100,23,270,120,2,1,10,67,121,0,25,1400,1600,40,300,490,0
+10380,Saga.Templates.RandomizedMonster,Chief White Spike,2694,100,1,207,97,2,1,10,87,108,0,25,1400,1600,40,300,490,0
+10381,Saga.Templates.RandomizedMonster,Red Puffer,2694,100,22,207,197,2,1,10,98,136,0,25,1400,1600,40,300,490,0
+10382,Saga.Templates.RandomizedMonster,Red Puffer,2815,100,23,199,199,2,1,10,100,141,0,25,1400,1600,40,300,490,0
+10383,Saga.Templates.RandomizedMonster,Jagged Flatro,4041,100,22,336,183,2,1,10,98,124,0,25,1400,1600,40,300,490,0
+10384,Saga.Templates.RandomizedMonster,Jagged Flatro,4222,100,23,351,191,2,1,10,116,141,0,25,1400,1600,40,300,490,0
+10385,Saga.Templates.RandomizedMonster,Cave Saw Shark,3607,100,24,302,121,2,1,10,110,134,0,25,1400,1600,40,300,490,0
+10386,Saga.Templates.RandomizedMonster,Cornutus Skel,4222,100,23,351,145,2,1,10,105,129,0,25,1400,1600,40,300,490,0
+10387,Saga.Templates.RandomizedMonster,Cornutus Skel,4329,100,24,360,127,2,1,10,112,140,0,25,1400,1600,40,300,490,0
+10388,Saga.Templates.RandomizedMonster,Vadon-X,8972,100,24,1495,532,2,1,10,178,308,0,25,1400,1600,40,300,490,0
+10389,Saga.Templates.RandomizedMonster,Virus,3961,100,25,410,165,16,1,10,168,250,0,25,1400,1600,40,300,490,0
+10390,Saga.Templates.RandomizedMonster,Virus,4081,100,26,450,180,16,1,10,166,338,0,25,1400,1600,40,300,490,0
+10391,Saga.Templates.RandomizedMonster,Vadon Spike,3960,100,24,410,165,16,1,10,159,332,0,25,1400,1600,40,300,490,0
+10392,Saga.Templates.RandomizedMonster,Vadon Spike,4081,100,25,450,180,16,1,10,166,335,0,25,1400,1600,40,300,490,0
+10393,Saga.Templates.RandomizedMonster,Cornutus Fear,4897,100,1,450,180,16,1,10,99,186,0,25,1400,1600,40,300,490,0
+10394,Saga.Templates.RandomizedMonster,Cornutus Fear,5152,100,1,485,195,16,1,10,104,179,0,25,1400,1600,40,300,490,0
+10395,Saga.Templates.RandomizedMonster,Hunter Fly,4081,100,75,450,180,16,1,10,173,202,0,25,1400,1600,40,300,490,0
+10396,Saga.Templates.RandomizedMonster,Hunter Fly,4293,100,75,485,195,16,1,10,174,213,0,25,1400,1600,40,300,490,0
+10397,Saga.Templates.RandomizedMonster,Recluse Zadoras Grunt,2384,100,76,172,113,2,1,10,103,128,0,25,1400,1600,40,300,490,0
+10398,Saga.Templates.RandomizedMonster,Recluse Zadoras Warrior,2763,100,76,184,132,2,1,10,120,145,0,25,1400,1600,40,300,490,0
+10399,Saga.Templates.RandomizedMonster,Recluse Zadoras Warrior,2943,100,77,213,140,2,1,10,127,156,0,25,1400,1600,40,300,490,0
+10400,Saga.Templates.RandomizedMonster,Recluse Zadoras Warrior,3105,100,76,254,152,2,1,10,135,164,0,25,1400,1600,40,300,490,0
+10401,Saga.Templates.RandomizedMonster,Recluse Zadoras Baby,2415,100,75,172,115,2,1,10,105,127,0,25,1400,1600,40,300,490,0
+10402,Saga.Templates.RandomizedMonster,Recluse Zadoras Baby,2646,100,76,182,126,2,1,10,115,139,0,25,1400,1600,40,300,490,0
+10403,Saga.Templates.RandomizedMonster,Vadon Kaiser,9521,100,29,1586,596,2,1,10,136,257,0,25,1400,1600,40,300,490,0
+10405,Saga.Templates.RandomizedMonster,Dospore,1893,100,16,345,136,16,1,10,44,131,0,25,1400,1600,40,300,490,0
+10406,Saga.Templates.RandomizedMonster,Swamp Wolf,2569,100,1,580,230,22,1,10,54,245,0,25,1400,1600,40,300,450,0
+10407,Saga.Templates.FrozenMonster,Pukui,177,100,1,6,2,2,1,10,13,23,0,25,1400,1600,40,1,1,0
+10408,Saga.Templates.RandomizedMonster,Remnants Bad Bandit,1164,100,1,61,61,2,1,10,43,56,0,25,1400,1600,40,300,490,0
+10409,Saga.Templates.RandomizedMonster,Nunlif Soldier,5769,100,34,524,166,2,1,10,324,583,0,25,1400,1600,40,300,490,0
+10410,Saga.Templates.RandomizedMonster,Nunlif Guard,5569,100,1,506,214,2,1,10,354,563,0,25,1400,1600,40,300,490,0
+10411,Saga.Templates.RandomizedMonster,Nunlif Guard,6025,100,1,669,261,2,1,10,403,412,0,25,1400,1600,40,300,490,0
+10412,Saga.Templates.RandomizedMonster,Factory Crew,6025,100,1,669,261,2,1,10,324,583,0,25,1400,1600,40,300,490,0
+10413,Saga.Templates.RandomizedMonster,Nunlif Guard,7851,100,1,872,341,2,1,10,354,478,0,25,1400,1600,40,300,490,0
+10414,Saga.Templates.RandomizedMonster,Factory Researcher,7312,100,1,1228,457,2,1,10,332,642,0,25,1400,1600,40,300,490,0
+10415,Saga.Templates.RandomizedMonster,Nunlif Researcher,7636,100,1,1272,477,41,1,10,332,642,0,25,1400,1600,40,300,490,0
+10416,Saga.Templates.RandomizedMonster,Nunlif Researcher,7812,100,1,1302,355,45,1,10,332,642,0,25,1400,1600,40,300,490,0
+10417,Saga.Templates.RandomizedMonster,Nunlif Researcher,8003,100,1,1332,534,2,1,10,332,642,0,25,1400,1600,40,300,490,0
+10418,Saga.Templates.RandomizedMonster,Nunlif Chief Researcher,12100,100,1,2420,806,2,1,10,332,642,0,25,1400,1600,40,300,490,0
+10419,Saga.Templates.RandomizedMonster,Nunlif Chief Guard,9100,100,1,1516,606,2,1,10,354,478,0,25,1400,1600,40,300,490,0
+10420,Saga.Templates.RandomizedMonster,Blurry,7411,100,1,1252,529,2,1,10,232,542,0,25,1400,1600,40,300,490,0
+10421,Saga.Templates.RandomizedMonster,Blurry,7624,100,1,1432,549,2,1,10,232,542,0,25,1400,1600,40,300,490,0
+10422,Saga.Templates.RandomizedMonster,Pudilong,8097,100,37,1102,435,29,1,10,235,567,0,25,1400,1600,40,300,490,0
+10423,Saga.Templates.RandomizedMonster,Pudilong,8209,100,38,1050,415,29,1,10,235,531,0,25,1400,1600,40,300,490,0
+10424,Saga.Templates.RandomizedMonster,Nani,5473,100,38,1207,488,37,1,10,302,538,0,25,1400,1600,40,300,490,0
+10425,Saga.Templates.RandomizedMonster,Nani,5569,100,39,1207,488,37,1,10,292,658,0,25,1400,1600,40,300,490,0
+10426,Saga.Templates.RandomizedMonster,Nani,6025,100,40,1207,488,37,1,10,304,579,0,25,1400,1600,40,300,490,0
+10427,Saga.Templates.RandomizedMonster,Desert Wolf,7851,100,41,1312,519,37,1,10,382,666,0,25,1400,1600,40,300,490,0
+10428,Saga.Templates.RandomizedMonster,Desert Wolf,7557,100,42,1312,519,37,1,10,372,567,0,25,1400,1600,40,300,490,0
+10429,Saga.Templates.RandomizedMonster,Baby Ghost Worker Ant,7851,100,41,1365,551,44,1,10,360,712,0,25,1400,1600,40,300,490,0
+10430,Saga.Templates.RandomizedMonster,Baby Ghost Worker Ant,7557,100,42,1638,661,44,1,10,363,693,0,25,1400,1600,40,300,490,0
+10431,Saga.Templates.RandomizedMonster,Dun Arch,9069,100,1,1511,604,42,1,10,424,721,0,25,1400,1600,40,300,490,0
+10432,Saga.Templates.RandomizedMonster,Dun Arch,9817,100,1,1636,654,43,1,10,424,752,0,25,1400,1600,40,300,490,0
+10433,Saga.Templates.RandomizedMonster,Sand Spider,8181,100,43,1522,614,37,1,10,311,586,0,25,1400,1600,40,300,490,0
+10434,Saga.Templates.RandomizedMonster,Sand Spider,7960,100,44,1450,585,37,1,10,311,596,0,25,1400,1600,40,300,490,0
+10435,Saga.Templates.RandomizedMonster,Baby Ghost Soldier Ant,8181,100,43,1522,614,37,1,10,400,758,0,25,1400,1600,40,300,490,0
+10436,Saga.Templates.RandomizedMonster,Baby Ghost Soldier Ant,7960,100,44,1522,614,37,1,10,399,760,0,25,1400,1600,40,300,490,0
+10437,Saga.Templates.RandomizedMonster,Pereiz,7960,100,43,1326,497,23,1,10,415,744,0,25,1400,1600,40,300,490,0
+10438,Saga.Templates.RandomizedMonster,Entraion Egg,9817,100,1,2800,1110,74,1,10,301,399,0,25,1400,1600,40,0,0,0
+10439,Saga.Templates.RandomizedMonster,Spa Yoyo,7960,100,44,1627,645,46,1,10,341,798,0,25,1400,1600,40,300,490,1
+10440,Saga.Templates.RandomizedMonster,Spa Yoyo,8865,100,45,1627,645,46,1,10,341,770,0,25,1400,1600,40,300,490,0
+10441,Saga.Templates.RandomizedMonster,Yoyo,8865,100,45,1477,591,2,1,10,370,570,0,25,1400,1600,40,300,490,0
+10442,Saga.Templates.RandomizedMonster,Yoyo,9100,100,46,1516,606,2,1,10,418,694,0,25,1400,1600,40,300,490,0
+10443,Saga.Templates.RandomizedMonster,Peisus,9100,100,46,1516,568,2,1,10,418,694,0,25,1400,1600,40,300,490,0
+10444,Saga.Templates.RandomizedMonster,Pertus,9393,100,47,1564,626,2,1,10,418,694,0,25,1400,1600,40,300,100,0
+10451,Saga.Templates.RandomizedMonster,Recluse Zadoras Warlock,2260,100,1,324,127,8,23,140,29,112,7,194,1400,800,60,300,490,1
+10452,Saga.Templates.RandomizedMonster,Recluse Zadoras Warlock,2260,100,1,324,127,8,23,140,29,112,7,194,1400,800,60,300,490,0
+10453,Saga.Templates.RandomizedMonster,Recluse Zadoras Breaker,2260,100,77,324,127,8,23,140,29,112,7,194,1400,800,60,300,490,0
+10454,Saga.Templates.RandomizedMonster,Recluse Zadoras Breaker,2260,100,78,324,127,8,23,140,29,112,7,194,1400,800,60,300,490,0
+10455,Saga.Templates.RandomizedMonster,Recluse Zadoras Lucky Foot,2260,100,77,324,127,8,23,140,29,112,7,194,1400,800,60,300,490,0
+10456,Saga.Templates.RandomizedMonster,Recluse Zadoras Lucky Foot,2260,100,78,324,127,8,23,140,29,112,7,194,1400,800,60,300,490,0
+10457,Saga.Templates.RandomizedMonster,Wicked Dun,2260,100,6,324,127,8,23,140,29,112,7,194,1400,800,60,300,490,0
+10463,Saga.Templates.RandomizedMonster,A. Kneisel,2260,100,80,324,127,8,23,140,29,112,7,194,1400,800,60,300,490,0
+10466,Saga.Templates.RandomizedMonster,Nunlif Mechanik,20000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10467,Saga.Templates.RandomizedMonster,Nunlif Mechanik,20000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10468,Saga.Templates.RandomizedMonster,Nunlif Sentinel,20000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10469,Saga.Templates.RandomizedMonster,Nunlif Sentinel,20000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10470,Saga.Templates.RandomizedMonster,Nunlif Watcher,20000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10471,Saga.Templates.RandomizedMonster,Nunlif Watcher,20000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,0
+10472,Saga.Templates.RandomizedMonster,Nunlif Investigator,20000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10473,Saga.Templates.RandomizedMonster,Nunlif Investigator,20000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10474,Saga.Templates.RandomizedMonster,Nunlif Platoon,20000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10475,Saga.Templates.RandomizedMonster,Nunlif Platoon,20000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10476,Saga.Templates.RandomizedMonster,Nunlif Klupplung,10000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10477,Saga.Templates.RandomizedMonster,Nunlif Klupplung,10000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10478,Saga.Templates.RandomizedMonster,Nunlif Shooter,10000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10479,Saga.Templates.RandomizedMonster,Nunlif Shooter,10000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10480,Saga.Templates.RandomizedMonster,Nunlif Terror,10000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10481,Saga.Templates.RandomizedMonster,Nunlif Terror,10000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10482,Saga.Templates.RandomizedMonster,Nunlif Assassin,10000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10483,Saga.Templates.RandomizedMonster,Nunlif Assassin,10000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10484,Saga.Templates.RandomizedMonster,Nunlif Pursuit,10000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+10485,Saga.Templates.RandomizedMonster,Nunlif Pursuit,10000,100,1,7000,7000,8,23,20,600,900,7,194,2000,2000,100,300,490,1
+40000,Saga.Templates.RandomizedMonster,Unripe Pukui,562,100,6,17,17,2,15,60,418,694,3,90,1400,800,60,300,490,0
+40001,Saga.Templates.RandomizedMonster,Pukui,300,100,1,4,4,2,10,10,18,28,0,25,1400,800,40,300,490,0
+40004,Saga.Templates.RandomizedMonster,Vadon,458,100,4,9,9,2,49,40,28,39,2,64,1400,600,90,300,490,0
+40005,Saga.Templates.RandomizedMonster,VadonVadon,942,100,12,84,84,2,61,120,54,72,6,168,1400,600,130,300,490,0
+49998,Saga.Templates.RandomizedMonster,Vadon-Z,177,100,1,16,6,2,1,10,11,29,0,25,1400,1600,40,300,490,0
+49999,Saga.Templates.RandomizedMonster,Leader Bandit,4500,100,99,375,150,4,59,500,176,225,25,662,1400,1,0,0,0,0
+50001,Saga.Scripting.Ship,Ship to Prontera,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+50002,Saga.Scripting.Ship,Ship to Hodemimes,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+50003,Saga.Scripting.Ship,Ship to Cognito,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+50004,Saga.Scripting.Ship,Ship to Prontera,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0
+50005,Saga.Scripting.Ship,Ship to Prontera,8587,8587,50,0,0,2,0,0,0,0,0,0,0,0,0,300,490,0

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+  <Words>
+    <Unrecognized>
+      <Word>cb</Word>
+    </Unrecognized>
+    <Recognized>
+      <Word>Quest</Word>
+      <Word>Yaw</Word>
+      <Word>Weapontype</Word>
+      <Word>Kaftra</Word>
+      <Word>Catheleya</Word>
+      <Word>Zeny</Word>
+      <Word>Rufi</Word>
+      <Word>cexp</Word>
+      <Word>wexp</Word>
+      <Word>jexp</Word>
+      <Word>Jlvl</Word>
+      <Word>Clvl</Word>
+      <Word>Falcata</Word>
+      <Word>Fprsythie</Word>
+      <Word>Nemophila</Word>
+      <Word>Veilchenblau</Word>
+      <Word>Matrix</Word>
+      <Word>Tradeable</Word>
+      <Word>Swordstick</Word>
+      <Word>Damptflinte</Word>
+      <Word>Damptschwertz</Word>
+      <Word>Katana</Word>
+      <word>cast</word>
+      <word>addition</word>
+    </Recognized>
+    <Deprecated>
+      <Term PreferredAlternate="Concentration">Con</Term>
+      <Term PreferredAlternate="Intellect">Int</Term>
+      <Term PreferredAlternate="Dexterity">Dex</Term>
+      <Term PreferredAlternate="Strength">Str</Term>
+      <Term PreferredAlternate="Luck">Luc</Term>
+      <Term PreferredAlternate="Concentration">CON</Term>
+      <Term PreferredAlternate="Intellect">INT</Term>
+      <Term PreferredAlternate="Dexterity">DEX</Term>
+      <Term PreferredAlternate="Strength">STR</Term>
+      <Term PreferredAlternate="Luck">LUC</Term>
+    </Deprecated>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>LP</Acronym>
+      <Acronym>HP</Acronym>
+      <Acronym>SP</Acronym>
+      <Acronym>NPC</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>

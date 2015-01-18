@@ -1,0 +1,97 @@
+ID,AI Path,
+1,Saga.Templates.ActionObject,Sara Tristans Tombstone
+2,Saga.Templates.ActionObject,Pumpkin
+3,Saga.Templates.ActionObject,Table
+4,Saga.Templates.ActionObject,Grass
+5,Saga.Templates.ActionObject,Tree branch
+6,Saga.Templates.ActionObject,Red Cape Cat Gang Treasure
+7,Saga.Templates.ActionObject,Lump of Sand
+8,Saga.Templates.ActionObject,Yellow Grass
+9,Saga.Templates.ActionObject,Fragment of Bridge
+10,Saga.Templates.ActionObject,Fragment of Bridge
+11,Saga.Templates.ActionObject,Fragment of Bridge
+12,Saga.Templates.ActionObject,Secret Hidden Brick
+13,Saga.Templates.ActionObject,Persian Ruby
+14,Saga.Templates.ActionObject,Sea Shell
+15,Saga.Templates.ActionObject,Zarko Ruzzoli IQ Test Paper
+16,Saga.Templates.ActionObject,Sand
+17,Saga.Templates.ActionObject,First Merman House Evidence
+18,Saga.Templates.ActionObject,Second Merman House Evidence
+19,Saga.Templates.ActionObject,Third Merman House Evidence
+20,Saga.Templates.ActionObject,Sansam Grass
+21,Saga.Templates.ActionObject,Hodemimes Mailbox A
+22,Saga.Templates.ActionObject,Hodemimes Mailbox B
+23,Saga.Templates.ActionObject,Hodemimes Mailbox C
+24,Saga.Templates.ActionObject,Hodemimes Mailbox D
+25,Saga.Templates.ActionObject,Hodemimes Mailbox E
+26,Saga.Templates.ActionObject,Marine Sphere Parts
+27,Saga.Templates.ActionObject,Trash
+28,Saga.Templates.ActionObject,Sea Coral
+29,Saga.Templates.ActionObject,Liquor Box
+30,Saga.Templates.ActionObject,Liquor Box
+31,Saga.Templates.ActionObject,Pumpkin
+32,Saga.Templates.ActionObject,Pumpkin
+33,Saga.Templates.ActionObject,Dirty Sand
+34,Saga.Templates.ActionObject,Dirty Wreck
+35,Saga.Templates.ActionObject,Bucket with a Hole
+36,Saga.Templates.ActionObject,Cloth Trash Sack
+37,Saga.Templates.ActionObject,Reagent
+38,Saga.Templates.ActionObject,News Paper
+40,Saga.Templates.ActionObject,1st Cask
+41,Saga.Templates.ActionObject,2nd Cask
+42,Saga.Templates.ActionObject,3rd Cask
+43,Saga.Templates.ActionObject,4th Cask
+44,Saga.Templates.ActionObject,Dirty Wreck
+45,Saga.Templates.ActionObject,Bucket with a Hole
+47,Saga.Templates.ActionObject,Wooden Box
+48,Saga.Templates.Book,Hodemimes Guidebook for traveler
+49,Saga.Templates.Book,Prontera Guidebook for traveler
+50,Saga.Templates.Book,Cognito Guidebook for traveler
+51,Saga.Templates.ActionObject,Broken Bucket
+52,Saga.Templates.ActionObject,Wild Flower
+53,Saga.Templates.ActionObject,Bucket
+54,Saga.Templates.ActionObject,Crate
+55,Saga.Templates.ActionObject,Hodemimes Empty bottle
+56,Saga.Templates.ActionObject,Box of Bullets
+57,Saga.Templates.ActionObject,Letter Bottle
+58,Saga.Templates.ActionObject,Wooden Box
+59,Saga.Templates.ActionObject,Arms Chest
+60,Saga.Templates.ActionObject,1 Ecological Survey Equipment
+61,Saga.Templates.ActionObject,2 Ecological Survey Equipment
+62,Saga.Templates.ActionObject,3 Ecological Survey Equipment
+63,Saga.Templates.ActionObject,4 Ecological Survey Equipment
+64,Saga.Templates.ActionObject,5 Ecological Survey Equipment
+65,Saga.Templates.ActionObject,6 Ecological Survey Equipment
+66,Saga.Templates.ActionObject,7 Ecological Survey Equipment
+67,Saga.Templates.ActionObject,8 Ecological Survey Equipment
+68,Saga.Templates.ActionObject,9 Ecological Survey Equipment
+69,Saga.Templates.ActionObject,Small Sky Flower
+70,Saga.Templates.ActionObject,Monkey Poo
+71,Saga.Templates.ActionObject,Covered Place Picture
+1100,Saga.Templates.InteractiveItem,Channel Switcher
+1123,Saga.Templates.KaftraMailbox,Kafra Quest Progress
+1124,Saga.Templates.Mailbox,Mailbox
+1125,Saga.Templates.Questboard,Hodemimes Quest Board
+1126,Saga.Templates.Mailbox,Mailbox
+1127,Saga.Templates.Questboard,Prontera Quest Board
+1129,Saga.Templates.Questboard,Forest of Echoes Quest Board
+1130,Saga.Templates.Questboard,Alfheim Quest Board
+1131,Saga.Templates.Questboard,Cognito Quest Board
+1142,Saga.Templates.Questboard,Hodemimes Quest Board
+1143,Saga.Templates.Questboard,Tutorial Quest Board
+5000,Saga.Templates.InteractiveItem,Chair
+5001,Saga.Templates.InteractiveItem,Bench
+5002,Saga.Templates.InteractiveItem,Bench
+5003,Saga.Templates.InteractiveItem,Bench
+5004,Saga.Templates.InteractiveItem,Bench
+5005,Saga.Templates.InteractiveItem,Bench
+8000,Saga.Templates.ActionObject,Pumpkin Channel Switcher
+9000,Saga.Templates.InteractiveItem,Chair for 1 person
+9001,Saga.Templates.InteractiveItem,Bench
+9993,Saga.Templates.ActionObject,Toggle test
+9994,Saga.Templates.ActionObject,Twig 2
+9995,Saga.Templates.ActionObject,Twig
+9996,Saga.Templates.ActionObject,Oat Farm Pumpkin
+9997,Saga.Templates.ActionObject,Monster Hit Test
+9998,Saga.Templates.ActionObject,Monster Summon Test
+9999,Saga.Templates.ActionObject,Test Items

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Basicnpc> 
+  <Gossip>506</Gossip>
+  <EverydayConversation>881</EverydayConversation>
+  <EverydayConversation>884</EverydayConversation>
+  <EverydayConversation>887</EverydayConversation>
+  <EverydayConversation>890</EverydayConversation>
+  <EverydayConversation>893</EverydayConversation>
+</Basicnpc>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xslt/commandline.auth.xsl"?>
+<page logo="techdoc">
+	
+  <paragraph>
+	This is the documentation reference for commandline interface for the saga authentication server.
+  </paragraph>
+
+  <luabindings>
+
+    <!-- Saga.AddStep -->
+    <function>
+      <name>account -create</name>
+      <remarks>
+        This will create an account to the database. The account will be a regulair account
+	  with and no gm level.
+      </remarks>
+      <example><![CDATA[
+Server instance
+account -create phr34k918 ha2jumi female
+account created]]></example>
+    </function>
+
+    <!-- Saga.StartEvent -->
+    <function>
+      <name>account -isonline</name>
+      <remarks>
+	  Checks if the speciafied account is online right now.
+      </remarks>
+      <example><![CDATA[
+Server instance
+account -isonline phr34k918
+User is: offline
+]]></example>      
+    </function>
+
+
+    <!-- Saga.StepComplete -->
+    <function>
+      <name>account -time</name>
+      <remarks>
+        Computes the actual ammount the user has played. If the user currently is
+	  logged in the added gametime is returned is not updated.
+      </remarks>
+      <example><![CDATA[
+Server instance
+account -time phr34k
+User has played: 0 days - 0 hours - 6 minutes
+account -time phr34k918
+User has never played
+]]>
+      </example>
+    </function>
+
+    <!-- Saga.QuestComplete -->
+    <function>
+      <name>account -ip</name>
+      <remarks>
+        Completes the scenario quest and removes any related information regarding the 
+	  quest.
+      </remarks>
+      <example><![CDATA[
+Server instance
+account -ip phr34k
+User last ip adress: 127.0.0.1
+account -ip phr34k918
+User last ip adress: 0.0.0.0
+]]></example>
+    </function>
+
+
+      <!-- Saga.GetStepIndex -->
+    <function>
+      <name>account -kick</name>
+      <remarks>
+	  This will look up your active session id. If this field is set to non-zero. It will contact the 
+	  last played world server to kick your session.
+      </remarks>
+      <example><![CDATA[
+Server instance
+account -kick phr34k
+]]>
+      </example>
+    </function>
+
+
+
+    <function>
+      <name>acl -dump</name>
+      <remarks>
+	  This will dump a list of banned ip and filtermasks. Optionally you can use an ip address as third argument
+	  to check for masks that affect the speciafied ip address. It creates a file called acl.txt in the same directory
+	  as the binairy.
+      </remarks>
+      <example><![CDATA[
+Server instance
+acl -dump 127.0.0.1
+
+Output generated in: acl.txt
+
+Access Control Lists
+===================================================================================
+
+Rule policy:
+A explicit allow declaration can override a deny operation
+All ip's are implicit allowed.
+
+Filtering all entries on matching: 127.0.0.1
+
+
+RULE#	ALLOW/DENY          	IP             	MASK           
+1	DENY                	0.0.0.0        	0.0.0.0        
+2	ALLOW               	127.0.0.1      	255.255.255.255
+
+]]>
+      </example>
+    </function>     
+
+    <function>
+      <name>acl -add</name>
+      <remarks>
+	  This will add a rule policy to the access control list.
+      </remarks>
+      <example><![CDATA[
+Server instance
+acl -add allow 0.0.0.0/0
+Entry added
+]]>
+      </example>
+    </function>
+
+    <function>
+      <name>acl -remove</name>
+      <remarks>
+	  This will remove a previously added rule policy to the access control list.
+      </remarks>
+      <example><![CDATA[
+Server instance
+acl -remove allow 0.0.0.0/0
+Entry removed
+]]>
+      </example>
+    </function>
+
+  </luabindings>
+</page>

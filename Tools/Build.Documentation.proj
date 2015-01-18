@@ -1,0 +1,159 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+ 
+  <PropertyGroup>
+    <Sourceroot>$(MSBuildProjectDirectory)/../</Sourceroot>
+    <ExternalProjectsDir>$(Sourceroot)\External Projects</ExternalProjectsDir>
+    <MSBuildCommunityTasksPath>$(ExternalProjectsDir)\msbuildtasks\build\Debug\bin</MSBuildCommunityTasksPath>
+    <DocumentationDir>$(Sourceroot)\Tools\Saga.Documentation</DocumentationDir>
+    <XmlDirectory>$(Sourceroot)\Tools\Saga.Documentation</XmlDirectory>
+    <XsltDirectory>$(Sourceroot)\Tools\Saga.Documentation\xslt</XsltDirectory>
+    <OutputDirectory>$(Sourceroot)\Documentation\</OutputDirectory>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <DefaultExclude Include="$(DocumentationDir)\Images\**\*.psd" />
+    <DefaultExclude Include="$(DocumentationDir)\**//*.svn/**" />
+    <DefaultExclude Include="$(DocumentationDir)\**\*.svn\**" />
+    <Images Include="$(DocumentationDir)\Images\**\*.*" Exclude="@(DefaultExclude)" />
+    <Stylesheet Include="$(DocumentationDir)\stylesheet\**\*.*" Exclude="@(DefaultExclude)" />
+  </ItemGroup>
+  
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
+  <Target Name="Mref">
+
+    <!-- Create all folders and copy files -->    
+    <MakeDir Directories="$(OutputDirectory)\" ContinueOnError="true"/>
+    <MakeDir Directories="$(OutputDirectory)\Images" ContinueOnError="true"/>
+    <MakeDir Directories="$(OutputDirectory)\Stylesheet" ContinueOnError="true"/>
+    <Copy SourceFiles="@(Images)" DestinationFiles="@(Images->'$(OutputDirectory)\Images\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(Stylesheet)" DestinationFiles="@(Stylesheet->'$(OutputDirectory)\Stylesheet\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+    <!-- Trasform all xml files -->
+    <XslTransform
+      OutputFile="$(OutputDirectory)\techdoc.scripting.squests.html"
+      XsltFiles="$(XsltDirectory)\scripting.scenario.quests.xsl"
+      XmlFile="$(XmlDirectory)\techdoc.scripting.squests.xhtml"           
+    />
+
+    <XslTransform
+      OutputFile="$(OutputDirectory)\techdoc.scripting.quests.html"
+      XsltFiles="$(XsltDirectory)\scripting.quests.xsl"
+      XmlFile="$(XmlDirectory)\techdoc.scripting.quests.xhtml"
+    />
+
+    <XslTransform
+      OutputFile="$(OutputDirectory)\features.html"
+      XsltFiles="$(XsltDirectory)\features.xsl"
+      XmlFile="$(XmlDirectory)\features.xhtml"
+    />
+
+    <XslTransform
+      OutputFile="$(OutputDirectory)\todo.html"
+      XsltFiles="$(XsltDirectory)\todo.xsl"
+      XmlFile="$(XmlDirectory)\todo.xhtml"
+    />
+
+    <XslTransform
+      OutputFile="$(OutputDirectory)\changelog.html"
+      XsltFiles="$(XsltDirectory)\changelog.xsl"
+      XmlFile="$(XmlDirectory)\changelog.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\Introduction.html"
+    XsltFiles="$(XsltDirectory)\Intro.xsl"
+    XmlFile="$(XmlDirectory)\Introduction.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\toc.techdoc.html"
+    XsltFiles="$(XsltDirectory)\toc.techdoc.xsl"
+    XmlFile="$(XmlDirectory)\toc.techdoc.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.warper.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.warper.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.shop.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.shop.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.bookstore.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.bookstore.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.loot.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.loot.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.trader.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.trader.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.guides.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.guides.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.skill.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.skill.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.guide_to_create_a_npc.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.guide_to_create_a_npc.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\eula.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\eula.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.gmcommands.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.gmcommands.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.guide.quest.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.guide.quest.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.commandline.auth.html"
+    XsltFiles="$(XsltDirectory)\commandline.auth.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.commandline.auth.xhtml"
+    />
+
+
+    <!--
+  $(Sourceroot)\New Folder\xslt\serverside - quest-scripting.xsl  
+  $(Sourceroot)\New Folder\serverside="" -="" quest-scripting.xhtml=""
+  XmlFile
+  -->
+  </Target>
+
+
+  
+  
+  
+
+</Project>          

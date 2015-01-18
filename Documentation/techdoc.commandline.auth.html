@@ -1,0 +1,172 @@
+<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>
+    </title>
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+  </head>
+  <body>
+    <table class="container" cellspacing="0">
+      <tr>
+        <td style="padding:0px; margin:0px;">
+          <div class="overlay_top">
+            <div class="overlay_bottom">
+              <table class="container" cellspacing="0">
+                <tr>
+                  <td class="container_corner_upper_left"></td>
+                  <td class="container_top">
+                    <div style="padding-left:130px; position:relative; top:10px;"><a href="Introduction.html" class="menulink">Main</a> |
+  <a href="eula.html" class="menulink">Eula</a> |
+  <a href="changelog.html" class="menulink">Changelog</a> |
+  <a href="features.html" class="menulink">Features</a> |
+  <a href="todo.html" class="menulink">Project Status</a> |
+  <a href="toc.techdoc.html" class="menulink">Technical Documentation</a></div>
+                  </td>
+                  <td class="container_corner_upper_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_left"></td>
+                  <td valign="top">
+                    <div><img class="pagetitle" src="Images/menu_large/techdoc.png"></div>
+                    <div>
+	
+  <p>
+	This is the documentation reference for commandline interface for the saga authentication server.
+  </p>
+
+  <h2>Functions by alphabet</h2>
+                      <div class="paragraph_menu">
+                        <p>
+                          <ol>
+                            <li><a href="#account -create">account -create</a></li>
+                            <li><a href="#account -ip">account -ip</a></li>
+                            <li><a href="#account -isonline">account -isonline</a></li>
+                            <li><a href="#account -kick">account -kick</a></li>
+                            <li><a href="#account -time">account -time</a></li>
+                            <li><a href="#acl -add">acl -add</a></li>
+                            <li><a href="#acl -dump">acl -dump</a></li>
+                            <li><a href="#acl -remove">acl -remove</a></li>
+                          </ol>
+                        </p>
+                      </div>
+                      <h2><a name="account -create">account -create</a></h2>
+                      <div class="paragraph"><code></code><p><b>Remarks:</b></p>
+                        <p>
+        This will create an account to the database. The account will be a regulair account
+	  with and no gm level.
+      </p><b>Example:</b><p>The following code sample illustrates the use of account -create:</p><code><pre class="code">
+Server instance
+account -create phr34k918 ha2jumi female
+account created</pre></code></div>
+                      <h2><a name="account -ip">account -ip</a></h2>
+                      <div class="paragraph"><code></code><p><b>Remarks:</b></p>
+                        <p>
+        Displays the last IP address that was used by the player.
+      </p><b>Example:</b><p>The following code sample illustrates the use of account -ip:</p><code><pre class="code">
+Server instance
+account -ip phr34k
+User last ip adress: 127.0.0.1
+account -ip phr34k918
+User last ip adress: 0.0.0.0
+</pre></code></div>
+                      <h2><a name="account -isonline">account -isonline</a></h2>
+                      <div class="paragraph"><code></code><p><b>Remarks:</b></p>
+                        <p>
+	  Checks if the specified account is online right now.
+      </p><b>Example:</b><p>The following code sample illustrates the use of account -isonline:</p><code><pre class="code">
+Server instance
+account -isonline phr34k918
+User is: offline
+</pre></code></div>
+                      <h2><a name="account -kick">account -kick</a></h2>
+                      <div class="paragraph"><code></code><p><b>Remarks:</b></p>
+                        <p>
+	  This will look up your active session id. If this field is set to non-zero. It will contact the 
+	  last played world server to kick your session.
+      </p><b>Example:</b><p>The following code sample illustrates the use of account -kick:</p><code><pre class="code">
+Server instance
+account -kick phr34k
+
+      </pre></code></div>
+                      <h2><a name="account -time">account -time</a></h2>
+                      <div class="paragraph"><code></code><p><b>Remarks:</b></p>
+                        <p>
+        Computes the actual ammount the user has played. If the user currently is
+	  logged in the added gametime is returned is not updated.
+      </p><b>Example:</b><p>The following code sample illustrates the use of account -time:</p><code><pre class="code">
+Server instance
+account -time phr34k
+User has played: 0 days - 0 hours - 6 minutes
+account -time phr34k918
+User has never played
+
+      </pre></code></div>
+                      <h2><a name="acl -add">acl -add</a></h2>
+                      <div class="paragraph"><code></code><p><b>Remarks:</b></p>
+                        <p>
+	  This will add a rule policy to the access control list.
+      </p><b>Example:</b><p>The following code sample illustrates the use of acl -add:</p><code><pre class="code">
+Server instance
+acl -add allow 0.0.0.0/0
+Entry added
+
+      </pre></code></div>
+                      <h2><a name="acl -dump">acl -dump</a></h2>
+                      <div class="paragraph"><code></code><p><b>Remarks:</b></p>
+                        <p>
+	  This will dump a list of banned ip and filtermasks. Optionally you can use an ip address as third argument
+	  to check for masks that affect the speciafied ip address. It creates a file called acl.txt in the same directory
+	  as the binairy.
+      </p><b>Example:</b><p>The following code sample illustrates the use of acl -dump:</p><code><pre class="code">
+Server instance
+acl -dump 127.0.0.1
+
+Output generated in: acl.txt
+
+Access Control Lists
+===================================================================================
+
+Rule policy:
+A explicit allow declaration can override a deny operation
+All ip's are implicit allowed.
+
+Filtering all entries on matching: 127.0.0.1
+
+
+RULE#	ALLOW/DENY          	IP             	MASK           
+1	DENY                	0.0.0.0        	0.0.0.0        
+2	ALLOW               	127.0.0.1      	255.255.255.255
+
+
+      </pre></code></div>
+                      <h2><a name="acl -remove">acl -remove</a></h2>
+                      <div class="paragraph"><code></code><p><b>Remarks:</b></p>
+                        <p>
+	  This will remove a previously added rule policy to the access control list.
+      </p><b>Example:</b><p>The following code sample illustrates the use of acl -remove:</p><code><pre class="code">
+Server instance
+acl -remove allow 0.0.0.0/0
+Entry removed
+
+      </pre></code></div>
+</div>
+                    <div style="height:70px; width:100%;"><a href="#" class="footerlink">Top</a></div>
+                  </td>
+                  <td class="container_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_corner_lower_left"></td>
+                  <td class="container_bottom"></td>
+                  <td class="container_corner_lower_right"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="page_footer"><img src="images/logo-rev-low.png"></td>
+      </tr>
+    </table>
+  </body>
+</html>

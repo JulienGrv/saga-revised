@@ -1,0 +1,100 @@
+﻿<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Scripting reference: skills</title>
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+  </head>
+  <body>
+    <table class="container" cellspacing="0">
+      <tr>
+        <td style="padding:0px; margin:0px;">
+          <div class="overlay_top">
+            <div class="overlay_bottom">
+              <table class="container" cellspacing="0">
+                <tr>
+                  <td class="container_corner_upper_left"></td>
+                  <td class="container_top">
+                    <div style="padding-left:130px; position:relative; top:10px;"><a href="Introduction.html" class="menulink">Main</a> |
+  <a href="eula.html" class="menulink">Eula</a> |
+  <a href="changelog.html" class="menulink">Changelog</a> |
+  <a href="features.html" class="menulink">Features</a> |
+  <a href="todo.html" class="menulink">Project Status</a> |
+  <a href="toc.techdoc.html" class="menulink">Technical Documentation</a></div>
+                  </td>
+                  <td class="container_corner_upper_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_left"></td>
+                  <td valign="top">
+                    <div><img class="pagetitle" src="Images/menu_large/techdoc.png"></div>
+                    <div>
+  <h2>Scripting reference: skills</h2>
+  <p>We offer a unique skill system that allows each skill to be coded by a 3rd party. To make use  of this feature there are several demands that must be validated. Each skill has a method as entrypoint.The method has to match a delegate delegate void SkillHandler(object sender, object target, SpellEventArgs arguments)</p>
+  <code><pre class="code">matrix[0, 0] = Source Actor Alterstone Mimimum Attack;
+matrix[0, 1] = Source Actor Weapon Mimimum Attack;
+matrix[0, 2] = Source Actor Mimimum Attack;
+matrix[0, 3] = Source Actor Skill Minimum Attack;
+matrix[1, 0] = Source Actor Alterstone Maximum Attack;
+matrix[1, 1] = Source Actor Weapon Maximum Attack;
+matrix[1, 2] = Source Actor Maximum Attack;
+matrix[1, 3] = Source Actor Skill Maximum Attack;
+matrix[2, 0] = Source Actor Defense;
+matrix[2, 1] = Source Actor Blockrate;
+matrix[2, 2] = Source Actor Critical Rate;
+matrix[2, 3] = Source Actor Hitrate     
+matrix[3, 0] = Target Actor Defense;
+matrix[3, 1] = Target Actor Blockrate;
+matrix[3, 2] = Target Actor Criticalrate;   
+matrix[3, 3] = Target Actor Hitrate;    
+matrix[4, 0] = Source Actor Evasion Rate
+matrix[4, 1] = Source Actor Level
+matrix[4, 2] = Target Actor Level;
+matrix[4, 3] = Target Actor Evasion Rate;
+</pre></code>
+
+  <p>A skillmatrix is a container of values. Each skill matrix is a multidimensional 5*4 array. So a total of 20 values. To keep the skill calculations short i've decided to keep using a short ccess form e.d. matrix[3,4]; Around each skillmatrix there are several easy functions that use complex formulla's to calculate damage.</p>
+  <p>SpellEventArgs can create three skillmatrixes by default. Ranged,Physical,Magical. By choosing a Ranged matrix it will naturally align the targets ranged defense against the senders ranged resistances. In most cases these three matrix will be sufficient enough.</p>
+
+  <code><pre class="code">IsMissed(SkillMatrix matrix)	 
+Checks if the skill misses
+
+IsBlocked(SkillMatrix matrix)	 
+Checks if the skill is blocked by the oponent
+
+IsCritical(SkillMatrix matrix) 
+Checks if the skill is critical hit (this will alter the damage of the skill, should be called last)
+
+GetDamage(SkillMatrix matrix)	
+Calculates skill damange with standard deviation formulla
+
+GetDefenseReduction(SkillMatrix matrix, uint damage)
+Calculates a deduces damage based upon defense attribute
+
+GetLevelDifference(SkillMatrix matrix)
+Gets the obsolute level difference between two actors
+
+int GetLevelDifference(SkillMatrix matrix)
+Gets a 5 int capped level limit how many levels the target clvl greater is than the source clvl.
+
+</pre></code>
+</div>
+                    <div style="height:70px; width:100%;"><a href="#" class="footerlink">Top</a></div>
+                  </td>
+                  <td class="container_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_corner_lower_left"></td>
+                  <td class="container_bottom"></td>
+                  <td class="container_corner_lower_right"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="page_footer"><img src="images/logo-rev-low.png"></td>
+      </tr>
+    </table>
+  </body>
+</html>

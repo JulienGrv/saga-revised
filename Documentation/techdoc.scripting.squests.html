@@ -1,0 +1,143 @@
+﻿<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>
+    </title>
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+  </head>
+  <body>
+    <table class="container" cellspacing="0">
+      <tr>
+        <td style="padding:0px; margin:0px;">
+          <div class="overlay_top">
+            <div class="overlay_bottom">
+              <table class="container" cellspacing="0">
+                <tr>
+                  <td class="container_corner_upper_left"></td>
+                  <td class="container_top">
+                    <div style="padding-left:130px; position:relative; top:10px;"><a href="Introduction.html" class="menulink">Main</a> |
+  <a href="eula.html" class="menulink">Eula</a> |
+  <a href="changelog.html" class="menulink">Changelog</a> |
+  <a href="features.html" class="menulink">Features</a> |
+  <a href="todo.html" class="menulink">Project Status</a> |
+  <a href="toc.techdoc.html" class="menulink">Technical Documentation</a></div>
+                  </td>
+                  <td class="container_corner_upper_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_left"></td>
+                  <td valign="top">
+                    <div><img class="pagetitle" src="Images/menu_large/scripting.png"></div>
+                    <div>
+  <p>
+      This is the documentation about scenario quest scriping. As of this moment we'll keep this document
+      up-to-date. For questfiles in the desired and validated layout we'll provide conversion tools to
+      update this.
+    </p>
+                      <h2>Functions by alphabet</h2>
+                      <div class="paragraph_menu">
+                        <p>
+                          <ol>
+                            <li><a href="#Saga.AddStep">Saga.AddStep</a></li>
+                            <li><a href="#Saga.GetStepIndex">Saga.GetStepIndex</a></li>
+                            <li><a href="#Saga.QuestComplete">Saga.QuestComplete</a></li>
+                            <li><a href="#Saga.QuestStart">Saga.QuestStart</a></li>
+                            <li><a href="#Saga.StartEvent">Saga.StartEvent</a></li>
+                            <li><a href="#Saga.StepComplete">Saga.StepComplete</a></li>
+                          </ol>
+                        </p>
+                      </div>
+                      <h2><a name="Saga.AddStep">Saga.AddStep</a></h2>
+                      <div class="paragraph"><code>Saga.AddStep(cid, QuestID);</code><p><b>Remarks:</b></p>
+                        <p>
+        Adds a step to the quest. This can only be done during initialisation.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.AddStep:</p><code><pre class="code">function QUEST_START(cid)
+	-- Start Quest
+	Saga.AddStep(cid, QuestID, 101);
+	Saga.QuestStart(cid, QuestID);
+	return 0;
+end</pre></code></div>
+                      <h2><a name="Saga.GetStepIndex">Saga.GetStepIndex</a></h2>
+                      <div class="paragraph"><code>Saga.GetStepIndex(cid, QuestId);</code><p><b>Remarks:</b></p>
+                        <p>
+        Returns the current step of the quest.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.GetStepIndex:</p><code><pre class="code">function QUEST_CHECK(cid)
+	-- Check all steps for progress
+	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local ret = -1;
+
+	if CurStepID == 101 then
+		ret = QUEST_STEP_1(cid);
+	end
+
+	if ret == 0 then
+		QUEST_CHECK(cid)
+	end
+
+	return -1;
+end
+      </pre></code></div>
+                      <h2><a name="Saga.QuestComplete">Saga.QuestComplete</a></h2>
+                      <div class="paragraph"><code>Saga.QuestComplete(cid, QuestID);</code><p><b>Remarks:</b></p>
+                        <p>
+        Completes the scenario quest and removes any related information regarding the 
+	  quest.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.QuestComplete:</p><code><pre class="code">function QUEST_STEP_1(cid)
+     Saga.StartEvent(cid, 10102);	
+     Saga.StepComplete(cid, QuestID, 101);
+     Saga.QuestComplete(cid, QuestID);
+     return -1; 
+end</pre></code></div>
+                      <h2><a name="Saga.QuestStart">Saga.QuestStart</a></h2>
+                      <div class="paragraph"><code>Saga.QuestStart(cid, QuestId);</code><p><b>Remarks:</b></p>
+                        <p>
+        Starts and initializes the scenario quest with the speciafied quest id.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.QuestStart:</p><code><pre class="code">function QUEST_FINISH(cid)
+	-- Start Next Quest
+	Saga.QuestStart(cid, 2);
+	return 0;
+end
+      </pre></code></div>
+                      <h2><a name="Saga.StartEvent">Saga.StartEvent</a></h2>
+                      <div class="paragraph"><code>Saga.StartEvent(cid, EventId);</code><p><b>Remarks:</b></p>
+                        <p>
+        Starts showing a event dialog. It will suspend the function until the event has been ended.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.StartEvent:</p><code><pre class="code">function QUEST_STEP_1(cid)
+     Saga.StartEvent(cid, 10102);	
+     Saga.StepComplete(cid, QuestID, 101);
+     Saga.QuestComplete(cid, QuestID);
+     return -1; 
+end</pre></code></div>
+                      <h2><a name="Saga.StepComplete">Saga.StepComplete</a></h2>
+                      <div class="paragraph"><code>Saga.StepComplete(cid, QuestID, StepID);</code><p><b>Remarks:</b></p>
+                        <p>
+        Completes the speciafied step and advances to the next step. If no step is speciafied
+	  the next step is considered to be 0.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.StepComplete:</p><code><pre class="code">function QUEST_STEP_1(cid)
+     Saga.StartEvent(cid, 10102);	
+     Saga.StepComplete(cid, QuestID, 101);
+     Saga.QuestComplete(cid, QuestID);
+     return -1; 
+end
+      </pre></code></div>
+</div>
+                    <div style="height:70px; width:100%;"><a href="#" class="footerlink">Top</a></div>
+                  </td>
+                  <td class="container_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_corner_lower_left"></td>
+                  <td class="container_bottom"></td>
+                  <td class="container_corner_lower_right"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="page_footer"><img src="images/logo-rev-low.png"></td>
+      </tr>
+    </table>
+  </body>
+</html>

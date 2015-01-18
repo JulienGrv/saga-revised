@@ -1,0 +1,121 @@
+﻿<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Fileformat: Traders</title>
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+  </head>
+  <body>
+    <table class="container" cellspacing="0">
+      <tr>
+        <td style="padding:0px; margin:0px;">
+          <div class="overlay_top">
+            <div class="overlay_bottom">
+              <table class="container" cellspacing="0">
+                <tr>
+                  <td class="container_corner_upper_left"></td>
+                  <td class="container_top">
+                    <div style="padding-left:130px; position:relative; top:10px;"><a href="Introduction.html" class="menulink">Main</a> |
+  <a href="eula.html" class="menulink">Eula</a> |
+  <a href="changelog.html" class="menulink">Changelog</a> |
+  <a href="features.html" class="menulink">Features</a> |
+  <a href="todo.html" class="menulink">Project Status</a> |
+  <a href="toc.techdoc.html" class="menulink">Technical Documentation</a></div>
+                  </td>
+                  <td class="container_corner_upper_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_left"></td>
+                  <td valign="top">
+                    <div><img class="pagetitle" src="Images/menu_large/techdoc.png"></div>
+                    <div>
+  <h2>Fileformat: Traders</h2>
+  <p>The warper fileformat is used to configure the Npcfunction 'TraderConversation'. Used by the npc's which provide trading interaction.</p>
+  <code><pre class="code">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;trader&gt;
+	&lt;trades id="11"&gt;
+		&lt;trade type="single" fee="0" refund="0"&gt;57&lt;/trade&gt;
+	&lt;/trades&gt;
+	&lt;production&gt;
+		&lt;item trade="57" group="0" count="1"&gt;2010003&lt;/item&gt;
+	&lt;/production&gt;
+	&lt;supplement&gt;
+		&lt;item trade="57" group="0" count="10"&gt;1700058&lt;/item&gt;
+		&lt;item trade="57" group="0" count="1"&gt;1700069&lt;/item&gt;
+		&lt;item trade="57" group="0" count="10"&gt;9434&lt;/item&gt;
+	&lt;/supplement&gt;
+&lt;/trader&gt;</pre></code>
+
+  <p>In the example above you see the default fileformat as used by the traders of saga. There are two different trader types namely 'single' and 'grouped'. A single trader has a user-interface which shows 5 production and 5 supplement items. A grouped trader show a user-interface with maximum 25 subtrades with 1 production item and maximum 2 supplement items.</p>
+  <p>In the example we show a trader. The trader shows submenu '11' for display options after looking this up in the client we see "Alter Stone : Beholder Eyes + 4;Alter Stone : Bonecrush Rain + 4;Alter Stone : Burning Anger + 4;Alter Stone : Dragon Blade Crusher + 3;Alter Stone : Coldheart + 4;Alter Stone : Magic Charm + 4;" which is associated with "57;61;65;69;73;77;". This means that when you press on the submenu "Alter Stone : Beholder Eyes + 4;Alter Stone : Bonecrush Rain + 4" it will open trade with id listed as "57".</p>
+  <p>As we take a close look at our example. In production we have 1 item and in supplement 3 items listed for id 57. This will mean you gain that one item and require those three items. The group attribute for a 'single' trade can be leftout. For readabillity/consistancy in the fileformat we give it a default value of zero. The refund attribute means the amount of rufi the trader will give you after the trade. The fee attribute means the amount of rufi you need have in order to trade.</p>
+  
+    <code><pre class="code">&lt;?xml version="1.0" encoding="Windows-1252"?&gt;
+&lt;trader&gt;
+	&lt;trades id="7"&gt;
+		&lt;trade type="grouped" fee="0" refund="0"&gt;28&lt;/trade&gt;
+	&lt;/trades&gt;
+	&lt;production&gt;
+		&lt;item trade="28" group="1" count="0"&gt;100085&lt;/item&gt;
+		&lt;item trade="28" group="2" count="0"&gt;100086&lt;/item&gt;
+		&lt;item trade="28" group="3" count="0"&gt;100088&lt;/item&gt;
+		&lt;item trade="28" group="4" count="0"&gt;100090&lt;/item&gt;
+		&lt;item trade="28" group="5" count="0"&gt;100092&lt;/item&gt;
+		&lt;item trade="28" group="6" count="0"&gt;100094&lt;/item&gt;
+		&lt;item trade="28" group="7" count="0"&gt;500105&lt;/item&gt;
+		&lt;item trade="28" group="8" count="0"&gt;570268&lt;/item&gt;
+		&lt;item trade="28" group="9" count="0"&gt;500106&lt;/item&gt;
+		&lt;item trade="28" group="10" count="0"&gt;570269&lt;/item&gt;
+		&lt;item trade="28" group="11" count="0"&gt;500108&lt;/item&gt;
+		&lt;item trade="28" group="12" count="0"&gt;570271&lt;/item&gt;
+		&lt;item trade="28" group="13" count="0"&gt;500110&lt;/item&gt;
+		&lt;item trade="28" group="14" count="0"&gt;570273&lt;/item&gt;
+		&lt;item trade="28" group="15" count="0"&gt;500112&lt;/item&gt;
+		&lt;item trade="28" group="16" count="0"&gt;570275&lt;/item&gt;
+		&lt;item trade="28" group="17" count="0"&gt;500114&lt;/item&gt;
+		&lt;item trade="28" group="18" count="0"&gt;570277&lt;/item&gt;
+	&lt;/production&gt;
+	&lt;supplement&gt;
+		&lt;item trade="28" group="1" count="1"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="2" count="4"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="3" count="9"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="4" count="16"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="5" count="30"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="6" count="64"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="7" count="1"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="8" count="1"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="9" count="4"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="10" count="4"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="11" count="9"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="12" count="9"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="13" count="16"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="14" count="16"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="15" count="30"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="16" count="30"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="17" count="56"&gt;1700113&lt;/item&gt;
+		&lt;item trade="28" group="18" count="56"&gt;1700113&lt;/item&gt;
+	&lt;/supplement&gt;
+&lt;/trader&gt;</pre></code>
+
+<p>In the example above you see how a 'grouped' trader looks like. When showing a grouped trading the entire list is visible by the client. Each supplement/production item is grouped by their groupnumber. This means if you open the tradelist with id 28 which in this cases is a grouped trader and you wish to subtrade 3 of trade 28 you will gain the item:100088; and you will require: 1700113; The grouped traders are often associated with coupon traders. </p>
+  
+</div>
+                    <div style="height:70px; width:100%;"><a href="#" class="footerlink">Top</a></div>
+                  </td>
+                  <td class="container_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_corner_lower_left"></td>
+                  <td class="container_bottom"></td>
+                  <td class="container_corner_lower_right"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="page_footer"><img src="images/logo-rev-low.png"></td>
+      </tr>
+    </table>
+  </body>
+</html>

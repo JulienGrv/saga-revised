@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B90A5397-1F86-4A7D-967A-AFD174D52E7F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Saga.Authentication</RootNamespace>
+    <AssemblyName>Saga.Authentication</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <ApplicationIcon>Icon3.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <StartupObject>Saga.Authentication.Singleton</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ENCRYPT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ENCRYPT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Mono %28debug%29|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Mono %28debug%29\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ENCRYPT</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Compile Include="Configuration\Config.Base.cs" />
+    <Compile Include="Configuration\Config.Manager.Network.cs" />
+    <Compile Include="Configuration\Config.Manager.Database.cs" />
+    <Compile Include="Network\Internal Packets\CMSG_NETWORKADRESSIP.cs" />
+    <Compile Include="Network\Internal Packets\CMSG_CHARACTERLOGINREPLY.cs" />
+    <Compile Include="Network\Internal Packets\CMSG_RELEASERESOURCE.cs" />
+    <Compile Include="Network\Internal Packets\SMSG_SETRATES.cs" />
+    <Compile Include="Network\Internal Packets\SMSG_CHARACTERLOGIN.cs" />
+    <Compile Include="Managers\Managers.ConsoleCommands.cs" />
+    <Compile Include="Managers\Managers.Database.cs" />
+    <Compile Include="Managers\Managers.NetworkService.cs" />
+    <Compile Include="Packets\0x00\CMSG_PONG.cs" />
+    <Compile Include="Packets\0x00\CMSG_RELEASESESSION.cs" />
+    <Compile Include="Packets\0x00\SMSG_PING.cs" />
+    <Compile Include="Packets\0x00\SMSG_KILLSESSION.cs" />
+    <Compile Include="Packets\0x00\SMSG_WORLDINSTANCEACK.cs" />
+    <Compile Include="Utils\Structures\CharInfo.cs" />
+    <Compile Include="Network\Client\Client - Character.cs" />
+    <Compile Include="Network\Client\Client - Login.cs" />
+    <Compile Include="Network\Client\Client - Server.cs" />
+    <Compile Include="Network\InternalClient\InternalClient Maintaince.cs" />
+    <Compile Include="Network\InternalClient\InternalClient Characters.cs" />
+    <Compile Include="Network\InternalClient\InternalClient-Core.cs" />
+    <Compile Include="Packets\0x00\CMSG_FINDCHARACTERDETAILS.cs" />
+    <Compile Include="Packets\0x00\CMSG_FINDCHARACTERS.cs" />
+    <Compile Include="Packets\0x00\CMSG_INTERNAL_CHARCREATIONREPLY.cs" />
+    <Compile Include="Packets\0x00\CMSG_INTERNAL_CHARDELETIONREPLY.cs" />
+    <Compile Include="Packets\0x00\CMSG_WORLDINSTANCE.cs" />
+    <Compile Include="Packets\0x00\SMSG_ESTABLISHWORLDCONNECTION.cs" />
+    <Compile Include="Packets\0x00\SMSG_FINDCHARACTERDETAILS.cs" />
+    <Compile Include="Packets\0x00\SMSG_FINDCHARACTERS.cs" />
+    <Compile Include="Packets\0x00\SMSG_INTERNAL_CHARACTERCREATE.cs" />
+    <Compile Include="Packets\0x00\SMSG_INTERNAL_CHARACTERDELETE.cs" />
+    <Compile Include="Packets\0x00\SMSG_LOGIN.cs" />
+    <Compile Include="Packets\0x01\CMSG_06_REQUESTCHARACTERLIST.cs" />
+    <Compile Include="Packets\0x01\CMSG_05_CREATECHARACTER.cs" />
+    <Compile Include="Packets\0x01\CMSG_08_DELETECHARACTER.cs" />
+    <Compile Include="Packets\0x01\CMSG_07_REQUESTCHARACTERDETAILS.cs" />
+    <Compile Include="Packets\0x01\CMSG_04_SELECTCHARACTER.cs" />
+    <Compile Include="Packets\0x01\CMSG_01_REQUESTLOGIN.cs" />
+    <Compile Include="Packets\0x01\CMSG_02_REQUESTSERVERLIST.cs" />
+    <Compile Include="Packets\0x01\CMSG_03_SELECTSERVER.cs" />
+    <Compile Include="Packets\0x01\SMSG_03_CREATECHARACTER.cs" />
+    <Compile Include="Packets\0x01\SMSG_06_DELETECHARACTER.cs" />
+    <Compile Include="Packets\0x01\SMSG_05_CHARACTERDETAILS.cs" />
+    <Compile Include="Packets\0x01\SMSG_04_CHARACTERLIST.cs" />
+    <Compile Include="Packets\0x01\SMSG_01_LOGINAWNSER.cs" />
+    <Compile Include="Packets\0x01\SMSG_02_SERVERLIST.cs" />
+    <Compile Include="Packets\0x00\SMSG_SETSESSION.cs" />
+    <Compile Include="Properties\Login.Designer.cs">
+      <DependentUpon>Login.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Network\Client\Client--Core.cs" />
+    <Compile Include="Properties\Authentication.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Authentication.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Console.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ServerManager.cs" />
+    <Compile Include="Utils\Enumarations\LoginErrors.cs" />
+    <Compile Include="Utils\Enumarations\server-status.cs" />
+    <Compile Include="Utils\Interfaces\IDatabase.cs" />
+    <Compile Include="Utils\Misc\Pool.cs" />
+    <Compile Include="Utils\Misc\Utillities.cs" />
+    <Compile Include="Utils\Misc\LoginSession.cs" />
+    <Compile Include="Utils\Structures\LoginResult.cs" />
+    <Compile Include="Utils\Structures\ServerInfo.cs" />
+    <Compile Include="Utils\Structures\WorldInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Saga.Shared.Definitions\Saga.Shared.Definitions.csproj">
+      <Project>{DBBE5A5F-9C3B-4785-91A9-0A5245B2F3BC}</Project>
+      <Name>Saga.Shared.Definitions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared\Saga.Shared\Saga.Shared.NetworkCore.csproj">
+      <Project>{45C7E3E6-825A-4AB2-8E60-69131B596229}</Project>
+      <Name>Saga.Shared.NetworkCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Utils\app.config" />
+    <None Include="Properties\Login.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Login.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Authentication.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Authentication.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon3.ico" />
+    <Content Include="Properties\SagaAuthentication.sdm" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>CD "$(SolutionDir)"
+COPY /Y "$(ProjectDir)$(OutDir)$(TargetFileName)" /B "Binary\$(TargetFileName)" /B
+COPY /Y "$(ProjectDir)$(OutDir)*.dll" /B "Binary\*.dll" /B
+COPY /Y "$(ProjectDir)$(OutDir)*.pdb" /B "Binary\*.pdb" /B</PostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+</Project>

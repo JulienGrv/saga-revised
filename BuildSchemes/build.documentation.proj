@@ -1,0 +1,200 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5" DefaultTargets="Documentation" InitialTargets="_Check">
+  
+  <Import Project="$(SagaRoot)\BuildSchemes\common.targets" Condition="$(SagaRoot) != ''" />
+
+  <Target Name="_Check">
+    <Error Code="SagaRoot is not defined" Condition="$(SagaRoot) == ''" />    
+  </Target>
+ 
+  <Target Name="BeforeBuild" Condition="$(Configuration) == 'Documentation'">
+    
+    <PropertyGroup>
+      <SagaPacket>$(SagaRoot)\Saga.Map\Packets</SagaPacket>
+      <XmlDirectory>$(SagaRoot)\Tools\Saga.Documentation</XmlDirectory>
+      <XsltDirectory>$(SagaRoot)\Tools\Saga.Documentation\xslt</XsltDirectory>
+      <OutputDirectory>$(SagaRoot)\Documentation\</OutputDirectory>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Packets Include="$(SagaPacket)\0x03\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x03\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x04\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x04\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x05\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x05\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x06\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x06\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x07\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x07\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x08\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x08\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x09\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x09\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x0A\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x0A\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x0C\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x0C\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x0D\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x0D\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x0E\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x0E\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x0F\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x0F\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x10\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x10\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x12\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x12\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x12\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x12\CMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x13\SMSG_*.cs" />
+      <Packets Include="$(SagaPacket)\0x13\CMSG_*.cs" />
+    </ItemGroup>
+
+    <Delete Files="$(OutputDirectory)\techdoc.packets.html" ContinueOnError="true"  />
+    <Delete Files="$(XmlDirectory)\techdoc.packets.xml" ContinueOnError="true"  />
+    <Delete Files="$(XmlDirectory)\techdoc.packets.compiled.xml" ContinueOnError="true" />
+    <PacketDocumentation OutputFile="$(XmlDirectory)\techdoc.packets.xml" Source="@(Packets)" />    
+    
+    <XslTransform
+      OutputFile="$(XmlDirectory)\techdoc.packets.compiled.xml"
+      XsltFiles="$(XsltDirectory)\techdoc.packet.preparse.xsl"
+      XmlFile="$(XmlDirectory)\techdoc.packets.xml"
+      ContinueOnError="false"
+    />   
+
+    <XslTransform
+      OutputFile="$(OutputDirectory)\techdoc.packets.html"
+      XsltFiles="$(XsltDirectory)\techdoc.packet.final.xsl"
+      XmlFile="$(XmlDirectory)\techdoc.packets.compiled.xml"
+      ContinueOnError="false"
+    />
+
+    <!-- Create all folders and copy files -->
+    <MakeDir Directories="$(OutputDirectory)\" ContinueOnError="true"/>
+    <MakeDir Directories="$(OutputDirectory)\Images" ContinueOnError="true"/>
+    <MakeDir Directories="$(OutputDirectory)\Stylesheet" ContinueOnError="true"/>
+    <Copy SourceFiles="@(Images)" DestinationFiles="@(Images->'$(OutputDirectory)\Images\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(Stylesheet)" DestinationFiles="@(Stylesheet->'$(OutputDirectory)\Stylesheet\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+    <!-- Trasform all xml files -->
+    <XslTransform
+      OutputFile="$(OutputDirectory)\techdoc.scripting.squests.html"
+      XsltFiles="$(XsltDirectory)\scripting.scenario.quests.xsl"
+      XmlFile="$(XmlDirectory)\techdoc.scripting.squests.xhtml"
+    />
+
+    <XslTransform
+      OutputFile="$(OutputDirectory)\techdoc.scripting.quests.html"
+      XsltFiles="$(XsltDirectory)\scripting.quests.xsl"
+      XmlFile="$(XmlDirectory)\techdoc.scripting.quests.xhtml"
+    />
+
+    <XslTransform
+      OutputFile="$(OutputDirectory)\features.html"
+      XsltFiles="$(XsltDirectory)\features.xsl"
+      XmlFile="$(XmlDirectory)\features.xhtml"
+    />
+
+    <XslTransform
+      OutputFile="$(OutputDirectory)\todo.html"
+      XsltFiles="$(XsltDirectory)\todo.xsl"
+      XmlFile="$(XmlDirectory)\todo.xhtml"
+    />
+
+    <XslTransform
+      OutputFile="$(OutputDirectory)\changelog.html"
+      XsltFiles="$(XsltDirectory)\changelog.xsl"
+      XmlFile="$(XmlDirectory)\changelog.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\Introduction.html"
+    XsltFiles="$(XsltDirectory)\Intro.xsl"
+    XmlFile="$(XmlDirectory)\Introduction.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\toc.techdoc.html"
+    XsltFiles="$(XsltDirectory)\toc.techdoc.xsl"
+    XmlFile="$(XmlDirectory)\toc.techdoc.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.warper.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.warper.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.shop.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.shop.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.bookstore.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.bookstore.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.loot.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.loot.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.trader.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.trader.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.guides.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.guides.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.skill.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.skill.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.guide_to_create_a_npc.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.guide_to_create_a_npc.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\eula.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\eula.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.gmcommands.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.gmcommands.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.guide.quest.html"
+    XsltFiles="$(XsltDirectory)\techdoc.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.guide.quest.xhtml"
+    />
+
+    <XslTransform
+    OutputFile="$(OutputDirectory)\techdoc.commandline.auth.html"
+    XsltFiles="$(XsltDirectory)\commandline.auth.xsl"
+    XmlFile="$(XmlDirectory)\techdoc.commandline.auth.xhtml"
+    />    
+    
+
+    <Delete Files="$(XmlDirectory)\techdoc.packets.xml"  ContinueOnError="true"/>
+    <Delete Files="$(XmlDirectory)\techdoc.packets.compiled.xml"  ContinueOnError="true"/>    
+  </Target>
+
+  
+</Project>

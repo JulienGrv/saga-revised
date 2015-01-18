@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<trader>
+	<trades id="36">
+		<trade type="grouped" fee="0" refund="0">262</trade>
+	</trades>
+	<production>
+		<item trade="262" group="1" count="0">2160000</item>
+		<item trade="262" group="2" count="0">2160001</item>
+		<item trade="262" group="3" count="0">2160002</item>
+		<item trade="262" group="4" count="0">2160003</item>
+		<item trade="262" group="5" count="0">2160004</item>
+		<item trade="262" group="6" count="0">2160005</item>
+	</production>
+	<supplement>
+		<item trade="262" group="1" count="1">1800005</item>
+		<item trade="262" group="1" count="2">1800009</item>
+		<item trade="262" group="2" count="1">1800005</item>
+		<item trade="262" group="2" count="2">1800009</item>
+		<item trade="262" group="3" count="1">1800005</item>
+		<item trade="262" group="3" count="2">1800009</item>
+		<item trade="262" group="4" count="2">1800005</item>
+		<item trade="262" group="4" count="2">1800009</item>
+		<item trade="262" group="5" count="2">1800005</item>
+		<item trade="262" group="5" count="2">1800009</item>
+		<item trade="262" group="6" count="2">1800005</item>
+		<item trade="262" group="6" count="2">1800009</item>
+	</supplement>
+</trader>

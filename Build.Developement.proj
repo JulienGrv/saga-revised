@@ -1,0 +1,8 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">   
+  <Target Name="Build">
+    <MSBuild Projects="Build.Cleanall.proj" />
+    <MSBuild Projects="SagaRevisided.sln" Properties="Configuration=Debug"/>
+    <MSBuild Projects="Abstraction/Saga.Data.sln" Properties="Configuration=Debug"/>
+    <MSBuild Projects="Tools/Saga.Tools.sln" Properties="Configuration=Debug"/>
+  </Target>
+</Project>

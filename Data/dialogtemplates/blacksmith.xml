@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Auctioneer> 
+  <Gossip>500</Gossip>
+  <EverydayConversation>500</EverydayConversation>
+  <BlackSmithMenu>500</BlackSmithMenu>
+  <WeaponTypeChange>500</WeaponTypeChange>
+  <SuffixChange>500</SuffixChange>
+  <WeaponUpgrade>500</WeaponUpgrade>
+  <RepairEquipment>500</RepairEquipment>
+</Auctioneer>

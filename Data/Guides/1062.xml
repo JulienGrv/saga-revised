@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<guide menu="4">
+  <point type="npc">1000</point>
+  <point type="npc">1001</point>
+  <point type="npc">1005</point>
+  <point type="npc">1004</point>
+  <point type="npc">1002</point>
+  <point type="npc">1049</point>
+  <point type="map">1</point> <!-- Hodemines Lighthouse //-->
+  <point type="map">1</point> <!-- Hodemines Harbour //-->
+  <point type="map">1</point> <!-- Outside Hodemines //-->
+  <point type="map">1</point> <!-- Adventurer Training Grounds //-->
+</guide>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xslt/techdoc.xsl"?>
+<page logo="techdoc">
+  <title>Guide: To create a custom npc</title>
+  <paragraph>A npc function is a building brick for a npc. Every npc has the option to include one or serveral npc-functions. Currently the creating of npc functions isn't supported however we do provide a list of existing npc functions.</paragraph>
+  <code><![CDATA[Saga.Npc.Functions.BlackSmith			
+Saga.Npc.Functions.EverydayConversation	
+Saga.Npc.Functions.CatheleyaConversation	
+Saga.Npc.Functions.SkillMasterConversation
+Saga.Npc.Functions.WarperConversation	
+Saga.Npc.Functions.ShopConversation		
+Saga.Npc.Functions.AuctionConversation	
+Saga.Npc.Functions.KaftraConversation	
+Saga.Npc.Functions.LocationConversation	
+Saga.Npc.Functions.TraderConversation	
+Saga.Npc.Functions.QuestConversation
+]]></code>
+
+  <code><![CDATA[Blacksmith 
+This will add a blacksmith icon to the designated npc with submenu's. 
+Submenu: Weapon naming, Weapon changing, Equipment repair.
+
+EverydayConversation 
+This will add a everyday conversation to the npc (every npc should include this).
+
+CatheleyaConversation
+This will add a catheleya button and submenu. 
+Submenu: Heal, Open shop
+
+SkillMasterConversation
+This will add a skillmaster button and submenu
+Submenu: Change job, Special skills, Bookstore.
+
+WarperConversation
+This will add a warper button.
+Submenu: Configurable by configurng warpers/{npcid}.xml
+
+ShopConversation
+This will add a shop button.
+Shop: Configurable by configurng shops/{npcid}.xml
+
+ShopConversation
+This will add a shop button.
+Shop: Configurable by configurng shops/{npcid}.xml
+
+AuctionConversation
+This will add a auction button and submenu
+Submenu: Open auction.
+
+KaftraConversation
+This will add a kaftra button, event button, kaftra submenu
+Submenu: Save location, Warehouse.
+
+LocationConversation
+This will add a location button and submenu. Locationguides are a new type of
+npcs however their functions already work and are implamented.
+Submenu: Configurable by configurng Guides/{npcid}.xml
+
+TraderConversation
+This will add a trader button and submenu.
+Submenu: Configurable by configurng traders/{npcid}.xml
+
+QuestConversation
+This will make the selected npc quest sensitive. All npc's should included 
+this function else none of the quests can be done with them. 
+]]></code>
+
+
+
+  <paragraph>The following code shows how a blacksmith is structured. With roughly 20 lines of code we made our npc. Which we can endlessly reuse. Make sure you class derives from 'BaseNPC' for npc. The buttons will be shown in the way the functions are registered so assume you would first register blacksmith and after that the everyday conversation you end up showing the blacksmith button first and than the everyday button. (Left to right)</paragraph>
+<code><![CDATA[using Saga.Npc.Functions;
+using Saga.Structures;
+
+namespace Saga.Templates
+{
+
+    public class BlackSmith : BaseNPC
+    {
+
+        #region Base Members
+
+        protected override void Initialize()
+        {            
+            NpcFunction.Create<Saga.Npc.Functions.EverydayConversation>(this);
+            NpcFunction.Create<Saga.Npc.Functions.BlackSmith>(this);
+            NpcFunction.Create<Saga.Npc.Functions.ShopConversation>(this);
+            NpcFunction.Create<Saga.Npc.Functions.TraderConversation>(this);
+            NpcFunction.Create<Saga.Npc.Functions.QuestConversation>(this);
+        }
+
+        #endregion
+
+        #region Constructor/Deconstructor
+
+        ~BlackSmith() { }
+        public BlackSmith() { }
+
+        #endregion
+
+    }
+}]]></code>
+
+
+</page>

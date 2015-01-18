@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<trader>
+	<trades id="35">
+		<trade type="grouped" fee="0" refund="0">261</trade>
+	</trades>
+	<production>
+		<item trade="261" group="1" count="0">2150000</item>
+		<item trade="261" group="2" count="0">2150001</item>
+	</production>
+	<supplement>
+		<item trade="261" group="1" count="1">1800001</item>
+		<item trade="261" group="1" count="1">1800009</item>
+		<item trade="261" group="2" count="1">1800001</item>
+		<item trade="261" group="2" count="1">1800009</item>
+	</supplement>
+</trader>

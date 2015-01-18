@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xslt/techdoc.xsl"?>
+<page logo="techdoc">
+  <title>Fileformat: Warper</title>
+  <paragraph>The warper fileformat is used to configure the Npcfunction 'WarperConversation'. Used by the Wing of Wind npc's.</paragraph>
+  <code><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE projects [
+	<!ELEMENT warper (warp*)>
+	<!ELEMENT warp CDATA #REQUIRED>
+]>
+<warper>
+  <warp>170</warp>
+  <warp>171</warp>
+</warper>]]></code>
+
+  <paragraph>In the example above you see the default format for the used internally by saga. It reads a set of numbers which are known by the client. Each number represents a other warp location. A single location can be present with the same name multiple times e.d. both 1 and 10 are 'Hodehimes Village Square' the difference between these two numbers is the price.</paragraph>
+  <paragraph>Under the data directory we have a file named 'warp_data'. In this file we declare in a tabular form where you will be warped too, and what the fee is. However the prices are client side.</paragraph>
+</page>

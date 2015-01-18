@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<trader>
+	<trades id="28">
+		<trade type="single" fee="9550" refund="0">120</trade>
+		<trade type="single" fee="20000" refund="0">121</trade>
+		<trade type="single" fee="24500" refund="0">122</trade>
+		<trade type="single" fee="16500" refund="0">180</trade>
+		<trade type="single" fee="19500" refund="0">181</trade>
+		<trade type="single" fee="36500" refund="0">182</trade>
+		<trade type="single" fee="28500" refund="0">240</trade>
+		<trade type="single" fee="32000" refund="0">241</trade>
+		<trade type="single" fee="42000" refund="0">242</trade>
+	</trades>
+	<production>
+		<item trade="120" group="0" count="1">150684</item>
+		<item trade="121" group="0" count="1">150688</item>
+		<item trade="122" group="0" count="1">150692</item>
+		<item trade="180" group="0" count="1">300632</item>
+		<item trade="181" group="0" count="1">300633</item>
+		<item trade="182" group="0" count="1">300637</item>
+		<item trade="240" group="0" count="1">450419</item>
+		<item trade="241" group="0" count="1">450423</item>
+		<item trade="242" group="0" count="1">450424</item>
+	</production>
+	<supplement>
+		<item trade="120" group="0" count="20">9509</item>
+		<item trade="120" group="0" count="30">9340</item>
+		<item trade="120" group="0" count="5">1700090</item>
+		<item trade="120" group="0" count="2">1700072</item>
+		<item trade="120" group="0" count="10">10496</item>
+		<item trade="121" group="0" count="20">9509</item>
+		<item trade="121" group="0" count="30">9340</item>
+		<item trade="121" group="0" count="5">1700038</item>
+		<item trade="121" group="0" count="2">1700072</item>
+		<item trade="121" group="0" count="10">10455</item>
+		<item trade="122" group="0" count="20">9509</item>
+		<item trade="122" group="0" count="30">9340</item>
+		<item trade="122" group="0" count="5">1700055</item>
+		<item trade="122" group="0" count="2">1700072</item>
+		<item trade="122" group="0" count="1">1700087</item>
+		<item trade="180" group="0" count="20">9509</item>
+		<item trade="180" group="0" count="30">9340</item>
+		<item trade="180" group="0" count="20">10473</item>
+		<item trade="180" group="0" count="2">1700072</item>
+		<item trade="180" group="0" count="1">1700042</item>
+		<item trade="181" group="0" count="20">9509</item>
+		<item trade="181" group="0" count="30">9340</item>
+		<item trade="181" group="0" count="5">1700038</item>
+		<item trade="181" group="0" count="2">1700072</item>
+		<item trade="181" group="0" count="5">10497</item>
+		<item trade="182" group="0" count="20">9509</item>
+		<item trade="182" group="0" count="30">9340</item>
+		<item trade="182" group="0" count="5">1700055</item>
+		<item trade="182" group="0" count="2">1700072</item>
+		<item trade="182" group="0" count="1">10462</item>
+		<item trade="240" group="0" count="20">9509</item>
+		<item trade="240" group="0" count="30">9340</item>
+		<item trade="240" group="0" count="20">9508</item>
+		<item trade="240" group="0" count="2">1700072</item>
+		<item trade="240" group="0" count="5">10497</item>
+		<item trade="241" group="0" count="20">9509</item>
+		<item trade="241" group="0" count="30">9340</item>
+		<item trade="241" group="0" count="5">1700038</item>
+		<item trade="241" group="0" count="2">1700072</item>
+		<item trade="241" group="0" count="1">10462</item>
+		<item trade="242" group="0" count="20">9509</item>
+		<item trade="242" group="0" count="30">9340</item>
+		<item trade="242" group="0" count="5">1700055</item>
+		<item trade="242" group="0" count="2">1700072</item>
+		<item trade="242" group="0" count="20">9418</item>
+	</supplement>
+</trader>

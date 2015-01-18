@@ -1,0 +1,55 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+
+  <PropertyGroup>
+    <SagaRoot>D:\Documents and Settings\phr34k\Desktop\SagaSVN</SagaRoot>
+    <SagaPacket>$(SagaRoot)\Saga.Map\Packets</SagaPacket>
+    <SagaTasksPath>$(MSBuildProjectDirectory)\bin\debug\</SagaTasksPath>
+  </PropertyGroup> 
+
+  <ItemGroup>
+    <Packets Include="$(SagaPacket)\0x03\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x03\CMSG_*.cs" />   
+    <Packets Include="$(SagaPacket)\0x04\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x04\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x05\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x05\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x06\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x06\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x07\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x07\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x08\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x08\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x09\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x09\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x0A\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x0A\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x0C\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x0C\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x0D\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x0D\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x0E\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x0E\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x0F\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x0F\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x10\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x10\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x12\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x12\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x12\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x12\CMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x13\SMSG_*.cs" />
+    <Packets Include="$(SagaPacket)\0x13\CMSG_*.cs" />
+  </ItemGroup>
+
+
+  <Import Project="Saga.Tools.Tasks.Targets" />
+  <Target Name="Mref">
+    <PacketDocumentation OutputFile="test.xml" Source="@(Packets)" />        
+  </Target>
+
+
+
+
+
+
+</Project>

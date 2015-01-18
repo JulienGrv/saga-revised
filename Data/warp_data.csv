@@ -1,0 +1,182 @@
+id,price,x,y,z,map,
+1,18,1840.076,-13552.21,-6392,1,Hodemimes Village Square
+2,14,19131,14621,1000,3,Hodemimes Adventurer Training Center Exit
+3,25,3485.777,4884.801,-9812,1,Hodemimes Village Entrance
+4,110,-26992,36718,4086,2,Hodemimes Cave of Emir Entrance
+5,14,19131,14621,3000,3,Hodemimes Adventurer Training Center Exit
+6,18,-11570.44,-1312.455,-6616,1,Hodemimes Exit
+7,875,13715.05,77742.77,5120,5,Prontera Village Square
+8,2180,-837.586,-891.946,-4003,13,Cognito Harbor
+9,2925,-14231.8,-18221.53,9549.206,20,Alfheim Village Square
+10,14,1840.076,-13552.21,-6392,1,Hodemimes Village Square
+11,14,-11570.44,-1312.455,-6616,1,Hodemimes Direction Exit
+12,85,-42804,-32577,61117,2,Hodemimes Lighthouse Island
+13,43,-1523,-14381,322,2,Hodemimes Harbor
+14,85,-26992,36718,4086,2,Hodemimes Cave of Emir Entrance
+15,25,1840.076,-13552.21,-6392,1,Hodemimes Village Square
+16,85,3485.777,4884.801,-9812,1,Hodemimes Village Entrance
+17,60,-1523,-14381,322,2,Hodemimes Harbor
+18,85,-26992,36718,4086,2,Hodemimes Cave of Emir Entrance
+19,60,-42804,-32577,61117,2,Hodemimes Lighthouse Island
+20,43,3485.777,4884.801,-9812,1,Hodemimes Village Entrance
+21,60,-26992,36718,4086,2,Hodemimes Cave of Emir Entrance
+22,85,-42804,-32577,61117,2,Hodemimes Lighthouse Island
+23,60,3485.777,4884.801,-9812,1,Hodemimes Village Entrance
+24,85,-1523,-14381,322,2,Hodemimes Harbor
+25,90,14000.82,100331.1,4253.208,5,Prontera Entrance
+26,155,-3973.268,2657.849,-462.317,6,Prontera Southeast Farm
+27,245,-43704.14,14815.72,1474.078,6,Prontera Southeast Forest of Briston
+28,183,35762.41,42825.8,-4879.842,6,Prontera Southeast Poring Island
+29,600,-1523,-14381,322,2,Hodemimes Harbor
+30,750,1840.076,-13552.21,-6392,1,Hodemimes Village Square
+31,5000,-837.586,-891.946,-4003,13,Cognito Harbor
+32,90,20516.23,-33650.39,-4138.862,6,Prontera Southeast Harbor
+33,245,-3973.268,2657.849,-462.317,6,Prontera Southeast Farm Nearby
+34,335,-43704.14,14815.72,1474.078,6,Prontera Southeast Forest of Briston Nearby
+35,273,35762.41,42825.8,-4879.842,6,Prontera Southeast Poring Island
+36,60,14000.82,100331.1,4253.208,5,Prontera South Town Exit
+37,245,-27431.34,-33151.25,-981.968,6,Prontera Southeast Saints Entrance
+38,130,35762.41,42825.8,-4879.842,6,Prontera Southeast Poring Island
+39,155,20516.23,-33650.39,-4138.862,6,Prontera Southeast Harbor
+40,90,-43704.14,14815.72,1474.078,6,Prontera Southeast Forest of Briston Nearby
+41,273,-27431.34,-33151.25,-981.968,6,Prontera Southeast Saints Entrance
+42,130,-3973.268,2657.849,-462.317,6,Prontera Southeast Farm Nearby
+43,183,20516.23,-33650.39,-4138.862,6,Prontera Southeast Harbor
+44,195,-43704.14,14815.72,1474.078,6,Prontera Southeast Forest of Briston Nearby
+45,335,-27431.34,-33151.25,-981.968,6,Prontera Southeast Saints Entrance
+46,90,-3973.268,2657.849,-462.317,6,Prontera Southeast Farm Nearby
+47,195,35762.41,42825.8,-4879.842,6,Prontera Southeast Poring Island
+48,245,20516.23,-33650.39,-4138.862,6,Prontera Southeast Harbor
+49,405,-45181.66,10224.66,5665.69,7,Prontera Southeast Direction Exit
+50,180,-23497.4,-46582.82,666.523,7,Prontera Northwest Direction Exit
+51,225,-6467.659,18480.21,2357.331,7,Prontera South Valley of Wolves
+52,405,-45181.66,10224.66,5665.69,7,Prontera Southeast Direction Exit
+53,180,24697.72,-24604.32,7060.405,7,Prontera Northwest Doubleaxe Gang Zadoras Territory Nearby
+54,225,-6467.659,18480.21,2357.331,7,Prontera South Valley of Wolves
+55,150,45548.73,42975.14,-12923.78,8,Prontera Northwest Hill of Mainland
+56,405,24697.72,-24604.32,7060.405,7,Prontera Northwest Doubleaxe Gang Zadoras Territory Nearby
+57,405,-23497.4,-46582.82,666.523,7,Prontera Northwest Direction Exit
+58,180,-6467.659,18480.21,2357.331,7,Prontera South Valley of Wolves
+59,75,-43704.14,14815.72,1474.078,6,Prontera Southeast Forest of Briston Nearby
+60,510,13715.05,77742.77,5120,5,Prontera Village Square
+61,180,-45181.66,10224.66,5665.69,7,Prontera Southeast Direction Exit
+62,225,24697.72,-24604.32,7060.405,7,Prontera Northwest Doubleaxe Gang Zadoras Territory Nearby
+63,225,-23497.4,-46582.82,666.523,7,Prontera Northwest Direction Exit
+64,750,45548.73,42975.14,-12923.78,8,Prontera South Direction Exit Hill of Mainland
+65,270,-22741.14,-19704.07,-11574.32,8,Prontera Northwest Westcoast
+66,510,-2767.397,4630.155,-11869.02,8,Prontera Northwest Den of Gangsters Entrance
+67,480,45548.73,42975.14,-12923.78,8,Prontera South Direction Exit Hill of Mainland
+68,270,35378.43,-32605.41,-9379.972,8,Prontera Northwest Den of Cape Black Cats Nearby
+69,240,-2767.397,4630.155,-11869.02,8,Prontera Northwest Den of Gangsters Entrance
+70,750,35378.43,-32605.41,-9379.972,8,Prontera Northwest Den of Cape Black Cats Nearby
+71,480,-22741.14,-19704.07,-11574.32,8,Prontera Northwest Westcoast
+72,270,-2767.397,4630.155,-11869.02,8,Prontera Northwest Den of Gangsters Entrance
+73,150,-45181.66,10224.66,5665.69,7,Prontera South Nordis Swamp
+74,110,13715.05,77742.77,5120,5,Prontera Village Square
+75,210,-27431.34,-33151.25,-981.968,6,Prontera Southeast Saints Entrance
+76,270,45548.73,42975.14,-12923.78,8,Prontera South Direction Exit Hill of Mainland
+77,240,-22741.14,-19704.07,-11574.32,8,Prontera Northwest Westcoast
+78,510,35378.43,-32605.41,-9379.972,8,Prontera Northwest Den of Cape Black Cats Nearby
+79,40,13715.05,77742.77,5120,5,Prontera Village Square
+80,80,14000.82,100331.1,4253.208,5,Prontera South Town Exit
+81,180,39963.39,82989.38,6438.351,5,Prontera Knights
+82,40,14000.82,100331.1,4253.208,5,Prontera South Town Exit
+83,70,39963.39,82989.38,6438.351,5,Prontera Knights
+84,40,13893.85,46829.79,9235.904,5,Prontera King's Palace Entrance
+85,100,-27431.34,-33151.25,-981.968,6,Prontera Southeast Saints Entrance
+86,510,-6467.659,18480.21,2357.331,7,Prontera South Valley of Wolves
+87,110,45548.73,42975.14,-12923.78,8,Prontera Northwest Hill of Mainland
+88,875,1840.076,-13552.21,-6392,1,Hodemimes Village Square
+89,1125,-837.586,-891.946,-4003,13,Cognito Harbor
+90,1875,-14231.8,-18221.53,9549.206,20,Alfheim Village Square
+91,70,13715.05,77742.77,5120,5,Prontera Village Square
+92,60,14000.82,100331.1,4253.208,5,Prontera South Town Exit
+93,180,13893.85,46829.79,9235.904,5,Prontera King's Palace Entrance
+94,40,13715.05,77742.77,5120,5,Prontera Village Square
+95,60,39963.39,82989.38,6438.351,5,Prontera Knights
+96,80,13893.85,46829.79,9235.904,5,Prontera King's Palace Entrance
+97,60,-27431.34,-33151.25,-981.968,6,Prontera Southeast Saints Entrance
+98,110,45548.73,42975.14,-12923.78,8,Prontera Northwest Hill of Mainland
+99,50,-8959.12,-30350.85,6858.326,12,Cognito Town
+100,300,-32390.26,-33242.63,-24064.06,14,Cognito West Harbor Entrance
+101,1150,-36195.8,-7880.656,-8147.699,15,Cognito East Mari Dungeon
+102,1750,35186.31,-13508.11,-6265.776,15,Cognito East Porosa Town
+103,2450,13787.83,-41107.2,-23520,24,Forest of Echoes Black Feather Upper Camp
+104,2175,1840.076,-13552.21,-6392,1,Hodemimes Village Square
+105,1150,13715.05,77742.77,5120,5,Prontera Village Square
+106,750,-14231.8,-18221.53,9549.206,20,Alfheim Village Square
+107,50,-837.586,-891.946,-4003,13,Cognito Harbor
+108,300,-32390.26,-33242.63,-24064.06,14,Cognito West Harbor Entrance
+109,1150,-36195.8,-7880.656,-8147.699,15,Cognito East Mari Dungeon
+110,1750,35186.31,-13508.11,-6265.776,15,Cognito East Porosa Town
+111,2450,13787.83,-41107.2,-23520,24,Forest of Echoes Black Feather Upper Camp
+112,2175,1840.076,-13552.21,-6392,1,Hodemimes Village Square
+113,1150,13715.05,77742.77,5120,5,Prontera Village Square
+114,750,-14231.8,-18221.53,9549.206,20,Alfheim Village Square
+115,475,32190,-16611.77,-22320.25,14,Cognito East Entrance Nest of Entraian
+116,475,-16815.18,28815.81,-22611.47,14,Cognito Old Refinery
+117,300,-837.586,-891.946,-4003,13,Cognito Harbor
+118,300,-8959.12,-30350.85,6858.326,12,Cognito Town
+119,600,35186.31,-13508.11,-6265.776,15,Cognito East Porosa Town
+120,600,7780.182,30159.02,-7869.784,15,Cognito East Polluted Area Nearby
+121,370,32190,-16611.77,-22320.25,14,Cognito East Entrance Nest of Entraian
+122,410,7780.182,30159.02,-7869.784,15,Cognito East Polluted Area Nearby
+123,600,-32390.26,-33242.63,-24064.06,14,Cognito West Harbor Entrance
+124,1120,13787.83,-41107.2,-23520,24,Forest of Echoes Black Feather Upper Camp
+125,1750,-837.586,-891.946,-4003,13,Cognito Harbor
+126,1750,-8959.12,-30350.85,6858.326,12,Cognito Town
+127,420,35186.31,-13508.11,-6265.776,15,Cognito East Porosa Town
+128,600,-36195.8,-7880.656,-8147.699,15,Cognito East Mari Dungeon
+129,700,13787.83,-41107.2,-23520,24,Forest of Echoes Black Feather Upper Camp
+130,915,7150.185,15698.5,-24983.62,24,Forest of Echoes Anthill
+131,1010,-40890.96,812.946,-19740.96,24,Forest of Echoes Shade Sand Road
+132,1120,35186.31,-13508.11,-6265.776,15,Cognito East Porosa Town
+133,2450,-837.586,-891.946,-4003,13,Cognito Harbor
+134,2450,-8959.12,-30350.85,6858.326,12,Cognito Town
+135,1010,13787.83,-41107.2,-23520,24,Forest of Echoes Black Feather Upper Camp
+136,825,7150.185,15698.5,-24983.62,24,Forest of Echoes Anthill
+137,915,13787.83,-41107.2,-23520,24,Forest of Echoes Black Feather Upper Camp
+138,825,-40890.96,812.946,-19740.96,24,Forest of Echoes Shade Sand Road
+139,500,3330.178,1096.525,7603.309,20,Alfheim Town Mother Tree
+140,1465,-29628.31,-21839.42,983.009,21,Alfheim Sky Tree Forest Ancient Garden
+141,2755,-34065.34,40311.511,1454.02,21,Alfheim Sky Tree Forest Goblin Base
+142,2430,2253.675,19668.14,-1714.852,21,Alfheim Sky Tree Forest Wind Vantage
+143,750,-837.586,-891.946,-4003,13,Cognito Harbor
+144,750,-8959.12,-30350.85,6858.326,12,Cognito Town
+145,2925,1840.076,-13552.21,-6392,1,Hodemimes Village Square
+146,1875,13715.05,77742.77,5120,5,Prontera Village Square
+147,500,-14231.8,-18221.53,9549.206,20,Alfheim Village Square
+148,1465,-29628.31,-21839.42,983.009,21,Alfheim Sky Tree Forest Ancient Garden
+149,2755,-34065.34,40311.511,1454.02,21,Alfheim Sky Tree Forest Goblin Base
+150,2430,2253.675,19668.14,-1714.852,21,Alfheim Sky Tree Forest Wind Vantage
+151,750,-837.586,-891.946,-4003,13,Cognito Harbor
+152,750,-8959.12,-30350.85,6858.326,12,Cognito Town
+153,2925,1840.076,-13552.21,-6392,1,Hodemimes Village Square
+154,1875,13715.05,77742.77,5120,5,Prontera Village Square
+155,965,30726.1,-915.557,-1897.085,21,Alfheim Sky Tree Forest Ice Coast Harbor
+156,965,2253.675,19668.14,-1714.852,21,Alfheim Sky Tree Forest Wind Vantage
+157,1290,-34065.34,40311.511,1454.02,21,Alfheim Sky Tree Forest Goblin Base
+158,1465,-14231.8,-18221.53,9549.206,20,Alfheim Village Square
+159,965,-29628.31,-21839.42,983.009,21,Alfheim Sky Tree Forest Ancient Garden
+160,645,2253.675,19668.14,-1714.852,21,Alfheim Sky Tree Forest Wind Vantage
+161,1770,-34065.34,40311.511,1454.02,21,Alfheim Sky Tree Forest Goblin Base
+162,750,-837.586,-891.946,-4003,13,Cognito Harbor
+163,750,-8959.12,-30350.85,6858.326,12,Cognito Town
+164,1290,-29628.31,-21839.42,983.009,21,Alfheim Sky Tree Forest Ancient Garden
+165,1770,30726.1,-915.557,-1897.085,21,Alfheim Sky Tree Forest Ice Coast Harbor
+166,1125,2253.675,19668.14,-1714.852,21,Alfheim Sky Tree Forest Wind Vantage
+167,965,-29628.31,-21839.42,983.009,21,Alfheim Sky Tree Forest Ancient Garden
+168,645,30726.1,-915.557,-1897.085,21,Alfheim Sky Tree Forest Ice Coast Harbor
+169,1125,-34065.34,40311.511,1454.02,21,Alfheim Sky Tree Forest Goblin Base
+170,0,1532,6626,112,11,Quest Board Shortcut
+171,0,-6558.26,14842.21,4322.328,3,Outside Building Shortcut
+172,0,-6558.26,14842.21,4322.328,3,Outside Building Shortcut
+173,600,20516.23,-33650.39,-4138.862,6,Prontera Southeast Harbor
+174,750,13715.05,77742.77,5120,5,Prontera Village Square
+175,75,-6467.659,18480.21,2357.331,7,Prontera South Valley of Wolves
+176,475,-32390.26,-33242.63,-24064.06,14,Cognito West Harbor Entrance
+177,475,-16815.18,28815.81,-22611.47,14,Cognito Old Refinery
+178,970,35186.31,-13508.11,-6265.776,15,Cognito East Porosa Town
+179,370,-36195.8,-7880.656,-8147.699,15,Cognito Mari Dungeon
+180,475,-32390.26,-33242.63,-24064.06,14,Cognito West Harbor Entrance
+181,475,32190,-16611.77,-22320.25,14,Cognito East Entrance Nest of Entraian

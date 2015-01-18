@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xslt/techdoc.xsl"?>
+<page logo="techdoc">
+  <title>Fileformat: Lootcollection</title>
+  <paragraph>The lootcollection fileformat is used to configure the their standard loot (non quest loot). The lootcollections are placed under the ~data/loot/{npcid}.xml</paragraph>
+  <code><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE lootitems [
+	<!ELEMENT lootitems (item*)>
+	<!ELEMENT item CDATA #REQUIRED>
+	<!ATTLIST item rate CDATA #REQUIRED>
+]>
+<lootitems>
+   <item rate="3876">2020001</item>
+   <item rate="989">2020002</item>
+   <item rate="797">9504</item>
+   <item rate="172">530432</item>
+   <item rate="115">450027</item>
+   <item rate="144">500196</item>
+   <item rate="365">51500004</item>
+   <item rate="144">100109</item>
+   <item rate="96">350014</item>
+   <item rate="96">1700069</item>
+   <item rate="480">9493</item>
+   <item rate="144">450144</item>
+   <item rate="427">9449</item>
+   <item rate="144">100112</item>
+   <item rate="28">2735</item>
+</lootitems>
+]]></code>
+
+  <paragraph>In the example above you see the internal file format used to configure the item loot the default item loot of our monsters. Note that loot related to quests are not in here this means that any loot involving quest items should be filtered out. </paragraph>
+  <paragraph>Loot that involves quests are often activated in the quest as soon as the quest end the additional loot caused by the quest will be deactivated. This causes your monster to have both a separate loot for daily means and for quests. Separating these two collections from each other clearly has its benefits. It’s easier to update the monsters item drop/drop ratio’s while keeping the quests intact. And vice versa it’s easier to add a monster’s quest interaction while there is no other information available about him.</paragraph>
+  <paragraph>The drop ratio is based on a number between 0 and 10000. If the random number is lower or equal than the speciafied dropratio the item will be droped. Therefor the higher the dropratio the more chance the item has of beeing dropped.</paragraph>
+
+
+</page>

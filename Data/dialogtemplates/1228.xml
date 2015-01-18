@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Basicnpc> 
+  <Gossip>4775</Gossip>
+  <EverydayConversation>4778</EverydayConversation>
+  <TradeDialog>4781</TradeDialog>
+</Basicnpc>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<guide menu="0">
+	<point type="map" x="0" y="0" z="0">1</point>
+	<point type="npc">1140</point>
+	<point type="npc">1145</point>
+	<point type="map" x="0" y="0" z="0">1</point>
+	<point type="npc">4</point>
+</guide>

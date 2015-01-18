@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Auctioneer> 
+  <Gossip>2384</Gossip>
+  <EverydayConversation>2385</EverydayConversation>
+  <EverydayConversation>2386</EverydayConversation>
+  <Shop>5550</Shop>
+  <BlackSmithMenu>2516</BlackSmithMenu>
+  <RepairEquipment>2517</RepairEquipment>
+  <WeaponTypeChange>2518</WeaponTypeChange>
+  <WeaponUpgrade>2519</WeaponUpgrade>
+  <SuffixChange>84</SuffixChange>
+  <TradeDialog>5551</TradeDialog>
+</Auctioneer>

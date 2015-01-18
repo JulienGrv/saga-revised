@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Basicnpc> 
+  <Gossip>5349</Gossip>
+  <EverydayConversation>5350</EverydayConversation>
+  <Warper>5351</Warper>
+</Basicnpc>

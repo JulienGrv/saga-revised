@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xslt/scripting.scenario.quests.xsl"?>
+<page logo="scripting">
+  <luabindings>
+
+    <!-- Saga.AddStep -->
+    <function>
+      <name>Saga.AddStep</name>
+      <parameterstring>Saga.AddStep(cid, QuestID);</parameterstring>
+      <remarks>
+        Adds a step to the quest. This can only be done during initialisation.
+      </remarks>
+      <example><![CDATA[function QUEST_START(cid)
+	-- Start Quest
+	Saga.AddStep(cid, QuestID, 101);
+	Saga.QuestStart(cid, QuestID);
+	return 0;
+end]]></example>
+    </function>
+
+    <!-- Saga.StartEvent -->
+    <function>
+      <name>Saga.StartEvent</name>
+      <parameterstring>Saga.StartEvent(cid, EventId);</parameterstring>
+      <remarks>
+        Starts showing a event dialog. It will suspend the function until the event has been ended.
+      </remarks>
+      <example><![CDATA[function QUEST_STEP_1(cid)
+     Saga.StartEvent(cid, 10102);	
+     Saga.StepComplete(cid, QuestID, 101);
+     Saga.QuestComplete(cid, QuestID);
+     return -1; 
+end]]></example>      
+    </function>
+
+
+    <!-- Saga.StepComplete -->
+    <function>
+      <name>Saga.StepComplete</name>
+      <parameterstring>Saga.StepComplete(cid, QuestID, StepID);</parameterstring>
+      <remarks>
+        Completes the speciafied step and advances to the next step. If no step is speciafied
+	  the next step is considered to be 0.
+      </remarks>
+      <example><![CDATA[function QUEST_STEP_1(cid)
+     Saga.StartEvent(cid, 10102);	
+     Saga.StepComplete(cid, QuestID, 101);
+     Saga.QuestComplete(cid, QuestID);
+     return -1; 
+end]]>
+      </example>
+    </function>
+
+    <!-- Saga.QuestComplete -->
+    <function>
+      <name>Saga.QuestComplete</name>
+      <parameterstring>Saga.QuestComplete(cid, QuestID);</parameterstring>
+      <remarks>
+        Completes the scenario quest and removes any related information regarding the 
+	  quest.
+      </remarks>
+      <example><![CDATA[function QUEST_STEP_1(cid)
+     Saga.StartEvent(cid, 10102);	
+     Saga.StepComplete(cid, QuestID, 101);
+     Saga.QuestComplete(cid, QuestID);
+     return -1; 
+end]]></example>
+    </function>
+
+
+      <!-- Saga.GetStepIndex -->
+    <function>
+      <name>Saga.GetStepIndex</name>
+      <parameterstring>Saga.GetStepIndex(cid, QuestId);</parameterstring>
+      <remarks>
+        Returns the current step of the quest.
+      </remarks>
+      <example><![CDATA[function QUEST_CHECK(cid)
+	-- Check all steps for progress
+	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local ret = -1;
+
+	if CurStepID == 101 then
+		ret = QUEST_STEP_1(cid);
+	end
+
+	if ret == 0 then
+		QUEST_CHECK(cid)
+	end
+
+	return -1;
+end]]>
+      </example>
+    </function>
+
+
+
+    <!-- Saga.QuestStart -->
+    <function>
+      <name>Saga.QuestStart</name>
+      <parameterstring>Saga.QuestStart(cid, QuestId);</parameterstring>
+      <remarks>
+        Starts and initializes the scenario quest with the speciafied quest id.
+      </remarks>
+      <example><![CDATA[function QUEST_FINISH(cid)
+	-- Start Next Quest
+	Saga.QuestStart(cid, 2);
+	return 0;
+end]]>
+      </example>
+    </function>      
+
+  </luabindings>
+</page>

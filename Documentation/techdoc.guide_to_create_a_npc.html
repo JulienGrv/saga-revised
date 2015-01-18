@@ -1,0 +1,151 @@
+﻿<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Guide: To create a custom npc</title>
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+  </head>
+  <body>
+    <table class="container" cellspacing="0">
+      <tr>
+        <td style="padding:0px; margin:0px;">
+          <div class="overlay_top">
+            <div class="overlay_bottom">
+              <table class="container" cellspacing="0">
+                <tr>
+                  <td class="container_corner_upper_left"></td>
+                  <td class="container_top">
+                    <div style="padding-left:130px; position:relative; top:10px;"><a href="Introduction.html" class="menulink">Main</a> |
+  <a href="eula.html" class="menulink">Eula</a> |
+  <a href="changelog.html" class="menulink">Changelog</a> |
+  <a href="features.html" class="menulink">Features</a> |
+  <a href="todo.html" class="menulink">Project Status</a> |
+  <a href="toc.techdoc.html" class="menulink">Technical Documentation</a></div>
+                  </td>
+                  <td class="container_corner_upper_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_left"></td>
+                  <td valign="top">
+                    <div><img class="pagetitle" src="Images/menu_large/techdoc.png"></div>
+                    <div>
+  <h2>Guide: To create a custom npc</h2>
+  <p>A npc function is a building brick for a npc. Every npc has the option to include one or serveral npc-functions. Currently the creating of npc functions isn't supported however we do provide a list of existing npc functions.</p>
+  <code><pre class="code">Saga.Npc.Functions.BlackSmith			
+Saga.Npc.Functions.EverydayConversation	
+Saga.Npc.Functions.CatheleyaConversation	
+Saga.Npc.Functions.SkillMasterConversation
+Saga.Npc.Functions.WarperConversation	
+Saga.Npc.Functions.ShopConversation		
+Saga.Npc.Functions.AuctionConversation	
+Saga.Npc.Functions.KaftraConversation	
+Saga.Npc.Functions.LocationConversation	
+Saga.Npc.Functions.TraderConversation	
+Saga.Npc.Functions.QuestConversation
+</pre></code>
+
+  <code><pre class="code">Blacksmith 
+This will add a blacksmith icon to the designated npc with submenu's. 
+Submenu: Weapon naming, Weapon changing, Equipment repair.
+
+EverydayConversation 
+This will add a everyday conversation to the npc (every npc should include this).
+
+CatheleyaConversation
+This will add a catheleya button and submenu. 
+Submenu: Heal, Open shop
+
+SkillMasterConversation
+This will add a skillmaster button and submenu
+Submenu: Change job, Special skills, Bookstore.
+
+WarperConversation
+This will add a warper button.
+Submenu: Configurable by configurng warpers/{npcid}.xml
+
+ShopConversation
+This will add a shop button.
+Shop: Configurable by configurng shops/{npcid}.xml
+
+ShopConversation
+This will add a shop button.
+Shop: Configurable by configurng shops/{npcid}.xml
+
+AuctionConversation
+This will add a auction button and submenu
+Submenu: Open auction.
+
+KaftraConversation
+This will add a kaftra button, event button, kaftra submenu
+Submenu: Save location, Warehouse.
+
+LocationConversation
+This will add a location button and submenu. Locationguides are a new type of
+npcs however their functions already work and are implamented.
+Submenu: Configurable by configurng Guides/{npcid}.xml
+
+TraderConversation
+This will add a trader button and submenu.
+Submenu: Configurable by configurng traders/{npcid}.xml
+
+QuestConversation
+This will make the selected npc quest sensitive. All npc's should included 
+this function else none of the quests can be done with them. 
+</pre></code>
+
+
+
+  <p>The following code shows how a blacksmith is structured. With roughly 20 lines of code we made our npc. Which we can endlessly reuse. Make sure you class derives from 'BaseNPC' for npc. The buttons will be shown in the way the functions are registered so assume you would first register blacksmith and after that the everyday conversation you end up showing the blacksmith button first and than the everyday button. (Left to right)</p>
+<code><pre class="code">using Saga.Npc.Functions;
+using Saga.Structures;
+
+namespace Saga.Templates
+{
+
+    public class BlackSmith : BaseNPC
+    {
+
+        #region Base Members
+
+        protected override void Initialize()
+        {            
+            NpcFunction.Create&lt;Saga.Npc.Functions.EverydayConversation&gt;(this);
+            NpcFunction.Create&lt;Saga.Npc.Functions.BlackSmith&gt;(this);
+            NpcFunction.Create&lt;Saga.Npc.Functions.ShopConversation&gt;(this);
+            NpcFunction.Create&lt;Saga.Npc.Functions.TraderConversation&gt;(this);
+            NpcFunction.Create&lt;Saga.Npc.Functions.QuestConversation&gt;(this);
+        }
+
+        #endregion
+
+        #region Constructor/Deconstructor
+
+        ~BlackSmith() { }
+        public BlackSmith() { }
+
+        #endregion
+
+    }
+}</pre></code>
+
+
+</div>
+                    <div style="height:70px; width:100%;"><a href="#" class="footerlink">Top</a></div>
+                  </td>
+                  <td class="container_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_corner_lower_left"></td>
+                  <td class="container_bottom"></td>
+                  <td class="container_corner_lower_right"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="page_footer"><img src="images/logo-rev-low.png"></td>
+      </tr>
+    </table>
+  </body>
+</html>

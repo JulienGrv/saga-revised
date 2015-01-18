@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Auctioneer> 
+  <Gossip>5303</Gossip>
+  <EverydayConversation>5304</EverydayConversation>
+  <TradeDialog>5305</TradeDialog>
+</Auctioneer>

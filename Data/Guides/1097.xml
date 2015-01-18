@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<guide menu="13">
+  <point type="map">1</point> <!-- Den of Red Cape Black Cats ID70 //-->
+  <point type="map">1</point> <!-- Den of Gangsters (Udah) ID78 //-->
+  <point type="npc">1092</point>
+  <point type="npc">1094</point>
+  <point type="npc">1093</point>
+  <point type="map">1</point> <!-- Prontera //-->
+  <point type="map">1</point> <!-- Southeast of Prontera //-->
+</guide>

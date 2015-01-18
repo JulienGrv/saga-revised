@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Auctioneer> 
+  <Gossip>500</Gossip>
+  <EverydayConversation>500</EverydayConversation>
+  <Auction>500</Auction>
+  <AuctionOpen>500</AuctionOpen>
+</Auctioneer>

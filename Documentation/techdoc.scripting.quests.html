@@ -1,0 +1,539 @@
+﻿<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>
+    </title>
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+  </head>
+  <body>
+    <table class="container" cellspacing="0">
+      <tr>
+        <td style="padding:0px; margin:0px;">
+          <div class="overlay_top">
+            <div class="overlay_bottom">
+              <table class="container" cellspacing="0">
+                <tr>
+                  <td class="container_corner_upper_left"></td>
+                  <td class="container_top">
+                    <div style="padding-left:130px; position:relative; top:10px;"><a href="Introduction.html" class="menulink">Main</a> |
+  <a href="eula.html" class="menulink">Eula</a> |
+  <a href="changelog.html" class="menulink">Changelog</a> |
+  <a href="features.html" class="menulink">Features</a> |
+  <a href="todo.html" class="menulink">Project Status</a> |
+  <a href="toc.techdoc.html" class="menulink">Technical Documentation</a></div>
+                  </td>
+                  <td class="container_corner_upper_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_left"></td>
+                  <td valign="top">
+                    <div><img class="pagetitle" src="Images/menu_large/scripting.png"></div>
+                    <div>
+  <p>
+      This is the documentation about quest scriping. As of this moment we'll keep this document
+      up-to-date. For questfiles in the desired and validated layout we'll provide conversion tools to
+      update this.
+    </p>
+                      <h2>Functions by alphabet</h2>
+                      <div class="paragraph_menu">
+                        <p>
+                          <ol>
+                            <li><a href="#Saga.AddStep">Saga.AddStep</a></li>
+                            <li><a href="#Saga.AddWaypoint">Saga.AddWaypoint</a></li>
+                            <li><a href="#Saga.CheckInventoryCount ">Saga.CheckInventoryCount </a></li>
+                            <li><a href="#Saga.ClearWaypoints">Saga.ClearWaypoints</a></li>
+                            <li><a href="#Saga.Eliminate">Saga.Eliminate</a></li>
+                            <li><a href="#Saga.FindPosition">Saga.FindPosition</a></li>
+                            <li><a href="#Saga.FindQuestItem">Saga.FindQuestItem</a></li>
+                            <li><a href="#Saga.FreeInventoryCount ">Saga.FreeInventoryCount </a></li>
+                            <li><a href="#Saga.GetLastDialogId">Saga.GetLastDialogId</a></li>
+                            <li><a href="#Saga.GetNPCIndex">Saga.GetNPCIndex</a></li>
+                            <li><a href="#Saga.GiveExp">Saga.GiveExp</a></li>
+                            <li><a href="#Saga.GiveItem">Saga.GiveItem</a></li>
+                            <li><a href="#Saga.GiveZeny">Saga.GiveZeny</a></li>
+                            <li><a href="#Saga.InsertQuest">Saga.InsertQuest</a></li>
+                            <li><a href="#Saga.IsSubStepComplete">Saga.IsSubStepComplete</a></li>
+                            <li><a href="#Saga.NpcGiveItem">Saga.NpcGiveItem</a></li>
+                            <li><a href="#Saga.NpcTakeItem">Saga.NpcTakeItem</a></li>
+                            <li><a href="#Saga.QuestComplete">Saga.QuestComplete</a></li>
+                            <li><a href="#Saga.StepComplete">Saga.StepComplete</a></li>
+                            <li><a href="#Saga.SubStepComplete">Saga.SubStepComplete</a></li>
+                            <li><a href="#Saga.UserUpdateActionObjectType">Saga.UserUpdateActionObjectType</a></li>
+                          </ol>
+                        </p>
+                      </div>
+                      <h2><a name="Saga.AddStep">Saga.AddStep</a></h2>
+                      <div class="paragraph"><code>Saga.AddStep(cid, QuestID, StepId);</code><p><b>Remarks:</b></p>
+                        <p>
+        Adds a step to the quest. This can only be done during initialisation.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.AddStep:</p><code><pre class="code">function QUEST_START(cid)
+  -- Initialize all quest steps
+  -- Initialize all starting navigation points
+      
+  Saga.AddStep(cid, QuestID, 101);
+  Saga.AddStep(cid, QuestID, 102);
+  Saga.AddStep(cid, QuestID, 103);
+  Saga.InsertQuest(cid, QuestID, 1);
+      
+  return 0;
+end </pre></code></div>
+                      <h2><a name="Saga.AddWaypoint">Saga.AddWaypoint</a></h2>
+                      <div class="paragraph"><code>Saga.AddWaypoint(cid, QuestID, StepId, SubstepId, NPCIndex);</code><p><b>Remarks:</b></p>
+                        <p>
+        This will cause the npc to be activated (if it's not already been activated). By calling 
+		Saga.SubstepComplete or Saga.QuestComplete you can deactivated the npc.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.AddWaypoint:</p><code><pre class="code">function QUEST_STEP_2(cid)
+	-- Talk to mischa              
+	Saga.AddWaypoint(cid, QuestID, 102, 1, 1000);      
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);    
+	if ret == 1000 then
+		Saga.NpcTakeItem(cid, 2630, 6);
+		Saga.SubstepComplete(cid, QuestID, 1201, 1);
+	end	
+	
+    -- Check if all substeps are completed
+    for i = 1, 1 do
+         if Saga.IsSubStepCompleted(cid,QuestID,102, i) == false then
+			return -1;
+		 end
+    end	
+    
+    Saga.StepComplete(cid, QuestID, 102);
+    Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);	    
+    return 0; 
+end
+      </pre></code></div>
+                      <h2><a name="Saga.CheckInventoryCount ">Saga.CheckInventoryCount </a></h2>
+                      <div class="paragraph"><code>Saga.CheckInventoryCount(uid, ItemId);</code><p><b>Remarks:</b></p>
+                        <p>
+        Returns the amount of item found in the users inventory with the speciafied ItemId
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.CheckInventoryCount :</p><code><pre class="code">function QUEST_STEP_3(cid)
+	-- Deliver training result to Dein
+     local NPCIndex = 1173;
+     local ItemId = 9944;
+     local ret = Saga.GetNPCIndex(cid);    
+     local ItemCount = Saga.CheckUserInventory(cid, ItemId );
+
+     if ret == NPCIndex then
+	   Saga.GeneralDialog(cid, 3936);
+	   if ItemCount &gt; 0 then
+	       Saga.NpcTakeItem(cid, ItemId, 1 );
+	       Saga.StepComplete(cid, QuestID, 39603);
+	   else
+	       return  -1;		  
+	   end
+     else
+         return  -1;
+     end
+
+     Saga.ClearWaypoints(cid, QuestID);	
+     Saga.QuestComplete(cid, QuestID);	
+     return 0; 
+end
+      </pre></code></div>
+                      <h2><a name="Saga.ClearWaypoints">Saga.ClearWaypoints</a></h2>
+                      <div class="paragraph"><code>Saga.ClearWaypoints(cid, QuestID);</code><p><b>Remarks:</b></p>
+                        <p>
+        Removes all saved waypoints.
+        (Note you cannot remove just 1 waypoint it's either all or nothing)
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.ClearWaypoints:</p><code><pre class="code">function QUEST_STEP_2(cid)
+	-- Talk to mischa              
+	Saga.AddWaypoint(cid, QuestID, 102, 1, 1000);      
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);    
+	if ret == 1000 then
+		Saga.NpcTakeItem(cid, 2630, 6);
+		Saga.SubstepComplete(cid, QuestID, 1201, 1);
+	end	
+	
+    -- Check if all substeps are completed
+    for i = 1, 1 do
+         if Saga.IsSubStepCompleted(cid,QuestID,102, i) == false then
+			return -1;
+		 end
+    end	
+    
+    Saga.StepComplete(cid, QuestID, 102);
+    Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);	    
+    return 0; 
+end</pre></code></div>
+                      <h2><a name="Saga.Eliminate">Saga.Eliminate</a></h2>
+                      <div class="paragraph"><code>Saga.Eliminate(cid, QuestId, StepId, NpdId, Count, Substep);</code><p><b>Remarks:</b></p>
+                        <p>
+        Adds a eliminate task to the quests objective's list. Once you've completed the speciafied 
+        task it will recheck the function for the next action. Returns the number of killed monsters 
+	  for the speciafied substep.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.Eliminate:</p><code><pre class="code">function QUEST_STEP_2(cid)
+	Saga.Eliminate(cid, QuestID, 302, 10026, 7, 1);
+	Saga.Eliminate(cid, QuestID, 302, 10027, 7, 1);
+	Saga.Eliminate(cid, QuestID, 302, 10252, 7, 1);
+
+    -- Check if all substeps are completed
+    for i = 1, 1 do
+         if Saga.IsSubStepCompleted(cid,QuestID,302, i) == false then
+			return -1;
+		 end
+    end		
+	
+	Saga.StepComplete(cid, QuestID, 302);
+	return 0;
+end
+      </pre></code></div>
+                      <h2><a name="Saga.FindPosition">Saga.FindPosition</a></h2>
+                      <div class="paragraph"><code>Saga.FindPosition(cid, QuestId, Position.X , Position.Y, Position.Z, MapId);</code><p><b>Remarks:</b></p>
+                        <p>
+        Targets the server when it comes inside a boundairy of the objective to recheck the quest.
+        Returns distance in 3-dimensional space to the point.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.FindPosition:</p><code><pre class="code">No example
+      </pre></code></div>
+                      <h2><a name="Saga.FindQuestItem">Saga.FindQuestItem</a></h2>
+                      <div class="paragraph"><code>Saga.FindQuestItem(cid, QuestId, StepId, NpcId, ItemId, Ratio, Count, Substep);</code><p><b>Remarks:</b></p>
+                        <p>
+        Returns the number of item occurences of the speciafied item. (Note it will also activate the speciafied mob
+        to drop the item on the speciafied droprate, untill the step completes)
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.FindQuestItem:</p><code><pre class="code">function QUEST_STEP_1(cid)
+	-- Get 6 Chonchon Fry Wings	
+	Saga.FindQuestItem(cid, QuestID, 101, 10026, 2630, 8000, 6, 1);
+	Saga.FindQuestItem(cid, QuestID, 101, 10027, 2630, 8000, 6, 1);
+	Saga.FindQuestItem(cid, QuestID, 101, 10252, 2630, 8000, 6, 1);
+	
+    -- Check if all substeps are completed
+    for i = 1, 1 do
+         if Saga.IsSubStepCompleted(cid,QuestID,101, i) == false then
+			return -1;
+		 end
+    end
+	
+	Saga.StepComplete(cid, QuestID, 101);	
+end
+      </pre></code></div>
+                      <h2><a name="Saga.FreeInventoryCount ">Saga.FreeInventoryCount </a></h2>
+                      <div class="paragraph"><code>Saga.FreeInventoryCount (uid, ItemId);</code><p><b>Remarks:</b></p>
+                        <p>
+        Returns the amount free inventory slots which can be used for new items.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.FreeInventoryCount :</p><code><pre class="code">no example
+      </pre></code></div>
+                      <h2><a name="Saga.GetLastDialogId">Saga.GetLastDialogId</a></h2>
+                      <div class="paragraph"><code>Saga.GetLastDialogId(cid);</code><p><b>Remarks:</b></p>
+                        <p>
+        Returns the last dialog id that was said by a npc to the character.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.GetLastDialogId:</p><code><pre class="code">
+        No example
+      </pre></code></div>
+                      <h2><a name="Saga.GetNPCIndex">Saga.GetNPCIndex</a></h2>
+                      <div class="paragraph"><code>Saga.GetNPCIndex(cid);</code><p><b>Remarks:</b></p>
+                        <p>
+        Returns the npc model id of the current npc.
+        Returns 0 on no npc selected.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.GetNPCIndex:</p><code><pre class="code">function QUEST_STEP_2(cid)
+  -- Talk to mischa
+  local NPCIndex = 1000;
+  local ret = Saga.GetNPCIndex(cid);
+      
+  Saga.AddWaypoint(cid, QuestID, NPCIndex, -12092, -6490, -8284, 1);
+  if ret == NPCIndex then
+    Saga.StepComplete(cid, QuestID, 102);
+  else
+    return  -1;
+  end
+          
+  Saga.ClearWaypoints(cid, QuestID);
+  return 0;
+end
+      </pre></code></div>
+                      <h2><a name="Saga.GiveExp">Saga.GiveExp</a></h2>
+                      <div class="paragraph"><code>Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);</code><p><b>Remarks:</b></p>
+                        <p>
+        Gives a certain Cexp, Jexp, Wexp as part of a quest reward.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.GiveExp:</p><code><pre class="code">function QUEST_FINISH(cid)
+  -- Gives all rewards
+  Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+  Saga.GiveZeny(cid, RewZeny);
+  Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
+  return 0;
+end</pre></code></div>
+                      <h2><a name="Saga.GiveItem">Saga.GiveItem</a></h2>
+                      <div class="paragraph"><code>Saga.GiveItem(cid, RewItem, RewItemCount)</code><p><b>Remarks:</b></p>
+                        <p>
+        Gives a certain item and with the speciafied count as part of a quest reward.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.GiveItem:</p><code><pre class="code">function QUEST_FINISH(cid)
+  -- Gives all rewards
+  Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+  Saga.GiveZeny(cid, RewZeny);
+  Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
+  return 0;
+end
+      </pre></code></div>
+                      <h2><a name="Saga.GiveZeny">Saga.GiveZeny</a></h2>
+                      <div class="paragraph"><code>Saga.GiveZeny(cid, Zeny);</code><p><b>Remarks:</b></p>
+                        <p>
+      Gives a certain amount of zeny.
+    </p><b>Example:</b><p>The following code sample illustrates the use of Saga.GiveZeny:</p><code><pre class="code">function QUEST_FINISH(cid)
+    -- Gives all rewards
+    Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+    Saga.GiveZeny(cid, RewZeny);
+    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
+    return 0;
+  end
+    </pre></code></div>
+                      <h2><a name="Saga.InsertQuest">Saga.InsertQuest</a></h2>
+                      <div class="paragraph"><code>Saga.InsertQuest(cid, QuestId, SlotId);</code><p><b>Remarks:</b></p>
+                        <p>
+          Inserts a quest to the questlist. Untill this function is called the quest state will be edited 
+          without notifying the concerning character. Use SlotId 1 for official quests and SlotId 2 for personal
+		  quests.
+        </p><b>Example:</b><p>The following code sample illustrates the use of Saga.InsertQuest:</p><code><pre class="code">function QUEST_START(cid)
+  -- Initialize all quest steps
+  -- Initialize all starting navigation points
+      
+  Saga.AddStep(cid, QuestID, 101);
+  Saga.AddStep(cid, QuestID, 102);
+  Saga.AddStep(cid, QuestID, 103);
+  Saga.InsertQuest(cid, QuestID, 1);
+      
+  return 0;
+end </pre></code></div>
+                      <h2><a name="Saga.IsSubStepComplete">Saga.IsSubStepComplete</a></h2>
+                      <div class="paragraph"><code>Saga.IsSubStepComplete(uid,  QuestID, StepID, SubStepID );	</code><p><b>Remarks:</b></p>
+                        <p>
+        Returns true if the substep has been completed; false is the substep is not completed or the substep
+		is not found.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.IsSubStepComplete:</p><code><pre class="code">function QUEST_STEP_2(cid)	
+	-- Add all waypoints
+	Saga.AddWaypoint(cid, QuestID, 1202, 1, 1003);
+	Saga.AddWaypoint(cid, QuestID, 1202, 2, 1000);
+	Saga.AddWaypoint(cid, QuestID, 1202, 3, 1005);
+	Saga.AddWaypoint(cid, QuestID, 1202, 4, 1002);
+	Saga.AddWaypoint(cid, QuestID, 1202, 5, 1001);
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);    
+    if ret == 1003 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, 1202, 1);
+		Saga.NpcTakeItem(cid, 2661, 1);
+    elseif ret == 1000 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, 1202, 2);
+		Saga.NpcTakeItem(cid, 2661, 1);
+    elseif ret == 1005 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, 1202, 3);
+		Saga.NpcTakeItem(cid, 2661, 1);
+    elseif ret == 1002 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, 1202, 4);
+		Saga.NpcTakeItem(cid, 2661, 1);
+    elseif ret == 1001 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, 1202, 5);	
+		Saga.NpcTakeItem(cid, 2661, 1);
+	else
+		return -1;
+    end	
+        
+    -- Check if all substeps are completed
+    for i = 1, 5 do
+         if Saga.IsSubStepCompleted(cid,QuestID,1202, i) == false then
+			return -1;
+		 end
+    end     
+
+	Saga.StepComplete(cid, QuestID, 1202);    
+    Saga.QuestComplete(cid, QuestID);             	
+    return -1; 
+end
+      </pre></code></div>
+                      <h2><a name="Saga.NpcGiveItem">Saga.NpcGiveItem</a></h2>
+                      <div class="paragraph"><code>Saga.NpcGiveItem(uid, ItemId, Amount);	</code><p><b>Remarks:</b></p>
+                        <p>
+        Gives the speciafied amount of items with a description it was given by a npc
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.NpcGiveItem:</p><code><pre class="code">
+        function QUEST_STEP_1(cid)
+	-- Talk to Sally
+     local NPCIndex = 1147;
+     local ItemId = 4071;
+     local ret = Saga.GetNPCIndex(cid);    
+     local freeslots = Saga.FreeInventoryCount(cid, 0);
+
+     if ret == NPCIndex then
+	   Saga.GeneralDialog(cid, 3933);
+
+	   if freeslots &gt; 0 then
+	      Saga.StepComplete(cid, QuestID, 39901);
+		Saga.NpcGiveItem(cid, ItemId, 1);
+	   else
+		return -1;
+	   end
+     else
+         return  -1;
+     end
+
+     Saga.ClearWaypoints(cid, QuestID);
+     Saga.AddWaypoint(cid, QuestID, 1148);
+     return 0; 
+end
+      </pre></code></div>
+                      <h2><a name="Saga.NpcTakeItem">Saga.NpcTakeItem</a></h2>
+                      <div class="paragraph"><code>Saga.NpcTakeItem(uid, ItemId, Amount);</code><p><b>Remarks:</b></p>
+                        <p>
+        Takes the speciafied amount of items with a description it was taken by a npc
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.NpcTakeItem:</p><code><pre class="code">function QUEST_STEP_3(cid)
+	-- Deliver Unripe Pukui to Sally
+     local NPCIndex = 1147;
+     local ItemId = 2666;
+     local ret = Saga.GetNPCIndex(cid);    
+     local ItemCount = Saga.CheckUserInventory(cid, ItemId );
+
+     if ret == NPCIndex then
+	   Saga.GeneralDialog(cid, 3936);
+	   if ItemCount &gt; 0 then
+	       Saga.NpcTakeItem(cid, ItemId, 1 );
+	       Saga.StepComplete(cid, QuestID, 39803);
+	   else
+	       return  -1;		  
+	   end
+     else
+         return  -1;
+     end
+
+     Saga.ClearWaypoints(cid, QuestID);	
+     Saga.QuestComplete(cid, QuestID);		
+     return 0; 
+end
+      </pre></code></div>
+                      <h2><a name="Saga.QuestComplete">Saga.QuestComplete</a></h2>
+                      <div class="paragraph"><code>Saga.QuestComplete(cid, QuestID);</code><p><b>Remarks:</b></p>
+                        <p>
+        Completes a quest. (Shows the finish button).
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.QuestComplete:</p><code><pre class="code">function QUEST_STEP_3(cid)
+	-- Complete quest
+  Saga.QuestComplete(cid, QuestID);	
+  return 0; 
+end
+      </pre></code></div>
+                      <h2><a name="Saga.StepComplete">Saga.StepComplete</a></h2>
+                      <div class="paragraph"><code>Saga.StepComplete(cid, QuestID, StepId);</code><p><b>Remarks:</b></p>
+                        <p>
+        Completes the speciafied step.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.StepComplete:</p><code><pre class="code">function QUEST_STEP_1(cid)
+	-- Talk to mischa              
+	Saga.AddWaypoint(cid, QuestID, 301, 1, 1000);      
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);    
+	if ret == 1000 then
+		Saga.GeneralDialog(cid, 3936);			
+		Saga.SubstepComplete(cid, QuestID, 301, 1);
+	end	
+	
+    -- Check if all substeps are completed
+    for i = 1, 1 do
+         if Saga.IsSubStepCompleted(cid,QuestID,301, i) == false then
+			return -1;
+		 end
+    end	
+    
+    Saga.StepComplete(cid, QuestID, 301);
+    Saga.ClearWaypoints(cid, QuestID);    
+	return 0;
+end</pre></code></div>
+                      <h2><a name="Saga.SubStepComplete">Saga.SubStepComplete</a></h2>
+                      <div class="paragraph"><code>Saga.SubStepComplete(uid,  QuestID, StepID, SubStepID );	</code><p><b>Remarks:</b></p>
+                        <p>
+        Marks the substep as complete. This will reset the current value 
+		to the max value of the substep.
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.SubStepComplete:</p><code><pre class="code">function QUEST_STEP_2(cid)	
+	-- Add all waypoints
+	Saga.AddWaypoint(cid, QuestID, 1202, 1, 1003);
+	Saga.AddWaypoint(cid, QuestID, 1202, 2, 1000);
+	Saga.AddWaypoint(cid, QuestID, 1202, 3, 1005);
+	Saga.AddWaypoint(cid, QuestID, 1202, 4, 1002);
+	Saga.AddWaypoint(cid, QuestID, 1202, 5, 1001);
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);    
+    if ret == 1003 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, 1202, 1);
+		Saga.NpcTakeItem(cid, 2661, 1);
+    elseif ret == 1000 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, 1202, 2);
+		Saga.NpcTakeItem(cid, 2661, 1);
+    elseif ret == 1005 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, 1202, 3);
+		Saga.NpcTakeItem(cid, 2661, 1);
+    elseif ret == 1002 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, 1202, 4);
+		Saga.NpcTakeItem(cid, 2661, 1);
+    elseif ret == 1001 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, 1202, 5);	
+		Saga.NpcTakeItem(cid, 2661, 1);
+	else
+		return -1;
+    end	
+        
+    -- Check if all substeps are completed
+    for i = 1, 5 do
+         if Saga.IsSubStepCompleted(cid,QuestID,1202, i) == false then
+			return -1;
+		 end
+    end     
+
+	Saga.StepComplete(cid, QuestID, 1202);    
+    Saga.QuestComplete(cid, QuestID);             	
+    return -1; 
+end
+      </pre></code></div>
+                      <h2><a name="Saga.UserUpdateActionObjectType">Saga.UserUpdateActionObjectType</a></h2>
+                      <div class="paragraph"><code>Saga.UserUpdateActionObjectType(cid, QuestID, StepId, ActionObjectID, Active );	</code><p><b>Remarks:</b></p>
+                        <p>
+        Activates or deactivates the speciafied action object.
+        0 = Inactive , 1 = Active
+      </p><b>Example:</b><p>The following code sample illustrates the use of Saga.UserUpdateActionObjectType:</p><code><pre class="code">function QUEST_STEP_2(cid)
+	-- Find training result
+      local ActionObjectID = 47;
+	local ItemId = 9944;
+	
+	Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 0 );		
+      if Saga.FindQuestItem(cid, QuestID, 39602, ActionObjectID, ItemId, 10000, 1, 1) &gt; 0 then
+  	  Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 1 );	
+	  Saga.StepComplete(cid, QuestID, 39602);
+	else
+        return -1;
+     end
+	
+     Saga.AddWaypoint(cid, QuestID, 1173);
+     return 0; 
+end
+      </pre></code></div>
+</div>
+                    <div style="height:70px; width:100%;"><a href="#" class="footerlink">Top</a></div>
+                  </td>
+                  <td class="container_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_corner_lower_left"></td>
+                  <td class="container_bottom"></td>
+                  <td class="container_corner_lower_right"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="page_footer"><img src="images/logo-rev-low.png"></td>
+      </tr>
+    </table>
+  </body>
+</html>

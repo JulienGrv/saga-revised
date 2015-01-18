@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<guide menu="9">
+  <point type="npc">1006</point>
+  <point type="npc">1011</point>
+  <point type="npc">1010</point>
+  <point type="npc">1013</point>
+  <point type="npc">1007</point>
+  <point type="npc">1008</point>
+  <point type="npc">1009</point>
+  <point type="npc">1012</point>
+  <point type="npc">1014</point>
+  <point type="npc">1050</point>
+  <point type="npc">1051</point>
+  <point type="npc">1055</point>
+  <point type="npc">1056</point>
+  <point type="map">1</point> <!-- Northwest of Prontera //-->
+  <point type="map">1</point> <!-- Southeast of Prontera //-->
+</guide>

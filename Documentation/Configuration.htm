@@ -1,0 +1,331 @@
+<html>
+    <head>
+        <title>License</title>
+        <style>
+            BODY {
+                padding: 20px;
+            }            
+        
+            BODY, DIV, P, TD {
+                font-size:1em;
+                color: rgb(83,100,130);                                    
+            }
+            
+            H1
+            {
+                color:#000000;
+                font-size: 20px;
+            }                
+            
+            H2
+            {
+                color:#000000;
+                font-size: 16px;            
+            }       
+            
+            CODE { 
+	            padding: 3px;
+	            background-color: #FFFFFF;
+	            border: 1px solid #C9D2D8;
+	            font-size: 1em;
+	            margin-bottom: 10px;
+	            display: block;
+	            font: 0.9em Monaco, "Andale Mono","Courier New", Courier, mono;
+	            line-height: 1.3em;
+           }
+           
+           .paragraph_menu {
+                background: rgb(205, 220, 235) ;
+                padding:10px;
+            }
+           
+           .paragraph {
+                background: rgb(236,243,247);
+                padding:10px;
+           }          
+           
+            a:link	{ color: #105289; text-decoration: none; }
+            a:visited	{ color: #105289; text-decoration: none; }
+            a:hover	{ color: #D31141; text-decoration: underline; }
+            a:active	{ color: #368AD2; text-decoration: none; }
+            
+            .top {
+                text-align:right;
+            }
+            
+            ol  {
+                color: black; 
+                font-size:13px;
+                line-height:1.3em;             
+            }       
+    
+                   
+        </style>
+    </head>
+    <body>
+        <h1>Configuration:</h1>
+        <p>
+        This document defines how configuration for Saga emu can be used in posible ways we are aware of.</p>
+
+        
+        <h2>Paragraphs</h2>
+        <div class="paragraph_menu">
+        <p>
+            <ol>
+                <li><a href="#Extension">Type extension</a></li>
+                <li><a href="#Addition">Saga.Factory.Addition</a></li>
+                <li><a href="#Exptable">Saga.Factory.Exptable</a></li>
+                <li><a href="#Itemdrops">Saga.Factory.Itemdrops</a></li>
+                <li><a href="#Items">Saga.Factory.Items</a></li>
+                <li><a href="#Portals">Saga.Factory.Portals</a></li>
+                <li><a href="#Supply">Saga.Factory.Supply</a></li>
+				<li><a href="#Warps">Saga.Factory.Warps</a></li>
+				<li><a href="#Spells">Saga.Factory.Spells</a></li>
+				<li><a href="#Weaponary">Saga.Factory.Weaponary</a></li>
+				<li><a href="#Zone">Saga.Factory.Zone</a></li>
+				<li><a href="#SpawnMobs">Saga.Factory.SpawnMobs</a></li>
+				<li><a href="#SpawnWorldObjects">Saga.Factory.SpawnWorldObjects</a></li>
+				<li><a href="#Scripting">Saga.Manager.Scripting</a></li>
+                <li><a href="#Quest">Saga.Manager.Quest</a></li>
+            </ol>
+        </p>
+        </div>
+
+        <h2 id="Extension">Type extensions:</h2>
+        <div class="paragraph">
+        <p>
+		By default saga comes with a default fileformats xml or csv. But often it happens you have you're own fileformat 
+		or 	want to add encryption. Well don't worry because sags supports type extension from withing the scripting you're
+		allowed to write custom override types and use those a fundamental base for your server. <br />
+		<br />
+		You can speciafy a type overloading by using the type parameter in your configuration files.
+		</p>
+		<b> Example: </b> 
+		<pre><code>&lt;Saga.Factory.Addition type="Plugins.ExtendedAddition"&gt;
+	&lt;Files&gt;
+		&lt;add path="../Data/addition.csv" /&gt;
+	&lt;/Files&gt;
+&lt;/Saga.Factory.Addition&gt;</code></pre>		
+		
+        </div>
+
+
+   
+		
+		
+        <h2 id="Addition">Saga.Factory.Addition.</h2>
+        <div class="paragraph">
+        <b>Summary</b>
+        <p>
+		The addition factory loads in a massive amount of data defining what type of side-affects certain items and skill 
+		have on your players status. Most of the buffs/debuffs and items use this as a fundamental base. The addition factory by 
+		default has not other options besides sharded file loading.
+	    </p>
+	<b> Configuration: </b> 
+		<pre><code>
+&lt;configuration&gt;
+	&lt;configSections&gt;
+		&lt;section name="Saga.Factory.Addition" type="Configuration.Factory_Addition, Saga.Map"/&gt;		
+	&lt;/configSections&gt;
+	
+	&lt;!-- Some other configuration options here --&gt;
+	
+	&lt;Saga.Factory.Addition&gt;
+		&lt;Files&gt;
+			&lt;add path="../Data/addition.csv" /&gt;
+		&lt;/Files&gt;
+	&lt;/Saga.Factory.Addition&gt;
+&lt;/configuration&gt;	
+</code></pre>		  
+        </div>		
+
+		
+     <h2 id="Exptable">Saga.Factory.Exptable.</h2>
+        <div class="paragraph">
+        <b>Summary</b>
+        <p>
+		The expierence table loads in the data which defines how many expierence is required for each level. Note that the expierence
+		table works in conjunction with the client, so if the expierence table is wrong for some reason it may result in bad gameplay.
+	    </p>
+        <b>Addition parameters</b>
+        <p>		
+			<i>cexp</i> You can use cexp to set the rate modifier. This is equavelent to exp = exp_reward * rate; <br />
+			<i>jexp</i> You can use jexp to set the rate modifier. This is equavelent to exp = exp_reward * rate; <br />
+			<i>wexp</i> You can use wexp to set the rate modifier. This is equavelent to exp = exp_reward * rate; <br />
+		</p>
+	<b> Configuration: </b> 
+		<pre><code>
+&lt;configuration&gt;
+	&lt;configSections&gt;
+		&lt;section name="Saga.Factory.Exptable" type="Configuration.Factory_Exptable, Saga.Map"/&gt;		
+	&lt;/configSections&gt;
+	
+	&lt;!-- Some other configuration options here --&gt;
+	
+	&lt;Saga.Factory.Exptable [cexp="<i>integer</i>"] [jexp="<i>integer</i>"] [wexp="<i>integer</i>"]&gt;
+		&lt;Files&gt;
+			&lt;add path="../Data/expierence.csv" /&gt;
+		&lt;/Files&gt;
+	&lt;/Saga.Factory.Exptable&gt;
+&lt;/configuration&gt;	
+</code></pre>		  
+        </div>		
+		
+		<h2 id="Exptable">Saga.Factory.Itemdrops.</h2>
+        <div class="paragraph">
+        <b>Summary</b>
+        <p>
+		The item drop manager is not a crucial component. It has been added to make it easier for test-servers to
+		quickly modify item drops, and reload them on demand. Could also server as part from a general database extraction
+		so we can keep things as current as posible
+	    </p>
+	    <b> Configuration: </b> 
+		<pre><code>
+&lt;configuration&gt;
+	&lt;configSections&gt;
+		&lt;section name="Saga.Factory.Itemdrops" type="Configuration.Factory_Itemdrops, Saga.Map"/&gt;		
+	&lt;/configSections&gt;
+	
+	&lt;!-- Some other configuration options here --&gt;
+	
+	&lt;Saga.Factory.Itemdrops&gt;
+		&lt;Files&gt;
+			&lt;add path="../Data/item_drops.csv" /&gt;
+		&lt;/Files&gt;
+	&lt;/Saga.Factory.Itemdrops&gt;
+&lt;/configuration&gt;	
+</code></pre>		  
+        </div>
+
+
+		<h2 id="Exptable">Saga.Factory.Items</h2>
+        <div class="paragraph">
+        <b>Summary</b>
+        <p>
+		The item factory is a very important class. It contains all item information: categories for the auction, sell prices, if 
+		a item is tradeable. By which classes it can be used.
+	    </p>
+	    <b> Configuration: </b> 
+		<pre><code>
+&lt;configuration&gt;
+	&lt;configSections&gt;
+		&lt;section name="Saga.Factory.Items" type="Configuration.Factory_Items, Saga.Map"/&gt;		
+	&lt;/configSections&gt;
+	
+	&lt;!-- Some other configuration options here --&gt;
+	
+	&lt;Saga.Factory.Items&gt;
+		&lt;Files&gt;
+			&lt;add path="../Data/item_data.xml" reader="xml"  /&gt;
+		&lt;/Files&gt;
+	&lt;/Saga.Factory.Items&gt;
+&lt;/configuration&gt;	
+</code></pre>		  
+        </div>   
+   
+   
+
+		<h2 id="Exptable">Saga.Factory.Portals</h2>
+        <div class="paragraph">
+        <b>Summary</b>
+        <p>
+		The portals contain all information about where to warp to from position x to position y. Very important for
+		map switching.
+	    </p>
+	    <b> Configuration: </b> 
+		<pre><code>
+&lt;configuration&gt;
+	&lt;configSections&gt;
+		&lt;section name="Saga.Factory.Portals" type="Configuration.Factory_Portals, Saga.Map"/&gt;		
+	&lt;/configSections&gt;
+	
+	&lt;!-- Some other configuration options here --&gt;
+	
+	&lt;Saga.Factory.Portals&gt;
+		&lt;Files&gt;
+			&lt;add path="../Data/portal_data.csv" /&gt;
+		&lt;/Files&gt;
+	&lt;/Saga.Factory.Portals&gt;
+&lt;/configuration&gt;	
+</code></pre>		  
+        </div>     
+
+    
+	
+		<h2 id="Exptable">Saga.Factory.Supply</h2>
+        <div class="paragraph">
+        <b>Summary</b>
+        <p>
+		Supply data contains all the matirials, and products required in order to establish a trade.
+	    </p>
+	    <b> Configuration: </b> 
+		<pre><code>
+&lt;configuration&gt;
+	&lt;configSections&gt;
+		&lt;section name="Saga.Factory.Supply" type="Configuration.Factory_Supply, Saga.Map"/&gt;		
+	&lt;/configSections&gt;
+	
+	&lt;!-- Some other configuration options here --&gt;
+	
+	&lt;Saga.Factory.Supply&gt;
+		&lt;Files&gt;
+			&lt;add path="../Data/supply_data.csv" /&gt;
+		&lt;/Files&gt;
+	&lt;/Saga.Factory.Supply&gt;
+&lt;/configuration&gt;	
+</code></pre>		  
+        </div>  
+
+        
+		<h2 id="Exptable">Saga.Factory.Warps</h2>
+        <div class="paragraph">
+        <b>Summary</b>
+        <p>
+		Warp data contains all information for the warp-coord that are handeld by npc.
+	    </p>
+	    <b> Configuration: </b> 
+		<pre><code>
+&lt;configuration&gt;
+	&lt;configSections&gt;
+		&lt;section name="Saga.Factory.Warps" type="Configuration.Factory_Warp, Saga.Map"/&gt;		
+	&lt;/configSections&gt;
+	
+	&lt;!-- Some other configuration options here --&gt;
+	
+	&lt;Saga.Factory.Warps&gt;
+		&lt;Files&gt;
+			&lt;add path="../Data/warp_data.csv" /&gt;
+		&lt;/Files&gt;
+	&lt;/Saga.Factory.Warps&gt;
+&lt;/configuration&gt;	
+</code></pre>		  
+        </div>  
+        
+       
+		<h2 id="Exptable">Saga.Factory.Spells</h2>
+        <div class="paragraph">
+        <b>Summary</b>
+        <p>
+		Contains all required information to cast/use spells. From potion usage to 
+		your normal spells.
+	    </p>
+	    <b> Configuration: </b> 
+		<pre><code>
+&lt;configuration&gt;
+	&lt;configSections&gt;
+		&lt;section name="Saga.Factory.Spells" type="Configuration.Factory_Spells, Saga.Map"/&gt;		
+	&lt;/configSections&gt;
+	
+	&lt;!-- Some other configuration options here --&gt;
+	
+	&lt;Saga.Factory.Spells&gt;
+		&lt;Files&gt;
+			&lt;add path="../Data/spell_data.xml" reader="xml" /&gt;
+		&lt;/Files&gt;
+	&lt;/Saga.Factory.Spells&gt;
+&lt;/configuration&gt;	
+</code></pre>		  
+        </div>  
+		
+    </body>
+</html>

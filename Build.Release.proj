@@ -1,0 +1,109 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+
+  <!-- Declare properties -->
+  <PropertyGroup>    
+    <Sourceroot>$(MSBuildProjectDirectory)</Sourceroot>
+    <Zipdir>$(MSBuildProjectDirectory)/ReleaseCandites</Zipdir>
+    <ExternalProjectsDir>$(Sourceroot)\Tools</ExternalProjectsDir>
+    <MSBuildCommunityTasksPath>$(ExternalProjectsDir)\Pre-compiled</MSBuildCommunityTasksPath>
+    <NDocToolPath>$(ExternalProjectsDir)\msbuildtasks\Documentation\ndoc\</NDocToolPath>
+    <Revision>0</Revision>
+    <CodeAnalysisForceOutput>False</CodeAnalysisForceOutput>
+    <CodeAnalysisQuiet>True</CodeAnalysisQuiet>
+  </PropertyGroup>
+
+  <!-- Import all tasks -->
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
+    
+  <!-- Item group -->
+  <ItemGroup>
+    <DefaultExclude Include="**\*.svn\**" />
+    <DefaultExclude Include="**//*.svn/**" />
+  </ItemGroup>
+ 
+  <!-- All sql files to link -->
+  <ItemGroup>
+    <SqlFiles Include="Database/**//*.sql" Exclude="@(DefaultExclude)" />
+  </ItemGroup>
+
+  <!-- No documentation available
+   Ndoc currently has several issues with .net 2.0 support. The MSBuild community
+   has no taks ready for Sandcastly but are beeing worked on. While Ndoc 2.0 nor
+   sandcastle is ready documentation will not be supported.    
+  <Target Name="Documentation" DependsOnTargets="Compile">
+    <NDoc Documenter="MSDN" 
+          ProjectFilePath="ndoc.xml"
+          ToolPath="$(NDocToolPath)"
+          />
+  </Target>
+  //-->
+
+  <Target Name="Main">
+    <CallTarget Targets="PreClean" RunEachTargetSeparately="false" />
+    <CallTarget Targets="Version" RunEachTargetSeparately="false" ContinueOnError="false" />    
+    <CallTarget Targets="Compile" RunEachTargetSeparately="false" ContinueOnError="false" />
+    <CallTarget Targets="Zip" RunEachTargetSeparately="false" ContinueOnError="true" />
+    <CallTarget Targets="AfterClean" RunEachTargetSeparately="false" />       
+  </Target>
+
+  <Target Name="PreClean">
+    <!-- Delete all recent compiled files -->
+    <MSBuild Projects="Build.Cleanall.proj" BuildInParallel="false" />
+
+    <CreateItem Include="Binary/*.*;Binary/Release/*.*" Exclude="@(DefaultExclude);Binary/*.config">
+      <Output TaskParameter="Include" ItemName="PreClear"/>
+    </CreateItem>
+    
+    <Delete Files="@(PreClear)"/>
+  </Target>
+
+  <Target Name="AfterClean">
+    <!-- Delete all recent compiled files -->
+    <MSBuild Projects="Build.Cleanall.proj" BuildInParallel="false" />
+
+    <CreateItem Include="Binary/*.*" Exclude="@(DefaultExclude);Binary/*.config">
+      <Output TaskParameter="Include" ItemName="AfterClear"/>
+    </CreateItem>
+
+    <Delete Files="@(AfterClear)"/>
+  </Target>
+
+  <Target Name="Compile">    
+    
+    <!-- Build all projects -->
+    <MSBuild Projects="SagaRevisided.sln" BuildInParallel="false" Properties="Configuration=Debug"/>
+    <MSBuild Projects="Abstraction/Saga.Data.sln" BuildInParallel="false" Properties="Configuration=Debug"/>
+    <MSBuild Projects="Tools/Saga.Tools.sln" BuildInParallel="false" Properties="Configuration=Debug"/>
+    
+  </Target>
+
+ <Target Name="Zip">
+
+   <CreateItem Include="Binary/*.*" Exclude="@(DefaultExclude);Binary/*.pdb;Binary/errorlog.xsl;Binary/Saga.Scripting;">
+     <Output TaskParameter="Include" ItemName="ZipFiles"/>
+   </CreateItem>
+
+   <!-- Clean old files-->
+   <MakeDir ContinueOnError="true" Directories="$(Sourceroot)/Binary/Release/" />
+
+   <!-- Zip archive files -->
+    <Zip Files="@(ZipFiles)"
+         WorkingDirectory="Binary/"
+         ZipFileName="$(Sourceroot)/Binary/Release/SagaRev.Binairy.$(Revision).zip"  />
+    <Zip Files="@(SqlFiles)"
+         WorkingDirectory="Database/"
+         ZipFileName="$(Sourceroot)/Binary/Release/SagaRev.Database.$(Revision).zip"  />
+
+  </Target>
+   
+  <Target Name="Version">
+    <!-- Get the svn revision -->
+    <SvnVersion LocalPath="$(MSBuildProjectDirectory)">
+      <Output TaskParameter="Revision" PropertyName="Revision" />
+    </SvnVersion>
+  </Target>
+
+
+
+
+</Project>

@@ -1,0 +1,158 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+  </head>
+  <body>
+ 	 <table class="container" cellspacing=0>
+	 	<!-- Main content //-->
+		<tr>
+			<td style="padding:0px; margin:0px;">
+			
+	 <div class="overlay_top">
+	 <div class="overlay_bottom">
+       <table class="container"  cellspacing=0>
+	 	<tr>
+			<td class="container_corner_upper_left">
+			</td>
+			<td class="container_top">
+			</td>
+			<td class="container_corner_upper_right">
+			</td>
+		</tr>
+		<tr>
+			<td class="container_left">
+			</td>
+			<td valign="top">
+
+
+
+				<div style="padding-left:130px; position:relative; top:-20px;">
+					<a href="#" class="menulink">News</a> |
+					<a href="#" class="menulink">Contact</a> |
+					<a href="#" class="menulink">Registration</a> |
+					<a href="#" class="menulink">About</a> |
+					<a href="#" class="menulink">Screenshots</a> |
+					<a href="#" class="menulink">Staff</a> |
+					<a href="#" class="menulink">Sitemap</a> 
+				</div>
+				<div>
+					<img class="pagetitle" src="Images/menu_large/screenshots.png" >
+				</div>
+				<div>
+					
+					<p>
+					<a href="#">How are the password stored?</a><br />
+					<a href="#">I want to know modify my client, where to start?</a><br />
+					<a href="#">I found a bug where to i submit it?</a><br />
+					<a href="#">Can i join your development staff?</a><br />
+					<a href="#">When i login i get some korean error?</a><br />
+					<a href="#">How can i add accounts to my server?</a><br />
+					<a href="#">What can i customize?</a><br />
+					<a href="#">I don't like MySQL can i use a other database?</a><br />
+					<a href="#">I'm using Windows and i get a application error at the startup?</a><br />
+					<a href="#">Does saga run on linux?</a><br />
+					<a href="#">Is there PvP and Guilds??</a><br />
+					<a href="#">Where can i get realtime support?</a><br />
+					<a href="#">How are quests made?</a><br />
+					<a href="#">How are npc's made?</a><br />
+					</p>
+
+
+					<table><tr><td width="50%" valign="top">
+					<p><b>How are the password stored?</b></p>
+					<p>The password is stored in as an MD5 Hash. The game itself sends a modified MD5 Hash so to make it easier for all the CP developers out there we've issued our database plugin to handle this.
+
+
+					<p><b>I want to know modify my client, where to start?</b></p>
+					<p>We don't provide any support for modifying the client neither will we in the nearby future. Ask somewhere else.</p>
+
+
+					<p><b>I found a bug where to i submit it?</b></p>
+					<p>To submit bugs you can create a account at our bugtracker: <a href="http://onaasystems.net/mantis/">http://onaasystems.net/mantis/</a>. Make sure your bug isn't double posted.</p>
+
+
+					<p><b>Can i join your development staff?</b></p>
+					<p>You have to require a certain profile. We aim on developers who have sufficient expierence in c-sharp. If you fit that profile we're more than happy to have a talk with you.</p>
+
+					<p><b>When i login i get some korean error?</b></p>
+					<p>The crc has a mismatch. Simply said this means your client version isn't compatible with the server version. Consider upgrading or downgrading.</p>
+
+					<p><b>How can i add accounts to my server?</b></p>
+					<p>We insist that you have a third party CP to allow self-registrations. We're often develop inhouse software ourselves which we later on make available. If you just need a few test accounts you can start the login server and type: 'account.create username password female|male'.</p>
+
+					<p><b>Where can i get realtime support?</b></p>
+					<p>We have a irc channel on deltaanime. Please visit #saga on deltanime for your questions/support, or just for chatting!</p>
+
+
+					<p><b>Is there PvP and Guilds?</b></p>
+					<p>No the official server does not have guilds or pvp yet neither have we. They are will be added in the near future.</p>
+
+
+
+
+					</td><td width="50%" valign="top">
+
+					<p><b>What can i customize?</b></p>
+					<p>You can alter: AI, Npc templates, Npc Functions, Skills, Quests, Quests storage engine, Database Storage engine, Fileformats, add custom managers.</p>
+
+					<p><b>I don't like MySQL can i use a other database?</b></p>
+					<p>Yes you can we provide a complete database structure on the setup page <a href="setup.html">found here</a>. And our MySQl plugin's source code can be found here in the <a href="https://svn1.hosted-projects.com/SagaE/SagaRev/Abstraction">abstraction folder </a></p>
+
+
+					<p><b>I'm using Windows and i get a application error at the startup?</b></p>
+					<p>Either your configuration file is invalid or you are missing the .net framework. Saga requires a at least .net 2.0 framework you can download this from microsoft using the windows update or from <a href="http://www.microsoft.com/downloads/details.aspx?familyid=0856eacb-4362-4b0d-8edd-aab15c5e04f5&displaylang=en">http://www.microsoft.com/</a></p>
+
+					<p><b>When i start the server it says it's found errors while loading</b></p>
+					<p>Once the server has one error it may lead to a chain of errors. Most errors are related to bad fileformat or incorrect setup suggested configuration of directories. Make sure non of the files are missing and configuration is valid otherwise request help on the forum: <a href="http://sagaro2.info/phpbb3/">http://sagaro2.info/phpbb3/</a>"</p>
+
+					<p><b>Does saga run on linux?</b></p>
+					<p>To run saga under a linux server you need to use Mono. Which is a alternative framework similair to .net from Microsoft (You can use mono also under windows).</p>
+
+					<p><b>How are quests made?</b></p>
+					<p>We have made a sample pluging to script quests on a similiar way it's done on kRO2. It's a lightweight solution that allows plug-and-play based quests.</p>
+
+					<p><b>How are npc's made?</b></p>
+					<p>You add a npc to the tabular data for example ~\Data\npc-spawns\hodehimes.csv. Make sure the coordinates are valid and use a existing class for example 'Saga.Templates.Npc' this class is added in the scripting section by default. That's it!</p>
+
+
+
+
+
+
+
+					</td></tr></table>
+
+				</div>
+				<div style="height:70px; width:100%;">
+					<a href="#" class="footerlink">Top</a>		
+				</div>
+			</td>
+			<td class="container_right">
+			</td>
+		</tr>
+		<tr>
+			<td class="container_corner_lower_left">
+			</td>
+			<td class="container_bottom">
+			</td>
+			<td class="container_corner_lower_right">
+			</td>
+		</tr>
+	</table>
+
+
+	</div>
+	</div>
+
+			</td>
+		</tr>
+
+		<!-- Footer -->
+	   	<tr>
+			<td class="page_footer">
+				<img src="images/logo-rev-low.png">
+			</td>
+		</tr>
+	</table>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+﻿<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Fileformat: Bookstore</title>
+    <link rel="stylesheet" href="stylesheet/stylesheet.css">
+  </head>
+  <body>
+    <table class="container" cellspacing="0">
+      <tr>
+        <td style="padding:0px; margin:0px;">
+          <div class="overlay_top">
+            <div class="overlay_bottom">
+              <table class="container" cellspacing="0">
+                <tr>
+                  <td class="container_corner_upper_left"></td>
+                  <td class="container_top">
+                    <div style="padding-left:130px; position:relative; top:10px;"><a href="Introduction.html" class="menulink">Main</a> |
+  <a href="eula.html" class="menulink">Eula</a> |
+  <a href="changelog.html" class="menulink">Changelog</a> |
+  <a href="features.html" class="menulink">Features</a> |
+  <a href="todo.html" class="menulink">Project Status</a> |
+  <a href="toc.techdoc.html" class="menulink">Technical Documentation</a></div>
+                  </td>
+                  <td class="container_corner_upper_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_left"></td>
+                  <td valign="top">
+                    <div><img class="pagetitle" src="Images/menu_large/techdoc.png"></div>
+                    <div>
+  <h2>Fileformat: Bookstore</h2>
+  <p>The bookstore fileformat is used to configure the Npcfunction 'SkillmasterConversation'. Used by the SkillMaster npc's.</p>
+  <code><pre class="code">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;!DOCTYPE shop [
+	&lt;!ELEMENT shop (item*)&gt;
+	&lt;!ELEMENT item CDATA #REQUIRED&gt;
+]&gt;
+&lt;shop&gt;
+	&lt;item&gt;16056&lt;/item&gt;
+	&lt;item&gt;16057&lt;/item&gt;
+	&lt;item&gt;16058&lt;/item&gt;
+	&lt;item&gt;16066&lt;/item&gt;
+	&lt;item&gt;16067&lt;/item&gt;
+	&lt;item&gt;16068&lt;/item&gt;
+	&lt;item&gt;16080&lt;/item&gt;
+	&lt;item&gt;16081&lt;/item&gt;
+	&lt;item&gt;16082&lt;/item&gt;
+&lt;/shop&gt;
+</pre></code>
+
+  <p>In the example above you see the internal file format used to configure the BookStoreConversation element. This will show a normal bookstore shop normally used to sell skill books by a skillmaster npc. Its similar to as the shop list but the bookstore only has a infinite stock available. This means the count attribute as we can use that in the shoplist will be ignored. </p>
+  <p>The bookstore are automatically filters the items per job. The bookstore can sell other items besides skill books as long as one of the listed jobs can use the item.</p>
+  <p>In order to change the prices  of item at which the shop sells the item you need to modify the items.dat in the client side files. We recommend not to alter the client as it makes updating very complicated for your server.</p>
+
+</div>
+                    <div style="height:70px; width:100%;"><a href="#" class="footerlink">Top</a></div>
+                  </td>
+                  <td class="container_right"></td>
+                </tr>
+                <tr>
+                  <td class="container_corner_lower_left"></td>
+                  <td class="container_bottom"></td>
+                  <td class="container_corner_lower_right"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="page_footer"><img src="images/logo-rev-low.png"></td>
+      </tr>
+    </table>
+  </body>
+</html>

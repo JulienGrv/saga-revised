@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xslt/commandline.auth.xsl"?>
+<page logo="techdoc">
+
+  <paragraph>
+      This is the documentation reference for commandline interface for the saga map server.
+  </paragraph>
+  <luabindings> 
+  
+    <function>
+      <name>player -rescue</name>
+      <remarks>
+        Warps an player to the speciafied mapid of choose.
+      </remarks>
+      <example><![CDATA[
+Server instance
+Connect to: 127.0.0.1 64002
+Connect to: 0.0.0.0 64001
+player -rescue phr34kkie 5
+]]></example>
+    </function>
+
+
+    <function>
+      <name>player -isonline</name>
+      <remarks>
+	  Checks if the speciafied character is online right now.
+      </remarks>
+      <example><![CDATA[
+Server instance
+Connect to: 127.0.0.1 64002
+Connect to: 0.0.0.0 64001
+player -isonline phr34kkie
+Character is offline
+]]></example>      
+    </function>
+
+
+    <function>
+      <name>player -zeny</name>
+      <remarks>
+        Gives the speciafied player an amount of rufi. (10.000 rufi is 1 zeny)
+      </remarks>
+      <example><![CDATA[
+Server instance
+Connect to: 127.0.0.1 64002
+Connect to: 0.0.0.0 64001
+player -zeny phr34kkie 1000
+Character not found
+]]>
+      </example>
+    </function>
+
+
+    <function>
+      <name>player -kick</name>
+      <remarks>
+        Kicks the player with the speciafied name. (case-insensetive)
+      </remarks>
+      <example><![CDATA[
+Server instance
+Connect to: 127.0.0.1 64002
+Connect to: 0.0.0.0 64001
+player -kick phr34kkie
+Character not found
+]]></example>
+    </function>
+
+
+
+    <function>
+      <name>server -broadcast</name>
+      <remarks>
+	  Broadcasts a message to all players currently logged in. 
+      </remarks>
+      <example><![CDATA[
+Server instance
+Connect to: 127.0.0.1 64002
+Connect to: 0.0.0.0 64001
+server -broadcast "this is a test"
+]]>
+      </example>
+    </function>     
+
+    <function>
+      <name>server -toggledc</name>
+      <remarks>
+	  This will cause the server not to disconnect the player on a uncaught error. An error
+	  is occuring in most cases due cheating. All simple errors that the client can display are
+	  all caught and show up in the client.
+      </remarks>
+      <example><![CDATA[
+Server instance
+Connect to: 127.0.0.1 64002
+Connect to: 0.0.0.0 64001
+server -toggledc
+]]>
+      </example>
+    </function>
+
+    <function>
+      <name>maintenance -force -release</name>
+      <remarks>
+	  This will release the maintenance lock on the authentication server for your spefic server.
+	  With a maintenance lock you can disallow new people to join your server.
+      </remarks>
+      <example><![CDATA[
+Server instance
+Connect to: 127.0.0.1 64002
+Connect to: 0.0.0.0 64001
+maintenance -force -release
+]]>
+      </example>
+    </function>
+
+    <function>
+      <name>maintenance -force -enter</name>
+      <remarks>
+	  This will open the maintenance lock on the authentication server for your spefic server.
+	  With a maintenance lock you can disallow new people to join your server.
+      </remarks>
+      <example><![CDATA[
+Server instance
+Connect to: 127.0.0.1 64002
+Connect to: 0.0.0.0 64001
+maintenance -force -enter
+]]>
+      </example>
+    </function>
+
+
+    <function>
+      <name>maintenance -schedule</name>
+      <remarks>
+	  This will schedule a reboot of the server. This means susspending the server into
+	  an maintenance mode first, kicking all players, wait a time for database processing, exit 
+	  the process.
+      </remarks>
+      <example><![CDATA[
+Server instance
+Connect to: 127.0.0.1 64002
+Connect to: 0.0.0.0 64001
+maintenance -schedule "2008-11-08 12:00:00"
+]]>
+      </example>
+    </function>
+
+  </luabindings>
+</page>

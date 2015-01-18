@@ -1,0 +1,111 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9D81F036-5CD7-403D-90E2-3382D97996B5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Saga.Gateway</RootNamespace>
+    <AssemblyName>Saga.Gateway</AssemblyName>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Mono %28debug%29|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Mono %28debug%29\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Config.Base.cs" />
+    <Compile Include="Configuration\Config.Manager.Network.cs" />
+    <Compile Include="Console\Console.cs" />
+    <Compile Include="Network\Internal Packets\SMSG_RELEASEAUTH.cs" />
+    <Compile Include="Network\Internal Packets\SMSG_NETWORKADRESSIP.cs" />
+    <Compile Include="Network\WorldClient.cs" />
+    <Compile Include="Packets\CMSG_ESTABLISHWORLDCONNECTION.cs" />
+    <Compile Include="Packets\CMSG_GUID.cs" />
+    <Compile Include="Packets\CMSG_IDENTIFY.cs" />
+    <Compile Include="Packets\CMSG_SENDKEY.cs" />
+    <Compile Include="Packets\CMSG_SESSION_REQUEST.cs" />
+    <Compile Include="Packets\SMSG_GUID.cs" />
+    <Compile Include="Packets\SMSG_IDENTIFY.cs" />
+    <Compile Include="Packets\SMSG_SENDKEY.cs" />
+    <Compile Include="Packets\SMSG_SESSION_REPLY.cs" />
+    <Compile Include="Packets\SMSG_UKNOWN.cs" />
+    <Compile Include="Packets\SMSG_UKNOWN2.cs" />
+    <Compile Include="Packets\SMSG_UKNOWN3.cs" />
+    <Compile Include="Packets\SMSG_LOGINAWNSER.cs" />
+    <Compile Include="Utils\Definitions\NetworkManager.cs" />
+    <Compile Include="Utils\Misc\GatewayPool.cs" />
+    <Compile Include="Network\LoginClient.cs" />
+    <Compile Include="Network\GatewayClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Misc\SessionPool.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Saga.Shared.Definitions\Saga.Shared.Definitions.csproj">
+      <Project>{DBBE5A5F-9C3B-4785-91A9-0A5245B2F3BC}</Project>
+      <Name>Saga.Shared.Definitions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared\Saga.Shared\Saga.Shared.NetworkCore.csproj">
+      <Project>{45C7E3E6-825A-4AB2-8E60-69131B596229}</Project>
+      <Name>Saga.Shared.NetworkCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>CD "$(SolutionDir)"
+COPY /Y "$(ProjectDir)$(OutDir)$(TargetFileName)" /B "Binary\$(TargetFileName)" /B
+COPY /Y "$(ProjectDir)$(OutDir)*.dll" /B "Binary\*.dll" /B
+COPY /Y "$(ProjectDir)$(OutDir)*.pdb" /B "Binary\*.pdb" /B</PostBuildEvent>
+  </PropertyGroup>
+</Project>

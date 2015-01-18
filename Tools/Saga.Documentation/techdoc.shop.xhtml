@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xslt/techdoc.xsl"?>
+<page logo="techdoc">
+  <title>Fileformat: Shoplist</title>
+  <paragraph>The warper fileformat is used to configure the Npcfunction 'ShopConversation'. Used by the npc's who have a shop.</paragraph>
+  <code><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE shop [
+	<!ELEMENT shop (item*)>
+	<!ELEMENT item CDATA #REQUIRED>
+	<!ATTLIST item count CDATA #IMPLIED>
+]>
+<shop>
+    <item>3012068</item>
+    <item>3012067</item>
+    <item>3012066</item>
+    <item>52</item>
+    <item>3000001</item>
+</shop>]]></code>
+
+  <paragraph>In the example above you see the internal file format used to configure the ‘ShopConversation’ element. This will show a normal shop where you can buy, sell, or rebuy your items. Not only does the shops support an infinite amount of supplies it can also be set to stocked. </paragraph>
+  <paragraph>Once you use buy a stocked item the stock count of the npc is decreased. Once it reaches a stock of zero the item will be removed from the list until the npc has been reloaded. By default every hour the server reconfigures it’s npc’s silent.</paragraph>
+  <paragraph>In order to change the prices  of item at which the shop sells the item you need to modify the items.dat in the client side files. We recommend not to alter the client as it makes updating very complicated for your server. In order to use a stocked items please configure the “count” attribute higher than 0 this will cause the system to not use a infinite stock.</paragraph>
+
+</page>

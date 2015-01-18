@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SkillMaster> 
+  <Gossip>786</Gossip>
+  <EverydayConversation>789</EverydayConversation>
+  <EverydayConversation>792</EverydayConversation>
+  <EverydayConversation>795</EverydayConversation>
+  <ShowSkillMasterMenu>1758</ShowSkillMasterMenu>
+  <ChangeJob>861</ChangeJob>
+  <SpecialAbillities>1764</SpecialAbillities>
+  <Skillbook>250</Skillbook>
+</SkillMaster>

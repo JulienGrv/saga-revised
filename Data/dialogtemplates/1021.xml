@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Auctioneer> 
+  <Gossip>4078</Gossip>
+  <EverydayConversation>4081</EverydayConversation>
+  <EverydayConversation>4084</EverydayConversation>
+  <Shop>4546</Shop>
+  <TradeDialog>4546</TradeDialog>
+</Auctioneer>

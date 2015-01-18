@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Tools.DBEquipement", "Saga.Tools.DBEquipement\Saga.Tools.DBEquipement.csproj", "{A2EC0645-22DF-4234-91E8-22616854E1B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Tools.DBInstaller", "Saga.Tools.DBInstaller\Saga.Tools.DBInstaller.csproj", "{F9EDA482-7095-41F2-9779-6489B361D76F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Tools.QuestExtractor", "Saga.Tools.QuestExtractor\Saga.Tools.QuestExtractor.csproj", "{4DA99418-52F3-4294-B69C-3432EB917853}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Tools.TableRestruction", "Saga.Tools.TableRestruction\Saga.Tools.TableRestruction.csproj", "{487ED1F0-C8BA-49FC-9013-AE130D436C68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AF09B29C-826D-45EE-AE97-E3BC15BFA84A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.Tools.Tasks", "Saga.Tools.Tasks\Saga.Tools.Tasks.csproj", "{B71F02D6-CCF7-4CCC-A4B2-785A06791A32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug2|Any CPU = Debug2|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2EC0645-22DF-4234-91E8-22616854E1B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2EC0645-22DF-4234-91E8-22616854E1B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2EC0645-22DF-4234-91E8-22616854E1B4}.Debug2|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2EC0645-22DF-4234-91E8-22616854E1B4}.Debug2|Any CPU.Build.0 = Debug|Any CPU
+		{A2EC0645-22DF-4234-91E8-22616854E1B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2EC0645-22DF-4234-91E8-22616854E1B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9EDA482-7095-41F2-9779-6489B361D76F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9EDA482-7095-41F2-9779-6489B361D76F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9EDA482-7095-41F2-9779-6489B361D76F}.Debug2|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9EDA482-7095-41F2-9779-6489B361D76F}.Debug2|Any CPU.Build.0 = Debug|Any CPU
+		{F9EDA482-7095-41F2-9779-6489B361D76F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9EDA482-7095-41F2-9779-6489B361D76F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DA99418-52F3-4294-B69C-3432EB917853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DA99418-52F3-4294-B69C-3432EB917853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DA99418-52F3-4294-B69C-3432EB917853}.Debug2|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DA99418-52F3-4294-B69C-3432EB917853}.Debug2|Any CPU.Build.0 = Debug|Any CPU
+		{4DA99418-52F3-4294-B69C-3432EB917853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DA99418-52F3-4294-B69C-3432EB917853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{487ED1F0-C8BA-49FC-9013-AE130D436C68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{487ED1F0-C8BA-49FC-9013-AE130D436C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{487ED1F0-C8BA-49FC-9013-AE130D436C68}.Debug2|Any CPU.ActiveCfg = Debug|Any CPU
+		{487ED1F0-C8BA-49FC-9013-AE130D436C68}.Debug2|Any CPU.Build.0 = Debug|Any CPU
+		{487ED1F0-C8BA-49FC-9013-AE130D436C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{487ED1F0-C8BA-49FC-9013-AE130D436C68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B71F02D6-CCF7-4CCC-A4B2-785A06791A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B71F02D6-CCF7-4CCC-A4B2-785A06791A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B71F02D6-CCF7-4CCC-A4B2-785A06791A32}.Debug2|Any CPU.ActiveCfg = Debug|Any CPU
+		{B71F02D6-CCF7-4CCC-A4B2-785A06791A32}.Debug2|Any CPU.Build.0 = Debug|Any CPU
+		{B71F02D6-CCF7-4CCC-A4B2-785A06791A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B71F02D6-CCF7-4CCC-A4B2-785A06791A32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

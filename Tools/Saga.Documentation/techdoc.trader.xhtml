@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xslt/techdoc.xsl"?>
+<page logo="techdoc">
+  <title>Fileformat: Traders</title>
+  <paragraph>The warper fileformat is used to configure the Npcfunction 'TraderConversation'. Used by the npc's which provide trading interaction.</paragraph>
+  <code><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<trader>
+	<trades id="11">
+		<trade type="single" fee="0" refund="0">57</trade>
+	</trades>
+	<production>
+		<item trade="57" group="0" count="1">2010003</item>
+	</production>
+	<supplement>
+		<item trade="57" group="0" count="10">1700058</item>
+		<item trade="57" group="0" count="1">1700069</item>
+		<item trade="57" group="0" count="10">9434</item>
+	</supplement>
+</trader>]]></code>
+
+  <paragraph>In the example above you see the default fileformat as used by the traders of saga. There are two different trader types namely 'single' and 'grouped'. A single trader has a user-interface which shows 5 production and 5 supplement items. A grouped trader show a user-interface with maximum 25 subtrades with 1 production item and maximum 2 supplement items.</paragraph>
+  <paragraph>In the example we show a trader. The trader shows submenu '11' for display options after looking this up in the client we see "Alter Stone : Beholder Eyes + 4;Alter Stone : Bonecrush Rain + 4;Alter Stone : Burning Anger + 4;Alter Stone : Dragon Blade Crusher + 3;Alter Stone : Coldheart + 4;Alter Stone : Magic Charm + 4;" which is associated with "57;61;65;69;73;77;". This means that when you press on the submenu "Alter Stone : Beholder Eyes + 4;Alter Stone : Bonecrush Rain + 4" it will open trade with id listed as "57".</paragraph>
+  <paragraph>As we take a close look at our example. In production we have 1 item and in supplement 3 items listed for id 57. This will mean you gain that one item and require those three items. The group attribute for a 'single' trade can be leftout. For readabillity/consistancy in the fileformat we give it a default value of zero. The refund attribute means the amount of rufi the trader will give you after the trade. The fee attribute means the amount of rufi you need have in order to trade.</paragraph>
+  
+    <code><![CDATA[<?xml version="1.0" encoding="Windows-1252"?>
+<trader>
+	<trades id="7">
+		<trade type="grouped" fee="0" refund="0">28</trade>
+	</trades>
+	<production>
+		<item trade="28" group="1" count="0">100085</item>
+		<item trade="28" group="2" count="0">100086</item>
+		<item trade="28" group="3" count="0">100088</item>
+		<item trade="28" group="4" count="0">100090</item>
+		<item trade="28" group="5" count="0">100092</item>
+		<item trade="28" group="6" count="0">100094</item>
+		<item trade="28" group="7" count="0">500105</item>
+		<item trade="28" group="8" count="0">570268</item>
+		<item trade="28" group="9" count="0">500106</item>
+		<item trade="28" group="10" count="0">570269</item>
+		<item trade="28" group="11" count="0">500108</item>
+		<item trade="28" group="12" count="0">570271</item>
+		<item trade="28" group="13" count="0">500110</item>
+		<item trade="28" group="14" count="0">570273</item>
+		<item trade="28" group="15" count="0">500112</item>
+		<item trade="28" group="16" count="0">570275</item>
+		<item trade="28" group="17" count="0">500114</item>
+		<item trade="28" group="18" count="0">570277</item>
+	</production>
+	<supplement>
+		<item trade="28" group="1" count="1">1700113</item>
+		<item trade="28" group="2" count="4">1700113</item>
+		<item trade="28" group="3" count="9">1700113</item>
+		<item trade="28" group="4" count="16">1700113</item>
+		<item trade="28" group="5" count="30">1700113</item>
+		<item trade="28" group="6" count="64">1700113</item>
+		<item trade="28" group="7" count="1">1700113</item>
+		<item trade="28" group="8" count="1">1700113</item>
+		<item trade="28" group="9" count="4">1700113</item>
+		<item trade="28" group="10" count="4">1700113</item>
+		<item trade="28" group="11" count="9">1700113</item>
+		<item trade="28" group="12" count="9">1700113</item>
+		<item trade="28" group="13" count="16">1700113</item>
+		<item trade="28" group="14" count="16">1700113</item>
+		<item trade="28" group="15" count="30">1700113</item>
+		<item trade="28" group="16" count="30">1700113</item>
+		<item trade="28" group="17" count="56">1700113</item>
+		<item trade="28" group="18" count="56">1700113</item>
+	</supplement>
+</trader>]]></code>
+
+<paragraph>In the example above you see how a 'grouped' trader looks like. When showing a grouped trading the entire list is visible by the client. Each supplement/production item is grouped by their groupnumber. This means if you open the tradelist with id 28 which in this cases is a grouped trader and you wish to subtrade 3 of trade 28 you will gain the item:100088; and you will require: 1700113; The grouped traders are often associated with coupon traders. </paragraph>
+  
+</page>

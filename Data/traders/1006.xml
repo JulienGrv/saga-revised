@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<trader>
+	<trades id="12">
+		<trade type="single" fee="0" refund="0">58</trade>
+		<trade type="single" fee="0" refund="0">62</trade>
+		<trade type="single" fee="0" refund="0">66</trade>
+		<trade type="single" fee="0" refund="0">70</trade>
+		<trade type="single" fee="0" refund="0">74</trade>
+		<trade type="single" fee="0" refund="0">78</trade>
+	</trades>
+	<production>
+		<item trade="58" group="0" count="1">2010005</item>
+		<item trade="62" group="0" count="1">2010014</item>
+		<item trade="66" group="0" count="1">2010023</item>
+		<item trade="70" group="0" count="1">2010030</item>
+		<item trade="74" group="0" count="1">2010038</item>
+		<item trade="78" group="0" count="1">2010047</item>
+	</production>
+	<supplement>
+		<item trade="58" group="0" count="10">1700058</item>
+		<item trade="58" group="0" count="2">1700069</item>
+		<item trade="58" group="0" count="10">9475</item>
+		<item trade="62" group="0" count="10">1700058</item>
+		<item trade="62" group="0" count="2">1700070</item>
+		<item trade="62" group="0" count="10">9471</item>
+		<item trade="66" group="0" count="10">1700058</item>
+		<item trade="66" group="0" count="2">1700068</item>
+		<item trade="66" group="0" count="10">9473</item>
+		<item trade="70" group="0" count="10">1700058</item>
+		<item trade="70" group="0" count="2">1700072</item>
+		<item trade="70" group="0" count="10">1700033</item>
+		<item trade="74" group="0" count="10">1700058</item>
+		<item trade="74" group="0" count="2">1700071</item>
+		<item trade="74" group="0" count="10">9449</item>
+		<item trade="78" group="0" count="10">1700058</item>
+		<item trade="78" group="0" count="2">1700070</item>
+		<item trade="78" group="0" count="10">9494</item>
+	</supplement>
+</trader>

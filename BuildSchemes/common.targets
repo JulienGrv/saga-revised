@@ -1,0 +1,25 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5" InitialTargets="Check">
+
+  <Target Name="Check">
+    <Error Condition="$(SagaRoot) == ''" Text="Saga root is not defined" />
+
+
+    <Warning Text="$(SagaRoot)" />
+    <Warning Text="$(SagaTasksPath)" />
+    
+    <Error Text="$(SagaTasksPath)" />
+  </Target>
+
+  <PropertyGroup>
+    <!-- Used by the target files -->
+    <SagaTasksPath>$(SagaRoot)\Tools\Saga.Tools.Tasks\bin\Debug\</SagaTasksPath>
+    <MSBuildCommunityTasksPath>$(SagaRoot)\Tools\Pre-compiled\</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+
+  <!-- Only import the tasks if root property was set -->
+  <Import Project="$(SagaRoot)\Tools\Pre-compiled\MSBuild.Community.Tasks.Targets" Condition="$(SagaRoot) != ''" />
+  <Import Project="$(SagaTasksPath)\Saga.Tools.Tasks.Targets" Condition="$(SagaRoot) != ''" />
+
+
+
+</Project>

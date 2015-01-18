@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="xslt/techdoc.xsl"?>
+<page logo="techdoc">
+  <title>Scripting reference: skills</title>
+  <paragraph>We offer a unique skill system that allows each skill to be coded by a 3rd party. To make use  of this feature there are several demands that must be validated. Each skill has a method as entrypoint.The method has to match a delegate delegate void SkillHandler(object sender, object target, SpellEventArgs arguments)</paragraph>
+  <code><![CDATA[matrix[0, 0] = Source Actor Alterstone Mimimum Attack;
+matrix[0, 1] = Source Actor Weapon Mimimum Attack;
+matrix[0, 2] = Source Actor Mimimum Attack;
+matrix[0, 3] = Source Actor Skill Minimum Attack;
+matrix[1, 0] = Source Actor Alterstone Maximum Attack;
+matrix[1, 1] = Source Actor Weapon Maximum Attack;
+matrix[1, 2] = Source Actor Maximum Attack;
+matrix[1, 3] = Source Actor Skill Maximum Attack;
+matrix[2, 0] = Source Actor Defense;
+matrix[2, 1] = Source Actor Blockrate;
+matrix[2, 2] = Source Actor Critical Rate;
+matrix[2, 3] = Source Actor Hitrate     
+matrix[3, 0] = Target Actor Defense;
+matrix[3, 1] = Target Actor Blockrate;
+matrix[3, 2] = Target Actor Criticalrate;   
+matrix[3, 3] = Target Actor Hitrate;    
+matrix[4, 0] = Source Actor Evasion Rate
+matrix[4, 1] = Source Actor Level
+matrix[4, 2] = Target Actor Level;
+matrix[4, 3] = Target Actor Evasion Rate;
+]]></code>
+
+  <paragraph>A skillmatrix is a container of values. Each skill matrix is a multidimensional 5*4 array. So a total of 20 values. To keep the skill calculations short i've decided to keep using a short ccess form e.d. matrix[3,4]; Around each skillmatrix there are several easy functions that use complex formulla's to calculate damage.</paragraph>
+  <paragraph>SpellEventArgs can create three skillmatrixes by default. Ranged,Physical,Magical. By choosing a Ranged matrix it will naturally align the targets ranged defense against the senders ranged resistances. In most cases these three matrix will be sufficient enough.</paragraph>
+
+  <code><![CDATA[IsMissed(SkillMatrix matrix)	 
+Checks if the skill misses
+
+IsBlocked(SkillMatrix matrix)	 
+Checks if the skill is blocked by the oponent
+
+IsCritical(SkillMatrix matrix) 
+Checks if the skill is critical hit (this will alter the damage of the skill, should be called last)
+
+GetDamage(SkillMatrix matrix)	
+Calculates skill damange with standard deviation formulla
+
+GetDefenseReduction(SkillMatrix matrix, uint damage)
+Calculates a deduces damage based upon defense attribute
+
+GetLevelDifference(SkillMatrix matrix)
+Gets the obsolute level difference between two actors
+
+int GetLevelDifference(SkillMatrix matrix)
+Gets a 5 int capped level limit how many levels the target clvl greater is than the source clvl.
+
+]]></code>
+</page>

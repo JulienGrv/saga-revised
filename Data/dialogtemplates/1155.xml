@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Basicnpc> 
+  <Gossip>2501</Gossip>
+  <EverydayConversation>2502</EverydayConversation>
+</Basicnpc>

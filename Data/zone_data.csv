@@ -1,0 +1,27 @@
+Id,Zone,Cattleya.X,Cattleya.Y,Cattleya.Z,Cattleya.ZoneId,Promise.X,Promise.Y,Promise.Z,Promise.ZoneId,Heightmap.Name,Heightmap.Size,Heightmap.X,Heightmap.Y,Heightmap.Z,Heightmap.Scale.X,Heightmap.Scale.Y,Heightmap.Scale.Z,Type,Region,
+1,Saga.PrimaryTypes.Zone,1840.076,-13552.21,-6392,1,1840.076,-13552.21,-6392,1,hod_f01_1.hmap,256,0,0,0,256,256,256,Village,2,Hodemimes
+2,Saga.PrimaryTypes.Zone,38363.13,-26931.24,3554,2,0,0,0,0,hod_f02_1.hmap,512,0,0,0,256,256,128,Field,2,Outside Hodemimes
+3,Saga.PrimaryTypes.Zone,19131,14621,2213,3,0,0,0,3,hod_f00_1.hmap,256,0,0,0,256,256,256,Field,1,Adventurers Training Ground
+4,Saga.Scripting.Zones.IndoorMap,38363.13,-26931.24,3554,2,0,0,0,0,,,,,,,,,Dungeon,0,Cave of Emir
+5,Saga.PrimaryTypes.Zone,13715.05,77742.77,5120,5,15700,94552,4273.208,5,,,,,,,,,Village,3,Prontera
+6,Saga.PrimaryTypes.Zone,34260,-8973,-4200,6,0,0,0,3,prt_f02_1.hmap,512,0,0,0,256,256,128,Field,3,Southeast of Prontera
+7,Saga.PrimaryTypes.Zone,11202.11,24189.18,5060,7,0,0,0,0,prt_f03_1.hmap,512,0,0,12,256,256,128,Field,3,Southwest of Prontera
+8,Saga.PrimaryTypes.Zone,20285,28962,-11790,8,0,0,0,0,prt_f04_1.hmap,512,0,740,0,256,256,128,Field,3,Northwest of Prontera
+9,Saga.Scripting.Zones.IndoorMap,13715.05,77742.77,5120,5,0,0,0,0,,,,,,,,,Dungeon,0,Prontera Culvert
+10,Saga.Scripting.Zones.Shipzone,0,0,0,0,0,0,0,0,ship_zone_1.hmap,256,-580.933838,157345.6406,188956.5,43,43,43,Dungeon,0,Boat
+11,Saga.Scripting.Zones.IndoorMap,1401,-2272,107,11,0,0,0,0,,,,,,,,,Field,4,Adventurers Training Center
+12,Saga.PrimaryTypes.Zone,11608.36,-2358.078,7005,12,0,0,0,0,,,,,,,,,Village,5,Cognito Town
+13,Saga.PrimaryTypes.Zone,-837.586,-891.946,-4003,13,1059,1082,4004.08,13,,,,,,,,,Village,5,Cognito Harbor
+14,Saga.PrimaryTypes.Zone,-18753.64,-15050.46,-23591.56,14,0,0,0,0,cog_f02.hmap,512,0,0,4000,256,256,128,Field,5,Cognito West Field
+15,Saga.PrimaryTypes.Zone,1081.02,23512.93,-7832.787,15,0,0,0,0,cog_f03.hmap,512,0,0,6000,256,256,128,Field,5,Cognito East Field
+16,Saga.PrimaryTypes.Zone,-837.586,-891.946,-4003,13,0,0,0,0,,,,,,,,,Dungeon,0,Inside Cognito Dungeon
+17,Saga.Scripting.Zones.IndoorMap,38363.13,-26931.24,3554,2,0,0,0,0,,,,,,,,,Dungeon,0,Emir Cave Lv2
+18,Saga.Scripting.Zones.IndoorMap,38363.13,-26931.24,3554,2,0,0,0,0,,,,,,,,,Dungeon,0,Emir Cave Lv3
+19,Saga.PrimaryTypes.Zone,-1014.01,13923.7,-15813.3,19,0,0,0,0,alf_f02.hmap,256,0,0,0,256,256,256,Field,0,Alfheim Training Center
+20,Saga.PrimaryTypes.Zone,-14231.8,-18221.53,9549.206,20,-14231,-18221,9549.206,20,,,,,,,,,Village,6,Alfheim
+21,Saga.PrimaryTypes.Zone,3530.191,6554.362,-888.511,21,0,0,0,0,alf_f00.hmap,512,0,0,14500,256,256,128,Field,6,Alfheim Forest
+22,Saga.PrimaryTypes.Zone,-27849.56,6869.313,-508.5,22,0,0,0,0,alf_f03.hmap,512,0,0,7500,256,256,128,Field,6,Alfheim Poro Island
+23,Saga.PrimaryTypes.Zone,3530.191,6554.362,-888.511,21,0,0,0,0,,512,0,0,14000,256,256,128,Field,6,Alfheim Dungeon
+24,Saga.PrimaryTypes.Zone,15612,-40384,-23370,24,0,0,0,0,echo_f01.hmap,512,0,0,3500,256,256,128,Field,0,Forest of Echoes
+25,Saga.Scripting.Zones.IndoorMap,13916.92,-44822.04,-23340.55,24,0,0,0,0,,,,,,,,,Dungeon,0,Blue Echo
+26,Saga.Scripting.Zones.IndoorMap,0,0,0,24,0,0,0,0,,,,,,,,,Dungeon,0,Blue Echo

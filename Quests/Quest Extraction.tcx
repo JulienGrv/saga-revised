@@ -1,0 +1,42 @@
+print("PLEASE EDIT THIS SCRIPT SO VALUES IN THE CONFIG SECTION MATCH YOUR DATABASE(S)")
+
+local extractiontoolbin = "..\\Tools\\Saga.Tools.QuestExtractor\\bin\\Debug\\Saga.Tools.QuestExtractor.exe"
+local indexertoolbin = "..\\Tools\\Saga.Tools.QuestIndexer\\bin\\Debug\\\Saga.Tools.QuestIndexer.exe"
+local sqlfile = "..\\Database\\dump_list_quest.sql"
+local questdir = "";
+local questdata = "..\\Data\\QuestData.xml";
+
+-- Don't change anything below here
+
+function Install()
+	print("Extracting all quests for new content.");
+	doproccess(extractiontoolbin , "\"".. questdir .."\" \"" .. questdata .."\"");
+end
+
+function Index()
+	print("Extracting and converting all quests to a indexable format.");
+	doproccess(indexertoolbin , "\"".. questdata .."\" > " .. sqlfile);
+end
+
+
+function Ask()
+	local c = prompt();
+	if c == 102 then
+		Install();	
+	elseif c == 103 then
+		Index();	
+	elseif c == 113 then
+	else	
+		Ask();
+	end
+end
+
+print("");
+print("WARNING: A installation (f) might destroy you existing quest");
+print("files.");
+print("Quest install type: (f) to install or (g) to generate new quests indexes or (q) to quite quit?");
+print("");
+Ask();
+print("Script complete");
+
+
