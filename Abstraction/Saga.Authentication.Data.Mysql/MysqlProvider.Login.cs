@@ -20,8 +20,8 @@ namespace Saga.Authentication.Data.Mysql
 
             try
             {
-                
-                reader = command.ExecuteReader(CommandBehavior.SingleRow);
+
+                reader = command.ExecuteReader();  // argument CommandBehavior.SingleRow removed (Darkin)
                 while (reader.Read())
                 {
                     mstring.Add( reader.GetString(0) );

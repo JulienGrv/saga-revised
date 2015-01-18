@@ -515,7 +515,7 @@ namespace Saga.Map.Data.Mysql
 
             try
             {
-                reader = command.ExecuteReader(CommandBehavior.SingleRow);
+                reader = command.ExecuteReader(); // argument CommandBehavior.SingleRow removed (Darkin)
                 while (reader.Read())
                 {
                     MailItem item = new MailItem();

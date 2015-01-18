@@ -1466,7 +1466,7 @@ namespace Saga.Map.Data.Mysql
 
             try
             {
-                reader = command.ExecuteReader(System.Data.CommandBehavior.SingleRow);
+                reader = command.ExecuteReader(); // argument CommandBehavior.SingleRow removed (Darkin)
                 while (reader.Read())
                 {
                     res = reader.GetInt32(0) > 0;
