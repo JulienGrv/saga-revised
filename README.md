@@ -18,8 +18,8 @@ We use the latest [DiviniaRO2 full client](https://mega.co.nz/#!yZhlkB5S!j6zia8k
 ## Credits
 
 * [Julien Grave](https://github.com/darkin47)
-* [Kalel60](https://www.assembla.com/profile/kalel60)
-* [Sebda](https://www.assembla.com/profile/Sebda)
+* [kalel60](https://www.assembla.com/profile/kalel60) & [sebda](https://www.assembla.com/profile/Sebda) (SIN dev.)
+* Zenzija & phr34k (SagaRO2 dev.)
 * [All Contributors](https://github.com/lonk/lo14/graphs/contributors)
 
 ## License
