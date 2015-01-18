@@ -572,7 +572,7 @@ namespace Saga.Map
                 consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.QStart"));
                 consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Kill"));
                 consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Worldload"));
-                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.Gmgo"));
+                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Gmgo"));
                 b.Sections.Add("Saga.Manager.ConsoleSettings", consoleSettings);
                 
 

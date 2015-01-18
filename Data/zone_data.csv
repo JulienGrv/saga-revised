@@ -21,7 +21,7 @@ Id,Zone,Cattleya.X,Cattleya.Y,Cattleya.Z,Cattleya.ZoneId,Promise.X,Promise.Y,Pro
 20,Saga.PrimaryTypes.Zone,-14231.8,-18221.53,9549.206,20,-14231,-18221,9549.206,20,,,,,,,,,Village,6,Alfheim
 21,Saga.PrimaryTypes.Zone,3530.191,6554.362,-888.511,21,0,0,0,0,alf_f00.hmap,512,0,0,14500,256,256,128,Field,6,Alfheim Forest
 22,Saga.PrimaryTypes.Zone,-27849.56,6869.313,-508.5,22,0,0,0,0,alf_f03.hmap,512,0,0,7500,256,256,128,Field,6,Alfheim Poro Island
-23,Saga.PrimaryTypes.Zone,3530.191,6554.362,-888.511,21,0,0,0,0,,512,0,0,14000,256,256,128,Field,6,Alfheim Dungeon
+23,Saga.PrimaryTypes.Zone,3530.191,6554.362,-888.511,21,0,0,0,0,alf_d01.hmap,512,0,0,14000,256,256,128,Field,6,Alfheim Dungeon
 24,Saga.PrimaryTypes.Zone,15612,-40384,-23370,24,0,0,0,0,echo_f01.hmap,512,0,0,3500,256,256,128,Field,0,Forest of Echoes
 25,Saga.Scripting.Zones.IndoorMap,13916.92,-44822.04,-23340.55,24,0,0,0,0,,,,,,,,,Dungeon,0,Blue Echo
 26,Saga.Scripting.Zones.IndoorMap,0,0,0,24,0,0,0,0,,,,,,,,,Dungeon,0,Blue Echo

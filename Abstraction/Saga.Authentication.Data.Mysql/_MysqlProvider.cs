@@ -170,7 +170,7 @@ namespace Saga.Authentication.Data.Mysql
         const string _query_01 = "SELECT * FROM `login` WHERE `Username`=?Username LIMIT 1";
         const string _query_02 = "UPDATE `login` SET `LastLoginDate`=NOW(), LastUserIP=INET_ATON(?IP) WHERE `UserId`=?UserId LIMIT 1";
         const string _query_03 = "INSERT INTO `login` (`Username`,`Password`,`Gender`, `LastUserIP`,`LastSession`,`ActiveSession`,`LastLoginDate`,`IsActivated`, `IsBanned`, `HasAgreed`, `DateOfBirth`, `DateOfRegistration`, `IsTestAccount`,`GmLevel` ) VALUES (?Username,MD5(?Password),?Gender, 0, 0, 0, ?DateOfLastLogin,1, 0, 1, ?DateOfBirth, ?DateOfRegistration, 0, ?GmLevel);";
-        const string _query_04 = "UPDATE `login` SET `IsBanned`=1 WHERE `Username`=?Username LIMIT 1;'";
+        const string _query_04 = "UPDATE `login` SET `IsBanned`=1 WHERE `Username`=?Username LIMIT 1;";
         const string _query_05 = "SELECT * FROM `list_worldcharacters` WHERE `UserId`=?UserId";
         const string _query_06 = "UPDATE `list_worldcharacters` SET `CharacterCount`= `CharacterCount` + 1 WHERE `UserId`=?UserId AND WorldId=?WorldId";
         const string _query_07 = "INSERT INTO `list_worldcharacters` (`UserId`,`WorldId`,`CharacterCount`) VALUES (?UserId,?WorldId,1);";
