@@ -1,6 +1,6 @@
-# SagaRevised
+# Saga Revised
 
-SagaRevised emulator for Ragnarok Online 2 : The Gate of the World.
+Saga Revised is an emulator for Ragnarok Online 2 : The Gate of the World.
 
 ## How to compile
 
