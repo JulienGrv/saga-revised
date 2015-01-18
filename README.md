@@ -24,4 +24,4 @@ We use the latest [DiviniaRO2 full client](https://mega.co.nz/#!yZhlkB5S!j6zia8k
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/Darkin47/SagaRevised/blob/master/project/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/Darkin47/SagaRevised/blob/master/LICENSE) for more information.
