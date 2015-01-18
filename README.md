@@ -18,7 +18,7 @@ We use the latest [DiviniaRO2 full client](https://mega.co.nz/#!yZhlkB5S!j6zia8k
 ## Credits
 
 * [Julien Grave](https://github.com/darkin47)
-* [kalel60](https://www.assembla.com/profile/kalel60)
+* [Kalel60](https://www.assembla.com/profile/kalel60)
 * [Sebda](https://www.assembla.com/profile/Sebda)
 * [All Contributors](https://github.com/lonk/lo14/graphs/contributors)
 
