@@ -8,7 +8,7 @@ You need to install [.NET Framework 3.5](http://www.microsoft.com/en-us/download
 
 ## Some tips
 
-* Type `account -ceate username password male` in `Saga.Authentication` to create an account.
+* Type `account -create username password male` in `Saga.Authentication` to create an account.
 * Some time the `build.bat` doesn't work, check the path to `MSBuild.exe` and/or try with administrator privileges.
 * If you are stuck at the login screen for no reason, restart the server and before trying to connect into the game type `host -connect` in the Saga.Gateway console. You don't have to do that each time you want to connect, just one time after launching the server.
 
