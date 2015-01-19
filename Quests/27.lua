@@ -19,8 +19,8 @@ local StepID = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-	Saga.Addstep(cid, QuestID, 2701);
-	Saga.Addstep(cid, QuestID, 2702);
+	Saga.AddStep(cid, QuestID, 2701);
+	Saga.AddStep(cid, QuestID, 2702);
 	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
@@ -63,7 +63,7 @@ function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid, QuestID, 2702, 1, 1004);
 
     --check for completion	
-	local ret = Saga.GetNpcIndex(cid);
+	local ret = Saga.GetNPCIndex(cid);
 	local ItemCount = Saga.CheckUserInventory(cid, 2656);
 	if ret == 1004 then
 	    Saga.GeneralDialog(cid, 3936);

@@ -19,8 +19,8 @@ local RewItemCount2 = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-	Saga.Addstep(cid, QuestID, 12501);
-	Saga.Addstep(cid, QuestID, 12502);
+	Saga.AddStep(cid, QuestID, 12501);
+	Saga.AddStep(cid, QuestID, 12502);
 	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
@@ -52,7 +52,7 @@ function QUEST_STEP_1(cid)
 
 --check if all substeps are complete
 	for i = 1, 2 do
-	if Saga.IsSubStepcompleted(cid, QuestID, 12501, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, 12501, i) == false
 then
 	return -1;
 	end
@@ -69,7 +69,7 @@ function QUEST_STEP_2(cid)
 	if ret == 1000 
 then
 	Saga.GeneralDialog(cid, 3936);
-	Saga.SubStepComplete(cid, QuestID, 1502, 1);
+	Saga.SubstepComplete(cid, QuestID, 1502, 1);
 	end
 end
 
@@ -87,7 +87,7 @@ end
 end
 
 --check for completion
-	local ret = Saga.GetNpcIndex(cid);
+	local ret = Saga.GetNPCIndex(cid);
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress

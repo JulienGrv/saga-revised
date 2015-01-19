@@ -19,8 +19,8 @@ local StepID = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-	Saga.Addstep(cid, QuestID, 2501);
-	Saga.Addstep(cid, QuestID, 2502);
+	Saga.AddStep(cid, QuestID, 2501);
+	Saga.AddStep(cid, QuestID, 2502);
 	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
@@ -47,7 +47,7 @@ function QUEST_STEP_1(cid)
 	Saga.AddWaypoint(cid, 2501, 1, 1002);
 
     --check for completion
-	local ret = Saga.GetNpcIndex(cid)
+	local ret = Saga.GetNPCIndex(cid)
 	if ret == 1002 then
 	    Saga.GeneralDialog(cid, 3936);
 	    Saga.SubstepComplete(cid,QuestID,StepID,1);
@@ -70,7 +70,7 @@ function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid, 2502, 1, 1005);
 
     --check for completion
-	local ret = Saga.GetNpcIndex(cid)
+	local ret = Saga.GetNPCIndex(cid)
 	if ret == 1005 then
 	    Saga.GeneralDialog(cid, 3936);
 	    Saga.SubstepComplete(cid,QuestID,StepID,1);

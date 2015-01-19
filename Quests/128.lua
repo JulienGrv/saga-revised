@@ -50,11 +50,11 @@ function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid, QuestID, 12802, 1, 1003);
 
 --completion check
-	local ret = Saga.GetNpcIndex(cid);
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003
 then
 	Saga.GeneralDialog(cid, 3936);
-	Saga.SubStepComplete(cid, QuestID, 12602, 1);
+	Saga.SubstepComplete(cid, QuestID, 12602, 1);
 end
 --check if all substeps are complete
 	for i = 1, 1 do

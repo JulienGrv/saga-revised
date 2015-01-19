@@ -19,8 +19,8 @@ local RewItemCount2 = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-	Saga.Addstep(cid, QuestID, 2901);
-	Saga.Addstep(cid, QuestID, 2902);
+	Saga.AddStep(cid, QuestID, 2901);
+	Saga.AddStep(cid, QuestID, 2902);
 	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
@@ -65,7 +65,7 @@ end
 function QUEST_STEP_2(cid)
 -- Hand in to Kafra Board Mailbox
 
-	local ret = Saga.GetNpcIndex(cid)
+	local ret = Saga.GetNPCIndex(cid)
 	local ItemCountA = Saga.CheckUserInventory(cid, 2603)
 	local ItemCountB = Saga.CheckUserInventory(cid, 2667)
 	if ret == 1123 and ItemCountA > 2 and ItemCountB > 1

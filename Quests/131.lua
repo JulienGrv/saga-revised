@@ -18,9 +18,9 @@ local RewItemCount2 = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-	Saga.Addstep(cid, QuestID, 13101);
-	Saga.Addstep(cid, QuestID, 13102);
-	Saga.Addstep(cid, QuestID, 13103);
+	Saga.AddStep(cid, QuestID, 13101);
+	Saga.AddStep(cid, QuestID, 13102);
+	Saga.AddStep(cid, QuestID, 13103);
 	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
@@ -74,7 +74,7 @@ function QUEST_STEP_3(cid)
 
 	Saga.AddWaypoint(cid, QuestID, 13103, 1, 1062);
 --check for completion
-	local ret = Saga.GetNpcIndex(cid);
+	local ret = Saga.GetNPCIndex(cid);
 	local ItemCount = Saga.CheckUserInventory(cid, 2811);
 	if ret == 1062
 then
@@ -82,7 +82,7 @@ then
 	if ItemCount > 4
 then
 	Saga.NpcTakeItem(cid, 2811, 5);
-	Saga.SubStepComplete(cid, QuestID, 13103, 1);
+	Saga.SubstepComplete(cid, QuestID, 13103, 1);
 	end
 end
 	Saga.StepComplete(cid, QuestID, 13103);

@@ -18,8 +18,8 @@ local RewItemCount2 = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-	--Saga.Addstep(cid, QuestID, 13301);
-	Saga.Addstep(cid, QuestID, 13302);
+	--Saga.AddStep(cid, QuestID, 13301);
+	Saga.AddStep(cid, QuestID, 13302);
 	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
@@ -51,7 +51,7 @@ function QUEST_STEP_2(cid)
 --Talk to Klaret Natali
 	Saga.AddWaypoint(cid, QuestID, 13302, 1, 1001);
 --check for completion
-	local ret = Saga.GetNpcIndex(cid);
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001
 then
 	Saga.GeneralDialog(cid, 3936);

@@ -19,8 +19,8 @@ local StepID = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-	Saga.Addstep(cid, QuestID, 2601);
-	Saga.Addstep(cid, QuestID, 2602);
+	Saga.AddStep(cid, QuestID, 2601);
+	Saga.AddStep(cid, QuestID, 2602);
 	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
@@ -72,7 +72,7 @@ function QUEST_STEP_2(cid)
 	--Deliver Material to Zarko Ruzzoli
 
 	Saga.AddWaypoint(cid, QuestID, 2602, 1, 1005);
-	local ret = Saga.GetNpcIndex(cid);
+	local ret = Saga.GetNPCIndex(cid);
 	local IitemCountA = Saga.CheckInventory(cid, 4072)
 	local IitemCountB = Saga.CheckInventory(cid, 2644) 
 	local IitemCountC = Saga.CheckInventory(cid, 2645) 

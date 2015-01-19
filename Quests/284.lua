@@ -44,8 +44,8 @@ end
 function QUEST_STEP_1(cid)
 	-- Talk with Volker Stanwood
 			
-	Saga.AddWayPoint(cid, QuestId, StepId, NpcId, PosX, PosY, PosZ, MapId );
-	if Saga.GetNpcIndex() == NpcId 
+	Saga.AddWaypoint(cid, QuestId, StepId, NpcId, PosX, PosY, PosZ, MapId );
+	if Saga.GetNPCIndex() == NpcId 
 		Saga.CompleteStep(cid, QuestID, StepId);
 	else
 		return -1;
@@ -95,8 +95,8 @@ end
 function QUEST_STEP_4(cid)
 	-- Report to Volker Stanwood
 	
-	Saga.AddWayPoint(cid, QuestId, StepId, NpcId, PosX, PosY, PosZ, MapId );
-	if Saga.GetNpcIndex() == NpcId 
+	Saga.AddWaypoint(cid, QuestId, StepId, NpcId, PosX, PosY, PosZ, MapId );
+	if Saga.GetNPCIndex() == NpcId 
 		Saga.CompleteStep(cid, QuestID, StepId);
 	else
 		return -1;

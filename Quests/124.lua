@@ -49,11 +49,11 @@ function QUEST_STEP_1(cid)
 --Talk with Scacciano Morrigan
 	Saga.AddWaypoint(cid, QuestID, 12401, 1, 1003);
 --check for completion
-	local ret = Saga.GetNpcIndex(cid);
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003
 then
 	Saga.GeneralDialog(cid, 3936);
-	Saga.SubStepComplete(cid, QuestID, 12401, 1);
+	Saga.SubstepComplete(cid, QuestID, 12401, 1);
 	end
 
 end
@@ -109,11 +109,11 @@ function QUEST_STEP_4(cid)
 --Talk with Scacciano Morrigan
 	Saga.AddWaypoint(cid, QuestID, 12404, 1, 1003);
 --check for completion
-	local ret = Saga.GetNpcIndex(cid);
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003
 then
 	Saga.GeneralDialog(cid, 3936);
-	Saga.SubStepComplete(cid, QuestID, 12404, 1);
+	Saga.SubstepComplete(cid, QuestID, 12404, 1);
 	end
 
 end

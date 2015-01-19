@@ -20,8 +20,8 @@ local RewItemCount2 = 1;
 function QUEST_START(cid)
 	-- Initialize all quest steps
 	-- Initialize all starting navigation points
-	Saga.Addstep(cid, QuestID, 13201);
-	Saga.Addstep(cid, QuestID, 13202);
+	Saga.AddStep(cid, QuestID, 13201);
+	Saga.AddStep(cid, QuestID, 13202);
 	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
@@ -47,11 +47,11 @@ function QUEST_STEP_1(cid)
 
 	Saga.AddWaypoint(cid, QuestID, 13201, 1, 1004
 --check for completion
-	local ret = Saga.GetNpcIndex(cid)
+	local ret = Saga.GetNPCIndex(cid)
 	if ret == 1004
 then
 	Saga.GeneralDialog(cid, 3936);
-	Saga.SubStepComplete(cid, QuestID, 13201, 1);
+	Saga.SubstepComplete(cid, QuestID, 13201, 1);
 	Saga.ClearWaypoints(cid, QuestID);
 	end
 
@@ -60,7 +60,7 @@ then
 
 --check if all substeps are complete
 	for i = 1, 2 do
-	if Saga.IsSubStepcompleted(cid, QuestID, 13201, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, 13201, i) == false
 then
 	return -1;
 	end
@@ -73,19 +73,19 @@ function QUEST_STEP_2(cid)
 --Report to Kundi
 	Saga.AddWaypoint(cid, QuestID, 13202, 1, 1066);
 --check for completion
-	local ret = Saga.GetNpcIndex(cid);
+	local ret = Saga.GetNPCIndex(cid);
 	ItemCount = Saga.CheckUserInventory(cid, 2657);
 	if ret == 1066 and
 	ItemCount > 4
 then
 	Saga.GeneralDialog(cid, 3936);
 	Saga.NpcTakeItem(cid, 2657, 5);
-	Saga.SubStepComplete(cid, QuestID, 13202, 1);
+	Saga.SubstepComplete(cid, QuestID, 13202, 1);
 	end
 end
 --check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepcompleted(cid, QuestID, 13202, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, 13202, i) == false
 then
 	return -1;
 	end
