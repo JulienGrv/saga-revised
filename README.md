@@ -63,7 +63,7 @@ We use the latest [DiviniaRO2 full client](https://mega.co.nz/#!yZhlkB5S!j6zia8k
 * [Julien Grave](https://github.com/darkin47)
 * [kalel60](https://www.assembla.com/profile/kalel60) & [sebda](https://www.assembla.com/profile/Sebda) (SIN dev.)
 * Zenzija & phr34k (SagaRO2 dev.)
-* [All Contributors](https://github.com/lonk/lo14/graphs/contributors)
+* [All Contributors](https://github.com/Darkin47/SagaRevised/graphs/contributors)
 
 ## License
 The MIT License (MIT). Please see [License File](https://github.com/Darkin47/SagaRevised/blob/master/LICENSE) for more information.
