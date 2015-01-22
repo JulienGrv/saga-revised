@@ -28,6 +28,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
+	local freeslots = Saga.FreeInventoryCount(cid, 0);
 	if freeslots > 0 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);

@@ -34,8 +34,8 @@ function QUEST_START(cid)
 end
 
 function QUEST_FINISH(cid)
-local freeslots = Saga.FreeInventoryCount(cid, 0)
-	if freeslots > 0 then
+	local freeslots = Saga.FreeInventoryCount(cid, 0);
+	if freeslots > 1 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
