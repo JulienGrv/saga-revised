@@ -9,16 +9,16 @@ local NextQuest = 333;
 local RewZeny = 12;
 local RewCxp = 26;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 16076; 
-local RewItem2 = 0; 
-local RewItemCount1 = 1; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 16076;
+local RewItem2 = 0;
+local RewItemCount1 = 1;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
 
-function QUEST_START(cid)	
+function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 2401);
 	Saga.AddStep(cid, QuestID, 2402);
 	Saga.InsertQuest(cid, QuestID, 1);
@@ -45,7 +45,7 @@ end
 
 function QUEST_STEP_1(cid)
 	Saga.Eliminate(cid,QuestID,StepID,10017,4,1);
-	Saga.Eliminate(cid,QuestID,StepID,10018,4,1); 
+	Saga.Eliminate(cid,QuestID,StepID,10018,4,1);
 
     --check if all substeps are complete
     for i = 1, 1 do

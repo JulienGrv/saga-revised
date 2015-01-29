@@ -9,11 +9,11 @@ local NextQuest = 338;
 local RewZeny = 165;
 local RewCxp = 408;
 local RewJxp = 160;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 3; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 3;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -34,7 +34,7 @@ function QUEST_FINISH(cid)
         Saga.GiveItem(cid, RewItem2, RewItemCount2 );
 	    return 0;
     else
-	    return -1;  
+	    return -1;
 	end
 end
 
@@ -59,7 +59,7 @@ function QUEST_STEP_1(cid)
 	        return -1;
 	    end
     end
-    
+	
 	Saga.StepComplete(cid, QuestID, 3901);
 	Saga.ClearWaypoints(cid, QuestID);
 	return 0;
@@ -75,14 +75,14 @@ function QUEST_STEP_2(cid)
     else
 	    Saga.UserUpdateActionObject(cid, QuestID, 3902, 16, 1);
 	end
-   
+	
     --check if all substeps are complete
 	for i = 1, 2 do
 	    if Saga.IsSubStepComplted(cid, QuestID, 3902, i) == false then
 	        return -1;
 	    end
     end
-    
+	
 	Saga.StepComplete(cid, QuestID, 3902);
 	return 0;
 end
@@ -101,14 +101,14 @@ function QUEST_STEP_3(cid)
 	        Saga.SubstepComplete(cid, QuestID, 3903, 1);
 	    end
     end
-    
+	
     --check if all substeps are complete
 	for i = 1, 1 do
 	    if Saga.IsSubStepCompleted(cid, QuestID, 3903, i) == false then
 	        return -1;
 	    end
     end
-    
+	
 	Saga.StepComplete(cid, QuestID, 3903);
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.QuestComplete(cid, QuestID);

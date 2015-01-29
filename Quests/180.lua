@@ -9,20 +9,20 @@ local NextQuest = 181;
 local RewZeny = 212;
 local RewCxp = 900;
 local RewJxp = 360;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 2; 
-local RewItemCount2 = 0; 
-local StepID = 0;   
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 2;
+local RewItemCount2 = 0;
+local StepID = 0;
 
 -- Modify steps below for gameplay
 
-function QUEST_START(cid)    
+function QUEST_START(cid)
     Saga.AddStep(cid, QuestID, 18001);
-    Saga.AddStep(cid, QuestID, 18002);    
-    Saga.AddStep(cid, QuestID, 18003);    
-    Saga.InsertQuest(cid, QuestID, 1);    
+    Saga.AddStep(cid, QuestID, 18002);
+    Saga.AddStep(cid, QuestID, 18003);
+    Saga.InsertQuest(cid, QuestID, 1);
     return 0;
 end
 
@@ -31,7 +31,7 @@ function QUEST_FINISH(cid)
     Saga.GiveItem(cid, RewItem1, RewItemCount1 );
     Saga.GiveZeny(cid, RewZeny);
     Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-    Saga.InsertQuest(cid, NextQuest, 1);  
+    Saga.InsertQuest(cid, NextQuest, 1);
     return 0;
 end
 
@@ -39,26 +39,26 @@ function QUEST_CANCEL(cid)
     return 0;
 end
 
-function QUEST_STEP_1(cid)  
+function QUEST_STEP_1(cid)
     -- Talk with Mainhared Anselm
-    Saga.AddWaypoint(cid, QuestID, StepID, 1,1006);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1,1006);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1006 then
-        Saga.GeneralDialog(cid, 3936);               
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);                
-    end    
-    
+        Saga.GeneralDialog(cid, 3936);
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
+    Saga.ClearWaypoints(cid, QuestID);
 	return 0;
 end
 
@@ -66,39 +66,39 @@ function QUEST_STEP_2(cid)
     -- Obtain Hazel's Leather (5)
     Saga.FindQuestItem(cid, QuestID, StepID, 10098, 3985, 8000, 5, 1);
     Saga.FindQuestItem(cid, QuestID, StepID, 10099, 3985, 8000, 5, 1);
-    
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
     end
-    
-    Saga.StepComplete(cid, QuestID, StepID);     
+	
+    Saga.StepComplete(cid, QuestID, StepID);
     return 0;
 end
 
 function QUEST_STEP_3(cid)
     -- Hand in to Kafra Board Mailbox
-    local ret = Saga.GetActionObjectIndex(cid);    
+    local ret = Saga.GetActionObjectIndex(cid);
     if ret == 1123 then
-        local ItemCountA = Saga.CheckUserInventory(cid, 3985);    
-        if ItemCountA > 4 then    
+        local ItemCountA = Saga.CheckUserInventory(cid, 3985);
+        if ItemCountA > 4 then
             Saga.NpcTakeItem(cid,3985 5);
-            Saga.SubstepComplete(cid, QuestID, StepID, 1);       
+            Saga.SubstepComplete(cid, QuestID, StepID, 1);
         end
-    end    
-    
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end    
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
-    Saga.QuestComplete(cid, QuestID);      
+    Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);
     return -1;
 end
 
@@ -109,15 +109,15 @@ function QUEST_CHECK(cid)
 
     if CurStepID == 18001 then
         ret = QUEST_STEP_1(cid);
-    elseif CurStepID == 18002 then   
-        ret = QUEST_STEP_2(cid);       
-    elseif CurStepID == 18003 then   
-        ret = QUEST_STEP_3(cid);          
+    elseif CurStepID == 18002 then
+        ret = QUEST_STEP_2(cid);
+    elseif CurStepID == 18003 then
+        ret = QUEST_STEP_3(cid);
     end
-    
+	
     if ret == 0 then
         QUEST_CHECK(cid)
     end
-    
-    return ret;    
+	
+    return ret;
 end

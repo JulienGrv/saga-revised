@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 913;
 local RewCxp = 5335;
 local RewJxp = 2134;
-local RewWxp = 0; 
-local RewItem1 = 1700114; 
-local RewItem2 = 0; 
-local RewItemCount1 = 6; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700114;
+local RewItem2 = 0;
+local RewItemCount1 = 6;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 

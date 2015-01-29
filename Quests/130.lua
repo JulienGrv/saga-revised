@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 237;
 local RewCxp = 480;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 4; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 4;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -97,7 +97,7 @@ end
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, 13003);
 	Saga.QuestComplete(cid, QuestID);
-end	
+end
 	
 function QUEST_CHECK(cid)
 	-- Check all steps for progress

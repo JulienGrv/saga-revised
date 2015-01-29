@@ -10,11 +10,11 @@ local NextQuest = 339;
 local RewZeny = 237;
 local RewCxp = 639;
 local RewJxp = 252;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 4; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 4;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -49,7 +49,7 @@ function QUEST_STEP_1(cid)
 	Saga.eliminate(cid, QuestID, 4201, 10034, 4, 2);
 	Saga.eliminate(cid, QuestID, 4201, 10035, 4, 2);
 --Get loot from Be Chased Mermaid
-	Saga.FindQuestItem(cid, QuestID, 4201, 10034, 4073, 8000, 1, 3);  
+	Saga.FindQuestItem(cid, QuestID, 4201, 10034, 4073, 8000, 1, 3);
 
 --chek if all substeps are complete
 	for i = 1, 3 do

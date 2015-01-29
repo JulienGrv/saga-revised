@@ -9,11 +9,11 @@ local NextQuest = 137;
 local RewZeny = 232;
 local RewCxp = 1035;
 local RewJxp = 423;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 3; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 3;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -64,9 +64,9 @@ function QUEST_STEP_2(cid)
 
 	-- Vérifie que l'on parle au Npc
 	if Saga.IsSubStepCompleted(cid,QuestID,13602, 1) == false then
-		Saga.UserUpdateActionObjectType(cid,QuestID,StepID,28,0);		
+		Saga.UserUpdateActionObjectType(cid,QuestID,StepID,28,0);
 	else
-		Saga.UserUpdateActionObjectType(cid,QuestID,StepID,28,1);		
+		Saga.UserUpdateActionObjectType(cid,QuestID,StepID,28,1);
 	end
 	
     -- Vérifie si l'étape en cours est terminé

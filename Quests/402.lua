@@ -9,11 +9,11 @@ local NextQuest = 406;
 local RewZeny = 10;
 local RewCxp = 9;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 1; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 1;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -44,7 +44,7 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-	-- Get 6 Chonchon Fry Wings	
+	-- Get 6 Chonchon Fry Wings
 	Saga.FindQuestItem(cid,QuestID,StepID,10026,2630,8000,3,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10027,2630,8000,3,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10252,2630,8000,3,1);
@@ -65,10 +65,10 @@ function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid,QuestID,StepID,1,1063);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1063 then
 		Saga.GeneralDialog(cid, 3933);
-										
+	
         local ItemCountA = Saga.CheckUserInventory(cid, 2630);
         if ItemCountA > 2 then
             Saga.NpcTakeItem(cid, 2630, 3);
@@ -86,10 +86,10 @@ function QUEST_STEP_2(cid)
     end
 	
 	-- Clear waypoints
-	Saga.ClearWaypoints(cid, QuestID);	
-	Saga.StepComplete(cid,QuestID,StepID);	
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.QuestComplete(cid,QuestID);
-	return -1;     
+	return -1;
 end
 
 function QUEST_CHECK(cid)

@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 408;
 local RewCxp = 774;
 local RewJxp = 306;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 10; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 10;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 function QUEST_VERIFY(cid)
@@ -57,37 +57,37 @@ function QUEST_STEP_1(cid)
 end
 
 function QUEST_STEP_2(cid)
-	-- Get boss pukui ring	
+	-- Get boss pukui ring
 	Saga.FindQuestItem(cid,QuestID,StepID,10011,2646,2500,1,1);
 	
     -- Check if all substeps are completed
 	if Saga.IsSubStepCompleted(cid,QuestID,3202, 1) == false then
 		return -1;
 	end
-		
+	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end
 
 function QUEST_STEP_3(cid)
-	-- Talk to Klaret Natali              
-	Saga.AddWaypoint(cid, QuestID, 3203, 1, 1001);      
+	-- Talk to Klaret Natali
+	Saga.AddWaypoint(cid, QuestID, 3203, 1, 1001);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001 then
 		Saga.NpcTakeItem(cid, 2646, 4);
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
-	end	
+	end
 	
     -- Check if all substeps are completed
      if Saga.IsSubStepCompleted(cid,QuestID,3203, 1) == false then
 		return -1;
 	 end
-    
+	
 	Saga.ClearWaypoints(cid, QuestID);
     Saga.StepComplete(cid,QuestID,StepID);
-    Saga.QuestComplete(cid, QuestID);	    
+    Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 

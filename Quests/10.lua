@@ -9,11 +9,11 @@ local NextQuest = 328;
 local RewZeny = 105;
 local RewCxp = 224;
 local RewJxp = 91;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 3; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 3;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -25,7 +25,7 @@ end
 
 function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 1001);
-	Saga.AddStep(cid, QuestID, 1002);	
+	Saga.AddStep(cid, QuestID, 1002);
 	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
@@ -50,33 +50,33 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
---Zarko Dialog: 96	
-    Saga.StepComplete(cid,QuestID,1001); 
+--Zarko Dialog: 96
+    Saga.StepComplete(cid,QuestID,1001);
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
-	-- Talk with Klaret Natali     
-	Saga.AddWaypoint(cid, QuestID, 1002, 1, 1001);      
+	-- Talk with Klaret Natali
+	Saga.AddWaypoint(cid, QuestID, 1002, 1, 1001);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001 then
-		Saga.GeneralDialog(cid, 95);		
+		Saga.GeneralDialog(cid, 95);
 		Saga.SubstepComplete(cid,QuestID,1002,1);
-	end	
+	end
 	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,1002,i) == false then
 			return -1;
 		 end
-    end	
+    end
 	
-    Saga.ClearWaypoints(cid, QuestID); 
+    Saga.ClearWaypoints(cid, QuestID);
     Saga.StepComplete(cid,QuestID,1002);
-    Saga.QuestComplete(cid, QuestID);	        
-	return -1;		
+    Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)

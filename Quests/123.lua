@@ -10,11 +10,11 @@ local NextQuest = 342;
 local RewZeny = 187;
 local RewCxp = 132;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 6; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 6;
+local RewItemCount2 = 0;
 
 function QUEST_VERIFY(cid)
 	Saga.GeneralDialog(cid, 3957);

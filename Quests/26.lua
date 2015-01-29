@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 70;
 local RewCxp = 161;
 local RewJxp = 63;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 16107; 
-local RewItemCount1 = 3; 
-local RewItemCount2 = 1; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 16107;
+local RewItemCount1 = 3;
+local RewItemCount2 = 1;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -48,10 +48,10 @@ function QUEST_STEP_1(cid)
 	--Find Cornutu's Claws;Loot Tropical Hydra's Organs;Find Marine Sphere Parts;Capture a Pukui;
 
 	Saga.FindQuestItem(cid,QuestID,StepID,10021,4072,8000,1,1);
-	Saga.FindQuestItem(cid,QuestID,StepID,10022,4072,8000,1,1); 
+	Saga.FindQuestItem(cid,QuestID,StepID,10022,4072,8000,1,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10050,2644,8000,2,2);
 	Saga.FindQuestItem(cid,QuestID,StepID,10051,2644,8000,2,2);
-	Saga.FindQuestItem(cid,QuestID,StepID,10040,2645,8000,2,3); 
+	Saga.FindQuestItem(cid,QuestID,StepID,10040,2645,8000,2,3);
 	Saga.FindQuestItem(cid,QuestID,StepID,10041,2645,8000,2,3);
 	--pukui need testing, see Npc.xml
 	Saga.FindQuestItem(cid,QuestID,StepID,10257,2639,8000,1,4);
@@ -59,7 +59,7 @@ function QUEST_STEP_1(cid)
 	Saga.FindQuestItem(cid,QuestID,StepID,40000,2639,8000,1,4);
 
 	--check if all Substeps are completed
-	for i = 1, 4 do 
+	for i = 1, 4 do
 		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
 		end
@@ -75,8 +75,8 @@ function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid, QuestID, 2602, 1, 1005);
 	local ret = Saga.GetNPCIndex(cid);
 	local IitemCountA = Saga.CheckInventory(cid, 4072)
-	local IitemCountB = Saga.CheckInventory(cid, 2644) 
-	local IitemCountC = Saga.CheckInventory(cid, 2645) 
+	local IitemCountB = Saga.CheckInventory(cid, 2644)
+	local IitemCountC = Saga.CheckInventory(cid, 2645)
 	local IitemCountD = Saga.CheckInventory(cid, 2639)
 	if ret == 1005 then
 		Saga.GeneralDialog(cid, 3936);

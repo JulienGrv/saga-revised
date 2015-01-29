@@ -9,18 +9,18 @@ local NextQuest = 0;
 local RewZeny = 408;
 local RewCxp = 929;
 local RewJxp = 368;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 10; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 10;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 301);
-	Saga.AddStep(cid, QuestID, 302);	
+	Saga.AddStep(cid, QuestID, 302);
 	Saga.AddStep(cid, QuestID, 303);
 	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
@@ -46,25 +46,25 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-	-- Talk to mischa              
-	Saga.AddWaypoint(cid, QuestID, 301, 1, 1000);      
+	-- Talk to mischa
+	Saga.AddWaypoint(cid, QuestID, 301, 1, 1000);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1000 then
-		Saga.GeneralDialog(cid, 34);			
+		Saga.GeneralDialog(cid, 34);
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
-	end	
+	end
 	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
 		 end
-    end	
-    
+    end
+	
     Saga.StepComplete(cid,QuestID,StepID);
-    Saga.ClearWaypoints(cid, QuestID);    
+    Saga.ClearWaypoints(cid, QuestID);
 	return 0;
 end
 
@@ -76,7 +76,7 @@ function QUEST_STEP_2(cid)
          if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
 		 end
-    end		
+    end
 	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
@@ -86,9 +86,9 @@ function QUEST_STEP_3(cid)
 	-- Hand over to Kaftra
 	if ret == 1123 then
 		Saga.StepComplete(cid,QuestID,StepID)
-		Saga.QuestComplete(cid, QuestID);	    
+		Saga.QuestComplete(cid, QuestID);
 		return -1;
-	end	
+	end
 	
 	return 0;
 end

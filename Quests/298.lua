@@ -9,20 +9,20 @@ local NextQuest = 299;
 local RewZeny = 512;
 local RewCxp = 1763;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700114; 
-local RewItem2 = 0; 
-local RewItemCount1 = 2; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700114;
+local RewItem2 = 0;
+local RewItemCount1 = 2;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
     Saga.AddStep(cid, QuestID, 29801);
-    Saga.AddStep(cid, QuestID, 29802);       
-    Saga.AddStep(cid, QuestID, 29803);    
-    Saga.InsertQuest(cid, QuestID, 2);  
+    Saga.AddStep(cid, QuestID, 29802);
+    Saga.AddStep(cid, QuestID, 29803);
+    Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
 
@@ -44,9 +44,9 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)	
-	Saga.StepComplete(cid,QuestID,StepID);	
-	return 0;     
+function QUEST_STEP_1(cid)
+	Saga.StepComplete(cid,QuestID,StepID);
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
@@ -54,7 +54,7 @@ function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid,QuestID,StepID,1,1012);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1012 then
 		Saga.GeneralDialog(cid, 2841);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
@@ -68,9 +68,9 @@ function QUEST_STEP_2(cid)
     end
 	
 	-- Clear waypoints
-	Saga.ClearWaypoints(cid, QuestID);	
-	Saga.StepComplete(cid,QuestID,StepID);	
-	return 0;     
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,StepID);
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
@@ -78,7 +78,7 @@ function QUEST_STEP_3(cid)
 	Saga.AddWaypoint(cid,QuestID,StepID,1,1010);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1010 then
 		Saga.GeneralDialog(cid, 2844);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
@@ -92,10 +92,10 @@ function QUEST_STEP_3(cid)
     end
 	
 	-- Clear waypoints
-	Saga.ClearWaypoints(cid, QuestID);	
-	Saga.StepComplete(cid,QuestID,StepID);	
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.QuestComplete(cid,QuestID);
-	return -1;     
+	return -1;
 end
 
 function QUEST_CHECK(cid)

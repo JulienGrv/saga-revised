@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 292;
 local RewCxp = 675;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 5; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 5;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -54,13 +54,13 @@ function QUEST_STEP_1(cid)
 	        return -1;
 	    end
     end
-    
+	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
-    -- Deliver items to Zarko Ruzzoli	
+    -- Deliver items to Zarko Ruzzoli
 	Saga.AddWaypoint(cid, QuestID, 2802, 1, 1005);
 
     --check for completion
@@ -70,13 +70,13 @@ function QUEST_STEP_2(cid)
 	    Saga.GeneralDialog(cid, 3936);
 	    if Itemcount > 4 then
 	        Saga.NpcTakeItem(cid, 2659, 5);
-	        Saga.SubstepComplete(cid,QuestID,StepID,1);       
+	        Saga.SubstepComplete(cid,QuestID,StepID,1);
 	    end
     end
 
     --check if all substeps are completed
 	for i = 1, 1 do
-	    if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then    
+	    if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 	        return -1;
 	    end
     end
@@ -85,7 +85,7 @@ function QUEST_STEP_2(cid)
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
-end   
+end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress

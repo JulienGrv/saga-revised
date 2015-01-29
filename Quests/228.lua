@@ -9,21 +9,21 @@ local NextQuest = 229;
 local RewZeny = 493;
 local RewCxp = 1035;
 local RewJxp = 423;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 12; 
-local RewItemCount2 = 0; 
-local StepID = 0;   
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 12;
+local RewItemCount2 = 0;
+local StepID = 0;
 
 -- Modify steps below for gameplay
 
-function QUEST_START(cid)    
+function QUEST_START(cid)
     Saga.AddStep(cid, QuestID, 22801);
-    Saga.AddStep(cid, QuestID, 22802);       
+    Saga.AddStep(cid, QuestID, 22802);
     Saga.AddStep(cid, QuestID, 22803);
     Saga.AddStep(cid, QuestID, 22804);
-    Saga.InsertQuest(cid, QuestID, 1);  
+    Saga.InsertQuest(cid, QuestID, 1);
     return 0;
 end
 
@@ -31,8 +31,8 @@ function QUEST_FINISH(cid)
     -- Gives all rewards
     Saga.GiveItem(cid, RewItem1, RewItemCount1 );
     Saga.GiveZeny(cid, RewZeny);
-    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp); 
-    Saga.InsertQuest(cid, QuestID, 1);  
+    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
+    Saga.InsertQuest(cid, QuestID, 1);
     return 0;
 end
 
@@ -42,49 +42,49 @@ end
 
 function QUEST_STEP_1(cid)
     -- Talk with Sophie
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1151);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1151);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1151 then
-        Saga.GeneralDialog(cid, 3936);                     
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);   
-    end    
-    
+        Saga.GeneralDialog(cid, 3936);
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
+    Saga.ClearWaypoints(cid, QuestID);
     return 0;
 end
 
 function QUEST_STEP_2(cid)
     -- Report to Monika Reynolds
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1012 then
-        Saga.GeneralDialog(cid, 3936);                     
-        Saga.SubstepComplete(cid, QuestID, StepID, 1); 
-    end    
-    
+        Saga.GeneralDialog(cid, 3936);
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
-    Saga.QuestComplete(cid, QuestID);    
-    return -1;           
+    Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);
+    return -1;
 end
 
 function QUEST_STEP_3(cid)
@@ -100,36 +100,36 @@ function QUEST_STEP_3(cid)
     end
 	
 	Saga.StepComplete(cid, QuestID, StepID);
-    return 0;           
+    return 0;
 end
 
 function QUEST_STEP_4(cid)
     -- Report to Monika Reynolds
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1012 then
-        Saga.GeneralDialog(cid, 3936);                     
-        
-        local ItemCountA = Saga.CheckUserInventory(cid,4018);    
+        Saga.GeneralDialog(cid, 3936);
+	
+        local ItemCountA = Saga.CheckUserInventory(cid,4018);
         if ItemCountA > 0 then
-            Saga.NpcTakeItem(cid, 4018,1);          
-            Saga.SubstepComplete(cid, QuestID, StepID, 1); 
+            Saga.NpcTakeItem(cid, 4018,1);
+            Saga.SubstepComplete(cid, QuestID, StepID, 1);
         end
-    end    
-    
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
-    Saga.QuestComplete(cid, QuestID);    
-    return -1;           
+    Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);
+    return -1;
 end
 
 function QUEST_CHECK(cid)
@@ -139,17 +139,17 @@ function QUEST_CHECK(cid)
 
     if CurStepID == 22801 then
         ret = QUEST_STEP_1(cid);
-    elseif CurStepID == 22802 then                               
-        ret = QUEST_STEP_2(cid);                             
-    elseif CurStepID == 22803 then                           
-        ret = QUEST_STEP_3(cid);  
-    elseif CurStepID == 22804 then                           
-        ret = QUEST_STEP_4(cid);      
+    elseif CurStepID == 22802 then
+        ret = QUEST_STEP_2(cid);
+    elseif CurStepID == 22803 then
+        ret = QUEST_STEP_3(cid);
+    elseif CurStepID == 22804 then
+        ret = QUEST_STEP_4(cid);
     end
-    
+	
     if ret == 0 then
         QUEST_CHECK(cid)
     end
-    
-    return ret;    
+	
+    return ret;
 end

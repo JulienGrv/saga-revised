@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 70;
 local RewCxp = 161;
 local RewJxp = 63;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 2664; 
-local RewItemCount1 = 3; 
-local RewItemCount2 = 1; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 2664;
+local RewItemCount1 = 3;
+local RewItemCount2 = 1;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -83,10 +83,10 @@ function QUEST_STEP_2(cid)
 	    Saga.GeneralDialog(cid, 3936);
 	    if ItemCountA > 1 and ItemCountB > 2 then
 	        Saga.NpcTakeItem(cid, 2610, 2);
-	        Saga.NpcTakeItem(cid, 2638, 3);	    	    
+	        Saga.NpcTakeItem(cid, 2638, 3);
 	        Saga.SubstepComplete(cid,QuestID,1302,1);
 	    end
-    end	        
+    end
 	
 	-- Prefer using substeps instead of nested if's for consitance with
 	-- other quests (easier for other people if all the quests are similair made)
@@ -94,11 +94,11 @@ function QUEST_STEP_2(cid)
          if Saga.IsSubStepCompleted(cid,QuestID,1302,i) == false then
 			return -1;
 		 end
-    end	
+    end
 
 	Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid,QuestID,1302);	
-	Saga.QuestComplete(cid, QuestID);	
+    Saga.StepComplete(cid,QuestID,1302);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 

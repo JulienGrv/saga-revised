@@ -9,20 +9,20 @@ local NextQuest = 0;
 local RewZeny = 212;
 local RewCxp = 675;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 2; 
-local RewItemCount2 = 0; 
-local StepID = 0;  
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 2;
+local RewItemCount2 = 0;
+local StepID = 0;
 
 -- Modify steps below for gameplay
 
-function QUEST_START(cid)	
+function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 15801);
-	Saga.AddStep(cid, QuestID, 15802);	
-	Saga.AddStep(cid, QuestID, 15803);	
-	Saga.InsertQuest(cid, QuestID, 1);	
+	Saga.AddStep(cid, QuestID, 15802);
+	Saga.AddStep(cid, QuestID, 15803);
+	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
 
@@ -39,130 +39,14 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-	-- Talk with Monika Reynolds    
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);      
+	-- Talk with Monika Reynolds
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1012 then
-		Saga.GeneralDialog(cid, 3936);			
+		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
-	end	
-	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-			return -1;
-		 end
-    end	
-    
-    Saga.StepComplete(cid, QuestID, StepID);
-	Saga.ClearWaypoints(cid, QuestID); 
-	return 0;
-end
-
-function QUEST_STEP_2(cid)
-	-- Talk with Joachim Tristan
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1014);      
-	
-	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
-	if ret == 1014 then
-		Saga.GeneralDialog(cid, 3936);			
-		Saga.SubstepComplete(cid, QuestID, StepID, 1);
-	end	
-	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-			return -1;
-		 end
-    end	
-    
-    Saga.StepComplete(cid, QuestID, StepID);
-	Saga.ClearWaypoints(cid, QuestID); 
-	return 0;
-end
-
-function QUEST_STEP_3(cid)
-	-- Talk with Sophie
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1151);      
-	
-	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
-	if ret == 1151 then
-		Saga.GeneralDialog(cid, 3936);			
-		Saga.SubstepComplete(cid, QuestID, StepID, 1);
-	end	
-	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-			return -1;
-		 end
-    end	
-    
-    Saga.StepComplete(cid, QuestID, StepID);
-	Saga.ClearWaypoints(cid, QuestID); 
-	return 0;
-end
-
-function QUEST_STEP_3(cid)
-    -- Talk with Sophie	
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1151);      
-	
-	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
-	if ret == 1151 then
-		Saga.GeneralDialog(cid, 3936);			
-		Saga.SubstepComplete(cid, QuestID, StepID, 1);		
-	end	
-	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-			return -1;
-		 end
-    end	
-    
-    Saga.StepComplete(cid, QuestID, StepID);
-	Saga.ClearWaypoints(cid, QuestID); 
-	return 0;
-end
-
-function QUEST_STEP_4(cid)
-	-- Receive Flowers from Pelshia Hiltrud
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1013);      
-	
-	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
-	if ret == 1013 then	
-        Saga.NpcGiveItem(cid, 3972,1);	       
-		Saga.GeneralDialog(cid, 3936);			
-		Saga.SubstepComplete(cid, QuestID, StepID, 1);
-	end	
-	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-			return -1;
-		 end
-    end	
-    
-    Saga.StepComplete(cid, QuestID, StepID);
-	Saga.ClearWaypoints(cid, QuestID); 
-	return 0;
-end
-
-function QUEST_STEP_5(cid)
-	-- Laydown flowers at the Tombstone	
-	local ret = Saga.GetActionObjectIndex(cid);
-	if ret == 1 then	
-        local ItemCountA = Saga.CheckUserInventory(cid, 3972);    
-	    if ItemCountA > 0 then
-	        Saga.NpcTakeItem(cid, 3972,1);	   
-	        Saga.SubstepComplete(cid, QuestID, StepID, 1);	    
-	    end	       
 	end
 	
     -- Check if all substeps are completed
@@ -170,11 +54,127 @@ function QUEST_STEP_5(cid)
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
 		 end
-    end	
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-	Saga.ClearWaypoints(cid, QuestID); 
-	Saga.QuestComplete(cid, QuestID);	        
+	Saga.ClearWaypoints(cid, QuestID);
+	return 0;
+end
+
+function QUEST_STEP_2(cid)
+	-- Talk with Joachim Tristan
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1014);
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1014 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
+	
+    -- Check if all substeps are completed
+    for i = 1, 1 do
+         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		 end
+    end
+	
+    Saga.StepComplete(cid, QuestID, StepID);
+	Saga.ClearWaypoints(cid, QuestID);
+	return 0;
+end
+
+function QUEST_STEP_3(cid)
+	-- Talk with Sophie
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1151);
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1151 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
+	
+    -- Check if all substeps are completed
+    for i = 1, 1 do
+         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		 end
+    end
+	
+    Saga.StepComplete(cid, QuestID, StepID);
+	Saga.ClearWaypoints(cid, QuestID);
+	return 0;
+end
+
+function QUEST_STEP_3(cid)
+    -- Talk with Sophie
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1151);
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1151 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
+	
+    -- Check if all substeps are completed
+    for i = 1, 1 do
+         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		 end
+    end
+	
+    Saga.StepComplete(cid, QuestID, StepID);
+	Saga.ClearWaypoints(cid, QuestID);
+	return 0;
+end
+
+function QUEST_STEP_4(cid)
+	-- Receive Flowers from Pelshia Hiltrud
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1013);
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1013 then
+        Saga.NpcGiveItem(cid, 3972,1);
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
+	
+    -- Check if all substeps are completed
+    for i = 1, 1 do
+         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		 end
+    end
+	
+    Saga.StepComplete(cid, QuestID, StepID);
+	Saga.ClearWaypoints(cid, QuestID);
+	return 0;
+end
+
+function QUEST_STEP_5(cid)
+	-- Laydown flowers at the Tombstone
+	local ret = Saga.GetActionObjectIndex(cid);
+	if ret == 1 then
+        local ItemCountA = Saga.CheckUserInventory(cid, 3972);
+	    if ItemCountA > 0 then
+	        Saga.NpcTakeItem(cid, 3972,1);
+	        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	    end
+	end
+	
+    -- Check if all substeps are completed
+    for i = 1, 1 do
+         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		 end
+    end
+	
+    Saga.StepComplete(cid, QuestID, StepID);
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 
@@ -187,18 +187,18 @@ function QUEST_CHECK(cid)
 	if CurStepID == 15801 then
 		ret = QUEST_STEP_1(cid);
 	elseif CurStepID == 15802 then
-		ret = QUEST_STEP_2(cid);	
+		ret = QUEST_STEP_2(cid);
 	elseif CurStepID == 15803 then
-		ret = QUEST_STEP_3(cid);			
+		ret = QUEST_STEP_3(cid);
 	elseif CurStepID == 15804 then
-		ret = QUEST_STEP_3(cid);			
+		ret = QUEST_STEP_3(cid);
 	elseif CurStepID == 15805 then
-		ret = QUEST_STEP_3(cid);			
+		ret = QUEST_STEP_3(cid);
 	end
 
 	if ret == 0 then
 		QUEST_CHECK(cid)
 	end
 	
-	return ret;	
+	return ret;
 end

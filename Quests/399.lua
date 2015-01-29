@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 6;
 local RewCxp = 5;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 2030000; 
-local RewItem2 = 0; 
-local RewItemCount1 = 1; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 2030000;
+local RewItem2 = 0;
+local RewItemCount1 = 1;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -42,11 +42,11 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-	-- Talk to Sally   
+	-- Talk to Sally
 	Saga.AddWaypoint(cid, QuestID, 39901, 1, 1147);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1147 then
 		Saga.GeneralDialog(cid, 3933);
 		Saga.SubstepComplete(cid, QuestID, 39901, 1);
@@ -61,9 +61,9 @@ function QUEST_STEP_1(cid)
     end
 	
 	-- Clear waypoints
-	Saga.ClearWaypoints(cid, QuestID);	
-	Saga.StepComplete(cid, QuestID, 39901);	
-	return 0;     
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 39901);
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
@@ -71,7 +71,7 @@ function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid, QuestID, 39902, 1, 1148);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1148 then
 		Saga.GeneralDialog(cid, 3933);
 		Saga.SubstepComplete(cid, QuestID, 39902, 1);
@@ -86,10 +86,10 @@ function QUEST_STEP_2(cid)
     end
 	
 	-- Clear waypoints
-	Saga.ClearWaypoints(cid, QuestID);	
-	Saga.StepComplete(cid, QuestID, 39902);	
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 39902);
     Saga.QuestComplete(cid, QuestID);
-	return -1;  
+	return -1;
 end
 
 function QUEST_CHECK(cid)

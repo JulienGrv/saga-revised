@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 10;
 local RewCxp = 5;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 100001; 
-local RewItem2 = 0; 
-local RewItemCount1 = 1; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 100001;
+local RewItem2 = 0;
+local RewItemCount1 = 1;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -43,12 +43,12 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)    
-	-- Add all waypoints	
+function QUEST_STEP_1(cid)
+	-- Add all waypoints
 	Saga.AddWaypoint(cid, QuestID, 39601, 1, 1174);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1174 then
 	    Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, 39601, 1);
@@ -62,9 +62,9 @@ function QUEST_STEP_1(cid)
     end
 	
 	-- Clear waypoints
-	Saga.ClearWaypoints(cid, QuestID);	
+	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, 39601);
-	return 0;     
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
@@ -72,15 +72,15 @@ function QUEST_STEP_2(cid)
     local ActionObjectID = 47;
 	local ItemId = 9944;
 	
-	Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 0 );		
+	Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 0 );
     if Saga.FindQuestItem(cid, QuestID, 39602, ActionObjectID, ItemId, 10000, 1, 1) > 0 then
-  	  Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 1 );		  
+  	  Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 1 );
 	else
         return -1;
     end
-	   
+	
 	Saga.StepComplete(cid, QuestID, 39602);
-    return 0; 
+    return 0;
 end
 
 function QUEST_STEP_3(cid)
@@ -88,10 +88,10 @@ function QUEST_STEP_3(cid)
 	Saga.AddWaypoint(cid, QuestID, 39603, 1, 1173);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1173 then
 	    Saga.GeneralDialog(cid, 3936);
-	    if Saga.CheckUserInventory(cid, 9944 ) > 0 then	    
+	    if Saga.CheckUserInventory(cid, 9944 ) > 0 then
 			Saga.NpcTakeItem(cid, 9944, 1 );
 			Saga.SubstepComplete(cid, QuestID, 39603, 1);
 		end
@@ -105,10 +105,10 @@ function QUEST_STEP_3(cid)
     end
 	
 	-- Clear waypoints
-	Saga.ClearWaypoints(cid, QuestID);	
+	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, 39603);
-	Saga.QuestComplete(cid, QuestID);	
-	return 0;     	 
+	Saga.QuestComplete(cid, QuestID);
+	return 0;
 
 
 end

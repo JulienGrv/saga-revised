@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 264;
 local RewCxp = 929;
 local RewJxp = 368;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 5; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 5;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -57,7 +57,7 @@ function QUEST_STEP_1()
          if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
 		 end
-    end		
+    end
 	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
@@ -66,22 +66,22 @@ end
 
 function QUEST_STEP_2()
     -- Hand in to Kafra Board Mailbox
-    local ret = Saga.GetActionObjectIndex(cid);    
+    local ret = Saga.GetActionObjectIndex(cid);
     if ret == 1123 then
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);         
-    end    
-    
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end    
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
-    Saga.QuestComplete(cid, QuestID);    
-    return -1;  
+    Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);
+    return -1;
 end
 
 function QUEST_CHECK(cid)

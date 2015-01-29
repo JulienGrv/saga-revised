@@ -9,11 +9,11 @@ local NextQuest = 419;
 local RewZeny = 853;
 local RewCxp = 1980;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 0; 
-local RewItem2 = 0; 
-local RewItemCount1 = 0; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 0;
+local RewItem2 = 0;
+local RewItemCount1 = 0;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -36,11 +36,11 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)	
+function QUEST_STEP_1(cid)
     local freeslots = Saga.FreeInventoryCount(cid, 0);
-    if freeslots > 0 then        
+    if freeslots > 0 then
         Saga.NpcGiveItem(cid, 4225, 1);
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);                
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
     else
 		Saga.EmptyInventory(cid);
     end
@@ -55,7 +55,7 @@ function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid,QuestID,StepID,1,1181);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1181 then
 		Saga.GeneralDialog(cid, 3933);
 
@@ -76,10 +76,10 @@ function QUEST_STEP_2(cid)
     end
 	
 	-- Clear waypoints
-	Saga.ClearWaypoints(cid, QuestID);	
-	Saga.StepComplete(cid,QuestID,StepID);	
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.QuestComplete(cid,QuestID);
-	return -1;     
+	return -1;
 end
 
 

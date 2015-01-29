@@ -9,20 +9,20 @@ local NextQuest = 217;
 local RewZeny = 252;
 local RewCxp = 912;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 3; 
-local RewItemCount2 = 0; 
-local StepID = 0;   
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 3;
+local RewItemCount2 = 0;
+local StepID = 0;
 
 -- Modify steps below for gameplay
 
-function QUEST_START(cid)    
+function QUEST_START(cid)
     Saga.AddStep(cid, QuestID, 21601);
-    Saga.AddStep(cid, QuestID, 21602);       
-    Saga.AddStep(cid, QuestID, 21603);    
-    Saga.InsertQuest(cid, QuestID, 1);  
+    Saga.AddStep(cid, QuestID, 21602);
+    Saga.AddStep(cid, QuestID, 21603);
+    Saga.InsertQuest(cid, QuestID, 1);
     return 0;
 end
 
@@ -30,8 +30,8 @@ function QUEST_FINISH(cid)
     -- Gives all rewards
     Saga.GiveItem(cid, RewItem1, RewItemCount1 );
     Saga.GiveZeny(cid, RewZeny);
-    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp); 
-    Saga.InsertQuest(cid, QuestID, 1);  
+    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
+    Saga.InsertQuest(cid, QuestID, 1);
     return 0;
 end
 
@@ -41,24 +41,24 @@ end
 
 function QUEST_STEP_1(cid)
     -- Talk with Mitzi
-    Saga.AddWaypoint(cid, QuestID, StepID, 1,  1081);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1,  1081);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1081 then
-        Saga.GeneralDialog(cid, 3936);                             
-        Saga.SubstepComplete(cid, QuestID, StepID, 1); 
-    end    
-    
+        Saga.GeneralDialog(cid, 3936);
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
+    Saga.ClearWaypoints(cid, QuestID);
     return 0;
 end
 
@@ -74,36 +74,36 @@ function QUEST_STEP_2(cid)
 		 end
     end
 	
-	Saga.StepComplete(cid, QuestID, StepID);	
+	Saga.StepComplete(cid, QuestID, StepID);
     return 0;
 end
 
 function QUEST_STEP_3(cid)
     -- Report to Mitzi
-    Saga.AddWaypoint(cid, QuestID, StepID, 1,  1081);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1,  1081);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1081 then
-        Saga.GeneralDialog(cid, 3936);                     
-        
-        local ItemCountA = Saga.CheckUserInventory(cid,4005);    
+        Saga.GeneralDialog(cid, 3936);
+	
+        local ItemCountA = Saga.CheckUserInventory(cid,4005);
         if ItemCountA > 7 then
-            Saga.NpcTakeItem(cid, 4005,8);          
-            Saga.SubstepComplete(cid, QuestID, StepID, 1); 
+            Saga.NpcTakeItem(cid, 4005,8);
+            Saga.SubstepComplete(cid, QuestID, StepID, 1);
         end
-    end    
-    
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
-    Saga.QuestComplete(cid, QuestID);    
+    Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);
     return -1;
 end
 
@@ -114,15 +114,15 @@ function QUEST_CHECK(cid)
 
     if CurStepID == 21601 then
         ret = QUEST_STEP_1(cid);
-    elseif CurStepID == 21602 then                       
-        ret = QUEST_STEP_2(cid);               
-    elseif CurStepID == 21603 then                   
-        ret = QUEST_STEP_3(cid);         
+    elseif CurStepID == 21602 then
+        ret = QUEST_STEP_2(cid);
+    elseif CurStepID == 21603 then
+        ret = QUEST_STEP_3(cid);
     end
-    
+	
     if ret == 0 then
         QUEST_CHECK(cid)
     end
-    
-    return ret;    
+	
+    return ret;
 end

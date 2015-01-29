@@ -9,11 +9,11 @@ local NextQuest = 151;
 local RewZeny = 152;
 local RewCxp = 208;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 2; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 2;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -35,9 +35,9 @@ function QUEST_FINISH(cid)
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-	Saga.GiveItem(cid, RewItem2, RewItemCount2 );	
+	Saga.GiveItem(cid, RewItem2, RewItemCount2 );
 	    return 0;
-    else    	
+    else
 	    return -1;
 	end
 end
@@ -76,7 +76,7 @@ function QUEST_STEP_3(cid)
 --check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	local ItemCountA = Saga.CheckUserInventory(cid, 4069);
-	local ItemCountB = Saga.CheckUserInventory(cid, 4073); 
+	local ItemCountB = Saga.CheckUserInventory(cid, 4073);
 	if ret == 1143
 then
 	Saga.GeneralDialog(cid, 3936);

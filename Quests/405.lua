@@ -9,19 +9,19 @@ local NextQuest = 0;
 local RewZeny = 237;
 local RewCxp = 767;
 local RewJxp = 303;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 4; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 4;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
-function QUEST_START()	
+function QUEST_START()
 	return 0;
 end
 
-function QUEST_FINISH()	
+function QUEST_FINISH()
 	return 0;
 end
 

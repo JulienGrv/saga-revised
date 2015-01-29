@@ -9,15 +9,15 @@ local NextQuest = 332;
 local RewZeny = 264;
 local RewCxp = 929;
 local RewJxp = 368;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 5; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 5;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
-      
+	
 function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 2201);
 	Saga.AddStep(cid, QuestID, 2202);
@@ -66,7 +66,7 @@ function QUEST_STEP_2(cid)
 	--check for completion
 	local ItemCount = Saga.CheckUserInventory(cid, 2646)
 	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1005 then 
+	if ret == 1005 then
 		Saga.GeneralDialog(cid, 3936);
 		if ItemCount > 0 then
 			Saga.NpcTakeItem(cid, 2646, 1);
@@ -84,7 +84,7 @@ function QUEST_STEP_2(cid)
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.QuestComplete(cid, QuestID);
-	return -1;	
+	return -1;
 end
 
 function QUEST_CHECK(cid)

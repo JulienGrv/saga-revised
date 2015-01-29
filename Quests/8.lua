@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 165;
 local RewCxp = 306;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 3; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 3;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -25,7 +25,7 @@ end
 
 function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 801);
-	Saga.AddStep(cid, QuestID, 802);	
+	Saga.AddStep(cid, QuestID, 802);
 	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
@@ -55,27 +55,27 @@ function QUEST_STEP_1(cid)
 end
 
 function QUEST_STEP_2(cid)
-	-- Get document from Shelphy Adriana       
-	Saga.AddWaypoint(cid, QuestID, 802, 1, 1059);      
+	-- Get document from Shelphy Adriana
+	Saga.AddWaypoint(cid, QuestID, 802, 1, 1059);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1059 then
-		Saga.GeneralDialog(cid, 3936);			
+		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid,QuestID,802,1);
-	end	
+	end
 	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,802,i) == false then
 			return -1;
 		 end
-    end	
+    end
 	
     Saga.ClearWaypoints(cid, QuestID);
     Saga.StepComplete(cid,QuestID,802);
-    Saga.QuestComplete(cid, QuestID);	        
-	return 0;	
+    Saga.QuestComplete(cid, QuestID);
+	return 0;
 end
 
 

@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 152;
 local RewCxp = 623;
 local RewJxp = 245;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 2; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 2;
+local RewItemCount2 = 0;
 
 function QUEST_VERIFY(cid)
 	Saga.GeneralDialog(cid, 3957);
@@ -71,13 +71,13 @@ function QUEST_STEP_3(cid)
 	Saga.AddWaypoint(cid, QuestID, 13403, 1, 1001);
 	
 	local ItemCount = Saga.CheckUserInventory(cid, 3959);
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001 then
         if ItemCount > 0 then
 			Saga.NpcTakeItem(cid, 3959, 1);
 			Saga.SubstepComplete(cid, QuestID, 13403, 1);
 		end
-	end	
+	end
 --check if all substeps completed
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 13403, i) == false

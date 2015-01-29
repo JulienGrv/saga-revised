@@ -10,11 +10,11 @@ local NextQuest = 0;
 local RewZeny = 26;
 local RewCxp = 65;
 local RewJxp = 25;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 2; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 2;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -89,9 +89,9 @@ end
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
- 
- 
- 
+	
+	
+	
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress

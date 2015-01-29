@@ -9,27 +9,27 @@ local NextQuest = 0;
 local RewZeny = 372;
 local RewCxp = 2820;
 local RewJxp = 1140;
-local RewWxp = 0; 
-local RewItem1 = 0; 
-local RewItem2 = 0; 
-local RewItemCount1 = 0; 
-local RewItemCount2 = 0; 
-local StepID = 0;   
+local RewWxp = 0;
+local RewItem1 = 0;
+local RewItem2 = 0;
+local RewItemCount1 = 0;
+local RewItemCount2 = 0;
+local StepID = 0;
 
 -- Modify steps below for gameplay
 
-function QUEST_START(cid)    
+function QUEST_START(cid)
     Saga.AddStep(cid, QuestID, 24901);
     Saga.AddStep(cid, QuestID, 24902);
     Saga.AddStep(cid, QuestID, 24903);
-    Saga.InsertQuest(cid, QuestID, 1);  
+    Saga.InsertQuest(cid, QuestID, 1);
     return 0;
 end
 
 function QUEST_FINISH(cid)
     -- Gives all rewards
     Saga.GiveZeny(cid, RewZeny);
-    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp); 
+    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
     return 0;
 end
 
@@ -37,68 +37,68 @@ function QUEST_CANCEL(cid)
     return 0;
 end
 
-function QUEST_STEP_1(cid)    
+function QUEST_STEP_1(cid)
     -- Talk with Monika Reynolds
-    Saga.AddWaypoint(cid, QuestID, StepID, 1,  1012);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1,  1012);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1012 then
-        Saga.GeneralDialog(cid, 3936);         
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);   
-    end    
-    
+        Saga.GeneralDialog(cid, 3936);
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);      
-    return 0;                             
+    Saga.ClearWaypoints(cid, QuestID);
+    return 0;
 end
 
-function QUEST_STEP_2(cid)    
-    -- Kill a Coius (1) 
+function QUEST_STEP_2(cid)
+    -- Kill a Coius (1)
     -- Kill a Sios (1)
     Saga.Eliminate(cid, QuestID, StepID, 10309, 10, 1);
-	Saga.Eliminate(cid, QuestID, StepID, 10312, 10, 2); 
+	Saga.Eliminate(cid, QuestID, StepID, 10312, 10, 2);
 	
     -- Check if all substeps are completed
     for i = 1, 2 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
 		 end
-    end	
-    
-    Saga.StepComplete(cid, QuestID, StepID);     
-    return 0;                  
+    end
+	
+    Saga.StepComplete(cid, QuestID, StepID);
+    return 0;
 end
 
-function QUEST_STEP_3(cid)    
+function QUEST_STEP_3(cid)
     -- Report to Monika Reynolds
-    Saga.AddWaypoint(cid, QuestID, StepID, 1,  1012);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1,  1012);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1012 then
-        Saga.GeneralDialog(cid, 3936);         
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);   
-    end    
-    
+        Saga.GeneralDialog(cid, 3936);
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);      
-    Saga.QuestComplete(cid, QuestID);     
-    return -1;               
+    Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);
+    return -1;
 end
 
 function QUEST_CHECK(cid)
@@ -106,17 +106,17 @@ function QUEST_CHECK(cid)
     StepID = CurStepID;
     local ret = -1;
 
-    if CurStepID == 24901 then    
+    if CurStepID == 24901 then
         ret = QUEST_STEP_1(cid);
     elseif CurStepID == 24902 then
-        ret = QUEST_STEP_2(cid);   
+        ret = QUEST_STEP_2(cid);
     elseif CurStepID == 24903 then
-        ret = QUEST_STEP_3(cid);        
+        ret = QUEST_STEP_3(cid);
     end
-    
+	
     if ret == 0 then
         QUEST_CHECK(cid)
     end
-    
-    return ret;    
+	
+    return ret;
 end

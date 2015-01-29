@@ -9,21 +9,21 @@ local NextQuest = 0;
 local RewZeny = 1008;
 local RewCxp = 4510;
 local RewJxp = 1804;
-local RewWxp = 0; 
-local RewItem1 = 1700114; 
-local RewItem2 = 0; 
-local RewItemCount1 = 7; 
-local RewItemCount2 = 0; 
-local StepID = 0;   
+local RewWxp = 0;
+local RewItem1 = 1700114;
+local RewItem2 = 0;
+local RewItemCount1 = 7;
+local RewItemCount2 = 0;
+local StepID = 0;
 
 -- Modify steps below for gameplay
 
-function QUEST_START(cid)    
+function QUEST_START(cid)
     Saga.AddStep(cid, QuestID, 37901);
-    Saga.AddStep(cid, QuestID, 37902);         
-    Saga.AddStep(cid, QuestID, 37903);    
-    Saga.AddStep(cid, QuestID, 37904);    
-    Saga.InsertQuest(cid, QuestID, 1);  
+    Saga.AddStep(cid, QuestID, 37902);
+    Saga.AddStep(cid, QuestID, 37903);
+    Saga.AddStep(cid, QuestID, 37904);
+    Saga.InsertQuest(cid, QuestID, 1);
     return 0;
 end
 
@@ -31,7 +31,7 @@ function QUEST_FINISH(cid)
     -- Gives all rewards
     Saga.GiveItem(cid, RewItem1, RewItemCount1 );
     Saga.GiveZeny(cid, RewZeny);
-    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp); 
+    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
     return 0;
 end
 
@@ -41,24 +41,24 @@ end
 
 function QUEST_STEP_1(cid)
     -- Visit Pretan
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1024);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1024);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1024 then
-        Saga.GeneralDialog(cid, 3936);             
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);   
-    end    
-    
+        Saga.GeneralDialog(cid, 3936);
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
+    Saga.ClearWaypoints(cid, QuestID);
     return 0;
 end
 
@@ -68,9 +68,9 @@ function QUEST_STEP_2(cid)
 
 	-- (De-)Activates the Action Objectd on request
 	if Saga.IsSubStepCompleted(cid,QuestID,StepID, 1) == false then
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 38, 0 );		
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 38, 0 );
 	else
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 38, 1 );		
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 38, 1 );
 	end
 	
     -- Check if all substeps are completed
@@ -78,66 +78,66 @@ function QUEST_STEP_2(cid)
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
 		 end
-    end	
-        
-    Saga.StepComplete(cid, QuestID, StepID);		
+    end
+	
+    Saga.StepComplete(cid, QuestID, StepID);
     return 0;
 end
 
 function QUEST_STEP_3(cid)
     -- Visit Pretan
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1024);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1024);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1024 then
-        Saga.GeneralDialog(cid, 3936);             
+        Saga.GeneralDialog(cid, 3936);
 
-        local ItemCountA = Saga.CheckUserInventory(cid,4189);    
+        local ItemCountA = Saga.CheckUserInventory(cid,4189);
         if ItemCountA > 9 then
-            Saga.NpcTakeItem(cid, 4189,10);          
-            Saga.SubstepComplete(cid, QuestID, StepID, 1); 
-        end  
-    end    
-    
+            Saga.NpcTakeItem(cid, 4189,10);
+            Saga.SubstepComplete(cid, QuestID, StepID, 1);
+        end
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
+    Saga.ClearWaypoints(cid, QuestID);
     return 0;
 end
 
 function QUEST_STEP_4(cid)
     -- Visit Emiel
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1188);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1188);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1188 then
-        Saga.GeneralDialog(cid, 3936);             
+        Saga.GeneralDialog(cid, 3936);
 
-        local ItemCountA = Saga.CheckUserInventory(cid,4189);    
+        local ItemCountA = Saga.CheckUserInventory(cid,4189);
         if ItemCountA > 9 then
-            Saga.NpcTakeItem(cid, 4189,10);          
-            Saga.SubstepComplete(cid, QuestID, StepID, 1); 
-        end  
-    end    
-    
+            Saga.NpcTakeItem(cid, 4189,10);
+            Saga.SubstepComplete(cid, QuestID, StepID, 1);
+        end
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
-    Saga.QuestComplete(cid, QuestID);          
+    Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);
     return -1;
 end
 
@@ -148,17 +148,17 @@ function QUEST_CHECK(cid)
 
     if CurStepID == 37901 then
         ret = QUEST_STEP_1(cid);
-    elseif CurStepID == 37902 then                       
-        ret = QUEST_STEP_2(cid);                         
-    elseif CurStepID == 37903 then                       
-        ret = QUEST_STEP_3(cid);   
-    elseif CurStepID == 37904 then                       
-        ret = QUEST_STEP_4(cid);                                 
+    elseif CurStepID == 37902 then
+        ret = QUEST_STEP_2(cid);
+    elseif CurStepID == 37903 then
+        ret = QUEST_STEP_3(cid);
+    elseif CurStepID == 37904 then
+        ret = QUEST_STEP_4(cid);
     end
-    
+	
     if ret == 0 then
         QUEST_CHECK(cid)
     end
-    
-    return ret;    
+	
+    return ret;
 end

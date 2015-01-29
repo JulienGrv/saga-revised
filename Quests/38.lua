@@ -9,11 +9,11 @@ local NextQuest = 337;
 local RewZeny = 152;
 local RewCxp = 519;
 local RewJxp = 204;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 2; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 2;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -22,7 +22,7 @@ function QUEST_START(cid)
 	-- Initialize all starting navigation points
 	Saga.AddStep(cid, QuestID, 3601);
 	Saga.AddStep(cid, QuestID, 3602);
-	Saga.InsertQuest(cid, QuestID, 1);	
+	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
 
@@ -38,29 +38,29 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-	-- Talk to klaret              
+	-- Talk to klaret
 	Saga.AddWaypoint(cid, QuestID, 3801, 1, 1001);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1002 then
 		Saga.SubstepComplete(cid, QuestID, 3801, 1);
-	end	
+	end
 	
     -- Check if all substeps are completed
 	if Saga.IsSubStepCompleted(cid,QuestID,3801, 1) == false then
 		return -1;
 	end
-		
+	
     Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, 3801);
 end
 
 function QUEST_STEP_2(cid)
-	-- Get 3 Tuna Flesh	
+	-- Get 3 Tuna Flesh
 	Saga.FindQuestItem(cid, QuestID, 3802, 10052, 2614, 10000, 3, 1);
 	Saga.FindQuestItem(cid, QuestID, 3802, 10053, 2614, 10000, 3, 1);
-	-- Get 2 ChonChon eyes	
+	-- Get 2 ChonChon eyes
 	Saga.FindQuestItem(cid, QuestID, 3802, 10028, 2615, 10000, 2, 2);
 	Saga.FindQuestItem(cid, QuestID, 3802, 10029, 2615, 10000, 2, 2);
 	Saga.FindQuestItem(cid, QuestID, 3802, 10253, 2615, 10000, 2, 2);
@@ -74,32 +74,32 @@ function QUEST_STEP_2(cid)
          if Saga.IsSubStepCompleted(cid,QuestID,3802, i) == false then
 			return -1;
 		 end
-    end	
-		
+    end
+	
 	Saga.StepComplete(cid, QuestID, 3802);
 end
 
 function QUEST_STEP_3(cid)
-	-- Talk to klaret              
+	-- Talk to klaret
 	Saga.AddWaypoint(cid, QuestID, 3803, 1, 1001);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001 then
 		Saga.NpcTakeItem(cid, 2614, 3);
 		Saga.NpcTakeItem(cid, 2615, 2);
 		Saga.NpcTakeItem(cid, 2616, 2);
 		Saga.SubstepComplete(cid, QuestID, 3803, 1);
-	end	
+	end
 	
     -- Check if all substeps are completed
      if Saga.IsSubStepCompleted(cid,QuestID,3803, 1) == false then
 		return -1;
 	 end
-    
+	
     Saga.ClearWaypoints(cid, QuestID);
     Saga.StepComplete(cid, QuestID, 3803);
-    Saga.QuestComplete(cid, QuestID);	    
+    Saga.QuestComplete(cid, QuestID);
 	return 0;
 end
 
@@ -111,9 +111,9 @@ function QUEST_CHECK(cid)
 	if CurStepID == 3801 then
 		ret = QUEST_STEP_1();
 	elseif CurStepID == 3802 then
-		ret = QUEST_STEP_2();			
+		ret = QUEST_STEP_2();
 	elseif CurStepID == 3803 then
-		ret = QUEST_STEP_3();			
+		ret = QUEST_STEP_3();
 	end
 
 	if ret == 0 then

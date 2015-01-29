@@ -9,20 +9,20 @@ local NextQuest = 0;
 local RewZeny = 740;
 local RewCxp = 2580;
 local RewJxp = 1032;
-local RewWxp = 0; 
-local RewItem1 = 0; 
-local RewItem2 = 0; 
-local RewItemCount1 = 0; 
-local RewItemCount2 = 0; 
-local StepID = 0;   
+local RewWxp = 0;
+local RewItem1 = 0;
+local RewItem2 = 0;
+local RewItemCount1 = 0;
+local RewItemCount2 = 0;
+local StepID = 0;
 
 -- Modify steps below for gameplay
 
-function QUEST_START(cid)    
+function QUEST_START(cid)
     Saga.AddStep(cid, QuestID, 38101);
-    Saga.AddStep(cid, QuestID, 38102);         
-    Saga.AddStep(cid, QuestID, 38103);    
-    Saga.InsertQuest(cid, QuestID, 1);  
+    Saga.AddStep(cid, QuestID, 38102);
+    Saga.AddStep(cid, QuestID, 38103);
+    Saga.InsertQuest(cid, QuestID, 1);
     return 0;
 end
 
@@ -30,7 +30,7 @@ function QUEST_FINISH(cid)
     -- Gives all rewards
     Saga.GiveItem(cid, RewItem1, RewItemCount1 );
     Saga.GiveZeny(cid, RewZeny);
-    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp); 
+    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
     return 0;
 end
 
@@ -40,64 +40,64 @@ end
 
 function QUEST_STEP_1(cid)
     -- Visit Regina Salisbury
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1010 then
-        Saga.GeneralDialog(cid, 3936);             
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);   
-    end    
-    
+        Saga.GeneralDialog(cid, 3936);
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
+    Saga.ClearWaypoints(cid, QuestID);
     return 0;
 end
 
 function QUEST_STEP_2(cid)
     -- Eliminate Culvert Thief Bug Egg (8)
     Saga.Eliminate(cid, QuestID, StepID, 10129, 8, 1);
-	Saga.Eliminate(cid, QuestID, StepID, 10130, 8, 1); 
+	Saga.Eliminate(cid, QuestID, StepID, 10130, 8, 1);
 	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
 		 end
-    end	
-    
-    Saga.StepComplete(cid, QuestID, StepID);     
+    end
+	
+    Saga.StepComplete(cid, QuestID, StepID);
     return 0;
 end
 
 function QUEST_STEP_3(cid)
     -- Report to Regina Salisbury
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1010 then
-        Saga.GeneralDialog(cid, 3936);             
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);  
-    end    
-    
+        Saga.GeneralDialog(cid, 3936);
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
-    Saga.QuestComplete(cid, QuestID);          
+    Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);
     return -1;
 end
 
@@ -108,15 +108,15 @@ function QUEST_CHECK(cid)
 
     if CurStepID == 38101 then
         ret = QUEST_STEP_1(cid);
-    elseif CurStepID == 38102 then                       
-        ret = QUEST_STEP_2(cid);                         
-    elseif CurStepID == 38103 then                       
-        ret = QUEST_STEP_3(cid);                                 
+    elseif CurStepID == 38102 then
+        ret = QUEST_STEP_2(cid);
+    elseif CurStepID == 38103 then
+        ret = QUEST_STEP_3(cid);
     end
-    
+	
     if ret == 0 then
         QUEST_CHECK(cid)
     end
-    
-    return ret;    
+	
+    return ret;
 end

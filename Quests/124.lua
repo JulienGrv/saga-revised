@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 210;
 local RewCxp = 490;
 local RewJxp = 192;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 5; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 5;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -34,9 +34,9 @@ function QUEST_FINISH(cid)
 	Saga.GiveZeny(RewZeny);
 	Saga.GiveExp( RewCxp, RewJxp, RewWxp);
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-	Saga.GiveItem(cid, RewItem2, RewItemCount2 );	
+	Saga.GiveItem(cid, RewItem2, RewItemCount2 );
 	    return 0;
-    else    	
+    else
 	    return -1;
 	end
 end
@@ -74,8 +74,8 @@ function QUEST_STEP_2(cid)
 --Find Marine Sphere Nucleus Parts
 --doesnt specify how many
 	Saga.FindQuestItem(cid, QuestID, 12402, 10040, 2645, 6000, 4, 1);
-	Saga.FindQuestItem(cid, QuestID, 12402, 10041, 2645, 6000, 4, 1); 
- 
+	Saga.FindQuestItem(cid, QuestID, 12402, 10041, 2645, 6000, 4, 1);
+	
 --check if all substeps are complete
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 12402, i) == false
@@ -131,7 +131,7 @@ end
 	return -1;
 end
 
- 
+	
 	
 function QUEST_CHECK(cid)
 	-- Check all steps for progress

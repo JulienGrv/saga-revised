@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 60;
 local RewCxp = 224;
 local RewJxp = 91;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 16118; 
-local RewItemCount1 = 1; 
-local RewItemCount2 = 1; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 16118;
+local RewItemCount1 = 1;
+local RewItemCount2 = 1;
 
 -- Modify steps below for gameplay
 
@@ -56,7 +56,7 @@ then
 	end
 
 	Saga.FindQuestItem(cid, QuestID, 13201, 10042, 2657, 8000, 5, 2);
-	Saga.FindQuestItem(cid, QuestID, 13201, 10043, 2657, 8000, 5, 2); 
+	Saga.FindQuestItem(cid, QuestID, 13201, 10043, 2657, 8000, 5, 2);
 
 --check if all substeps are complete
 	for i = 1, 2 do
@@ -64,7 +64,7 @@ then
 then
 	return -1;
 	end
-end 
+end
 	Saga.StepComplete(cid, QuestID, 13201);
 	return 0;
 end
@@ -89,7 +89,7 @@ end
 then
 	return -1;
 	end
-end 
+end
 	Saga.StepComplete(cid, QuestID, 13202);
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.QuestComplete(cid, QuestID);

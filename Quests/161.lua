@@ -9,20 +9,20 @@ local NextQuest = 0;
 local RewZeny = 212;
 local RewCxp = 675;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 2; 
-local RewItemCount2 = 0; 
-local StepID = 0;  
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 2;
+local RewItemCount2 = 0;
+local StepID = 0;
 
 -- Modify steps below for gameplay
 
-function QUEST_START(cid)	
+function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 16101);
-	Saga.AddStep(cid, QuestID, 16102);	
-	Saga.AddStep(cid, QuestID, 16103);	
-	Saga.InsertQuest(cid, QuestID, 2);	
+	Saga.AddStep(cid, QuestID, 16102);
+	Saga.AddStep(cid, QuestID, 16103);
+	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
 
@@ -43,55 +43,55 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)      	
+function QUEST_STEP_2(cid)
 	-- Talk with Lothair Eaton
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1079);      
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1079);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1079 then
 	    Saga.GeneralDialog(cid, 3936);
-        Saga.NpcGiveItem(cid,3974,1);	   
-	    Saga.SubstepComplete(cid, QuestID, StepID, 1);	     	
-	end	
+        Saga.NpcGiveItem(cid,3974,1);
+	    Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
 	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
 		 end
-    end	
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-	Saga.ClearWaypoints(cid, QuestID); 
+	Saga.ClearWaypoints(cid, QuestID);
     return 0;
 end
 
-function QUEST_STEP_3(cid)      	
+function QUEST_STEP_3(cid)
 	-- Deliver Eye-Glasses to Orak Edith
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,1099);      
+	Saga.AddWaypoint(cid, QuestID, StepID, 1,1099);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1099 then
 	    Saga.GeneralDialog(cid, 3936);
-        local ItemCountA = Saga.CheckUserInventory(cid, 3972);        
+        local ItemCountA = Saga.CheckUserInventory(cid, 3972);
 	    if ItemCountA > 0 then
-	        Saga.NpcTakeItem(cid, 3972,1);	   
-	        Saga.SubstepComplete(cid, QuestID, StepID, 1);	    
-	    end	 	
-	end	
+	        Saga.NpcTakeItem(cid, 3972,1);
+	        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	    end
+	end
 	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
 		 end
-    end	
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-	Saga.ClearWaypoints(cid, QuestID); 
-    Saga.QuestComplete(cid, QuestID);	
+	Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);
     return -1;
 end
 
@@ -103,13 +103,13 @@ function QUEST_CHECK(cid)
 	if CurStepID == 16101 then
 		ret = QUEST_STEP_1(cid);
 	elseif CurStepID == 16103 then
-		ret = QUEST_STEP_2(cid);	
+		ret = QUEST_STEP_2(cid);
 	elseif CurStepID == 16103 then
-		ret = QUEST_STEP_3(cid);	
+		ret = QUEST_STEP_3(cid);
 	end
 	if ret == 0 then
 		QUEST_CHECK(cid)
 	end
 	
-	return ret;	
+	return ret;
 end

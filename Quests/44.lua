@@ -11,11 +11,11 @@ local NextQuest = 0;
 local RewZeny = 406;
 local RewCxp = 1242;
 local RewJxp = 508;
-local RewWxp = 0; 
-local RewItem1 = 2641; 
-local RewItem2 = 0; 
-local RewItemCount1 = 5; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 2641;
+local RewItem2 = 0;
+local RewItemCount1 = 5;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -79,7 +79,7 @@ function QUEST_STEP_2(cid)
 
 --check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	local ItemCountA = Saga.CheckUserInventory(cid, 1670); 
+	local ItemCountA = Saga.CheckUserInventory(cid, 1670);
 	local ItemCountB = Saga.CheckUserInventory(cid, 1669);
 	if ret == 1004
 then
@@ -116,7 +116,7 @@ function QUEST_STEP_3(cid)
 	if ret == 1003
 then
 	Saga.GeneralDialog(cid, 3936);
-	if ItemCount > 0 
+	if ItemCount > 0
 then
 	Saga.NpcTakeItem(cid, 3561, 1);
 	Saga.SubstepComplete(cid, QuestID, 4403, 1);
@@ -136,7 +136,7 @@ end
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
- 
+	
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID );

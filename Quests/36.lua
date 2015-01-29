@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 154;
 local RewCxp = 132;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 4; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 4;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -22,7 +22,7 @@ function QUEST_START(cid)
 	-- Initialize all starting navigation points
 	Saga.AddStep(cid, QuestID, 3601);
 	Saga.AddStep(cid, QuestID, 3602);
-	Saga.InsertQuest(cid, QuestID, 1);	
+	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
 
@@ -38,43 +38,43 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-	-- Talk to shelphy              
-	Saga.AddWaypoint(cid, QuestID, 3601, 1, 1002);      
+	-- Talk to shelphy
+	Saga.AddWaypoint(cid, QuestID, 3601, 1, 1002);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1002 then
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
         if freeslots > 0 then
 			Saga.NpcGiveItem(cid, 2781, 1);
 			Saga.SubstepComplete(cid, QuestID, 3601, 1);
 		end
-	end	
+	end
 	
     -- Check if all substeps are completed
 	if Saga.IsSubStepCompleted(cid,QuestID,3601, 1) == false then
 		return -1;
 	end
-		
+	
     Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, 3601);
 end
 
 function QUEST_STEP_2(cid)
-	-- Talk to klaret              
+	-- Talk to klaret
 	Saga.AddWaypoint(cid, QuestID, 3602, 1, 1001);
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001 then
 		Saga.NpcTakeItem(cid, 2781, 5);
 		Saga.SubstepComplete(cid, QuestID, 3602, 1);
-	end	
+	end
 	
     -- Check if all substeps are completed
      if Saga.IsSubStepCompleted(cid,QuestID,3602, 1) == false then
 		return -1;
 	 end
-    
+	
     Saga.ClearWaypoints(cid, QuestID);
     Saga.StepComplete(cid, QuestID, 3602);
     Saga.QuestComplete(cid, QuestID);
@@ -89,7 +89,7 @@ function QUEST_CHECK(cid)
 	if CurStepID == 3601 then
 		ret = QUEST_STEP_1();
 	elseif CurStepID == 3602 then
-		ret = QUEST_STEP_2();			
+		ret = QUEST_STEP_2();
 	end
 
 	if ret == 0 then

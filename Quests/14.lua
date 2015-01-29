@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 210;
 local RewCxp = 408;
 local RewJxp = 160;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 2668; 
-local RewItemCount1 = 5; 
-local RewItemCount2 = 1; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 2668;
+local RewItemCount1 = 5;
+local RewItemCount2 = 1;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -64,7 +64,7 @@ function QUEST_STEP_1(cid)
 			return -1;
 	    end
     end
-    
+	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end

@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 11;
 local RewCxp = 30;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 51500002; 
-local RewItem2 = 0; 
-local RewItemCount1 = 20; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 51500002;
+local RewItem2 = 0;
+local RewItemCount1 = 20;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -25,8 +25,8 @@ end
 
 function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 501);
-	Saga.AddStep(cid, QuestID, 502);	
-	Saga.AddStep(cid, QuestID, 503);	
+	Saga.AddStep(cid, QuestID, 502);
+	Saga.AddStep(cid, QuestID, 503);
 	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
@@ -58,52 +58,52 @@ function QUEST_STEP_1(cid)
 end
 
 function QUEST_STEP_2(cid)
-	-- Talk with Zarko Ruzzoli           
-	Saga.AddWaypoint(cid, QuestID, 502, 1, 1005);      
+	-- Talk with Zarko Ruzzoli
+	Saga.AddWaypoint(cid, QuestID, 502, 1, 1005);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1005 then
 		Saga.NpcGiveItem(cid, 2618, 1);
-		Saga.GeneralDialog(cid, 41);			
+		Saga.GeneralDialog(cid, 41);
 		Saga.SubstepComplete(cid,QuestID,502,1);
-	end	
+	end
 	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,502,i) == false then
 			return -1;
 		 end
-    end	
-    
+    end
+	
 	Saga.ClearWaypoints(cid, QuestID);
     Saga.StepComplete(cid,QuestID,502);
-	return 0;	
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
-	-- Deliver knife to Scacciano Morrigan       
-	Saga.AddWaypoint(cid, QuestID, 503, 1, 1003);      
+	-- Deliver knife to Scacciano Morrigan
+	Saga.AddWaypoint(cid, QuestID, 503, 1, 1003);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003 then
 		Saga.NpcTakeItem(cid, 2618, 1);
-		Saga.GeneralDialog(cid, 43);			
+		Saga.GeneralDialog(cid, 43);
 		Saga.SubstepComplete(cid,QuestID,503,1);
-	end	
+	end
 	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,503,i) == false then
 			return -1;
 		 end
-    end	
-    
-    Saga.ClearWaypoints(cid, QuestID); 
+    end
+	
+    Saga.ClearWaypoints(cid, QuestID);
     Saga.StepComplete(cid,QuestID,503);
-    Saga.QuestComplete(cid, QuestID);	       
-	return -1;	
+    Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)

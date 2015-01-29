@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 17;
 local RewCxp = 40;
 local RewJxp = 15;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 16098; 
-local RewItemCount1 = 1; 
-local RewItemCount2 = 1; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 16098;
+local RewItemCount1 = 1;
+local RewItemCount2 = 1;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -47,7 +47,7 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-	-- Get 6 Chonchon Fry Wings	
+	-- Get 6 Chonchon Fry Wings
 	Saga.FindQuestItem(cid,QuestID,StepID,10026,2630,8000,6,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10027,2630,8000,6,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10252,2630,8000,6,1);
@@ -59,33 +59,33 @@ function QUEST_STEP_1(cid)
 		 end
     end
 	
-	Saga.StepComplete(cid,QuestID,StepID);	
+	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
-	-- Talk to mischa              
-	Saga.AddWaypoint(cid, QuestID, 102, 1, 1000);      
+	-- Talk to mischa
+	Saga.AddWaypoint(cid, QuestID, 102, 1, 1000);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
-	if ret == 1000 then	
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1000 then
 		Saga.GeneralDialog(cid, 28);
 		Saga.NpcTakeItem(cid, 2630, 6);
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
-	end	
+	end
 	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
 		 end
-    end	
-    
+    end
+	
     Saga.StepComplete(cid,QuestID,StepID);
     Saga.ClearWaypoints(cid, QuestID);
-    Saga.QuestComplete(cid, QuestID);	    
-    return -1; 
+    Saga.QuestComplete(cid, QuestID);
+    return -1;
 end
 
 function QUEST_CHECK(cid)

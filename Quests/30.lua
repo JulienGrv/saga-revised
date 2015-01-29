@@ -10,11 +10,11 @@ local NextQuest = 0;
 local RewZeny = 60;
 local RewCxp = 108;
 local RewJxp = 42;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 51500003; 
-local RewItemCount1 = 3; 
-local RewItemCount2 = 2; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 51500003;
+local RewItemCount1 = 3;
+local RewItemCount2 = 2;
 
 -- Modify steps below for gameplay
 
@@ -23,7 +23,7 @@ function QUEST_START(cid)
 	-- Initialize all starting navigation points
 	Saga.AddStep(cid, QuestID, 3001);
 	Saga.AddStep(cid, QuestID, 3002);
-	Saga.InsertQuest(cid, QuestID, 1);	
+	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
 
@@ -47,7 +47,7 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-	-- Get 4 Wicked Star Loots	
+	-- Get 4 Wicked Star Loots
 	Saga.FindQuestItem(cid,QuestID,StepID,10012,2604,10000,4,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10013,2604,10000,4,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10014,2604,10000,4,1);
@@ -56,26 +56,26 @@ function QUEST_STEP_1(cid)
      if Saga.IsSubStepCompleted(cid,QuestID,3001, 1) == false then
 		return -1;
 	 end
-		
+	
 	Saga.StepComplete(cid,QuestID,StepID);
 end
 
 function QUEST_STEP_2(cid)
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1123 then
 		Saga.NpcTakeItem(cid, 2604, 4);
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
-	end	
+	end
 	
     -- Check if all substeps are completed
      if Saga.IsSubStepCompleted(cid,QuestID,3002, 1) == false then
 		return -1;
 	 end
-    
+	
     Saga.StepComplete(cid,QuestID,StepID);
-    Saga.QuestComplete(cid, QuestID);	    
+    Saga.QuestComplete(cid, QuestID);
 	return 0;
 end
 

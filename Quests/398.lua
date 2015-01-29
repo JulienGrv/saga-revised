@@ -9,11 +9,11 @@ local NextQuest = 399;
 local RewZeny = 7;
 local RewCxp = 9;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 51500002; 
-local RewItem2 = 0; 
-local RewItemCount1 = 5; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 51500002;
+local RewItem2 = 0;
+local RewItemCount1 = 5;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -44,11 +44,11 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-	-- Add all waypoints	
+	-- Add all waypoints
 	Saga.AddWaypoint(cid, QuestID, 39801, 1, 1146);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1146 then
 		Saga.GeneralDialog(cid, 3933);
 		Saga.SubstepComplete(cid, QuestID, 39801, 1);
@@ -62,33 +62,33 @@ function QUEST_STEP_1(cid)
     end
 	
 	-- Clear waypoints
-	Saga.ClearWaypoints(cid, QuestID);	
-	Saga.StepComplete(cid, QuestID, 39801);	
-	return 0;     
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 39801);
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
      -- Capture a Unripe Pukui
      Saga.FindQuestItem(cid, QuestID, 39802, 10000, 2666 , 8000, 1, 1);
      Saga.FindQuestItem(cid, QuestID, 39802, 10001, 2666 , 8000, 1, 1);
-    
+	
      -- Check if all substeps are completed
      for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,39802, i) == false then
 			return -1;
 		 end
-     end     
+     end
 	
-	 Saga.StepComplete(cid, QuestID, 39802);	
-     return 0; 
+	 Saga.StepComplete(cid, QuestID, 39802);
+     return 0;
 end
 
 function QUEST_STEP_3(cid)
-	-- Deliver Unripe Pukui to Sally    
+	-- Deliver Unripe Pukui to Sally
 	Saga.AddWaypoint(cid, QuestID, 39803, 1, 1147);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1147 then
 		Saga.NpcTakeItem(cid, 2666, 1 );
 		Saga.GeneralDialog(cid, 3933);
@@ -103,10 +103,10 @@ function QUEST_STEP_3(cid)
     end
 	
 	-- Clear waypoints
-	Saga.ClearWaypoints(cid, QuestID);	
-	Saga.StepComplete(cid, QuestID, 39803);	
-	Saga.QuestComplete(cid, QuestID);	 
-	return -1;  
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 39803);
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 

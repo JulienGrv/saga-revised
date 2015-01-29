@@ -9,11 +9,11 @@ local NextQuest = 348;
 local RewZeny = 88;
 local RewCxp = 132;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 51500003; 
-local RewItemCount1 = 1; 
-local RewItemCount2 = 10; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 51500003;
+local RewItemCount1 = 1;
+local RewItemCount2 = 10;
 
 function QUEST_VERIFY(cid)
 	Saga.GeneralDialog(cid, 3957);
@@ -56,7 +56,7 @@ end
 function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid, QuestID, 14102, 1, 1003);
 	
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003 then
 			Saga.SubstepComplete(cid, QuestID, 14102, 1);
 		end

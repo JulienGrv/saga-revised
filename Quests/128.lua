@@ -9,11 +9,11 @@ local NextQuest = 344;
 local RewZeny = 323;
 local RewCxp = 208;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 8; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 8;
+local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
@@ -30,9 +30,9 @@ function QUEST_FINISH(cid)
 	Saga.GiveZeny(RewZeny);
 	Saga.GiveExp( RewCxp, RewJxp, RewWxp);
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-	Saga.GiveItem(cid, RewItem2, RewItemCount2 );	
+	Saga.GiveItem(cid, RewItem2, RewItemCount2 );
 	    return 0;
-    else    	
+    else
 	    return -1;
 	end
 end

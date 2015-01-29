@@ -9,11 +9,11 @@ local NextQuest = 334;
 local RewZeny = 60;
 local RewCxp = 108;
 local RewJxp = 42;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 3; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 3;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -60,7 +60,7 @@ function QUEST_STEP_1(cid)
 	        return -1:
 	    end
     end
-    
+	
 	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.ClearWaypoints(cid, QuestID);
 	return 0;
@@ -83,7 +83,7 @@ function QUEST_STEP_2(cid)
 	        return -1:
 	    end
     end
-    
+	
 	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.QuestComplete(cid, QuestID);

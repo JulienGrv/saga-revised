@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 121;
 local RewCxp = 328;
 local RewJxp = 128;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 3; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 3;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -46,10 +46,10 @@ end
 function QUEST_STEP_1()
 	-- Eliminate PukuPuku (3)
 	-- Eliminate KuiKui (3)
-		
+	
 	Saga.Eliminate(cid,QuestID,StepID,10258,3,1);
 	Saga.Eliminate(cid,QuestID,StepID,10006,3,1);
-	Saga.Eliminate(cid,QuestID,StepID,10007,3,1);	
+	Saga.Eliminate(cid,QuestID,StepID,10007,3,1);
 	Saga.Eliminate(cid,QuestID,StepID,10008,3,2);
 	
     -- Check if all substeps are completed
@@ -57,7 +57,7 @@ function QUEST_STEP_1()
          if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
 		 end
-    end		
+    end
 	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
@@ -69,7 +69,7 @@ function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid,QuestID,StepID,1,1066);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1066 then
 		Saga.GeneralDialog(cid, 3933);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
@@ -83,10 +83,10 @@ function QUEST_STEP_2(cid)
     end
 	
 	-- Clear waypoints
-	Saga.ClearWaypoints(cid, QuestID);	
-	Saga.StepComplete(cid,QuestID,StepID);	
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.QuestComplete(cid,QuestID);
-	return -1;     
+	return -1;
 end
 
 function QUEST_CHECK(cid)

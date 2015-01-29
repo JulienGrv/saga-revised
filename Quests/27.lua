@@ -9,11 +9,11 @@ local NextQuest = 148;
 local RewZeny = 154;
 local RewCxp = 328;
 local RewJxp = 128;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 4; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 4;
+local RewItemCount2 = 0;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -48,13 +48,13 @@ function QUEST_STEP_1(cid)
 	Saga.FindQuestItem(cid,QuestID,StepID,10054,2656,8000,2,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10055,2656,8000,2,1);
 
-    -- check if substeps are completed  
-	for i = 1, 1 do 
+    -- check if substeps are completed
+	for i = 1, 1 do
 	    if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 	        return -1;
-	    end 
+	    end
     end
-    
+	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end
@@ -63,7 +63,7 @@ function QUEST_STEP_2(cid)
     --Deliver Shark's Eye Averro Reinhold
 	Saga.AddWaypoint(cid, QuestID, 2702, 1, 1004);
 
-    --check for completion	
+    --check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	local ItemCount = Saga.CheckUserInventory(cid, 2656);
 	if ret == 1004 then
@@ -73,21 +73,21 @@ function QUEST_STEP_2(cid)
 	        Saga.SubstepComplete(cid,QuestID,StepID,1);
 	    end
     end
-    
+	
     --check if all substeps are completed
 	for i = 1, 1 do
 	    if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 	        return -1;
 	    end
     end
-    
+	
 	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.ClearWaypoints(cid, QuestID);
 	Sage.QuestComplete(cid, QuestID);
 	return -1;
 end
 
- 
+	
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress

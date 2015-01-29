@@ -9,20 +9,20 @@ local NextQuest = 0;
 local RewZeny = 1505;
 local RewCxp = 6930;
 local RewJxp = 2772;
-local RewWxp = 0; 
-local RewItem1 = 1700114; 
-local RewItem2 = 0; 
-local RewItemCount1 = 13; 
-local RewItemCount2 = 0; 
-local StepID = 0;   
+local RewWxp = 0;
+local RewItem1 = 1700114;
+local RewItem2 = 0;
+local RewItemCount1 = 13;
+local RewItemCount2 = 0;
+local StepID = 0;
 
 -- Modify steps below for gameplay
 
-function QUEST_START(cid)    
+function QUEST_START(cid)
     Saga.AddStep(cid, QuestID, 36701);
-    Saga.AddStep(cid, QuestID, 36702);       
-    Saga.AddStep(cid, QuestID, 36703);        
-    Saga.InsertQuest(cid, QuestID, 1);  
+    Saga.AddStep(cid, QuestID, 36702);
+    Saga.AddStep(cid, QuestID, 36703);
+    Saga.InsertQuest(cid, QuestID, 1);
     return 0;
 end
 
@@ -30,7 +30,7 @@ function QUEST_FINISH(cid)
     -- Gives all rewards
     Saga.GiveItem(cid, RewItem1, RewItemCount1 );
     Saga.GiveZeny(cid, RewZeny);
-    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp); 
+    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
     return 0;
 end
 
@@ -40,63 +40,63 @@ end
 
 function QUEST_STEP_1(cid)
     -- Talk with Alina
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1023 then
-        Saga.GeneralDialog(cid, 3936);                     
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);              
-    end    
-    
+        Saga.GeneralDialog(cid, 3936);
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
+    Saga.ClearWaypoints(cid, QuestID);
     return 0;
 end
 
 function QUEST_STEP_2(cid)
     -- Eliminate Pi-07s (1)
-   Saga.Eliminate(cid, QuestID, StepID, 10343, 1, 1);    
+   Saga.Eliminate(cid, QuestID, StepID, 10343, 1, 1);
 	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
 		 end
-    end	
-    
-    Saga.StepComplete(cid, QuestID, StepID);     
+    end
+	
+    Saga.StepComplete(cid, QuestID, StepID);
     return 0;
 end
 
 function QUEST_STEP_3(cid)
     -- Deliver loot to Alina
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);      
-    
+    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
+	
     -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);    
+    local ret = Saga.GetNPCIndex(cid);
     if ret == 1023 then
-        Saga.GeneralDialog(cid, 3936);                             
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);        
-    end    
-    
+        Saga.GeneralDialog(cid, 3936);
+        Saga.SubstepComplete(cid, QuestID, StepID, 1);
+    end
+	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
             return -1;
          end
-    end        
-    
+    end
+	
     Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID); 
-    Saga.QuestComplete(cid, QuestID);      
+    Saga.ClearWaypoints(cid, QuestID);
+    Saga.QuestComplete(cid, QuestID);
     return -1;
 end
 
@@ -107,15 +107,15 @@ function QUEST_CHECK(cid)
 
     if CurStepID == 36701 then
         ret = QUEST_STEP_1(cid);
-    elseif CurStepID == 36702 then                       
-        ret = QUEST_STEP_2(cid);               
-    elseif CurStepID == 36703 then                   
-        ret = QUEST_STEP_3(cid);                       
+    elseif CurStepID == 36702 then
+        ret = QUEST_STEP_2(cid);
+    elseif CurStepID == 36703 then
+        ret = QUEST_STEP_3(cid);
     end
-    
+	
     if ret == 0 then
         QUEST_CHECK(cid)
     end
-    
-    return ret;    
+	
+    return ret;
 end

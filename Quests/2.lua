@@ -9,11 +9,11 @@ local NextQuest = 323;
 local RewZeny = 60;
 local RewCxp = 108;
 local RewJxp = 42;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 2030001; 
-local RewItemCount1 = 3; 
-local RewItemCount2 = 1; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 2030001;
+local RewItemCount1 = 3;
+local RewItemCount2 = 1;
 local StepID = 0;
 
 -- Modify steps below for gameplay
@@ -24,7 +24,7 @@ function QUEST_START(cid)
 	
 	Saga.AddStep(cid, QuestID, 201);
 	Saga.AddStep(cid, QuestID, 202);
-	Saga.InsertQuest(cid, QuestID, 2);	
+	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
 
@@ -50,45 +50,45 @@ end
 function QUEST_STEP_1(cid)
 	-- Get 2 Vadon Fry Shells
 	-- Get 1 Vadon Shell
-	Saga.FindQuestItem(cid,QuestID,StepID,10015,2643,8000,2,1);	
+	Saga.FindQuestItem(cid,QuestID,StepID,10015,2643,8000,2,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10016,2643,8000,2,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10017,2610,3971,1,2);
-	Saga.FindQuestItem(cid,QuestID,StepID,10018,2610,3971,1,2);	
+	Saga.FindQuestItem(cid,QuestID,StepID,10018,2610,3971,1,2);
 	
     -- Check if all substeps are completed
     for i = 1, 2 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
 		 end
-    end	
-		
+    end
+	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
-	-- Talk to mischa              
-	Saga.AddWaypoint(cid, QuestID, 202, 1, 1000);      
+	-- Talk to mischa
+	Saga.AddWaypoint(cid, QuestID, 202, 1, 1000);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1000 then
 		Saga.GeneralDialog(cid, 29);
 		Saga.NpcTakeItem(cid, 2643, 2);
 		Saga.NpcTakeItem(cid, 2610, 1);
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
-	end	
+	end
 	
     -- Check if all substeps are completed
     for i = 1, 1 do
          if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
 		 end
-    end	
-    
+    end
+	
     Saga.StepComplete(cid,QuestID,StepID);
     Saga.ClearWaypoints(cid, QuestID);
-    Saga.QuestComplete(cid, QuestID);	    
+    Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 

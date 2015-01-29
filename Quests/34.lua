@@ -9,11 +9,11 @@ local NextQuest = 0;
 local RewZeny = 371;
 local RewCxp = 675;
 local RewJxp = 0;
-local RewWxp = 0; 
-local RewItem1 = 1700113; 
-local RewItem2 = 0; 
-local RewItemCount1 = 8; 
-local RewItemCount2 = 0; 
+local RewWxp = 0;
+local RewItem1 = 1700113;
+local RewItem2 = 0;
+local RewItemCount1 = 8;
+local RewItemCount2 = 0;
 
 function QUEST_VERIFY(cid)
 	Saga.GeneralDialog(cid, 3957);
@@ -55,18 +55,18 @@ function QUEST_STEP_1(cid)
 end
 
 function QUEST_STEP_2(cid)
-	-- Talk to zarko              
-	Saga.AddWaypoint(cid, QuestID, 3402, 1, 1005);      
+	-- Talk to zarko
+	Saga.AddWaypoint(cid, QuestID, 3402, 1, 1005);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1005 then
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
         if freeslots > 0 then
 			Saga.NpcGiveItem(cid, 2607, 1);
 			Saga.SubstepComplete(cid, QuestID, 3402, 1);
 		end
-	end	
+	end
 	
     -- Check if all substeps are completed
 	if Saga.IsSubStepCompleted(cid,QuestID,3402, 1) == false then
@@ -79,24 +79,24 @@ function QUEST_STEP_2(cid)
 end
 
 function QUEST_STEP_3(cid)
-	-- Talk to klaret              
-	Saga.AddWaypoint(cid, QuestID, 3403, 1, 1001);      
+	-- Talk to klaret
+	Saga.AddWaypoint(cid, QuestID, 3403, 1, 1001);
 	
 	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);    
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001 then
 		Saga.NpcTakeItem(cid, 2607, 1);
 		Saga.SubstepComplete(cid, QuestID, 3403, 1);
-	end	
+	end
 	
     -- Check if all substeps are completed
      if Saga.IsSubStepCompleted(cid,QuestID,3403, 1) == false then
 		return -1;
 	 end
-	 
+	
     Saga.ClearWaypoints(cid, QuestID);
     Saga.StepComplete(cid, QuestID, 3403);
-    Saga.QuestComplete(cid, QuestID);	    
+    Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 
@@ -110,7 +110,7 @@ function QUEST_CHECK(cid)
 	elseif CurStepID == 3402 then
 		ret = QUEST_STEP_2(cid);
 	elseif CurStepID == 3403 then
-		ret = QUEST_STEP_3(cid);			
+		ret = QUEST_STEP_3(cid);
 	end
 
 	if ret == 0 then
