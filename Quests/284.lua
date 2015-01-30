@@ -21,11 +21,11 @@ function QUEST_START(cid)
 	-- Initialize all quest steps
 	-- Initialize all starting navigation points
 	
-	Saga.AddStep(cid, QuestID, 28401, 1);
-	Saga.AddStep(cid, QuestID, 28402, 0);
-	Saga.AddStep(cid, QuestID, 28403, 0);
-	Saga.AddStep(cid, QuestID, 28404, 0);
-	Saga.AddStep(cid, QuestID, 28405, 0);
+	Saga.AddStep(cid, QuestID, 28401);
+	Saga.AddStep(cid, QuestID, 28402);
+	Saga.AddStep(cid, QuestID, 28403);
+	Saga.AddStep(cid, QuestID, 28404);
+	Saga.AddStep(cid, QuestID, 28405);
 	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
@@ -44,14 +44,14 @@ end
 function QUEST_STEP_1(cid)
 	-- Talk with Volker Stanwood
 	
-	Saga.AddWaypoint(cid, QuestID, StepID, NpcID, PosX, PosY, PosZ, MapID);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, NpcID);
 	if Saga.GetNPCIndex(cid) == NpcID
-		Saga.CompleteStep(cid, QuestID, StepID);
+		Saga.StepComplete(cid, QuestID, StepID);
 	else
 		return -1;
 	end
 	
-	Saga.ClearWaypoints(cid);
+	Saga.ClearWaypoints(cid, QuestID);
 	
 end
 
@@ -66,7 +66,7 @@ function QUEST_STEP_2(cid)
 	end
 	
 	if MonsterCount > RequiredCount
-		Saga.CompleteStep(cid, QuestID, StepID);
+		Saga.StepComplete(cid, QuestID, StepID);
 	else
 		return -1;
 	end
@@ -86,7 +86,7 @@ function QUEST_STEP_3(cid)
 	end
 	
 	if MonsterCount > RequiredCount
-		Saga.CompleteStep(cid, QuestID, StepID);
+		Saga.StepComplete(cid, QuestID, StepID);
 	else
 		return -1;
 	end
@@ -95,14 +95,14 @@ end
 function QUEST_STEP_4(cid)
 	-- Report to Volker Stanwood
 	
-	Saga.AddWaypoint(cid, QuestID, StepID, NpcID, PosX, PosY, PosZ, MapID);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, NpcID);
 	if Saga.GetNPCIndex(cid) == NpcID
-		Saga.CompleteStep(cid, QuestID, StepID);
+		Saga.StepComplete(cid, QuestID, StepID);
 	else
 		return -1;
 	end
 	
-	Saga.ClearWaypoints(cid);
+	Saga.ClearWaypoints(cid, QuestID);
 end
 
 function QUEST_STEP_5(cid)

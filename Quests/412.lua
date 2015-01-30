@@ -70,7 +70,7 @@ function QUEST_STEP_2(cid)
 			Saga.NpcTakeItem(cid, 1663, 6);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		else
-			Saga.InventoryNotFound(cid);
+			Saga.ItemNotFound(cid);
 		end
 	end
 	

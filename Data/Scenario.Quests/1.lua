@@ -28,7 +28,7 @@ end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 
 	if CurStepID == 101 then
@@ -36,7 +36,7 @@ function QUEST_CHECK(cid)
 	end
 
 	if ret == 0 then
-		QUEST_CHECK(cid)
+		QUEST_CHECK(cid);
 	end
 
 	return -1;

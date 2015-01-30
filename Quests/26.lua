@@ -74,10 +74,10 @@ function QUEST_STEP_2(cid)
 
 	Saga.AddWaypoint(cid, QuestID, 2602, 1, 1005);
 	local ret = Saga.GetNPCIndex(cid);
-	local IitemCountA = Saga.CheckInventory(cid, 4072);
-	local IitemCountB = Saga.CheckInventory(cid, 2644);
-	local IitemCountC = Saga.CheckInventory(cid, 2645);
-	local IitemCountD = Saga.CheckInventory(cid, 2639);
+	local ItemCountA = Saga.CheckUserInventory(cid, 4072);
+	local ItemCountB = Saga.CheckUserInventory(cid, 2644);
+	local ItemCountC = Saga.CheckUserInventory(cid, 2645);
+	local ItemCountD = Saga.CheckUserInventory(cid, 2639);
 	if ret == 1005 then
 		Saga.GeneralDialog(cid, 3936);
 		if ItemCountA > 0 and ItemCountB > 1 and ItemCountC > 1 and ItemCountD > 0 then
@@ -85,7 +85,7 @@ function QUEST_STEP_2(cid)
 			Saga.NpcTakeItem(cid, 2644, 2);
 			Saga.NpcTakeItem(cid, 2645, 2);
 			Saga.NpcTakeItem(cid, 2639, 1);
-			Saga.SubstepComplete(cid, 2602, 1);
+			Saga.SubstepComplete(cid, QuestID, 2602, 1);
 		end
 	end
 	

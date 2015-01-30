@@ -22,9 +22,9 @@ function QUEST_FINISH(cid)
 end
 
 function QUEST_STEP_1(cid)
-     if Saga.FindPosition(cid, QuestID , 10046,8641,-9858, 1) < 1000  then
+     if Saga.FindPosition(cid, QuestID, 10046, 8641, -9858, 1) < 1000  then
 		Saga.StartEvent(cid, 20210);
-		Saga.StepComplete(cid, QuestID, 201 );
+		Saga.StepComplete(cid, QuestID, 201);
 		return 0;
      end
 
@@ -33,7 +33,7 @@ end
 
 function QUEST_STEP_2(cid)
     -- Wait for new content
-    Saga.StepComplete(cid, QuestID, 202 );
+    Saga.StepComplete(cid, QuestID, 202);
     return 0;
 end
 
@@ -44,7 +44,7 @@ end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 
 	if CurStepID == 201 then
@@ -56,7 +56,7 @@ function QUEST_CHECK(cid)
 	end
 
 	if ret == 0 then
-		QUEST_CHECK(cid)
+		QUEST_CHECK(cid);
 	end
 
 	return -1;

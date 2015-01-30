@@ -88,7 +88,7 @@ function QUEST_STEP_2(cid)
 	then
 	Saga.NpcTakeItem(cid, 1670, 5);
 	Saga.NpcTakeItem(cid, 1669, 5);
-	Saga.NpCGiveItem(cid, 3561, 1);
+	Saga.NpcGiveItem(cid, 3561, 1);
 	Saga.SubstepComplete(cid, QuestID, 4402, 1);
 	end
 

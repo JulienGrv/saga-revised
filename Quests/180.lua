@@ -84,7 +84,7 @@ function QUEST_STEP_3(cid)
 	if ret == 1123 then
 		local ItemCountA = Saga.CheckUserInventory(cid, 3985);
 		if ItemCountA > 4 then
-			Saga.NpcTakeItem(cid, 3985 5);
+			Saga.NpcTakeItem(cid, 3985, 5);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end

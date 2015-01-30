@@ -79,9 +79,9 @@ function QUEST_STEP_2(cid)
 		end
 	end
 
-	Saga.CompleteQuest(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 

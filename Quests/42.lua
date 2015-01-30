@@ -44,10 +44,10 @@ end
 function QUEST_STEP_1(cid)
 	--Eliminate Exiled Merman;Eliminate Be Chased Mermaid
 
-	Saga.eliminate(cid, QuestID, 4201, 10030, 4, 1);
-	Saga.eliminate(cid, QuestID, 4201, 10031, 4, 1);
-	Saga.eliminate(cid, QuestID, 4201, 10034, 4, 2);
-	Saga.eliminate(cid, QuestID, 4201, 10035, 4, 2);
+	Saga.Eliminate(cid, QuestID, 4201, 10030, 4, 1);
+	Saga.Eliminate(cid, QuestID, 4201, 10031, 4, 1);
+	Saga.Eliminate(cid, QuestID, 4201, 10034, 4, 2);
+	Saga.Eliminate(cid, QuestID, 4201, 10035, 4, 2);
 	--Get loot from Be Chased Mermaid
 	Saga.FindQuestItem(cid, QuestID, 4201, 10034, 4073, 8000, 1, 3);
 

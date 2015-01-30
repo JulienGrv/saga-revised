@@ -95,7 +95,7 @@ function QUEST_STEP_2(cid)
 			Saga.NpcTakeItem(cid, 4232, 1);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		else
-			Saga.InventoryNotFound(cid);
+			Saga.ItemNotFound(cid);
 		end
 	elseif ret == 1026 then
 		Saga.GeneralDialog(cid, 3933);
@@ -105,7 +105,7 @@ function QUEST_STEP_2(cid)
 			Saga.NpcTakeItem(cid, 4232, 1);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		else
-			Saga.InventoryNotFound(cid);
+			Saga.ItemNotFound(cid);
 		end
 	elseif ret == 1024 then
 		Saga.GeneralDialog(cid, 3933);
@@ -115,7 +115,7 @@ function QUEST_STEP_2(cid)
 			Saga.NpcTakeItem(cid, 4232, 1);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		else
-			Saga.InventoryNotFound(cid);
+			Saga.ItemNotFound(cid);
 		end
 	end
 	

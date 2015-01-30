@@ -45,7 +45,7 @@ end
 
 function QUEST_STEP_1(cid)
 	--Talk with Shelphy Adriana
-	Saga.AddWaypoint(cid, 2501, 1, 1002);
+	Saga.AddWaypoint(cid, QuestID, 2501, 1, 1002);
 
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -68,7 +68,7 @@ end
 
 function QUEST_STEP_2(cid)
 	--Talk with Zarko Ruzzoli
-	Saga.AddWaypoint(cid, 2502, 1, 1005);
+	Saga.AddWaypoint(cid, QuestID, 2502, 1, 1005);
 
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);

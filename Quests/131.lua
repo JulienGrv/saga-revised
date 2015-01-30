@@ -54,13 +54,13 @@ function QUEST_STEP_2(cid)
 
 	if Saga.IsSubStepCompleted(cid, QuestID, 13102, 1) == false
 	then
-	Saga.UserUpdateActionObject(cid, QuestID, 13102, 27, 0);
+	Saga.UserUpdateActionObjectType(cid, QuestID, 13102, 27, 0);
 	else
-	Saga.UserUpdateActionObject(cid, QuestID, 13102, 27, 1);
+	Saga.UserUpdateActionObjectType(cid, QuestID, 13102, 27, 1);
 	end
 	--check if all substeps are completed
 	for i = 1, 1 do
-	if Saga.IsSubsStepCompleted(cid, QuestID, 13102, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, 13102, i) == false
 	then
 	return -1;
 	end
