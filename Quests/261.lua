@@ -29,8 +29,8 @@ function QUEST_START(cid)
 end
 
 function QUEST_FINISH(cid)
-	Saga.GiveZeny(RewZeny);
-	Saga.GiveExp( RewCxp, RewJxp, RewWxp);
+	Saga.GiveZeny(cid, RewZeny);
+	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	return 0;
 end

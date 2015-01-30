@@ -29,8 +29,8 @@ function QUEST_FINISH(cid)
 	-- Gives all rewards
 	local freeslots = Saga.FreeInventoryCount(cid, 0);
 	if freeslots > 1 then
-		Saga.GiveZeny(RewZeny);
-		Saga.GiveExp( RewCxp, RewJxp, RewWxp);
+		Saga.GiveZeny(cid, RewZeny);
+		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 		Saga.GiveItem(cid, RewItem2, RewItemCount2 );
 		return 0;
@@ -60,7 +60,7 @@ function QUEST_STEP_1(cid)
 	return -1;
 end
 
-function QUEST_STEP_2()
+function QUEST_STEP_2(cid)
 	-- Hand in to Kafra Board Mailbox
 	local ret = Saga.GetActionObjectIndex(cid);
 	if ret == 1123 then

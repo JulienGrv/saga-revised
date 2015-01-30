@@ -75,20 +75,20 @@ function QUEST_STEP_2(cid)
 	if ret == 1012 then
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
-	else if ret == 1010 then
+	elseif ret == 1010 then
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, StepID, 2);
-	else if ret == 1013 then
+	elseif ret == 1013 then
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, StepID, 3);
-	else if ret == 1009 then
+	elseif ret == 1009 then
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, StepID, 4);
-	else if ret == 1006 then
+	elseif ret == 1006 then
 		Saga.NpcGiveItem(cid, 2786,1);
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, StepID, 5);
-	else if ret == 1007 then
+	elseif ret == 1007 then
 		Saga.NpcGiveItem(cid, 2787,1);
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, StepID, 6);

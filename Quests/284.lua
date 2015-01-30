@@ -31,8 +31,8 @@ function QUEST_START(cid)
 end
 
 function QUEST_FINISH(cid)
-	Saga.GiveZeny(RewZeny);
-	Saga.GiveExp( RewCxp, RewJxp, RewWxp);
+	Saga.GiveZeny(cid, RewZeny);
+	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	return 0;
 end
@@ -44,49 +44,49 @@ end
 function QUEST_STEP_1(cid)
 	-- Talk with Volker Stanwood
 	
-	Saga.AddWaypoint(cid, QuestId, StepId, NpcId, PosX, PosY, PosZ, MapId );
-	if Saga.GetNPCIndex() == NpcId
-		Saga.CompleteStep(cid, QuestID, StepId);
+	Saga.AddWaypoint(cid, QuestID, StepID, NpcID, PosX, PosY, PosZ, MapID );
+	if Saga.GetNPCIndex(cid) == NpcID
+		Saga.CompleteStep(cid, QuestID, StepID);
 	else
 		return -1;
 	end
 	
-	Saga.ClearWaypoints();
+	Saga.ClearWaypoints(cid);
 	
 end
 
 function QUEST_STEP_2(cid)
 	-- Kill the Successor of Corad
 	
-	local MonsterId = {0, 0};
+	local MonsterID = {0, 0};
 	local MonsterCount = 0;
 	
-	for i=0, luaL_getn(MonsterId, 1) do
-		MonsterCount += Saga.Eleminate(cid, QuestId, StepId, MonsterId[i]);
+	for i=0, luaL_getn(MonsterID, 1) do
+		MonsterCount += Saga.Eleminate(cid, QuestID, StepID, MonsterID[i]);
 	end
 	
 	if MonsterCount > RequiredCount
-		Saga.CompleteStep(cid, QuestID, StepId);
+		Saga.CompleteStep(cid, QuestID, StepID);
 	else
 		return -1;
 	end
 	
 	-- Summon Conrad
-	Saga.Summon( MonsterId1, PosX, PosY, PosZ, MapId, TimeToLive);
+	Saga.Summon( MonsterID1, PosX, PosY, PosZ, MapID, TimeToLive);
 end
 
 function QUEST_STEP_3(cid)
 	-- Kill Corad The Red Wolf
 	
-	local MonsterId = {0, 0};
+	local MonsterID = {0, 0};
 	local MonsterCount = 0;
 
-	for i=0, luaL_getn(MonsterId, 1) do
-		MonsterCount += Saga.Eleminate(cid, QuestId, StepId, MonsterId[i]);
+	for i=0, luaL_getn(MonsterID, 1) do
+		MonsterCount += Saga.Eleminate(cid, QuestID, StepID, MonsterID[i]);
 	end
 	
 	if MonsterCount > RequiredCount
-		Saga.CompleteStep(cid, QuestID, StepId);
+		Saga.CompleteStep(cid, QuestID, StepID);
 	else
 		return -1;
 	end
@@ -95,38 +95,38 @@ end
 function QUEST_STEP_4(cid)
 	-- Report to Volker Stanwood
 	
-	Saga.AddWaypoint(cid, QuestId, StepId, NpcId, PosX, PosY, PosZ, MapId );
-	if Saga.GetNPCIndex() == NpcId
-		Saga.CompleteStep(cid, QuestID, StepId);
+	Saga.AddWaypoint(cid, QuestID, StepID, NpcID, PosX, PosY, PosZ, MapID );
+	if Saga.GetNPCIndex(cid) == NpcID
+		Saga.CompleteStep(cid, QuestID, StepID);
 	else
 		return -1;
 	end
 	
-	Saga.ClearWaypoints();
+	Saga.ClearWaypoints(cid);
 end
 
 function QUEST_STEP_5(cid)
 	-- Quest complete
 	
-	Saga.QuestComplete(cid, QuestId);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid);
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 
 	if CurStepID == 28401 then
-		ret = QUEST_STEP_1();
+		ret = QUEST_STEP_1(cid);
 	elseif CurStepID == 28402 then
-		ret = QUEST_STEP_2();
+		ret = QUEST_STEP_2(cid);
 	elseif CurStepID == 28403 then
-		ret = QUEST_STEP_3();
+		ret = QUEST_STEP_3(cid);
 	elseif CurStepID == 28404 then
-		ret = QUEST_STEP_4();
+		ret = QUEST_STEP_4(cid);
 	elseif CurStepID == 28405 then
-		ret = QUEST_STEP_5();
+		ret = QUEST_STEP_5(cid);
 	end
 
 	if ret == 0 then

@@ -17,25 +17,25 @@ local RewItemCount2 = 1;
 
 -- Modify steps below for gameplay
 
-function QUEST_START()
+function QUEST_START(cid)
 	-- Initialize all quest steps
 	-- Initialize all starting navigation points
 	return 0;
 end
 
-function QUEST_FINISH()
-	Saga.GiveZeny(RewZeny);
-	Saga.GiveExp( RewCxp, RewJxp, RewWxp);
+function QUEST_FINISH(cid)
+	Saga.GiveZeny(cid, RewZeny);
+	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	return 0;
 end
 
-function QUEST_CANCEL()
+function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_CHECK()
+function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex();
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	-- TODO: Add code to check all progress
 	return -1;
 end

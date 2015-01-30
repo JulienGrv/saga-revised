@@ -30,8 +30,8 @@ end
 
 function QUEST_FINISH(cid)
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-	Saga.GiveZeny(RewZeny);
-	Saga.GiveExp( RewCxp, RewJxp, RewWxp);
+	Saga.GiveZeny(cid, RewZeny);
+	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.InsertQuest(cid, NextQuest, 1);
 	return 0;
 end

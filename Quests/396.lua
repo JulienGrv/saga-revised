@@ -70,10 +70,10 @@ end
 function QUEST_STEP_2(cid)
 	-- Find training result
 	local ActionObjectID = 47;
-	local ItemId = 9944;
+	local ItemID = 9944;
 	
 	Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 0 );
-	if Saga.FindQuestItem(cid, QuestID, 39602, ActionObjectID, ItemId, 10000, 1, 1) > 0 then
+	if Saga.FindQuestItem(cid, QuestID, 39602, ActionObjectID, ItemID, 10000, 1, 1) > 0 then
   	  Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 1 );
 	else
 		return -1;

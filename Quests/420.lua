@@ -28,8 +28,8 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-		Saga.GiveZeny(RewZeny);
-		Saga.GiveExp( RewCxp, RewJxp, RewWxp);
+		Saga.GiveZeny(cid, RewZeny);
+		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 		return 0;
 end
 

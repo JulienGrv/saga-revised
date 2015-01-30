@@ -30,8 +30,8 @@ function QUEST_FINISH(cid)
 	-- Gives all rewards
 	local freeslots = Saga.FreeInventoryCount(cid, 0);
 	if freeslots > 0 then
-		Saga.GiveZeny(RewZeny);
-		Saga.GiveExp( RewCxp, RewJxp, RewWxp);
+		Saga.GiveZeny(cid, RewZeny);
+		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 		return 0;
 	else
@@ -44,7 +44,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1()
+function QUEST_STEP_1(cid)
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end

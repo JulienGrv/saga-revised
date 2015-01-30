@@ -29,8 +29,8 @@ function QUEST_FINISH(cid)
 	-- Gives all rewards
 	local freeslots = Saga.FreeInventoryCount(cid, 0);
 	if freeslots > 0 then
-		Saga.GiveZeny(RewZeny);
-		Saga.GiveExp( RewCxp, RewJxp, RewWxp);
+		Saga.GiveZeny(cid, RewZeny);
+		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 		return 0;
 	else
@@ -65,10 +65,10 @@ function QUEST_STEP_2(cid)
 
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	local Itemcount = Saga.CheckUserInventory(cid, 2659);
+	local ItemCount = Saga.CheckUserInventory(cid, 2659);
 	if ret == 1005 then
 		Saga.GeneralDialog(cid, 3936);
-		if Itemcount > 4 then
+		if ItemCount > 4 then
 			Saga.NpcTakeItem(cid, 2659, 5);
 			Saga.SubstepComplete(cid,QuestID,StepID,1);
 		end

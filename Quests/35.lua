@@ -28,8 +28,8 @@ function QUEST_START(cid)
 end
 
 function QUEST_FINISH(cid)
-	Saga.GiveZeny(RewZeny);
-	Saga.GiveExp(RewCxp, RewJxp, RewWxp);
+	Saga.GiveZeny(cid, RewZeny);
+	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	return 0;
 end
@@ -96,15 +96,15 @@ end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid);
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 
 	if CurStepID == 3501 then
-		ret = QUEST_STEP_1();
+		ret = QUEST_STEP_1(cid);
 	elseif CurStepID == 3502 then
-		ret = QUEST_STEP_2();
+		ret = QUEST_STEP_2(cid);
 	elseif CurStepID == 3503 then
-		ret = QUEST_STEP_3();
+		ret = QUEST_STEP_3(cid);
 	end
 
 	if ret == 0 then

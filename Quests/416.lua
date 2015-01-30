@@ -29,8 +29,8 @@ function QUEST_FINISH(cid)
 	-- Gives all rewards
 	local freeslots = Saga.FreeInventoryCount(cid, 0);
 	if freeslots > 0 then
-		Saga.GiveZeny(RewZeny);
-		Saga.GiveExp( RewCxp, RewJxp, RewWxp);
+		Saga.GiveZeny(cid, RewZeny);
+		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 		return 0;
 	else
@@ -43,7 +43,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1()
+function QUEST_STEP_1(cid)
 	-- Eliminate Recoba
 	-- Eliminate Tulang
 	-- Eliminate Karyuso
@@ -64,7 +64,7 @@ function QUEST_STEP_1()
 
 end
 
-function QUEST_STEP_2()
+function QUEST_STEP_2(cid)
 	-- Hand in to Kafra Board Mailbox
 	local ret = Saga.GetActionObjectIndex(cid);
 	if ret == 1123 then
