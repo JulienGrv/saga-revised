@@ -42,7 +42,7 @@ end
 function QUEST_STEP_1(cid)
 	--Offical Quest
 	Saga.StepComplete(cid, QuestID, StepID);
-	return 0
+	return 0;
 end
 
 function QUEST_STEP_2(cid)

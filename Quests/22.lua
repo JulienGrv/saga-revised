@@ -64,7 +64,7 @@ function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid, QuestID, 2202, 1, 1005);
 
 	--check for completion
-	local ItemCount = Saga.CheckUserInventory(cid, 2646)
+	local ItemCount = Saga.CheckUserInventory(cid, 2646);
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1005 then
 		Saga.GeneralDialog(cid, 3936);

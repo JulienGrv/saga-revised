@@ -85,7 +85,7 @@ end
 function QUEST_STEP_3(cid)
 	-- Hand over to Kaftra
 	if ret == 1123 then
-		Saga.StepComplete(cid,QuestID,StepID)
+		Saga.StepComplete(cid,QuestID,StepID);
 		Saga.QuestComplete(cid, QuestID);
 		return -1;
 	end

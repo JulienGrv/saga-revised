@@ -54,7 +54,7 @@ end
 function QUEST_STEP_1(cid)
 	
 	Saga.StepComplete(cid, QuestID, StepID);
-	return 0
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
@@ -69,7 +69,7 @@ function QUEST_STEP_2(cid)
 	end
 	
 	Saga.StepComplete(cid, QuestID, StepID);
-	return 0
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
