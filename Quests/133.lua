@@ -83,7 +83,7 @@ function QUEST_CHECK(cid)
 	end
 
 	if ret == 0 then
-		QUEST_CHECK(cid)
+		QUEST_CHECK(cid);
 	end
 
 	return ret;

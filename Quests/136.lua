@@ -55,7 +55,7 @@ function QUEST_STEP_1(cid)
 	-- Lancement des étapes
 
 	Saga.StepComplete(cid, QuestID, StepID);
-	return 0
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
@@ -77,7 +77,7 @@ function QUEST_STEP_2(cid)
 	end
 	
 	Saga.StepComplete(cid, QuestID, StepID);
-	return 0
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
@@ -121,7 +121,7 @@ function QUEST_CHECK(cid)
 	end
 	
 	if ret == 0 then
-		QUEST_CHECK(cid)
+		QUEST_CHECK(cid);
 	end
 	
 	return ret;

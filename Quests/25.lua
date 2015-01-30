@@ -48,7 +48,7 @@ function QUEST_STEP_1(cid)
 	Saga.AddWaypoint(cid, 2501, 1, 1002);
 
 	--check for completion
-	local ret = Saga.GetNPCIndex(cid)
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1002 then
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
@@ -71,7 +71,7 @@ function QUEST_STEP_2(cid)
 	Saga.AddWaypoint(cid, 2502, 1, 1005);
 
 	--check for completion
-	local ret = Saga.GetNPCIndex(cid)
+	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1005 then
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
@@ -103,7 +103,7 @@ function QUEST_CHECK(cid)
 	end
 	
 	if ret == 0 then
-		QUEST_CHECK(cid)
+		QUEST_CHECK(cid);
 	end
 	
 	return ret;

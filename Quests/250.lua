@@ -115,7 +115,7 @@ function QUEST_CHECK(cid)
 		ret = QUEST_STEP_3(cid);
 	end
 	if ret == 0 then
-		QUEST_CHECK(cid)
+		QUEST_CHECK(cid);
 	end
 
 	return ret;

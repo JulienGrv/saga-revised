@@ -66,9 +66,9 @@ end
 function QUEST_STEP_2(cid)
 -- Hand in to Kafra Board Mailbox
 
-	local ret = Saga.GetNPCIndex(cid)
-	local ItemCountA = Saga.CheckUserInventory(cid, 2603)
-	local ItemCountB = Saga.CheckUserInventory(cid, 2667)
+	local ret = Saga.GetNPCIndex(cid);
+	local ItemCountA = Saga.CheckUserInventory(cid, 2603);
+	local ItemCountB = Saga.CheckUserInventory(cid, 2667);
 	if ret == 1123 and ItemCountA > 2 and ItemCountB > 1
 	then
 	Saga.NpcTakeItem(cid, 2603, 3);
@@ -106,7 +106,7 @@ function QUEST_CHECK(cid)
 	end
 	
 	if ret == 0 then
-		QUEST_CHECK(cid)
+		QUEST_CHECK(cid);
 	end
 	
 	return ret;
