@@ -56,15 +56,15 @@ function QUEST_STEP_1(cid)
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid,QuestID,StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end
 
@@ -92,15 +92,15 @@ function QUEST_STEP_2(cid)
 		Saga.UserUpdateActionObjectType(cid,QuestID,StepID,11,1);
 	end
 
-    -- Check if all substeps are completed
-    for i = 1, 3 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 3 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid,QuestID,StepID);
-    return 0;
+	Saga.StepComplete(cid,QuestID,StepID);
+	return 0;
 
 end
 
@@ -118,16 +118,16 @@ function QUEST_STEP_3(cid)
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid,QuestID,StepID);
 	Saga.ClearWaypoints(cid, QuestID);
-    Saga.QuestComplete(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 

@@ -37,13 +37,13 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-    local freeslots = Saga.FreeInventoryCount(cid, 0);
-    if freeslots > 0 then
-        Saga.NpcGiveItem(cid, 4225, 1);
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);
-    else
+	local freeslots = Saga.FreeInventoryCount(cid, 0);
+	if freeslots > 0 then
+		Saga.NpcGiveItem(cid, 4225, 1);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	else
 		Saga.EmptyInventory(cid);
-    end
+	end
 
 
 	Saga.StepComplete(cid,QuestID,StepID);
@@ -59,21 +59,21 @@ function QUEST_STEP_2(cid)
 	if ret == 1181 then
 		Saga.GeneralDialog(cid, 3933);
 
-        local ItemCountA = Saga.CheckUserInventory(cid, 4225);
-        if ItemCountA > 0 then
-            Saga.NpcTakeItem(cid, 4225, 1);
-            Saga.SubstepComplete(cid, QuestID, StepID, 1);
-        else
+		local ItemCountA = Saga.CheckUserInventory(cid, 4225);
+		if ItemCountA > 0 then
+			Saga.NpcTakeItem(cid, 4225, 1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
+		else
 			Saga.InventoryNotFound(cid);
-        end
+		end
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);

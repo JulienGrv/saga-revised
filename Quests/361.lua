@@ -19,51 +19,51 @@ local StepID = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-    Saga.AddStep(cid, QuestID, 36101);
-    Saga.AddStep(cid, QuestID, 36102);
-    Saga.AddStep(cid, QuestID, 36103);
-    Saga.InsertQuest(cid, QuestID, 1);
-    return 0;
+	Saga.AddStep(cid, QuestID, 36101);
+	Saga.AddStep(cid, QuestID, 36102);
+	Saga.AddStep(cid, QuestID, 36103);
+	Saga.InsertQuest(cid, QuestID, 1);
+	return 0;
 end
 
 function QUEST_FINISH(cid)
-    -- Gives all rewards
-    Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-    Saga.GiveZeny(cid, RewZeny);
-    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-    return 0;
+	-- Gives all rewards
+	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveZeny(cid, RewZeny);
+	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
+	return 0;
 end
 
 function QUEST_CANCEL(cid)
-    return 0;
+	return 0;
 end
 
 function QUEST_STEP_1(cid)
-    -- Talk with Ireyneal
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
+	-- Talk with Ireyneal
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
 	
-    -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);
-    if ret == 1023 then
-        Saga.GeneralDialog(cid, 3936);
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);
-    end
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1023 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    return 0;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
-    -- Find Polluted Soil samples (1)
-    -- Find Polluted Iron Pieces (10)
+	-- Find Polluted Soil samples (1)
+	-- Find Polluted Iron Pieces (10)
 	
  	Saga.FindQuestItem(cid, QuestID, StepID, 33, 4171, 10000, 1, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 34, 4172, 10000, 10, 2);
@@ -81,64 +81,64 @@ function QUEST_STEP_2(cid)
 		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 34, 1 );
 	end
 
-    -- Check if all substeps are completed
-    for i = 1, 2 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 2 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, 902);
-    return 0;
+	Saga.StepComplete(cid, QuestID, 902);
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
-    -- Talk with Ireyneal
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
+	-- Talk with Ireyneal
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
 	
-    -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);
-    if ret == 1023 then
-        Saga.GeneralDialog(cid, 3936);
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1023 then
+		Saga.GeneralDialog(cid, 3936);
 	
-        local ItemCountA = Saga.CheckUserInventory(cid,4171);
-        local ItemCountB = Saga.CheckUserInventory(cid,4172);
-        if ItemCountA > 0 and ItemCountB > 9 then
-            Saga.NpcTakeItem(cid, 4171,1);
-            Saga.NpcTakeItem(cid, 4172,10);
-            Saga.SubstepComplete(cid, QuestID, StepID, 1);
-        end
-    end
+		local ItemCountA = Saga.CheckUserInventory(cid,4171);
+		local ItemCountB = Saga.CheckUserInventory(cid,4172);
+		if ItemCountA > 0 and ItemCountB > 9 then
+			Saga.NpcTakeItem(cid, 4171,1);
+			Saga.NpcTakeItem(cid, 4172,10);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
+		end
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.QuestComplete(cid, QuestID);
-    return -1;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)
-    local CurStepID = Saga.GetStepIndex(cid, QuestID );
-    StepID = CurStepID;
-    local ret = -1;
+	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	StepID = CurStepID;
+	local ret = -1;
 
-    if CurStepID == 36101 then
-        ret = QUEST_STEP_1(cid);
-    elseif CurStepID == 36102 then
-        ret = QUEST_STEP_2(cid);
-    elseif CurStepID == 36103 then
-        ret = QUEST_STEP_3(cid);
-    end
+	if CurStepID == 36101 then
+		ret = QUEST_STEP_1(cid);
+	elseif CurStepID == 36102 then
+		ret = QUEST_STEP_2(cid);
+	elseif CurStepID == 36103 then
+		ret = QUEST_STEP_3(cid);
+	end
 	
-    if ret == 0 then
-        QUEST_CHECK(cid)
-    end
+	if ret == 0 then
+		QUEST_CHECK(cid)
+	end
 	
-    return ret;
+	return ret;
 end

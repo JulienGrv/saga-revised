@@ -60,7 +60,7 @@ function QUEST_STEP_2(cid)
 	-- Get boss pukui ring
 	Saga.FindQuestItem(cid,QuestID,StepID,10011,2646,2500,1,1);
 	
-    -- Check if all substeps are completed
+	-- Check if all substeps are completed
 	if Saga.IsSubStepCompleted(cid,QuestID,3202, 1) == false then
 		return -1;
 	end
@@ -80,14 +80,14 @@ function QUEST_STEP_3(cid)
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
 	end
 	
-    -- Check if all substeps are completed
-     if Saga.IsSubStepCompleted(cid,QuestID,3203, 1) == false then
+	-- Check if all substeps are completed
+	if Saga.IsSubStepCompleted(cid,QuestID,3203, 1) == false then
 		return -1;
-	 end
+	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid,QuestID,StepID);
-    Saga.QuestComplete(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 

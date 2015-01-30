@@ -71,7 +71,7 @@ function QUEST_STEP_2(cid)
 		if ItemCount > 0 then
 			Saga.NpcTakeItem(cid, 2646, 1);
 			Saga.SubstepComplete(cid,QuestID,StepID,1);
-        end
+		end
 	end
 	
 	--check if all substeps are complete

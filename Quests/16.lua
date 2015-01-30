@@ -59,31 +59,31 @@ function QUEST_STEP_1(cid)
 		Saga.SubstepComplete(cid,QuestID,1601,1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,1601,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,1601,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid,QuestID,1601);
-    return 0;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,1601);
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
 	-- eliminate boss pukui
 	Saga.Eliminate(cid, QuestID, 1602, 10011, 1, 1);
 	
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,1602,i) == false then
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,1602,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid,QuestID,1602);
-    return 0;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,1602);
+	return 0;
 end
 
 
@@ -97,17 +97,17 @@ function QUEST_STEP_3(cid)
 		Saga.SubstepComplete(cid,QuestID,1603,1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,1603,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,1603,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid,QuestID,1603);
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,1603);
 	Saga.QuestComplete(cid, QuestID);
-    return -1;
+	return -1;
 end
 
 function QUEST_CHECK(cid)

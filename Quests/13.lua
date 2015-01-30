@@ -21,9 +21,9 @@ local StepID = 0;
 function QUEST_START(cid)
 	-- Initialize all quest steps
 	-- Initialize all starting navigation points
-    Saga.AddStep(cid, QuestID, 1301);
-    Saga.AddStep(cid, QuestID, 1302);
-    Saga.InsertQuest(cid, QuestID, 1);
+	Saga.AddStep(cid, QuestID, 1301);
+	Saga.AddStep(cid, QuestID, 1302);
+	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
 
@@ -43,7 +43,7 @@ function QUEST_FINISH(cid)
 end
 
 function QUEST_CANCEL(cid)
-    -- Missing cid
+	-- Missing cid
 	return 0;
 end
 
@@ -57,18 +57,18 @@ function QUEST_STEP_1(cid)
 	Saga.FindQuestItem(cid,QuestID,1301,10022,2638,8000,3,2);
 
 
-    -- Check if all substeps are completed
-    -- There are 2 substeps so check all 2
-    for i = 1, 2 do
-         if Saga.IsSubStepCompleted(cid,QuestID,1301,i) == false then
+	-- Check if all substeps are completed
+	-- There are 2 substeps so check all 2
+	for i = 1, 2 do
+		if Saga.IsSubStepCompleted(cid,QuestID,1301,i) == false then
 			return -1;
-		 end
-    end
-	Saga.StepComplete(cid,QuestID,1301);
+		end
+	end
 	
+	Saga.StepComplete(cid,QuestID,1301);
 	return 0;
 	-- return is important
-    -- end is very important not to forget
+	-- end is very important not to forget
 end
 
 function QUEST_STEP_2(cid)
@@ -80,24 +80,24 @@ function QUEST_STEP_2(cid)
 	local ItemCountB = Saga.CheckUserInventory(cid, 2638);
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1004 then
-	    Saga.GeneralDialog(cid, 3936);
-	    if ItemCountA > 1 and ItemCountB > 2 then
-	        Saga.NpcTakeItem(cid, 2610, 2);
-	        Saga.NpcTakeItem(cid, 2638, 3);
-	        Saga.SubstepComplete(cid,QuestID,1302,1);
-	    end
-    end
+		Saga.GeneralDialog(cid, 3936);
+		if ItemCountA > 1 and ItemCountB > 2 then
+			Saga.NpcTakeItem(cid, 2610, 2);
+			Saga.NpcTakeItem(cid, 2638, 3);
+			Saga.SubstepComplete(cid,QuestID,1302,1);
+		end
+	end
 	
 	-- Prefer using substeps instead of nested if's for consitance with
 	-- other quests (easier for other people if all the quests are similair made)
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,1302,i) == false then
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,1302,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 
 	Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid,QuestID,1302);
+	Saga.StepComplete(cid,QuestID,1302);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end

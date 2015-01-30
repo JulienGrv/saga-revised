@@ -61,14 +61,14 @@ function QUEST_STEP_2(cid)
 			Saga.SubstepComplete(cid, QuestID, 14102, 1);
 		end
 
---check if all substeps completed
+	--check if all substeps completed
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 14102, i) == false
-then
+	then
 	return -1;
 	end
 
-end
+	end
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, 14102);
 	Saga.QuestComplete(cid, QuestID);

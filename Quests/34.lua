@@ -62,13 +62,13 @@ function QUEST_STEP_2(cid)
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1005 then
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
-        if freeslots > 0 then
+		if freeslots > 0 then
 			Saga.NpcGiveItem(cid, 2607, 1);
 			Saga.SubstepComplete(cid, QuestID, 3402, 1);
 		end
 	end
 	
-    -- Check if all substeps are completed
+	-- Check if all substeps are completed
 	if Saga.IsSubStepCompleted(cid,QuestID,3402, 1) == false then
 		return -1;
 	end
@@ -89,14 +89,14 @@ function QUEST_STEP_3(cid)
 		Saga.SubstepComplete(cid, QuestID, 3403, 1);
 	end
 	
-    -- Check if all substeps are completed
-     if Saga.IsSubStepCompleted(cid,QuestID,3403, 1) == false then
+	-- Check if all substeps are completed
+	if Saga.IsSubStepCompleted(cid,QuestID,3403, 1) == false then
 		return -1;
-	 end
+	end
 	
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid, QuestID, 3403);
-    Saga.QuestComplete(cid, QuestID);
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 3403);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 

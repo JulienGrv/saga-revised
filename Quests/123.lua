@@ -50,23 +50,23 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 function QUEST_STEP_2(cid)
---Talk with Scacciano Morrigan
+	--Talk with Scacciano Morrigan
 	Saga.AddWaypoint(cid, QuestID, 12302, 1, 1003);
---check for completion
+	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	Saga.SubstepComplete(cid, QuestID, 12302, 1);
 	end
 
---check if all substeps are complete
+	--check if all substeps are complete
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 12302, i) == false
-then
+	then
 	return -1;
 	end
-end
+	end
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, 12302);
 	Saga.QuestComplete(cid, QuestID);

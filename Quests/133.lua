@@ -32,7 +32,7 @@ function QUEST_FINISH(cid)
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	Saga.GiveItem(cid, RewItem2, RewItemCount2 );
 	return 0;
-else
+	else
 	return -1;
 	end
 
@@ -48,25 +48,25 @@ function QUEST_STEP_1(cid)
 end
 
 function QUEST_STEP_2(cid)
---Talk to Klaret Natali
+	--Talk to Klaret Natali
 	Saga.AddWaypoint(cid, QuestID, 13302, 1, 1001);
---check for completion
+	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	Saga.SubstepComplete(cid, QuestID, 13302, 1);
 	end
-end
---check if all substeps are completed
+	end
+	--check if all substeps are completed
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 13302, i) == false
-then
+	then
 	return -1;
 	end
-end
-	Saga.StepComplete(cid, QuestID, 13302);
+	end
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 13302);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end

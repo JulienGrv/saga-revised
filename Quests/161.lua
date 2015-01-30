@@ -39,7 +39,7 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-    Saga.StepComplete(cid, QuestID, StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -50,21 +50,21 @@ function QUEST_STEP_2(cid)
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1079 then
-	    Saga.GeneralDialog(cid, 3936);
-        Saga.NpcGiveItem(cid,3974,1);
-	    Saga.SubstepComplete(cid, QuestID, StepID, 1);
+		Saga.GeneralDialog(cid, 3936);
+		Saga.NpcGiveItem(cid,3974,1);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
-    return 0;
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
@@ -74,25 +74,25 @@ function QUEST_STEP_3(cid)
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1099 then
-	    Saga.GeneralDialog(cid, 3936);
-        local ItemCountA = Saga.CheckUserInventory(cid, 3972);
-	    if ItemCountA > 0 then
-	        Saga.NpcTakeItem(cid, 3972,1);
-	        Saga.SubstepComplete(cid, QuestID, StepID, 1);
-	    end
+		Saga.GeneralDialog(cid, 3936);
+		local ItemCountA = Saga.CheckUserInventory(cid, 3972);
+		if ItemCountA > 0 then
+			Saga.NpcTakeItem(cid, 3972,1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
+		end
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
-    Saga.QuestComplete(cid, QuestID);
-    return -1;
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)

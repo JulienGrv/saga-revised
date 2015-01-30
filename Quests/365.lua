@@ -19,107 +19,107 @@ local StepID = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-    Saga.AddStep(cid, QuestID, 36501);
-    Saga.AddStep(cid, QuestID, 36502);
-    Saga.AddStep(cid, QuestID, 36503);
-    Saga.InsertQuest(cid, QuestID, 1);
-    return 0;
+	Saga.AddStep(cid, QuestID, 36501);
+	Saga.AddStep(cid, QuestID, 36502);
+	Saga.AddStep(cid, QuestID, 36503);
+	Saga.InsertQuest(cid, QuestID, 1);
+	return 0;
 end
 
 function QUEST_FINISH(cid)
-    -- Gives all rewards
-    Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-    Saga.GiveZeny(cid, RewZeny);
-    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-    return 0;
+	-- Gives all rewards
+	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveZeny(cid, RewZeny);
+	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
+	return 0;
 end
 
 function QUEST_CANCEL(cid)
-    return 0;
+	return 0;
 end
 
 function QUEST_STEP_1(cid)
-    -- Talk with Ireyneal
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
+	-- Talk with Ireyneal
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
 	
-    -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);
-    if ret == 1023 then
-        Saga.GeneralDialog(cid, 3936);
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);
-    end
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1023 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    return 0;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
-    -- Eliminate Blut Twitter (6)
-    -- Eliminate Rusty Pinoli (6)
-    Saga.Eliminate(cid, QuestID, StepID, 10322, 6, 1);
-    Saga.Eliminate(cid, QuestID, StepID, 10323, 6, 1);
-    Saga.Eliminate(cid, QuestID, StepID, 10324, 6, 2);
-    Saga.Eliminate(cid, QuestID, StepID, 10325, 6, 2);
+	-- Eliminate Blut Twitter (6)
+	-- Eliminate Rusty Pinoli (6)
+	Saga.Eliminate(cid, QuestID, StepID, 10322, 6, 1);
+	Saga.Eliminate(cid, QuestID, StepID, 10323, 6, 1);
+	Saga.Eliminate(cid, QuestID, StepID, 10324, 6, 2);
+	Saga.Eliminate(cid, QuestID, StepID, 10325, 6, 2);
 	
-    -- Check if all substeps are completed
-    for i = 1, 2 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 2 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    return 0;
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
-    -- Report to Ireyneal
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
+	-- Report to Ireyneal
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
 	
-    -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);
-    if ret == 1023 then
-        Saga.GeneralDialog(cid, 3936);
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);
-    end
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1023 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.QuestComplete(cid, QuestID);
-    return -1;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)
-    local CurStepID = Saga.GetStepIndex(cid, QuestID );
-    StepID = CurStepID;
-    local ret = -1;
+	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	StepID = CurStepID;
+	local ret = -1;
 
-    if CurStepID == 36501 then
-        ret = QUEST_STEP_1(cid);
-    elseif CurStepID == 36502 then
-        ret = QUEST_STEP_2(cid);
-    elseif CurStepID == 36503 then
-        ret = QUEST_STEP_3(cid);
-    end
+	if CurStepID == 36501 then
+		ret = QUEST_STEP_1(cid);
+	elseif CurStepID == 36502 then
+		ret = QUEST_STEP_2(cid);
+	elseif CurStepID == 36503 then
+		ret = QUEST_STEP_3(cid);
+	end
 	
-    if ret == 0 then
-        QUEST_CHECK(cid)
-    end
+	if ret == 0 then
+		QUEST_CHECK(cid)
+	end
 	
-    return ret;
+	return ret;
 end

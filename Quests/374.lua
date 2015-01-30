@@ -19,32 +19,32 @@ local StepID = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-    Saga.AddStep(cid, QuestID, 37401);
-    Saga.AddStep(cid, QuestID, 37402);
-    Saga.AddStep(cid, QuestID, 37403);
-    Saga.InsertQuest(cid, QuestID, 1);
-    return 0;
+	Saga.AddStep(cid, QuestID, 37401);
+	Saga.AddStep(cid, QuestID, 37402);
+	Saga.AddStep(cid, QuestID, 37403);
+	Saga.InsertQuest(cid, QuestID, 1);
+	return 0;
 end
 
 function QUEST_FINISH(cid)
-    -- Gives all rewards
-    Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-    Saga.GiveZeny(cid, RewZeny);
-    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-    return 0;
+	-- Gives all rewards
+	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveZeny(cid, RewZeny);
+	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
+	return 0;
 end
 
 function QUEST_CANCEL(cid)
-    return 0;
+	return 0;
 end
 
 function QUEST_STEP_1(cid)
-    Saga.StepComplete(cid, QuestID, StepID);
-    return 0;
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
-    -- Find Leaked Box of Bullets (8)
+	-- Find Leaked Box of Bullets (8)
 	Saga.FindQuestItem(cid, QuestID, StepID, 56, 51700010, 10000, 8, 1);
 
 	-- (De-)Activates the Action Objectd on request
@@ -54,63 +54,63 @@ function QUEST_STEP_2(cid)
 		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 9, 1 );
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    return 0;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
-    -- Report result to Portman
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1135);
+	-- Report result to Portman
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1135);
 	
-    -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);
-    if ret == 1135 then
-        Saga.GeneralDialog(cid, 3936);
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1135 then
+		Saga.GeneralDialog(cid, 3936);
 	
-        local ItemCountA = Saga.CheckUserInventory(cid,51700010);
-        if ItemCountA > 7 then
-            Saga.NpcTakeItem(cid, 51700010,8);
-            Saga.SubstepComplete(cid, QuestID, StepID, 1);
-        end
-    end
+		local ItemCountA = Saga.CheckUserInventory(cid,51700010);
+		if ItemCountA > 7 then
+			Saga.NpcTakeItem(cid, 51700010,8);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
+		end
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.QuestComplete(cid, QuestID);
-    return -1;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)
-    local CurStepID = Saga.GetStepIndex(cid, QuestID );
-    StepID = CurStepID;
-    local ret = -1;
+	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	StepID = CurStepID;
+	local ret = -1;
 
-    if CurStepID == 37401 then
-        ret = QUEST_STEP_1(cid);
-    elseif CurStepID == 37402 then
-        ret = QUEST_STEP_2(cid);
-    elseif CurStepID == 37403 then
-        ret = QUEST_STEP_3(cid);
-    end
+	if CurStepID == 37401 then
+		ret = QUEST_STEP_1(cid);
+	elseif CurStepID == 37402 then
+		ret = QUEST_STEP_2(cid);
+	elseif CurStepID == 37403 then
+		ret = QUEST_STEP_3(cid);
+	end
 	
-    if ret == 0 then
-        QUEST_CHECK(cid)
-    end
+	if ret == 0 then
+		QUEST_CHECK(cid)
+	end
 	
-    return ret;
+	return ret;
 end

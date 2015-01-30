@@ -36,8 +36,8 @@ function QUEST_FINISH(cid)
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	return 0;
-else
-Saga.EmptyInventory(cid);
+	else
+	Saga.EmptyInventory(cid);
 	return -1;
 	end
 
@@ -52,40 +52,40 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 function QUEST_STEP_2(cid)
---Collect Giant Piranha's Scale
+	--Collect Giant Piranha's Scale
 	Saga.FindQuestItem(cid, QuestID, 13402, 10058, 3959, 10000, 1, 1);
---check if all substeps completed
+	--check if all substeps completed
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 13402, i) == false
-then
+	then
 	return -1;
 	end
 
-end
+	end
 	Saga.StepComplete(cid, QuestID, 13402);
 	return 0;
 end
 
 function QUEST_STEP_3(cid)
---Report to Kafra Box
+	--Report to Kafra Box
 	Saga.AddWaypoint(cid, QuestID, 13403, 1, 1001);
 	
 	local ItemCount = Saga.CheckUserInventory(cid, 3959);
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001 then
-        if ItemCount > 0 then
+		if ItemCount > 0 then
 			Saga.NpcTakeItem(cid, 3959, 1);
 			Saga.SubstepComplete(cid, QuestID, 13403, 1);
 		end
 	end
---check if all substeps completed
+	--check if all substeps completed
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 13403, i) == false
-then
+	then
 	return -1;
 	end
 
-end
+	end
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, 13403);
 	Saga.QuestComplete(cid, QuestID);

@@ -33,7 +33,7 @@ function QUEST_FINISH(cid)
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	Saga.GiveItem(cid, RewItem2, RewItemCount2 );
 	return 0;
-else
+	else
 	return -1;
 	end
 
@@ -43,48 +43,48 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
---Eliminate Marine Sphere;Eliminate Marine Sphere Imago
+	--Eliminate Marine Sphere;Eliminate Marine Sphere Imago
 
 	Saga.Eliminate(cid, QuestID, 12501, 10040, 3, 1);
 	Saga.Eliminate(cid, QuestID, 12501, 10041, 3, 1);
 	Saga.Eliminate(cid, QuestID, 12501, 10042, 4, 2);
 	Saga.Eliminate(cid, QuestID, 12501, 10043, 4, 2);
 
---check if all substeps are complete
+	--check if all substeps are complete
 	for i = 1, 2 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 12501, i) == false
-then
+	then
 	return -1;
 	end
 
-end
+	end
 	Saga.StepComplete(cid, QuestID, 12501);
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
---Talk with Misha Berardini
+	--Talk with Misha Berardini
 
 	Saga.AddWaypoint(cid, QuestID, 12502, 1, 1000);
 	if ret == 1000
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	Saga.SubstepComplete(cid, QuestID, 1502, 1);
 	end
-end
+	end
 
---check if all substeps are complete
+	--check if all substeps are complete
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 12502, i) == false
-then
+	then
 	return -1;
 	end
-end
-	Saga.StepComplete(cid, QuestID, 12502);
+	end
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 12502);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
-end
+	end
 
 --check for completion
 	local ret = Saga.GetNPCIndex(cid);

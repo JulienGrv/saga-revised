@@ -32,7 +32,7 @@ function QUEST_FINISH(cid)
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	Saga.GiveItem(cid, RewItem2, RewItemCount2 );
 	return 0;
-else
+	else
 	return -1;
 	end
 
@@ -42,55 +42,55 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
---Eliminate Exiled Merman;Eliminate Be Chased Mermaid
+	--Eliminate Exiled Merman;Eliminate Be Chased Mermaid
 
 	Saga.eliminate(cid, QuestID, 4201, 10030, 4, 1);
 	Saga.eliminate(cid, QuestID, 4201, 10031, 4, 1);
 	Saga.eliminate(cid, QuestID, 4201, 10034, 4, 2);
 	Saga.eliminate(cid, QuestID, 4201, 10035, 4, 2);
---Get loot from Be Chased Mermaid
+	--Get loot from Be Chased Mermaid
 	Saga.FindQuestItem(cid, QuestID, 4201, 10034, 4073, 8000, 1, 3);
 
---chek if all substeps are complete
+	--chek if all substeps are complete
 	for i = 1, 3 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 4201, i) == false
-then
+	then
 	return -1;
 	end
 
-end
+	end
 	Saga.StepComplete(cid, QuestID, 4201);
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
---Report to Misha Berardini
+	--Report to Misha Berardini
 
 	Saga.AddWaypoint(cid, QuestID, 4202, 1, 1000);
 
---check for Completion
+	--check for Completion
 	local ret = Saga.GetNPCIndex(cid);
 	local ItemCount = Saga.CheckUserInventory(cid, 4073);
 	if ret == 1000
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	if ItemCount > 0
-then
+	then
 	Saga.NpcTakeItem(cid, 4073, 1);
 	Saga.SubstepComplete(cid, QuestID, 4202, 1);
 	end
 
-end
+	end
 -- check if all substeps are complete
 	for i - 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 4202, i) == false
-then
+	then
 	return -1;
 	end
 
-end
-	Saga.StepComplete(cid, QuestID, 4202);
+	end
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 4202);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end

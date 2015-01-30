@@ -23,7 +23,7 @@ function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 26801);
 	Saga.AddStep(cid, QuestID, 26802);
 
-	Sage.InsertQuest(cid, QuestID, 1);
+	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
 
@@ -50,48 +50,48 @@ function QUEST_STEP_1(cid)
 	end
 
 	-- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
-    --Bring Cat Gang Plans Monika Reynolds
+	--Bring Cat Gang Plans Monika Reynolds
 
 	--Make Cat Gang Plans Drop
-    Saga.FindQuestItem(cid, QuestID, 26802, 10104, 4036, 2500, 1, 1);
-    Saga.FindQuestItem(cid, QuestID, 26802, 10105, 4036, 2500, 1, 1);
+	Saga.FindQuestItem(cid, QuestID, 26802, 10104, 4036, 2500, 1, 1);
+	Saga.FindQuestItem(cid, QuestID, 26802, 10105, 4036, 2500, 1, 1);
 
 	--Take to Monika Reynolds
-    Saga.AddWaypoint(cid, QuestID, StepID, 1,1012);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1,1012);
 
-    -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);
-    if ret == 1012 then
-        Saga.GeneralDialog(cid, 3936);
-        local ItemCountA = Saga.CheckUserInventory(cid, 4036);
-        if ItemCountA > 0 then
-            Saga.NpcTakeItem(cid, 4036,1);
-            Saga.SubstepComplete(cid, QuestID, StepID, 1);
-        end
-    end
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1012 then
+		Saga.GeneralDialog(cid, 3936);
+		local ItemCountA = Saga.CheckUserInventory(cid, 4036);
+		if ItemCountA > 0 then
+			Saga.NpcTakeItem(cid, 4036,1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
+		end
+	end
 
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end

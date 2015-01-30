@@ -19,131 +19,131 @@ local StepID = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-    Saga.AddStep(cid, QuestID, 22601);
-    Saga.AddStep(cid, QuestID, 22602);
-    Saga.AddStep(cid, QuestID, 22603);
-    Saga.InsertQuest(cid, QuestID, 1);
-    return 0;
+	Saga.AddStep(cid, QuestID, 22601);
+	Saga.AddStep(cid, QuestID, 22602);
+	Saga.AddStep(cid, QuestID, 22603);
+	Saga.InsertQuest(cid, QuestID, 1);
+	return 0;
 end
 
 function QUEST_FINISH(cid)
-    -- Gives all rewards
-    Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-    Saga.GiveZeny(cid, RewZeny);
-    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-    return 0;
+	-- Gives all rewards
+	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveZeny(cid, RewZeny);
+	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
+	return 0;
 end
 
 function QUEST_CANCEL(cid)
-    return 0;
+	return 0;
 end
 
 function QUEST_STEP_1(cid)
-    -- Talk with Regina Salisbury
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
+	-- Talk with Regina Salisbury
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 	
-    -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);
-    if ret == 1010 then
-        Saga.GeneralDialog(cid, 3936);
-        local freeslots = Saga.FreeInventoryCount(cid, 0);
-        if freeslots > 1 then
-            Saga.NpcGiveItem(cid, 4016,1);
-            Saga.NpcGiveItem(cid, 4017,1);
-            Saga.SubstepComplete(cid, QuestID, StepID, 1);
-        end
-    end
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1010 then
+		Saga.GeneralDialog(cid, 3936);
+		local freeslots = Saga.FreeInventoryCount(cid, 0);
+		if freeslots > 1 then
+			Saga.NpcGiveItem(cid, 4016,1);
+			Saga.NpcGiveItem(cid, 4017,1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
+		end
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    return 0;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
-    -- Deliver 'Present' to Mitzi;
-    -- Deliver 'Present' to Achim;
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1081);
-    Saga.AddWaypoint(cid, QuestID, StepID, 2, 1080);
+	-- Deliver 'Present' to Mitzi;
+	-- Deliver 'Present' to Achim;
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1081);
+	Saga.AddWaypoint(cid, QuestID, StepID, 2, 1080);
 	
-    -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);
-    if ret ==  1013 then
-        Saga.GeneralDialog(cid, 3936);
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret ==  1013 then
+		Saga.GeneralDialog(cid, 3936);
 	
-        local ItemCountA = Saga.CheckUserInventory(cid,4016);
-        if ItemCountA > 0 then
-            Saga.NpcTakeItem(cid, 4016,1);
-            Saga.SubstepComplete(cid, QuestID, StepID, 1);
-        end
-    elseif ret == 1009 then
-        Saga.GeneralDialog(cid, 3936);
+		local ItemCountA = Saga.CheckUserInventory(cid,4016);
+		if ItemCountA > 0 then
+			Saga.NpcTakeItem(cid, 4016,1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
+		end
+	elseif ret == 1009 then
+		Saga.GeneralDialog(cid, 3936);
 	
-        local ItemCountA = Saga.CheckUserInventory(cid,4017);
-        if ItemCountA > 0 then
-            Saga.NpcTakeItem(cid, 4017,1);
-            Saga.SubstepComplete(cid, QuestID, StepID, 2);
-        end
-    end
+		local ItemCountA = Saga.CheckUserInventory(cid,4017);
+		if ItemCountA > 0 then
+			Saga.NpcTakeItem(cid, 4017,1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 2);
+		end
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 2 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 2 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    return 0;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
-    -- Report to Regina Salisbury
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
+	-- Report to Regina Salisbury
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 	
-    -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);
-    if ret == 1010 then
-        Saga.GeneralDialog(cid, 3936);
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);
-    end
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1010 then
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.QuestComplete(cid, QuestID);
-    return -1;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)
-    local CurStepID = Saga.GetStepIndex(cid, QuestID );
-    StepID = CurStepID;
-    local ret = -1;
+	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	StepID = CurStepID;
+	local ret = -1;
 
-    if CurStepID == 22601 then
-        ret = QUEST_STEP_1(cid);
-    elseif CurStepID == 22602 then
-        ret = QUEST_STEP_2(cid);
-    elseif CurStepID == 22603 then
-        ret = QUEST_STEP_3(cid);
-    end
+	if CurStepID == 22601 then
+		ret = QUEST_STEP_1(cid);
+	elseif CurStepID == 22602 then
+		ret = QUEST_STEP_2(cid);
+	elseif CurStepID == 22603 then
+		ret = QUEST_STEP_3(cid);
+	end
 	
-    if ret == 0 then
-        QUEST_CHECK(cid)
-    end
+	if ret == 0 then
+		QUEST_CHECK(cid)
+	end
 	
-    return ret;
+	return ret;
 end

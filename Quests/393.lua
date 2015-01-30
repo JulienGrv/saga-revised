@@ -19,91 +19,91 @@ local StepID = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-    Saga.AddStep(cid, QuestID, 39301);
-    Saga.AddStep(cid, QuestID, 39302);
-    Saga.AddStep(cid, QuestID, 39303);
-    Saga.InsertQuest(cid, QuestID, 1);
-    return 0;
+	Saga.AddStep(cid, QuestID, 39301);
+	Saga.AddStep(cid, QuestID, 39302);
+	Saga.AddStep(cid, QuestID, 39303);
+	Saga.InsertQuest(cid, QuestID, 1);
+	return 0;
 end
 
 function QUEST_FINISH(cid)
-    -- Gives all rewards
-    Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-    Saga.GiveZeny(cid, RewZeny);
-    Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-    return 0;
+	-- Gives all rewards
+	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveZeny(cid, RewZeny);
+	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
+	return 0;
 end
 
 function QUEST_CANCEL(cid)
-    return 0;
+	return 0;
 end
 
 function QUEST_STEP_1(cid)
-    Saga.StepComplete(cid, QuestID, StepID);
-    return 0;
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
-    -- Capture Blow Chonchon (6)
+	-- Capture Blow Chonchon (6)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10151, 4092, 10000, 6, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10152, 4092, 10000, 6, 1);
 
-    -- Check if all substeps are completed
-    for i = 1, 4 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 4 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    return 0;
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
-    -- Deliver items to Teesin Mayor
-    Saga.AddWaypoint(cid, QuestID, StepID, 1, 1223);
+	-- Deliver items to Teesin Mayor
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1223);
 	
-    -- Check for completion
-    local ret = Saga.GetNPCIndex(cid);
-    if ret == 1223 then
-        Saga.GeneralDialog(cid, 3936);
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1223 then
+		Saga.GeneralDialog(cid, 3936);
 
-        local ItemCountA = Saga.CheckUserInventory(cid,4092);
-        if ItemCountA > 5 then
-            Saga.NpcTakeItem(cid, 4092,6);
-            Saga.SubstepComplete(cid, QuestID, StepID, 1);
-        end
-    end
+		local ItemCountA = Saga.CheckUserInventory(cid,4092);
+		if ItemCountA > 5 then
+			Saga.NpcTakeItem(cid, 4092,6);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
+		end
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.QuestComplete(cid, QuestID);
-    return -1;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)
-    local CurStepID = Saga.GetStepIndex(cid, QuestID );
-    StepID = CurStepID;
-    local ret = -1;
+	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	StepID = CurStepID;
+	local ret = -1;
 
-    if CurStepID == 39301 then
-        ret = QUEST_STEP_1(cid);
-    elseif CurStepID == 39302 then
-        ret = QUEST_STEP_2(cid);
-    elseif CurStepID == 39303 then
-        ret = QUEST_STEP_3(cid);
-    end
+	if CurStepID == 39301 then
+		ret = QUEST_STEP_1(cid);
+	elseif CurStepID == 39302 then
+		ret = QUEST_STEP_2(cid);
+	elseif CurStepID == 39303 then
+		ret = QUEST_STEP_3(cid);
+	end
 	
-    if ret == 0 then
-        QUEST_CHECK(cid)
-    end
+	if ret == 0 then
+		QUEST_CHECK(cid)
+	end
 	
-    return ret;
+	return ret;
 end

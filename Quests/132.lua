@@ -33,7 +33,7 @@ function QUEST_FINISH(cid)
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	Saga.GiveItem(cid, RewItem2, RewItemCount2 );
 	return 0;
-else
+	else
 	return -1;
 	end
 
@@ -43,13 +43,13 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
---Talk with Averro Reinhold
+	--Talk with Averro Reinhold
 
 	Saga.AddWaypoint(cid, QuestID, 13201, 1, 1004
---check for completion
+	--check for completion
 	local ret = Saga.GetNPCIndex(cid)
 	if ret == 1004
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	Saga.SubstepComplete(cid, QuestID, 13201, 1);
 	Saga.ClearWaypoints(cid, QuestID);
@@ -58,41 +58,42 @@ then
 	Saga.FindQuestItem(cid, QuestID, 13201, 10042, 2657, 8000, 5, 2);
 	Saga.FindQuestItem(cid, QuestID, 13201, 10043, 2657, 8000, 5, 2);
 
---check if all substeps are complete
+	--check if all substeps are complete
 	for i = 1, 2 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 13201, i) == false
-then
+	then
 	return -1;
 	end
-end
+	end
 	Saga.StepComplete(cid, QuestID, 13201);
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
---Report to Kundi
+	--Report to Kundi
 	Saga.AddWaypoint(cid, QuestID, 13202, 1, 1066);
---check for completion
+	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	ItemCount = Saga.CheckUserInventory(cid, 2657);
 	if ret == 1066 and
 	ItemCount > 4
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	Saga.NpcTakeItem(cid, 2657, 5);
 	Saga.SubstepComplete(cid, QuestID, 13202, 1);
 	end
-end
---check if all substeps are complete
+	end
+	--check if all substeps are complete
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 13202, i) == false
-then
+	then
 	return -1;
 	end
-end
-	Saga.StepComplete(cid, QuestID, 13202);
+	end
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 13202);
 	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 function QUEST_CHECK(cid)
 	-- Check all steps for progress

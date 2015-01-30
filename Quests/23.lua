@@ -54,10 +54,10 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-    -- Talk with Averro Reinhold;
-    -- Talk with Klaret Natali;
-    -- Talk with Misha Berardini;
-    -- Talk with Zarko Ruzzoli;
+	-- Talk with Averro Reinhold;
+	-- Talk with Klaret Natali;
+	-- Talk with Misha Berardini;
+	-- Talk with Zarko Ruzzoli;
 	
 	Saga.AddWaypoint(cid, QuestID, 2301, 1, 1004);
 	Saga.AddWaypoint(cid, QuestID, 2301, 2, 1001);
@@ -67,25 +67,25 @@ function QUEST_STEP_1(cid)
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-    if ret == 1004 then
+	if ret == 1004 then
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
-    elseif ret == 1001 then
+	elseif ret == 1001 then
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid,QuestID,StepID,2);
-    elseif ret == 1005 then
+	elseif ret == 1005 then
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid,QuestID,StepID,4);
 	else
 		return -1;
-    end
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 4 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 4 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid,QuestID,StepID);
@@ -93,12 +93,12 @@ function QUEST_STEP_1(cid)
 end
 
 function QUEST_STEP_2(cid)
-    -- Investigate the Entrance of Emir Cave
-    -- Learn Klaret Natali Hodemimes secret;
-    -- Learn Misha Berardini Hodemimes secret;
-    -- Learn Zarko Ruzzoli Hodemimes secret;
+	-- Investigate the Entrance of Emir Cave
+	-- Learn Klaret Natali Hodemimes secret;
+	-- Learn Misha Berardini Hodemimes secret;
+	-- Learn Zarko Ruzzoli Hodemimes secret;
 	
-    Saga.FindPosition(cid, QuestID, 2302, 1, -26923, 38275, 4040, 2, 1000);
+	Saga.FindPosition(cid, QuestID, 2302, 1, -26923, 38275, 4040, 2, 1000);
 	Saga.FindQuestItem(cid,QuestID,StepID,13,2648,10000,1,2);
 	Saga.FindQuestItem(cid,QuestID,StepID,14,2649,10000,1,3);
 	Saga.FindQuestItem(cid,QuestID,StepID,15,2650,10000,1,4);
@@ -122,19 +122,19 @@ function QUEST_STEP_2(cid)
 		Saga.UserUpdateActionObjectType(cid,QuestID,StepID,15,1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 4 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 4 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 
 	Saga.StepComplete(cid,QuestID,StepID);
-    return 0;
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
-    -- Report to Shelphy Adriana
+	-- Report to Shelphy Adriana
 	Saga.AddWaypoint(cid, QuestID, 2304, 1, 1002);
 	
 	-- Check for completion
@@ -143,28 +143,28 @@ function QUEST_STEP_3(cid)
 	local ItemCountC = Saga.CheckUserInventory(cid, 2650)
 	
 	local ret = Saga.GetNPCIndex(cid);
-    if ret == 1002 then
+	if ret == 1002 then
 		Saga.GeneralDialog(cid, 3936);
-	    if ItemCountA > 0 and ItemCountB > 0 and ItemCountC > 0 then
-	        Saga.NpcTakeItem(cid, 2648, 1);
-	        Saga.NpcTakeItem(cid, 2649, 1);
-	        Saga.NpcTakeItem(cid, 2650, 1);
-		    Saga.SubstepComplete(cid,QuestID,StepID,1);
+		if ItemCountA > 0 and ItemCountB > 0 and ItemCountC > 0 then
+			Saga.NpcTakeItem(cid, 2648, 1);
+			Saga.NpcTakeItem(cid, 2649, 1);
+			Saga.NpcTakeItem(cid, 2650, 1);
+			Saga.SubstepComplete(cid,QuestID,StepID,1);
 		end
-    end
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
-    return -1;
+	return -1;
 end
 
 function QUEST_CHECK(cid)

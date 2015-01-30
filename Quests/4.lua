@@ -46,12 +46,12 @@ end
 function QUEST_STEP_1(cid)
 	Saga.Eliminate(cid,QuestID,401,10063,1,1);
 
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,401,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,401,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	Saga.StepComplete(cid,QuestID,401);
 	return 0;
@@ -68,16 +68,16 @@ function QUEST_STEP_2(cid)
 		Saga.SubstepComplete(cid, QuestID, 402, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,402,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,402,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid,QuestID,402);
-    Saga.QuestComplete(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,402);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 

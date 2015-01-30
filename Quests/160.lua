@@ -38,36 +38,36 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-    -- Kill Midgarts Gray Field Mouse (8)
-    Saga.Eliminate(cid, QuestID, StepID, 10144, 8, 1);
+	-- Kill Midgarts Gray Field Mouse (8)
+	Saga.Eliminate(cid, QuestID, StepID, 10144, 8, 1);
 	Saga.Eliminate(cid, QuestID, StepID, 10144, 8, 1);
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
 	local ret = Saga.GetActionObjectIndex(cid);
 	if ret == 1123 then
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);
-    end
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end

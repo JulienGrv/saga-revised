@@ -24,7 +24,7 @@ function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 25002);
 	Saga.AddStep(cid, QuestID, 25003);
 
-	Sage.InsertQuest(cid, QuestID, 1);
+	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
 
@@ -32,7 +32,7 @@ function QUEST_FINISH(cid)
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	Saga.GiveZeny(RewZeny);
 	Saga.GiveExp( RewCxp, RewJxp, RewWxp);
-	Sage.InsertQuest(cid, NextQuest, 1);
+	Saga.InsertQuest(cid, NextQuest, 1);
 	return 0;
 end
 
@@ -52,14 +52,14 @@ function QUEST_STEP_1(cid)
 	end
 
 	-- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -67,14 +67,14 @@ function QUEST_STEP_2(cid)
 	--Kill Kayne
 	Saga.Eliminate(cid, QuestID, StepID, 10314, 1, 1);
 
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 
-    Saga.StepComplete(cid, QuestID, StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -90,15 +90,15 @@ function QUEST_STEP_3(cid)
 	end
 
 	-- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
-	Sage.QuestComplete(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 

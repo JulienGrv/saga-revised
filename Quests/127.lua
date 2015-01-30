@@ -33,9 +33,9 @@ function QUEST_FINISH(cid)
 	Saga.GiveExp( RewCxp, RewJxp, RewWxp);
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	Saga.GiveItem(cid, RewItem2, RewItemCount2 );
-	    return 0;
-    else
-	    return -1;
+		return 0;
+	else
+		return -1;
 	end
 end
 function QUEST_CANCEL(cid)
@@ -47,43 +47,43 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 function QUEST_STEP_2(cid)
---Eliminate Be Chased Mermaid<
+	--Eliminate Be Chased Mermaid<
 
 	Saga.Eliminate(cid, QuestID, 12702, 10034, 6, 1);
 	Saga.Eliminate(cid, QuestID, 12702, 10035, 6, 1);
 
---check if all substeps are completed
+	--check if all substeps are completed
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 12702, i) == false
-then
+	then
 	return -1;
 	end
-end
+	end
 	Saga.StepComplete(cid, QuestID, 12702);
 	return 0;
 end
 
 function QUEST_STEP_3(cid)
---Talk to aldria?? (Adria sill?)
+	--Talk to aldria?? (Adria sill?)
 	
 	Saga.AddWaypoint(cid, QuestID, 12703, 1, 1143);
---check for completion
+	--check for completion
 	local = Saga.GetNPCIndex(cid);
 	if ret == 1143
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	Saga.SubstepComplete(cid, QuestID, 12703, 1);
 	end
-end
---check if all substeps are completed
+	end
+	--check if all substeps are completed
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 12703, i) == false
-then
+	then
 	return -1;
 	end
-end
-	Saga.StepComplete(cid, QuestID, 12703);
+	end
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 12703);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end

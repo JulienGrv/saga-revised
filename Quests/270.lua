@@ -24,7 +24,7 @@ function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 27002);
 	Saga.AddStep(cid, QuestID, 27003);
 
-	Sage.InsertQuest(cid, QuestID, 2);
+	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
 
@@ -33,7 +33,7 @@ function QUEST_FINISH(cid)
 	Saga.GiveExp( RewCxp, RewJxp, RewWxp);
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 
-	Sage.InsertQuest(cid, NextQuest, 1);
+	Saga.InsertQuest(cid, NextQuest, 1);
 	return 0;
 end
 
@@ -45,23 +45,23 @@ function QUEST_STEP_1(cid)
 	--Offical Quest
 	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
-end
+	end
 
  function QUEST_STEP_2(cid)
-    --Loot Grey Saw Shark's Belly Flesh
-    Saga.FindQuestItem(cid, QuestID, 27000, 10159, 4037, 8000, 6, 1);
+	--Loot Grey Saw Shark's Belly Flesh
+	Saga.FindQuestItem(cid, QuestID, 27000, 10159, 4037, 8000, 6, 1);
 	Saga.FindQuestItem(cid, QuestID, 27001, 10160, 4037, 8000, 6, 1);
 	Saga.FindQuestItem(cid, QuestID, 27002, 10161, 4037, 8000, 6, 1);
 
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 
-    Saga.StepComplete(cid, QuestID,StepID);
-    return 0;
+	Saga.StepComplete(cid, QuestID,StepID);
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
@@ -76,15 +76,15 @@ function QUEST_STEP_3(cid)
 	end
 
 	-- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
-	Sage.QuestComplete(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 

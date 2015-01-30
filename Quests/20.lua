@@ -56,27 +56,27 @@ function QUEST_STEP_1(cid)
 end
 
 function QUEST_STEP_2(cid)
---Talk with Klaret Natali
+	--Talk with Klaret Natali
 	Saga.AddWaypoint(cid, QuestID, 2002, 1, 1001);
 
---check completion
+	--check completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	Saga.SubstepComplete(cid,QuestID,StepID,1);
 	end
 
 
 
---check if all substeps completed
+	--check if all substeps completed
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false
-then
+	then
 	return -1;
 	end
 
-end
+	end
 
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid,QuestID,StepID);

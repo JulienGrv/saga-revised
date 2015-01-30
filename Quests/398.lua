@@ -54,12 +54,12 @@ function QUEST_STEP_1(cid)
 		Saga.SubstepComplete(cid, QuestID, 39801, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,39801, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,39801, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
@@ -68,19 +68,19 @@ function QUEST_STEP_1(cid)
 end
 
 function QUEST_STEP_2(cid)
-     -- Capture a Unripe Pukui
-     Saga.FindQuestItem(cid, QuestID, 39802, 10000, 2666 , 8000, 1, 1);
-     Saga.FindQuestItem(cid, QuestID, 39802, 10001, 2666 , 8000, 1, 1);
+	-- Capture a Unripe Pukui
+	Saga.FindQuestItem(cid, QuestID, 39802, 10000, 2666 , 8000, 1, 1);
+	Saga.FindQuestItem(cid, QuestID, 39802, 10001, 2666 , 8000, 1, 1);
 	
-     -- Check if all substeps are completed
-     for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,39802, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,39802, i) == false then
 			return -1;
-		 end
-     end
+		end
+	end
 	
-	 Saga.StepComplete(cid, QuestID, 39802);
-     return 0;
+	Saga.StepComplete(cid, QuestID, 39802);
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
@@ -95,12 +95,12 @@ function QUEST_STEP_3(cid)
 		Saga.SubstepComplete(cid, QuestID, 39803, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,39803, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,39803, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);

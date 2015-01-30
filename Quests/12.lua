@@ -57,16 +57,16 @@ function QUEST_STEP_1(cid)
 		Saga.NpcGiveItem(cid, 2661, 5);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,1201,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,1201,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid,QuestID,1201);
-    return 0;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,1201);
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
@@ -103,17 +103,17 @@ function QUEST_STEP_2(cid)
 	return -1;
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 5 do
-         if Saga.IsSubStepCompleted(cid,QuestID,1202,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 5 do
+		if Saga.IsSubStepCompleted(cid,QuestID,1202,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid,QuestID,1202);
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,1202);
 	Saga.QuestComplete(cid, QuestID);
-    return -1;
+	return -1;
 end
 
 function QUEST_CHECK(cid)

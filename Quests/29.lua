@@ -40,10 +40,10 @@ end
 
 function QUEST_CANCEL(cid)
 	return 0;
-end
+	end
 
-fuction QUEST_STEP_1(cid)
---Find Unripe PukuPuku's Leaf;Find Tropical Smell Scale
+	fuction QUEST_STEP_1(cid)
+	--Find Unripe PukuPuku's Leaf;Find Tropical Smell Scale
 
 	Saga.FindQuestItem(cid,QuestID,StepID,10002,2603,8000,3,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10003,2603,8000,3,1);
@@ -51,14 +51,14 @@ fuction QUEST_STEP_1(cid)
 	Saga.FindQuestItem(cid,QuestID,StepID,10046,2667,8000,2,2);
 	Saga.FindQuestItem(cid,QuestID,StepID,10047,2667,8000,2,2);
 
---check if all substeps are complete
+	--check if all substeps are complete
 	for i = 1, 2 do
 	if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false
-then
+	then
 	return -1:
 	end
 
-end
+	end
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end
@@ -70,21 +70,21 @@ function QUEST_STEP_2(cid)
 	local ItemCountA = Saga.CheckUserInventory(cid, 2603)
 	local ItemCountB = Saga.CheckUserInventory(cid, 2667)
 	if ret == 1123 and ItemCountA > 2 and ItemCountB > 1
-then
+	then
 	Saga.NpcTakeItem(cid, 2603, 3);
 	Saga.NpcTakeItem(cid, 2667, 2);
 	Saga.SubstepComplete(cid,QuestID,StepID,1);
 	end
 
-end
---check if all substeps completed
+	end
+	--check if all substeps completed
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false
-then
+	then
 	return -1;
 	end
 
-end
+	end
 	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;

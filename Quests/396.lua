@@ -50,16 +50,16 @@ function QUEST_STEP_1(cid)
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1174 then
-	    Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, 39601, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,39601, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,39601, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
@@ -69,18 +69,18 @@ end
 
 function QUEST_STEP_2(cid)
 	-- Find training result
-    local ActionObjectID = 47;
+	local ActionObjectID = 47;
 	local ItemId = 9944;
 	
 	Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 0 );
-    if Saga.FindQuestItem(cid, QuestID, 39602, ActionObjectID, ItemId, 10000, 1, 1) > 0 then
+	if Saga.FindQuestItem(cid, QuestID, 39602, ActionObjectID, ItemId, 10000, 1, 1) > 0 then
   	  Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 1 );
 	else
-        return -1;
-    end
+		return -1;
+	end
 	
 	Saga.StepComplete(cid, QuestID, 39602);
-    return 0;
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
@@ -90,25 +90,25 @@ function QUEST_STEP_3(cid)
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1173 then
-	    Saga.GeneralDialog(cid, 3936);
-	    if Saga.CheckUserInventory(cid, 9944 ) > 0 then
+		Saga.GeneralDialog(cid, 3936);
+		if Saga.CheckUserInventory(cid, 9944 ) > 0 then
 			Saga.NpcTakeItem(cid, 9944, 1 );
 			Saga.SubstepComplete(cid, QuestID, 39603, 1);
 		end
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,39603, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,39603, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, 39603);
 	Saga.QuestComplete(cid, QuestID);
-	return 0;
+	return -1;
 
 
 end

@@ -27,7 +27,7 @@ function QUEST_START(cid)
 	-- Initialize all starting navigation points
 	Saga.AddStep(cid, QuestID, 1901);
 	Saga.AddStep(cid, QuestID, 1902);
-    Saga.InsertQuest(cid, QuestID, 2);
+	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
 
@@ -61,10 +61,10 @@ function QUEST_STEP_1(cid)
 	
 	-- check if all substeps are completed
 	for i = 1, 1 do
-	   if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
 	end
-end
+	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid,QuestID,StepID);
@@ -84,10 +84,10 @@ function QUEST_STEP_2(cid)
 	
 		-- check if all substeps are completed
 	for i = 1, 1 do
-	   if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
 	end
-end
+	end
 
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid,QuestID,StepID);

@@ -51,7 +51,7 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
---Scacciano dialog:47
+	--Scacciano dialog:47
 	Saga.StepComplete(cid,QuestID,601);
 	return 0;
 end
@@ -68,15 +68,15 @@ function QUEST_STEP_2(cid)
 		Saga.SubstepComplete(cid,QuestID,602,1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,602,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,602,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid,QuestID,602);
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,602);
 	return 0;
 end
 
@@ -92,16 +92,16 @@ function QUEST_STEP_3(cid)
 		Saga.SubstepComplete(cid,QuestID,603,1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,603,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,603,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.StepComplete(cid,QuestID,603);
-    Saga.QuestComplete(cid, QuestID);
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,603);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 

@@ -25,8 +25,8 @@ end
 
 function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 1501);
-    Saga.AddStep(cid, QuestID, 1502);
-    Saga.InsertQuest(cid, QuestID, 1);
+	Saga.AddStep(cid, QuestID, 1502);
+	Saga.InsertQuest(cid, QuestID, 1);
 	return 0;
 end
 
@@ -60,12 +60,12 @@ function QUEST_STEP_1(cid)
 	Saga.FindQuestItem(cid,QuestID,StepID,40005,2735,8000,1,4);
 
 
---check if all substeps are completed
+	--check if all substeps are completed
 	for i = 1, 4 do
-	  if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 		return -1;
 	end
-end
+	end
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end
@@ -86,15 +86,15 @@ function QUEST_STEP_2(cid)
 	Saga.NpcTakeItem(cid, 2735, 1);
 
 	Saga.SubstepComplete(cid,QuestID,StepID,1);
-      end
+	end
 
 	--check if all substeps are complete
 	for i = 1, 1 do
-	     if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 
 		return -1;
 	end
-end
+	end
 
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid,QuestID,StepID)

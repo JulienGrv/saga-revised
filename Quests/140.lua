@@ -53,7 +53,7 @@ function QUEST_STEP_1(cid)
 	
 	-- Vérifie que l'on parle au Npc
 	
-    -- Vérifie si l'étape en cours est terminé
+	-- Vérifie si l'étape en cours est terminé
 	
 	Saga.StepComplete(cid, QuestID, StepID);
 	return 0
@@ -64,10 +64,10 @@ function QUEST_STEP_2(cid)
 	
 	-- Vérifie que l'on parle au Npc
 	
-    -- Vérifie si l'étape en cours est terminé
+	-- Vérifie si l'étape en cours est terminé
 	
 	Saga.StepComplete(cid, QuestID, StepID);
-    return 0;
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
@@ -75,10 +75,10 @@ function QUEST_STEP_3(cid)
 	
 	-- Vérifie que l'on parle au Npc
 	
-    -- Vérifie si l'étape en cours est terminé
+	-- Vérifie si l'étape en cours est terminé
 
 	Saga.StepComplete(cid, QuestID, StepID);
-    return 0;
+	return 0;
 end
 
 function QUEST_STEP_4(cid)
@@ -86,11 +86,11 @@ function QUEST_STEP_4(cid)
 	
 	-- Vérifie que l'on parle au Npc
 	
-    -- Vérifie si l'étape en cours est terminé
+	-- Vérifie si l'étape en cours est terminé
 	
 	Saga.StepComplete(cid, QuestID, StepID);
-    Saga.QuestComplete(cid, QuestID);
-    return -1;
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)

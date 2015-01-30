@@ -109,6 +109,7 @@ function QUEST_STEP_5(cid)
 	-- Quest complete
 	
 	Saga.QuestComplete(cid, QuestId);
+	return -1;
 end
 
 function QUEST_CHECK(cid)

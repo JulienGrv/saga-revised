@@ -49,15 +49,15 @@ function QUEST_STEP_1(cid)
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -72,15 +72,15 @@ function QUEST_STEP_2(cid)
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -95,20 +95,20 @@ function QUEST_STEP_3(cid)
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
 function QUEST_STEP_3(cid)
-    -- Talk with Sophie
+	-- Talk with Sophie
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1151);
 	
 	-- Check for completion
@@ -118,15 +118,15 @@ function QUEST_STEP_3(cid)
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -137,20 +137,20 @@ function QUEST_STEP_4(cid)
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1013 then
-        Saga.NpcGiveItem(cid, 3972,1);
+		Saga.NpcGiveItem(cid, 3972,1);
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -158,22 +158,22 @@ function QUEST_STEP_5(cid)
 	-- Laydown flowers at the Tombstone
 	local ret = Saga.GetActionObjectIndex(cid);
 	if ret == 1 then
-        local ItemCountA = Saga.CheckUserInventory(cid, 3972);
-	    if ItemCountA > 0 then
-	        Saga.NpcTakeItem(cid, 3972,1);
-	        Saga.SubstepComplete(cid, QuestID, StepID, 1);
-	    end
+		local ItemCountA = Saga.CheckUserInventory(cid, 3972);
+		if ItemCountA > 0 then
+			Saga.NpcTakeItem(cid, 3972,1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
+		end
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end

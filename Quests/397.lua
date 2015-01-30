@@ -54,12 +54,12 @@ function QUEST_STEP_1(cid)
 		Saga.SubstepComplete(cid, QuestID, 39701, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,39701, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,39701, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
@@ -74,19 +74,19 @@ function QUEST_STEP_2(cid)
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1064 then
-	      Saga.GeneralDialog(cid, 3936);
-	      if Saga.CheckUserInventory(cid, 4245) > 0 then
+		Saga.GeneralDialog(cid, 3936);
+		if Saga.CheckUserInventory(cid, 4245) > 0 then
 			Saga.NpcTakeItem(cid, 4245, 1 );
 			Saga.SubstepComplete(cid, QuestID, 39702, 1);
 		end
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,39702, i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,39702, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);

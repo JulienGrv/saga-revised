@@ -32,7 +32,7 @@ function QUEST_FINISH(cid)
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	Saga.GiveItem(cid, RewItem2, RewItemCount2 );
 	return 0;
-else
+	else
 	return -1;
 	end
 
@@ -47,46 +47,46 @@ function QUEST_STEP_1(cid)
 end
 
 function QUEST_STEP_2(cid)
---Collect Garbage
+	--Collect Garbage
 
 	Saga.FindQuestItem(cid, QuestID, 13102, 27, 2811, 10000, 5, 1);
---Object Activation toggle
+	--Object Activation toggle
 
 	if Saga.IsSubStepCompleted(cid, QuestID, 13102, 1) == false
-then
+	then
 	Saga.UserUpdateActionObject(cid, QuestID, 13102, 27, 0);
-else
+	else
 	Saga.UserUpdateActionObject(cid, QuestID, 13102, 27, 1);
 	end
---check if all substeps are completed
+	--check if all substeps are completed
 	for i = 1, 1 do
 	if Saga.IsSubsStepCompleted(cid, QuestID, 13102, i) == false
-then
+	then
 	return -1;
 	end
-end
+	end
 	Saga.StepComplete(cid, QuestID, 13102);
 	return 0;
 end
 
 function QUEST_STEP_3(cid)
---Talk with Ivo
+	--Talk with Ivo
 
 	Saga.AddWaypoint(cid, QuestID, 13103, 1, 1062);
---check for completion
+	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	local ItemCount = Saga.CheckUserInventory(cid, 2811);
 	if ret == 1062
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	if ItemCount > 4
-then
+	then
 	Saga.NpcTakeItem(cid, 2811, 5);
 	Saga.SubstepComplete(cid, QuestID, 13103, 1);
 	end
-end
-	Saga.StepComplete(cid, QuestID, 13103);
+	end
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 13103);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end

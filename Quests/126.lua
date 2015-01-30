@@ -34,9 +34,9 @@ function QUEST_FINISH(cid)
 	Saga.GiveExp( RewCxp, RewJxp, RewWxp);
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	Saga.GiveItem(cid, RewItem2, RewItemCount2 );
-	    return 0;
-    else
-	    return -1;
+		return 0;
+	else
+		return -1;
 	end
 end
 
@@ -50,45 +50,45 @@ function QUEST_STEP_1(cid)
 	return 0;
 
 function QUEST_STEP_2(cid)
---Talk with Scacciano Morrigan
+	--Talk with Scacciano Morrigan
 
 	Saga.AddWaypoint(cid, QuestID, 12602, 1, 1003);
 
---completion check
+	--completion check
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	Saga.SubstepComplete(cid, QuestID, 12602, 1);
-end
---check if all substeps are complete
+	end
+	--check if all substeps are complete
 	for i = 1, 1 do
 	if IsSubStepCompleted(cid, QuestID, 12602, i) == false
-then
+	then
 	return -1
 	end
-end
-	Saga.StepComplete(cid, QuestID, 12602);
+	end
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 12602);
 	return 0;
 end
 
 function QUEST_STEP_3(cid)
---Speak with Averro Reinhold
+	--Speak with Averro Reinhold
 
 	Saga.AddWaypoint(cid, QuestID, 12603, 1, 1004);
 
---completion check
+	--completion check
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1004
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	Saga.SubstepComplete(cid, QuestID, 12603, 1);
-end
---check if all substeps are complete
+	end
+	--check if all substeps are complete
 	for i = 1, 1 do
 	if IsSubStepCompleted(cid, QuestID, 12603, i) == false
-then
+	then
 	return -1
 	end
 end

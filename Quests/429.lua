@@ -54,12 +54,12 @@ function QUEST_STEP_2(cid)
 	Saga.FindQuestItem(cid,QuestID,StepID,10324,4239,8000,7,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10325,4239,8000,7,1);
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
@@ -74,21 +74,21 @@ function QUEST_STEP_3(cid)
 	if ret == 1063 then
 		Saga.GeneralDialog(cid, 3933);
 	
-        local ItemCountA = Saga.CheckUserInventory(cid, 4239);
-        if ItemCountA > 6 then
-            Saga.NpcTakeItem(cid, 4239, 7);
-            Saga.SubstepComplete(cid, QuestID, StepID, 1);
-        else
+		local ItemCountA = Saga.CheckUserInventory(cid, 4239);
+		if ItemCountA > 6 then
+			Saga.NpcTakeItem(cid, 4239, 7);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
+		else
 			Saga.InventoryNotFound(cid);
-        end
+		end
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);

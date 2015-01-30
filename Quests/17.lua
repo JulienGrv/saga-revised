@@ -24,10 +24,10 @@ function QUEST_VERIFY(cid)
 end
 
 function QUEST_START(cid)
-    Saga.AddStep(cid, QuestID, 1701);
-    Saga.AddStep(cid, QuestID, 1702);
-    Saga.InsertQuest(cid, QuestID, 1);
-    return 0;
+	Saga.AddStep(cid, QuestID, 1701);
+	Saga.AddStep(cid, QuestID, 1702);
+	Saga.InsertQuest(cid, QuestID, 1);
+	return 0;
 end
 
 function QUEST_FINISH(cid)

@@ -44,7 +44,7 @@ function QUEST_FINISH(cid)
 	else
 		Saga.EmptyInventory(cid);
 		return -1;
-end
+	end
 end
 
 function QUEST_CANCEL(cid)
@@ -61,12 +61,12 @@ function QUEST_STEP_2(cid)
 	-- Lancement des étapes
 	Saga.FindPosition(cid, QuestID, 4002, 1, 4187, -32199, -711, 2, 1000);
 	
-    -- Vérifie si l'étape en cours est terminé
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
+	-- Vérifie si l'étape en cours est terminé
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	Saga.StepComplete(cid, QuestID, StepID);
 	return 0
@@ -83,17 +83,17 @@ function QUEST_STEP_3(cid)
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
-    -- Vérifie si l'étape en cours est terminé
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
+	-- Vérifie si l'étape en cours est terminé
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, StepID);
-    Saga.QuestComplete(cid, QuestID);
-    return -1;
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)

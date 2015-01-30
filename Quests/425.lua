@@ -54,41 +54,41 @@ function QUEST_STEP_2(cid)
 	Saga.FindQuestItem(cid,QuestID,StepID,10345,4235,8000,6,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10346,4235,8000,6,1);
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end
 
 function QUEST_STEP_3(cid)
-    -- Hand in to Kafra Board Mailbox
-    local ret = Saga.GetActionObjectIndex(cid);
-    if ret == 1123 then
-        local ItemCountA = Saga.CheckUserInventory(cid, 4235);
-        if ItemCountA > 5 then
-            Saga.NpcTakeItem(cid, 4235, 1);
-            Saga.SubstepComplete(cid, QuestID, StepID, 6);
-        else
+	-- Hand in to Kafra Board Mailbox
+	local ret = Saga.GetActionObjectIndex(cid);
+	if ret == 1123 then
+		local ItemCountA = Saga.CheckUserInventory(cid, 4235);
+		if ItemCountA > 5 then
+			Saga.NpcTakeItem(cid, 4235, 1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 6);
+		else
 			Saga.InventoryNotFound(cid);
-        end
-    end
+		end
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.QuestComplete(cid, QuestID);
-    return -1;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)

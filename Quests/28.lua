@@ -44,45 +44,45 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-    -- find 5 sea Flatro
+	-- find 5 sea Flatro
 	Saga.FindQuestItem(cid,QuestID,StepID,10066,2659,4000,5,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10067,2659,4000,5,1);
 
-    --check if all substeps are completed
+	--check if all substeps are completed
 	for i = 1, 1 do
-	    if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
-	        return -1;
-	    end
-    end
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+			return -1;
+		end
+	end
 	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
-    -- Deliver items to Zarko Ruzzoli
+	-- Deliver items to Zarko Ruzzoli
 	Saga.AddWaypoint(cid, QuestID, 2802, 1, 1005);
 
-    --check for completion
+	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	local Itemcount = Saga.CheckUserInventory(cid, 2659);
 	if ret == 1005 then
-	    Saga.GeneralDialog(cid, 3936);
-	    if Itemcount > 4 then
-	        Saga.NpcTakeItem(cid, 2659, 5);
-	        Saga.SubstepComplete(cid,QuestID,StepID,1);
-	    end
-    end
+		Saga.GeneralDialog(cid, 3936);
+		if Itemcount > 4 then
+			Saga.NpcTakeItem(cid, 2659, 5);
+			Saga.SubstepComplete(cid,QuestID,StepID,1);
+		end
+	end
 
-    --check if all substeps are completed
+	--check if all substeps are completed
 	for i = 1, 1 do
-	    if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
-	        return -1;
-	    end
-    end
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+			return -1;
+		end
+	end
 
-	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end

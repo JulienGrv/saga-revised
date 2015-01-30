@@ -62,35 +62,35 @@ function QUEST_STEP_2(cid)
 	
 	-- Vérifie que l'on parle au Npc
 	
-    -- Vérifie si l'étape en cours est terminé
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
+	-- Vérifie si l'étape en cours est terminé
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	Saga.StepComplete(cid, QuestID, StepID);
-    return 0;
+	return 0;
 end
 
 function QUEST_STEP_3(cid)
-    -- Hand in to Kafra Board Mailbox
-    local ret = Saga.GetActionObjectIndex(cid);
-    if ret == 1123 then
-        Saga.SubstepComplete(cid, QuestID, StepID, 1);
-    end
+	-- Hand in to Kafra Board Mailbox
+	local ret = Saga.GetActionObjectIndex(cid);
+	if ret == 1123 then
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
-            return -1;
-         end
-    end
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.StepComplete(cid, QuestID, StepID);
-    Saga.ClearWaypoints(cid, QuestID);
-    Saga.QuestComplete(cid, QuestID);
-    return -1;
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)

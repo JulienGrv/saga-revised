@@ -36,9 +36,9 @@ function QUEST_FINISH(cid)
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
 	Saga.GiveItem(cid, RewItem2, RewItemCount2 );
-	    return 0;
-    else
-	    return -1;
+		return 0;
+	else
+		return -1;
 	end
 end
 
@@ -52,7 +52,7 @@ function QUEST_STEP_1(cid)
 end
 
 function QUEST_STEP_2(cid)
---Find a Black Stripe Tuna's Belly;Find a Be Chased Mermaid's Scale;
+	--Find a Black Stripe Tuna's Belly;Find a Be Chased Mermaid's Scale;
 	
 	Saga.FindQuestItem(cid, QuestID, 12902, 10052, 4069, 8000, 5, 1);
 	Saga.FindQuestItem(cid, QuestID, 12902, 10053, 4069, 8000, 5, 1);
@@ -62,40 +62,40 @@ function QUEST_STEP_2(cid)
 -- check if all substeps are complete
 	for i = 1, 2 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 12902, i) == false
-then
+	then
 	return -1;
 	end
-end
+	end
 	Saga.StepComplete(cid, QuestID, 12902);
 	return 0;
 end
 
 function QUEST_STEP_3(cid)
---Talk with Adria
+	--Talk with Adria
 	Saga.AddWaypoint(cid, QuestID, 12903, 1, 1143);
---check for completion
+	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	local ItemCountA = Saga.CheckUserInventory(cid, 4069);
 	local ItemCountB = Saga.CheckUserInventory(cid, 4073);
 	if ret == 1143
-then
+	then
 	Saga.GeneralDialog(cid, 3936);
 	if ItemCountA > 4 and ItemCountB > 4
-then
+	then
 	Saga.NpcTakeItem(cid, 4068, 5);
 	Saga.NpcTakeItem(cid, 4073, 5);
 	Saga.SubstepComplete(cid, QuestID, 12903, 1);
 	end
-end
---check if all substeps are complete
+	end
+	--check if all substeps are complete
 	for i = 1, 1 do
 	if Saga.IsSubStepCompleted(cid, QuestID, 12903, i) == false
-then
+	then
 	return -1;
 	end
-end
-	Saga.StepComplete(cid, QuestID, 12903);
+	end
 	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 12903);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end

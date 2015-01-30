@@ -24,9 +24,9 @@ function QUEST_VERIFY(cid)
 end
 
 function QUEST_START(cid)
-    Saga.AddStep(cid, QuestID, 1401);
-    Saga.AddStep(cid, QuestID, 1402);
-    Saga.InsertQuest(cid, QuestID, 2);
+	Saga.AddStep(cid, QuestID, 1401);
+	Saga.AddStep(cid, QuestID, 1402);
+	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
 
@@ -52,18 +52,18 @@ end
 
 function QUEST_STEP_1(cid)
 	--Capture a KuiKui;Obtain PuiPui's Petal;Loot Black Stripe Tuna Belly
-    Saga.FindQuestItem(cid,QuestID,StepID,10008,2654,8000,3,1);
-    Saga.FindQuestItem(cid,QuestID,StepID,10009,2655,8000,1,2);
-    Saga.FindQuestItem(cid,QuestID,StepID,10010,2655,8000,1,2);
-    Saga.FindQuestItem(cid,QuestID,StepID,10052,4069,8000,2,3);
-    Saga.FindQuestItem(cid,QuestID,StepID,10053,4069,8000,2,3);
+	Saga.FindQuestItem(cid,QuestID,StepID,10008,2654,8000,3,1);
+	Saga.FindQuestItem(cid,QuestID,StepID,10009,2655,8000,1,2);
+	Saga.FindQuestItem(cid,QuestID,StepID,10010,2655,8000,1,2);
+	Saga.FindQuestItem(cid,QuestID,StepID,10052,4069,8000,2,3);
+	Saga.FindQuestItem(cid,QuestID,StepID,10053,4069,8000,2,3);
 
-    -- check if all substeps are completed
+	-- check if all substeps are completed
 	for i = 1, 3 do
-	   if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-	    end
-    end
+		end
+	end
 	
 	Saga.StepComplete(cid,QuestID,StepID);
 	return 0;
@@ -79,23 +79,23 @@ function QUEST_STEP_2(cid)
 	local ItemCountC = Saga.CheckUserInventory(cid, 4069)
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1004 then
-	    Saga.GeneralDialog(cid, 3936);
-	    if ItemCountA > 2 and ItemCountB > 0 and ItemCountC > 1 then
-	        Saga.NpcTakeItem(cid, 2654, 3);
-	        Saga.NpcTakeItem(cid, 2655, 1);
-	        Saga.NpcTakeItem(cid, 4069, 2);
-	        Saga.SubstepComplete(cid,QuestID,StepID,1);
-        end
-    end
+		Saga.GeneralDialog(cid, 3936);
+		if ItemCountA > 2 and ItemCountB > 0 and ItemCountC > 1 then
+			Saga.NpcTakeItem(cid, 2654, 3);
+			Saga.NpcTakeItem(cid, 2655, 1);
+			Saga.NpcTakeItem(cid, 4069, 2);
+			Saga.SubstepComplete(cid,QuestID,StepID,1);
+		end
+	end
 
 	--check if all substeps are complete
 	for i = 1, 1 do
-	     if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
-		    return -1;
-	    end
-    end
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+			return -1;
+		end
+	end
 	
-    Saga.ClearWaypoints(cid, QuestID);
+	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid,QuestID,StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;

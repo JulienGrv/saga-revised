@@ -19,10 +19,10 @@ local StepID = 0;
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
-    Saga.AddStep(cid, QuestID, 29801);
-    Saga.AddStep(cid, QuestID, 29802);
-    Saga.AddStep(cid, QuestID, 29803);
-    Saga.InsertQuest(cid, QuestID, 2);
+	Saga.AddStep(cid, QuestID, 29801);
+	Saga.AddStep(cid, QuestID, 29802);
+	Saga.AddStep(cid, QuestID, 29803);
+	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
 
@@ -60,12 +60,12 @@ function QUEST_STEP_2(cid)
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
@@ -84,12 +84,12 @@ function QUEST_STEP_3(cid)
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
-    -- Check if all substeps are completed
-    for i = 1, 1 do
-         if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
 			return -1;
-		 end
-    end
+		end
+	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);

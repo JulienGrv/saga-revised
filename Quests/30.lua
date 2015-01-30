@@ -52,12 +52,13 @@ function QUEST_STEP_1(cid)
 	Saga.FindQuestItem(cid,QuestID,StepID,10013,2604,10000,4,1);
 	Saga.FindQuestItem(cid,QuestID,StepID,10014,2604,10000,4,1);
 	
-    -- Check if all substeps are completed
-     if Saga.IsSubStepCompleted(cid,QuestID,3001, 1) == false then
+	-- Check if all substeps are completed
+	if Saga.IsSubStepCompleted(cid,QuestID,3001, 1) == false then
 		return -1;
-	 end
+	end
 	
 	Saga.StepComplete(cid,QuestID,StepID);
+	return 0;
 end
 
 function QUEST_STEP_2(cid)
@@ -69,14 +70,14 @@ function QUEST_STEP_2(cid)
 		Saga.SubstepComplete(cid,QuestID,StepID,1);
 	end
 	
-    -- Check if all substeps are completed
-     if Saga.IsSubStepCompleted(cid,QuestID,3002, 1) == false then
+	-- Check if all substeps are completed
+	if Saga.IsSubStepCompleted(cid,QuestID,3002, 1) == false then
 		return -1;
-	 end
+	end
 	
-    Saga.StepComplete(cid,QuestID,StepID);
-    Saga.QuestComplete(cid, QuestID);
-	return 0;
+	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.QuestComplete(cid, QuestID);
+	return -1;
 end
 
 function QUEST_CHECK(cid)
