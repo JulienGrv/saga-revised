@@ -55,7 +55,7 @@ function QUEST_CANCEL(cid)
 	for i = 1, 2 do
 	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
-	return -1:
+	return -1;
 	end
 
 	end

@@ -45,7 +45,7 @@ end
 function QUEST_STEP_1(cid)
 	--Talk with Averro Reinhold
 
-	Saga.AddWaypoint(cid, QuestID, 13201, 1, 1004;
+	Saga.AddWaypoint(cid, QuestID, 13201, 1, 1004);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1004
