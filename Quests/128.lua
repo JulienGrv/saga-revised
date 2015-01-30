@@ -60,7 +60,7 @@ function QUEST_STEP_2(cid)
 	for i = 1, 1 do
 	if IsSubStepCompleted(cid, QuestID, 12802, i) == false
 	then
-	return -1;
+	return -1
 	end
 	end
 	Saga.ClearWaypoints(cid, QuestID);

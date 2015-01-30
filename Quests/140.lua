@@ -56,7 +56,7 @@ function QUEST_STEP_1(cid)
 	-- Vérifie si l'étape en cours est terminé
 	
 	Saga.StepComplete(cid, QuestID, StepID);
-	return 0;
+	return 0
 end
 
 function QUEST_STEP_2(cid)
