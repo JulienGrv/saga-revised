@@ -61,8 +61,8 @@ function QUEST_STEP_2(cid)
 	local MonsterID = {0, 0};
 	local MonsterCount = 0;
 	
-	fori = 0, luaL_getn(MonsterID, 1) do
-		MonsterCount + = Saga.Eleminate(cid, QuestID, StepID, MonsterID[i]);
+	for i = 0, luaL_getn(MonsterID, 1) do
+		MonsterCount += Saga.Eleminate(cid, QuestID, StepID, MonsterID[i]);
 	end
 	
 	if MonsterCount > RequiredCount
@@ -81,8 +81,8 @@ function QUEST_STEP_3(cid)
 	local MonsterID = {0, 0};
 	local MonsterCount = 0;
 
-	fori = 0, luaL_getn(MonsterID, 1) do
-		MonsterCount + = Saga.Eleminate(cid, QuestID, StepID, MonsterID[i]);
+	for i = 0, luaL_getn(MonsterID, 1) do
+		MonsterCount += Saga.Eleminate(cid, QuestID, StepID, MonsterID[i]);
 	end
 	
 	if MonsterCount > RequiredCount
