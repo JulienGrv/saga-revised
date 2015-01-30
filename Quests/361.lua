@@ -28,7 +28,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	return 0;
@@ -51,7 +51,7 @@ function QUEST_STEP_1(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -69,21 +69,21 @@ function QUEST_STEP_2(cid)
 	Saga.FindQuestItem(cid, QuestID, StepID, 34, 4172, 10000, 10, 2);
 
 	-- (De-)Activates the Action Objectd on request
-	if Saga.IsSubStepCompleted(cid,QuestID,StepID, 1) == false then
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 33, 0 );
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 33, 0);
 	else
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 33, 1 );
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 33, 1);
 	end
 	
-	if Saga.IsSubStepCompleted(cid,QuestID,StepID, 2) == false then
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 34, 0 );
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 2) == false then
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 34, 0);
 	else
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 34, 1 );
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 34, 1);
 	end
 
 	-- Check if all substeps are completed
 	for i = 1, 2 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -101,18 +101,18 @@ function QUEST_STEP_3(cid)
 	if ret == 1023 then
 		Saga.GeneralDialog(cid, 3936);
 	
-		local ItemCountA = Saga.CheckUserInventory(cid,4171);
-		local ItemCountB = Saga.CheckUserInventory(cid,4172);
+		local ItemCountA = Saga.CheckUserInventory(cid, 4171);
+		local ItemCountB = Saga.CheckUserInventory(cid, 4172);
 		if ItemCountA > 0 and ItemCountB > 9 then
-			Saga.NpcTakeItem(cid, 4171,1);
-			Saga.NpcTakeItem(cid, 4172,10);
+			Saga.NpcTakeItem(cid, 4171, 1);
+			Saga.NpcTakeItem(cid, 4172, 10);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -124,7 +124,7 @@ function QUEST_STEP_3(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

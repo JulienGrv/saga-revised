@@ -39,7 +39,7 @@ function QUEST_FINISH(cid)
 	if freeslots > 0 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+		Saga.GiveItem(cid, RewItem1, RewItemCount1);
 		return 0;
 	else
 		Saga.EmptyInventory(cid);
@@ -52,20 +52,20 @@ function QUEST_CANCEL(cid)
 end
 
 function QUEST_STEP_1(cid)
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
 	-- Get boss pukui ring
-	Saga.FindQuestItem(cid,QuestID,StepID,10011,2646,2500,1,1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10011, 2646, 2500, 1, 1);
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid,QuestID,3202, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, 3202, 1) == false then
 		return -1;
 	end
 	
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -77,23 +77,23 @@ function QUEST_STEP_3(cid)
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001 then
 		Saga.NpcTakeItem(cid, 2646, 4);
-		Saga.SubstepComplete(cid,QuestID,StepID,1);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid,QuestID,3203, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, 3203, 1) == false then
 		return -1;
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 	StepID = CurStepID;
 	

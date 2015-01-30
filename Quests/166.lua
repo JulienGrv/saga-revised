@@ -27,7 +27,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	return 0;
@@ -39,7 +39,7 @@ end
 
 function QUEST_STEP_1(cid)
 	-- Talk with Hena
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,1152);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1152);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -50,7 +50,7 @@ function QUEST_STEP_1(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -66,17 +66,17 @@ function QUEST_STEP_2(cid)
 	Saga.FindQuestItem(cid, QuestID, StepID, 32, 3978, 10000, 5, 2);
 
 	-- (De-)Activates the Action Objectd on request
-	if Saga.IsSubStepCompleted(cid,QuestID,StepID, 1) == false then
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 31, 0 );
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 32, 0 );
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 31, 0);
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 32, 0);
 	else
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 31, 1 );
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 32, 1 );
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 31, 1);
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 32, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 3 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -88,7 +88,7 @@ end
 
 function QUEST_STEP_3(cid)
 	-- Bring the harvested pumpkin to Hena
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,1152);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1152);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -96,14 +96,14 @@ function QUEST_STEP_3(cid)
 		Saga.GeneralDialog(cid, 3936);
 		local ItemCountA = Saga.CheckUserInventory(cid, 3978);
 		if ItemCountA > 4 then
-			Saga.NpcTakeItem(cid, 3978,5);
+			Saga.NpcTakeItem(cid, 3978, 5);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -115,7 +115,7 @@ function QUEST_STEP_3(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

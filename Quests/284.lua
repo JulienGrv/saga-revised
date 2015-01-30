@@ -33,7 +33,7 @@ end
 function QUEST_FINISH(cid)
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	return 0;
 end
 
@@ -44,7 +44,7 @@ end
 function QUEST_STEP_1(cid)
 	-- Talk with Volker Stanwood
 	
-	Saga.AddWaypoint(cid, QuestID, StepID, NpcID, PosX, PosY, PosZ, MapID );
+	Saga.AddWaypoint(cid, QuestID, StepID, NpcID, PosX, PosY, PosZ, MapID);
 	if Saga.GetNPCIndex(cid) == NpcID
 		Saga.CompleteStep(cid, QuestID, StepID);
 	else
@@ -61,8 +61,8 @@ function QUEST_STEP_2(cid)
 	local MonsterID = {0, 0};
 	local MonsterCount = 0;
 	
-	for i=0, luaL_getn(MonsterID, 1) do
-		MonsterCount += Saga.Eleminate(cid, QuestID, StepID, MonsterID[i]);
+	fori = 0, luaL_getn(MonsterID, 1) do
+		MonsterCount + = Saga.Eleminate(cid, QuestID, StepID, MonsterID[i]);
 	end
 	
 	if MonsterCount > RequiredCount
@@ -72,7 +72,7 @@ function QUEST_STEP_2(cid)
 	end
 	
 	-- Summon Conrad
-	Saga.Summon( MonsterID1, PosX, PosY, PosZ, MapID, TimeToLive);
+	Saga.Summon(MonsterID1, PosX, PosY, PosZ, MapID, TimeToLive);
 end
 
 function QUEST_STEP_3(cid)
@@ -81,8 +81,8 @@ function QUEST_STEP_3(cid)
 	local MonsterID = {0, 0};
 	local MonsterCount = 0;
 
-	for i=0, luaL_getn(MonsterID, 1) do
-		MonsterCount += Saga.Eleminate(cid, QuestID, StepID, MonsterID[i]);
+	fori = 0, luaL_getn(MonsterID, 1) do
+		MonsterCount + = Saga.Eleminate(cid, QuestID, StepID, MonsterID[i]);
 	end
 	
 	if MonsterCount > RequiredCount
@@ -95,7 +95,7 @@ end
 function QUEST_STEP_4(cid)
 	-- Report to Volker Stanwood
 	
-	Saga.AddWaypoint(cid, QuestID, StepID, NpcID, PosX, PosY, PosZ, MapID );
+	Saga.AddWaypoint(cid, QuestID, StepID, NpcID, PosX, PosY, PosZ, MapID);
 	if Saga.GetNPCIndex(cid) == NpcID
 		Saga.CompleteStep(cid, QuestID, StepID);
 	else

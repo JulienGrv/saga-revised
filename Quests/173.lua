@@ -27,7 +27,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.InsertQuest(cid, NextQuest, 1);
@@ -40,7 +40,7 @@ end
 
 function QUEST_STEP_1(cid)
 	-- Talk with Monika Reynolds
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,1012);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -51,7 +51,7 @@ function QUEST_STEP_1(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -63,7 +63,7 @@ end
 
 function QUEST_STEP_2(cid)
 	-- Talk with Volker Stanwood
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,1009);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1009);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -74,7 +74,7 @@ function QUEST_STEP_2(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -86,7 +86,7 @@ function QUEST_STEP_2(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

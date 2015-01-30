@@ -40,7 +40,7 @@ end
 
 function QUEST_STEP_1(cid)
 	--Receive 'Letter' from Niahong (Item ID: 4033)
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,1156);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1156);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -52,7 +52,7 @@ function QUEST_STEP_1(cid)
 
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -64,7 +64,7 @@ end
 
 function QUEST_STEP_2(cid)
 	--Deliver 'Letter' to Hyunja Yawoong
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,1157);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1157);
 
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -72,14 +72,14 @@ function QUEST_STEP_2(cid)
 		Saga.GeneralDialog(cid, 3936);
 		local ItemCountA = Saga.CheckUserInventory(cid, 4033);
 		if ItemCountA > 0 then
-			Saga.NpcTakeItem(cid, 4033,1);
+			Saga.NpcTakeItem(cid, 4033, 1);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -102,7 +102,7 @@ function QUEST_STEP_3(cid)
 
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -114,7 +114,7 @@ function QUEST_STEP_3(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

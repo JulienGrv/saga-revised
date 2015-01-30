@@ -28,7 +28,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.InsertQuest(cid, NextQuest, 1);
@@ -52,7 +52,7 @@ function QUEST_STEP_1(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -64,19 +64,19 @@ end
 
 function QUEST_STEP_2(cid)
 	-- Eliminate Potemkin (8)
-	Saga.Eliminate(cid, QuestID, StepID,10116, 8, 1);
-	Saga.Eliminate(cid, QuestID, StepID,10117, 8, 1);
+	Saga.Eliminate(cid, QuestID, StepID, 10116, 8, 1);
+	Saga.Eliminate(cid, QuestID, StepID, 10117, 8, 1);
 	
 	-- (De-)Activates the Action Objectd on request
-	if Saga.IsSubStepCompleted(cid,QuestID, StepID, 1) == false then
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 4, 0 );
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 4, 0);
 	else
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 4, 1 );
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 4, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -98,7 +98,7 @@ function QUEST_STEP_3(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -110,7 +110,7 @@ function QUEST_STEP_3(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

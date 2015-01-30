@@ -32,10 +32,10 @@ end
 function QUEST_FINISH(cid)
 	-- Handout all rewards
 
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-	Saga.InsertQuest(cid, NextQuest, 1 );
+	Saga.InsertQuest(cid, NextQuest, 1);
 	return 0;
 end
 
@@ -56,7 +56,7 @@ function QUEST_STEP_1(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,39801, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, 39801, i) == false then
 			return -1;
 		end
 	end
@@ -69,12 +69,12 @@ end
 
 function QUEST_STEP_2(cid)
 	-- Capture a Unripe Pukui
-	Saga.FindQuestItem(cid, QuestID, 39802, 10000, 2666 , 8000, 1, 1);
-	Saga.FindQuestItem(cid, QuestID, 39802, 10001, 2666 , 8000, 1, 1);
+	Saga.FindQuestItem(cid, QuestID, 39802, 10000, 2666, 8000, 1, 1);
+	Saga.FindQuestItem(cid, QuestID, 39802, 10001, 2666, 8000, 1, 1);
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,39802, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, 39802, i) == false then
 			return -1;
 		end
 	end
@@ -90,14 +90,14 @@ function QUEST_STEP_3(cid)
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1147 then
-		Saga.NpcTakeItem(cid, 2666, 1 );
+		Saga.NpcTakeItem(cid, 2666, 1);
 		Saga.GeneralDialog(cid, 3933);
 		Saga.SubstepComplete(cid, QuestID, 39803, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,39803, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, 39803, i) == false then
 			return -1;
 		end
 	end
@@ -111,7 +111,7 @@ end
 
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 
 	if CurStepID == 39801 then

@@ -36,7 +36,7 @@ function QUEST_FINISH(cid)
 	if freeslots > 0 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+		Saga.GiveItem(cid, RewItem1, RewItemCount1);
 		return 0;
 	else
 		Saga.EmptyInventory(cid);
@@ -51,7 +51,7 @@ end
 
 function QUEST_STEP_1(cid)
 	--Zarko Dialog: 96
-	Saga.StepComplete(cid,QuestID,1001);
+	Saga.StepComplete(cid, QuestID, 1001);
 	return 0;
 end
 
@@ -63,25 +63,25 @@ function QUEST_STEP_2(cid)
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001 then
 		Saga.GeneralDialog(cid, 95);
-		Saga.SubstepComplete(cid,QuestID,1002,1);
+		Saga.SubstepComplete(cid, QuestID, 1002, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,1002,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, 1002, i) == false then
 			return -1;
 		end
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid,QuestID,1002);
+	Saga.StepComplete(cid, QuestID, 1002);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 	StepID = CurStepID;
 	

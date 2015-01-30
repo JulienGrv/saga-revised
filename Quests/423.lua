@@ -32,8 +32,8 @@ function QUEST_FINISH(cid)
 	if freeslots > 1 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-		Saga.GiveItem(cid, RewItem2, RewItemCount2 );
+		Saga.GiveItem(cid, RewItem1, RewItemCount1);
+		Saga.GiveItem(cid, RewItem2, RewItemCount2);
 		return 0;
 	else
 		Saga.EmptyInventory(cid);
@@ -47,7 +47,7 @@ end
 
 function QUEST_STEP_1(cid)
 	-- Talk with Chayenne
-	Saga.AddWaypoint(cid,QuestID,StepID,1,1022);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1022);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -65,14 +65,14 @@ function QUEST_STEP_1(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -81,9 +81,9 @@ function QUEST_STEP_2(cid)
 	-- Deliver to Moritz Blauvelt;
 	-- Deliver to Pretan;
 	
-	Saga.AddWaypoint(cid,QuestID,StepID,1,1025);
-	Saga.AddWaypoint(cid,QuestID,StepID,2,1026);
-	Saga.AddWaypoint(cid,QuestID,StepID,3,1024);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1025);
+	Saga.AddWaypoint(cid, QuestID, StepID, 2, 1026);
+	Saga.AddWaypoint(cid, QuestID, StepID, 3, 1024);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -121,20 +121,20 @@ function QUEST_STEP_2(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
 function QUEST_STEP_3(cid)
 	-- Report to Chayenne
-	Saga.AddWaypoint(cid,QuestID,StepID,1,1022);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1022);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -145,21 +145,21 @@ function QUEST_STEP_3(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid,QuestID,StepID);
-	Saga.QuestComplete(cid,QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 	StepID = CurStepID;
 	

@@ -28,7 +28,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	return 0;
@@ -50,7 +50,7 @@ function QUEST_STEP_2(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -69,7 +69,7 @@ function QUEST_STEP_3(cid)
 	if ret == 1026 then
 		Saga.GeneralDialog(cid, 3936);
 	
-		local ItemCountA = Saga.CheckUserInventory(cid,4187);
+		local ItemCountA = Saga.CheckUserInventory(cid, 4187);
 		if ItemCountA > 7 then
 			Saga.NpcTakeItem(cid, 4187, 8);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
@@ -78,7 +78,7 @@ function QUEST_STEP_3(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -90,7 +90,7 @@ function QUEST_STEP_3(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

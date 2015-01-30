@@ -29,7 +29,7 @@ end
 function QUEST_FINISH(cid)
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	return 0;
 end
 
@@ -52,7 +52,7 @@ function QUEST_STEP_1(cid)
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid,QuestID,3601, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, 3601, 1) == false then
 		return -1;
 	end
 	
@@ -72,7 +72,7 @@ function QUEST_STEP_2(cid)
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid,QuestID,3602, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, 3602, 1) == false then
 		return -1;
 	end
 	

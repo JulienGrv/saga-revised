@@ -28,7 +28,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.InsertQuest(cid, NextQuest, 1);
@@ -41,11 +41,11 @@ end
 
 function QUEST_STEP_1(cid)
 	-- ?? Wine??from? Receive
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,  1012);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret ==  1012 then
+	if ret == 1012 then
 		Saga.GeneralDialog(cid, 3936);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
@@ -57,7 +57,7 @@ function QUEST_STEP_1(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -69,25 +69,25 @@ end
 
 function QUEST_STEP_2(cid)
 	-- Deliver '?' to Lutz
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,  1150);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1150);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret ==  1150 then
+	if ret == 1150 then
 		Saga.GeneralDialog(cid, 3936);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
-		local ItemCountA = Saga.CheckUserInventory(cid,4023);
+		local ItemCountA = Saga.CheckUserInventory(cid, 4023);
 		if ItemCountA > 0 and freeslots > 0 then
-			Saga.NpcTakeItem(cid, 4023,1);
-			Saga.NpcGiveItem(cid, 4024,1);
+			Saga.NpcTakeItem(cid, 4023, 1);
+			Saga.NpcGiveItem(cid, 4024, 1);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -99,23 +99,23 @@ end
 
 function QUEST_STEP_3(cid)
 	-- Deliver 'Wine Box' to Monika Reynolds
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,  1012);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret ==  1012 then
+	if ret == 1012 then
 		Saga.GeneralDialog(cid, 3936);
 	
-		local ItemCountA = Saga.CheckUserInventory(cid,4024);
+		local ItemCountA = Saga.CheckUserInventory(cid, 4024);
 		if ItemCountA > 0 then
-			Saga.NpcTakeItem(cid, 4024,1);
+			Saga.NpcTakeItem(cid, 4024, 1);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -127,7 +127,7 @@ function QUEST_STEP_3(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

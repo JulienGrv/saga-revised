@@ -32,7 +32,7 @@ end
 function QUEST_FINISH(cid)
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 
 	Saga.InsertQuest(cid, NextQuest, 1);
 	return 0;
@@ -55,7 +55,7 @@ function QUEST_STEP_1(cid)
 
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -78,7 +78,7 @@ function QUEST_STEP_2(cid)
 
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -90,7 +90,7 @@ end
 
 function QUEST_STEP_3(cid)
 	--Buy Fresh Fish Bones Regina Salisbury(4034)
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,1156);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1156);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -102,7 +102,7 @@ function QUEST_STEP_3(cid)
 
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -114,7 +114,7 @@ end
 
 function QUEST_STEP_4(cid)
 	--Deliver Fresh Fish Bones to Niahong
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,1156);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1156);
 
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -122,14 +122,14 @@ function QUEST_STEP_4(cid)
 		Saga.GeneralDialog(cid, 3936);
 		local ItemCountA = Saga.CheckUserInventory(cid, 4034);
 		if ItemCountA > 0 then
-			Saga.NpcTakeItem(cid, 4034,1);
+			Saga.NpcTakeItem(cid, 4034, 1);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -141,7 +141,7 @@ function QUEST_STEP_4(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

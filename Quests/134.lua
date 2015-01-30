@@ -34,7 +34,7 @@ function QUEST_FINISH(cid)
 	if freeslots > 0 then
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	return 0;
 	else
 	Saga.EmptyInventory(cid);
@@ -93,7 +93,7 @@ function QUEST_STEP_3(cid)
 end
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 
 	if CurStepID == 13401 then

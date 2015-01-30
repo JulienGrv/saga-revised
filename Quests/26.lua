@@ -31,8 +31,8 @@ function QUEST_FINISH(cid)
 	if freeslots > 1 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-		Saga.GiveItem(cid, RewItem2, RewItemCount2 );
+		Saga.GiveItem(cid, RewItem1, RewItemCount1);
+		Saga.GiveItem(cid, RewItem2, RewItemCount2);
 		return 0;
 	else
 		Saga.EmptyInventory(cid);
@@ -47,25 +47,25 @@ end
 function QUEST_STEP_1(cid)
 	--Find Cornutu's Claws;Loot Tropical Hydra's Organs;Find Marine Sphere Parts;Capture a Pukui;
 
-	Saga.FindQuestItem(cid,QuestID,StepID,10021,4072,8000,1,1);
-	Saga.FindQuestItem(cid,QuestID,StepID,10022,4072,8000,1,1);
-	Saga.FindQuestItem(cid,QuestID,StepID,10050,2644,8000,2,2);
-	Saga.FindQuestItem(cid,QuestID,StepID,10051,2644,8000,2,2);
-	Saga.FindQuestItem(cid,QuestID,StepID,10040,2645,8000,2,3);
-	Saga.FindQuestItem(cid,QuestID,StepID,10041,2645,8000,2,3);
-	--pukui need testing, see Npc.xml
-	Saga.FindQuestItem(cid,QuestID,StepID,10257,2639,8000,1,4);
-	Saga.FindQuestItem(cid,QuestID,StepID,10005,2639,8000,1,4);
-	Saga.FindQuestItem(cid,QuestID,StepID,40000,2639,8000,1,4);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10021, 4072, 8000, 1, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10022, 4072, 8000, 1, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10050, 2644, 8000, 2, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10051, 2644, 8000, 2, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10040, 2645, 8000, 2, 3);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10041, 2645, 8000, 2, 3);
+	--pukui needtesting, see Npc.xml
+	Saga.FindQuestItem(cid, QuestID, StepID, 10257, 2639, 8000, 1, 4);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10005, 2639, 8000, 1, 4);
+	Saga.FindQuestItem(cid, QuestID, StepID, 40000, 2639, 8000, 1, 4);
 
 	--check if all Substeps are completed
 	for i = 1, 4 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -91,20 +91,20 @@ function QUEST_STEP_2(cid)
 	
 	--check if all substeps are complete
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 	StepID = CurStepID;
 	

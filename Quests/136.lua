@@ -63,10 +63,10 @@ function QUEST_STEP_2(cid)
 	Saga.FindQuestItem(cid, QuestID, StepID, 28, 3960, 10000, 1, 1);
 
 	-- Vérifie que l'on parle au Npc
-	if Saga.IsSubStepCompleted(cid,QuestID,13602, 1) == false then
-		Saga.UserUpdateActionObjectType(cid,QuestID,StepID,28,0);
+	if Saga.IsSubStepCompleted(cid, QuestID, 13602, 1) == false then
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 28, 0);
 	else
-		Saga.UserUpdateActionObjectType(cid,QuestID,StepID,28,1);
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 28, 1);
 	end
 	
 	-- Vérifie si l'étape en cours est terminé

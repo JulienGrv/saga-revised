@@ -36,8 +36,8 @@ function QUEST_FINISH(cid)
 	if freeslots > 1 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-		Saga.GiveItem(cid, RewItem2, RewItemCount2 );
+		Saga.GiveItem(cid, RewItem1, RewItemCount1);
+		Saga.GiveItem(cid, RewItem2, RewItemCount2);
 		return 0;
 	else
 		Saga.EmptyInventory(cid);
@@ -52,20 +52,20 @@ end
 
 function QUEST_STEP_1(cid)
 	--Capture a KuiKui;Obtain PuiPui's Petal;Loot Black Stripe Tuna Belly
-	Saga.FindQuestItem(cid,QuestID,StepID,10008,2654,8000,3,1);
-	Saga.FindQuestItem(cid,QuestID,StepID,10009,2655,8000,1,2);
-	Saga.FindQuestItem(cid,QuestID,StepID,10010,2655,8000,1,2);
-	Saga.FindQuestItem(cid,QuestID,StepID,10052,4069,8000,2,3);
-	Saga.FindQuestItem(cid,QuestID,StepID,10053,4069,8000,2,3);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10008, 2654, 8000, 3, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10009, 2655, 8000, 1, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10010, 2655, 8000, 1, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10052, 4069, 8000, 2, 3);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10053, 4069, 8000, 2, 3);
 
 	-- check if all substeps are completed
 	for i = 1, 3 do
-	if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -84,19 +84,19 @@ function QUEST_STEP_2(cid)
 			Saga.NpcTakeItem(cid, 2654, 3);
 			Saga.NpcTakeItem(cid, 2655, 1);
 			Saga.NpcTakeItem(cid, 4069, 2);
-			Saga.SubstepComplete(cid,QuestID,StepID,1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 
 	--check if all substeps are complete
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -104,7 +104,7 @@ end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 	StepID = CurStepID;
 	

@@ -46,13 +46,13 @@ function QUEST_STEP_1(cid)
 	end
 
 
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
 function QUEST_STEP_2(cid)
 	-- Deliver toy to Yan
-	Saga.AddWaypoint(cid,QuestID,StepID,1,1181);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1181);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -70,22 +70,22 @@ function QUEST_STEP_2(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid,QuestID,StepID);
-	Saga.QuestComplete(cid,QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
+	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 	StepID = CurStepID;
 	

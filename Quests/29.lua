@@ -30,7 +30,7 @@ function QUEST_FINISH(cid)
 	if freeslots > 0 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-		Saga.GiveItem(cid, RewItem2, RewItemCount2 );
+		Saga.GiveItem(cid, RewItem2, RewItemCount2);
 		return 0;
 	else
 		Saga.EmptyInventory(cid);
@@ -45,21 +45,21 @@ function QUEST_CANCEL(cid)
 	fuction QUEST_STEP_1(cid)
 	--Find Unripe PukuPuku's Leaf;Find Tropical Smell Scale
 
-	Saga.FindQuestItem(cid,QuestID,StepID,10002,2603,8000,3,1);
-	Saga.FindQuestItem(cid,QuestID,StepID,10003,2603,8000,3,1);
-	Saga.FindQuestItem(cid,QuestID,StepID,10004,2603,8000,3,1);
-	Saga.FindQuestItem(cid,QuestID,StepID,10046,2667,8000,2,2);
-	Saga.FindQuestItem(cid,QuestID,StepID,10047,2667,8000,2,2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10002, 2603, 8000, 3, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10003, 2603, 8000, 3, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10004, 2603, 8000, 3, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10046, 2667, 8000, 2, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10047, 2667, 8000, 2, 2);
 
 	--check if all substeps are complete
 	for i = 1, 2 do
-	if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1:
 	end
 
 	end
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -73,19 +73,19 @@ function QUEST_STEP_2(cid)
 	then
 	Saga.NpcTakeItem(cid, 2603, 3);
 	Saga.NpcTakeItem(cid, 2667, 2);
-	Saga.SubstepComplete(cid,QuestID,StepID,1);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
 	end
 	--check if all substeps completed
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -95,7 +95,7 @@ end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 	StepID = CurStepID;
 	

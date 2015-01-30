@@ -27,7 +27,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.InsertQuest(cid, QuestID, 1);
@@ -56,7 +56,7 @@ function QUEST_STEP_1(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -68,23 +68,23 @@ end
 
 function QUEST_STEP_2(cid)
 	-- Deliver Mutton to Regina Salisbury
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,  1010);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret ==  1010 then
+	if ret == 1010 then
 		Saga.GeneralDialog(cid, 3936);
 	
-		local ItemCountA = Saga.CheckUserInventory(cid,4002);
+		local ItemCountA = Saga.CheckUserInventory(cid, 4002);
 		if ItemCountA > 0 then
-			Saga.NpcTakeItem(cid, 4002,1);
+			Saga.NpcTakeItem(cid, 4002, 1);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -96,7 +96,7 @@ function QUEST_STEP_2(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

@@ -28,7 +28,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	return 0;
@@ -51,7 +51,7 @@ function QUEST_STEP_1(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -85,18 +85,18 @@ function QUEST_STEP_2(cid)
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, StepID, 4);
 	elseif ret == 1006 then
-		Saga.NpcGiveItem(cid, 2786,1);
+		Saga.NpcGiveItem(cid, 2786, 1);
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, StepID, 5);
 	elseif ret == 1007 then
-		Saga.NpcGiveItem(cid, 2787,1);
+		Saga.NpcGiveItem(cid, 2787, 1);
 		Saga.GeneralDialog(cid, 3936);
 		Saga.SubstepComplete(cid, QuestID, StepID, 6);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 6 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -115,17 +115,17 @@ function QUEST_STEP_3(cid)
 	if ret == 1011 then
 		Saga.GeneralDialog(cid, 3936);
 		local ItemCountA = Saga.CheckUserInventory(cid, 2786);
-		local ItemCountB = Saga.CheckUserInventory(cid,2787);
+		local ItemCountB = Saga.CheckUserInventory(cid, 2787);
 		if ItemCountA > 0 and ItemCountB > 0 then
-			Saga.NpcTakeItem(cid, 2786,1);
-			Saga.NpcTakeItem(cid, 2787,1);
+			Saga.NpcTakeItem(cid, 2786, 1);
+			Saga.NpcTakeItem(cid, 2787, 1);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -137,7 +137,7 @@ function QUEST_STEP_3(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

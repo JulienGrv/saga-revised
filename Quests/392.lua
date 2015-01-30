@@ -28,7 +28,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	return 0;
@@ -51,7 +51,7 @@ function QUEST_STEP_1(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -68,33 +68,33 @@ function QUEST_STEP_2(cid)
 	Saga.FindQuestItem(cid, QuestID, StepID, 43, 51500001, 10000, 1, 4);
 
 	-- (De-)Activates the Action Objectd on request
-	if Saga.IsSubStepCompleted(cid,QuestID,StepID, 1) == false then
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 40, 0 );
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 40, 0);
 	else
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 40, 1 );
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 40, 1);
 	end
 	
-	if Saga.IsSubStepCompleted(cid,QuestID,StepID, 2) == false then
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 41, 0 );
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 2) == false then
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 41, 0);
 	else
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 41, 1 );
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 41, 1);
 	end
 	
-	if Saga.IsSubStepCompleted(cid,QuestID,StepID, 3) == false then
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 42, 0 );
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 3) == false then
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 42, 0);
 	else
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 42, 1 );
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 42, 1);
 	end
 	
-	if Saga.IsSubStepCompleted(cid,QuestID,StepID, 4) == false then
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 43, 0 );
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 4) == false then
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 43, 0);
 	else
-		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 43, 1 );
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 43, 1);
 	end
 
 	-- Check if all substeps are completed
 	for i = 1, 4 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -116,7 +116,7 @@ function QUEST_STEP_3(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -128,7 +128,7 @@ function QUEST_STEP_3(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

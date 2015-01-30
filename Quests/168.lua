@@ -28,7 +28,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.InsertQuest(cid, NextQuest, 1);
@@ -46,7 +46,7 @@ end
 
 function QUEST_STEP_2(cid)
   -- Talk with Lothair Eaton
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,1079);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1079);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -57,7 +57,7 @@ function QUEST_STEP_2(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -69,7 +69,7 @@ end
 
 function QUEST_STEP_3(cid)
   -- Talk with Hena
-	Saga.AddWaypoint(cid, QuestID, StepID, 1,1152);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1152);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -80,7 +80,7 @@ function QUEST_STEP_3(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -92,7 +92,7 @@ function QUEST_STEP_3(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 

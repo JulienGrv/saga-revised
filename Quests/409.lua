@@ -31,8 +31,8 @@ function QUEST_FINISH(cid)
 	if freeslots > 1 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-		Saga.GiveItem(cid, RewItem2, RewItemCount2 );
+		Saga.GiveItem(cid, RewItem1, RewItemCount1);
+		Saga.GiveItem(cid, RewItem2, RewItemCount2);
 		return 0;
 	else
 		Saga.EmptyInventory(cid);
@@ -46,16 +46,16 @@ end
 
 function QUEST_STEP_1(cid)
 	-- Kill Pukui for the Sales Book (1)
-	Saga.Eliminate(cid,QuestID,StepID,10257,1,1);
+	Saga.Eliminate(cid, QuestID, StepID, 10257, 1, 1);
 
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -68,7 +68,7 @@ function QUEST_STEP_2(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -81,7 +81,7 @@ end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 	StepID = CurStepID;
 	

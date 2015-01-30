@@ -31,7 +31,7 @@ function QUEST_FINISH(cid)
 	if freeslots > 0 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+		Saga.GiveItem(cid, RewItem1, RewItemCount1);
 		return 0;
 	else
 		Saga.EmptyInventory(cid);
@@ -48,18 +48,18 @@ function QUEST_STEP_1(cid)
 	-- Eliminate Tulang
 	-- Eliminate Karyuso
 	
-	Saga.Eliminate(cid,QuestID,StepID,10319,3,1);
-	Saga.Eliminate(cid,QuestID,StepID,10317,3,2);
-	Saga.Eliminate(cid,QuestID,StepID,10315,3,3);
+	Saga.Eliminate(cid, QuestID, StepID, 10319, 3, 1);
+	Saga.Eliminate(cid, QuestID, StepID, 10317, 3, 2);
+	Saga.Eliminate(cid, QuestID, StepID, 10315, 3, 3);
 
 	-- Check if all substeps are completed
 	for i = 1, 3 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 
 end
@@ -73,7 +73,7 @@ function QUEST_STEP_2(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -86,7 +86,7 @@ end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 	StepID = CurStepID;
 	

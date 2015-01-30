@@ -33,8 +33,8 @@ function QUEST_FINISH(cid)
 	if freeslots > 1 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
-		Saga.GiveItem(cid, RewItem2, RewItemCount2 );
+		Saga.GiveItem(cid, RewItem1, RewItemCount1);
+		Saga.GiveItem(cid, RewItem2, RewItemCount2);
 		return 0;
 	else
 		Saga.EmptyInventory(cid);
@@ -48,16 +48,16 @@ end
 
 function QUEST_STEP_1(cid)
 	-- Get 4 Wicked Star Loots
-	Saga.FindQuestItem(cid,QuestID,StepID,10012,2604,10000,4,1);
-	Saga.FindQuestItem(cid,QuestID,StepID,10013,2604,10000,4,1);
-	Saga.FindQuestItem(cid,QuestID,StepID,10014,2604,10000,4,1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10012, 2604, 10000, 4, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10013, 2604, 10000, 4, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10014, 2604, 10000, 4, 1);
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid,QuestID,3001, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, 3001, 1) == false then
 		return -1;
 	end
 	
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -67,22 +67,22 @@ function QUEST_STEP_2(cid)
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1123 then
 		Saga.NpcTakeItem(cid, 2604, 4);
-		Saga.SubstepComplete(cid,QuestID,StepID,1);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid,QuestID,3002, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, 3002, 1) == false then
 		return -1;
 	end
 	
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 	StepID = CurStepID;
 	

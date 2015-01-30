@@ -37,7 +37,7 @@ function QUEST_FINISH(cid)
 	if freeslots > 0 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+		Saga.GiveItem(cid, RewItem1, RewItemCount1);
 		return 0;
 	else
 		Saga.EmptyInventory(cid);
@@ -69,7 +69,7 @@ function QUEST_STEP_2(cid)
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid,QuestID,3402, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, 3402, 1) == false then
 		return -1;
 	end
 	
@@ -90,7 +90,7 @@ function QUEST_STEP_3(cid)
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid,QuestID,3403, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, 3403, 1) == false then
 		return -1;
 	end
 	

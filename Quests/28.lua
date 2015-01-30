@@ -31,7 +31,7 @@ function QUEST_FINISH(cid)
 	if freeslots > 0 then
 		Saga.GiveZeny(cid, RewZeny);
 		Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
-		Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+		Saga.GiveItem(cid, RewItem1, RewItemCount1);
 		return 0;
 	else
 		Saga.EmptyInventory(cid);
@@ -45,17 +45,17 @@ end
 
 function QUEST_STEP_1(cid)
 	-- find 5 sea Flatro
-	Saga.FindQuestItem(cid,QuestID,StepID,10066,2659,4000,5,1);
-	Saga.FindQuestItem(cid,QuestID,StepID,10067,2659,4000,5,1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10066, 2659, 4000, 5, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10067, 2659, 4000, 5, 1);
 
 	--check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -70,26 +70,26 @@ function QUEST_STEP_2(cid)
 		Saga.GeneralDialog(cid, 3936);
 		if ItemCount > 4 then
 			Saga.NpcTakeItem(cid, 2659, 5);
-			Saga.SubstepComplete(cid,QuestID,StepID,1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 
 	--check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID,i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid,QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
 
 function QUEST_CHECK(cid)
 	-- Check all steps for progress
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
 	StepID = CurStepID;
 	

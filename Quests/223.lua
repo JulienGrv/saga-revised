@@ -29,7 +29,7 @@ end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-	Saga.GiveItem(cid, RewItem1, RewItemCount1 );
+	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
 	Saga.InsertQuest(cid, QuestID, 1);
@@ -53,7 +53,7 @@ function QUEST_STEP_1(cid)
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -70,16 +70,16 @@ function QUEST_STEP_2(cid)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10081, 4010, 8000, 3, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10082, 4010, 8000, 3, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10116, 4011, 8000, 3, 2);
-	Saga.FindQuestItem(cid, QuestID,StepID, 10116, 4011, 8000, 3, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10116, 4011, 8000, 3, 2);
 	
 	-- Check if all substeps are completed
 	for i = 1, 2 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
-	Saga.StepComplete(cid, QuestID,StepID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
@@ -93,19 +93,19 @@ function QUEST_STEP_3(cid)
 		Saga.GeneralDialog(cid, 3936);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
-		local ItemCountA = Saga.CheckUserInventory(cid,4010);
-		local ItemCountB = Saga.CheckUserInventory(cid,4011);
+		local ItemCountA = Saga.CheckUserInventory(cid, 4010);
+		local ItemCountB = Saga.CheckUserInventory(cid, 4011);
 		if ItemCountA > 2 and ItemCountB > 2 and freeslots > 0 then
-			Saga.NpcTakeItem(cid, 4010,3);
-			Saga.NpcTakeItem(cid, 4011,3);
-			Saga.NpcGiveItem(cid, 4012,1);
+			Saga.NpcTakeItem(cid, 4010, 3);
+			Saga.NpcTakeItem(cid, 4011, 3);
+			Saga.NpcGiveItem(cid, 4012, 1);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -124,16 +124,16 @@ function QUEST_STEP_4(cid)
 	if ret == 1010 then
 		Saga.GeneralDialog(cid, 3936);
 
-		local ItemCountA = Saga.CheckUserInventory(cid,4012);
+		local ItemCountA = Saga.CheckUserInventory(cid, 4012);
 		if ItemCountA > 2  then
-			Saga.NpcTakeItem(cid, 4012,1);
+			Saga.NpcTakeItem(cid, 4012, 1);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid,QuestID,StepID, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
@@ -145,7 +145,7 @@ function QUEST_STEP_4(cid)
 end
 
 function QUEST_CHECK(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID );
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	StepID = CurStepID;
 	local ret = -1;
 
