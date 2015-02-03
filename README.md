@@ -60,9 +60,9 @@ Now you're done, you can launch the server.
 We use the latest [DiviniaRO2 full client](https://mega.co.nz/#!yZhlkB5S!j6zia8kE_uLZ65WaJavDS-nVvq7-vyDgtGfRIbcmm9E).
 
 ## Credits
-* [Julien Grave](https://github.com/darkin47)
+* [Darkin](https://github.com/darkin47)
 * [kalel60](https://www.assembla.com/profile/kalel60) & [sebda](https://www.assembla.com/profile/Sebda) (SIN dev.)
-* Zenzija & phr34k (SagaRO2 dev.)
+* phr34k & Zenzija (SagaRO2 dev.)
 * [All Contributors](https://github.com/Darkin47/SagaRevised/graphs/contributors)
 
 ## License
