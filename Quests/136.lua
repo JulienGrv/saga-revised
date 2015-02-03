@@ -18,7 +18,7 @@ local RewItemCount2 = 0;
 -- Modify steps below for gameplay
 
 function QUEST_VERIFY(cid)
-	Saga.GeneralDialog(cid, 3957);
+	Saga.GeneralDialog(cid, 1973);
 	return 0;
 end
 

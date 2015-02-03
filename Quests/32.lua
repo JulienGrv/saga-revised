@@ -17,7 +17,7 @@ local RewItemCount2 = 0;
 local StepID = 0;
 
 function QUEST_VERIFY(cid)
-	Saga.GeneralDialog(cid, 3957);
+	Saga.GeneralDialog(cid, 283);
 	return 0;
 end
 

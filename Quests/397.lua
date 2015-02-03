@@ -18,14 +18,13 @@ local RewItemCount2 = 0;
 -- Modify steps below for gameplay
 
 function QUEST_VERIFY(cid)
-	Saga.GeneralDialog(cid, 3957);
+	Saga.GeneralDialog(cid, 3925);
 	return 0;
 end
 
 function QUEST_START(cid)
 	-- Initialize all quest steps
 	-- Initialize all starting navigation points
-
 	Saga.AddStep(cid, QuestID, 39701);
 	Saga.AddStep(cid, QuestID, 39702);
 	Saga.InsertQuest(cid, QuestID, 2);
@@ -112,5 +111,5 @@ function QUEST_CHECK(cid)
 		QUEST_CHECK(cid);
 	end
 
-	return ret ;
+	return ret;
 end

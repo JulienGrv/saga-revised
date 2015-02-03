@@ -156,7 +156,7 @@ namespace Saga.Map.Client
                 if (myQuestBase.OnFinish(this.character.id) > -1)
                 {
                     //Removes the quest
-                    this.character.QuestObjectives[QuestBaseID] = null;
+                    this.character.QuestObjectives[cpkt.QuestID] = null;
 
                     //Invalidates all stepinfo
                     QuestBase.InvalidateQuest(myQuestBase, this.character);

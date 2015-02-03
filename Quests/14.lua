@@ -19,7 +19,7 @@ local StepID = 0;
 -- Modify steps below for gameplay
 
 function QUEST_VERIFY(cid)
-	Saga.GeneralDialog(cid, 3957);
+	Saga.GeneralDialog(cid, 0);
 	return 0;
 end
 

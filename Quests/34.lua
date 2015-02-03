@@ -16,7 +16,7 @@ local RewItemCount1 = 8;
 local RewItemCount2 = 0;
 
 function QUEST_VERIFY(cid)
-	Saga.GeneralDialog(cid, 3957);
+	Saga.GeneralDialog(cid, 298);
 	return 0;
 end
 

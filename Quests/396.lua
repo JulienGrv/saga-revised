@@ -20,18 +20,15 @@ local RewItemCount2 = 0;
 function QUEST_START(cid)
 	-- Initialize all quest steps
 	-- Initialize all starting navigation points
-
 	Saga.AddStep(cid, QuestID, 39601);
 	Saga.AddStep(cid, QuestID, 39602);
 	Saga.AddStep(cid, QuestID, 39603);
 	Saga.InsertQuest(cid, QuestID, 1);
-
 	return 0;
 end
 
 function QUEST_FINISH(cid)
 	-- Gives all rewards
-
 	Saga.GiveItem(cid, RewItem1, RewItemCount1);
 	Saga.GiveZeny(cid, RewZeny);
 	Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);
@@ -109,8 +106,6 @@ function QUEST_STEP_3(cid, StepID)
 	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
-
-
 end
 
 function QUEST_CHECK(cid)
