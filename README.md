@@ -66,4 +66,4 @@ We use the latest [DiviniaRO2 full client](https://mega.co.nz/#!yZhlkB5S!j6zia8k
 * [All Contributors](https://github.com/Darkin47/SagaRevised/graphs/contributors)
 
 ## License
-The MIT License (MIT). Please see [License File](https://github.com/Darkin47/SagaRevised/blob/master/LICENSE) for more information.
+The Creative Common License (CC BY-NC-SA 3.0). Please see [License File](https://github.com/Darkin47/SagaRevised/blob/master/LICENSE) for more information.
