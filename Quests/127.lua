@@ -38,52 +38,71 @@ function QUEST_FINISH(cid)
 		return -1;
 	end
 end
+
 function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
-	Saga.StepComplete(cid, QuestID, 12701);
+function QUEST_STEP_1(cid, StepID)
+	-- Talk to ?
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1143);
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1143 then
+		Saga.GeneralDialog(cid, 1890);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
+	
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
+			return -1;
+		end
+	end
+	
+	-- Clear waypoints
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
-function QUEST_STEP_2(cid)
-	--Eliminate Be Chased Mermaid<
 
-	Saga.Eliminate(cid, QuestID, 12702, 10034, 6, 1);
-	Saga.Eliminate(cid, QuestID, 12702, 10035, 6, 1);
+function QUEST_STEP_2(cid, StepID)
+	--Eliminate Be Chased Mermaid
+	Saga.Eliminate(cid, QuestID, StepID, 10034, 6, 1);
+	Saga.Eliminate(cid, QuestID, StepID, 10035, 6, 1);
 
 	--check if all substeps are completed
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 12702, i) == false
-	then
-	return -1;
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
+			return -1;
+		end
 	end
-	end
-	Saga.StepComplete(cid, QuestID, 12702);
+
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	--Talk to aldria?? (Adria sill?)
-	
-	Saga.AddWaypoint(cid, QuestID, 12703, 1, 1143);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1143);
+
 	--check for completion
 	local = Saga.GetNPCIndex(cid);
-	if ret == 1143
-	then
-	Saga.GeneralDialog(cid, 3936);
-	Saga.SubstepComplete(cid, QuestID, 12703, 1);
+	if ret == 1143 then
+		Saga.GeneralDialog(cid, 1895);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
-	end
+
 	--check if all substeps are completed
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 12703, i) == false
-	then
-	return -1;
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
+			return -1;
+		end
 	end
-	end
+
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 12703);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -92,13 +111,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 12701 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 12702 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 12703 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 
 	if ret == 0 then

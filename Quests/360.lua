@@ -38,14 +38,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Derek
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1021);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1021 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3573);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -61,14 +61,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Receive 'Liqour' from Gretchel Ortrudto
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1025);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1025 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3636);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
@@ -89,14 +89,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver Wine to Pretan
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1024);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1024 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3639);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4170);
 		if ItemCountA > 0 then
@@ -120,15 +120,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 36001 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 36002 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 36003 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

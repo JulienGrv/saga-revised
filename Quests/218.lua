@@ -38,14 +38,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Regina Salisbury
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1010 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3078);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -61,14 +61,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Talk with Achim
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1080);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1080 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3081);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -87,13 +87,13 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 21801 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 21802 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

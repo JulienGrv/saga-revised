@@ -38,58 +38,59 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk to zarko
-	Saga.AddWaypoint(cid, QuestID, 3501, 1, 1004);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1004);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1004 then
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
+			Saga.GeneralDialog(cid, 313);
 			Saga.NpcGiveItem(cid, 2609, 1);
-			Saga.SubstepComplete(cid, QuestID, 3501, 1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid, QuestID, 3501, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
 		return -1;
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 3501);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Get 5 Vadon Loot
-	Saga.FindQuestItem(cid, QuestID, 3501, 10017, 2610, 10000, 5, 1);
-	Saga.FindQuestItem(cid, QuestID, 3501, 10018, 2610, 10000, 5, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10017, 2610, 10000, 5, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10018, 2610, 10000, 5, 1);
 	
 	-- Check if all substeps are completed
-		if Saga.IsSubStepCompleted(cid, QuestID, 3501, 1) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
 			return -1;
 		end
 	
-	Saga.StepComplete(cid, QuestID, 3501);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1123 then
 		Saga.NpcTakeItem(cid, 2610, 5);
-		Saga.SubstepComplete(cid, QuestID, 3503, 1);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid, QuestID, 3503, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
 		return -1;
 	end
 	
-	Saga.StepComplete(cid, QuestID, 3503);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -98,13 +99,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 3501 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 3502 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 3503 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 
 	if ret == 0 then

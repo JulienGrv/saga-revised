@@ -48,7 +48,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Lancement des étapes
 	
 	-- Vérifie que l'on parle au Npc
@@ -59,7 +59,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Lancement des étapes
 	
 	-- Vérifie que l'on parle au Npc
@@ -70,7 +70,7 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Lancement des étapes
 	
 	-- Vérifie que l'on parle au Npc
@@ -81,7 +81,7 @@ function QUEST_STEP_3(cid)
 	return 0;
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	-- Lancement des étapes
 	
 	-- Vérifie que l'on parle au Npc
@@ -97,16 +97,16 @@ function QUEST_CHECK(cid)
 	-- Vérifie toutes les étapes
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 14001 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 14002 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 14003 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	elseif CurStepID == 14004 then
-		ret = QUEST_STEP_4(cid);
+		ret = QUEST_STEP_4(cid, StepID);
 	end
 	
 	if ret == 0 then

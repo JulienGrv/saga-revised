@@ -47,178 +47,178 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Talk with Zarko Ruzzoli
-	Saga.AddWaypoint(cid, QuestID, 4601, 1, 1005);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1005);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1005
 	then
-	Saga.GeneralDialog(cid, 3936);
-	Saga.SubstepComplete(cid, QuestID, 4601, 1);
+	Saga.GeneralDialog(cid, 377);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 4601, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 4601);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Talk with Misha Berardini
-	Saga.AddWaypoint(cid, QuestID, 4602, 1, 1000);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1000);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1000
 	then
-	Saga.GeneralDialog(cid, 3936);
-	Saga.SubstepComplete(cid, QuestID, 4602, 1);
+	Saga.GeneralDialog(cid, 380);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 4602, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 4602);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	--Talk with Klaret Natali
-	Saga.AddWaypoint(cid, QuestID, 4603, 1, 1001);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1001);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001
 	then
-	Saga.GeneralDialog(cid, 3936);
-	Saga.SubstepComplete(cid, QuestID, 4603, 1);
+	Saga.GeneralDialog(cid, 383);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 4603, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 4603);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	--Talk with Shelphy Adriana
-	Saga.AddWaypoint(cid, QuestID, 4604, 1, 1002);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1002);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1002
 	then
-	Saga.GeneralDialog(cid, 3936);
-	Saga.SubstepComplete(cid, QuestID, 4604, 1);
+	Saga.GeneralDialog(cid, 386);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 4604, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 4604);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_5(cid)
+function QUEST_STEP_5(cid, StepID)
 	--Talk with Averro Reinhold
-	Saga.AddWaypoint(cid, QuestID, 4605, 1, 1004);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1004);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1004
 	then
-	Saga.GeneralDialog(cid, 3936);
-	Saga.SubstepComplete(cid, QuestID, 4605, 1);
+	Saga.GeneralDialog(cid, 389);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 4605, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 4605);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_6(cid)
+function QUEST_STEP_6(cid, StepID)
 	--Talk with Scacciano Morrigan
-	Saga.AddWaypoint(cid, QuestID, 4606, 1, 1003);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1003);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003
 	then
-	Saga.GeneralDialog(cid, 3936);
-	Saga.SubstepComplete(cid, QuestID, 4606, 1);
+	Saga.GeneralDialog(cid, 392);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 4606, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 4606);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_7(cid)
+function QUEST_STEP_7(cid, StepID)
 	--Talk with Scacciano Morrigan
-	Saga.AddWaypoint(cid, QuestID, 4607, 1, 1003);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1003);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003
 	then
-	Saga.GeneralDialog(cid, 3936);
-	Saga.SubstepComplete(cid, QuestID, 4607, 1);
+	Saga.GeneralDialog(cid, 2294);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 4607, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 4607);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -227,21 +227,22 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 4601 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 4602 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 4603 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	elseif CurStepID == 4604 then
-		ret = QUEST_STEP_4(cid);
+		ret = QUEST_STEP_4(cid, StepID);
 	elseif CurStepID == 4605 then
-		ret = QUEST_STEP_5(cid);
+		ret = QUEST_STEP_5(cid, StepID);
 	elseif CurStepID == 4606 then
-		ret = QUEST_STEP_6(cid);
+		ret = QUEST_STEP_6(cid, StepID);
 	elseif CurStepID == 4607 then
-		ret = QUEST_STEP_7(cid);
+		ret = QUEST_STEP_7(cid, StepID);
 	end
 
 	if ret == 0 then

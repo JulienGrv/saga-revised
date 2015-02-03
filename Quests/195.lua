@@ -37,7 +37,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Obtain Long Vadon's Shell (7)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10153, 3990, 8000, 7, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10154, 3990, 8000, 7, 1);
@@ -53,7 +53,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
    -- Hand in to Kafra Board Mailbox
 	local ret = Saga.GetActionObjectIndex(cid);
 	if ret == 1123 then
@@ -78,13 +78,13 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 19501 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 19502 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

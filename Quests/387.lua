@@ -38,14 +38,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Monika Reynolds
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1012 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3831);
 
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
@@ -66,14 +66,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Deliver 'Agreement' to Pelshia Hiltrud
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1013);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1013 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3834);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		local ItemCountA = Saga.CheckUserInventory(cid, 4085);
@@ -96,14 +96,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver 'Box' to Volker Stanwood
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1009);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1009 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3837);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4086);
 		if ItemCountA > 0 then
@@ -127,15 +127,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 38701 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 38702 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 38703 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

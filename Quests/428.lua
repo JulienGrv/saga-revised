@@ -45,14 +45,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Aili
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1028);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1028 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4727);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -70,7 +70,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Gather Needed Bolt (8)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10353, 4238, 8000, 8, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10354, 4238, 8000, 8, 1);
@@ -86,14 +86,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver item to Moritz Blauvelt
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1026);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1026 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4730);
 
 		local ItemCountA = Saga.CheckUserInventory(cid, 4238);
 		if ItemCountA > 7 then
@@ -117,7 +117,7 @@ function QUEST_STEP_3(cid)
 	return 0;
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	-- Hand in to Kafra Board Mailbox
 	local ret = Saga.GetActionObjectIndex(cid);
 	if ret == 1123 then
@@ -141,16 +141,16 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 42801 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 42802 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 42803 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	elseif CurStepID == 42804 then
-		ret = QUEST_STEP_4(cid);
+		ret = QUEST_STEP_4(cid, StepID);
 	end
 	
 	if ret == 0 then

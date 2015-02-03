@@ -39,14 +39,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Achim
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1080);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1080 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3036);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -62,7 +62,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Find Newly Sheared Fleece (7)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10118, 4000, 8000, 7, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10119, 4000, 8000, 7, 1);
@@ -78,14 +78,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Talk with Achim
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1080);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1080 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3039);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4000);
 		if ItemCountA > 6 then
@@ -109,15 +109,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 21101 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 21102 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 21103 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

@@ -40,14 +40,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Talk with Lutz Tristan
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1150);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1150 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3225);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -63,14 +63,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Report to Joachim
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1014);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1014 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3228);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -86,14 +86,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	--Talk with Lutz Tristan
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1150);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1150 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3231);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -109,14 +109,14 @@ function QUEST_STEP_3(cid)
 	return 0;
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	--Talk with Monika Reynolds
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1012 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3234);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -135,17 +135,17 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 25201 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 25202 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 25203 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	elseif CurStepID == 25204 then
-		ret = QUEST_STEP_4(cid);
+		ret = QUEST_STEP_4(cid, StepID);
 	end
 
 	if ret == 0 then

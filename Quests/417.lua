@@ -37,14 +37,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Visit Monika Reynolds
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1012 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4644);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -61,14 +61,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Visit Ireyneal
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1023 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4647);
 
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
@@ -93,14 +93,14 @@ function QUEST_STEP_2(cid)
 end
 
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver letter to Ruud
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1063);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1190);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1063 then
-		Saga.GeneralDialog(cid, 3933);
+	if ret == 1190 then
+		Saga.GeneralDialog(cid, 4650);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4225);
 		if ItemCountA > 0 then
@@ -130,14 +130,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 41701 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 41702 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 41703 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

@@ -37,14 +37,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Receive reason from Alina
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1054);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1054 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4664);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -61,14 +61,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Visit Pretan
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1024);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1024 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4667);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -85,14 +85,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Send regards to Mike
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1182);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1182 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4670);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -114,14 +114,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 42001 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 42002 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 42003 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

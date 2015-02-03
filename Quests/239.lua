@@ -39,14 +39,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- ?? Wine??from? Receive
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1012 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2690);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
@@ -67,14 +67,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Deliver '?' to Lutz
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1150);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1150 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2695);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		local ItemCountA = Saga.CheckUserInventory(cid, 4023);
@@ -97,14 +97,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver 'Wine Box' to Monika Reynolds
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1012 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2698);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4024);
 		if ItemCountA > 0 then
@@ -128,15 +128,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 23901 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 23902 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 23903 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

@@ -43,7 +43,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Eliminate PukuPuku (3)
 	-- Eliminate KuiKui (3)
 	
@@ -64,14 +64,14 @@ function QUEST_STEP_1(cid)
 
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Report to Kundi
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1066);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1066 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4563);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -93,12 +93,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 41001 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 41002 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

@@ -41,7 +41,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Volker Stanwood
 	
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, NpcID);
@@ -55,7 +55,7 @@ function QUEST_STEP_1(cid)
 	
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Kill the Successor of Corad
 	
 	local MonsterID = {0, 0};
@@ -75,7 +75,7 @@ function QUEST_STEP_2(cid)
 	Saga.Summon(MonsterID1, PosX, PosY, PosZ, MapID, TimeToLive);
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Kill Corad The Red Wolf
 	
 	local MonsterID = {0, 0};
@@ -92,7 +92,7 @@ function QUEST_STEP_3(cid)
 	end
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	-- Report to Volker Stanwood
 	
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, NpcID);
@@ -105,7 +105,7 @@ function QUEST_STEP_4(cid)
 	Saga.ClearWaypoints(cid, QuestID);
 end
 
-function QUEST_STEP_5(cid)
+function QUEST_STEP_5(cid, StepID)
 	-- Quest complete
 	
 	Saga.QuestComplete(cid, QuestID);
@@ -116,17 +116,18 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 28401 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 28402 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 28403 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	elseif CurStepID == 28404 then
-		ret = QUEST_STEP_4(cid);
+		ret = QUEST_STEP_4(cid, StepID);
 	elseif CurStepID == 28405 then
-		ret = QUEST_STEP_5(cid);
+		ret = QUEST_STEP_5(cid, StepID);
 	end
 
 	if ret == 0 then

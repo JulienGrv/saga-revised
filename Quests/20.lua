@@ -49,21 +49,39 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
-	--personal quest
-	Saga.StepComplete(cid, QuestID, 2001);
+function QUEST_STEP_1(cid, StepID)
+	-- Talk to ?
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1002);
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1002 then
+		Saga.GeneralDialog(cid, 178);
+		Saga.SubstepComplete(cid, QuestID, 501, 1);
+	end
+	
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid, QuestID, 501, i) == false then
+			return -1;
+		end
+	end
+	
+	-- Clear waypoints
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 501);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Talk with Klaret Natali
-	Saga.AddWaypoint(cid, QuestID, 2002, 1, 1001);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1001);
 
 	--check completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001
 	then
-	Saga.GeneralDialog(cid, 3936);
+	Saga.GeneralDialog(cid, 181);
 	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -89,12 +107,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 2001 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 2002 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

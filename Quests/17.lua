@@ -48,7 +48,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--talk with Zarko Ruzzoli
 	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
@@ -56,7 +56,7 @@ end
 
 	
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--talk with Averro Reinhold
 	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
@@ -67,12 +67,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 1701 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 1702 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

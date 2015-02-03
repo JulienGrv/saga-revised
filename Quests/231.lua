@@ -38,14 +38,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Monika Reynolds
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1012 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2623);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -61,7 +61,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
   	-- Collect a sample of Orange Jelly (1)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10074, 4019, 8000, 1, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10075, 4019, 8000, 1, 1);
@@ -78,7 +78,7 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Hand in to Kafra Board Mailbox
 	local ret = Saga.GetActionObjectIndex(cid);
 	if ret == 1123 then
@@ -104,15 +104,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 23101 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 23102 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 23103 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

@@ -41,14 +41,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Chayenne
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1022);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1023 then
-		Saga.GeneralDialog(cid, 3936);
+	if ret == 1022 then
+		Saga.GeneralDialog(cid, 3672);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
@@ -69,14 +69,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Deliver Present to Gretchel Ortrud
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1025);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1025 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3675);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4210);
 		if ItemCountA > 0 then
@@ -97,14 +97,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver 'Present' to Derek
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1021);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1021 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3582);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4210);
 		if ItemCountA > 0 then
@@ -125,14 +125,14 @@ function QUEST_STEP_3(cid)
 	return 0;
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	-- Deliver 'Present' to Ireyneal
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1023 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3678);
 
 		local ItemCountA = Saga.CheckUserInventory(cid, 4210);
 		if ItemCountA > 0 then
@@ -153,14 +153,14 @@ function QUEST_STEP_4(cid)
 	return 0;
 end
 
-function QUEST_STEP_5(cid)
+function QUEST_STEP_5(cid, StepID)
 	-- Talk with Chayenne
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1023);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1022);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1023 then
-		Saga.GeneralDialog(cid, 3936);
+	if ret == 1022 then
+		Saga.GeneralDialog(cid, 3681);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -179,19 +179,19 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 36801 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 36802 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 36803 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	elseif CurStepID == 36804 then
-		ret = QUEST_STEP_4(cid);
+		ret = QUEST_STEP_4(cid, StepID);
 	elseif CurStepID == 36805 then
-		ret = QUEST_STEP_5(cid);
+		ret = QUEST_STEP_5(cid, StepID);
 	end
 	
 	if ret == 0 then

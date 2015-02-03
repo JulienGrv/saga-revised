@@ -43,7 +43,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Unripe PukuPuku's Pair of leaves (3)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10002, 2603, 8000, 3, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10003, 2603, 8000, 3, 1);
@@ -60,14 +60,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Bring juice to Whitney
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1148);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1148 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3945);
 		local ItemCountA = Saga.CheckUserInventory(cid, 2603);
 		if ItemCountA > 2 then
 			Saga.NpcTakeItem(cid, 2603, 3);
@@ -93,12 +93,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 40001 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 40002 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

@@ -45,14 +45,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Scacciano Morrigan
-	Saga.AddWaypoint(cid, QuestID, 1101, 1, 1003);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1003);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2261);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -68,7 +68,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Eliminate a Tropical Hydra
 	Saga.Eliminate(cid, QuestID, StepID, 10050, 8, 1);
 	Saga.Eliminate(cid, QuestID, StepID, 10051, 8, 1);
@@ -88,14 +88,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Speak with Scacciano Morrigan
-	Saga.AddWaypoint(cid, QuestID, 1103, 1, 1003);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1003);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 108);
 		Saga.NpcTakeItem(cid, 4069, 1);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
@@ -117,14 +117,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 1101 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 1102 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 1103 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

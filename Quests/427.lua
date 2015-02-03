@@ -44,14 +44,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Receive 'Goods' from Portman
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1135);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1135 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4718);
 
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
@@ -75,14 +75,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Visit Moritz Blauvelt
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1026);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1026 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4721);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4236);
 		if ItemCountA > 0 then
@@ -107,14 +107,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver 'Goods' to Aili
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1028);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1028 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4724);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 2630);
 		if ItemCountA > 0 then
@@ -143,14 +143,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 42701 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 42702 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 42703 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

@@ -38,19 +38,38 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
-	Saga.StepComplete(cid, QuestID, StepID);
+function QUEST_STEP_1(cid, StepID)
+	-- Talk to ?
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1011);
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1011 then
+		Saga.GeneralDialog(cid, 2569);
+		Saga.SubstepComplete(cid, QuestID, 501, 1);
+	end
+	
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid, QuestID, 501, i) == false then
+			return -1;
+		end
+	end
+	
+	-- Clear waypoints
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 501);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Talk with Lothair Eaton
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1079);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1079 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2572);
 		Saga.NpcGiveItem(cid, 3974, 1);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
@@ -67,14 +86,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver Eye-Glasses to Orak Edith
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1099);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1099 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2575);
 		local ItemCountA = Saga.CheckUserInventory(cid, 3972);
 		if ItemCountA > 0 then
 			Saga.NpcTakeItem(cid, 3972, 1);
@@ -97,15 +116,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 16101 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 16103 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 16103 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	if ret == 0 then
 		QUEST_CHECK(cid);

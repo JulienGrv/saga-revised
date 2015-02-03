@@ -51,15 +51,33 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
+	-- Talk to ?
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1003);
 	
-	Saga.StepComplete(cid, QuestID, StepID);
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1003 then
+		Saga.GeneralDialog(cid, 349);
+		Saga.SubstepComplete(cid, QuestID, 501, 1);
+	end
+	
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid, QuestID, 501, i) == false then
+			return -1;
+		end
+	end
+	
+	-- Clear waypoints
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 501);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Lancement des étapes
-	Saga.FindPosition(cid, QuestID, 4002, 1, 4187, -32199, -711, 2, 1000);
+	Saga.FindPosition(cid, QuestID, StepID, 1, 4187, -32199, -711, 2, 1000);
 	
 	-- Vérifie si l'étape en cours est terminé
 	for i = 1, 1 do
@@ -72,14 +90,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Lancement des étapes
-	Saga.AddWaypoint(cid, QuestID, 4003, 1, 1003);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1003);
 	
 	-- Vérifie que l'on parle au Npc
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003 then
-		Saga.GeneralDialog(cid, 3957);
+		Saga.GeneralDialog(cid, 352);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -100,14 +118,14 @@ function QUEST_CHECK(cid)
 	-- Vérifie toutes les étapes
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 4001 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 4002 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 4003 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

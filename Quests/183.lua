@@ -37,14 +37,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Erment
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1153);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1153 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2994);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -60,14 +60,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Talk with Quadro Mann
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1068);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1068 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2997);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -86,13 +86,13 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 18301 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 18302 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

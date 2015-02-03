@@ -42,14 +42,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Talk with Monika Reynolds
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1012 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3431);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -65,14 +65,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Talk with Naihong
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1156);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1156 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3434);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -88,14 +88,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	--Buy Fresh Fish Bones Regina Salisbury(4034)
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1156);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1156 then
-		Saga.GeneralDialog(cid, 3936);
+	if ret == 1010 then
+		Saga.GeneralDialog(cid, 3437);
 		Saga.NpcGiveItem(cid, 4033, 1);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
@@ -112,14 +112,14 @@ function QUEST_STEP_3(cid)
 	return 0;
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	--Deliver Fresh Fish Bones to Niahong
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1156);
 
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1156 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3440);
 		local ItemCountA = Saga.CheckUserInventory(cid, 4034);
 		if ItemCountA > 0 then
 			Saga.NpcTakeItem(cid, 4034, 1);
@@ -142,17 +142,17 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 26501 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 26502 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 26503 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	elseif CurStepID == 26504 then
-		ret = QUEST_STEP_4(cid);
+		ret = QUEST_STEP_4(cid, StepID);
 	end
 
 	if ret == 0 then

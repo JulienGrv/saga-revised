@@ -39,14 +39,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Erment
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1153);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1153 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2988);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -62,7 +62,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Kill a Poring (6)
 	Saga.Eliminate(cid, QuestID, StepID, 10069, 6, 1);
 	Saga.Eliminate(cid, QuestID, StepID, 10070, 6, 1);
@@ -78,14 +78,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Talk with Erment
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1153);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1153 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2991);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -104,15 +104,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 18201 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 18202 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 18203 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

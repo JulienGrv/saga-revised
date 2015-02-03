@@ -45,88 +45,88 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Talk with Scacciano Morrigan
-	Saga.AddWaypoint(cid, QuestID, 12401, 1, 1003);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1003);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003
 	then
-	Saga.GeneralDialog(cid, 3936);
-	Saga.SubstepComplete(cid, QuestID, 12401, 1);
+	Saga.GeneralDialog(cid, 1833);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 12401, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 12401);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Find Marine Sphere Nucleus Parts
 	--doesnt specify how many
-	Saga.FindQuestItem(cid, QuestID, 12402, 10040, 2645, 6000, 4, 1);
-	Saga.FindQuestItem(cid, QuestID, 12402, 10041, 2645, 6000, 4, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10040, 2645, 6000, 4, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10041, 2645, 6000, 4, 1);
 	
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 12402, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
-	Saga.StepComplete(cid, QuestID, 12402);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	--Eliminate the Giant Piranha
 
-	Saga.Eliminate(cid, QuestID, 12403, 10058, 1, 1);
+	Saga.Eliminate(cid, QuestID, StepID, 10058, 1, 1);
 
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 12403, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
-	Saga.StepComplete(cid, QuestID, 12403);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	--Talk with Scacciano Morrigan
-	Saga.AddWaypoint(cid, QuestID, 12404, 1, 1003);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1003);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1003
 	then
-	Saga.GeneralDialog(cid, 3936);
-	Saga.SubstepComplete(cid, QuestID, 12404, 1);
+	Saga.GeneralDialog(cid, 1836);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 12404, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 12401);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -137,15 +137,16 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 12401 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 12402 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 12403 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	elseif CurStepID == 12404 then
-		ret = QUEST_STEP_4(cid);
+		ret = QUEST_STEP_4(cid, StepID);
 	end
 
 	if ret == 0 then

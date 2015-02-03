@@ -38,7 +38,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Monika Reynolds
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 	
@@ -61,7 +61,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Talk with Joachim Tristan
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1014);
 	
@@ -84,7 +84,7 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Talk with Sophie
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1151);
 	
@@ -107,7 +107,7 @@ function QUEST_STEP_3(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Talk with Sophie
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1151);
 	
@@ -130,7 +130,7 @@ function QUEST_STEP_3(cid)
 	return 0;
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	-- Receive Flowers from Pelshia Hiltrud
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1013);
 	
@@ -154,7 +154,7 @@ function QUEST_STEP_4(cid)
 	return 0;
 end
 
-function QUEST_STEP_5(cid)
+function QUEST_STEP_5(cid, StepID)
 	-- Laydown flowers at the Tombstone
 	local ret = Saga.GetActionObjectIndex(cid);
 	if ret == 1 then
@@ -181,19 +181,19 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 15801 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 15802 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 15803 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	elseif CurStepID == 15804 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	elseif CurStepID == 15805 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 
 	if ret == 0 then

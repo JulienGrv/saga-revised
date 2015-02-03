@@ -39,14 +39,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Achim
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1080);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1080 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3042);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -62,7 +62,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Obtain Butchered Mutton (7)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10118, 4001, 8000, 7, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10119, 4001, 8000, 7, 1);
@@ -78,14 +78,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Talk with Achim
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1080);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1080 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3045);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4001);
 		if ItemCountA > 6 then
@@ -109,15 +109,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 21201 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 21202 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 21203 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

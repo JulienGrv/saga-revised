@@ -43,7 +43,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 
 	--Find 'Ring' from Boss Pukui
 	Saga.FindQuestItem(cid, QuestID, StepID, 10011, 2646, 8000, 1, 1);
@@ -59,9 +59,9 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Deliver the 'Ring' to Zarko Ruzzoli
-	Saga.AddWaypoint(cid, QuestID, 2202, 1, 1005);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1005);
 
 	--check for completion
 	local ItemCount = Saga.CheckUserInventory(cid, 2646);
@@ -91,12 +91,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 0 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 0 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

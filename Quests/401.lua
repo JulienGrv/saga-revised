@@ -44,14 +44,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Whitney
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1148);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1148 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4549);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -68,14 +68,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Talk with Sez Lanez
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1141);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1141 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 3948);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -92,14 +92,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Talk with Waynedi Arga
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1140);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1140 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 3951);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -121,14 +121,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 40101 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 40102 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 40103 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

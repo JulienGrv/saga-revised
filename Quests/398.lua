@@ -43,68 +43,68 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Add all waypoints
-	Saga.AddWaypoint(cid, QuestID, 39801, 1, 1146);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1146);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1146 then
 		Saga.GeneralDialog(cid, 3933);
-		Saga.SubstepComplete(cid, QuestID, 39801, 1);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 39801, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 39801);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Capture a Unripe Pukui
-	Saga.FindQuestItem(cid, QuestID, 39802, 10000, 2666, 8000, 1, 1);
-	Saga.FindQuestItem(cid, QuestID, 39802, 10001, 2666, 8000, 1, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10000, 2666, 8000, 1, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10001, 2666, 8000, 1, 1);
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 39802, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
-	Saga.StepComplete(cid, QuestID, 39802);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver Unripe Pukui to Sally
-	Saga.AddWaypoint(cid, QuestID, 39803, 1, 1147);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1147);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1147 then
 		Saga.NpcTakeItem(cid, 2666, 1);
-		Saga.GeneralDialog(cid, 3933);
-		Saga.SubstepComplete(cid, QuestID, 39803, 1);
+		Saga.GeneralDialog(cid, 3936);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 39803, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 39803);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -113,13 +113,14 @@ end
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 39801 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 39802 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 39803 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 
 	if ret == 0 then

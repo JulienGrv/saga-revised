@@ -39,14 +39,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Mitzi
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1081);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1081 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3066);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -62,7 +62,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Obtain Butchered Beef (8)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10120, 4005, 8000, 8, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10121, 4005, 8000, 8, 1);
@@ -78,14 +78,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Report to Mitzi
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1081);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1081 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3069);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4005);
 		if ItemCountA > 7 then
@@ -109,15 +109,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 21601 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 21602 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 21603 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

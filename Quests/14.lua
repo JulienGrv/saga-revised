@@ -50,7 +50,7 @@ function QUEST_CANCEL(cid)
 end
 
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Capture a KuiKui;Obtain PuiPui's Petal;Loot Black Stripe Tuna Belly
 	Saga.FindQuestItem(cid, QuestID, StepID, 10008, 2654, 8000, 3, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10009, 2655, 8000, 1, 2);
@@ -69,9 +69,9 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Deliver material to Averro Reinhold
-	Saga.AddWaypoint(cid, QuestID, 1402, 1, 1004);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1004);
 
 	--check for completion
 	local ItemCountA = Saga.CheckUserInventory(cid, 2654);
@@ -106,12 +106,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 1401 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 1402 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

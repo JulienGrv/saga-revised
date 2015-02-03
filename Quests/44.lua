@@ -48,34 +48,34 @@ function QUEST_CANCEL(cid)
 	--Loot Sea Flatro
 	--Harvest a Sansam Plant
 
-	Saga.FindQuestItem(cid, QuestID, 4401, 10066, 1670, 6000, 5, 1);
-	Saga.FindQuestItem(cid, QuestID, 4401, 10067, 1670, 6000, 5, 1);
-	Saga.FindQuestItem(cid, QuestID, 4401, 20, 1669, 10000, 5, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10066, 1670, 6000, 5, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10067, 1670, 6000, 5, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 20, 1669, 10000, 5, 2);
 	--Object Activation Toggle
 	
-	if Saga.IsSubStepCompleted(cid, QuestID, 4401, 2) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 2) == false
 	then
-	Saga.UserUpdateActionObjectType(cid, QuestID, 4401, 20, 0);
+	Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 20, 0);
 	else
-	Saga.UserUpdateActionObjectType(cid, QuestID, 4401, 20, 1);
+	Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 20, 1);
 	end
 
 	--check if all substeps are complete
 	for i = 1, 2 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 4401, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
-	Saga.StepComplete(cid, QuestID, 4401);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Deliver Material to Averro Reinhold
 
-	Saga.AddWaypoint(cid, QuestID, 4402, 1, 1004);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1004);
 
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -89,24 +89,24 @@ function QUEST_STEP_2(cid)
 	Saga.NpcTakeItem(cid, 1670, 5);
 	Saga.NpcTakeItem(cid, 1669, 5);
 	Saga.NpcGiveItem(cid, 3561, 1);
-	Saga.SubstepComplete(cid, QuestID, 4402, 1);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 4402, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 4402);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	--Deliver Rice to Scacciano Morrigan
 
 	Saga.AddWaypoint(cid, QuestID, 4403, 1, 1003);
@@ -141,13 +141,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 4401 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 4402 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 4403 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 
 	if ret == 0 then

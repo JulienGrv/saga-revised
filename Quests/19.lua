@@ -47,14 +47,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--talk with Zarko Ruzzoli
-	Saga.AddWaypoint(cid, QuestID, 1901, 1, 1005);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1005);
 
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1005 then
-	Saga.GeneralDialog(cid, 3936);
+	Saga.GeneralDialog(cid, 165);
 	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	return 0;
 	end
@@ -71,13 +71,13 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--report result to Selphy Adriana
-	Saga.AddWaypoint(cid, QuestID, 1902, 1, 1002);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1002);
 	
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1002 then
-	Saga.GeneralDialog(cid, 3936);
+	Saga.GeneralDialog(cid, 168);
 	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		return 0;
 	end
@@ -98,12 +98,12 @@ end
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 1901 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 1902 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

@@ -40,14 +40,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Regina Salisbury
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1010 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3090);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -63,7 +63,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Get 6 Chonchon Fry Wings
 	Saga.FindQuestItem(cid, QuestID, StepID, 10076, 4007, 8000, 6, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10077, 4007, 8000, 6, 1);
@@ -80,14 +80,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Receive Achim's Hammer from Hollgran
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1011);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1010 then
-		Saga.GeneralDialog(cid, 3936);
+	if ret == 1011 then
+		Saga.GeneralDialog(cid, 3093);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
@@ -108,14 +108,14 @@ function QUEST_STEP_3(cid)
 	return 0;
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	-- Talk with Regina Salisbury
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1010 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3096);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4007);
 		local ItemCountB = Saga.CheckUserInventory(cid, 4008);
@@ -141,17 +141,17 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 22001 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 22002 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 22003 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 22004 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

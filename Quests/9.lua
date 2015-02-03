@@ -45,14 +45,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Get document from Shelphy Adriana
-	Saga.AddWaypoint(cid, QuestID, 901, 1, 1005);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1005);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1005 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 87);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -68,25 +68,25 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	Saga.FindQuestItem(cid, QuestID, StepID, 9, 2621, 10000, 1, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10, 2622, 10000, 1, 2);
 	Saga.FindQuestItem(cid, QuestID, StepID, 11, 2623, 10000, 1, 3);
 
 	-- (De-)Activates the Action Objectd on request
-	if Saga.IsSubStepCompleted(cid, QuestID, 902, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
 		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 9, 0);
 	else
 		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 9, 1);
 	end
 	
-	if Saga.IsSubStepCompleted(cid, QuestID, 902, 2) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 2) == false then
 		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 10, 0);
 	else
 		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 10, 1);
 	end
 	
-	if Saga.IsSubStepCompleted(cid, QuestID, 902, 3) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 3) == false then
 		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 11, 0);
 	else
 		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 11, 1);
@@ -104,14 +104,14 @@ function QUEST_STEP_2(cid)
 
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Get document from Shelphy Adriana
-	Saga.AddWaypoint(cid, QuestID, 903, 1, 1005);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1005);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1005 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 90);
 		Saga.NpcTakeItem(cid, 2621, 1);
 		Saga.NpcTakeItem(cid, 2622, 1);
 		Saga.NpcTakeItem(cid, 2623, 1);
@@ -135,14 +135,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 901 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 902 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 903 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

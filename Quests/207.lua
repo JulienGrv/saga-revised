@@ -38,14 +38,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Deliver Flint to Kuno Aston
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1095);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1095 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3411);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -61,7 +61,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Obtain Flint (1)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10122, 3997, 8000, 1, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10123, 3997, 8000, 1, 1);
@@ -78,14 +78,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Obtain Flint
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1095);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1095 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3414);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 3997);
 		if ItemCountA > 0 then
@@ -109,15 +109,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 20701 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 20702 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 20703 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

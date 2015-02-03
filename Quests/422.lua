@@ -43,7 +43,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Collect item from Devil Entraion (8)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10329, 4231, 8000, 8, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10330, 4231, 8000, 8, 1);
@@ -59,14 +59,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Deliver claws to Chayenne
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1022);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1022 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4681);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4231);
 		if ItemCountA > 7 then
@@ -95,12 +95,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 42201 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 42202 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

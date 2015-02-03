@@ -37,47 +37,49 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk to shelphy
-	Saga.AddWaypoint(cid, QuestID, 3601, 1, 1002);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1002);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1002 then
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
+			Saga.GeneralDialog(cid, 319);
 			Saga.NpcGiveItem(cid, 2781, 1);
-			Saga.SubstepComplete(cid, QuestID, 3601, 1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid, QuestID, 3601, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
 		return -1;
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 3601);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Talk to klaret
-	Saga.AddWaypoint(cid, QuestID, 3602, 1, 1001);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1001);
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001 then
+		Saga.GeneralDialog(cid, 322);
 		Saga.NpcTakeItem(cid, 2781, 5);
-		Saga.SubstepComplete(cid, QuestID, 3602, 1);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid, QuestID, 3602, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
 		return -1;
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 3602);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -86,11 +88,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 3601 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 3602 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 
 	if ret == 0 then

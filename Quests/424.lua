@@ -44,27 +44,29 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
-	local freeslots = Saga.FreeInventoryCount(cid, 0);
-	if freeslots > 1 then
+function QUEST_STEP_1(cid, StepID)
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1053);
+
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1053 then
+		Saga.GeneralDialog(cid, 4699);
 		Saga.NpcGiveItem(cid, 4233, 1);
 		Saga.NpcGiveItem(cid, 4234, 1);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
-		return 0;
-	else
-		Saga.EmptyInventory(cid);
-		return -1;
 	end
+
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Deliver interview report to Nikki
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1063);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1051);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1063 then
-		Saga.GeneralDialog(cid, 3933);
+	if ret == 1051 then
+		Saga.GeneralDialog(cid, 4704);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4233);
 		if ItemCountA > 0 then
@@ -88,14 +90,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver Jurgen's Interview report
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1063);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1053);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1063 then
-		Saga.GeneralDialog(cid, 3933);
+	if ret == 1053 then
+		Saga.GeneralDialog(cid, 4707);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4234);
 		if ItemCountA > 0 then
@@ -125,14 +127,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 42401 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 42402 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 42403 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

@@ -45,14 +45,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Chayenne
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1022);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1022 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4684);
 
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
@@ -76,7 +76,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Deliver to Gretchel Ortrud;
 	-- Deliver to Moritz Blauvelt;
 	-- Deliver to Pretan;
@@ -88,7 +88,7 @@ function QUEST_STEP_2(cid)
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1025 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4687);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4232);
 		if ItemCountA > 0 then
@@ -98,7 +98,7 @@ function QUEST_STEP_2(cid)
 			Saga.ItemNotFound(cid);
 		end
 	elseif ret == 1026 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4690);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4232);
 		if ItemCountA > 0 then
@@ -108,7 +108,7 @@ function QUEST_STEP_2(cid)
 			Saga.ItemNotFound(cid);
 		end
 	elseif ret == 1024 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4693);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4232);
 		if ItemCountA > 0 then
@@ -132,14 +132,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Report to Chayenne
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1022);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1022 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4696);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -161,14 +161,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 42301 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 42302 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 42303 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

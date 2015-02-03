@@ -47,57 +47,57 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Pickup loot from some Vadons;and Cornutus
-	Saga.FindQuestItem(cid, QuestID, 1301, 10017, 2610, 8000, 2, 1);
-	Saga.FindQuestItem(cid, QuestID, 1301, 10018, 2610, 8000, 2, 1);
-	Saga.FindQuestItem(cid, QuestID, 1301, 10019, 2610, 8000, 2, 1);
-	Saga.FindQuestItem(cid, QuestID, 1301, 10020, 2610, 8000, 2, 1);
-	Saga.FindQuestItem(cid, QuestID, 1301, 10021, 2638, 8000, 3, 2);
-	Saga.FindQuestItem(cid, QuestID, 1301, 10022, 2638, 8000, 3, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10017, 2610, 8000, 2, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10018, 2610, 8000, 2, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10019, 2610, 8000, 2, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10020, 2610, 8000, 2, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10021, 2638, 8000, 3, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10022, 2638, 8000, 3, 2);
 
 
 	-- Check if all substeps are completed
 	-- There are 2 substeps so check all 2
 	for i = 1, 2 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 1301, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
-	Saga.StepComplete(cid, QuestID, 1301);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 	-- return is important
 	-- end is very important not to forget
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Deliver Material Averro Reinhold
-	Saga.AddWaypoint(cid, QuestID, 1302, 1, 1004);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1004);
 
 	--check for completion
 	local ItemCountA = Saga.CheckUserInventory(cid, 2610);
 	local ItemCountB = Saga.CheckUserInventory(cid, 2638);
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1004 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 132);
 		if ItemCountA > 1 and ItemCountB > 2 then
 			Saga.NpcTakeItem(cid, 2610, 2);
 			Saga.NpcTakeItem(cid, 2638, 3);
-			Saga.SubstepComplete(cid, QuestID, 1302, 1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Prefer using substeps instead of nested if's for consitance with
 	-- other quests (easier for other people if all the quests are similair made)
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 1302, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 1302);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -106,12 +106,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 1301 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 1302 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

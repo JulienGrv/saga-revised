@@ -43,14 +43,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Talk with Shelphy Adriana
-	Saga.AddWaypoint(cid, QuestID, 2501, 1, 1002);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1002);
 
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1002 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 229);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -66,14 +66,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Talk with Zarko Ruzzoli
-	Saga.AddWaypoint(cid, QuestID, 2502, 1, 1005);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1005);
 
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1005 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 232);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -94,12 +94,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 0 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 0 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

@@ -39,14 +39,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Regina Salisbury
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1010 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3132);
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
 			Saga.NpcGiveItem(cid, 4013, 1);
@@ -66,7 +66,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Receive Pretty Flower Pelshia Hiltrud;
 	-- Receive '??? ?' from Volker Stanwood;
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1013);
@@ -75,7 +75,7 @@ function QUEST_STEP_2(cid)
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1013 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3135);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
@@ -83,7 +83,7 @@ function QUEST_STEP_2(cid)
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	elseif ret == 1009 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3138);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
@@ -104,14 +104,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Report to Regina Salisbury
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1010 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3141);
 	
 		local ItemCountA = Saga.CheckUserInventory(cid, 4014);
 		local ItemCountB = Saga.CheckUserInventory(cid, 4015);
@@ -137,15 +137,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 22501 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 22502 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 22503 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

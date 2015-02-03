@@ -37,14 +37,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Mainhared Anselm
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1006);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1006 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2982);
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		if freeslots > 0 then
 			Saga.NpcGiveItem(cid, 3986, 1);
@@ -64,14 +64,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Deliver Hollow Box to Volker Stanwood
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1009);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1006 then
-		Saga.GeneralDialog(cid, 3936);
+	if ret == 1009 then
+		Saga.GeneralDialog(cid, 2985);
 		local ItemCountA = Saga.CheckUserInventory(cid, 3986);
 		if ItemCountA > 0 then
 			Saga.NpcTakeItem(cid, 3986, 1);
@@ -94,13 +94,13 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 18101 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 18102 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

@@ -42,7 +42,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 	end
 
-	fuction QUEST_STEP_1(cid)
+	fuction QUEST_STEP_1(cid, StepID)
 	--Find Unripe PukuPuku's Leaf;Find Tropical Smell Scale
 
 	Saga.FindQuestItem(cid, QuestID, StepID, 10002, 2603, 8000, 3, 1);
@@ -63,7 +63,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 -- Hand in to Kafra Board Mailbox
 
 	local ret = Saga.GetNPCIndex(cid);
@@ -97,12 +97,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 2901 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 2902 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

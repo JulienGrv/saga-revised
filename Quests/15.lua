@@ -48,7 +48,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Get Rodha Frog's stomach;Get Cave Puffer's poison sac;Obtain Flatro's organs;Obtain some loot from VadonVadon
 
 	Saga.FindQuestItem(cid, QuestID, StepID, 10061, 2670, 8000, 1, 1);
@@ -70,10 +70,10 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 
 	--Deliver material Averro Reinhold
-	Saga.AddWaypoint(cid, QuestID, 1502, 1, 1004);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1004);
 
 	--check for completion
 
@@ -106,12 +106,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 1501 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 1502 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

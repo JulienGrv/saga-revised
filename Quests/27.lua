@@ -43,7 +43,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Find Hodemimes Blue Shark's eye
 	Saga.FindQuestItem(cid, QuestID, StepID, 10054, 2656, 8000, 2, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10055, 2656, 8000, 2, 1);
@@ -59,15 +59,15 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Deliver Shark's Eye Averro Reinhold
-	Saga.AddWaypoint(cid, QuestID, 2702, 1, 1004);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1004);
 
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	local ItemCount = Saga.CheckUserInventory(cid, 2656);
 	if ret == 1004 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 256);
 		if ItemCount > 1 then
 			Saga.NpcTakeItem(cid, 3936, 2);
 			Saga.SubstepComplete(cid, QuestID, StepID, 1);
@@ -93,12 +93,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 2701 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 2702 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

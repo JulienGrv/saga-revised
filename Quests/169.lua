@@ -39,14 +39,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Hena
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1152);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1152 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2958);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -62,7 +62,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Get 6 Chonchon Fry Wings
 	Saga.FindQuestItem(cid, QuestID, StepID, 10144, 3980, 8000, 1, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10145, 3980, 8000, 1, 1);
@@ -78,14 +78,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Talk with Hena
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1152);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1152 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2961);
 		local ItemCountA = Saga.CheckUserInventory(cid, 3980);
 		if ItemCountA > 0 then
 			Saga.NpcTakeItem(cid, 3980, 1);
@@ -108,15 +108,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 16901 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 16902 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 16903 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

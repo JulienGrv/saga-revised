@@ -45,14 +45,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk to mischa
-	Saga.AddWaypoint(cid, QuestID, 301, 1, 1000);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1000);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1000 then
-		Saga.GeneralDialog(cid, 34);
+		Saga.GeneralDialog(cid, 2231);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -68,7 +68,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	Saga.Eliminate(cid, QuestID, StepID, 10061, 7, 1);
 
 	-- Check if all substeps are completed
@@ -82,7 +82,7 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Hand over to Kaftra
 	if ret == 1123 then
 		Saga.StepComplete(cid, QuestID, StepID);
@@ -97,14 +97,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 301 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 302 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 303 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

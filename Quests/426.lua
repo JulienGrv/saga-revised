@@ -44,7 +44,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Eliminate Longtailed Mouse (10)
 	Saga.Eliminate(cid, QuestID, StepID, 10351, 10, 1);
 	Saga.Eliminate(cid, QuestID, StepID, 10352, 10, 1);
@@ -60,14 +60,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Report to Aili
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1028);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1028 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4715);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -89,14 +89,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 42601 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 42602 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 42603 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

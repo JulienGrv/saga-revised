@@ -37,14 +37,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Hena
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1152);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1152 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2937);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -60,7 +60,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Harvest a Pumpkin (5)
 	Saga.FindQuestItem(cid, QuestID, StepID, 31, 3978, 10000, 5, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 32, 3978, 10000, 5, 2);
@@ -86,14 +86,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Bring the harvested pumpkin to Hena
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1152);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1152 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2940);
 		local ItemCountA = Saga.CheckUserInventory(cid, 3978);
 		if ItemCountA > 4 then
 			Saga.NpcTakeItem(cid, 3978, 5);
@@ -116,15 +116,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 16601 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 16602 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 16603 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

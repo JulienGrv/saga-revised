@@ -41,53 +41,53 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk to Sally
-	Saga.AddWaypoint(cid, QuestID, 39901, 1, 1147);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1147);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1147 then
-		Saga.GeneralDialog(cid, 3933);
-		Saga.SubstepComplete(cid, QuestID, 39901, 1);
+		Saga.GeneralDialog(cid, 3939);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		Saga.NpcGiveItem(cid, 4071, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 39901, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 39901);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Bring juice to Whitney
-	Saga.AddWaypoint(cid, QuestID, 39902, 1, 1148);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1148);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1148 then
-		Saga.GeneralDialog(cid, 3933);
-		Saga.SubstepComplete(cid, QuestID, 39902, 1);
+		Saga.GeneralDialog(cid, 3942);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		Saga.NpcTakeItem(cid, 4071, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 39902, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 39902);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -95,11 +95,12 @@ end
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 39901 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 39902 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 
 	if ret == 0 then

@@ -29,6 +29,7 @@ function QUEST_START(cid)
 	Saga.InsertQuest(cid, QuestID, 2);
 	return 0;
 end
+
 function QUEST_FINISH(cid)
 	local freeslots = Saga.FreeInventoryCount(cid, 0);
 	if freeslots > 1 then
@@ -46,56 +47,75 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
-	Saga.StepComplete(cid, QuestID, 12901);
+function QUEST_STEP_1(cid, StepID)
+	-- Talk to ?
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1003);
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1003 then
+		Saga.GeneralDialog(cid, 1912);
+		Saga.SubstepComplete(cid, QuestID, 501, 1);
+	end
+	
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid, QuestID, 501, i) == false then
+			return -1;
+		end
+	end
+	
+	-- Clear waypoints
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 501);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Find a Black Stripe Tuna's Belly;Find a Be Chased Mermaid's Scale;
 	
-	Saga.FindQuestItem(cid, QuestID, 12902, 10052, 4069, 8000, 5, 1);
-	Saga.FindQuestItem(cid, QuestID, 12902, 10053, 4069, 8000, 5, 1);
-	Saga.FindQuestItem(cid, QuestID, 12902, 10034, 4073, 8000, 5, 2);
-	Saga.FindQuestItem(cid, QuestID, 12902, 10035, 4073, 8000, 5, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10052, 4069, 8000, 5, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10053, 4069, 8000, 5, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10034, 4073, 8000, 5, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10035, 4073, 8000, 5, 2);
 
 -- check if all substeps are complete
 	for i = 1, 2 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 12902, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 	end
-	Saga.StepComplete(cid, QuestID, 12902);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	--Talk with Adria
-	Saga.AddWaypoint(cid, QuestID, 12903, 1, 1143);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1143);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	local ItemCountA = Saga.CheckUserInventory(cid, 4069);
 	local ItemCountB = Saga.CheckUserInventory(cid, 4073);
 	if ret == 1143
 	then
-	Saga.GeneralDialog(cid, 3936);
+	Saga.GeneralDialog(cid, 1917);
 	if ItemCountA > 4 and ItemCountB > 4
 	then
 	Saga.NpcTakeItem(cid, 4068, 5);
 	Saga.NpcTakeItem(cid, 4073, 5);
-	Saga.SubstepComplete(cid, QuestID, 12903, 1);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 12903, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 12903);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -104,13 +124,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 12901 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 12902 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 12903 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 
 	if ret == 0 then

@@ -48,64 +48,73 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk to adriana
-	Saga.AddWaypoint(cid, QuestID, 1601, 1, 1002);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1002);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1002 then
 		Saga.GeneralDialog(cid, 28);
-		Saga.SubstepComplete(cid, QuestID, 1601, 1);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 1601, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 1601);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
-	-- eliminate boss pukui
-	Saga.Eliminate(cid, QuestID, 1602, 10011, 1, 1);
+function QUEST_STEP_2(cid, StepID)
+	-- Talk to ?
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1004);
 	
-	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 1602, i) == false then
-			return -1;
-		end
-	end
-	
-	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 1602);
-	return 0;
-end
-
-
-function QUEST_STEP_3(cid)
-	-- Talk to zarko
-	Saga.AddWaypoint(cid, QuestID, 1603, 1, 1005);
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1005 then
-		Saga.GeneralDialog(cid, 28);
-		Saga.SubstepComplete(cid, QuestID, 1603, 1);
+	if ret == 1004 then
+		Saga.GeneralDialog(cid, 150);
+		Saga.SubstepComplete(cid, QuestID, 501, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 1603, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, 501, i) == false then
+			return -1;
+		end
+	end
+	
+	-- Clear waypoints
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, 501);
+	return 0;
+end
+
+
+function QUEST_STEP_3(cid, StepID)
+	-- Talk to zarko
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1004);
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1004 then
+		Saga.GeneralDialog(cid, 147);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
+	
+	-- Check if all substeps are completed
+	for i = 1, 1 do
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 1603);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -114,14 +123,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 1601 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 1602 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 1603 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

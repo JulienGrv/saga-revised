@@ -43,54 +43,55 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Add all waypoints
-	Saga.AddWaypoint(cid, QuestID, 39701, 1, 1139);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1139);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1139 then
+		Saga.GeneralDialog(cid, 3925);
 		Saga.NpcGiveItem(cid, 4245, 1);
-		Saga.SubstepComplete(cid, QuestID, 39701, 1);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 39701, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 39701);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Add all waypoints
-	Saga.AddWaypoint(cid, QuestID, 39702, 1, 1064);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1064);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1064 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3930);
 		if Saga.CheckUserInventory(cid, 4245) > 0 then
 			Saga.NpcTakeItem(cid, 4245, 1);
-			Saga.SubstepComplete(cid, QuestID, 39702, 1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 39702, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 39702);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -99,11 +100,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 39701 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 39702 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 
 	if ret == 0 then

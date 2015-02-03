@@ -41,38 +41,38 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
-	Saga.StepComplete(cid, QuestID, 13101);
+function QUEST_STEP_1(cid, StepID)
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Collect Garbage
 
-	Saga.FindQuestItem(cid, QuestID, 13102, 27, 2811, 10000, 5, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 27, 2811, 10000, 5, 1);
 	--Object Activation toggle
 
-	if Saga.IsSubStepCompleted(cid, QuestID, 13102, 1) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false
 	then
-	Saga.UserUpdateActionObjectType(cid, QuestID, 13102, 27, 0);
+	Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 27, 0);
 	else
-	Saga.UserUpdateActionObjectType(cid, QuestID, 13102, 27, 1);
+	Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 27, 1);
 	end
 	--check if all substeps are completed
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 13102, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 	end
-	Saga.StepComplete(cid, QuestID, 13102);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	--Talk with Ivo
 
-	Saga.AddWaypoint(cid, QuestID, 13103, 1, 1062);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1062);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	local ItemCount = Saga.CheckUserInventory(cid, 2811);
@@ -82,11 +82,11 @@ function QUEST_STEP_3(cid)
 	if ItemCount > 4
 	then
 	Saga.NpcTakeItem(cid, 2811, 5);
-	Saga.SubstepComplete(cid, QuestID, 13103, 1);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 13103);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -94,13 +94,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 13101 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 13102 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 13103 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 
 	if ret == 0 then

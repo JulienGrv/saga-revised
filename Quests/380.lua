@@ -38,14 +38,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Pelshia Hiltrud
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1013);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1013 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3778);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -61,7 +61,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Search for the missing Necklace (1)
 	Saga.FindQuestItem(cid, QuestID, StepID, 10131, 2790, 10000, 1, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10132, 2790, 10000, 1, 1);
@@ -77,14 +77,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver Necklace to Pelshia Hiltrud (1)
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1013);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1013 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3781);
 
 		local ItemCountA = Saga.CheckUserInventory(cid, 2790);
 		if ItemCountA > 0 then
@@ -108,15 +108,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 38001 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 38002 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 38003 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

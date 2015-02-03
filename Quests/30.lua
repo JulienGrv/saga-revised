@@ -46,14 +46,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Get 4 Wicked Star Loots
 	Saga.FindQuestItem(cid, QuestID, StepID, 10012, 2604, 10000, 4, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10013, 2604, 10000, 4, 1);
 	Saga.FindQuestItem(cid, QuestID, StepID, 10014, 2604, 10000, 4, 1);
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid, QuestID, 3001, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
 		return -1;
 	end
 	
@@ -61,7 +61,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
@@ -71,7 +71,7 @@ function QUEST_STEP_2(cid)
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid, QuestID, 3002, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
 		return -1;
 	end
 	
@@ -84,12 +84,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 3001 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 3002 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

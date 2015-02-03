@@ -39,14 +39,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Talk with Monika Reynolds
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1012 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2716);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -62,14 +62,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Talk with Niahong
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1156);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1156 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2719);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -85,7 +85,7 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	--Eliminate Footpad Blue Cape Cat;Eliminate Pirate Blue Cape Cat;
 	Saga.Eliminate(cid, QuestID, StepID, 10294, 5, 1);
 	Saga.Eliminate(cid, QuestID, StepID, 10295, 5, 1);
@@ -103,14 +103,14 @@ function QUEST_STEP_3(cid)
 	return 0;
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	--Report to Niahong
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1156);
 
 	--Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1156 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2722);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 
@@ -130,17 +130,17 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 25401 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 25402 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 25403 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	elseif CurStepID == 25404 then
-		ret = QUEST_STEP_4(cid);
+		ret = QUEST_STEP_4(cid, StepID);
 	end
 
 	if ret == 0 then

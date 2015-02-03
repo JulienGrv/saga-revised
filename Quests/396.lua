@@ -43,70 +43,70 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Add all waypoints
-	Saga.AddWaypoint(cid, QuestID, 39601, 1, 1174);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1174);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1174 then
-		Saga.GeneralDialog(cid, 3936);
-		Saga.SubstepComplete(cid, QuestID, 39601, 1);
+		Saga.GeneralDialog(cid, 3919);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 39601, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 39601);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Find training result
 	local ActionObjectID = 47;
 	local ItemID = 9944;
 	
-	Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 0);
-	if Saga.FindQuestItem(cid, QuestID, 39602, ActionObjectID, ItemID, 10000, 1, 1) > 0 then
-  	  Saga.UserUpdateActionObjectType(cid, QuestID, 39602, ActionObjectID, 1);
+	Saga.UserUpdateActionObjectType(cid, QuestID, StepID, ActionObjectID, 0);
+	if Saga.FindQuestItem(cid, QuestID, StepID, ActionObjectID, ItemID, 10000, 1, 1) > 0 then
+  	  Saga.UserUpdateActionObjectType(cid, QuestID, StepID, ActionObjectID, 1);
 	else
 		return -1;
 	end
 	
-	Saga.StepComplete(cid, QuestID, 39602);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Deliver training result to Dein
-	Saga.AddWaypoint(cid, QuestID, 39603, 1, 1173);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1173);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1173 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3922);
 		if Saga.CheckUserInventory(cid, 9944) > 0 then
 			Saga.NpcTakeItem(cid, 9944, 1);
-			Saga.SubstepComplete(cid, QuestID, 39603, 1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	-- Check if all substeps are completed
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 39603, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	-- Clear waypoints
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 39603);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 
@@ -117,13 +117,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 39601 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 39602 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 39603 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 
 	if ret == 0 then

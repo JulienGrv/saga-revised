@@ -40,14 +40,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Regina Salisbury
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1010 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3114);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -63,7 +63,7 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Find Spore pocket (3);
 	-- Loot Potemkin (3);
 	
@@ -83,14 +83,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Receive '???' from Magnet Wilhelmina
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1007);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1010 then
-		Saga.GeneralDialog(cid, 3936);
+	if ret == 1007 then
+		Saga.GeneralDialog(cid, 3117);
 	
 		local freeslots = Saga.FreeInventoryCount(cid, 0);
 		local ItemCountA = Saga.CheckUserInventory(cid, 4010);
@@ -115,14 +115,14 @@ function QUEST_STEP_3(cid)
 	return 0;
 end
 
-function QUEST_STEP_4(cid)
+function QUEST_STEP_4(cid, StepID)
 	-- Report to Regina Salisbury
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1010 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 3120);
 
 		local ItemCountA = Saga.CheckUserInventory(cid, 4012);
 		if ItemCountA > 2  then
@@ -146,17 +146,17 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 22301 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 22302 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 22303 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 22304 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 	
 	if ret == 0 then

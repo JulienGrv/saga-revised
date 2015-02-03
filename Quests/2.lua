@@ -47,7 +47,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Get 2 Vadon Fry Shells
 	-- Get 1 Vadon Shell
 	Saga.FindQuestItem(cid, QuestID, StepID, 10015, 2643, 8000, 2, 1);
@@ -66,14 +66,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Talk to mischa
-	Saga.AddWaypoint(cid, QuestID, 202, 1, 1000);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1000);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1000 then
-		Saga.GeneralDialog(cid, 29);
+		Saga.GeneralDialog(cid, 30);
 		Saga.NpcTakeItem(cid, 2643, 2);
 		Saga.NpcTakeItem(cid, 2610, 1);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
@@ -97,12 +97,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 201 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 202 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

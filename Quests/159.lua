@@ -38,14 +38,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Hollgran
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1011);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1011 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2545);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
@@ -61,36 +61,36 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1012);	 -- Visit Monika Reynolds;
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);	 -- Regina Salisbury;
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1013);	 -- Pelshia Hiltrud;
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1009);	 -- Volker Stanwood;
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1006);	 -- Mainhared Anselm;
-	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1007);	 -- Magnet Wilhelmina;
+	Saga.AddWaypoint(cid, QuestID, StepID, 2, 1010);	 -- Regina Salisbury;
+	Saga.AddWaypoint(cid, QuestID, StepID, 3, 1013);	 -- Pelshia Hiltrud;
+	Saga.AddWaypoint(cid, QuestID, StepID, 4, 1009);	 -- Volker Stanwood;
+	Saga.AddWaypoint(cid, QuestID, StepID, 5, 1006);	 -- Mainhared Anselm;
+	Saga.AddWaypoint(cid, QuestID, StepID, 6, 1007);	 -- Magnet Wilhelmina;
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1012 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2548);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	elseif ret == 1010 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2551);
 		Saga.SubstepComplete(cid, QuestID, StepID, 2);
 	elseif ret == 1013 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2554);
 		Saga.SubstepComplete(cid, QuestID, StepID, 3);
 	elseif ret == 1009 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2557);
 		Saga.SubstepComplete(cid, QuestID, StepID, 4);
 	elseif ret == 1006 then
 		Saga.NpcGiveItem(cid, 2786, 1);
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2560);
 		Saga.SubstepComplete(cid, QuestID, StepID, 5);
 	elseif ret == 1007 then
 		Saga.NpcGiveItem(cid, 2787, 1);
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2563);
 		Saga.SubstepComplete(cid, QuestID, StepID, 6);
 	end
 	
@@ -106,14 +106,14 @@ function QUEST_STEP_2(cid)
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	-- Talk with Hollgran
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1011);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1011 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2566);
 		local ItemCountA = Saga.CheckUserInventory(cid, 2786);
 		local ItemCountB = Saga.CheckUserInventory(cid, 2787);
 		if ItemCountA > 0 and ItemCountB > 0 then
@@ -138,15 +138,15 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 15901 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 15902 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 15903 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 
 	if ret == 0 then

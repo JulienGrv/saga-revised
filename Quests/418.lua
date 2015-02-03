@@ -36,28 +36,30 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
-	local freeslots = Saga.FreeInventoryCount(cid, 0);
-	if freeslots > 0 then
+function QUEST_STEP_1(cid, StepID)
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1182);
+
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1182 then
+		Saga.GeneralDialog(cid, 4653);
 		Saga.NpcGiveItem(cid, 4225, 1);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
-	else
-		Saga.EmptyInventory(cid);
 	end
 
-
+	Saga.ClearWaypoints(cid, QuestID);
 	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Deliver toy to Yan
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1181);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1181 then
-		Saga.GeneralDialog(cid, 3933);
+		Saga.GeneralDialog(cid, 4658);
 
 		local ItemCountA = Saga.CheckUserInventory(cid, 4225);
 		if ItemCountA > 0 then
@@ -87,12 +89,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 41801 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 41802 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

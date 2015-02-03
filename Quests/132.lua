@@ -42,56 +42,56 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Talk with Averro Reinhold
 
-	Saga.AddWaypoint(cid, QuestID, 13201, 1, 1004);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1004);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1004
 	then
-	Saga.GeneralDialog(cid, 3936);
-	Saga.SubstepComplete(cid, QuestID, 13201, 1);
+	Saga.GeneralDialog(cid, 1937);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	Saga.ClearWaypoints(cid, QuestID);
 	end
 
-	Saga.FindQuestItem(cid, QuestID, 13201, 10042, 2657, 8000, 5, 2);
-	Saga.FindQuestItem(cid, QuestID, 13201, 10043, 2657, 8000, 5, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10042, 2657, 8000, 5, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10043, 2657, 8000, 5, 2);
 
 	--check if all substeps are complete
 	for i = 1, 2 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 13201, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 	end
-	Saga.StepComplete(cid, QuestID, 13201);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Report to Kundi
-	Saga.AddWaypoint(cid, QuestID, 13202, 1, 1066);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1066);
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	ItemCount = Saga.CheckUserInventory(cid, 2657);
 	if ret == 1066 and
 	ItemCount > 4
 	then
-	Saga.GeneralDialog(cid, 3936);
+	Saga.GeneralDialog(cid, 1940);
 	Saga.NpcTakeItem(cid, 2657, 5);
-	Saga.SubstepComplete(cid, QuestID, 13202, 1);
+	Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-	if Saga.IsSubStepCompleted(cid, QuestID, 13202, i) == false
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false
 	then
 	return -1;
 	end
 	end
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 13202);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -99,11 +99,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 13201 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 13202 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 
 	if ret == 0 then

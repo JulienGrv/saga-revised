@@ -44,7 +44,7 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Find Cornutu's Claws;Loot Tropical Hydra's Organs;Find Marine Sphere Parts;Capture a Pukui;
 
 	Saga.FindQuestItem(cid, QuestID, StepID, 10021, 4072, 8000, 1, 1);
@@ -69,23 +69,23 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Deliver Material to Zarko Ruzzoli
 
-	Saga.AddWaypoint(cid, QuestID, 2602, 1, 1005);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1005);
 	local ret = Saga.GetNPCIndex(cid);
 	local ItemCountA = Saga.CheckUserInventory(cid, 4072);
 	local ItemCountB = Saga.CheckUserInventory(cid, 2644);
 	local ItemCountC = Saga.CheckUserInventory(cid, 2645);
 	local ItemCountD = Saga.CheckUserInventory(cid, 2639);
 	if ret == 1005 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 247);
 		if ItemCountA > 0 and ItemCountB > 1 and ItemCountC > 1 and ItemCountD > 0 then
 			Saga.NpcTakeItem(cid, 4072, 1);
 			Saga.NpcTakeItem(cid, 2644, 2);
 			Saga.NpcTakeItem(cid, 2645, 2);
 			Saga.NpcTakeItem(cid, 2639, 1);
-			Saga.SubstepComplete(cid, QuestID, 2602, 1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
@@ -106,12 +106,12 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	
 	if CurStepID == 2601 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 2602 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	
 	if ret == 0 then

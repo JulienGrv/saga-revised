@@ -37,70 +37,72 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk to klaret
-	Saga.AddWaypoint(cid, QuestID, 3801, 1, 1001);
-	
-	-- Check for completion
-	local ret = Saga.GetNPCIndex(cid);
-	if ret == 1002 then
-		Saga.SubstepComplete(cid, QuestID, 3801, 1);
-	end
-	
-	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid, QuestID, 3801, 1) == false then
-		return -1;
-	end
-	
-	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 3801);
-	return 0;
-end
-
-function QUEST_STEP_2(cid)
-	-- Get 3 Tuna Flesh
-	Saga.FindQuestItem(cid, QuestID, 3802, 10052, 2614, 10000, 3, 1);
-	Saga.FindQuestItem(cid, QuestID, 3802, 10053, 2614, 10000, 3, 1);
-	-- Get 2 ChonChon eyes
-	Saga.FindQuestItem(cid, QuestID, 3802, 10028, 2615, 10000, 2, 2);
-	Saga.FindQuestItem(cid, QuestID, 3802, 10029, 2615, 10000, 2, 2);
-	Saga.FindQuestItem(cid, QuestID, 3802, 10253, 2615, 10000, 2, 2);
-	Saga.FindQuestItem(cid, QuestID, 3802, 10255, 2615, 10000, 2, 2);
-	-- Get 2 Mermaid fins
-	Saga.FindQuestItem(cid, QuestID, 3802, 10034, 2616, 10000, 2, 3);
-	Saga.FindQuestItem(cid, QuestID, 3802, 10035, 2616, 10000, 2, 3);
-	
-	-- Check if all substeps are completed
-	for i = 1, 3 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 3802, i) == false then
-			return -1;
-		end
-	end
-	
-	Saga.StepComplete(cid, QuestID, 3802);
-	return 0;
-end
-
-function QUEST_STEP_3(cid)
-	-- Talk to klaret
-	Saga.AddWaypoint(cid, QuestID, 3803, 1, 1001);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1001);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1001 then
-		Saga.NpcTakeItem(cid, 2614, 3);
-		Saga.NpcTakeItem(cid, 2615, 2);
-		Saga.NpcTakeItem(cid, 2616, 2);
-		Saga.SubstepComplete(cid, QuestID, 3803, 1);
+		Saga.GeneralDialog(cid, 2351);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
 	
 	-- Check if all substeps are completed
-	if Saga.IsSubStepCompleted(cid, QuestID, 3803, 1) == false then
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
 		return -1;
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 3803);
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
+end
+
+function QUEST_STEP_2(cid, StepID)
+	-- Get 3 Tuna Flesh
+	Saga.FindQuestItem(cid, QuestID, StepID, 10052, 2614, 10000, 3, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10053, 2614, 10000, 3, 1);
+	-- Get 2 ChonChon eyes
+	Saga.FindQuestItem(cid, QuestID, StepID, 10028, 2615, 10000, 2, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10029, 2615, 10000, 2, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10253, 2615, 10000, 2, 2);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10255, 2615, 10000, 2, 2);
+	-- Get 2 Mermaid fins
+	Saga.FindQuestItem(cid, QuestID, StepID, 10034, 2616, 10000, 2, 3);
+	Saga.FindQuestItem(cid, QuestID, StepID, 10035, 2616, 10000, 2, 3);
+	
+	-- Check if all substeps are completed
+	for i = 1, 3 do
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
+			return -1;
+		end
+	end
+	
+	Saga.StepComplete(cid, QuestID, StepID);
+	return 0;
+end
+
+function QUEST_STEP_3(cid, StepID)
+	-- Talk to klaret
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1001);
+	
+	-- Check for completion
+	local ret = Saga.GetNPCIndex(cid);
+	if ret == 1001 then
+		Saga.GeneralDialog(cid, 334);
+		Saga.NpcTakeItem(cid, 2614, 3);
+		Saga.NpcTakeItem(cid, 2615, 2);
+		Saga.NpcTakeItem(cid, 2616, 2);
+		Saga.SubstepComplete(cid, QuestID, StepID, 1);
+	end
+	
+	-- Check if all substeps are completed
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 1) == false then
+		return -1;
+	end
+	
+	Saga.ClearWaypoints(cid, QuestID);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -109,13 +111,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 3801 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 3802 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 3803 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 
 	if ret == 0 then

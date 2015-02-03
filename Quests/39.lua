@@ -42,75 +42,75 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	--Talk with Misha Berardini
-	Saga.AddWaypoint(cid, QuestID, 3901, 1, 1000);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1000);
 	
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 		if ret == 1000 then
-			Saga.GeneralDialog(cid, 3936);
-			Saga.SubstepComplete(cid, QuestID, 3901, 1);
+			Saga.GeneralDialog(cid, 2354);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	--check if all substeps are complete
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 3901, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 3901);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	--Eliminate Hodemimes Blue Shark;Search Shark Coast floor for a Stone
-	Saga.Eliminate(cid, QuestID, 3902, 10054, 7, 1);
-	Saga.Eliminate(cid, QuestID, 3902, 10055, 7, 1);
-	Saga.FindQuestItem(cid, QuestID, 3902, 16, 2844, 8000, 1, 2);
+	Saga.Eliminate(cid, QuestID, StepID, 10054, 7, 1);
+	Saga.Eliminate(cid, QuestID, StepID, 10055, 7, 1);
+	Saga.FindQuestItem(cid, QuestID, StepID, 16, 2844, 8000, 1, 2);
 	
-	if Saga.IsSubStepCompleted(cid, QuestID, 3902, 2) == false then
-		Saga.UserUpdateActionObjectType(cid, QuestID, 3902, 16, 0);
+	if Saga.IsSubStepCompleted(cid, QuestID, StepID, 2) == false then
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 16, 0);
 	else
-		Saga.UserUpdateActionObjectType(cid, QuestID, 3902, 16, 1);
+		Saga.UserUpdateActionObjectType(cid, QuestID, StepID, 16, 1);
 	end
 	
 	--check if all substeps are complete
 	for i = 1, 2 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 3902, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
-	Saga.StepComplete(cid, QuestID, 3902);
+	Saga.StepComplete(cid, QuestID, StepID);
 	return 0;
 end
 
-function QUEST_STEP_3(cid)
+function QUEST_STEP_3(cid, StepID)
 	--Report to Misha Berardini
-	Saga.AddWaypoint(cid, QuestID, 3903, 1, 1000);
+	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1000);
 	
 	--check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	local ItemCount = Saga.CheckUserInventory(cid, 2844);
 	if ret == 1000 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 340);
 		if ItemCount > 0 then
 			Saga.NpcTakeItem(cid, 2844, 1);
-			Saga.SubstepComplete(cid, QuestID, 3903, 1);
+			Saga.SubstepComplete(cid, QuestID, StepID, 1);
 		end
 	end
 	
 	--check if all substeps are complete
 	for i = 1, 1 do
-		if Saga.IsSubStepCompleted(cid, QuestID, 3903, i) == false then
+		if Saga.IsSubStepCompleted(cid, QuestID, StepID, i) == false then
 			return -1;
 		end
 	end
 	
 	Saga.ClearWaypoints(cid, QuestID);
-	Saga.StepComplete(cid, QuestID, 3903);
+	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
 end
@@ -119,13 +119,14 @@ function QUEST_CHECK(cid)
 	-- Check all steps for progress
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local ret = -1;
+	local StepID = CurStepID;
 
 	if CurStepID == 3901 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 3902 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	elseif CurStepID == 3903 then
-		ret = QUEST_STEP_3(cid);
+		ret = QUEST_STEP_3(cid, StepID);
 	end
 
 	if ret == 0 then

@@ -37,14 +37,14 @@ function QUEST_CANCEL(cid)
 	return 0;
 end
 
-function QUEST_STEP_1(cid)
+function QUEST_STEP_1(cid, StepID)
 	-- Talk with Regina Salisbury
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1010);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1010 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2931);
 		Saga.NpcGiveItem(cid, 3977, 1);
 		Saga.SubstepComplete(cid, QuestID, StepID, 1);
 	end
@@ -61,14 +61,14 @@ function QUEST_STEP_1(cid)
 	return 0;
 end
 
-function QUEST_STEP_2(cid)
+function QUEST_STEP_2(cid, StepID)
 	-- Deliver items to Hena
 	Saga.AddWaypoint(cid, QuestID, StepID, 1, 1152);
 	
 	-- Check for completion
 	local ret = Saga.GetNPCIndex(cid);
 	if ret == 1152 then
-		Saga.GeneralDialog(cid, 3936);
+		Saga.GeneralDialog(cid, 2934);
 		local ItemCountA = Saga.CheckUserInventory(cid, 3977);
 		if ItemCountA > 0 then
 			Saga.NpcTakeItem(cid, 3977, 1);
@@ -91,13 +91,13 @@ end
 
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	StepID = CurStepID;
+	local StepID = CurStepID;
 	local ret = -1;
 
 	if CurStepID == 16501 then
-		ret = QUEST_STEP_1(cid);
+		ret = QUEST_STEP_1(cid, StepID);
 	elseif CurStepID == 16502 then
-		ret = QUEST_STEP_2(cid);
+		ret = QUEST_STEP_2(cid, StepID);
 	end
 	if ret == 0 then
 		QUEST_CHECK(cid);
