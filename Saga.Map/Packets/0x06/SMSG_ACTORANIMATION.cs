@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// Invokes a packet to do some animiation. We should confirm it's packets 
+    /// Invokes a packet to do some animiation. We should confirm it's packets
     /// useabillity and capacities.
     /// </remarks>
     /// <id>

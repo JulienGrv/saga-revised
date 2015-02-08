@@ -1,9 +1,8 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Shared.PacketLib.Map
 {
-
     internal class SMSG_CHAR_SENDDATA : RelayPacket
     {
         public SMSG_CHAR_SENDDATA()
@@ -17,7 +16,7 @@ namespace Saga.Shared.PacketLib.Map
         {
             set
             {
-                Array.Copy( BitConverter.GetBytes(value) , 0, this.data, 0, 4);               
+                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4);
             }
         }
 
@@ -62,9 +61,8 @@ namespace Saga.Shared.PacketLib.Map
                 this.data[8] = value;
             }
         }
-      
-        #endregion
-        
+
+        #endregion Face-informations
 
         #region Equipment
 
@@ -196,13 +194,13 @@ namespace Saga.Shared.PacketLib.Map
             }
         }
 
-        #endregion
+        #endregion Equipment
 
         public uint AugeSkill
         {
             set
             {
-                Array.Copy( BitConverter.GetBytes(value), 0, this.data, 100, 4);
+                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 100, 4);
             }
         }
 

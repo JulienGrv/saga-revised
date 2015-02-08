@@ -1,17 +1,15 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Level = 1, EXP = 2, Durability = 3, Amount = 4, Active = 5, Tradable = 7
     /// </summary>
     /// <remarks>
-    /// This packet is used to update the item in the the 
+    /// This packet is used to update the item in the the
     /// specified container most common usage is the update
     /// the items count for various reaons.
-    /// 
+    ///
     /// </remarks>
     /// <id>
     /// 0513
@@ -53,6 +51,6 @@ namespace Saga.Packets
         public byte Unknown
         {
             set { this.data[5] = value; }
-        } 
+        }
     }
 }

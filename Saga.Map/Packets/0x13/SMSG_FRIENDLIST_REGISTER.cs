@@ -1,18 +1,16 @@
+using Saga.Network.Packets;
 using System;
 using System.Text;
-using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>Registers new friendlist entry</summary>
     /// <remarks>
     /// This packet is sent by the server to the client as a response on CMSG_FRIENDLIST_REGISTER to indicate
-    /// a new character should be added to the friendlist. Note that this will add 1 character 
+    /// a new character should be added to the friendlist. Note that this will add 1 character
     /// incremental to the list.
-    /// 
-    /// You can use the result field to discard the adding and show the reason 
+    ///
+    /// You can use the result field to discard the adding and show the reason
     /// why. Supported reasons: 0 Ok, 1 Character Not found, 2 List full, 3 Already added, 4 Unable to add yourself, 5 Does not exists unable to remove
     /// </remarks>
     /// <id>
@@ -31,7 +29,7 @@ namespace Saga.Packets
         {
             set
             {
-                UnicodeEncoding.Unicode.GetBytes(value, 0, Math.Min(value.Length, 16), this.data,0);
+                UnicodeEncoding.Unicode.GetBytes(value, 0, Math.Min(value.Length, 16), this.data, 0);
             }
         }
 
@@ -59,7 +57,6 @@ namespace Saga.Packets
             }
         }
 
-
         public byte Map
         {
             set
@@ -75,6 +72,5 @@ namespace Saga.Packets
                 this.data[40] = value;
             }
         }
-
     }
 }

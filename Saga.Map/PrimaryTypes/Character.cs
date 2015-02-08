@@ -1,22 +1,17 @@
-using System;
-using System.Collections.Generic;
+using Saga.Map;
 using Saga.Map.Client;
 using Saga.Map.Definitions.Misc;
 using Saga.Map.Utils.Definitions.Misc;
 using Saga.Packets;
-using Saga.Tasks;
-using Saga.Shared.Definitions;
 using Saga.Structures;
 using Saga.Structures.Collections;
-using Saga.Enumarations;
-using Saga.Map;
+using Saga.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.PrimaryTypes
 {
-
-
     public delegate void RangeEventHandler(Character regionObject);
-
 
     /// <summary>
     /// Character class used for by the client
@@ -54,9 +49,8 @@ namespace Saga.PrimaryTypes
         /// Initialize a new character
         /// </summary>
         /// <param name="client"></param>
-        public Character(Client client, uint CharacterId, uint SessionId) 
-        {           
-
+        public Character(Client client, uint CharacterId, uint SessionId)
+        {
             this.client = client;
             this.TickLogged = Environment.TickCount;
             this.LASTBREATH_TICK = Environment.TickCount;
@@ -78,8 +72,7 @@ namespace Saga.PrimaryTypes
             this._status.MaxHP += Singleton.CharacterConfiguration.CalculateMaximumHP(this);
         }
 
-
-        #endregion
+        #endregion Character Constructor / Deconstructor
 
         #region Character Internal Members
 
@@ -136,7 +129,7 @@ namespace Saga.PrimaryTypes
 
         /// <summary>
         /// Amount of character-experience (overall gameplay experience)
-        /// </summary>        
+        /// </summary>
         private uint _cexp = 0;
 
         /// <summary>
@@ -190,8 +183,7 @@ namespace Saga.PrimaryTypes
         [NonSerialized()]
         internal int TickLogged = 0;
 
-
-        #endregion
+        #endregion Character Internal Members
 
         #region Character Public Members (Variables)
 
@@ -271,7 +263,7 @@ namespace Saga.PrimaryTypes
         /// Job-level of the character
         /// </summary>
         public byte jlvl = 0;
-     
+
         /// <summary>
         /// Byte array containing the face details of the character
         /// </summary>
@@ -294,29 +286,29 @@ namespace Saga.PrimaryTypes
         /// </summary>
         public uint ZENY = 10000;
 
-
-
-
-        #endregion
+        #endregion Character - Base stats
 
         #region Character - Rates
 
         [NonSerialized()]
         public double _CexpModifier = 1;
+
         [NonSerialized()]
         public double _JexpModifier = 1;
+
         [NonSerialized()]
         public double _WexpModifier = 1;
+
         [NonSerialized()]
         public double _DropRate = 0;
 
-        #endregion
+        #endregion Character - Rates
 
         #region Character - Location
 
         /// <summary>
         /// Save location
-        /// </summary>        
+        /// </summary>
         public WorldCoordinate savelocation;
 
         /// <summary>
@@ -324,7 +316,7 @@ namespace Saga.PrimaryTypes
         /// </summary>
         public WorldCoordinate lastlocation;
 
-        #endregion
+        #endregion Character - Location
 
         #region Character - Misc
 
@@ -335,7 +327,7 @@ namespace Saga.PrimaryTypes
         internal WeaponCollection weapons = new WeaponCollection();
 
         /// <summary>
-        /// Internally used as a container for all of your jobs with the associated 
+        /// Internally used as a container for all of your jobs with the associated
         /// job levels. They form milestones of your jobs.
         /// </summary>
         internal byte[] CharacterJobLevel = new byte[15];
@@ -348,11 +340,11 @@ namespace Saga.PrimaryTypes
 
         /// <summary>
         /// Internally used as a container for all of your registered
-        /// characteracters on your blacklist. 
+        /// characteracters on your blacklist.
         /// </summary>
         /// <remarks>
-        /// Because the blacklist also contains a definition for reason 
-        /// why you put him there we are using a KeyValuePair. So in order 
+        /// Because the blacklist also contains a definition for reason
+        /// why you put him there we are using a KeyValuePair. So in order
         /// to perform a name based lookup use a anoumous predicate.
         /// </remarks>
         internal List<KeyValuePair<string, byte>> _blacklist = new List<KeyValuePair<string, byte>>();
@@ -361,6 +353,7 @@ namespace Saga.PrimaryTypes
         /// Byte containing the zone information of all learned maps
         /// </summary>
         internal byte[] ZoneInformation = new byte[256];
+
         internal List<byte> ParticipatedEvents = new List<byte>();
 
         [NonSerialized()]
@@ -376,12 +369,13 @@ namespace Saga.PrimaryTypes
         internal uint ActiveDialog = 0;
         internal uint TakenDamage = 0;
         internal byte LastEquipmentDuraLoss = 0;
-        internal Saga.Quests.Objectives.ObjectiveList QuestObjectives = 
-            new Saga.Quests.Objectives.ObjectiveList();       
-        
-        #endregion
 
-        #endregion
+        internal Saga.Quests.Objectives.ObjectiveList QuestObjectives =
+            new Saga.Quests.Objectives.ObjectiveList();
+
+        #endregion Character - Misc
+
+        #endregion Character Public Members (Variables)
 
         #region Character Public Members (Properties)
 
@@ -434,7 +428,7 @@ namespace Saga.PrimaryTypes
             }
         }
 
-        #endregion
+        #endregion Character Public Members (Properties)
 
         #region Character Public Methods
 
@@ -450,14 +444,13 @@ namespace Saga.PrimaryTypes
             return this.learnedskills.FindIndex(Query) > -1;
         }
 
-
         /// <summary>
         /// Calculates the current position
         /// </summary>
         /// <returns></returns>
         public Point CalculatePosition()
         {
-            if ( stance == 4 || stance == 5)
+            if (stance == 4 || stance == 5)
             {
                 int t_diff = Environment.TickCount - LastPositionTick;
                 float diff = t_diff * 0.1F;
@@ -483,9 +476,10 @@ namespace Saga.PrimaryTypes
             return 0;
         }
 
-        #endregion
+        #endregion Character Public Methods
 
         //Character Events (Special)
+
         #region Character Events
 
         [NonSerialized()]
@@ -494,29 +488,27 @@ namespace Saga.PrimaryTypes
         [NonSerialized()]
         public RangeEventHandler PartyMemberDisappears;
 
-
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         /// <remarks>
         /// The natural hp recovery is invoked every seccond
-        ///    
+        ///
         /// The natural sp & hp recovery are affected by additional stats/bonusses. Therefor
         /// we'll process HPRECOVERY only when the latest tick is greater than  1000 minus
         /// HP_RECOVERYRATE. The same storrie applies to SPRECOVERY, we'll only process that
         /// if the lastest tick is greater than 4000 minus SPRECOVERYRATE.
-        ///    
+        ///
         /// Note: delta tick means the ellapsed time difference specified in millisecconds
-        /// between tick start and tick end. So 4000 makes 4 secconds and 1000 makes 1 seccond.           
+        /// between tick start and tick end. So 4000 makes 4 secconds and 1000 makes 1 seccond.
         /// </remarks>
         /// <notes>
         /// TODO: Add official regenaration hp bonus
-        ///     
+        ///
         /// Regeneration details of 26th dec patch:
         /// clvl 34 - 1657MHP -> 15HP per seccond
-        /// clvl 38 - 1870MHP -> 16HP per seccond                        
+        /// clvl 38 - 1870MHP -> 16HP per seccond
         /// </notes>
         public bool OnRegenerateHP()
         {
@@ -527,24 +519,23 @@ namespace Saga.PrimaryTypes
                 ushort newHP = (ushort)(this.HP + REGENHP_BONUS);
                 this.HP = (newHP < this.HPMAX) ? newHP : this.HPMAX;
                 this._status.Updates |= 1;
-            
 
                 return true;
             } return false;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         /// <remarks>
         /// The natural sp recovery is invoked every 4 secconds
-        ///     
+        ///
         /// The natural sp & hp recovery are affected by additional stats/bonusses. Therefor
         /// we'll process HPRECOVERY only when the latest tick is greater than  1000 minus
         /// HP_RECOVERYRATE. The same storrie applies to SPRECOVERY, we'll only process that
         /// if the lastest tick is greater than 4000 minus SPRECOVERYRATE.
-        ///     
+        ///
         /// Note: delta tick means the ellapsed time difference specified in millisecconds
         /// between tick start and tick end. So 4000 makes 4 secconds and 1000 makes 1 seccond.
         /// </remarks>
@@ -563,29 +554,28 @@ namespace Saga.PrimaryTypes
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         /// <remarks>
         /// The natural breath cheacking is invoked every seccond.
-        ///    
+        ///
         /// Youre beath capacity equals 10% of your MHP per seccond multiplied
         /// by the delta_t. Time difference between the first and the last tick.
-        ///    
+        ///
         /// First when breathing we'll substract 1 LC per seccond which represents
         /// your breath capacity. Once your LC drops down to 0 we'll invoked for damage
-        /// packets if the player is still diving.                      
+        /// packets if the player is still diving.
         /// </remarks>
         public bool OnBreath()
         {
-            int delta_t = Environment.TickCount - LASTBREATH_TICK;            
+            int delta_t = Environment.TickCount - LASTBREATH_TICK;
             LASTBREATH_TICK = Environment.TickCount;
 
             if (IsDiving == true)
             {
                 if (delta_t > 1000)
                 {
-                    
                     if (_status.CurrentOxygen > 0)
                     {
                         _status.CurrentOxygen--;
@@ -597,7 +587,7 @@ namespace Saga.PrimaryTypes
                         damage = (this.HP > damage) ? damage : this.HP;
                         this.HP -= damage;
                         this._status.Updates |= 1;
-                        CommonFunctions.SendOxygenTakeDamage(this, damage);                        
+                        CommonFunctions.SendOxygenTakeDamage(this, damage);
                     }
 
                     return true;
@@ -644,7 +634,7 @@ namespace Saga.PrimaryTypes
         public override void OnSkillUsedByTarget(MapObject source, SkillBaseEventArgs e)
         {
             //If durabillity could be checked
-            if (e.CanCheckEquipmentDurabillity )
+            if (e.CanCheckEquipmentDurabillity)
                 Common.Durabillity.DoEquipment(this.Target as Character, e.Damage);
 
             //Set sword drawn
@@ -661,21 +651,20 @@ namespace Saga.PrimaryTypes
         /// <returns>Returns always true</returns>
         public bool OnDie()
         {
-
             //Pronounce my dead to other people
-            if(  this.sessionParty != null )
-            foreach (Character target in this.sessionParty.GetCharacters())
-            {
-                if (target.id == this.id) continue;
-                if (target.client.isloaded == true)
+            if (this.sessionParty != null)
+                foreach (Character target in this.sessionParty.GetCharacters())
                 {
-                    SMSG_PARTYMEMBERDIED spkt = new SMSG_PARTYMEMBERDIED();
-                    spkt.SessionId = target.id;
-                    spkt.Index = 1;
-                    spkt.ActorId = this.id;
-                    target.client.Send((byte[])spkt);
+                    if (target.id == this.id) continue;
+                    if (target.client.isloaded == true)
+                    {
+                        SMSG_PARTYMEMBERDIED spkt = new SMSG_PARTYMEMBERDIED();
+                        spkt.SessionId = target.id;
+                        spkt.Index = 1;
+                        spkt.ActorId = this.id;
+                        target.client.Send((byte[])spkt);
+                    }
                 }
-            }
 
             // SUBSCRIBE FOR RESPAWN
             this.ISONBATTLE = false;
@@ -685,13 +674,13 @@ namespace Saga.PrimaryTypes
 
         public override void OnEnemyDie(MapObject enemy)
         {
-            if( MapObject.IsNpc(enemy) )
+            if (MapObject.IsNpc(enemy))
             {
                 Quests.QuestBase.UserEliminateTarget(enemy.ModelId, this);
             }
         }
 
-        #endregion
+        #endregion Character Events
 
         //Interface Memebers
 
@@ -706,6 +695,7 @@ namespace Saga.PrimaryTypes
                 }
             }
         }
+
         public override void Disappear(Character character)
         {
             if (character.sessionParty != null && this.sessionParty != null)
@@ -717,9 +707,10 @@ namespace Saga.PrimaryTypes
                 }
             }
         }
+
         public override void ShowObject(Character character)
         {
-            //HELPER VARIABLES 
+            //HELPER VARIABLES
             Rag2Item item;
 
             //STRUCTIRIZE GENERAL INFORMATION
@@ -737,8 +728,7 @@ namespace Saga.PrimaryTypes
             spkt.Job = this.job;
             spkt.Stance = this.stance;
 
-
-            //STRUCTURIZE EQUIPMENT INFORMATION            
+            //STRUCTURIZE EQUIPMENT INFORMATION
             item = this.Equipment[0];
             if (item != null && item.active > 0) spkt.SetHeadTop(item.info.item, item.dyecolor);
 
@@ -782,7 +772,6 @@ namespace Saga.PrimaryTypes
                     spkt2.SessionId = character.id;
                     character.client.Send((byte[])spkt2);
                 }
-
             }
         }
 
@@ -792,13 +781,10 @@ namespace Saga.PrimaryTypes
         }
     }
 
-
-
     [Serializable()]
     public class CharacterStats
     {
-
-        private static Stats _BASE = new Stats(5,3,3,2,0);
+        private static Stats _BASE = new Stats(5, 3, 3, 2, 0);
         public Stats CHARACTER = new Stats();
         public Stats EQUIPMENT = new Stats();
         public Stats ENCHANTMENT = new Stats();
@@ -811,7 +797,6 @@ namespace Saga.PrimaryTypes
                 return _BASE;
             }
         }
-
 
         public ushort Strength
         {
@@ -887,8 +872,9 @@ namespace Saga.PrimaryTypes
             public ushort concentration = 0;          //CONTAINER FOR CONCENTRATION STAT
             public ushort luck = 0;                   //CONTAINER FOR LUCK STAT
 
-
-            public Stats(){}
+            public Stats()
+            {
+            }
 
             public Stats(ushort strength, ushort dexterity, ushort intelligence, ushort concentration, ushort luck)
             {
@@ -904,7 +890,7 @@ namespace Saga.PrimaryTypes
                 return new ushort[]
                 {
                     f.strength,
-                    f.dexterity,                                        
+                    f.dexterity,
                     f.intelligence,
                     f.concentration,
                     f.luck
@@ -912,5 +898,4 @@ namespace Saga.PrimaryTypes
             }
         }
     }
-
 }

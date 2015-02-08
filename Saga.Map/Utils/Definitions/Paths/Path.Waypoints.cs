@@ -1,26 +1,19 @@
-﻿using Saga.Shared.Definitions;
+﻿using Saga.Structures;
 using System.Collections.Generic;
-using Saga.Structures;
+
 namespace Saga.Paths
 {
-
-
-
     public class WaypointedPath
     {
-
-
         /// <summary>
         /// Returns the current step
         /// </summary>
         private int currentstep = 0;
 
-
         /// <summary>
         /// Returns a list of waypoints
         /// </summary>
         private List<Point> waypointlist = new List<Point>();
-
 
         /// <summary>
         /// Returns the current step
@@ -32,7 +25,7 @@ namespace Saga.Paths
                 return currentstep;
             }
         }
-        
+
         /// <summary>
         /// Checks if the current node is at it's end.
         /// </summary>
@@ -44,7 +37,6 @@ namespace Saga.Paths
             }
         }
 
-
         /// <summary>
         /// Returns the next waypoint
         /// </summary>
@@ -54,7 +46,6 @@ namespace Saga.Paths
             int a = currentstep;
             currentstep = ++currentstep % waypointlist.Count;
             return waypointlist[a];
-            
         }
 
         /// <summary>
@@ -65,18 +56,7 @@ namespace Saga.Paths
         {
             int a = currentstep + 1;
             a = a % waypointlist.Count;
-            return waypointlist[a];          
+            return waypointlist[a];
         }
-
-
-
-
-
-
     }
-
-
-
-
-
 }

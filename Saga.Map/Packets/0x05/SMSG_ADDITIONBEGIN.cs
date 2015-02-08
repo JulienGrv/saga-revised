@@ -1,14 +1,13 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This function add a specified addition to the actor. Once duration reaches 
+    /// This function add a specified addition to the actor. Once duration reaches
     /// 0 it does not automaticly delete it waits till you send a packet to delete
     /// the specified addition.
     /// </remarks>
@@ -31,7 +30,7 @@ namespace Saga.Packets
 
         public uint StatusID
         {
-            set { Array.Copy(BitConverter.GetBytes(value), 0,  this.data, 4, 4); }
+            set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 4, 4); }
         }
 
         public uint Duration

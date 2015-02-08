@@ -1,15 +1,14 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// Thia packet is sent by the player to indicate he/she is changing 
-    /// her state. For example when the player switches from sitting to 
+    /// Thia packet is sent by the player to indicate he/she is changing
+    /// her state. For example when the player switches from sitting to
     /// lying position.
     /// </remarks>
     /// <id>
@@ -36,8 +35,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -50,6 +49,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

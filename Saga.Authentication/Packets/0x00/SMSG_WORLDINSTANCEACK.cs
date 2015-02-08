@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Authentication.Packets
 {
-
     public class SMSG_WORLDINSTANCEACK : RelayPacket
     {
-
         public SMSG_WORLDINSTANCEACK()
         {
             this.Cmd = 0x0701;
-            this.Id = 0x0001;           
+            this.Id = 0x0001;
             this.data = new byte[17];
         }
 
@@ -39,6 +35,5 @@ namespace Saga.Authentication.Packets
                 Array.Copy(value, 0, this.data, 1, 16);
             }
         }
-
     }
 }

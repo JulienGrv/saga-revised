@@ -1,11 +1,10 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent to the user as a indication to initialize
@@ -27,8 +26,8 @@ namespace Saga.Packets
         public uint Scenario1
         {
             set
-            { 
-                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4); 
+            {
+                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4);
             }
         }
 

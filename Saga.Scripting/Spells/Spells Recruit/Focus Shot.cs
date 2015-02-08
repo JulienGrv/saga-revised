@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void RECRUIT_FOCUSSHOT(SkillBaseEventArgs bargument)
-        {            
+        {
             int Lvldiff;
             SkillUsageEventArgs.SkillMatrix matrix;
             Actor asource = bargument.Sender as Actor;
             Actor atarget = bargument.Target as Actor;
 
-            if (asource != null && atarget != null && bargument.Context == Saga.Enumarations.SkillContext.SkillUse)            
+            if (asource != null && atarget != null && bargument.Context == Saga.Enumarations.SkillContext.SkillUse)
             {
                 SkillUsageEventArgs arguments = (SkillUsageEventArgs)bargument;
                 matrix = arguments.GetDefaultSkillMatrix(asource, atarget);
@@ -39,6 +34,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
     }
 }

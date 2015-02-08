@@ -1,25 +1,25 @@
-using System;
-using System.Net;
-using System.Threading;
 using Saga.Authentication;
 using Saga.Authentication.Packets;
 using Saga.Authentication.Utils;
+using Saga.Packets;
 using Saga.Shared.PacketLib.Login;
 using Saga.Shared.PacketLib.Map;
-using Saga.Packets;
+using System;
 using System.Diagnostics;
+using System.Net;
+using System.Threading;
 
 namespace Saga.Map.Client
 {
     partial class InternalClient
     {
-
         //Internal Members
+
         #region CREATE CHARACTER
 
-        public void SM_CHARACTER_CREATE( SMSG_INTERNAL_CHARACTERCREATE spkt)
+        public void SM_CHARACTER_CREATE(SMSG_INTERNAL_CHARACTERCREATE spkt)
         {
-            this.Send((byte[])spkt);           
+            this.Send((byte[])spkt);
         }
 
         public void CM_CHARACTER_CREATE(CMSG_INTERNAL_CHARCREATIONREPLY cpkt)
@@ -43,61 +43,59 @@ namespace Saga.Map.Client
                 {
                     spkt.Result = cpkt.Result;
                     session.client.Send((byte[])spkt);
-                }                
+                }
             }
         }
 
-        #endregion
+        #endregion CREATE CHARACTER
 
         #region DELETE CHARACTER
 
         public void CM_DELETE_CHARACTER(CMSG_INTERNAL_DELETIONREPLY cpkt)
         {
-
             ServerInfo2 info;
             LoginSession session;
 
             if (LoginSessionHandler.sessions.TryGetValue(cpkt.SessionId, out session))
                 if (ServerManager2.Instance.server.TryGetValue(session.World, out info))
-            {
-                Predicate<CharInfo> callback = delegate(CharInfo info2)
                 {
-                    return info2.charId == session.PedingCharDeletion;
-                };
+                    Predicate<CharInfo> callback = delegate(CharInfo info2)
+                    {
+                        return info2.charId == session.PedingCharDeletion;
+                    };
 
-                int index = session.list.FindIndex(callback);
+                    int index = session.list.FindIndex(callback);
 
+                    SMSG_DELETECHARACTER spkt = new SMSG_DELETECHARACTER();
+                    spkt.SessionId = cpkt.SessionId;
+                    spkt.Index = (byte)index;
 
-                SMSG_DELETECHARACTER spkt = new SMSG_DELETECHARACTER();
-                spkt.SessionId = cpkt.SessionId;
-                spkt.Index = (byte)index;
+                    //CHARACTER CREATION SUCCESS
+                    if (cpkt.Result == 0)
+                    {
+                        Singleton.Database.RemoveCharacterOnWorld(session.playerid, session.World);
+                        session.CachedCharacterStates.Remove(session.PedingCharDeletion);
+                        if (index > -1)
+                            session.list.RemoveAt(index);
+                        session.PedingCharDeletion = 0;
+                        session.client.Send((byte[])spkt);
 
-                //CHARACTER CREATION SUCCESS
-                if (cpkt.Result == 0)
-                {
-                    Singleton.Database.RemoveCharacterOnWorld(session.playerid, session.World);
-                    session.CachedCharacterStates.Remove(session.PedingCharDeletion);
-                    if (index > -1) 
-                    session.list.RemoveAt(index);                                       
-                    session.PedingCharDeletion = 0;                    
-                    session.client.Send((byte[])spkt);
-
-                    SMSG_CHARACTERLIST spkt2 = new SMSG_CHARACTERLIST();
-                    spkt2.Result = 0;
-                    spkt2.CountAllServer = (byte)--session.NCharacterCount;
-                    spkt2.ServerName = info.name;
-                    spkt2.SessionId = cpkt.SessionId;
-                    foreach (CharInfo info2 in session.list)
-                        spkt2.AddChar(info2.charId, info2.name, 1, info2.cexp, info2.job, 0, info2.map);
-                    session.client.Send((byte[])spkt2);
+                        SMSG_CHARACTERLIST spkt2 = new SMSG_CHARACTERLIST();
+                        spkt2.Result = 0;
+                        spkt2.CountAllServer = (byte)--session.NCharacterCount;
+                        spkt2.ServerName = info.name;
+                        spkt2.SessionId = cpkt.SessionId;
+                        foreach (CharInfo info2 in session.list)
+                            spkt2.AddChar(info2.charId, info2.name, 1, info2.cexp, info2.job, 0, info2.map);
+                        session.client.Send((byte[])spkt2);
+                    }
+                    else
+                    {
+                        session.PedingCharDeletion = 0;
+                        spkt.Result = cpkt.Result;
+                        session.client.Send((byte[])spkt);
+                    }
                 }
-                else
-                {
-                    session.PedingCharDeletion = 0;
-                    spkt.Result = cpkt.Result;
-                    session.client.Send((byte[])spkt);
-                }
-            }
         }
 
         public void SM_DELETE_CHARACTER(uint charid, uint sessionId)
@@ -108,7 +106,7 @@ namespace Saga.Map.Client
             this.Send((byte[])spkt);
         }
 
-        #endregion
+        #endregion DELETE CHARACTER
 
         #region SELECT CHARACTER
 
@@ -178,14 +176,13 @@ namespace Saga.Map.Client
                         session.list.Add(info);
                     }
 
-
                     Trace.TraceError("Ready receiving", this.WorldId, cpkt.SessionId);
                     session.IsWaiting = false;
                 }
             }
         }
 
-        #endregion
+        #endregion SELECT CHARACTER
 
         #region VERIFY CHARACTER
 
@@ -193,7 +190,7 @@ namespace Saga.Map.Client
         {
         }
 
-        #endregion
+        #endregion VERIFY CHARACTER
 
         #region SMSG
 
@@ -217,13 +214,12 @@ namespace Saga.Map.Client
             this.Send((byte[])spkt);
         }
 
-
         public void CM_CHARACTERLOGINREPLY(CMSG_CHARACTERLOGINREPLY cpkt)
         {
             Console.WriteLine("Character Login: {0}", cpkt.Result);
         }
 
-        #endregion
+        #endregion SMSG
 
         #region CMSG
 
@@ -238,7 +234,7 @@ namespace Saga.Map.Client
             {
                 //socket.RemoteEndPoint.
                 IPEndPoint IPEndPoint = (IPEndPoint)socket.RemoteEndPoint;
-                WorldId = cpkt.WorldId;                           
+                WorldId = cpkt.WorldId;
 
                 //SERVER DOES NOT EXISTS
                 if (!ServerManager2.Instance.server.TryGetValue(WorldId, out info))
@@ -264,8 +260,8 @@ namespace Saga.Map.Client
 
                     Console.WriteLine("world connection established");
 
-                    if( cpkt.IsReconnected == 0 )
-                    Singleton.Database.ClearWorldSessions(this.WorldId);                   
+                    if (cpkt.IsReconnected == 0)
+                        Singleton.Database.ClearWorldSessions(this.WorldId);
 
                     SMSG_SETRATES spkt = new SMSG_SETRATES();
                     spkt.IsAdDisplayed = Managers.ConsoleCommands.ShowAdvertisment ? (byte)1 : (byte)0;
@@ -277,7 +273,7 @@ namespace Saga.Map.Client
                 Thread.Sleep(500);
                 SMSG_WORLDINSTANCEACK spkt = new SMSG_WORLDINSTANCEACK();
                 spkt.Result = error;
-                if (error == 0) spkt.NextKey = info.KEY;                               
+                if (error == 0) spkt.NextKey = info.KEY;
                 this.Send((byte[])spkt);
             }
         }
@@ -286,8 +282,8 @@ namespace Saga.Map.Client
         public void CM_PONG(CMSG_PONG cpkt)
         {
             //Delay between ping and pong reply
-            int delay = Environment.TickCount - PingTick;                      
-           
+            int delay = Environment.TickCount - PingTick;
+
             //Update the delay
             ServerInfo2 info = null;
             if (ServerManager2.Instance.server.TryGetValue(WorldId, out info))
@@ -300,20 +296,18 @@ namespace Saga.Map.Client
             Trace.TraceWarning(string.Format("Release session: {0}", cpkt.Session));
             //Update the delay
             ServerInfo2 info = null;
-            if( Singleton.Database.ReleaseSessionId(cpkt.Session)
+            if (Singleton.Database.ReleaseSessionId(cpkt.Session)
              && ServerManager2.Instance.server.TryGetValue(WorldId, out info))
                 info.Players = info.Players > 0 ? info.Players - 1 : 0;
         }
 
-
-        #endregion
+        #endregion CMSG
 
         #region Members
 
         public byte WorldId = 0;
-        int PingTick = 0;
+        private int PingTick = 0;
 
-        #endregion
-
+        #endregion Members
     }
 }

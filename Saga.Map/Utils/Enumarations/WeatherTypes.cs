@@ -1,5 +1,3 @@
-using System;
-
 namespace Saga.Enumarations
 {
     /// <summary>
@@ -13,7 +11,7 @@ namespace Saga.Enumarations
         None = 0,
 
         /// <summary>
-        /// Sunny weather 
+        /// Sunny weather
         /// </summary>
         Sunny = 1,
 
@@ -47,5 +45,4 @@ namespace Saga.Enumarations
         /// </summary>
         Snowing = 7
     }
-
 }

@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sends out the current hateinfo of a monster towards a player.
-    /// Once the player starts a fight the client broadcasts a message every tick to 
-    /// request the hate. This is done to save the server processing power and memory 
+    /// Once the player starts a fight the client broadcasts a message every tick to
+    /// request the hate. This is done to save the server processing power and memory
     /// of keeping track al the hate.
     /// </remarks>
     /// <id>
@@ -37,6 +33,5 @@ namespace Saga.Packets
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 4, 2); }
         }
-
     }
 }

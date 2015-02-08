@@ -1,14 +1,13 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent by the player as he/she requests to move a item. 
+    /// This packet is sent by the player as he/she requests to move a item.
     /// Movement in this context is expressed as Inventory -> Storage and vice versa.
     /// Or Inventory to storage and Vice Versa.
     /// </remarks>
@@ -29,7 +28,7 @@ namespace Saga.Packets
 
         public byte MovementType
         {
-            get { return this.data[1];  }
+            get { return this.data[1]; }
         }
 
         public byte SourceIndex
@@ -56,8 +55,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -70,6 +69,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

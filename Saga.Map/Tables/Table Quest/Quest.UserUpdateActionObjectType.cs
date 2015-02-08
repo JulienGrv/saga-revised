@@ -1,14 +1,13 @@
-using System;
 using Saga.Map;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Tasks;
+using System;
 
 namespace Saga.Quests
 {
     static partial class QUEST_TABLE
     {
-
         public static void UserUpdateActionObjectType(uint cid, uint QID, uint SID, uint AID, byte State)
         {
             //HELPER VARIABLES
@@ -26,7 +25,7 @@ namespace Saga.Quests
                 bool process = false;
                 if (State == 0)
                 {
-                    if ( value.QuestObjectives.ActivatedNpc.FindIndex( FindActivatedObject ) == -1  )
+                    if (value.QuestObjectives.ActivatedNpc.FindIndex(FindActivatedObject) == -1)
                     {
                         value.QuestObjectives.ActivatedNpc.Add(
                             new Saga.Quests.Objectives.ObjectiveList.Activation(
@@ -44,21 +43,20 @@ namespace Saga.Quests
                     process = true;
                 }
 
-
                 if (process == true) //For optimilisation
                 {
                     Regiontree tree = value.currentzone.Regiontree;
                     foreach (MapItem item in tree.SearchActors(value, Saga.Enumarations.SearchFlags.MapItems))
-                    if (item.ModelId == AID)
-                    {                       
-                       SMSG_ITEMUPDATE spkt = new SMSG_ITEMUPDATE();
-                       spkt.ActorID = item.id;
-                       spkt.Active1 = 0;
-                       spkt.Active = item.IsHighlighted(value);
-                       spkt.Active2 = item.IsInteractable(value);
-                       spkt.SessionId = value.id;
-                       value.client.Send((byte[])spkt);
-                    }
+                        if (item.ModelId == AID)
+                        {
+                            SMSG_ITEMUPDATE spkt = new SMSG_ITEMUPDATE();
+                            spkt.ActorID = item.id;
+                            spkt.Active1 = 0;
+                            spkt.Active = item.IsHighlighted(value);
+                            spkt.Active2 = item.IsInteractable(value);
+                            spkt.SessionId = value.id;
+                            value.client.Send((byte[])spkt);
+                        }
                 }
             }
         }

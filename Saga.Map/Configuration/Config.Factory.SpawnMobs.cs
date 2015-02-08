@@ -1,10 +1,8 @@
-using System.Configuration;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
-
-
     /// <summary>
     /// Multi-world spawn configuration
     /// </summary>
@@ -19,7 +17,6 @@ namespace Saga.Configuration
     /// </example>
     public class SpawnMultiWorldObjectSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
         /// Get's or sets a list of files containing spawninformaton for mobs
         /// </summary>

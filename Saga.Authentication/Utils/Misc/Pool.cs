@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Saga.Authentication.Utils.Definitions.Misc
 {
     public class Pool<T>
     {
-
         public Pool(int count)
         {
             pending = new Queue<T>(count);
@@ -42,6 +40,5 @@ namespace Saga.Authentication.Utils.Definitions.Misc
                 pending.Enqueue(item);
             }
         }
-
     }
 }

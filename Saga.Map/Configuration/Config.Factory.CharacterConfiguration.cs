@@ -1,9 +1,8 @@
-using System.Configuration;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
-
     /// <summary>
     /// CharacterConfiguration factory configuration element.
     /// </summary>
@@ -18,7 +17,6 @@ namespace Saga.Configuration
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class CharacterConfigurationSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
         /// Get's or sets a list of files containing the character base stats
         /// </summary>
@@ -34,6 +32,6 @@ namespace Saga.Configuration
         public FactoryFileCollection FolderItems
         {
             get { return ((FactoryFileCollection)(base["Files"])); }
-        }      
+        }
     }
 }

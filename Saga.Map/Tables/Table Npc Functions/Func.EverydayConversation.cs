@@ -1,28 +1,25 @@
-﻿using Saga.Shared.Definitions;
-using Saga.Templates;
+﻿using Saga.Enumarations;
 using Saga.PrimaryTypes;
-using Saga.Enumarations;
 using Saga.Structures;
+using Saga.Templates;
 using System.Collections.Generic;
 
 namespace Saga.Npc.Functions
 {
-
     /// <summary>
     /// Everyday conversation is to be added to a npc to show the default
     /// everyday interactions.
     /// </summary>
     public class EverydayConversation : NpcFunction
     {
-
         #region Private Members
-        
+
         /// <summary>
         /// List of dialog to show in sequentional order
         /// </summary>
         protected List<uint> _EverydayConversation = new List<uint>();
 
-        #endregion
+        #endregion Private Members
 
         #region Protected Methods
 
@@ -60,21 +57,20 @@ namespace Saga.Npc.Functions
         /// <param name="target">Character who requires interaction</param>
         protected virtual void OnConversation(BaseNPC npc, Character target)
         {
-            EverydaySequence seq = target.Tag is EverydaySequence ? target.Tag as EverydaySequence : new EverydaySequence(this._EverydayConversation);                               
+            EverydaySequence seq = target.Tag is EverydaySequence ? target.Tag as EverydaySequence : new EverydaySequence(this._EverydayConversation);
             target.Tag = seq;
             if (seq.HasInfo)
             {
-                Common.Actions.OpenMenu( target, npc, seq.Current,
+                Common.Actions.OpenMenu(target, npc, seq.Current,
                     DialogType.EverydayConversation,
                     npc.GetDialogButtons(target)
                 );
 
                 seq.Increment();
             }
-
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Nested Types
 
@@ -110,7 +106,6 @@ namespace Saga.Npc.Functions
             private byte current;
         }
 
-        #endregion
-
+        #endregion Nested Types
     }
 }

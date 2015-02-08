@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Map;
+﻿using Saga.Map;
+using System;
 
 namespace Saga.Scripting.Zones
 {
-    class Shipzone : Saga.PrimaryTypes.Zone, ICloneable
+    internal class Shipzone : Saga.PrimaryTypes.Zone, ICloneable
     {
-
         public override void OnLeave(Saga.PrimaryTypes.Character character)
         {
             //Removes the actor from the shipzone
@@ -15,11 +12,10 @@ namespace Saga.Scripting.Zones
 
             //Always force to leave from shipzone
             character.map = this.CathelayaLocation.map;
-            character.Position = this.CathelayaLocation.coords;            
+            character.Position = this.CathelayaLocation.coords;
 
             System.Console.WriteLine("{0} {1}", this.CathelayaLocation.map, this.CathelayaLocation.coords);
         }
-
 
         #region ICloneable Members
 
@@ -27,7 +23,7 @@ namespace Saga.Scripting.Zones
         {
             Shipzone b = new Shipzone();
             b.Map = this.Map;
-            b.ProsmiseLocation = this.ProsmiseLocation;            
+            b.ProsmiseLocation = this.ProsmiseLocation;
             b.CathelayaLocation = this.CathelayaLocation;
             b.RegionCode = this.RegionCode;
             b.Regiontree = new Regiontree();
@@ -35,7 +31,6 @@ namespace Saga.Scripting.Zones
             return b;
         }
 
-        #endregion
-
+        #endregion ICloneable Members
     }
 }

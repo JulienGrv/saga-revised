@@ -1,27 +1,23 @@
-﻿using System.Collections.Generic;
-using Saga.Shared.Definitions;
-using Saga.Templates;
+﻿using Saga.Enumarations;
 using Saga.PrimaryTypes;
-using Saga.Enumarations;
 using Saga.Structures;
+using Saga.Templates;
+using System.Collections.Generic;
 
 namespace Saga.Npc.Functions
-{    
-
+{
     /// <summary>
-    /// This is a warper conversation. Include this in a npc to show a 
+    /// This is a warper conversation. Include this in a npc to show a
     /// warper dialog and submenu.
     /// </summary>
     /// <remarks>
-    /// This function will read a xml file: warpers/{npcmodelid}.xml from the 
+    /// This function will read a xml file: warpers/{npcmodelid}.xml from the
     /// data folder. The items in the xml file will be used to determine which
     /// warpspots are available for the npc.
-    /// </remarks>    
+    /// </remarks>
     public class WarperConversation : NpcFunction
     {
-
         #region Protected Methods
-
 
         /// <summary>
         /// Registers all dialogs for the npc.
@@ -53,7 +49,6 @@ namespace Saga.Npc.Functions
             return Common.Special.GetWarperTable(npc.ModelId);
         }
 
-        #endregion
-
-    } 
+        #endregion Protected Methods
+    }
 }

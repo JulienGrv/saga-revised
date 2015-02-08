@@ -1,12 +1,11 @@
-using System.Data;
 using Saga.Data;
 using Saga.Map;
-using Saga.Shared.Definitions;
 using Saga.PrimaryTypes;
+using System.Data;
 
 namespace Saga.Scripting.Dummy_Templates
 {
-    static class CreditProvider
+    internal static class CreditProvider
     {
         public static int LoadCredits(Character character)
         {
@@ -20,7 +19,7 @@ namespace Saga.Scripting.Dummy_Templates
                 while (reader.Read())
                 {
                     credits = reader.GetInt32(0);
-                }                
+                }
             }
 
             return credits;
@@ -31,9 +30,8 @@ namespace Saga.Scripting.Dummy_Templates
             IQueryProvider provider = Singleton.Database.GetQueryProvider();
             provider.CmdText = "UPDATE list_credits SET Credits=@Credits CharId=@CharId";
             provider.Parameters.AddWithValue("CharId", character.ModelId);
-            provider.Parameters.AddWithValue("Credits", CreditValue );
+            provider.Parameters.AddWithValue("Credits", CreditValue);
             return Singleton.Database.ExecuteNonQuery(provider) > 0;
         }
-        
     }
 }

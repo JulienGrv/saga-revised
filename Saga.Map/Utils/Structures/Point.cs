@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Globalization;
 
 namespace Saga.Structures
@@ -11,7 +9,6 @@ namespace Saga.Structures
     [Serializable()]
     public struct Point
     {
-
         #region Public Members
 
         /// <summary>
@@ -29,7 +26,7 @@ namespace Saga.Structures
         /// </summary>
         public float z;
 
-        #endregion
+        #endregion Public Members
 
         #region Constructors / Deconstructors
 
@@ -61,7 +58,7 @@ namespace Saga.Structures
             this.z = pos[2];
         }
 
-        #endregion
+        #endregion Constructors / Deconstructors
 
         #region Operator Overloading
 
@@ -125,18 +122,16 @@ namespace Saga.Structures
             return temp;
         }
 
-
         /// <summary>
         /// Compares if point a is the same as point b
         /// </summary>
         /// <param name="c1">Left assignment point</param>
         /// <param name="c2">Right assignment point</param>
         /// <returns>Divided point</returns>
-        public static bool operator ==(Point c1, Point c2)        
+        public static bool operator ==(Point c1, Point c2)
         {
             return c1.x == c2.x && c1.y == c2.y && c1.z == c2.z;
         }
-
 
         /// <summary>
         /// Compares if point a is not the same as point b
@@ -151,12 +146,12 @@ namespace Saga.Structures
 
         public override bool Equals(object obj)
         {
-            try 
+            try
             {
                 Point p = (Point)obj;
                 return p.x == this.x && p.y == this.y && p.z == z;
             }
-            catch( InvalidCastException)
+            catch (InvalidCastException)
             {
                 return false;
             }
@@ -167,7 +162,7 @@ namespace Saga.Structures
             return (int)(x + y + z);
         }
 
-        #endregion
+        #endregion Operator Overloading
 
         #region Public Methods
 
@@ -180,20 +175,20 @@ namespace Saga.Structures
             return string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", x, y, z);
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Extensions
 
         private const double SightRangeRadius = 4048;
-        private const double SightRangeRadius3D = SightRangeRadius * SightRangeRadius; 
+        private const double SightRangeRadius3D = SightRangeRadius * SightRangeRadius;
 
         /// <summary>
         /// Check if a object is in sightrange of eachother
         /// </summary>
         /// <returns>
         /// Checks if position a is in a range of position b.
-        /// This sub function is used to calculate objects we are allowed to 
-        /// see. Applied for 3 axices: X, Y, Z./// 
+        /// This sub function is used to calculate objects we are allowed to
+        /// see. Applied for 3 axices: X, Y, Z.///
         /// </returns>
         public static bool IsInSightRangeByRadius(Point A, Point B)
         {
@@ -223,8 +218,6 @@ namespace Saga.Structures
             return distance < maxdistance;
         }
 
-
-
         public static double GetDistance3D(Point A, Point B)
         {
             double dx = (double)(A.x - B.x);
@@ -243,7 +236,6 @@ namespace Saga.Structures
             return distance;
         }
 
-
         public static ushort CalculateYaw(Point a)
         {
             return (ushort)(Math.Atan2(a.y, a.x) * 32768 / Math.PI);
@@ -254,7 +246,6 @@ namespace Saga.Structures
             return (ushort)(Math.Atan2(b.y - a.y, b.x - a.x) * 32768 / Math.PI);
         }
 
-        #endregion
-
+        #endregion Extensions
     }
 }

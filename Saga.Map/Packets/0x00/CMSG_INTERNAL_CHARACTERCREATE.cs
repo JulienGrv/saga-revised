@@ -1,13 +1,11 @@
+using Saga.Network.Packets;
 using System;
 using System.Text;
-using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     internal class CMSG_INTERNAL_CHARACTERCREATE : RelayPacket
     {
-
         /*
         // This packet is invoked when an client creates an new character
         // with the following details.
@@ -19,7 +17,7 @@ namespace Saga.Packets
         // Hair         A byte representing the Hair-style
         // HairColor    A byte representing the Hair-color
         // WeaponName   A string containing the weapon's name
-        // WeaponAffix  A byte representating the weapon-affix 
+        // WeaponAffix  A byte representating the weapon-affix
         //
         // Last updated on Friday 26, okt 2007.
         */
@@ -81,8 +79,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -95,6 +93,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

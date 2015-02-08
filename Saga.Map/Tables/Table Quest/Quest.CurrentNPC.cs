@@ -1,29 +1,28 @@
-using System;
 using Saga.Managers;
 using Saga.Map;
 using Saga.PrimaryTypes;
 using Saga.Structures;
 using Saga.Tasks;
+using System;
 
 namespace Saga.Quests
 {
     [CLSCompliant(false)]
     static partial class QUEST_TABLE
     {
-
         /// <title>Saga.GetNPCIndex</title>
         /// <code>
         /// Saga.GetNPCIndex(cid);
         /// </code>
         /// <description>
-        /// Returns the npc model id of the current npc. 
+        /// Returns the npc model id of the current npc.
         /// Returns 0 on no npc selected.
         /// </description>
         /// <example>
         /// function QUEST_STEP_2(cid)
         ///	    -- Talk to mischa
         ///     local NPCIndex = 1000;
-        ///     local ret = Saga.GetNPCIndex(cid);    
+        ///     local ret = Saga.GetNPCIndex(cid);
         ///
         ///     Saga.AddWaypoint(cid, QuestID, NPCIndex, -12092, -6490, -8284, 1);
         ///     if ret == NPCIndex then
@@ -32,7 +31,7 @@ namespace Saga.Quests
         ///         return  -1;
         ///     end
         ///
-        ///     Saga.ClearWaypoints(cid, QuestID);	
+        ///     Saga.ClearWaypoints(cid, QuestID);
         ///     return 0;
         /// end
         /// </example>
@@ -40,7 +39,7 @@ namespace Saga.Quests
         {
             Character value;
             if (LifeCycle.TryGetById(cid, out value))
-            if (value.Target != null && MapObject.IsNpc(value.Target) ) return value.Target.ModelId;
+                if (value.Target != null && MapObject.IsNpc(value.Target)) return value.Target.ModelId;
             return 0;
         }
 
@@ -52,7 +51,7 @@ namespace Saga.Quests
             return 0;
         }
 
-        public static void Spawn(uint npcid, byte map, float x, float y, float z)        
+        public static void Spawn(uint npcid, byte map, float x, float y, float z)
         {
             Zone zone;
             if (Singleton.Zones.TryGetZone(map, out zone))
@@ -67,7 +66,7 @@ namespace Saga.Quests
                 if (Singleton.Templates.SpawnNpcInstance(npcid, new Point(x, y, z), new Rotator(0, 0), zone, false, out regionObject))
                 {
                     QueedTask timer = new QueedTask(callback, regionObject, 300000);
-                }                
+                }
             }
         }
     }

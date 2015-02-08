@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Saga.Structures;
 using Saga.Templates;
-using Saga.PrimaryTypes;
-using Saga.Npc.Functions;
-using Saga.Structures;
 
 namespace Saga.Scripting.ForestOfEcho
 {
-    class Trader : BaseNPC
+    internal class Trader : BaseNPC
     {
-
         #region Base Members
 
         protected override void Initialize()
@@ -19,17 +13,18 @@ namespace Saga.Scripting.ForestOfEcho
             NpcFunction.Create<Saga.Npc.Functions.QuestConversation>(this);
         }
 
-        #endregion
+        #endregion Base Members
 
         #region Constructor/Deconstructor
 
-        ~Trader() { }
-        public Trader() { }
+        ~Trader()
+        {
+        }
 
-        #endregion
+        public Trader()
+        {
+        }
 
-
+        #endregion Constructor/Deconstructor
     }
-
-
 }

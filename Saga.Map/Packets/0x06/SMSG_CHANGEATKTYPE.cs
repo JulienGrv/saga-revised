@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
-using Saga.Map.Definitions.Misc;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// No information available. 
+    /// No information available.
     /// Still figuring out what it does and when it get's send
     /// </remarks>
     /// <id>

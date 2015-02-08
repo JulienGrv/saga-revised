@@ -1,13 +1,12 @@
-using System;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Tasks;
+using System;
 
 namespace Saga.Quests
 {
     static partial class QUEST_TABLE
     {
-
         public static void QuestFail(uint cid, uint questid)
         {
             Character value;

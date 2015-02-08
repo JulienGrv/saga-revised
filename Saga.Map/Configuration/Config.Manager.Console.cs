@@ -1,9 +1,8 @@
-using System.Configuration;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
-
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class ConsoleSettings : ManagerProviderBaseConfiguration
     {
@@ -20,7 +19,7 @@ namespace Saga.Configuration
             }
         }
 
-        [ConfigurationProperty("outputcommand", DefaultValue=true, IsRequired = false)]
+        [ConfigurationProperty("outputcommand", DefaultValue = true, IsRequired = false)]
         public bool CanOutputCommand
         {
             get
@@ -44,7 +43,5 @@ namespace Saga.Configuration
         {
             get { return ((FactoryFileCollection)(base["GmCommands"])); }
         }
-
-
     }
 }

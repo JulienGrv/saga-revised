@@ -1,16 +1,16 @@
-using System;
-using System.Text;
 using Saga.Network.Packets;
 using Saga.Structures;
+using System;
+using System.Text;
 
 namespace Saga.Packets
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is send to sent new character information to yourself and people who
-    /// can see you. This packet contains information as your name, gender, virtually 
+    /// can see you. This packet contains information as your name, gender, virtually
     /// anything to render yourself.
     /// </remarks>
     /// <id>
@@ -32,7 +32,7 @@ namespace Saga.Packets
 
         public uint ActorID
         {
-            set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0 ,4); } 
+            set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4); }
         }
 
         public byte Gender
@@ -57,20 +57,21 @@ namespace Saga.Packets
 
         public Rotator yaw
         {
-            set {                 
+            set
+            {
                 Array.Copy(BitConverter.GetBytes(value.rotation), 0, this.data, 17, 2);
-                Array.Copy(BitConverter.GetBytes(value.unknown), 0, this.data, 19, 2); 
+                Array.Copy(BitConverter.GetBytes(value.unknown), 0, this.data, 19, 2);
             }
         }
 
         public string Name
         {
-            set { Encoding.Unicode.GetBytes(value, 0, Math.Min(16,value.Length), this.data, 21); }
+            set { Encoding.Unicode.GetBytes(value, 0, Math.Min(16, value.Length), this.data, 21); }
         }
 
         public byte race
         {
-            set { this.data[55] = value;  }
+            set { this.data[55] = value; }
         }
 
         public byte[] face
@@ -78,10 +79,11 @@ namespace Saga.Packets
             set { Array.Copy(value, 0, this.data, 56, value.Length); }
         }
 
-#region JUNK
+        #region JUNK
+
         public uint[] EquipsA
         {
-            set { Array.Copy( value, 0, this.data, 71, value.Length); }
+            set { Array.Copy(value, 0, this.data, 71, value.Length); }
         }
 
         public uint[] EquipsB
@@ -89,24 +91,23 @@ namespace Saga.Packets
             set { Array.Copy(value, 0, this.data, 91, value.Length); }
         }
 
-#endregion
+        #endregion JUNK
 
-
-        public void SetHeadTop( uint itemid, byte dye)
+        public void SetHeadTop(uint itemid, byte dye)
         {
-            Array.Copy( BitConverter.GetBytes(itemid), 0, this.data, 67, 4);
+            Array.Copy(BitConverter.GetBytes(itemid), 0, this.data, 67, 4);
             this.data[71] = dye;
         }
 
-        public void SetHeadMiddle( uint itemid, byte dye)
+        public void SetHeadMiddle(uint itemid, byte dye)
         {
             Array.Copy(BitConverter.GetBytes(itemid), 0, this.data, 72, 4);
             this.data[76] = dye;
         }
 
-        public void SetHeadBottom( uint itemid, byte dye)
+        public void SetHeadBottom(uint itemid, byte dye)
         {
-            Array.Copy( BitConverter.GetBytes(itemid), 0, this.data, 77, 4);
+            Array.Copy(BitConverter.GetBytes(itemid), 0, this.data, 77, 4);
             this.data[81] = dye;
         }
 
@@ -171,7 +172,6 @@ namespace Saga.Packets
             set { this.data[86] = value; }
         }
 
-
         public byte NumberOfAdditions
         {
             set { this.data[123] = value; }
@@ -185,7 +185,5 @@ namespace Saga.Packets
             Array.Copy(BitConverter.GetBytes(duration), 0, this.data, offset + 4, 4);
             this.data[123]++;
         }
- 
     }
 }
-

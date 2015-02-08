@@ -1,25 +1,17 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
-using Saga.Map.Utils.Structures;
-using Saga.Shared.Definitions;
-using Saga.Templates;
-using Saga.IO;
+﻿using Saga.Enumarations;
 using Saga.PrimaryTypes;
 using Saga.Structures;
 using Saga.Structures.Collections;
-using Saga.Enumarations;
+using Saga.Templates;
 
 namespace Saga.Npc.Functions
 {
-
     /// <summary>
-    /// This is a quest conversation. Include this in a npc to show a 
+    /// This is a quest conversation. Include this in a npc to show a
     /// shop dialog.
     /// </summary>
     public class ShopConversation : NpcFunction
     {
-
         #region Private Members
 
         /// <summary>
@@ -32,7 +24,7 @@ namespace Saga.Npc.Functions
         /// </summary>
         private uint _Shop = 823;
 
-        #endregion
+        #endregion Private Members
 
         #region Protected Methods
 
@@ -45,7 +37,6 @@ namespace Saga.Npc.Functions
             RegisterDialog(npc, DialogType.Shop, new FunctionCallback(OnShop));
             OnCacheShop(npc);
         }
-
 
         /// <summary>
         /// Loads all dialog dialog information.
@@ -63,7 +54,6 @@ namespace Saga.Npc.Functions
                 case "SHOP": _Shop = value; break;
             }
         }
-
 
         /// <summary>
         /// Occurs when pressing the shop buttong
@@ -84,7 +74,6 @@ namespace Saga.Npc.Functions
             _shoplist.Open(target, npc);
         }
 
-
         /// <summary>
         /// Caches the shop
         /// </summary>
@@ -92,11 +81,9 @@ namespace Saga.Npc.Functions
         protected virtual void OnCacheShop(BaseNPC npc)
         {
             string filename = Server.SecurePath("~/shops/{0}.xml", npc.ModelId);
-            _shoplist = ShopCollection.FromFile(filename);      
+            _shoplist = ShopCollection.FromFile(filename);
         }
 
-        #endregion
-
+        #endregion Protected Methods
     }
-
 }

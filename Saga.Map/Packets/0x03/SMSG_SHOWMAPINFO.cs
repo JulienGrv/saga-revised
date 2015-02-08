@@ -1,15 +1,15 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent after the maploading. It's internal data 
-    /// indicates which regions of the given map are visible by the player. 
-    /// As we all know as you progress futher in the game some part of the 
+    /// This packet is sent after the maploading. It's internal data
+    /// indicates which regions of the given map are visible by the player.
+    /// As we all know as you progress futher in the game some part of the
     /// maps need certain maps to have been learned.
     /// </remarks>
     /// <id>

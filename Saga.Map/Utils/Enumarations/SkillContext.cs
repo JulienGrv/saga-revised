@@ -1,12 +1,10 @@
 using System;
-using Saga.PrimaryTypes;
 
 namespace Saga.Enumarations
 {
     [CLSCompliant(false)]
-    public enum SkillContext 
+    public enum SkillContext
     {
-
         /// <summary>
         /// Inidicates tge skill is used by skilll-cast
         /// </summary>
@@ -26,13 +24,10 @@ namespace Saga.Enumarations
         /// Iniditactes the skill is used by a item
         /// </summary>
         ItemUsage
-
     }
-
 
     public enum AdditionContext
     {
-
         /// <summary>
         /// Indicates the addition is applying
         /// </summary>
@@ -48,6 +43,4 @@ namespace Saga.Enumarations
         /// </summary>
         Deapplied
     }
-
-
 }

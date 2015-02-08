@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Map.Definitions.Misc;
 using Saga.PrimaryTypes;
+using System;
 
 namespace Saga.Map.Utils.Definitions.Misc
 {

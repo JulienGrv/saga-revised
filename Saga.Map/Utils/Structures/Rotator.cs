@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Saga.Structures
 {
@@ -16,7 +14,7 @@ namespace Saga.Structures
         public ushort rotation;
 
         /// <summary>
-        /// Ushort value of a unknown 
+        /// Ushort value of a unknown
         /// </summary>
         public ushort unknown;
 
@@ -31,10 +29,9 @@ namespace Saga.Structures
             this.unknown = u;
         }
 
-
         /// <summary>
         /// Creates a new rotator from a signed integer
-        /// </summary>       
+        /// </summary>
         /// <param name="value">Signed integer</param>
         /// <returns>Rotator</returns>
         public static implicit operator Rotator(int value)
@@ -49,7 +46,7 @@ namespace Saga.Structures
 
     public class Yaw
     {
-        #if !YAWTORADPRECACHE
+#if !YAWTORADPRECACHE
 
         private static double[] radiants;
 
@@ -67,7 +64,7 @@ namespace Saga.Structures
             return radiants[yaw];
         }
 
-        #else
+#else
 
         const double __pi = Math.PI / 32768;
         public static double ToRadiants(ushort yaw)
@@ -88,6 +85,5 @@ namespace Saga.Structures
             this.point = point;
             this.rotation = rotation;
         }
-
     }
 }

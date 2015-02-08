@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Saga.Network.Packets;
 using System.Text;
-using Saga.Shared.PacketLib;
-using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
-    /// <summary>Notification of friend login</summary>    
+    /// <summary>Notification of friend login</summary>
     /// <remarks>
     /// This packet is sent by the server to the client to notify that their friend has loged on.
     /// The person will only see the msg displayed if they have the option enabled client side to be notified
     /// of friend logons.
-    /// 
+    ///
     /// The packet I had captured had 23 bytes of 0x00 after the friend name.
     /// Another packet was similiar but last byte was 0x01... perhaps friend log off packet?
     /// This implementation currently doesnt include that empty wasted space and still works.

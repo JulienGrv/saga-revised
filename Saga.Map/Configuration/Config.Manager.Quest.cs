@@ -2,8 +2,6 @@ using System.Configuration;
 
 namespace Saga.Configuration
 {
-
-
     /// <summary>
     /// Quest manager configuration
     /// </summary>
@@ -11,7 +9,7 @@ namespace Saga.Configuration
     /// This is a example that shows how the element is configured
     /// <code><![CDATA[<Saga.Manager.Quest
     /// directory="../Quests/"
-    /// sdirectory="../Data/Scenario.Quests/"	
+    /// sdirectory="../Data/Scenario.Quests/"
     /// provider="Saga.Map.Data.LuaQuest.dll, Saga.Map.Data.LuaQuest.LuaQuestProvider"
     /// scenarioprovider="Saga.Map.Data.LuaQuest.dll, Saga.Map.Data.LuaQuest.ScenarioLuaQuest"
     /// />]]></code>
@@ -19,22 +17,20 @@ namespace Saga.Configuration
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class QuestSettings : ManagerProviderBaseConfiguration
     {
-
-
         /// <summary>
-        /// Get's or set's the directory to which contains all personal and offcial 
+        /// Get's or set's the directory to which contains all personal and offcial
         /// quests
         /// </summary>
         /// <example>
         /// This is a example that shows how the element is configured
         /// <code><![CDATA[<Saga.Manager.Quest
         /// directory="../Quests/"
-        /// sdirectory="../Data/Scenario.Quests/"	
+        /// sdirectory="../Data/Scenario.Quests/"
         /// provider="Saga.Map.Data.LuaQuest.dll, Saga.Map.Data.LuaQuest.LuaQuestProvider"
         /// scenarioprovider="Saga.Map.Data.LuaQuest.dll, Saga.Map.Data.LuaQuest.ScenarioLuaQuest"
         /// />]]></code>
         /// </example>
-        [ConfigurationProperty("directory", DefaultValue="Quest", IsRequired = false)]
+        [ConfigurationProperty("directory", DefaultValue = "Quest", IsRequired = false)]
         public string Directory
         {
             get
@@ -55,7 +51,7 @@ namespace Saga.Configuration
         /// This is a example that shows how the element is configured
         /// <code><![CDATA[<Saga.Manager.Quest
         /// directory="../Quests/"
-        /// sdirectory="../Data/Scenario.Quests/"	
+        /// sdirectory="../Data/Scenario.Quests/"
         /// provider="Saga.Map.Data.LuaQuest.dll, Saga.Map.Data.LuaQuest.LuaQuestProvider"
         /// scenarioprovider="Saga.Map.Data.LuaQuest.dll, Saga.Map.Data.LuaQuest.ScenarioLuaQuest"
         /// />]]></code>
@@ -73,7 +69,6 @@ namespace Saga.Configuration
             }
         }
 
-
         /// <summary>
         /// Get's or set's the provider to use for official and personal quests.
         /// </summary>
@@ -81,7 +76,7 @@ namespace Saga.Configuration
         /// This is a example that shows how the element is configured
         /// <code><![CDATA[<Saga.Manager.Quest
         /// directory="../Quests/"
-        /// sdirectory="../Data/Scenario.Quests/"	
+        /// sdirectory="../Data/Scenario.Quests/"
         /// provider="Saga.Map.Data.LuaQuest.dll, Saga.Map.Data.LuaQuest.LuaQuestProvider"
         /// scenarioprovider="Saga.Map.Data.LuaQuest.dll, Saga.Map.Data.LuaQuest.ScenarioLuaQuest"
         /// />]]></code>
@@ -111,7 +106,7 @@ namespace Saga.Configuration
         /// This is a example that shows how the element is configured
         /// <code><![CDATA[<Saga.Manager.Quest
         /// directory="../Quests/"
-        /// sdirectory="../Data/Scenario.Quests/"	
+        /// sdirectory="../Data/Scenario.Quests/"
         /// provider="Saga.Map.Data.LuaQuest.dll, Saga.Map.Data.LuaQuest.LuaQuestProvider"
         /// scenarioprovider="Saga.Map.Data.LuaQuest.dll, Saga.Map.Data.LuaQuest.ScenarioLuaQuest"
         /// />]]></code>
@@ -133,6 +128,5 @@ namespace Saga.Configuration
                 this["scenarioprovider"] = value.ToString();
             }
         }
-
     }
 }

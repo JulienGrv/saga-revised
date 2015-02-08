@@ -1,13 +1,10 @@
-using System;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
 using Saga.PrimaryTypes;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent to user to create a new weapon. The new
@@ -37,10 +34,9 @@ namespace Saga.Packets
         {
             set
             {
-                if( value != null )
+                if (value != null)
                     Weapon.Serialize(value, this.data, 1);
             }
         }
-
     }
 }

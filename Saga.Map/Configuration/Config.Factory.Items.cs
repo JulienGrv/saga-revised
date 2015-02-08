@@ -1,9 +1,8 @@
-using System.Configuration;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
-
     /// <summary>
     /// Item factory configuration
     /// </summary>
@@ -18,7 +17,6 @@ namespace Saga.Configuration
     /// </example>
     public class ItemSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
         /// Get's or sets a list of files containing item information
         /// </summary>
@@ -36,7 +34,5 @@ namespace Saga.Configuration
         {
             get { return ((FactoryFileCollection)(base["Files"])); }
         }
-
-
     }
 }

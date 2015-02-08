@@ -1,31 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Xml;
+﻿using Saga.Configuration;
 using Saga.Map.Configuration;
-using Saga.Configuration;
-using Saga.Shared.Definitions;
-using Saga.Map.Definitions.Misc;
-using System.Globalization;
-using System.Diagnostics;
 using Saga.Packets;
 using Saga.PrimaryTypes;
-using System.Reflection;
 using Saga.Structures;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
 
 namespace Saga.Factory
 {
-
     /// <summary>
     /// Provides a manager for event information
     /// </summary>
     public class EventManager : FactoryBase
     {
-
         #region Ctor/Dtor
 
-        public EventManager() { }
+        public EventManager()
+        {
+        }
 
         ~EventManager()
         {
@@ -33,8 +29,7 @@ namespace Saga.Factory
             _constructorInfo = null;
         }
 
-
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
@@ -42,13 +37,13 @@ namespace Saga.Factory
         /// Lookup table of events by event id
         /// </summary>
         protected Dictionary<byte, EventDateTime> _eventdates;
-        
+
         /// <summary>
         /// Chached constructor information for optimalisation
         /// </summary>
         protected static ConstructorInfo _constructorInfo;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -108,7 +103,6 @@ namespace Saga.Factory
                 c.ReadLine();
                 while (c.Peek() > 0)
                 {
-
                     //REPORT PROGRESS
                     ProgressReport.Invoke();
                     String row = c.ReadLine();
@@ -116,7 +110,6 @@ namespace Saga.Factory
 
                     try
                     {
-
                         int Flags = 0;
                         byte eventid = Convert.ToByte(fields[0]);            //Unique id of the event
                         byte UseDate = Convert.ToByte(fields[6]);            //1   - Use a date to check
@@ -149,12 +142,10 @@ namespace Saga.Factory
                         if (EnableSunday == 1)
                             Flags |= 256;
 
-
                         DateTime eventstart = DateTime.Parse(fields[2], CultureInfo.InvariantCulture);
                         DateTime eventend = DateTime.Parse(fields[3], CultureInfo.InvariantCulture);
                         TimeSpan timestart = TimeSpan.Parse(fields[4]);
                         TimeSpan timetend = TimeSpan.Parse(fields[5]);
-         
 
                         EventDateTime date = new EventDateTime();
                         date.end = eventend.Add(timetend);
@@ -167,7 +158,6 @@ namespace Saga.Factory
                             date.IsActive = true;
 
                         _eventdates.Add(eventid, date);
-
                     }
                     catch (Exception e)
                     {
@@ -177,28 +167,28 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Internal Methods
 
-        int LastTick = Environment.TickCount;
+        private int LastTick = Environment.TickCount;
+
         internal void CheckEvents()
         {
             if (Environment.TickCount - LastTick > 1000)
-            {                
+            {
                 LastTick = Environment.TickCount;
-                foreach( KeyValuePair<byte, EventDateTime> pair in _eventdates)
+                foreach (KeyValuePair<byte, EventDateTime> pair in _eventdates)
                 {
                     if (pair.Value.IsActive == true)
                         Deactivate(pair.Value);
                     else
                         Activate(pair.Value);
                 }
-
             }
         }
 
-        #endregion
+        #endregion Internal Methods
 
         #region Private Methods
 
@@ -210,7 +200,7 @@ namespace Saga.Factory
         /// <returns></returns>
         private bool CreateInstance(out BaseEventInfo e)
         {
-            object a = _constructorInfo.Invoke(new object[]{});
+            object a = _constructorInfo.Invoke(new object[] { });
             e = (BaseEventInfo)a;
             return e != null;
         }
@@ -221,7 +211,6 @@ namespace Saga.Factory
         /// <param name="message">Message to broadcast</param>
         private void DoGlobalAnnounchment(string message)
         {
-
             //GENERATE BROADCAST
             SMSG_SENDCHAT spkt = new SMSG_SENDCHAT();
             spkt.Name = "GM";
@@ -243,13 +232,12 @@ namespace Saga.Factory
             }
         }
 
-
         /// <summary>
         /// Checks if a event is activated today
         /// </summary>
         /// <param name="e">event to check</param>
         /// <returns>True if the event is scheduled for activation of today</returns>
-        bool IsActiveToday(EventDateTime e)
+        private bool IsActiveToday(EventDateTime e)
         {
             DayOfWeek day = DateTime.Today.DayOfWeek;
             if (day == DayOfWeek.Monday)
@@ -269,13 +257,12 @@ namespace Saga.Factory
             return false;
         }
 
-
         /// <summary>
         /// Checks if a event is between the correctly setted timestamps
         /// </summary>
         /// <param name="e">event to check</param>
         /// <returns>True if the event is between correct timestamps</returns>
-        bool IsBetweenTimeStamp(EventDateTime e)
+        private bool IsBetweenTimeStamp(EventDateTime e)
         {
             if ((e.Flags & 2) == 2)
             {
@@ -291,7 +278,7 @@ namespace Saga.Factory
         /// </summary>
         /// <param name="e">event to check</param>
         /// <returns>True if the event is between correct dates</returns>
-        bool IsBetweenDateTime(EventDateTime e)
+        private bool IsBetweenDateTime(EventDateTime e)
         {
             if ((e.Flags & 1) == 1)
             {
@@ -302,13 +289,12 @@ namespace Saga.Factory
             return true;
         }
 
-
         /// <summary>
         /// Checks if the event is scheduled for periodic updates
         /// </summary>
         /// <param name="e">event to check</param>
         /// <returns></returns>
-        bool CanCheckTimespan(EventDateTime e)
+        private bool CanCheckTimespan(EventDateTime e)
         {
             return (e.Flags & 3) == 3;
         }
@@ -343,7 +329,7 @@ namespace Saga.Factory
                 result = IsBetweenTimeStamp(e) && IsBetweenDateTime(e) && IsActiveToday(e);
 
             if (result == false && e.IsActive == true)
-            {                
+            {
                 e.IsActive = false;
                 Console.WriteLine("Deactivate");
                 string message = string.Format(CultureInfo.InvariantCulture, "Event {0} ended", e.eventname);
@@ -371,11 +357,10 @@ namespace Saga.Factory
             }
         }
 
-
-        #endregion
+        #endregion Private Methods
 
         #region Public Methods
-              
+
         /// <summary>
         /// Checks wether a event has started
         /// </summary>
@@ -395,11 +380,10 @@ namespace Saga.Factory
         /// <returns></returns>
         public IEnumerable<byte> GetVisibleEvents()
         {
-            foreach( KeyValuePair<byte, EventDateTime> pair in _eventdates)
-                if( IsStarted(pair.Key))
+            foreach (KeyValuePair<byte, EventDateTime> pair in _eventdates)
+                if (IsStarted(pair.Key))
                     yield return pair.Key;
         }
-
 
         /// <summary>
         /// Opens the event
@@ -412,7 +396,7 @@ namespace Saga.Factory
             return FromFile(filename);
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Protected Properties
 
@@ -444,7 +428,7 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_ZONE; }
         }
 
-        #endregion
+        #endregion Protected Properties
 
         #region Nested Classes/Structures
 
@@ -460,10 +444,10 @@ namespace Saga.Factory
         public abstract class BaseEventInfo
         {
             protected internal abstract void OnInitialize(string filename);
+
             protected internal abstract int OnEventParticipate(uint cid);
         }
 
-        #endregion
-
+        #endregion Nested Classes/Structures
     }
 }

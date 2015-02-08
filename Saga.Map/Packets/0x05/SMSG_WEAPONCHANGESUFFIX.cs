@@ -1,11 +1,10 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet adjusts the weapon's suffix.
@@ -34,7 +33,7 @@ namespace Saga.Packets
 
         public ushort Suffix
         {
-            set { Array.Copy(BitConverter.GetBytes(value),0, this.data, 2, 2); }
+            set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 2, 2); }
         }
     }
 }

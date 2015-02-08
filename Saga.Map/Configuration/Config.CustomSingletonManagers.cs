@@ -2,10 +2,9 @@
 
 namespace Saga.Configuration
 {
-
     /// <summary>
     /// Default configuration element.
-    /// </summary>    
+    /// </summary>
     [ConfigurationCollection(typeof(SingletonManagerElement))]
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class ManagerCollection : KeyValueConfigurationCollection
@@ -43,11 +42,9 @@ namespace Saga.Configuration
         }
     }
 
-
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class SingletonManagerElement : ConfigurationElement
     {
-
         /// <summary>
         /// Gets or sets the path
         /// </summary>
@@ -67,7 +64,7 @@ namespace Saga.Configuration
         /// <summary>
         /// Gets or sets the fileformat.
         /// </summary>
-        [ConfigurationProperty("name", IsKey=true, IsRequired = true)]
+        [ConfigurationProperty("name", IsKey = true, IsRequired = true)]
         public string Name
         {
             get

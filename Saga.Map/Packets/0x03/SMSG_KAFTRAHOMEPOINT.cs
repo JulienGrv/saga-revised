@@ -1,11 +1,9 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet sets the positions of your
@@ -16,12 +14,11 @@ namespace Saga.Packets
     /// </id>
     internal class SMSG_KAFTRAHOMEPOINT : RelayPacket
     {
-
         public SMSG_KAFTRAHOMEPOINT()
         {
             this.Cmd = 0x0601;
             this.Id = 0x0314;
-            this.data =  new byte[2];
+            this.data = new byte[2];
         }
 
         public byte Result
@@ -33,6 +30,5 @@ namespace Saga.Packets
         {
             set { this.data[1] = value; }
         }
-
     }
 }

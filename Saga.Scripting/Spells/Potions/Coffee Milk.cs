@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
-using Saga.Scripting.Interfaces;
-using Saga.Factory;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
@@ -18,7 +12,7 @@ namespace Saga.Skills
                 arguments.Result = Saga.SkillBaseEventArgs.ResultType.Item;
                 arguments.Damage = 0;
                 arguments.Failed = false;
-                Common.Skills.CreateAddition(arguments.Sender as Actor, arguments.Addition, 900000 );
+                Common.Skills.CreateAddition(arguments.Sender as Actor, arguments.Addition, 900000);
             }
         }
     }

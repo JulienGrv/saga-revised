@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is to indicate a relative new packet arrival.
@@ -27,11 +22,11 @@ namespace Saga.Packets
         }
 
         public uint Amount
-        {        
-            set 
+        {
+            set
             {
-                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4); 
-            }      
+                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4);
+            }
         }
 
         public byte U1

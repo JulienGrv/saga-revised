@@ -1,18 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net.Sockets;
-using System.Reflection;
-using System.Net;
 using System.Diagnostics;
+using System.Net.Sockets;
 using System.Threading;
 
 namespace Saga.Shared.NetworkCore
 {
-
     public abstract class Client : IDisposable
     {
         public Socket socket;
+
         public event EventHandler OnClose;
 
         ~Client()
@@ -56,7 +52,7 @@ namespace Saga.Shared.NetworkCore
                     this.Close();
                 }
 
-                #endregion
+                #endregion Basic-buffer check
 
                 return;
             ProcessPacket:
@@ -87,14 +83,15 @@ namespace Saga.Shared.NetworkCore
                     if (process)
                     {
                         WaitCallback callback = delegate(object state)
-                        {                            
+                        {
                             ProcessPacket(ref packet);
                         };
 
                         ThreadPool.QueueUserWorkItem(callback);
                     }
                 }
-                #endregion
+
+                #endregion Packet-processing
             }
             catch (ObjectDisposedException)
             {
@@ -117,7 +114,7 @@ namespace Saga.Shared.NetworkCore
             {
                 byte[] buffer = new byte[2];
                 this.socket.BeginReceive(buffer, 0, 2, SocketFlags.Peek, new AsyncCallback(OnRead), buffer);
-            }            
+            }
         }
 
         public void Close()
@@ -133,7 +130,7 @@ namespace Saga.Shared.NetworkCore
             }
         }
 
-        public bool IsConnected        
+        public bool IsConnected
         {
             get
             {
@@ -168,9 +165,11 @@ namespace Saga.Shared.NetworkCore
             }
         }
 
+        protected virtual void OnConnect()
+        {
+        }
 
-        protected virtual void OnConnect() { }
-        protected abstract void ProcessPacket( ref byte[] body);
+        protected abstract void ProcessPacket(ref byte[] body);
 
         #region IDisposable Members
 
@@ -189,6 +188,6 @@ namespace Saga.Shared.NetworkCore
             }
         }
 
-        #endregion
+        #endregion IDisposable Members
     }
 }

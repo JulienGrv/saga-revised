@@ -1,15 +1,14 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is used to send to the user after she has invoked a 
-    /// request to open the drop-list for the dead target. The client 
+    /// This packet is used to send to the user after she has invoked a
+    /// request to open the drop-list for the dead target. The client
     /// blocks all other trafic.
     /// </remarks>
     /// <id>

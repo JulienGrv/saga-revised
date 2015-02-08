@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent by the client when he/she cancels/interups 
-    /// her casted skill. For example when you move and your skill is 
+    /// This packet is sent by the client when he/she cancels/interups
+    /// her casted skill. For example when you move and your skill is
     /// casted you'll cancel your skills
     /// </remarks>
     /// <id>
@@ -35,7 +31,6 @@ namespace Saga.Packets
             get { return BitConverter.ToUInt32(this.data, 1); }
         }
 
-
         #region Conversions
 
         public static explicit operator CMSG_SKILLCASTCANCEL(byte[] p)
@@ -45,8 +40,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -59,6 +54,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

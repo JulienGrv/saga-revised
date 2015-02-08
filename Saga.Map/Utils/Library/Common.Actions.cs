@@ -1,20 +1,17 @@
-using Saga.Packets;
-using Saga.Shared.Definitions;
-using System.Collections.Generic;
-using Saga.Map.Definitions.Misc;
-using System;
-using Saga;
-using Saga.Map;
-using Saga.PrimaryTypes;
-using Saga.Structures;
 using Saga.Enumarations;
+using Saga.Map;
+using Saga.Packets;
+using Saga.PrimaryTypes;
+using Saga.Shared.Definitions;
+using Saga.Structures;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Common
 {
     public static class Actions
     {
-
         public static void Kick(Character character)
         {
             //Closes the client
@@ -38,13 +35,12 @@ namespace Common
             else
             {
                 target.GmLevel = (byte)gmlevel;
-                CommonFunctions.Broadcast(source, source, string.Format("Target: {0} is now gm {1}", target.Name, gmlevel ));
+                CommonFunctions.Broadcast(source, source, string.Format("Target: {0} is now gm {1}", target.Name, gmlevel));
                 Trace.TraceInformation("Gm level was revoked by: {0} on: {1} to {9}", source.Name, target.Name, gmlevel);
             }
         }
 
         #region Kaftra
-      
 
         /// <summary>
         /// Shows the storage of a given character.
@@ -53,13 +49,13 @@ namespace Common
         public static void ShowStorage(Character target)
         {
             SMSG_STORAGELIST spkt = new SMSG_STORAGELIST();
-            foreach ( KeyValuePair< byte, Rag2Item> pair in target.STORAGE.GetAllItems())
-            spkt.AddItem( pair.Value, pair.Key );
+            foreach (KeyValuePair<byte, Rag2Item> pair in target.STORAGE.GetAllItems())
+                spkt.AddItem(pair.Value, pair.Key);
             spkt.SessionId = target.id;
             target.client.Send((byte[])spkt);
         }
 
-        #endregion
+        #endregion Kaftra
 
         #region Misc
 
@@ -73,7 +69,6 @@ namespace Common
             ISelectAble current = item as ISelectAble;
             if (current != null)
             {
-
                 target._targetid = item.id;
                 SMSG_ACTORSELECTION spkt = new SMSG_ACTORSELECTION();
                 spkt.SessionId = target.id;
@@ -85,8 +80,7 @@ namespace Common
                 spkt.TargetActorID = target._targetid;
                 target.client.Send((byte[])spkt);
                 target._target = target;
-                
-            }        
+            }
         }
 
         /// <summary>
@@ -109,7 +103,6 @@ namespace Common
             target._target = item;
         }
 
-
         public static void UpdateStance(Character target, Actor actor)
         {
             if (actor != null)
@@ -125,13 +118,13 @@ namespace Common
             }
         }
 
-        public static void UpdateStance( Actor actor)
+        public static void UpdateStance(Actor actor)
         {
             if (actor == null) return;
             Regiontree tree = actor.currentzone.Regiontree;
             foreach (Character target in tree.SearchActors(actor, SearchFlags.Characters))
-            {               
-                if( Point.IsInSightRangeByRadius(target.Position, actor.Position))
+            {
+                if (Point.IsInSightRangeByRadius(target.Position, actor.Position))
                 {
                     SMSG_ACTORCHANGESTATE spkt = new SMSG_ACTORCHANGESTATE();
                     spkt.Stance = actor.stance;
@@ -175,7 +168,6 @@ namespace Common
             source.client.Send((byte[])spkt);
         }
 
-
         public static void OpenMenu(Character target, MapObject source, uint dialogScript, DialogType type, params byte[] icons)
         {
             target._target = source;
@@ -213,15 +205,14 @@ namespace Common
         }
 
         public static void OpenLocationGuide(Character target, uint menu)
-        {           
+        {
             SMSG_NPCASKLOCATION spkt = new SMSG_NPCASKLOCATION();
             spkt.Script = menu;
             spkt.SessionId = target.id;
             target.client.Send((byte[])spkt);
         }
 
-
-        #endregion
+        #endregion Misc
 
         public static void ShowEvents(Character target)
         {
@@ -239,8 +230,5 @@ namespace Common
             }
             target.client.Send((byte[])spkt);
         }
-
-
-
     }
 }

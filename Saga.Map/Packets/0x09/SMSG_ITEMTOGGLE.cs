@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
@@ -10,12 +7,12 @@ namespace Saga.Packets
     /// Invokes a skill from item
     /// </summary>
     /// <remarks>
-    /// This packet is sent to the user to indicate a skill has been 
+    /// This packet is sent to the user to indicate a skill has been
     /// invoked throughout an item.
     /// </remarks>
     /// <id>
     /// 0913
-    /// </id>  
+    /// </id>
     internal class SMSG_ITEMTOGGLE : RelayPacket
     {
         public SMSG_ITEMTOGGLE()
@@ -27,7 +24,7 @@ namespace Saga.Packets
 
         public byte SkillType
         {
-            set { this.data[0] = value; } 
+            set { this.data[0] = value; }
         }
 
         public byte SkillMessage
@@ -64,7 +61,5 @@ namespace Saga.Packets
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 16, 4); }
         }
-
-
     }
 }

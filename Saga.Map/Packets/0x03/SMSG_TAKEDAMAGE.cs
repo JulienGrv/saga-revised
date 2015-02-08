@@ -1,14 +1,13 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This function inidactes you have taken damage. This can either be 
+    /// This function inidactes you have taken damage. This can either be
     /// because you just felt. Or because you suffer from lack of ogygen.
     /// </remarks>
     /// <id>
@@ -25,13 +24,12 @@ namespace Saga.Packets
 
         public byte Reason
         {
-            set {   this.data[0] = value;   }
+            set { this.data[0] = value; }
         }
 
         public uint Damage
         {
-            set { Array.Copy(BitConverter.GetBytes(value), 0, this.data,  1, 4); }
+            set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 1, 4); }
         }
-
     }
 }

@@ -1,22 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// No information
     /// </remarks>
     /// <id>
     /// 0521
-    /// </id>    
-    internal class SMSG_UNKNOWNERROR: RelayPacket
+    /// </id>
+    internal class SMSG_UNKNOWNERROR : RelayPacket
     {
         public SMSG_UNKNOWNERROR()
         {

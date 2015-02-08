@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
 using Saga.Structures;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This function indicated a movement start of the given actor
-    /// to start moving to the given position. The actor is here specified 
+    /// to start moving to the given position. The actor is here specified
     /// as a actor of the player class.
     /// </remarks>
     /// <id>
@@ -66,12 +62,13 @@ namespace Saga.Packets
 
         public Rotator Yaw
         {
-            set { 
+            set
+            {
                 Array.Copy(BitConverter.GetBytes(value.rotation), 0, this.data, 28, 2);
-                Array.Copy(BitConverter.GetBytes(value.unknown), 0, this.data, 30, 2); 
-           }
+                Array.Copy(BitConverter.GetBytes(value.unknown), 0, this.data, 30, 2);
+            }
         }
- 
+
         public ushort Speed
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 32, 2); }
@@ -92,13 +89,11 @@ namespace Saga.Packets
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 40, 4); }
         }
 
-
         /*
         public uint Delay1
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 40, 4); }
         }
          * */
-
     }
 }

@@ -1,44 +1,43 @@
-﻿using System;
+﻿using Saga.Authentication;
+using Saga.Authentication.Network;
+using Saga.Configuration;
+using Saga.Map.Client;
+using Saga.Shared.NetworkCore;
+using System;
 using System.Configuration;
 using System.Diagnostics;
 using System.Net.Sockets;
 using System.Threading;
-using Saga;
-using Saga.Map.Client;
-using Saga.Shared.NetworkCore;
-using Saga.Configuration;
-using Saga.Map;
-using Saga.Authentication;
-using Saga.Authentication.Network;
 
 namespace Saga.Managers
 {
-
     public class NetworkService : ManagerBase2
     {
-
         #region Ctor/Dtor
 
-        public NetworkService() { }
+        public NetworkService()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
         //Managers
-        static Manager<LogonClient> networkManger;
-        static Manager<InternalClient> networkManger2;
+        private static Manager<LogonClient> networkManger;
+
+        private static Manager<InternalClient> networkManger2;
 
         //Settings
         internal static string _host_1 = string.Empty;
+
         internal static string _host_2 = string.Empty;
         internal static int _port_1 = 0;
         internal static int _port_2 = 0;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
-        
 
         protected override void QuerySettings()
         {
@@ -68,12 +67,12 @@ namespace Saga.Managers
                 new EventHandler(HostContext_OnLoaded);
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Event Callbacks
 
-        void HostContext_OnLoaded(object sender, EventArgs e)
-        {    
+        private void HostContext_OnLoaded(object sender, EventArgs e)
+        {
             Singleton.ConsoleCommands.Clear();
             if (Singleton.generaltracelog.CountOfErrors > 0)
             {
@@ -137,6 +136,7 @@ namespace Saga.Managers
                 }
             }
         }
+
         public void OpenInternalNetworkConnections()
         {
             //HELPER VARIABLES
@@ -185,8 +185,6 @@ namespace Saga.Managers
             }
         }
 
-        #endregion
-
+        #endregion Event Callbacks
     }
-
 }

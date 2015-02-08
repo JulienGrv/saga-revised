@@ -1,13 +1,10 @@
-using System;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
 using Saga.PrimaryTypes;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This function send the inventory list of the specified player this is apart
@@ -20,6 +17,7 @@ namespace Saga.Packets
     internal class SMSG_INVENTORYLIST : RelayPacket
     {
         private int index = 0;
+
         public SMSG_INVENTORYLIST(byte items)
         {
             this.Cmd = 0x0601;
@@ -34,12 +32,11 @@ namespace Saga.Packets
         }
 
         public void AddItem(Rag2Item item)
-        {     
+        {
             int offset = 2 + (this.index * 67);
             Rag2Item.Serialize(item, this.data, offset);
             this.data[offset + 66] = (byte)this.index;
             this.index++;
         }
-
     }
 }

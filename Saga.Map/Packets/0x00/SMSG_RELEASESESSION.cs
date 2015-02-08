@@ -1,5 +1,5 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
@@ -11,7 +11,6 @@ namespace Saga.Packets
             this.Id = 0x000B;
             this.data = new byte[4];
         }
-
 
         public uint Session
         {

@@ -2,10 +2,9 @@ using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <remarks>
     /// Note quite sure what this packet really does. But seems to work in
-    /// conjunction with owner-based message retrieving. 
+    /// conjunction with owner-based message retrieving.
     /// </remarks>
     /// <id>
     /// 1106

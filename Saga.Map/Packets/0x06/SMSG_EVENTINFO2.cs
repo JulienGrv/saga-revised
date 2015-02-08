@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
-using Saga.Map.Definitions.Misc;
+using System;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet shows you a list of items.
@@ -27,7 +21,7 @@ namespace Saga.Packets
             this.Id = 0x061E;
             this.data = new byte[2];
         }
-  
+
         public byte Result
         {
             set

@@ -1,20 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is send to the player to notify himself of his active changes. 
-    /// These changes can be JEXP, EXP, HP, SP,  the Flag "FieldOfSignt" indicates 
+    /// This packet is send to the player to notify himself of his active changes.
+    /// These changes can be JEXP, EXP, HP, SP,  the Flag "FieldOfSignt" indicates
     /// what to display.
-    /// 
+    ///
     /// 1 = Joblvl up, 2 = Jexp, 16 = CLvl up, 32 = Cexp
     /// </remarks>
     /// <id>
@@ -67,7 +63,7 @@ namespace Saga.Packets
 
         public byte LC
         {
-            set { this.data[17] = value;  }
+            set { this.data[17] = value; }
             get { return this.data[17]; }
         }
 
@@ -88,7 +84,6 @@ namespace Saga.Packets
             set { this.data[20] = value; }
             get { return this.data[20]; }
         }
-
 
         public ushort FieldOfSight
         {

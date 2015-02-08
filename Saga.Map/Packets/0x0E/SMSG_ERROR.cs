@@ -1,10 +1,10 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// </remarks>

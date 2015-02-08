@@ -1,24 +1,21 @@
-﻿using System;
+﻿using Saga.Configuration;
+using Saga.Map;
+using Saga.Map.Client;
+using Saga.Map.Configuration;
+using Saga.Shared.NetworkCore;
+using System;
 using System.Configuration;
 using System.Diagnostics;
 using System.Net.Sockets;
 using System.Threading;
-using Saga;
-using Saga.Map.Client;
-using Saga.Shared.NetworkCore;
-using Saga.Configuration;
-using Saga.Map.Configuration;
-using Saga.Map;
 
 namespace Saga.Managers
 {
-
     public class NetworkService : ManagerBase2
     {
-
         #region Ctor/Dtor
 
-        public NetworkService() 
+        public NetworkService()
         {
         }
 
@@ -27,12 +24,13 @@ namespace Saga.Managers
             StopServers();
         }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
         //Settings
         internal static string _host_1 = string.Empty;
+
         internal static string _host_2 = string.Empty;
         internal static int _port_1 = 0;
         internal static int _port_2 = 0;
@@ -43,7 +41,7 @@ namespace Saga.Managers
         internal static InternalClient InterNetwork;
         internal Manager<Saga.Map.Client.Client> networkManger;
 
-        #endregion
+        #endregion Internal Members
 
         #region Public Properties
 
@@ -106,7 +104,7 @@ namespace Saga.Managers
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Protected Methods
 
@@ -141,11 +139,11 @@ namespace Saga.Managers
             this.HostContext.OnLoaded += new EventHandler(HostContext_OnLoaded);
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Event Callbacks
 
-        void HostContext_OnLoaded(object sender, EventArgs e)
+        private void HostContext_OnLoaded(object sender, EventArgs e)
         {
             Singleton.ConsoleCommands.Clear();
 
@@ -157,9 +155,7 @@ namespace Saga.Managers
             }
             else
             {
-
                 Singleton.Database.AutoRestore();
-
 
                 StartLoginServer();
                 StartWorldServer();
@@ -171,7 +167,7 @@ namespace Saga.Managers
         internal void StartLoginServer()
         {
             bool success = false;
-            //NOTIFY LOGIN SERVER            
+            //NOTIFY LOGIN SERVER
             while (success == false)
             {
                 try
@@ -186,7 +182,7 @@ namespace Saga.Managers
                 catch (SocketException)
                 {
                     Console.WriteLine("Cannot create connection with authentication server");
-                    WriteError("NetworkManager","Cannot create connection with authentication server");
+                    WriteError("NetworkManager", "Cannot create connection with authentication server");
                     Thread.Sleep(60000);
                 }
                 catch (Exception ex)
@@ -194,7 +190,7 @@ namespace Saga.Managers
                     WriteError("NetworkManager", "A unknown exception occurred: {0} {1}", ex.Source, ex.Message);
                     Thread.Sleep(60000);
                 }
-            }          
+            }
         }
 
         internal void StartWorldServer()
@@ -246,7 +242,6 @@ namespace Saga.Managers
             }
         }
 
-
         internal void StopServers()
         {
             //Close the internal network client if any exists
@@ -258,8 +253,6 @@ namespace Saga.Managers
                 networkManger.Stop();
         }
 
-        #endregion
-
+        #endregion Event Callbacks
     }
-
 }

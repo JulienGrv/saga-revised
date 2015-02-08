@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Map;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void NOVICE_TENSION(SkillBaseEventArgs bargument)
         {
             Actor asource = bargument.Sender as Actor;
@@ -23,6 +18,5 @@ namespace Saga.Skills
                 Singleton.Additions.DeapplyAddition(arguments.Addition, asource);
             }
         }
-
     }
 }

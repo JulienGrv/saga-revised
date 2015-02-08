@@ -1,10 +1,7 @@
-using System;
-using System.Net;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_CHARACTERLOGINREPLY : RelayPacket
     {
         public SMSG_CHARACTERLOGINREPLY()
@@ -21,5 +18,5 @@ namespace Saga.Packets
                 this.data[0] = value;
             }
         }
-     }
+    }
 }

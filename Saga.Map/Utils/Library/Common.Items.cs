@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.Map.Definitions.Misc;
-using Saga.Map;
+﻿using Saga.Map;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Quests;
@@ -12,12 +7,10 @@ namespace Common
 {
     public static class Items
     {
-
-
         public static bool GiveItem(Character character, uint item, byte count)
-        {            
+        {
             Rag2Item iventoryitem;
-            if( Singleton.Item.TryGetItemWithCount(item, count, out iventoryitem) )
+            if (Singleton.Item.TryGetItemWithCount(item, count, out iventoryitem))
             {
                 int index = character.container.Add(iventoryitem);
                 if (index > -1)
@@ -35,8 +28,6 @@ namespace Common
             }
 
             return false;
-        }       
-
-
+        }
     }
 }

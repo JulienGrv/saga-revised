@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void BAREFISTS(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -22,7 +17,7 @@ namespace Saga.Skills
                 matrix = arguments.GetDefaultSkillMatrix(asource, atarget);
                 Lvldiff = arguments.GetCappedLevelDifference(matrix);
                 matrix[4, 3] += (Lvldiff * 120);
-                matrix[0, 1] = 0; matrix[1, 1] = 0;      
+                matrix[0, 1] = 0; matrix[1, 1] = 0;
 
                 if (arguments.IsMissed(matrix) || arguments.IsBlocked(matrix))
                 {
@@ -42,8 +37,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
-
-
     }
 }

@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Map;
 using Saga.Shared.Definitions;
 using Saga.Structures;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Templates
 {
-
-    class Book : MapItem, OpenBook
+    internal class Book : MapItem, OpenBook
     {
-
         #region OpenBook Members
 
-        Dictionary<uint, Rag2Collection> loottable = new Dictionary<uint, Rag2Collection>();
+        private Dictionary<uint, Rag2Collection> loottable = new Dictionary<uint, Rag2Collection>();
+
         public void OnOpenBook(Character sender)
         {
             Rag2Collection items = new Rag2Collection();
@@ -23,7 +21,7 @@ namespace Saga.Templates
             this.loottable.Add(sender.id, items);
         }
 
-        #endregion
+        #endregion OpenBook Members
 
         #region Disposible Members
 
@@ -32,7 +30,7 @@ namespace Saga.Templates
             loottable.Remove(target.id);
         }
 
-        #endregion
+        #endregion Disposible Members
 
         #region ILootable Members
 
@@ -47,19 +45,19 @@ namespace Saga.Templates
             return items;
         }
 
-        uint _LootLeader = 0;
+        private uint _LootLeader = 0;
+
         public uint LootLeader
         {
             get { return _LootLeader; }
         }
 
-        #endregion
+        #endregion ILootable Members
 
         public uint ActorId
         {
             get { return this.id; }
         }
-
 
         #region ILootable Members
 
@@ -68,7 +66,6 @@ namespace Saga.Templates
             throw new NotImplementedException();
         }
 
-        #endregion
-
+        #endregion ILootable Members
     }
 }

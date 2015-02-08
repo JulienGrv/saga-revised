@@ -1,9 +1,8 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_SCENARIOMSG : RelayPacket
     {
         public SMSG_SCENARIOMSG()
@@ -16,10 +15,9 @@ namespace Saga.Packets
         public uint Scenario
         {
             set
-            { 
-                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4); 
+            {
+                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4);
             }
         }
-
     }
 }

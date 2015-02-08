@@ -1,18 +1,14 @@
-﻿using System;
+﻿using Saga.Enumarations;
+using Saga.PrimaryTypes;
+using Saga.Structures;
+using Saga.Templates;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Saga.Shared.Definitions;
-using Saga.Templates;
-using Saga.PrimaryTypes;
-using Saga.Enumarations;
-using Saga.Structures;
 
 namespace Saga.Npc.Functions
 {
-
     public sealed class FunctionState
     {
-
         #region Private Members
 
         /// <summary>
@@ -27,7 +23,7 @@ namespace Saga.Npc.Functions
         internal List<NpcFunction> RegisteredNpcFunctions =
             new List<NpcFunction>();
 
-        #endregion
+        #endregion Private Members
 
         #region Private Methods
 
@@ -41,7 +37,7 @@ namespace Saga.Npc.Functions
             return result;
         }
 
-        #endregion
+        #endregion Private Methods
 
         #region Public Methods
 
@@ -54,7 +50,7 @@ namespace Saga.Npc.Functions
         }
 
         public IEnumerable<DialogType> GetDialogButtons(BaseNPC npc, Character target)
-        {            
+        {
             foreach (KeyValuePair<byte, ButtonCallback> pair in __callbacks)
             {
                 DialogType dialog = (DialogType)pair.Key;
@@ -65,13 +61,12 @@ namespace Saga.Npc.Functions
             }
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Internal Methods
 
         internal bool Open(byte button, BaseNPC npc, Character target)
         {
-
             bool result = false;
             ButtonCallback callback;
 
@@ -119,9 +114,8 @@ namespace Saga.Npc.Functions
         {
             ButtonCallback mycallback = new ButtonCallback();
             mycallback.callback = callback;
-            __callbacks.Add((byte)id,mycallback);
+            __callbacks.Add((byte)id, mycallback);
         }
-
 
         /// <summary>
         /// Adds a summenu callback
@@ -136,17 +130,15 @@ namespace Saga.Npc.Functions
             mycallback.callbacks.Add(menu, callback);
         }
 
-        #endregion
+        #endregion Internal Methods
 
         #region Nested Classes/Structures
-
 
         /// <summary>
         /// Class container for holding button callnaks
         /// </summary>
         private class ButtonCallback
         {
-
             /// <summary>
             /// Default button callback
             /// </summary>
@@ -155,18 +147,12 @@ namespace Saga.Npc.Functions
             /// <summary>
             /// Submenu button callbacks
             /// </summary>
-            internal Dictionary<byte, NpcFunction.FunctionCallback> callbacks 
+            internal Dictionary<byte, NpcFunction.FunctionCallback> callbacks
                 = new Dictionary<byte, NpcFunction.FunctionCallback>();
         }
 
-        #endregion
-
-
+        #endregion Nested Classes/Structures
     }
-
-
-
-
 
     /// <summary>
     /// BlackSmith conversation is to be added to a npc to show the default
@@ -174,7 +160,6 @@ namespace Saga.Npc.Functions
     /// </summary>
     public class BlackSmith : NpcFunction
     {
-
         #region Private Members
 
         /// <summary>
@@ -202,10 +187,9 @@ namespace Saga.Npc.Functions
         /// </summary>
         protected uint _WeaponSuffixChange = 823;
 
-        #endregion
+        #endregion Private Members
 
         #region Protected Methods
-
 
         /// <summary>
         /// Registers all menu's
@@ -220,7 +204,6 @@ namespace Saga.Npc.Functions
             RegisterDialog(npc, DialogType.Smith, 55, new FunctionCallback(OnChangeWeaponSuffix));
         }
 
-
         /// <summary>
         /// Caches all dialog information
         /// </summary>
@@ -234,7 +217,7 @@ namespace Saga.Npc.Functions
                 case "SUFFIXCHANGE": _WeaponSuffixChange = value; break;
                 case "WEAPONUPGRADE": _WeaponUpgrade = value; break;
                 case "REPAIREQUIPMENT": _RepairEquipment = value; break;
-            }           
+            }
         }
 
         /// <summary>
@@ -245,7 +228,7 @@ namespace Saga.Npc.Functions
         protected virtual void OnBlackSmithMenu(BaseNPC npc, Character target)
         {
             Common.Actions.OpenSubmenu(target, npc,
-                _BlackSmithMenu,        //Dialog script to show                
+                _BlackSmithMenu,        //Dialog script to show
                 DialogType.Smith,       //Button function
                 50,                     //Repair
                 52,                     //Change Type
@@ -253,7 +236,6 @@ namespace Saga.Npc.Functions
                 55                      //Change Suffix
             );
         }
-
 
         /// <summary>
         /// Occurs when opening the WeaponChange menu
@@ -268,7 +250,6 @@ namespace Saga.Npc.Functions
                 npc.GetDialogButtons(target)    //Dialog buttons
             );
         }
-
 
         /// <summary>
         /// Occurs when opening the WeaponChangeSuffix menu
@@ -298,7 +279,6 @@ namespace Saga.Npc.Functions
             );
         }
 
-
         /// <summary>
         /// Occurs when opening the RepairEquipment menu
         /// </summary>
@@ -306,14 +286,13 @@ namespace Saga.Npc.Functions
         /// <param name="target">Character who requires interaction</param>
         protected virtual void OnRepairEquipment(BaseNPC npc, Character target)
         {
-             Common.Actions.OpenMenu(target, npc,
-                _RepairEquipment,               //Dialog sceipt for equipment reparing
-                DialogType.Smith,               //Button function
-                npc.GetDialogButtons(target)    //Dialog buttons
-            );
+            Common.Actions.OpenMenu(target, npc,
+               _RepairEquipment,               //Dialog sceipt for equipment reparing
+               DialogType.Smith,               //Button function
+               npc.GetDialogButtons(target)    //Dialog buttons
+           );
         }
 
-        #endregion
-
+        #endregion Protected Methods
     }
 }

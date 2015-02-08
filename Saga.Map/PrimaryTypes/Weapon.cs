@@ -1,8 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
 using Saga.Map;
+using System;
+using System.Diagnostics;
+using System.Text;
 
 namespace Saga.PrimaryTypes
 {
@@ -10,9 +9,8 @@ namespace Saga.PrimaryTypes
     [Serializable()]
     public class Weapon
     {
-
         #region Internal Members
-        
+
         /// <summary>
         /// Weapon level of the weapon
         /// </summary>
@@ -26,8 +24,8 @@ namespace Saga.PrimaryTypes
         /// <summary>
         /// Activation state of the weapon
         /// </summary>
-        internal byte _active = 0;        
-        
+        internal byte _active = 0;
+
         /// <summary>
         /// Type weapon
         /// </summary>
@@ -38,12 +36,11 @@ namespace Saga.PrimaryTypes
         /// </summary>
         internal ushort _durabillity;
 
-
         /// <summary>
         /// Suffix of the weapon
         /// </summary>
         internal ushort _suffix;
-        
+
         /// <summary>
         /// Augeskill of the weapon
         /// </summary>
@@ -67,7 +64,7 @@ namespace Saga.PrimaryTypes
         /// <summary>
         /// Weapon namae
         /// </summary>
-        internal string _weaponname = string.Empty;        
+        internal string _weaponname = string.Empty;
 
         /// <summary>
         /// Weapon info loaded from our weaponary manager
@@ -75,7 +72,7 @@ namespace Saga.PrimaryTypes
         [NonSerialized()]
         internal Saga.Factory.Weaponary.Info Info;
 
-        #endregion 
+        #endregion Internal Members
 
         #region Serialization
 
@@ -88,7 +85,6 @@ namespace Saga.PrimaryTypes
         [DebuggerNonUserCode()]
         public static void Serialize(Weapon weapon, byte[] buffer, int offset)
         {
-
             try
             {
                 Encoding.Unicode.GetBytes(weapon._weaponname, 0, Math.Min(11, weapon._weaponname.Length), buffer, offset);
@@ -119,7 +115,6 @@ namespace Saga.PrimaryTypes
                 Console.WriteLine(e);
             }
         }
-
 
         /// <summary>
         /// Deserialized the specified buffer into a weapon
@@ -154,14 +149,12 @@ namespace Saga.PrimaryTypes
             weapon.Slots[7] = BitConverter.ToUInt32(buffer, offset + 70);
             weapon._active = buffer[offset + 74];
 
-
             if (Singleton.Weapons.TryGetWeaponInfo(weapon._weapontype, weapon._weaponlevel, out weapon.Info))
                 return weapon;
             else
                 return null;
         }
 
-        #endregion
-
+        #endregion Serialization
     }
 }

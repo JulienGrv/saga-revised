@@ -1,21 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
-using System.IO;
-using Saga.Map;
-using Saga.Map.Librairies;
-using Saga.Shared.Definitions;
-using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Structures;
-
+using System;
+using System.Collections.Generic;
 
 namespace Saga
 {
     public static class Shipzone
     {
-
         #region Private Members
 
         /// <summary>
@@ -23,7 +14,7 @@ namespace Saga
         /// </summary>
         private static readonly List<PendingPassengers> PendingPassengersList = new List<PendingPassengers>();
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
@@ -48,7 +39,6 @@ namespace Saga
                 pending.TravelTime = travelingtime;
             }
         }
-
 
         /// <summary>
         /// Removes a list of pending passengers
@@ -76,14 +66,14 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Nested
 
         /// <summary>
         /// Internal structure to define a passenger
         /// </summary>
-        class PendingPassengers
+        private class PendingPassengers
         {
             public Character Character;
             public Point DesintationCoords;
@@ -92,7 +82,6 @@ namespace Saga
             public int TravelTime;
         }
 
-        #endregion
-
+        #endregion Nested
     }
 }

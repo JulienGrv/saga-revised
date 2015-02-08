@@ -1,33 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Xml;
-using Saga.Map.Configuration;
-using Saga.Configuration;
-using Saga.Shared.Definitions;
+﻿using Saga.Configuration;
 using Saga.Map;
-using System.Diagnostics;
-using System.Globalization;
+using Saga.Map.Configuration;
 using Saga.PrimaryTypes;
 using Saga.Structures;
+using System;
+using System.Configuration;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
 
 namespace Saga.Factory
 {
     public class SpawnWorldObjects : FactoryBase
     {
-
         #region Ctor/Dtor
 
-        public SpawnWorldObjects() { }
+        public SpawnWorldObjects()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Protected Members
 
         protected BooleanSwitch npcspawnsaswarnings = new BooleanSwitch("NpcSpawnsAsWarnings", "Forces to detect npc spawns as warnings instead of errors", "0");
 
-        #endregion
+        #endregion Protected Members
 
         #region Protected Methods
 
@@ -45,7 +43,6 @@ namespace Saga.Factory
             }
         }
 
-        
         protected override void ParseAsCsvStream(Stream stream, FactoryBase.ReportProgress ProgressReport)
         {
             byte Line = 0;
@@ -61,9 +58,8 @@ namespace Saga.Factory
 
                     try
                     {
-
                         Zone zone;
-                        if ( !Singleton.Zones.TryGetZone(uint.Parse(fields[0], NumberFormatInfo.InvariantInfo), out zone))
+                        if (!Singleton.Zones.TryGetZone(uint.Parse(fields[0], NumberFormatInfo.InvariantInfo), out zone))
                         {
                             WriteError("WorldObjectsFactory (single)", "Zone of id {0} was not found", fields[0]);
                         }
@@ -77,27 +73,27 @@ namespace Saga.Factory
 
                         MapObject regionObject;
 
-                        bool iscreated = ismapitem != 1                           
+                        bool iscreated = ismapitem != 1
                             ? Singleton.Templates.SpawnNpcInstance(modelid, new Point(x, y, z), yaw, zone, out regionObject)
                             : Singleton.Templates.SpawnItemInstance(modelid, new Point(x, y, z), yaw, zone, out regionObject);
 
                         if (!iscreated)
                         {
-                            if( npcspawnsaswarnings.Enabled )
+                            if (npcspawnsaswarnings.Enabled)
                                 WriteWarning("WorldObjectsFactory (single)", "Cannot initialize {1} {0}", fields[4], ismapitem == 1 ? "actionobject" : "npc");
                             else
                                 WriteError("WorldObjectsFactory (single)", "Cannot initialize {1} {0}", fields[4], ismapitem == 1 ? "actionobject" : "npc");
-                        }                                              
+                        }
                     }
                     catch (FormatException)
                     {
                         WriteError("WorldObjectsFactory (single)", "Incorrect format at line {0}: {1}", Line, row);
                     }
                 }
-            }            
+            }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -121,7 +117,7 @@ namespace Saga.Factory
             HostContext.UnhandeldExceptionList.Clear();
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Methods
 
@@ -137,7 +133,7 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Protected Properties
 
@@ -151,7 +147,6 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_WORLDOBJECTSSPAWNS; }
         }
 
-        #endregion
-
+        #endregion Protected Properties
     }
 }

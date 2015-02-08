@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
-using Saga.Network.Packets;
 using Saga.Map.Definitions.Misc;
+using Saga.Network.Packets;
+using System;
 using System.Globalization;
+using System.Text;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent over all the items in the inbox tab.
@@ -31,8 +26,8 @@ namespace Saga.Packets
 
         public byte Count
         {
-            set { this.data[0] = value; } 
-            get { return this.data[0]; } 
+            set { this.data[0] = value; }
+            get { return this.data[0]; }
         }
 
         public uint SourceActor
@@ -47,12 +42,11 @@ namespace Saga.Packets
             int pos = this.data.Length;
             Array.Resize(ref this.data, this.data.Length + 131);
 
-            string timestamp = String.Format(CultureInfo.InvariantCulture,"{0}-{1}-{2} {3}:{4}:{5}", item.Time.Day, item.Time.Month, item.Time.Year, item.Time.Hour, item.Time.Minute, item.Time.Second);
-            
+            string timestamp = String.Format(CultureInfo.InvariantCulture, "{0}-{1}-{2} {3}:{4}:{5}", item.Time.Day, item.Time.Month, item.Time.Year, item.Time.Hour, item.Time.Minute, item.Time.Second);
 
             if (item.Zeny > 0)
             {
-               attachments |= 1;
+                attachments |= 1;
             }
             if (item.Attachment != null)
             {

@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Shared.PacketLib.Login
 {
-
     public class SMSG_FINDCHARACTERS : RelayPacket
     {
-
         public SMSG_FINDCHARACTERS()
         {
             this.Cmd = 0x0701;

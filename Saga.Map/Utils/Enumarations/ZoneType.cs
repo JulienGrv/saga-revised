@@ -2,9 +2,8 @@
 
 namespace Saga.Enumarations
 {
-
     /// <summary>
-    /// Defines the zone type of the field. 
+    /// Defines the zone type of the field.
     /// </summary>
     /// <remarks>
     /// Setting the zone type on zone instance will affect
@@ -21,12 +20,11 @@ namespace Saga.Enumarations
         /// <summary>
         /// The map is specified as village
         /// </summary>
-        Village,        
+        Village,
 
         /// <summary>
         /// The map is specified as a field
         /// </summary>
         Field
     }
-
 }

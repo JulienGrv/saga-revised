@@ -1,11 +1,10 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet that indicates to change
@@ -14,7 +13,7 @@ namespace Saga.Packets
     /// <id>
     /// 050E
     /// </id>
-    internal class SMSG_SHOWWEAPON: RelayPacket
+    internal class SMSG_SHOWWEAPON : RelayPacket
     {
         public SMSG_SHOWWEAPON()
         {

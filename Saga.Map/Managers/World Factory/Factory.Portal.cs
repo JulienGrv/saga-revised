@@ -1,28 +1,28 @@
-﻿using System;
+﻿using Saga.Configuration;
+using Saga.Map.Configuration;
+using Saga.Structures;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
-using Saga.Configuration;
-using Saga.Map.Configuration;
-using Saga.Shared.Definitions;
 using System.Globalization;
-using Saga.Structures;
+using System.IO;
 
 namespace Saga.Factory
 {
     public class Portals : FactoryBase
     {
-
         #region Ctor/Dtor
 
-        public Portals() { }
+        public Portals()
+        {
+        }
 
         ~Portals()
         {
             this.portals = null;
         }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
@@ -31,13 +31,13 @@ namespace Saga.Factory
         /// </summary>
         private Dictionary<byte, Dictionary<byte, Portal>> portals;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
 
         protected override void Initialize()
         {
-            this.portals = 
+            this.portals =
                 new Dictionary<byte, Dictionary<byte, Portal>>();
         }
 
@@ -62,7 +62,6 @@ namespace Saga.Factory
         {
             using (StreamReader c = new StreamReader(stream))
             {
-
                 c.ReadLine();
                 while (c.Peek() > 0)
                 {
@@ -91,7 +90,7 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -116,7 +115,7 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Protected Properties
 
@@ -148,7 +147,7 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_PORTALS; }
         }
 
-        #endregion
+        #endregion Protected Properties
 
         #region Nested Structures/Classes
 
@@ -187,8 +186,6 @@ namespace Saga.Factory
             public Point destinaton;
         }
 
-        #endregion
-
-
+        #endregion Nested Structures/Classes
     }
 }

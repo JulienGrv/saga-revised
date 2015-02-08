@@ -1,30 +1,24 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
+﻿using Saga.Enumarations;
 using Saga.Map;
 using Saga.Map.Utils.Structures;
-using Saga.Shared.Definitions;
-using Saga.Templates;
-using Saga.IO;
 using Saga.PrimaryTypes;
 using Saga.Structures;
 using Saga.Structures.Collections;
-using Saga.Enumarations;
+using Saga.Templates;
+using System;
 
 namespace Saga.Npc.Functions
 {
-
     /// <summary>
-    /// This is a skillmaster conversation. Include this in a npc to show a 
+    /// This is a skillmaster conversation. Include this in a npc to show a
     /// catheleya dialog and submenu.
     /// </summary>
     /// <remarks>
-    /// This skillmasters bookstore has it's items read from 
+    /// This skillmasters bookstore has it's items read from
     /// shops/{npcmodelid}.xml.
-    /// </remarks>  
+    /// </remarks>
     public class SkillMasterConversation : NpcFunction
     {
-
         #region Private Members
 
         /// <summary>
@@ -46,9 +40,10 @@ namespace Saga.Npc.Functions
         /// Dialog to say when showing special a
         /// </summary>
         protected uint _OnSpecialAbillities = 823;
+
         protected uint _OnSkillbook = 823;
 
-        #endregion
+        #endregion Private Members
 
         #region Protected Methods
 
@@ -94,7 +89,6 @@ namespace Saga.Npc.Functions
             }
         }
 
-
         /// masters submenu.
         /// </summary>
         /// <param name="npc">Npc who calls the event</param><summary>
@@ -104,8 +98,8 @@ namespace Saga.Npc.Functions
         {
             Console.WriteLine("Open skill master menu");
 
-            Common.Actions.OpenSubmenu( target, npc,
-                _ShowSkillMasterMenu,   //Dialog script to show                
+            Common.Actions.OpenSubmenu(target, npc,
+                _ShowSkillMasterMenu,   //Dialog script to show
                 DialogType.BookStore,   //Button function
                 31,                     //Change Job
                 32,                     //Special skills
@@ -123,7 +117,7 @@ namespace Saga.Npc.Functions
             //Create the collection and show it
             JobChangeCollection.Create(target).Show(target);
 
-            //Show dialog            
+            //Show dialog
             Common.Actions.OpenMenu(
                 target, npc,
                 _ChangeJob,
@@ -142,7 +136,7 @@ namespace Saga.Npc.Functions
             CommonDialogs.OpenSpecialSkillsDialog(target, Singleton.Database.GetAllLearnedSkills(target));
             //CommonFunctions.ShowDialog(target, npc, _OnSpecialAbillities, npc.GetDialogButtons(target));
 
-            //Show dialog            
+            //Show dialog
             Common.Actions.OpenMenu(
                 target, npc,
                 _OnSpecialAbillities,
@@ -151,19 +145,18 @@ namespace Saga.Npc.Functions
             );
         }
 
-
         /// <summary>
-        /// Shows all a list of skillbooks. 
+        /// Shows all a list of skillbooks.
         /// (uses shoppinglist object)
         /// </summary>
         /// <param name="npc">Npc who calls the event</param>
         /// <param name="target">Character who requires interaction</param>
         protected virtual void OnSkillbook(BaseNPC npc, Character target)
-        {            
+        {
             //Open bookstore
             _shoplist.Open(target, npc);
 
-            //Show dialog            
+            //Show dialog
             Common.Actions.OpenMenu(
                 target, npc,
                 _OnSkillbook,
@@ -172,18 +165,16 @@ namespace Saga.Npc.Functions
             );
         }
 
-
         /// <summary>
         /// Caches the shop
         /// </summary>
         /// <param name="npc">Npc who requires his shop to be cached</param>
         protected virtual void OnCacheShop(BaseNPC npc)
-        {           
+        {
             string filename = Server.SecurePath("~/bookstore/{0}.xml", npc.ModelId);
             _shoplist = BookstoreCollection.FromFile(filename);
         }
 
-        #endregion
-
+        #endregion Protected Methods
     }
 }

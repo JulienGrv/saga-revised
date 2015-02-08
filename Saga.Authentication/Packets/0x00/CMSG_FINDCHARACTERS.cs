@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
+using System.Text;
 
 namespace Saga.Shared.PacketLib.Login
 {
-
     public class CMSG_FINDCHARACTERS : RelayPacket
     {
-
         public CMSG_FINDCHARACTERS()
         {
             this.Cmd = 0x0701;
@@ -24,7 +21,8 @@ namespace Saga.Shared.PacketLib.Login
             }
         }
 
-        int offset = 1;
+        private int offset = 1;
+
         public void GetCharInfo(out CharInfo info)
         {
             info = new CharInfo();
@@ -44,8 +42,8 @@ namespace Saga.Shared.PacketLib.Login
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -58,7 +56,6 @@ namespace Saga.Shared.PacketLib.Login
             return pkt;
         }
 
-        #endregion
-
+        #endregion Conversions
     }
 }

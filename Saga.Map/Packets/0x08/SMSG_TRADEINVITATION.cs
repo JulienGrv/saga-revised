@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
-    internal class SMSG_TRADEINVITATION: RelayPacket
+    internal class SMSG_TRADEINVITATION : RelayPacket
     {
         public SMSG_TRADEINVITATION()
         {

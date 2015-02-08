@@ -1,24 +1,14 @@
 ﻿using System;
-using System.Configuration;
-using System.Diagnostics;
-using System.Net.Sockets;
-using System.Threading;
-using Saga;
-using Saga.Map.Client;
-using Saga.Shared.NetworkCore;
-using Saga.Configuration;
-using Saga.Map.Configuration;
-using Saga.Tasks;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 
 namespace Saga.Managers
 {
-
     public class QueedTask
     {
-
         public QueedTask(System.Threading.WaitCallback callback, object state, int delay)
-        {            
+        {
             this.state = state;
             this.delay = delay;
             this.callback = callback;
@@ -34,7 +24,7 @@ namespace Saga.Managers
         {
             get
             {
-               return Environment.TickCount - starttime > delay;
+                return Environment.TickCount - starttime > delay;
             }
         }
 
@@ -54,30 +44,29 @@ namespace Saga.Managers
 
     public class WorldTasks : ManagerBase2
     {
-
         #region Ctor/Dtor
 
-        public WorldTasks(){ }
+        public WorldTasks()
+        {
+        }
 
         ~WorldTasks()
         {
             Stop();
         }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
         //Settings
         internal static Random _random = new Random();
 
-        #endregion
+        #endregion Internal Members
 
         #region Private Members
 
         internal static List<QueedTask> Tasks = new List<QueedTask>();
-
-
 
         /// <summary>
         /// Thread for general lifespan
@@ -95,16 +84,16 @@ namespace Saga.Managers
         /// </remarks>
         private static Thread e;
 
-        #endregion
+        #endregion Private Members
 
         #region Private Methods
 
         /// <summary>
-        /// General game thread                              
+        /// General game thread
         /// </summary>
         /// <remarks>
         /// This is our main GameThread. It is used to process
-        /// all stuff we need to process. MobAI, Corpses, respawns, oxygen, 
+        /// all stuff we need to process. MobAI, Corpses, respawns, oxygen,
         /// hp recovery.
         /// </remarks>
         private static void GameThread()
@@ -134,13 +123,12 @@ namespace Saga.Managers
             }
         }
 
-
         private static void UpdateRemoveableTasks()
         {
             for (int i = 0; i < Tasks.Count; i++)
             {
                 QueedTask task = Tasks[i];
-                if( task.IsReady )
+                if (task.IsReady)
                 {
                     Trace.TraceInformation("Task is ready");
                     try
@@ -165,7 +153,6 @@ namespace Saga.Managers
             }
         }
 
-
         /// <summary>
         /// General MailService thread
         /// </summary>
@@ -185,23 +172,23 @@ namespace Saga.Managers
             }
         }
 
-        #endregion
+        #endregion Private Methods
 
         #region Protected Methods
 
         protected override void Initialize()
         {
- 	        c = new Thread(GameThread);   
+            c = new Thread(GameThread);
             e = new Thread(MailService);
         }
 
         protected override void QuerySettings()
         {
-            e.Priority = ThreadPriority.Normal;            
+            e.Priority = ThreadPriority.Normal;
             e.IsBackground = true;
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -222,7 +209,7 @@ namespace Saga.Managers
                 }
             }
             catch (ThreadAbortException) { Console.WriteLine("Security exception"); }
-            catch (System.Security.SecurityException){ Console.WriteLine("Security exception");  }
+            catch (System.Security.SecurityException) { Console.WriteLine("Security exception"); }
             finally
             {
                 GC.ReRegisterForFinalize(c);
@@ -244,7 +231,7 @@ namespace Saga.Managers
             }
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Properties
 
@@ -256,9 +243,6 @@ namespace Saga.Managers
             }
         }
 
-        #endregion
-
-
-
+        #endregion Public Properties
     }
 }

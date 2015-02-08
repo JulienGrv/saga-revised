@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Saga.Enumarations
 {
@@ -12,6 +10,5 @@ namespace Saga.Enumarations
         Npcs = 4,
         DynamicObjects = 7,
         StaticObjects = 8
-
     }
 }

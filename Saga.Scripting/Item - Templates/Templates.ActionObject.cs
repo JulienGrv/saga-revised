@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Saga.PrimaryTypes;
 using Saga.Quests;
-using Saga.PrimaryTypes;
 using Saga.Scripting.Interfaces;
-using Saga.Structures;
 
 namespace Saga.Templates
 {
-
-    class ActionObject : MapItem, OpenBox
+    internal class ActionObject : MapItem, OpenBox
     {
-
         #region Base Members
 
         public override byte IsHighlighted(Character target)
@@ -24,7 +18,7 @@ namespace Saga.Templates
             return (byte)(QuestBase.IsActionObjectActivated(this.ModelId, target) ? 1 : 0);
         }
 
-        #endregion
+        #endregion Base Members
 
         #region OpenBox Members
 
@@ -35,7 +29,7 @@ namespace Saga.Templates
             collection.Open(sender, this as MapObject);
         }
 
-        #endregion
+        #endregion OpenBox Members
 
         #region ILootable Members
 
@@ -45,7 +39,6 @@ namespace Saga.Templates
             return true;
         }
 
-        #endregion
-
+        #endregion ILootable Members
     }
 }

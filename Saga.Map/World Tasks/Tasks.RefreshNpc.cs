@@ -1,5 +1,5 @@
-﻿using System;
-using Saga.Map;
+﻿using Saga.Map;
+using System;
 
 namespace Saga.Tasks
 {
@@ -8,7 +8,6 @@ namespace Saga.Tasks
     /// </summary>
     internal static class WorldRefresh
     {
-
         #region Contructor / Decontructor
 
         /// <summary>
@@ -19,26 +18,26 @@ namespace Saga.Tasks
             LastTick = Environment.TickCount;
         }
 
-        #endregion
+        #endregion Contructor / Decontructor
 
         #region Private Members
 
         /// <summary>
         /// Last updated tick
         /// </summary>
-        static int LastTick;
+        private static int LastTick;
 
         /// <summary>
         /// Susspended time
         /// </summary>
-        static int SusspendedTime;
+        private static int SusspendedTime;
 
-        #endregion
+        #endregion Private Members
 
         #region Internal Members
 
         /// <summary>
-        /// Processes all AI threads. 
+        /// Processes all AI threads.
         /// </summary>
         /// <remarks>
         /// If the qeuee get's to big reprioritize the
@@ -46,7 +45,6 @@ namespace Saga.Tasks
         /// </remarks>
         internal static void Process()
         {
-
             //Refresh npc's
             int t_diff = Environment.TickCount - LastTick;
             if (t_diff > 300000)
@@ -57,7 +55,7 @@ namespace Saga.Tasks
                 if (SusspendedTime > 3600000)
                 {
                     SusspendedTime = 0;
-                    Singleton.Zones.RefreshActors();                    
+                    Singleton.Zones.RefreshActors();
                 }
             }
 
@@ -65,7 +63,6 @@ namespace Saga.Tasks
             Singleton.EventManager.CheckEvents();
         }
 
-        #endregion
-
+        #endregion Internal Members
     }
 }

@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
     /// Changes from stance
     /// </summary>
@@ -18,7 +13,7 @@ namespace Saga.Packets
     /// </remarks>
     /// <id>
     /// 0906
-    /// </id>   
+    /// </id>
     internal class SMSG_SKILLCASTCANCEL : RelayPacket
     {
         public SMSG_SKILLCASTCANCEL()
@@ -30,7 +25,7 @@ namespace Saga.Packets
 
         public byte SkillType
         {
-            set { this.data[0] = value; } 
+            set { this.data[0] = value; }
         }
 
         public uint SkillID
@@ -47,7 +42,5 @@ namespace Saga.Packets
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 9, 2); }
         }
-
-
     }
 }

@@ -1,9 +1,5 @@
 #define THREADING
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Sockets;
-using System.Threading;
+
 using Saga.Enumarations;
 using Saga.Map.Definitions.Misc;
 using Saga.Map.Utils.Definitions.Misc;
@@ -13,25 +9,29 @@ using Saga.PrimaryTypes;
 using Saga.Quests;
 using Saga.Structures;
 using Saga.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace Saga.Map.Client
 {
     partial class Client
     {
-
         /// <summary>
-        /// Notifies the client to load start sending all pre-cached and yet to be 
+        /// Notifies the client to load start sending all pre-cached and yet to be
         /// processed packets.
-        ///     
+        ///
         /// See the above method
         /// </summary>
         /// <remarks>
-        /// Due the nature of this method we'll be invoking a notification on 
-        /// our "assumed" to be pending LoadMap method. We'll process all Moveable 
+        /// Due the nature of this method we'll be invoking a notification on
+        /// our "assumed" to be pending LoadMap method. We'll process all Moveable
         /// objects in the sightrange here.
-        ///    
+        ///
         /// We cannot do this when we're precaching because suppose the client takes
-        /// 10 minutes  to load, all the moveable monsters and characters can be gone 
+        /// 10 minutes  to load, all the moveable monsters and characters can be gone
         /// already. And thus sending outdated information.
         /// </remarks>
         private void CM_CHARACTER_MAPLOADED()
@@ -43,7 +43,7 @@ namespace Saga.Map.Client
                 //Register on the new map
                 this.character.currentzone.Regiontree.Subscribe(this.character);
 
-                //GET NEW Z-POS     
+                //GET NEW Z-POS
                 float z = character.Position.z + 100;
 
                 //Refresh Personal Requests
@@ -51,13 +51,14 @@ namespace Saga.Map.Client
                 Regiontree.UpdateRegion(this.character);
                 isloaded = false;
 
-                #endregion
+                #endregion Internal
 
                 #region Actor infromation
+
                 {
                     /*
                      * Send actor information
-                     * 
+                     *
                      * This packet makes a actor appear on the screen. Just like character information
                      * It defines automaticly which actor is your actor.
                      */
@@ -80,22 +81,23 @@ namespace Saga.Map.Client
                     spkt.SessionId = this.character.id;
                     this.Send((byte[])spkt);
                 }
-                #endregion
+
+                #endregion Actor infromation
 
                 #region Battle Stats
+
                 {
                     CommonFunctions.SendBattleStatus(this.character);
                 }
 
-
-
-                #endregion
+                #endregion Battle Stats
 
                 #region Extend Stats
+
                 {
                     /*
                      * Sends over the status points attributes
-                     * 
+                     *
                      */
 
                     SMSG_EXTSTATS spkt2 = new SMSG_EXTSTATS();
@@ -107,22 +109,21 @@ namespace Saga.Map.Client
                     spkt2.SessionId = character.id;
                     this.Send((byte[])spkt2);
                 }
-                #endregion
+
+                #endregion Extend Stats
 
                 if (IsFirstTimeLoad)
                 {
-
-
-                    #if THREADING
+#if THREADING
                     WaitCallback FireTimeLoginCallback = delegate(object a)
                     {
-                    #else
+#else
                     {
-                    #endif
+#endif
 
                         #region Equipment List
-                        {
 
+                        {
                             /*
                              * Sends a list of all Equiped Equipment
                              */
@@ -132,17 +133,17 @@ namespace Saga.Map.Client
                             {
                                 Rag2Item item = this.character.Equipment[i];
                                 if (item != null) spkt.AddItem(item, item.active, i);
-
                             }
 
                             spkt.SessionId = this.character.id;
                             this.Send((byte[])spkt);
                         }
-                        #endregion
+
+                        #endregion Equipment List
 
                         #region Weaponary List
-                        {
 
+                        {
                             /*
                              * Sends a list of all weapons
                              */
@@ -157,9 +158,11 @@ namespace Saga.Map.Client
 
                             this.Send((byte[])spkt);
                         }
-                        #endregion
+
+                        #endregion Weaponary List
 
                         #region Unlock Weaponary
+
                         {
                             /*
                              * This packet unlocks the selected slots
@@ -169,20 +172,21 @@ namespace Saga.Map.Client
                             spkt.SessionId = this.character.id;
                             this.Send((byte[])spkt);
                         }
-                        #endregion
+
+                        #endregion Unlock Weaponary
 
                         #region Character Status
-                        {
 
+                        {
                             /*
                              * Send Character status
-                             * 
+                             *
                              * This updates the characters status, this defines which job you're using
                              * the experience you have. The experience is expressed in absolute values
                              * so it doesn't represent a relative value for exp required.
-                             * 
+                             *
                              * It also contains the definitions of how many LC, LP, HP, SP you have.
-                             * Note: LC represents the amount of breath capacity. 
+                             * Note: LC represents the amount of breath capacity.
                              */
 
                             SMSG_CHARSTATUS spkt = new SMSG_CHARSTATUS();
@@ -201,14 +205,15 @@ namespace Saga.Map.Client
                             spkt.SessionId = this.character.id;
                             this.Send((byte[])spkt);
                         }
-                        #endregion
+
+                        #endregion Character Status
 
                         #region Battle Skills
-                        {
 
+                        {
                             /*
                              * Region Send all battle skills
-                             * 
+                             *
                              * Also known as all active skills, heals, buffs included
                              */
 
@@ -219,13 +224,15 @@ namespace Saga.Map.Client
                             battleskills.SessionId = this.character.id;
                             this.Send((byte[])battleskills);
                         }
-                        #endregion
+
+                        #endregion Battle Skills
 
                         #region Special Skills
+
                         {
                             /*
                              * Sends over an list of special skills
-                             * 
+                             *
                              */
 
                             SMSG_LISTSPECIALSKILLS spkt = new SMSG_LISTSPECIALSKILLS();
@@ -240,17 +247,18 @@ namespace Saga.Map.Client
                             spkt.SessionId = this.character.id;
                             this.Send((byte[])spkt);
                         }
-                        #endregion
+
+                        #endregion Special Skills
 
                         #region Update Zeny
-                        {
 
+                        {
                             /*
-                             * Send Money 
-                             * 
-                             * This sets the money of a player to a absolute value. For instance if you 
+                             * Send Money
+                             *
+                             * This sets the money of a player to a absolute value. For instance if you
                              * say 500, it would mean the player gets 500 rufi. There are no relative
-                             * values for TakeMoney or GiveMoney.              
+                             * values for TakeMoney or GiveMoney.
                              */
 
                             SMSG_SENDZENY spkt = new SMSG_SENDZENY();
@@ -258,9 +266,11 @@ namespace Saga.Map.Client
                             spkt.SessionId = this.character.id;
                             this.Send((byte[])spkt);
                         }
-                        #endregion
+
+                        #endregion Update Zeny
 
                         #region Send Quest List
+
                         {
                             SMSG_QUESTINFO spkt3 = new SMSG_QUESTINFO();
                             spkt3.SessionId = this.character.id;
@@ -280,7 +290,6 @@ namespace Saga.Map.Client
 
                             foreach (QuestBase Quest in this.character.QuestObjectives)
                             {
-
                                 List<Saga.Quests.Objectives.ObjectiveList.StepInfo> Steps =
                                     QuestBase.GetSteps(this.character, Quest.QuestId);
 
@@ -318,9 +327,11 @@ namespace Saga.Map.Client
                                 }
                             }
                         }
-                        #endregion
+
+                        #endregion Send Quest List
 
                         #region Send Way Points
+
                         {
                             foreach (QuestBase Quest in this.character.QuestObjectives)
                             {
@@ -330,7 +341,6 @@ namespace Saga.Map.Client
 
                                 foreach (Saga.Quests.Objectives.ObjectiveList.Waypoint waypoint in QuestBase.UserGetWaypoints(this.character, Quest.QuestId))
                                 {
-
                                     Predicate<MapObject> IsNpc = delegate(MapObject match)
                                     {
                                         return match.ModelId == waypoint.NpcId;
@@ -345,9 +355,11 @@ namespace Saga.Map.Client
                                 this.Send((byte[])spkt2);
                             }
                         }
-                        #endregion
+
+                        #endregion Send Way Points
 
                         #region Addition List
+
                         {
                             SMSG_ADDITIONLIST spkt = new SMSG_ADDITIONLIST();
                             spkt.SessionId = this.character.id;
@@ -363,11 +375,12 @@ namespace Saga.Map.Client
                                 }
                             }
                             this.Send((byte[])spkt);
-
                         }
-                        #endregion
+
+                        #endregion Addition List
 
                         #region Scenario
+
                         {
                             QuestBase scenarioQuest = this.character.QuestObjectives.Quests[3];
                             if (scenarioQuest != null)
@@ -395,21 +408,23 @@ namespace Saga.Map.Client
                                 }
                             }
                         }
-                        #endregion
+
+                        #endregion Scenario
 
                         #region Mail
-                        {
 
+                        {
                             int count = Singleton.Database.GetInboxUncheckedCount(this.character.Name);
                             SMSG_MAILARRIVED spkt = new SMSG_MAILARRIVED();
                             spkt.Amount = (uint)count;
                             spkt.SessionId = this.character.id;
                             this.Send((byte[])spkt);
-
                         }
-                        #endregion
+
+                        #endregion Mail
 
                         #region Inventory List
+
                         {
                             SMSG_INVENTORYLIST spkt5 = new SMSG_INVENTORYLIST((byte)this.character.container.Count);
                             spkt5.SessionId = this.character.id;
@@ -418,13 +433,14 @@ namespace Saga.Map.Client
                             this.Send((byte[])spkt5);
                         }
 
-                        #endregion
+                        #endregion Inventory List
 
                         #region Friendlist
+
                         {
                             WaitCallback FriendlistLogin = delegate(object state)
                             {
-                                //Look through all friends lists of logged on players and if they are friends then 
+                                //Look through all friends lists of logged on players and if they are friends then
                                 // notify them that the user logged on.
                                 SMSG_FRIENDSLIST_NOTIFYLOGIN spkt = new SMSG_FRIENDSLIST_NOTIFYLOGIN();
                                 spkt.name = this.character.Name;
@@ -444,14 +460,15 @@ namespace Saga.Map.Client
 
                             ThreadPool.QueueUserWorkItem(FriendlistLogin);
                         }
-                        #endregion
 
-                    #if THREADING
+                        #endregion Friendlist
+
+#if THREADING
                     };
                     ThreadPool.QueueUserWorkItem(FireTimeLoginCallback);
-                    #else
+#else
                     }
-                    #endif                  
+#endif
                 }
                 else
                 {
@@ -461,17 +478,18 @@ namespace Saga.Map.Client
                 }
 
                 #region Dynamic Objects
+
                 {
                     try
                     {
                         Regiontree tree = this.character.currentzone.Regiontree;
 
-                        #if THREADING
+#if THREADING
                         WaitCallback FindCharactersActors = delegate(object a)
                         {
-                        #else
+#else
                         {
-                        #endif
+#endif
                             foreach (Character regionObject in tree.SearchActors(this.character, SearchFlags.Characters))
                             {
                                 try
@@ -496,18 +514,18 @@ namespace Saga.Map.Client
                                     Trace.WriteLine(e.Message);
                                 }
                             }
-                        #if THREADING
+#if THREADING
                         };
-                        #else
+#else
                         }
-                        #endif
+#endif
 
-                        #if THREADING
+#if THREADING
                         WaitCallback FindNpcActors = delegate(object a)
                         {
-                        #else
+#else
                         {
-                        #endif
+#endif
                             foreach (MapObject regionObject in tree.SearchActors(this.character, SearchFlags.MapItems | SearchFlags.Npcs))
                             {
                                 try
@@ -528,48 +546,48 @@ namespace Saga.Map.Client
                                 }
                             }
 
-                        #if THREADING
+#if THREADING
                         };
-                        #else
+#else
                         }
-                        #endif
+#endif
 
-                        #if THREADING
+#if THREADING
                         ThreadPool.QueueUserWorkItem(FindCharactersActors);
                         ThreadPool.QueueUserWorkItem(FindNpcActors);
-                        #endif
+#endif
                     }
                     catch (Exception e)
                     {
                         Trace.WriteLine(e.Message);
                     }
-
-
- 
                 }
 
-                #endregion
+                #endregion Dynamic Objects
 
                 #region Time Weather
+
                 CommonFunctions.UpdateTimeWeather(this.character);
-                #endregion
+
+                #endregion Time Weather
 
                 #region Map Info
-                {
 
+                {
                     SMSG_SHOWMAPINFO spkt2 = new SMSG_SHOWMAPINFO();
                     spkt2.SessionId = this.character.id;
                     spkt2.ZoneInfo = this.character.ZoneInformation;
                     this.Send((byte[])spkt2);
-
                 }
-                #endregion
+
+                #endregion Map Info
 
                 #region Return Points
+
                 {
                     /*
                      * Send Resturn points
-                     * Return points define which map you'll be send to when you 
+                     * Return points define which map you'll be send to when you
                      * use your promise stone or die
                      */
 
@@ -596,22 +614,26 @@ namespace Saga.Map.Client
                         this.Send((byte[])spkt);
                     }
                 }
-                #endregion
+
+                #endregion Return Points
 
                 #region Job Levels
+
                 {
                     SMSG_JOBLEVELS spkt2 = new SMSG_JOBLEVELS();
                     spkt2.SessionId = this.character.id;
                     spkt2.jobslevels = this.character.CharacterJobLevel;
                     this.Send((byte[])spkt2);
                 }
-                #endregion
+
+                #endregion Job Levels
 
                 #region Change Actors state
+
                 {
                     /*
                      * Change the actors state
-                     * 
+                     *
                      * This is used to change the actors state to a non-active-battle position.
                      * Note we will not warp the player back on their x and y coords if they were dead.
                      * This would result in double loading a map. This should be handeld before processing
@@ -627,7 +649,8 @@ namespace Saga.Map.Client
                     spkt.State = (this.character.ISONBATTLE) ? (byte)1 : (byte)0;
                     this.Send((byte[])spkt);
                 }
-                #endregion
+
+                #endregion Change Actors state
 
                 #region Party Update
 
@@ -660,7 +683,7 @@ namespace Saga.Map.Client
                     }
                 }
 
-                #endregion
+                #endregion Party Update
 
                 #region Static Objects
 
@@ -679,8 +702,7 @@ namespace Saga.Map.Client
                     //Do nothing
                 }
 
-                #endregion
-
+                #endregion Static Objects
             }
             catch (Exception e)
             {
@@ -701,12 +723,12 @@ namespace Saga.Map.Client
         /// </summary>
         /// <remarks>
         /// First we'll check to see if we could see, actor x from
-        /// our old position. After that we'll check if can see actor x 
+        /// our old position. After that we'll check if can see actor x
         /// from our new position. If we can see him, we'll forward our movement
-        /// packet. If we can't see him we'll sent a actor disappearance packet. 
-        ///     
+        /// packet. If we can't see him we'll sent a actor disappearance packet.
+        ///
         /// Once that's done, we'll check if we can see a non-former visible actor
-        /// is now visible in our new position. Which will cause us to invoke a appearance 
+        /// is now visible in our new position. Which will cause us to invoke a appearance
         /// packet.
         /// </remarks>
         /// <param name="cpkt"></param>
@@ -717,7 +739,7 @@ namespace Saga.Map.Client
                 return;
             }
 
-            //If character was previous walking/running 
+            //If character was previous walking/running
             if (this.character.IsMoving)
             {
                 long time = (long)((uint)Environment.TickCount) - (long)((uint)this.character.LastPositionTick);
@@ -739,26 +761,26 @@ namespace Saga.Map.Client
                 this.character.LastPositionTick = Environment.TickCount;
             }
 
-
             //CALCULATE CURRENT MOVING SPEED
             ushort speed = (ushort)this.character._status.WalkingSpeed;
-            if (cpkt.MovementType != 1){ 
-                if( speed > 0 ) speed /= 2;
+            if (cpkt.MovementType != 1)
+            {
+                if (speed > 0) speed /= 2;
             }
 
-            //Get new actors for next-tick    
+            //Get new actors for next-tick
 
             uint delay = cpkt.DelayTime;
             byte movement = cpkt.MovementType;
             float ax = cpkt.AccelerationX;
             float ay = cpkt.AccelerationY;
             float az = cpkt.AccelerationZ;
-            
+
             Point oldP = this.character.Position;
             Point newP = new Point(cpkt.X, cpkt.Y, cpkt.Z);
 
             this.character.stance = (byte)StancePosition.Walk;
-            this.character.Yaw = cpkt.Yaw;        
+            this.character.Yaw = cpkt.Yaw;
             Regiontree tree = this.character.currentzone.Regiontree;
 
             try
@@ -787,7 +809,7 @@ namespace Saga.Map.Client
                         {
                             Character current = (Character)regionObject;
                             this.character.HideObject(current);
-                        }  
+                        }
 
                         //Hide Object to myself
                         regionObject.HideObject(this.character);
@@ -855,7 +877,7 @@ namespace Saga.Map.Client
                 }
             }
 
-            this.character.Position = newP;    
+            this.character.Position = newP;
             Regiontree.UpdateRegion(this.character);
             QuestBase.UserCheckPosition(this.character);
         }
@@ -865,19 +887,19 @@ namespace Saga.Map.Client
         /// </summary>
         /// <remarks>
         /// First we'll check to see if we could see, actor x from
-        /// our old position. After that we'll check if can see actor x 
+        /// our old position. After that we'll check if can see actor x
         /// from our new position. If we can see him, we'll forward our movement
-        /// packet. If we can't see him we'll sent a actor disappearance packet. 
-        ///     
+        /// packet. If we can't see him we'll sent a actor disappearance packet.
+        ///
         /// Once that's done, we'll check if we can see a non-former visible actor
-        /// is now visible in our new position. Which will cause us to invoke a appearance 
+        /// is now visible in our new position. Which will cause us to invoke a appearance
         /// packet.
         /// </remarks>
         /// <param name="cpkt"></param>
         private void CM_CHARACTER_MOVEMENTSTOPPED(CMSG_MOVEMENTSTOPPED cpkt)
         {
             if (this.isloaded == false) return;
-            //If character was previous walking/running 
+            //If character was previous walking/running
             if (!this.character.IsMoving)
             {
                 this.character.LastPositionTick = Environment.TickCount;
@@ -886,7 +908,7 @@ namespace Saga.Map.Client
             else
             {
                 //Sending packet to late
-                int time = Environment.TickCount - this.character.LastPositionTick;                
+                int time = Environment.TickCount - this.character.LastPositionTick;
                 if (time > 10000)
                 {
                     CommonFunctions.Warp(this.character, this.character.Position, this.character.currentzone);
@@ -899,7 +921,6 @@ namespace Saga.Map.Client
                 }
             }
 
-
             // GENERATE NEW PACKETS, WE PREPROCESS
             SMSG_MOVEMENTSTOPPED spkt = new SMSG_MOVEMENTSTOPPED();
             spkt.ActorID = this.character.id;
@@ -911,7 +932,7 @@ namespace Saga.Map.Client
             spkt.TargetActor = this.character._targetid;
             spkt.DelayTime = cpkt.DelayTime;
 
-            //Get new actors for next-tick            
+            //Get new actors for next-tick
             Point oldP = this.character.Position;
             Point newP = new Point(cpkt.X, cpkt.Y, cpkt.Z);
 
@@ -922,10 +943,8 @@ namespace Saga.Map.Client
 
             try
             {
-
                 foreach (MapObject regionObject in tree.SearchActors(this.character, SearchFlags.Npcs | SearchFlags.Characters | SearchFlags.MapItems))
                 {
-
                     bool CanSeePrev = Point.IsInSightRangeByRadius(regionObject.Position, oldP);
                     bool CanSeeNext = Point.IsInSightRangeByRadius(regionObject.Position, newP);
                     if (CanSeeNext && !CanSeePrev)
@@ -996,17 +1015,16 @@ namespace Saga.Map.Client
                     }
                 }
             }
-       
         }
 
         /// <summary>
-        /// Updates the Yaw        
+        /// Updates the Yaw
         /// </summary>
         /// <remarks>
         /// Yaw defines the angle of which a user is facing. This angle is expressed in
-        /// yaw which has a maximum value of 65535 (size of ushort). 
-        ///             
-        /// And should be used to double check casting purposes. You're allowed to talk to a 
+        /// yaw which has a maximum value of 65535 (size of ushort).
+        ///
+        /// And should be used to double check casting purposes. You're allowed to talk to a
         /// npc, attack a monster, use openbox skills only when delta angle meets ~35 degrees
         /// </remarks>
         /// <param name="cpkt"></param>
@@ -1016,7 +1034,7 @@ namespace Saga.Map.Client
             Regiontree tree = this.character.currentzone.Regiontree;
             this.character.Yaw = cpkt.Yaw;
             foreach (Character regionObject in tree.SearchActors(SearchFlags.Characters))
-                if( regionObject.client.isloaded == true 
+                if (regionObject.client.isloaded == true
                  && Point.IsInSightRangeByRadius(this.character.Position, regionObject.Position))
                 {
                     SMSG_UPDATEYAW spkt = new SMSG_UPDATEYAW();
@@ -1036,27 +1054,27 @@ namespace Saga.Map.Client
             spkt.ActorID = this.character.id;
             spkt.TargetActor = this.character._targetid;
             spkt.Stance = (byte)StancePosition.Jump;
-            spkt.State = (byte)((this.character.ISONBATTLE == true)?  1 : 0);
+            spkt.State = (byte)((this.character.ISONBATTLE == true) ? 1 : 0);
 
             foreach (MapObject myObject in this.character.currentzone.GetObjectsInRegionalRange(this.character))
-            if (this.character.currentzone.IsInSightRangeBySquare(this.character.Position, myObject.Position))
-            if (MapObject.IsPlayer(myObject))
-            {
-                Character current = myObject as Character;
-                if (current.client.isloaded == true)
-                {
-                   spkt.SessionId = current.id;
-                   current.client.Send((byte[])spkt);
-                }
-            }
+                if (this.character.currentzone.IsInSightRangeBySquare(this.character.Position, myObject.Position))
+                    if (MapObject.IsPlayer(myObject))
+                    {
+                        Character current = myObject as Character;
+                        if (current.client.isloaded == true)
+                        {
+                            spkt.SessionId = current.id;
+                            current.client.Send((byte[])spkt);
+                        }
+                    }
         }
 
         /// <summary>
         /// This packet is sent when the user goed underwater
-        ///             
+        ///
         /// This invokes the starting of a the oxygen task, this task will
         /// take each seccond 1 LC from the Current LC state. This task will
-        /// process all the required packets.             
+        /// process all the required packets.
         /// </summary>
         private void CM_CHARACTER_DIVEDOWN()
         {
@@ -1069,12 +1087,12 @@ namespace Saga.Map.Client
         }
 
         /// <summary>
-        /// This packet is sent when the user reaches the surface/height is 
+        /// This packet is sent when the user reaches the surface/height is
         /// same as the water level.
         /// </summary>
         private void CM_CHARACTER_DIVEUP()
         {
-            this.character.IsDiving = false;            
+            this.character.IsDiving = false;
             SMSG_ACTORDIVE spkt = new SMSG_ACTORDIVE();
             spkt.SessionId = this.character.id;
             spkt.Direction = 1;
@@ -1088,12 +1106,11 @@ namespace Saga.Map.Client
         /// <param name="cpkt"></param>
         private void CM_CHARACTER_FALL(CMSG_ACTORFALL cpkt)
         {
-
             if (this.isloaded == false) return;
 
             //HELPER VARIBALES
             uint value = cpkt.TargetActor / 8;
-            ushort NewHP = (ushort)(this.character.HP - value);           
+            ushort NewHP = (ushort)(this.character.HP - value);
             SMSG_TAKEDAMAGE spkt = new SMSG_TAKEDAMAGE();
             spkt.SessionId = this.character.id;
 
@@ -1102,14 +1119,14 @@ namespace Saga.Map.Client
 
             //Get the falling reason
             if (value >= this.character.HP)
-                spkt.Reason = (byte)TakeDamageReason.FallenDead;                
-            else if( NewHP < (this.character.HPMAX / 10))
+                spkt.Reason = (byte)TakeDamageReason.FallenDead;
+            else if (NewHP < (this.character.HPMAX / 10))
                 spkt.Reason = (byte)TakeDamageReason.Survive;
             else
                 spkt.Reason = (byte)TakeDamageReason.Falling;
 
             //Update some stuff
-            bool isdead =  value > this.character._status.CurrentHp;
+            bool isdead = value > this.character._status.CurrentHp;
             if (isdead)
             {
                 spkt.Damage = this.character._status.CurrentHp;
@@ -1124,7 +1141,7 @@ namespace Saga.Map.Client
             else
             {
                 spkt.Damage = value;
-                this.Send((byte[])spkt);                
+                this.Send((byte[])spkt);
                 this.character._status.CurrentHp = NewHP;
                 Common.Skills.UpdateAddition(this.character, 201, 30000);
                 this.character._status.Updates |= 1;
@@ -1136,23 +1153,23 @@ namespace Saga.Map.Client
             Regiontree tree = this.character.currentzone.Regiontree;
             foreach (Character sTarget in tree.SearchActors(SearchFlags.Characters))
             {
-                if( isdead )
-                Common.Actions.UpdateStance(sTarget, this.character);
+                if (isdead)
+                    Common.Actions.UpdateStance(sTarget, this.character);
             }
         }
 
         /// <summary>
-        /// Changes the state of the player.  
+        /// Changes the state of the player.
         /// </summary>
         /// <remarks>
         /// This functions is invoked when the user changes his/hers p
         /// players state. For example when the players is laying down
         ///or is sitting down. This packet is called.
-        /// 
+        ///
         /// When a player is going to sit down, the regen bonusses are
         /// changed. The regeneration bonussed are since the 26dec patch
         /// 2007:
-        /// 
+        ///
         /// Players battle stance:    0-HP 0.35MSP-SP
         /// Player standing:         15-HP 0.35MSP-SP
         /// Player sitting:          15-HP 0.35MSP-SP
@@ -1170,9 +1187,9 @@ namespace Saga.Map.Client
             {
                 Character target;
                 if (LifeCycle.TryGetById(this.character._ShowLoveDialog, out target))
-                {                  
+                {
                     //Update the stance
-                    switch( (StancePosition)target.stance )
+                    switch ((StancePosition)target.stance)
                     {
                         case StancePosition.VALENTINE_SIT: target.stance = (byte)StancePosition.Sit; break;
                         case StancePosition.VALENTINE_LAY: target.stance = (byte)StancePosition.Lie; break;
@@ -1193,10 +1210,9 @@ namespace Saga.Map.Client
                         spkt2.TargetActor = target._targetid;
                         spkt2.SessionId = current.id;
                         current.client.Send((byte[])spkt2);
-                    }                    
+                    }
                 }
             }
-
 
             //Update my information
             this.character.stance = cpkt.Stance;
@@ -1210,9 +1226,9 @@ namespace Saga.Map.Client
             spkt.TargetActor = cpkt.TargetActor;
             foreach (Character current in tree.SearchActors(this.character, SearchFlags.Characters))
             {
-                if (current.client.isloaded == false) continue;         
+                if (current.client.isloaded == false) continue;
                 spkt.SessionId = current.id;
-                current.client.Send((byte[])spkt);                
+                current.client.Send((byte[])spkt);
             }
         }
 
@@ -1220,8 +1236,8 @@ namespace Saga.Map.Client
         /// Character uses a portal
         /// </summary>
         /// <remarks>
-        ///This function is invoked when a players used a portal 
-        ///to warp to another place. Because we made a common function of the 
+        ///This function is invoked when a players used a portal
+        ///to warp to another place. Because we made a common function of the
         ///warp, it safe for use to invoke that.
         /// </remarks>
         /// <param name="cpkt"></param>
@@ -1232,7 +1248,7 @@ namespace Saga.Map.Client
                 Saga.Factory.Portals.Portal portal;
                 if (Singleton.portal.TryFind(cpkt.PortalID, this.character.map, out portal))
                 {
-                    CommonFunctions.Warp(this.character, portal.mapID, portal.destinaton);                    
+                    CommonFunctions.Warp(this.character, portal.mapID, portal.destinaton);
                 }
                 else
                 {
@@ -1256,11 +1272,11 @@ namespace Saga.Map.Client
         /// Changes the stats of a character
         /// </summary>
         /// <remarks>
-        /// This function updates the characters stats with 
-        /// (read as synchorinisation) the client. 
+        /// This function updates the characters stats with
+        /// (read as synchorinisation) the client.
         ///
         /// Momentairly we do no checking if for cheating or
-        /// packet injection. Todo: do checks for packet 
+        /// packet injection. Todo: do checks for packet
         /// injection.
         /// </remarks>
         /// <param name="cpkt"></param>
@@ -1269,7 +1285,7 @@ namespace Saga.Map.Client
             Saga.PrimaryTypes.CharacterStats.Stats stats = this.character.stats.CHARACTER;
             int maxwantedstats = cpkt.Strength + cpkt.Dextericty + cpkt.Intellect + cpkt.Concentration + cpkt.PointsLeft;
             int maxcharstats = stats.strength + stats.dexterity + stats.intelligence + stats.concentration + this.character.stats.REMAINING;
-            
+
             //Cannot alter the stats is starting stats isnt equal with ending stats.
             //Prevents hacking etc to gain more stats.
             if (maxwantedstats != maxcharstats) return;
@@ -1332,7 +1348,6 @@ namespace Saga.Map.Client
                 this.character.ISONBATTLE = false;
                 CommonFunctions.Warp(this.character, world.map, world.coords);
                 this.character.lastlocation = this.character.savelocation;
-
             }
             else
             {
@@ -1348,12 +1363,12 @@ namespace Saga.Map.Client
         }
 
         /// <summary>
-        /// Occurs when requesting to show love to somebody. It forwards a packet to the 
+        /// Occurs when requesting to show love to somebody. It forwards a packet to the
         /// desired end-user.
         /// </summary>
         /// <param name="cpkt"></param>
         private void CM_CHARACTER_SHOWLOVE(CMSG_SHOWLOVE cpkt)
-        {          
+        {
             Character target;
             bool isfound = LifeCycle.TryGetById(cpkt.ActorId, out target);
 
@@ -1361,12 +1376,12 @@ namespace Saga.Map.Client
             {
                 SMSG_REQUESTSHOWLOVE spkt = new SMSG_REQUESTSHOWLOVE();
                 spkt.ActorID = this.character.id;
-                spkt.SessionId = target.id;                
+                spkt.SessionId = target.id;
                 target._ShowLoveDialog = this.character.id;
                 this.character._ShowLoveDialog = target.id;
 
-                if( target.client != null )
-                target.client.Send((byte[])spkt);
+                if (target.client != null)
+                    target.client.Send((byte[])spkt);
             }
             else if (isfound && target._ShowLoveDialog > 0)
             {
@@ -1386,62 +1401,60 @@ namespace Saga.Map.Client
         }
 
         /// <summary>
-        /// Occurs when confirming or decling to show love you've 
+        /// Occurs when confirming or decling to show love you've
         /// recieve from a person.
         /// </summary>
         /// <param name="cpkt"></param>
         private void CM_CHARACTER_CONFIRMSHOWLOVE(CMSG_SHOWLOVECONFIRM cpkt)
         {
-                Character target;
-                if (LifeCycle.TryGetById(this.character._ShowLoveDialog, out target))
+            Character target;
+            if (LifeCycle.TryGetById(this.character._ShowLoveDialog, out target))
+            {
+                if (cpkt.Response == 0)
                 {
-                    if (cpkt.Response == 0)
+                    SMSG_ACTORCHANGESTATE spkt3 = new SMSG_ACTORCHANGESTATE();
+                    spkt3.ActorID = this.character.id;
+                    spkt3.State = 0;
+                    spkt3.Stance = (byte)StancePosition.VALENTINE_LAY;
+                    spkt3.TargetActor = target.id;
+
+                    SMSG_ACTORCHANGESTATE spkt2 = new SMSG_ACTORCHANGESTATE();
+                    spkt2.ActorID = target.id;
+                    spkt2.State = 0;
+                    spkt2.Stance = (byte)StancePosition.VALENTINE_SIT;
+                    spkt2.TargetActor = this.character.id;
+
+                    foreach (MapObject myObject in this.character.currentzone.GetObjectsInRegionalRange(this.character))
                     {
-
-                        SMSG_ACTORCHANGESTATE spkt3 = new SMSG_ACTORCHANGESTATE();
-                        spkt3.ActorID = this.character.id;
-                        spkt3.State = 0;
-                        spkt3.Stance = (byte)StancePosition.VALENTINE_LAY;
-                        spkt3.TargetActor = target.id;
-
-                        SMSG_ACTORCHANGESTATE spkt2 = new SMSG_ACTORCHANGESTATE();
-                        spkt2.ActorID = target.id;
-                        spkt2.State = 0;
-                        spkt2.Stance = (byte)StancePosition.VALENTINE_SIT;
-                        spkt2.TargetActor = this.character.id;
-
-                        foreach (MapObject myObject in this.character.currentzone.GetObjectsInRegionalRange(this.character))
+                        if (this.character.currentzone.IsInSightRangeBySquare(this.character.Position, myObject.Position))
                         {
-                            if (this.character.currentzone.IsInSightRangeBySquare(this.character.Position, myObject.Position))
+                            if (MapObject.IsPlayer(myObject))
                             {
-                                if (MapObject.IsPlayer(myObject))
+                                Character current = myObject as Character;
+                                if (current.client != null && current.client.isloaded == true)
                                 {
-                                    Character current = myObject as Character;
-                                    if (current.client != null && current.client.isloaded == true)
-                                    {
-                                        spkt3.SessionId = current.id;
-                                        spkt2.SessionId = current.id;
-                                        current.client.Send((byte[])spkt3);
-                                        current.client.Send((byte[])spkt2);
-                                    }
+                                    spkt3.SessionId = current.id;
+                                    spkt2.SessionId = current.id;
+                                    current.client.Send((byte[])spkt3);
+                                    current.client.Send((byte[])spkt2);
                                 }
                             }
                         }
                     }
-                    else
-                    {
-                        character._ShowLoveDialog = 0;
-                    }
-
-
-                    if (target.client != null)
-                    {
-                        SMSG_RESPONSESHOWLOVE spkt = new SMSG_RESPONSESHOWLOVE();
-                        spkt.Result = cpkt.Response;
-                        spkt.SessionId = target.id;
-                        target.client.Send((byte[])spkt);
-                    }
                 }
+                else
+                {
+                    character._ShowLoveDialog = 0;
+                }
+
+                if (target.client != null)
+                {
+                    SMSG_RESPONSESHOWLOVE spkt = new SMSG_RESPONSESHOWLOVE();
+                    spkt.Result = cpkt.Response;
+                    spkt.SessionId = target.id;
+                    target.client.Send((byte[])spkt);
+                }
+            }
         }
 
         /// <summary>
@@ -1481,9 +1494,6 @@ namespace Saga.Map.Client
                 CommonFunctions.UpdateZeny(this.character);
             }
 
-
-            
-
             //Helper variables
             List<int> EnabledEquipment = new List<int>();
             List<int> DisabledEquipment = new List<int>();
@@ -1492,9 +1502,10 @@ namespace Saga.Map.Client
             Weapon selectedWeapon = this.character.weapons[cpkt.WeaponSlot];
 
             #region Update Character Information
+
             lock (this.character)
             {
-                //Change the job and joblevel                               
+                //Change the job and joblevel
                 int hpbefore = Singleton.CharacterConfiguration.CalculateMaximumHP(this.character);
                 int spbefore = Singleton.CharacterConfiguration.CalculateMaximumSP(this.character);
                 this.character.CharacterJobLevel[this.character.job] = this.character.jlvl;
@@ -1507,7 +1518,8 @@ namespace Saga.Map.Client
                 this.character._status.CurrentSp += (ushort)(spbefore - spafter);
                 this.character._status.Updates |= 1;
             }
-            #endregion
+
+            #endregion Update Character Information
 
             #region Refresh Weapon
 
@@ -1534,8 +1546,7 @@ namespace Saga.Map.Client
                 }
             }
 
-
-            #endregion
+            #endregion Refresh Weapon
 
             #region Refresh Weapon
 
@@ -1551,9 +1562,10 @@ namespace Saga.Map.Client
                 this.Send((byte[])spkt);
             }
 
-            #endregion
+            #endregion Refresh Weapon
 
             #region Refresh Skills
+
             {
                 //Remove all skills
                 foreach (Skill skill in this.character.learnedskills)
@@ -1594,9 +1606,9 @@ namespace Saga.Map.Client
                     if (skill.info.skilltype == 2 && canUse)
                         Singleton.Additions.ApplyAddition(skill.info.addition, character);
                 }
-
             }
-            #endregion
+
+            #endregion Refresh Skills
 
             #region Refresh Weapon
 
@@ -1624,9 +1636,10 @@ namespace Saga.Map.Client
                 }
             }
 
-            #endregion
+            #endregion Refresh Weapon
 
             #region Refresh Equipment
+
             {
                 //Disable equipment
                 for (int i = 0; i < 16; i++)
@@ -1663,17 +1676,17 @@ namespace Saga.Map.Client
                     }
                 }
 
-
                 //Update other stats
                 //Common.Internal.CheckWeaponary(this.character);
                 //CommonFunctions.UpdateCharacterInfo(this.character, 0);
                 //CommonFunctions.SendBattleStatus(this.character);
             }
-            #endregion
+
+            #endregion Refresh Equipment
 
             #region Refresh Appereance
-            {
 
+            {
                 Regiontree tree = this.character.currentzone.Regiontree;
                 foreach (Character regionObject in tree.SearchActors(SearchFlags.Characters))
                 {
@@ -1720,9 +1733,11 @@ namespace Saga.Map.Client
                     }
                 }
             }
-            #endregion
+
+            #endregion Refresh Appereance
 
             #region Refresh Party
+
             {
                 //Process party members
                 SMSG_PARTYMEMBERJOB spkt = new SMSG_PARTYMEMBERJOB();
@@ -1750,17 +1765,18 @@ namespace Saga.Map.Client
                     }
                 }
             }
-            #endregion
+
+            #endregion Refresh Party
 
             #region Refresh LifeCycle
 
             Tasks.LifeCycle.Update(this.character);
 
-            #endregion
+            #endregion Refresh LifeCycle
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="cpkt"></param>
         private void CM_CHARACTER_EXPENSIVESFORJOBCHANGE(CMSG_SELECTJOB cpkt)
@@ -1795,6 +1811,5 @@ namespace Saga.Map.Client
                 this.Send((byte[])spkt);
             }*/
         }
-
     }
 }

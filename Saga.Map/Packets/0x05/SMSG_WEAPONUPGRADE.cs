@@ -1,11 +1,9 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet that indicates wheter or not a upgrade has been sucessfull.

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Map;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void CLOWN_SELFHEAL(SkillBaseEventArgs bargument)
         {
             Actor asource = bargument.Sender as Actor;
@@ -24,9 +19,7 @@ namespace Saga.Skills
                 Singleton.Additions.DeapplyAddition(arguments.Addition, asource);
                 //Do lp effect
                 Common.Skills.DoAddition(bargument.Sender as Actor, bargument.Target as Actor, 1003301);
-
             }
         }
-
     }
 }

@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// What this packet does is not yet know. We believe it is needed
@@ -29,11 +24,12 @@ namespace Saga.Packets
 
         public byte Unsure
         {
-            set 
-            { 
-                this.data[0] = value; 
+            set
+            {
+                this.data[0] = value;
             }
         }
+
         public uint ActorID
         {
             set
@@ -41,6 +37,7 @@ namespace Saga.Packets
                 Array.Copy(BitConverter.GetBytes(value), 0, this.data, 1, 4);
             }
         }
+
         public byte Unknown
         {
             set
@@ -48,6 +45,7 @@ namespace Saga.Packets
                 this.data[5] = value;
             }
         }
+
         public byte Race
         {
             set
@@ -71,6 +69,7 @@ namespace Saga.Packets
                 Array.Copy(BitConverter.GetBytes(value), 0, this.data, 8, 2);
             }
         }
+
         public ushort HPmax
         {
             set
@@ -78,6 +77,7 @@ namespace Saga.Packets
                 Array.Copy(BitConverter.GetBytes(value), 0, this.data, 10, 2);
             }
         }
+
         public ushort SP
         {
             set
@@ -85,6 +85,7 @@ namespace Saga.Packets
                 Array.Copy(BitConverter.GetBytes(value), 0, this.data, 12, 2);
             }
         }
+
         public ushort SPmax
         {
             set
@@ -92,6 +93,7 @@ namespace Saga.Packets
                 Array.Copy(BitConverter.GetBytes(value), 0, this.data, 14, 2);
             }
         }
+
         public byte LP
         {
             set
@@ -107,6 +109,7 @@ namespace Saga.Packets
                 this.data[17] = value;
             }
         }
+
         public byte Job
         {
             set
@@ -114,6 +117,7 @@ namespace Saga.Packets
                 this.data[18] = value;
             }
         }
+
         public byte JobLvl
         {
             set

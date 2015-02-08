@@ -1,11 +1,10 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet that indicates wheter or not a upgrade has been sucessfull.
@@ -21,7 +20,6 @@ namespace Saga.Packets
             this.Id = 0x0527;
             this.data = new byte[9];
         }
-
 
         public byte InventoryId
         {
@@ -52,6 +50,5 @@ namespace Saga.Packets
         {
             set { this.data[8] = value; }
         }
-
     }
 }

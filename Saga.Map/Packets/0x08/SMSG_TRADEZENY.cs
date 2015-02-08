@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_TRADEZENY : RelayPacket
     {
         public SMSG_TRADEZENY()

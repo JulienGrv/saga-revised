@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Net.Sockets;
-using Saga.Configuration;
+﻿using Saga.Configuration;
+using System;
 using System.Configuration;
 using System.Diagnostics;
+using System.Net.Sockets;
 
 namespace Saga.Gateway
 {
-    static class NetworkManager
+    internal static class NetworkManager
     {
-
         public enum NetworkError
         {
             None = 0,
@@ -23,6 +19,7 @@ namespace Saga.Gateway
 
         private static NetworkError error;
         private static LoginClient instance;
+
         public static NetworkError LastError
         {
             get
@@ -33,7 +30,6 @@ namespace Saga.Gateway
 
         public static bool TryGetLoginClient(out LoginClient client)
         {
-
             try
             {
                 if ((instance != null && instance.IsConnected))
@@ -52,8 +48,9 @@ namespace Saga.Gateway
             {
                 client = null;
                 return false;
-            }            
+            }
         }
+
         private static void CreateLoginClient()
         {
             //HELPER VARIABLES
@@ -73,11 +70,11 @@ namespace Saga.Gateway
                         port = Element.Port;
                     }
                 }
-                                
+
                 lock (Synroot)
                 {
                     error = NetworkError.Unknown;
-                    instance = new LoginClient(host,port);
+                    instance = new LoginClient(host, port);
 
                     Trace.TraceInformation("Sending header token");
                     Saga.Packets.SMSG_HEADERTOKEN p = new Saga.Packets.SMSG_HEADERTOKEN();
@@ -113,9 +110,6 @@ namespace Saga.Gateway
             }
         }
 
-
         private static object Synroot = new object();
-
-
     }
 }

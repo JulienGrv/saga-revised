@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib.Login;
 using Saga.Authentication.Common;
-using Saga.Authentication.Utils;
 using Saga.Authentication.Packets;
+using Saga.Authentication.Utils;
 using Saga.Network.Packets;
+using System;
 using System.Diagnostics;
 using System.Threading;
 
@@ -13,9 +10,8 @@ namespace Saga.Authentication.Network
 {
     partial class LogonClient
     {
-
-        static volatile uint NextSession;
-        static volatile int LoginEntry;
+        private static volatile uint NextSession;
+        private static volatile int LoginEntry;
 
         public void Login(CMSG_REQUESTLOGIN cpkt)
         {
@@ -25,8 +21,8 @@ namespace Saga.Authentication.Network
             LoginSession session;
 
             if (LoginSessionHandler.sessions.TryGetValue(cpkt.SessionId, out session))
-            {                
-                //CHECK SERVERS STATE            
+            {
+                //CHECK SERVERS STATE
                 if (Saga.Managers.ConsoleCommands.InTestmode == true && session.NLoginAttempts < 1)
                 {
                     session.NLoginAttempts++;
@@ -46,7 +42,6 @@ namespace Saga.Authentication.Network
                 //QUEUEES A NEW LOGIN REQUEST
                 else
                 {
-
                     try
                     {
                         if (LoginEntry > 70)
@@ -58,7 +53,7 @@ namespace Saga.Authentication.Network
 
                             while (LoginEntry > 70)
                             {
-                                Thread.Sleep(1);                                
+                                Thread.Sleep(1);
                             }
                         }
 
@@ -77,7 +72,7 @@ namespace Saga.Authentication.Network
                                 goto Reply;
                             }
 
-                            #endregion
+                            #endregion PASSWORD VERIFYCATION
 
                             #region CHECK AGREEMENT
 
@@ -89,7 +84,7 @@ namespace Saga.Authentication.Network
                                 goto Reply;
                             }
 
-                            #endregion
+                            #endregion CHECK AGREEMENT
 
                             #region CHECK ACTIVATION
 
@@ -101,7 +96,7 @@ namespace Saga.Authentication.Network
                                 goto Reply;
                             }
 
-                            #endregion
+                            #endregion CHECK ACTIVATION
 
                             #region CHECK BANNED
 
@@ -114,7 +109,6 @@ namespace Saga.Authentication.Network
                             }
 
                             //CHECK IF IP IS BANNED
-
                             else if (!Singleton.Database.IsIpAllowed(session.Adress))
                             {
                                 Trace.TraceWarning("Ip is banned");
@@ -122,7 +116,7 @@ namespace Saga.Authentication.Network
                                 goto Reply;
                             }
 
-                            #endregion
+                            #endregion CHECK BANNED
 
                             #region TEST ENVIRMONT VERIFYCATION
 
@@ -134,7 +128,7 @@ namespace Saga.Authentication.Network
                                 goto Reply;
                             }
 
-                            #endregion
+                            #endregion TEST ENVIRMONT VERIFYCATION
 
                             #region CHECK ACTIVE SESSION
 
@@ -148,10 +142,9 @@ namespace Saga.Authentication.Network
                                 goto Reply;
                             }
 
-                            #endregion
+                            #endregion CHECK ACTIVE SESSION
 
                             #region LOGIN SUCESS
-
 
                             //ELSE SET THE USER ID
                             else
@@ -166,17 +159,17 @@ namespace Saga.Authentication.Network
                                 goto Reply;
                             }
 
-                            #endregion
+                            #endregion LOGIN SUCESS
                         }
                         else
                         {
-                            #region  USERNAME VERIFICATION
+                            #region USERNAME VERIFICATION
 
                             //USERNAME DOES NOT EXISTS
                             error = LoginError.WRONG_USER;
                             goto Reply;
 
-                            #endregion
+                            #endregion USERNAME VERIFICATION
                         }
                     }
                     catch (Exception e)
@@ -207,14 +200,12 @@ namespace Saga.Authentication.Network
             }
         }
 
-
         /*
         internal void Login_Callback(uint sessionId, string username, string password)
         {
             LoginSession session;
             if (LoginSessionHandler.sessions.TryGetValue(sessionId, out session))
             {
-
                 LoginResult result;
                 LoginError error = LoginError.NO_ERROR;
                 DateTime LastLogin = DateTime.Now;
@@ -232,7 +223,7 @@ namespace Saga.Authentication.Network
                             error = LoginError.WRONG_PASS;
                         }
 
-                        #endregion
+                        #endregion PASSWORD VERIFYCATION
 
                         #region CHECK AGREEMENT
 
@@ -243,7 +234,7 @@ namespace Saga.Authentication.Network
                             error = LoginError.CONFIRM_AGGEEMENT;
                         }
 
-                        #endregion
+                        #endregion CHECK AGREEMENT
 
                         #region CHECK ACTIVATION
 
@@ -254,7 +245,7 @@ namespace Saga.Authentication.Network
                             error = LoginError.ACCOUNT_NOT_ACTIVATED;
                         }
 
-                        #endregion
+                        #endregion CHECK ACTIVATION
 
                         #region CHECK BANNED
 
@@ -265,7 +256,9 @@ namespace Saga.Authentication.Network
                             error = LoginError.ACCOUNT_SUSSPENDED;
                         }
 
-                        #endregion                     
+                        #endregion CHECK BANNED
+
+
 
                         #region TEST ENVIRMONT VERIFYCATION
 
@@ -276,7 +269,7 @@ namespace Saga.Authentication.Network
                             error = LoginError.NOT_TEST_ACCOUNT;
                         }
 
-                        #endregion
+                        #endregion TEST ENVIRMONT VERIFYCATION
 
                         #region CHECK ACTIVE SESSION
 
@@ -287,12 +280,11 @@ namespace Saga.Authentication.Network
                             session.playerid = result.userid;
                             session.ActiveSession = result.ative_session;
                             session.LastPlayedWorld = (byte)result.last_server;
-                        }                        
+                        }
 
-                        #endregion
+                        #endregion CHECK ACTIVE SESSION
 
                         #region LOGIN SUCESS
-  
 
                         //ELSE SET THE USER ID
                         else
@@ -305,16 +297,16 @@ namespace Saga.Authentication.Network
                             Singleton.Database.UpdateLoginEntry(session.playerid);
                         }
 
-                        #endregion
+                        #endregion LOGIN SUCESS
                     }
                     else
                     {
-                        #region  USERNAME VERIFICATION
+                        #region USERNAME VERIFICATION
 
                         //USERNAME DOES NOT EXISTS
                         error = LoginError.WRONG_USER;
 
-                        #endregion
+                        #endregion USERNAME VERIFICATION
                     }
                 }
                 catch (Exception e)
@@ -341,26 +333,24 @@ namespace Saga.Authentication.Network
         }
         */
 
-
         private void CM_KILLEXISTINGCONNECTION(RelayPacket packet)
         {
             ServerInfo2 info;
             LoginSession session;
             if (LoginSessionHandler.sessions.TryGetValue(packet.SessionId, out session))
-            if (ServerManager2.Instance.server.TryGetValue(session.LastPlayedWorld, out info) 
-            &&  info.client != null && info.client.IsConnected )
-            {
-                //Clears the active session
-                info.client.SM_KILLSESSION(session.ActiveSession);
-            }            
-            else
-            {
-                Trace.TraceWarning("World was not found release session");
+                if (ServerManager2.Instance.server.TryGetValue(session.LastPlayedWorld, out info)
+                && info.client != null && info.client.IsConnected)
+                {
+                    //Clears the active session
+                    info.client.SM_KILLSESSION(session.ActiveSession);
+                }
+                else
+                {
+                    Trace.TraceWarning("World was not found release session");
 
-                //If world was not found
-                Singleton.Database.ReleaseSessionId(session.ActiveSession);
-            }
+                    //If world was not found
+                    Singleton.Database.ReleaseSessionId(session.ActiveSession);
+                }
         }
-
     }
 }

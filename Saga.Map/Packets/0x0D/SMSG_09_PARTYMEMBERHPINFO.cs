@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is broadcasted to all players in a party to update the hp of a current 
+    /// This packet is broadcasted to all players in a party to update the hp of a current
     /// player. This mostly seems to be sent after regeneration.
     /// </remarks>
     /// <id>

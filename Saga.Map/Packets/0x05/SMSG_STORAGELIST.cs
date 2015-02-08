@@ -1,16 +1,14 @@
-using System;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
 using Saga.PrimaryTypes;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is used to show the storage list to the player. This is sent 
+    /// This packet is used to show the storage list to the player. This is sent
     /// everytime the player opens his storage.
     /// </remarks>
     /// <id>
@@ -36,7 +34,7 @@ namespace Saga.Packets
             Array.Resize<byte>(ref this.data, offset + 67);
             Rag2Item.Serialize(item, this.data, offset);
             this.data[offset + 66] = (byte)ItemIndex;
-            this.data[1]++;            
+            this.data[1]++;
         }
     }
 }

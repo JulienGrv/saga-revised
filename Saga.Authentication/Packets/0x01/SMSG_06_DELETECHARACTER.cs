@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
 
 namespace Saga.Shared.PacketLib.Login
 {
-
     public class SMSG_DELETECHARACTER : RelayPacket
     {
-
         public SMSG_DELETECHARACTER()
         {
             this.data = new byte[2];

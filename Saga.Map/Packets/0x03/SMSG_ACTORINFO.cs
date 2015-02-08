@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
+using System.Text;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This is used to send the acotr information for the specified Actor.
@@ -57,15 +54,17 @@ namespace Saga.Packets
 
         public byte race
         {
-            set { this.data[54] = value;  
+            set
+            {
+                this.data[54] = value;
             }
         }
 
         public byte[] face
         {
             set
-            { 
-                Array.Copy(value, 0, this.data, 55, Math.Min(value.Length, 11)); 
+            {
+                Array.Copy(value, 0, this.data, 55, Math.Min(value.Length, 11));
             }
         }
 
@@ -85,7 +84,6 @@ namespace Saga.Packets
             }
         }
 
-
         public byte ActiveWeaponIndex
         {
             set
@@ -93,7 +91,6 @@ namespace Saga.Packets
                 this.data[68] = value;
             }
         }
-
 
         public byte InventoryContainerSize
         {
@@ -127,12 +124,13 @@ namespace Saga.Packets
             }
         }
 
-
         [Obsolete("Slots is not supported anymore", true)]
         public byte[] slots
         {
-            set { Array.Copy(value, 0, this.data, 68, Math.Min(value.Length, 5)); 
+            set
+            {
+                Array.Copy(value, 0, this.data, 68, Math.Min(value.Length, 5));
             }
         }
-    }    
+    }
 }

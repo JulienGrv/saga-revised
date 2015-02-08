@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// Not quite sure what it does
@@ -28,11 +22,11 @@ namespace Saga.Packets
 
         public byte Unknown
         {
-            set 
+            set
             {
                 this.data[0] = value;
-                //this.data[521] = value; 
-            } 
+                //this.data[521] = value;
+            }
         }
     }
 }

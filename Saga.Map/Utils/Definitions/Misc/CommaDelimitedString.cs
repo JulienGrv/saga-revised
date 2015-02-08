@@ -1,18 +1,15 @@
-﻿using System.Text;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Saga
 {
-
     /// <summary>
-    /// List of strings delimited by a ',' as 
+    /// List of strings delimited by a ',' as
     /// delimited character.
     /// </summary>
     public class CommaDelimitedString
     {
-
         #region Private Members
 
         /// <summary>
@@ -20,7 +17,7 @@ namespace Saga
         /// </summary>
         private string[] _Fields;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Properties
 
@@ -37,7 +34,7 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Public Methods
 
@@ -71,12 +68,15 @@ namespace Saga
                                 builder.Append(current);
                             }
                             break;
+
                         case '\\':
                             NextSpecial = true;
                             break;
+
                         case '"':
                             QuoteOpen ^= true;
                             break;
+
                         default:
                             builder.Append(current);
                             break;
@@ -98,9 +98,11 @@ namespace Saga
                                 builder.Append(current);
                             }
                             break;
+
                         case '"':
                             builder.Append(current);
                             break;
+
                         default:
                             builder.Append('\\');
                             builder.Append(current);
@@ -113,7 +115,6 @@ namespace Saga
             CommaDelimitedString delimitedString = new CommaDelimitedString();
             delimitedString._Fields = stringlist.ToArray();
             return delimitedString;
-
         }
 
         public override string ToString()
@@ -124,7 +125,6 @@ namespace Saga
             return sb.ToString();
         }
 
-        #endregion
+        #endregion Public Methods
     }
-
 }

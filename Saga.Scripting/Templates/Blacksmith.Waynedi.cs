@@ -1,14 +1,11 @@
-using Saga.Npc.Functions;
-using Saga.Templates;
 using Saga.Enumarations;
 using Saga.Structures;
+using Saga.Templates;
 
 namespace Saga.Actors
 {
-
-    class Wayendi : BaseNPC
+    internal class Wayendi : BaseNPC
     {
-
         protected override void Initialize()
         {
             NpcFunction.Create<Saga.Npc.Functions.QuestConversation>(this);
@@ -16,8 +13,7 @@ namespace Saga.Actors
             NpcFunction.Create<BlacksmithFunction>(this);
         }
 
-
-        class BlacksmithFunction : Saga.Npc.Functions.BlackSmith
+        private class BlacksmithFunction : Saga.Npc.Functions.BlackSmith
         {
             protected override void OnRegister(Saga.Templates.BaseNPC npc)
             {
@@ -30,7 +26,7 @@ namespace Saga.Actors
             protected override void OnBlackSmithMenu(BaseNPC npc, Saga.PrimaryTypes.Character target)
             {
                 Common.Actions.OpenSubmenu(target, npc,
-                  _BlackSmithMenu,        //Dialog script to show                
+                  _BlackSmithMenu,        //Dialog script to show
                   DialogType.Smith,       //Button function
                   50,                     //Repair
                   53,                     //Upgrade
@@ -39,5 +35,4 @@ namespace Saga.Actors
             }
         }
     }
-
 }

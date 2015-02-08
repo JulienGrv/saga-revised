@@ -1,12 +1,10 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Shared.PacketLib.Map
 {
-
     internal class CMSG_CHAR_SELECT : Packet
     {
-
         /*
         // This packet is invoked when an client selects a other character
         // from the Characterlist

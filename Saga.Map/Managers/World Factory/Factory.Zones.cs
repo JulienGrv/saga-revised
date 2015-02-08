@@ -1,37 +1,34 @@
-﻿using System;
+﻿using Saga.Configuration;
+using Saga.Enumarations;
+using Saga.Map;
+using Saga.Map.Configuration;
+using Saga.PrimaryTypes;
+using Saga.Structures;
+using Saga.Templates;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
-using Saga.Configuration;
-using Saga.Map.Configuration;
-using Saga.Map.Definitions.Misc;
-using Saga.PrimaryTypes;
-using Saga.Shared.Definitions;
-using Saga.Map;
-using Saga.Templates;
 using System.Threading;
-using Saga.Structures;
-using Saga.Enumarations;
-using System.Diagnostics;
 
 namespace Saga.Factory
 {
-
     /// <summary>
     /// Factory to hold all hosted zones.
     /// </summary>
     public class Zones : FactoryBase
     {
-
         #region Ctor/Dtor
 
         /// <summary>
         /// Initializes a new Zone Factory
         /// </summary>
-        public Zones() { }
+        public Zones()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
@@ -39,8 +36,8 @@ namespace Saga.Factory
         /// Default loopup table for all hosted zones/maps for the current Zone-Server.
         /// </summary>
         /// <remarks>
-        /// This member should be made internal protected in a more advancanced release 
-        /// client and thus should be completly cloacked for the scripts assembly we 
+        /// This member should be made internal protected in a more advancanced release
+        /// client and thus should be completly cloacked for the scripts assembly we
         /// compile on the fly.
         /// </remarks>
         public Dictionary<uint, Zone> maps;
@@ -50,7 +47,7 @@ namespace Saga.Factory
         /// </summary>
         public string dirHeightmap = "";
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Members
 
@@ -62,7 +59,7 @@ namespace Saga.Factory
             return zone != null;
         }
 
-        protected void SetMembers(Zone zone, byte zoneid, HeightMap heightmap, ZoneType type, byte cathelaya_map, Point cathelaya_location, byte promise_map, Point promise_location, uint regioncode )
+        protected void SetMembers(Zone zone, byte zoneid, HeightMap heightmap, ZoneType type, byte cathelaya_map, Point cathelaya_location, byte promise_map, Point promise_location, uint regioncode)
         {
             zone.Map = zoneid;
             zone.Regiontree = new Regiontree();
@@ -73,7 +70,7 @@ namespace Saga.Factory
             zone.RegionCode = regioncode;
         }
 
-        #endregion
+        #endregion Protected Members
 
         #region Protected Methods
 
@@ -92,8 +89,8 @@ namespace Saga.Factory
         {
             ZoneSettings section = (ZoneSettings)ConfigurationManager.GetSection("Saga.Factory.Zones");
             if (section != null)
-            {                
-                if( section.Directory.Length == 0 )
+            {
+                if (section.Directory.Length == 0)
                     WriteError("ZoneFactory", "Heightmap directory is not configured");
                 else
                     dirHeightmap = Saga.Structures.Server.SecurePath(section.Directory);
@@ -136,7 +133,6 @@ namespace Saga.Factory
                 c.ReadLine();
                 while (c.Peek() > 0)
                 {
-
                     //REPORT PROGRESS
                     ProgressReport.Invoke();
                     String row = c.ReadLine();
@@ -146,13 +142,9 @@ namespace Saga.Factory
                     HeightMap heightmap = new HeightMap();
                     HeightMap.HeightMapInfo info = new HeightMap.HeightMapInfo();
 
-
                     try
                     {
-                        
-
-
-                        //FILL OUT HEIGHTMAP INFORMATION    
+                        //FILL OUT HEIGHTMAP INFORMATION
                         string filename = Path.Combine(Environment.CurrentDirectory, dirHeightmap);
                         if (fields[10].Length > 0)
                         {
@@ -169,21 +161,20 @@ namespace Saga.Factory
                             HeightMap.LoadFromFile(filename, info, out heightmap);
                         }
 
-
-                        float catheleyax =  float.Parse(fields[2], NumberFormatInfo.InvariantInfo);
-                        float catheleyay =  float.Parse(fields[3], NumberFormatInfo.InvariantInfo);
-                        float catheleyaz =  float.Parse(fields[4], NumberFormatInfo.InvariantInfo);
-                        float promisex   = float.Parse(fields[6], NumberFormatInfo.InvariantInfo);
-                        float promisey   =  float.Parse(fields[7], NumberFormatInfo.InvariantInfo);
-                        float promizez   =  float.Parse(fields[8], NumberFormatInfo.InvariantInfo);
+                        float catheleyax = float.Parse(fields[2], NumberFormatInfo.InvariantInfo);
+                        float catheleyay = float.Parse(fields[3], NumberFormatInfo.InvariantInfo);
+                        float catheleyaz = float.Parse(fields[4], NumberFormatInfo.InvariantInfo);
+                        float promisex = float.Parse(fields[6], NumberFormatInfo.InvariantInfo);
+                        float promisey = float.Parse(fields[7], NumberFormatInfo.InvariantInfo);
+                        float promizez = float.Parse(fields[8], NumberFormatInfo.InvariantInfo);
                         byte catheleyamap = byte.Parse(fields[5], NumberFormatInfo.InvariantInfo);
-                        byte promisemap =   byte.Parse(fields[9], NumberFormatInfo.InvariantInfo);
-                        uint regioncode =   uint.Parse(fields[19], NumberFormatInfo.InvariantInfo);
-                        uint zoneid =   uint.Parse(fields[0], NumberFormatInfo.InvariantInfo);
+                        byte promisemap = byte.Parse(fields[9], NumberFormatInfo.InvariantInfo);
+                        uint regioncode = uint.Parse(fields[19], NumberFormatInfo.InvariantInfo);
+                        uint zoneid = uint.Parse(fields[0], NumberFormatInfo.InvariantInfo);
                         ZoneType zonetype = (ZoneType)Enum.Parse(typeof(ZoneType), fields[18], true);
                         Zone zone;
 
-                        if( TryFindZoneString(fields[1], out zone) )
+                        if (TryFindZoneString(fields[1], out zone))
                         {
                             SetMembers(zone, (byte)zoneid, heightmap, zonetype,
                                 catheleyamap, new Point(catheleyax, catheleyay, catheleyaz),
@@ -192,8 +183,6 @@ namespace Saga.Factory
 
                             maps.Add(zoneid, zone);
                         }
-
-                        
                     }
                     catch (Exception e)
                     {
@@ -203,7 +192,7 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -214,14 +203,14 @@ namespace Saga.Factory
         {
             WaitCallback callback = delegate(object state)
             {
-                foreach (KeyValuePair<uint,Zone> pair in this.maps)
+                foreach (KeyValuePair<uint, Zone> pair in this.maps)
                 {
                     Regiontree tree = pair.Value.Regiontree;
                     foreach (MapObject regionObject in tree.SearchActors(SearchFlags.Npcs))
                     {
                         BaseNPC npc = regionObject as BaseNPC;
-                        if( npc != null )
-                        npc.OnRefresh();
+                        if (npc != null)
+                            npc.OnRefresh();
                     }
                 }
             };
@@ -250,7 +239,6 @@ namespace Saga.Factory
             return maps.TryGetValue(id, out map);
         }
 
-
         /// <summary>
         /// Tries to get a cloned zone
         /// </summary>
@@ -274,7 +262,7 @@ namespace Saga.Factory
                 yield return pair.Value;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Protected Properties
 
@@ -306,7 +294,6 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_ZONE; }
         }
 
-        #endregion
-
+        #endregion Protected Properties
     }
 }

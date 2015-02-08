@@ -1,22 +1,20 @@
-using System;
 using Saga.Enumarations;
 using Saga.Map.Definitions.Misc;
 using Saga.Map.Utils.Definitions.Misc;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Structures;
+using System;
 
 namespace Saga.Map.Client
 {
-
     /// <content>
-    /// This part of the client class contains all packet handlers that 
-    /// interact with the auction. Currrently all packets here are correctly 
+    /// This part of the client class contains all packet handlers that
+    /// interact with the auction. Currrently all packets here are correctly
     /// handeld. Last updated: 15-03-2008 - 20:01:00.
     /// </content>
     partial class Client
     {
-
         /// <summary>
         /// Searches in the market with the specified arguments.
         /// </summary>
@@ -47,7 +45,7 @@ namespace Saga.Map.Client
             }
             this.Send((byte[])spkt);
         }
-        
+
         /// <summary>
         /// Buys the specified market item.
         /// </summary>
@@ -58,7 +56,7 @@ namespace Saga.Map.Client
             AuctionArgument item;
 
             //ITEM ALREADY SOLD
-            if( !Singleton.Database.GetItemByAuctionId(cpkt.ItemId, out item))
+            if (!Singleton.Database.GetItemByAuctionId(cpkt.ItemId, out item))
             {
                 SMSG_MARKETBUY spkt = new SMSG_MARKETBUY();
                 spkt.SessionId = this.character.id;
@@ -66,7 +64,7 @@ namespace Saga.Map.Client
                 this.Send((byte[])spkt);
             }
             //NOT ENOUGH MONEY TO PURCHASE
-            else if( item.zeny > this.character.ZENY)
+            else if (item.zeny > this.character.ZENY)
             {
                 SMSG_MARKETBUY spkt = new SMSG_MARKETBUY();
                 spkt.SessionId = this.character.id;
@@ -107,7 +105,7 @@ namespace Saga.Map.Client
 
                 //UPDATE ZENY
                 this.character.ZENY -= item.zeny;
-                CommonFunctions.UpdateZeny(this.character);            
+                CommonFunctions.UpdateZeny(this.character);
 
                 //Buyer get's item
                 MailItem buyer = new MailItem();
@@ -129,8 +127,7 @@ namespace Saga.Map.Client
 
                 //Add mail items
                 Singleton.Database.InsertNewMailItem(null, buyer);
-                Singleton.Database.InsertNewMailItem(null, reciever); 
-
+                Singleton.Database.InsertNewMailItem(null, reciever);
             }
         }
 
@@ -139,13 +136,13 @@ namespace Saga.Map.Client
         /// </summary>
         private void CM_MARKET_SEARCHOWNERITEMS()
         {
-            //SEARCHES FOR ALL OWNER BASED ITEMS          
+            //SEARCHES FOR ALL OWNER BASED ITEMS
             SMSG_MARKETOWNERSEARCH spkt = new SMSG_MARKETOWNERSEARCH();
             spkt.SessionId = this.character.id;
-            foreach( MarketItemArgument args in Singleton.Database.SearchMarketForOwner(this.character))
+            foreach (MarketItemArgument args in Singleton.Database.SearchMarketForOwner(this.character))
             {
                 spkt.Add(args);
-            }            
+            }
             this.Send((byte[])spkt);
         }
 
@@ -157,7 +154,7 @@ namespace Saga.Map.Client
             if (cpkt.SessionId != this.character.id) return;
 
             //OBTAIN COMMENT
-            string comment = Singleton.Database.FindCommentByPlayerId( this.character.ModelId );
+            string comment = Singleton.Database.FindCommentByPlayerId(this.character.ModelId);
             if (comment == null) comment = string.Empty;
 
             //SEND THE ATTAINED COMMENT OVER TO THE PLAYER
@@ -278,7 +275,7 @@ namespace Saga.Map.Client
 
                 //NOT ENOUGH MONEY TO REGISTER ITEM
                 if (requiredZeny > this.character.ZENY)
-                {                    
+                {
                     result = 6;
                 }
                 //CHECK REGISTERED ITEM COUNT
@@ -347,9 +344,6 @@ namespace Saga.Map.Client
                 spkt.Result = result;
                 this.Send((byte[])spkt);
             }
-
         }
-
-
     }
 }

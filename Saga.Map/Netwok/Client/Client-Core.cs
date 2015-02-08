@@ -1,20 +1,18 @@
-using System;
-using System.Diagnostics;
-using System.Net.Sockets;
 using Saga.Managers;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Quests;
 using Saga.Shared.PacketLib.Login;
 using Saga.Tasks;
+using System;
+using System.Diagnostics;
+using System.Net.Sockets;
 
 namespace Saga.Map.Client
 {
-
-    [System.Reflection.Obfuscation(Exclude = false, StripAfterObfuscation = true, ApplyToMembers=true)]
+    [System.Reflection.Obfuscation(Exclude = false, StripAfterObfuscation = true, ApplyToMembers = true)]
     public partial class Client : Saga.Shared.NetworkCore.Client
     {
-
         #region Private Members
 
         /// <summary>
@@ -39,11 +37,11 @@ namespace Saga.Map.Client
 
         internal QuestBase pendingquest;
 
-        #endregion
+        #endregion Private Members
 
         #region Constructor / Deconstructor
 
-        public Client() 
+        public Client()
         {
             //.this.chatLua.RegisterFunction("Create", this, typeof(Client).GetMethod("Create"));
             this.OnClose += new EventHandler(Client_OnClose);
@@ -56,14 +54,14 @@ namespace Saga.Map.Client
             this.OnClose += new EventHandler(Client_OnClose);
         }
 
-        #endregion
+        #endregion Constructor / Deconstructor
 
         #region Events
 
         protected override void OnConnect()
         {
-
         }
+
         private void Client_OnClose(object sender, EventArgs e)
         {
             try
@@ -82,15 +80,14 @@ namespace Saga.Map.Client
             }
             catch (Exception) { }
 
-
             try
             {
-                if( this.character != null )
+                if (this.character != null)
                 {
                     GC.SuppressFinalize(this.character);                    //Disallows garbage collector to clean up
 
-                    if( this.character.currentzone != null )                //Leave the current zone if any
-                    this.character.currentzone.OnLeave(this.character);     //zone you are registered on.
+                    if (this.character.currentzone != null)                //Leave the current zone if any
+                        this.character.currentzone.OnLeave(this.character);     //zone you are registered on.
 
                     LifeCycle.Unsubscribe(this.character);                  //Unsubscribe yourself on life thread
                     //Singleton.Database.SaveCharacter(this.character);
@@ -112,6 +109,7 @@ namespace Saga.Map.Client
                 Console.WriteLine(ex);
             }
         }
+
         private void Login(CMSG_LOGIN cpkt)
         {
             if (cpkt.Cmd != 0x0501)
@@ -123,11 +121,11 @@ namespace Saga.Map.Client
 
             try
             {
-                Character tempCharacter = new Character(this, cpkt.CharacterId, cpkt.SessionId);                             
-                if (Singleton.Database.TransLoad(tempCharacter) && 
+                Character tempCharacter = new Character(this, cpkt.CharacterId, cpkt.SessionId);
+                if (Singleton.Database.TransLoad(tempCharacter) &&
                     Singleton.Zones.TryGetZone((uint)tempCharacter.map, out tempCharacter._currentzone))
                 {
-                    Singleton.Database.PostLoad(tempCharacter); 
+                    Singleton.Database.PostLoad(tempCharacter);
                     this.character = tempCharacter;
                     this.SendStart();
                     LifeCycle.Subscribe(this.character);
@@ -139,8 +137,6 @@ namespace Saga.Map.Client
                     WorldConnectionError();
                     LifeCycle.Unsubscribe(this.character);
                 }
-
-
             }
             catch (Exception e)
             {
@@ -150,6 +146,7 @@ namespace Saga.Map.Client
                 LifeCycle.Unsubscribe(this.character);
             }
         }
+
         public void SendStart()
         {
             SMSG_SENDSTART spkt = new SMSG_SENDSTART();
@@ -163,29 +160,31 @@ namespace Saga.Map.Client
             this.Send((byte[])spkt);
         }
 
-
-        #endregion        
+        #endregion Events
 
         #region Protected Methods
 
         public TraceLog log = new TraceLog("WorldClient.Packetlog", "Log class to log all packet trafic", 0);
 
-        #if DEBUG
+#if DEBUG
 
         public override void Send(byte[] body)
         {
             ushort subpacketIdentifier = (ushort)(body[13] + (body[12] << 8));
-           
+
             switch (log.LogLevel)
             {
                 case 1: log.WriteLine("Network debug world", "Packet Sent: {0:X4}", subpacketIdentifier);
                     break;
+
                 case 2: log.WriteLine("Network debug world", "Packet Sent: {0:X4}", subpacketIdentifier);
                     Console.WriteLine("Packet Sent: {0:X4} from: {1}", subpacketIdentifier, "world client");
                     break;
+
                 case 3:
                     log.WriteLine("Network debug world", "Packet Sent: {0:X4} data {1}", subpacketIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
                     break;
+
                 case 4:
                     log.WriteLine("Network debug world", "Packet Sent: {0:X4} data {1}", subpacketIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
                     Console.WriteLine("Packet Sent: {0:X4} from: {1}", subpacketIdentifier, "world client");
@@ -194,6 +193,7 @@ namespace Saga.Map.Client
 
             base.Send(body);
         }
+
         public override void Send(ref byte[] body)
         {
             ushort subpacketIdentifier = (ushort)(body[13] + (body[12] << 8));
@@ -202,12 +202,15 @@ namespace Saga.Map.Client
             {
                 case 1: log.WriteLine("Network debug world", "Packet Sent: {0:X4}", subpacketIdentifier);
                     break;
+
                 case 2: log.WriteLine("Network debug world", "Packet Sent: {0:X4}", subpacketIdentifier);
                     Console.WriteLine("Packet Sent: {0:X4} from: {1}", subpacketIdentifier, "world client");
                     break;
+
                 case 3:
                     log.WriteLine("Network debug world", "Packet Sent: {0:X4} data {1}", subpacketIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
                     break;
+
                 case 4:
                     log.WriteLine("Network debug world", "Packet Sent: {0:X4} data {1}", subpacketIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
                     Console.WriteLine("Packet Sent: {0:X4} from: {1}", subpacketIdentifier, "world client");
@@ -217,34 +220,36 @@ namespace Saga.Map.Client
             base.Send(body);
         }
 
-        #endif
+#endif
 
         protected override void ProcessPacket(ref byte[] body)
         {
             try
-            {                
-
+            {
                 #region Identification
 
                 ushort subpacketIdentifier = (ushort)(body[13] + (body[12] << 8));
 
-                #if DEBUG
-                    switch (log.LogLevel)
-                    {
-                        case 1: log.WriteLine("Network debug world", "Packet Recieved: {0:X4}", subpacketIdentifier);
-                            break;
-                        case 2: log.WriteLine("Network debug world", "Packet Recieved: {0:X4}", subpacketIdentifier);
-                            Console.WriteLine("Packet received: {0:X4} from: {1}", subpacketIdentifier, "world client");
-                            break;
-                        case 3:
-                            log.WriteLine("Network debug world", "Packet Recieved: {0:X4} data {1}", subpacketIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
-                            break;
-                        case 4:
-                            log.WriteLine("Network debug world", "Packet Recieved: {0:X4} data {1}", subpacketIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
-                            Console.WriteLine("Packet received: {0:X4} from: {1}", subpacketIdentifier, "world client");
-                            break;
-                    }
-                #endif
+#if DEBUG
+                switch (log.LogLevel)
+                {
+                    case 1: log.WriteLine("Network debug world", "Packet Recieved: {0:X4}", subpacketIdentifier);
+                        break;
+
+                    case 2: log.WriteLine("Network debug world", "Packet Recieved: {0:X4}", subpacketIdentifier);
+                        Console.WriteLine("Packet received: {0:X4} from: {1}", subpacketIdentifier, "world client");
+                        break;
+
+                    case 3:
+                        log.WriteLine("Network debug world", "Packet Recieved: {0:X4} data {1}", subpacketIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
+                        break;
+
+                    case 4:
+                        log.WriteLine("Network debug world", "Packet Recieved: {0:X4} data {1}", subpacketIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
+                        Console.WriteLine("Packet received: {0:X4} from: {1}", subpacketIdentifier, "world client");
+                        break;
+                }
+#endif
 
                 switch (body[12])
                 {
@@ -265,15 +270,21 @@ namespace Saga.Map.Client
                     case 0x12: goto Px12;
                     default: goto Px10;
                 }
-                #endregion
+
+                #endregion Identification
+
                 #region 0x00 - Internal Packets
+
             Px00:
                 switch (subpacketIdentifier)
                 {
                     case 0x0001: Login((CMSG_LOGIN)body); return;
                 } return;
-                #endregion
+
+                #endregion 0x00 - Internal Packets
+
                 #region 0x03 - Misc. Movement Packets
+
             Px03:
 
                 switch (subpacketIdentifier)
@@ -297,8 +308,11 @@ namespace Saga.Map.Client
                     case 0x0311: this.CM_CHARACTER_EXPENSIVESFORJOBCHANGE((CMSG_SELECTJOB)body); break;
                     default: Console.WriteLine("{0:X4}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x03 - Misc. Movement Packets
+
                 #region 0x04 - Chat packets
+
             Px04:
                 switch (subpacketIdentifier)
                 {
@@ -306,8 +320,11 @@ namespace Saga.Map.Client
                     case 0x0402: this.CM_SENDWHISPER((CMSG_SENDWHISPER)body); break;
                     default: Console.WriteLine("{0:X4}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x04 - Chat packets
+
                 #region 0x05 - Misc. Item packets
+
             Px05:
                 switch (subpacketIdentifier)
                 {
@@ -329,8 +346,11 @@ namespace Saga.Map.Client
                     case 0x051B: this.CM_USESUPLEMENTSTONE((CMSG_USESUPPLEMENTSTONE)body); break;
                     default: Console.WriteLine("Recieved {0:X4}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x05 - Misc. Item packets
+
                 #region 0x06 - Misc. NPC Packets
+
             Px06:
                 switch (subpacketIdentifier)
                 {
@@ -356,8 +376,11 @@ namespace Saga.Map.Client
                     case 0x0617: this.CM_NPCINTERACTION_WARPSELECT((CMSG_WARP)body); break;
                     default: Console.WriteLine("{0:X4}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x06 - Misc. NPC Packets
+
                 #region 0x07 - Questing packets
+
             Px07:
                 switch (subpacketIdentifier)
                 {
@@ -369,8 +392,11 @@ namespace Saga.Map.Client
                     case 0x0709: this.CM_QUESTITEMSTART((CMSG_QUESTITEMSTART)body); break;
                     default: Console.WriteLine("{0:X4}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x07 - Questing packets
+
                 #region 0x08 - Trading Packets
+
             Px08:
                 switch (subpacketIdentifier)
                 {
@@ -383,8 +409,11 @@ namespace Saga.Map.Client
                     case 0x0807: this.CM_TRADECANCEL((CMSG_TRADECANCEL)body); break;
                     default: Console.WriteLine("{0:X4}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x08 - Trading Packets
+
                 #region 0x09 - Skill packets
+
             Px09:
                 switch (subpacketIdentifier)
                 {
@@ -399,8 +428,11 @@ namespace Saga.Map.Client
                     case 0x0911: this.CM_SKILLS_REQUESTSPECIALSET((CMSG_WANTSETSPECIALLITY)body); break;
                     default: Console.WriteLine("{0:X4}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x09 - Skill packets
+
                 #region 0x0A - Shortcut packets
+
             Px0A:
                 switch (subpacketIdentifier)
                 {
@@ -408,8 +440,11 @@ namespace Saga.Map.Client
                     case 0x0A02: this.OnDelShortcut(); break;
                     default: Console.WriteLine("{0:X4}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x0A - Shortcut packets
+
                 #region 0x0C - Mail packets
+
             Px0C:
                 switch (subpacketIdentifier)
                 {
@@ -425,8 +460,11 @@ namespace Saga.Map.Client
                     case 0x0C0A: this.CM_MAILCLEAR((CMSG_MAILCLEAR)body); break;
                     default: Console.WriteLine("{0:X4}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x0C - Mail packets
+
                 #region 0x0E - Party packets
+
             Px0E:
                 switch (subpacketIdentifier)
                 {
@@ -440,8 +478,11 @@ namespace Saga.Map.Client
                     case 0x0E08: this.CM_PARTYINVITATIONCANCELED((CMSG_PARTYINVITECANCEL)body); break;
                     default: Console.WriteLine("{0:X4}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x0E - Party packets
+
                 #region 0x0F - Market packets
+
             Px0F:
                 switch (subpacketIdentifier)
                 {
@@ -455,16 +496,22 @@ namespace Saga.Map.Client
                     case 0x0F08: this.CM_MARKET_OWNERCOMMENT((CMSG_MARKETOWNERCOMMENT)body); break;
                     default: Console.WriteLine("{0} - {0:X2}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x0F - Market packets
+
                 #region 0x10 - Scenario packets
+
             Px10:
                 switch (subpacketIdentifier)
                 {
                     case 0x1001: CM_SCENARIO_EVENTEND(body); break;
                     default: Console.WriteLine("{0} - {0:X2}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x10 - Scenario packets
+
                 #region 0x11 - Misc packets
+
             Px11:
                 switch (subpacketIdentifier)
                 {
@@ -472,8 +519,11 @@ namespace Saga.Map.Client
                     case 0x1102: CM_TAKESCREENSHOT((CMSG_TAKESCREENSHOT)body); break;
                     default: Console.WriteLine("{0} - {0:X2}", subpacketIdentifier); break;
                 } return;
-                #endregion
+
+                #endregion 0x11 - Misc packets
+
                 #region 0x12 - Friendlist / Blacklist Packets
+
             Px12:
                 switch (subpacketIdentifier)
                 {
@@ -485,8 +535,8 @@ namespace Saga.Map.Client
                     case 0x1206: this.CM_BLACKLIST_REFRESH((CMSG_BLACKLIST_REFRESH)body); break;
                     default: Console.WriteLine("{0:X4}", subpacketIdentifier); return;
                 } return;
-                #endregion
 
+                #endregion 0x12 - Friendlist / Blacklist Packets
             }
             catch (Exception e)
             {
@@ -495,7 +545,7 @@ namespace Saga.Map.Client
             }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Private Methods
 
@@ -504,12 +554,11 @@ namespace Saga.Map.Client
         /// </summary>
         private void WorldConnectionError()
         {
-            byte[] buffer2 = new byte[] { 0x0B, 	0x00, 	0x74, 	0x17, 	0x91, 	0x00, 0x02, 	0x07, 	0x00, 	0x00, 	0x01 };
+            byte[] buffer2 = new byte[] { 0x0B, 0x00, 0x74, 0x17, 0x91, 0x00, 0x02, 0x07, 0x00, 0x00, 0x01 };
             Array.Copy(BitConverter.GetBytes(this.character.id), 0, buffer2, 2, 4);
             this.Send(buffer2);
         }
 
-        #endregion
-
+        #endregion Private Methods
     }
 }

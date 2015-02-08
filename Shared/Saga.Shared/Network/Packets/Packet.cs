@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Saga.Network.Packets
@@ -16,7 +15,7 @@ namespace Saga.Network.Packets
         {
             /*
             // Creates a new packet with no data,
-            // no identifier set.            
+            // no identifier set.
             */
 
             this.data = new byte[0];
@@ -26,8 +25,8 @@ namespace Saga.Network.Packets
         {
             /*
             // Parses raw-content to a packet-body
-            // and we'll assume the id are set by 
-            // a inherited class or network manager. 
+            // and we'll assume the id are set by
+            // a inherited class or network manager.
             */
             this.data = data;
         }
@@ -36,34 +35,34 @@ namespace Saga.Network.Packets
         {
             /*
             // Parses raw-content to a packet-body
-            // and we'll assume the id are set by 
-            // a inherited class or network manager. 
+            // and we'll assume the id are set by
+            // a inherited class or network manager.
             //
-            // However this time the raw-data will have some 
+            // However this time the raw-data will have some
             // flags. That says the raw data contains an size
-            // along with some other stuff            
+            // along with some other stuff
             */
 
             //if (flags == PacketContains.HasId)
-            //{                
+            //{
             //    this.data = new byte[data.Length - 2];
 
             //    Array.Copy(data, 0, this.id, 0, 2);
             //    Array.Copy(data, 2, this.data, 0, data.Length - 2);
             //}
             //else
-            //{                
+            //{
             //    this.data = new byte[data.Length - 4];
             //    Array.Copy(data, 2, this.id, 0, 2);
             //    Array.Copy(data, 4, this.data, 0, data.Length - 4);
-            //}         
+            //}
         }
 
-        #endregion
+        #endregion Init
 
         #region Regulair Fields
 
-        // TODO: 
+        // TODO:
         // - Add missing stuff
 
         public ushort Size
@@ -100,12 +99,12 @@ namespace Saga.Network.Packets
             }
         }
 
-        #endregion
+        #endregion Regulair Fields
 
         #region Conversions
 
-        // TODO: 
-        // - Add a type casting for implecit: packet to byte[]. 
+        // TODO:
+        // - Add a type casting for implecit: packet to byte[].
         // - Add a type casting for explicit: byte[] to packet.
         // - Add a type casting for implecit: byte[] to packet.
 
@@ -114,9 +113,9 @@ namespace Saga.Network.Packets
             /*
             // Processes all of the packets packet body
             // thus without any identifiers and size. And
-            // convert it to hexidecimal format. 
+            // convert it to hexidecimal format.
             //
-            // Where each pair of two digits/characters format 
+            // Where each pair of two digits/characters format
             // an byte value e.d. 00 <-> 0 ~ FF <-> 255
             */
 
@@ -145,8 +144,8 @@ namespace Saga.Network.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -165,8 +164,8 @@ namespace Saga.Network.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -178,7 +177,6 @@ namespace Saga.Network.Packets
             return pkt;
         }
 
-        #endregion
-
+        #endregion Conversions
     }
 }

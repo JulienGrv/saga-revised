@@ -1,14 +1,13 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is broadcasted to all players in a party to update the sp of a current 
+    /// This packet is broadcasted to all players in a party to update the sp of a current
     /// player. This mostly seems to be sent after regeneration.
     /// </remarks>
     /// <id>

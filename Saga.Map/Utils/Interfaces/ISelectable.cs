@@ -1,24 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Map.Definitions.Misc;
-
 namespace Saga.Shared.Definitions
 {
-
     /// <summary>
     /// Interface that shows you can select the current actor
     /// </summary>
     public interface ISelectAble
     {
-
         /// <summary>
         /// Get's or Set's the HP of the actor
         /// </summary>
         ushort HP
         {
             get;
-            set; 
+            set;
         }
 
         /// <summary>
@@ -27,7 +20,7 @@ namespace Saga.Shared.Definitions
         ushort HPMAX
         {
             get;
-            set; 
+            set;
         }
 
         /// <summary>

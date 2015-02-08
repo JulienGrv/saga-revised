@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Map;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
-    {     
-
+    {
         public static void THIEF_MANHOODBREAKER(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -23,10 +18,10 @@ namespace Saga.Skills
                 Singleton.Additions.ApplyAddition(arguments.Addition, asource);
                 matrix = arguments.GetDefaultSkillMatrix(asource, atarget);
                 Lvldiff = arguments.GetCappedLevelDifference(matrix);
-                matrix[1, 3] = (int)((double)matrix[1, 3] * ( 1.45 + 0.05 * arguments.SkillLevel));
-                matrix[0, 3] *=  (int)(matrix[0, 3]  * 1.2);
+                matrix[1, 3] = (int)((double)matrix[1, 3] * (1.45 + 0.05 * arguments.SkillLevel));
+                matrix[0, 3] *= (int)(matrix[0, 3] * 1.2);
                 matrix[4, 3] += (Lvldiff * 120);
-                Singleton.Additions.DeapplyAddition(arguments.Addition, asource); 
+                Singleton.Additions.DeapplyAddition(arguments.Addition, asource);
 
                 if (arguments.IsMissed(matrix) || arguments.IsBlocked(matrix))
                 {
@@ -46,6 +41,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
     }
 }

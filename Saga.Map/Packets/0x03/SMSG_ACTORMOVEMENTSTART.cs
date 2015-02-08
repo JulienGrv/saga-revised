@@ -1,20 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using Saga.Shared.Definitions;
 using Saga.Network.Packets;
 using Saga.Structures;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This is a test
-    /// 
+    ///
     /// Haha.
     /// </remarks>
     /// <id>
@@ -59,6 +54,5 @@ namespace Saga.Packets
             FloatToArray(z.y, this.data, 24);
             FloatToArray(z.z, this.data, 28);
         }
-
     }
 }

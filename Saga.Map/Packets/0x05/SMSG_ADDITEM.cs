@@ -1,13 +1,10 @@
-using System;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
 using Saga.PrimaryTypes;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent to the specified player to add a item-resource to
@@ -40,6 +37,6 @@ namespace Saga.Packets
         {
             Rag2Item.Serialize(item, this.data, 2);
             this.data[68] = (byte)Index;
-        }    
+        }
     }
 }

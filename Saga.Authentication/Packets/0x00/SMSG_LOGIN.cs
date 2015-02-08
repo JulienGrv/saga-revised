@@ -1,20 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Shared.PacketLib.Login
 {
-    public class SMSG_LOGIN: RelayPacket
+    public class SMSG_LOGIN : RelayPacket
     {
-
         public SMSG_LOGIN()
         {
             this.Cmd = 0x0501;
             this.Id = 0x0001;
             this.data = new byte[6];
         }
-
 
         public byte GmLevel
         {
@@ -24,7 +20,6 @@ namespace Saga.Shared.PacketLib.Login
             }
         }
 
-
         public byte Gender
         {
             set
@@ -32,7 +27,6 @@ namespace Saga.Shared.PacketLib.Login
                 this.data[1] = value;
             }
         }
-
 
         public uint CharacterId
         {

@@ -1,36 +1,36 @@
-﻿using System;
+﻿using Microsoft.CSharp;
+using Saga.Configuration;
+using Saga.Map.Configuration;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Reflection;
-using System.Security.Permissions;
-using Microsoft.CSharp;
-using Saga.Configuration;
-using Saga.Map.Configuration;
-using System.Diagnostics;
 using System.Security.Cryptography;
+using System.Security.Permissions;
 using System.Text;
 
 namespace Saga.Managers
 {
-
     public class ScriptCompiler : ManagerBase2
     {
-
         #region Ctor/Dtor
 
-        public ScriptCompiler() { }
+        public ScriptCompiler()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
         //Settings
         internal static Assembly ScriptingAssembly;
+
         internal string Directory;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -52,8 +52,8 @@ namespace Saga.Managers
         protected override void Load()
         {
             WriteLine("ScriptCompiler", "Starting to compile scripting assembly: {0}", Directory);
-            if (Directory != string.Empty) 
-            CompileFromDirectory(Directory, GetReferencedAssemblies());
+            if (Directory != string.Empty)
+                CompileFromDirectory(Directory, GetReferencedAssemblies());
 
             WriteLine("ScriptCompiler", "Starting to compile scripting assembly: {0}", ScriptingAssembly);
         }
@@ -93,7 +93,6 @@ namespace Saga.Managers
             }
         }
 
-
         [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         protected virtual CompilerParameters getCompilerParameters(IEnumerable<string> ReferencedAssemblies)
         {
@@ -101,15 +100,15 @@ namespace Saga.Managers
 
             //CREATE PARAM OBJECT
             CompilerParameters parms = new CompilerParameters();
-            
+
             //GET THE CURRENT ASSEMBLY AND PATH
             string file = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string path = Path.GetDirectoryName(file);
             string fname = Path.GetFileNameWithoutExtension(file);
 
-            //CREATE A MD5 UNIQUE FILENAME TOKEN TO FIX A BUG. THE SCRIPTING ASSEMBLY CAN'T 
+            //CREATE A MD5 UNIQUE FILENAME TOKEN TO FIX A BUG. THE SCRIPTING ASSEMBLY CAN'T
             //HANDLE TO DOUBLE TOKEN ASSEMBLIES.
-            MD5 md5 = MD5.Create();          
+            MD5 md5 = MD5.Create();
             byte[] dec = Encoding.Unicode.GetBytes(fname);
             byte[] enc = md5.ComputeHash(dec);
             StringBuilder builder = new StringBuilder();
@@ -119,8 +118,7 @@ namespace Saga.Managers
             }
             string assname = builder.ToString();
 
-
-            #if DEBUG
+#if DEBUG
 
             //GENERAL SETTNGS
             parms.CompilerOptions = "/target:library";
@@ -129,7 +127,7 @@ namespace Saga.Managers
             parms.OutputAssembly = assname + ".scripting";
             parms.IncludeDebugInformation = true;
 
-            #else
+#else
 
             //GENERAL SETTNGS
             parms.CompilerOptions = "/target:library /optimize";
@@ -137,7 +135,7 @@ namespace Saga.Managers
             parms.GenerateInMemory = true;
             parms.IncludeDebugInformation = true;
 
-            #endif
+#endif
 
             //ADD GENERAL ASSEMBLIES WE ALWAYS NEED
             parms.ReferencedAssemblies.Add(Path.Combine(path, "Saga.Shared.Definitions.dll"));
@@ -147,7 +145,7 @@ namespace Saga.Managers
             //GENERATE OPTIONAL ASSEMBLIES PROVIDED BY THE USER
             foreach (string assemblyfile in ReferencedAssemblies)
             {
-                 parms.ReferencedAssemblies.Add(assemblyfile);
+                parms.ReferencedAssemblies.Add(assemblyfile);
             }
 
             return parms;
@@ -163,7 +161,7 @@ namespace Saga.Managers
             }
 
             CompilerResults results;
-            CompilerParameters parms = getCompilerParameters(ReferencedAssemblies);            
+            CompilerParameters parms = getCompilerParameters(ReferencedAssemblies);
             results = Provider.CompileAssemblyFromFile(parms, Source);
             int tempCount = 0;
             if (results.Errors.Count > 0)
@@ -182,7 +180,7 @@ namespace Saga.Managers
                     }
                 }
 
-                if( tempCount > 0 )
+                if (tempCount > 0)
                     return null;
             }
             else
@@ -190,10 +188,10 @@ namespace Saga.Managers
                 WriteInformation("ScriptCompiler", "Scripts compiled no errors");
             }
 
-            return results.CompiledAssembly;            
+            return results.CompiledAssembly;
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -205,28 +203,25 @@ namespace Saga.Managers
         public bool TryFindType(string name, out Type type)
         {
             object a;
-            bool result = TryFindType(name, out a);           
-            if( a != null )
+            bool result = TryFindType(name, out a);
+            if (a != null)
                 type = a.GetType();
             else
                 type = null;
             return result;
         }
 
-
-
-        #endregion
+        #endregion Public Methods
 
         #region Event Callbacks
 
-        bool CoreService_OnProbeUnresolvedType(string name, out Type type)
+        private bool CoreService_OnProbeUnresolvedType(string name, out Type type)
         {
             type = null;
             if (ScriptingAssembly != null)
             {
                 type = ScriptingAssembly.GetType(name, false, false);
             }
-
 
             if (type == null)
             {
@@ -235,28 +230,25 @@ namespace Saga.Managers
             }
 
             return (type != null);
-
         }
 
-        #endregion
+        #endregion Event Callbacks
 
         #region Nested
 
-        class CompileException : Exception         
+        private class CompileException : Exception
         {
-
-            public CompileException(string message) : base(message)
+            public CompileException(string message)
+                : base(message)
             {
             }
 
-            public CompileException(string message, Exception innerexception) : base(message,innerexception)
+            public CompileException(string message, Exception innerexception)
+                : base(message, innerexception)
             {
             }
-
         }
 
-        #endregion
-
+        #endregion Nested
     }
-
 }

@@ -1,15 +1,14 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Add a special skill on the specified slot.
     /// </summary>
     /// <remarks>
     /// This packet is sent as an incrementeal update on the special skill
-    /// list. This will add an skill on the specified slot on the 
+    /// list. This will add an skill on the specified slot on the
     /// special skilllist. In total there are 16 available slots.
     /// </remarks>
     /// <id>
@@ -26,7 +25,7 @@ namespace Saga.Packets
 
         public byte Slot
         {
-            set { this.data[0] = value; } 
+            set { this.data[0] = value; }
         }
 
         public uint SkillID

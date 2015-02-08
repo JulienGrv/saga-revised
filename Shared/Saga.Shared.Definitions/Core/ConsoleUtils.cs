@@ -1,8 +1,8 @@
-﻿using System.Text;
-using System;
+﻿using System;
+using System.Text;
+
 public static class ConsoleUtils
 {
-
     #region Console.Progressbar
 
     public static void ProgressBarShow(uint progressPos, uint progressTotal, string label)
@@ -23,7 +23,7 @@ public static class ConsoleUtils
         Console.Write(buffer);
     }
 
-    #endregion
+    #endregion Console.Progressbar
 
     #region Array Parsing
 
@@ -37,6 +37,7 @@ public static class ConsoleUtils
         }
         return bytes;
     }
+
     public static uint[] ParseToUintArray(string value)
     {
         string[] values = value.Split(',');
@@ -48,6 +49,5 @@ public static class ConsoleUtils
         return uints;
     }
 
-    #endregion
-
+    #endregion Array Parsing
 }

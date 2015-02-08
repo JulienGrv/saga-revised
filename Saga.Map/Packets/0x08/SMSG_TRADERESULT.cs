@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent to the client to indicate if the trade failed
@@ -36,6 +31,5 @@ namespace Saga.Packets
         {
             set { this.data[4] = value; }
         }
-
     }
 }

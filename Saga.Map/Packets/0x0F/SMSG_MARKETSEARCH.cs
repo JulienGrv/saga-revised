@@ -1,15 +1,13 @@
+using Saga.Network.Packets;
+using Saga.PrimaryTypes;
+using Saga.Structures;
 using System;
 using System.Text;
-using Saga.Map.Definitions.Misc;
-using Saga.Network.Packets;
-using Saga.Structures;
-using Saga.PrimaryTypes;
 
 namespace Saga.Packets
 {
-
     /// <remarks>
-    /// This contains all the search results from the attemted search. Most of the 
+    /// This contains all the search results from the attemted search. Most of the
     /// stuff there. According to the old saga's code the bytes after the itemid would be
     /// the name of the item used for sortations.
     /// </remarks>
@@ -32,8 +30,8 @@ namespace Saga.Packets
 
         public byte Count
         {
-            set 
-            { 
+            set
+            {
                 this.data[1] = value;
                 Array.Resize<byte>(ref this.data, 2 + value * 112);
             }

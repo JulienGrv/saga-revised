@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Learns a skill
     /// </summary>
@@ -16,7 +11,7 @@ namespace Saga.Packets
     /// </remarks>
     /// <id>
     /// 091A
-    /// </id>   
+    /// </id>
     internal class SMSG_SKILLLEARN : RelayPacket
     {
         public SMSG_SKILLLEARN()

@@ -1,20 +1,16 @@
+using Saga.PrimaryTypes;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
 
 namespace Saga.Structures
 {
     public class PartySession : IEnumerable<Character>
     {
-
         public PartySession(Character character)
         {
             this._PartyLeader = character;
             this._Characters.Add(character);
         }
-
 
         internal List<Character> _Characters = new List<Character>();
         internal byte ExpSettings = 1;
@@ -22,7 +18,6 @@ namespace Saga.Structures
 
         internal Character _PartyLeader = null;
         internal Character _LootLeader = null;
-
 
         public Character PartyLeader
         {
@@ -53,9 +48,9 @@ namespace Saga.Structures
             Predicate<Character> FindChars = delegate(Character c)
             {
                 return character.id == c.id;
-            };            
-           
-            return this._Characters.FindIndex( FindChars);
+            };
+
+            return this._Characters.FindIndex(FindChars);
         }
 
         public void Add(Character character)
@@ -96,7 +91,6 @@ namespace Saga.Structures
             return member;
         }
 
-
         public Character this[int Index]
         {
             get
@@ -118,7 +112,6 @@ namespace Saga.Structures
             return GetEnumerator();
         }
 
-        #endregion
-
+        #endregion IEnumerable<Character> Members
     }
 }

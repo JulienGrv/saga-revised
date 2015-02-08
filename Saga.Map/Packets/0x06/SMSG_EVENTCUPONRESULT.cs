@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
-using Saga.Map.Definitions.Misc;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is supposed to show some failure/success message after you selected a item
@@ -35,6 +28,5 @@ namespace Saga.Packets
                 this.data[0] = value;
             }
         }
-
     }
 }

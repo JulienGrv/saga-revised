@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Shared.PacketLib.Gateway
 {
@@ -26,7 +24,5 @@ namespace Saga.Shared.PacketLib.Gateway
                 Array.Copy(tmp, 0, this.data, 0, 20);
             }
         }
-
-
     }
 }

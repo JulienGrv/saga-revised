@@ -1,17 +1,14 @@
-using System;
-
 namespace Saga.Enumarations
 {
-
     /// <summary>
     /// Button indications
     /// </summary>
     /// <remarks>
-    /// Used to indicate which button types are visible when 
+    /// Used to indicate which button types are visible when
     /// speaking to a npc.
     /// </remarks>
     public enum DialogType : byte
-    {        
+    {
         /// <summary>
         /// None
         /// </summary>
@@ -86,7 +83,7 @@ namespace Saga.Enumarations
         /// Enter Train
         /// </summary>
         EnterTrain,
-       
+
         /// <summary>
         /// Leave Train
         /// </summary>
@@ -106,7 +103,6 @@ namespace Saga.Enumarations
         /// Trade Items
         /// </summary>
         TradeItems = 42,
-
 
         /// <summary>
         /// Get Quest
@@ -128,6 +124,4 @@ namespace Saga.Enumarations
         /// </summary>
         Warp = 46
     };
-
-
 }

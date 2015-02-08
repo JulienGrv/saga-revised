@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent to the player to reveal a unrevealed piece of region on
@@ -18,9 +13,8 @@ namespace Saga.Packets
     /// <id>
     /// 0522
     /// </id>
-    internal class SMSG_SHOWMAP: RelayPacket
+    internal class SMSG_SHOWMAP : RelayPacket
     {
-
         /// <summary>
         /// Initializes a new SMSG_SHOWMAP packet
         /// </summary>
@@ -52,7 +46,7 @@ namespace Saga.Packets
         /// </summary>
         public byte Zone
         {
-            set { this.data[2] = value; }            
+            set { this.data[2] = value; }
         }
     }
 }

@@ -1,41 +1,44 @@
-using System;
-using System.Net.Sockets;
 using Saga.Gateway.Network;
 using Saga.Shared.NetworkCore;
+using System;
+using System.Net.Sockets;
 
 namespace Saga.Gateway
 {
     public class WorldClient : Client
     {
-
         public static TraceLog log = new TraceLog("WorldClient.Packetlog", "Log class to log all packet trafic", 0);
 
         public WorldClient(Socket sock)
-        { 
+        {
             this.socket = sock;
             base.Connect();
         }
+
         protected override void ProcessPacket(ref byte[] body)
         {
             ushort packetIdentifier = (ushort)(body[7] + (body[6] << 8));
 
-            #if DEBUG
+#if DEBUG
             switch (log.LogLevel)
             {
                 case 1: log.WriteLine("Network debug world", "Packet Recieved: {0:X4}", packetIdentifier);
                     break;
+
                 case 2: log.WriteLine("Network debug world", "Packet Recieved: {0:X4}", packetIdentifier);
                     Console.WriteLine("Packet received: {0:X4} from: {1}", packetIdentifier, "world client");
                     break;
+
                 case 3:
                     log.WriteLine("Network debug world", "Packet Recieved: {0:X4} data {1}", packetIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
                     break;
+
                 case 4:
                     log.WriteLine("Network debug world", "Packet Recieved: {0:X4} data {1}", packetIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
                     Console.WriteLine("Packet received: {0:X4} from: {1}", packetIdentifier, "world client");
                     break;
             }
-            #endif
+#endif
 
             switch (packetIdentifier)
             {
@@ -46,7 +49,6 @@ namespace Saga.Gateway
                 case 0x0701: ProcessInternal(body); return;
                 default: ForwardToClient(body); return;
                 //default: Console.WriteLine("UNSUPPORTED FORWARD ADRESS {0}", Ident); return;
-                
             }
         }
 
@@ -94,7 +96,6 @@ namespace Saga.Gateway
         /// <param name="buffer"></param>
         private void ForwardToWorldClient(byte[] buffer)
         {
-
             GatewayClient client = null;
             try
             {
@@ -138,7 +139,7 @@ namespace Saga.Gateway
         private void ProcessInternal(byte[] body)
         {
             ushort subpacketIdentifier = (ushort)(body[13] + (body[12] << 8));
-            switch( subpacketIdentifier )
+            switch (subpacketIdentifier)
             {
                 case 0x0010: Kick(body); break;
             }

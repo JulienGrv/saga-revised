@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Configuration;
 
 namespace Saga
 {
-
     /// <summary>
     /// Default configuration element.
     /// </summary>
@@ -106,7 +102,6 @@ namespace Saga
     /// </summary>
     public class FactoryFileElement : ConfigurationElement
     {
-
         /// <summary>
         /// Gets or sets the path
         /// </summary>
@@ -140,14 +135,15 @@ namespace Saga
         }
     }
 
-
     /// <summary>
     /// Configuration element speciafiing a file and it's fileformat.
     /// </summary>
     public class NetworkElement : ConfigurationElement
     {
+        public NetworkElement()
+        {
+        }
 
-        public NetworkElement() { }
         public NetworkElement(string connection, string host, int port)
         {
             base["connection"] = connection;
@@ -203,6 +199,4 @@ namespace Saga
             }
         }
     }
-
-
 }

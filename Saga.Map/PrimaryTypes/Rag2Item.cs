@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Map;
 using Saga.Enumarations;
+using Saga.Map;
+using System;
 
 namespace Saga.PrimaryTypes
 {
@@ -10,7 +8,6 @@ namespace Saga.PrimaryTypes
     [Serializable()]
     public class Rag2Item : ICloneable
     {
-
         #region Public Members
 
         /// <summary>
@@ -38,10 +35,10 @@ namespace Saga.PrimaryTypes
         public byte dyecolor = 0;
 
         /// <summary>
-        /// If a item is tradeable or not. 
+        /// If a item is tradeable or not.
         /// </summary>
         /// <remarks>
-        /// When dealing with equipment the context of this boolean changes into 
+        /// When dealing with equipment the context of this boolean changes into
         /// sealed/unsealed.
         /// </remarks>
         public bool tradeable = true;
@@ -52,26 +49,26 @@ namespace Saga.PrimaryTypes
         /// <remarks>
         /// This settings seems to be only important with equipment. Equipment that
         /// can no longer be used because of job switches the equipment will get
-        /// deactivated. 
+        /// deactivated.
         /// </remarks>
         public byte active = 0;
 
         /// <summary>
-        /// Collection of enchantments. 
+        /// Collection of enchantments.
         /// </summary>
         /// <remarks>
-        /// One enchantment is reserved for parasite stones the other enchantment is 
+        /// One enchantment is reserved for parasite stones the other enchantment is
         /// reserved for alterstones.
         /// </remarks>
-        public uint[] Enchantments = new uint[2];     
-   
+        public uint[] Enchantments = new uint[2];
+
         /// <summary>
         /// Collection of shared information between other instances of a rag2item class
         /// with the same itemid.
         /// </summary>
         public Saga.Factory.ItemsFactory.ItemInfo info;
 
-        #endregion
+        #endregion Public Members
 
         #region Internal Members
 
@@ -97,7 +94,7 @@ namespace Saga.PrimaryTypes
             }
         }
 
-        #endregion
+        #endregion Internal Members
 
         #region ICloneable Members
 
@@ -128,7 +125,7 @@ namespace Saga.PrimaryTypes
             return item;
         }
 
-        #endregion
+        #endregion ICloneable Members
 
         #region Serialization
 
@@ -142,9 +139,8 @@ namespace Saga.PrimaryTypes
             return (uint)(Math.Ceiling(BasePrice) - 1);
         }
 
-
         /// <summary>
-        /// Method serializes a existing rag2item to byte code. 
+        /// Method serializes a existing rag2item to byte code.
         /// </summary>
         /// <remarks>
         /// This byte code is regonized by the network trafic. And therefor
@@ -163,16 +159,15 @@ namespace Saga.PrimaryTypes
             //Encoding.Unicode.GetBytes(name, 0, Math.Min(name.Length, 16), this.data, index + 12);
             //Array.Copy(BitConverter.GetBytes(0), 0, this.data, index + 45, 4);
 
-
             buffer[offset + 48] = item.dyecolor;
             buffer[offset + 49] = item.clvl;
             buffer[offset + 50] = (item.tradeable == false) ? (byte)1 : (byte)0;
-            Array.Copy(BitConverter.GetBytes(item.durabillty), 0, buffer, offset + 51, 2);            
+            Array.Copy(BitConverter.GetBytes(item.durabillty), 0, buffer, offset + 51, 2);
             buffer[offset + 53] = (byte)item.count;
             Array.Copy(BitConverter.GetBytes(item.Enchantments[0]), 0, buffer, offset + 54, 4);
             Array.Copy(BitConverter.GetBytes(item.Enchantments[1]), 0, buffer, offset + 58, 4);
             //this.data[index + 66] = (byte)ItemIndex;
-            //buffer[offset + 67] = 1;       
+            //buffer[offset + 67] = 1;
         }
 
         /// <summary>
@@ -187,14 +182,14 @@ namespace Saga.PrimaryTypes
             uint id = BitConverter.ToUInt32(buffer, offset);
             byte dyecolor = buffer[offset + 48];
             byte clvl = buffer[offset + 49];
-            bool tradeable = (buffer[offset +  50] == 1) ? false : true;
-            ushort dura = BitConverter.ToUInt16(buffer,offset + 51);
+            bool tradeable = (buffer[offset + 50] == 1) ? false : true;
+            ushort dura = BitConverter.ToUInt16(buffer, offset + 51);
             byte itemcount = buffer[offset + 53];
             uint AlterStone = BitConverter.ToUInt32(buffer, offset + 54);
             uint ParasiteStone = BitConverter.ToUInt32(buffer, offset + 58);
 
             bool result = Singleton.Item.TryGetItem(id, out item);
-            if( result)
+            if (result)
             {
                 item.tradeable = tradeable;
                 item.durabillty = dura;
@@ -203,13 +198,12 @@ namespace Saga.PrimaryTypes
                 item.count = itemcount;
                 item.Enchantments[0] = AlterStone;
                 item.Enchantments[1] = ParasiteStone;
-            }  
-          
+            }
+
             return result;
         }
 
-
-        #endregion
+        #endregion Serialization
 
         #region Base Members
 
@@ -237,7 +231,6 @@ namespace Saga.PrimaryTypes
             return (int)this.info.item;
         }
 
-        #endregion
-
+        #endregion Base Members
     }
 }

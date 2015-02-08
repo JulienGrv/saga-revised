@@ -1,4 +1,3 @@
-using System;
 using Saga;
 using Saga.Enumarations;
 using Saga.Map;
@@ -7,17 +6,16 @@ using Saga.Map.Utils.Definitions.Misc;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Tasks;
+using System;
 
 namespace Common
 {
     public static class Skills
     {
-
         #region Private Methods
 
         private static bool HasSpecialRootSkillPresent(Character target, uint SkillId)
         {
-
             for (int i = 0; i < 16; i++)
             {
                 Skill skill = target.SpecialSkills[i];
@@ -26,7 +24,7 @@ namespace Common
             return false;
         }
 
-        #endregion
+        #endregion Private Methods
 
         #region Internal Methods
 
@@ -40,7 +38,7 @@ namespace Common
         {
             Regiontree tree = source.currentzone.Regiontree;
             foreach (Character current in tree.SearchActors(SearchFlags.Characters))
-            {     
+            {
                 SMSG_ADDITIONBEGIN spkt = new SMSG_ADDITIONBEGIN();
                 spkt.Duration = time;
                 spkt.SourceActor = source.id;
@@ -68,10 +66,9 @@ namespace Common
             }
         }
 
-        #endregion
+        #endregion Internal Methods
 
         #region Public Methods
-
 
         /// <summary>
         /// Use a offensive skills
@@ -86,44 +83,42 @@ namespace Common
         /// </remarks>
         public static void OffensiveSkillUse(MapObject target, MapObject source, uint skillid, byte skilltype)
         {
-
             try
-            {                
+            {
                 SkillUsageEventArgs argument = null;
                 if (SkillUsageEventArgs.Create(skillid, source, target, out argument) && argument.Use())
-                {          
-                        Predicate<Character> SendToCharacter = delegate(Character forwardTarget)
-                        {
-                            //Skill sucess
-                            SMSG_OFFENSIVESKILL spkt = new SMSG_OFFENSIVESKILL();
-                            spkt.SkillID = skillid;
-                            spkt.SkillType = 1;
-                            spkt.TargetActor = target.id;
-                            spkt.SourceActor = source.id;
-                            spkt.IsCritical = (forwardTarget.id == source.id || forwardTarget.id == target.id) ? (byte)argument.Result : (byte)7;                           
-                            spkt.Damage = argument.Damage;
-                            spkt.SessionId = forwardTarget.id;
-                            forwardTarget.client.Send((byte[])spkt);
+                {
+                    Predicate<Character> SendToCharacter = delegate(Character forwardTarget)
+                    {
+                        //Skill sucess
+                        SMSG_OFFENSIVESKILL spkt = new SMSG_OFFENSIVESKILL();
+                        spkt.SkillID = skillid;
+                        spkt.SkillType = 1;
+                        spkt.TargetActor = target.id;
+                        spkt.SourceActor = source.id;
+                        spkt.IsCritical = (forwardTarget.id == source.id || forwardTarget.id == target.id) ? (byte)argument.Result : (byte)7;
+                        spkt.Damage = argument.Damage;
+                        spkt.SessionId = forwardTarget.id;
+                        forwardTarget.client.Send((byte[])spkt);
 
-                            //Process some general updates
-                            if (forwardTarget._targetid == target.id)
-                                Common.Actions.SelectActor(forwardTarget, target as Actor);
-                            if (argument.TargetHasDied)
-                                Common.Actions.UpdateStance(forwardTarget, target as Actor);
-                            if (argument.TargetHasDied && MapObject.IsNpc(target))
-                                Common.Actions.UpdateIcon(forwardTarget, target as BaseMob);
-                            if (forwardTarget.id == target.id)
-                                LifeCycle.Update(forwardTarget);
+                        //Process some general updates
+                        if (forwardTarget._targetid == target.id)
+                            Common.Actions.SelectActor(forwardTarget, target as Actor);
+                        if (argument.TargetHasDied)
+                            Common.Actions.UpdateStance(forwardTarget, target as Actor);
+                        if (argument.TargetHasDied && MapObject.IsNpc(target))
+                            Common.Actions.UpdateIcon(forwardTarget, target as BaseMob);
+                        if (forwardTarget.id == target.id)
+                            LifeCycle.Update(forwardTarget);
 
-                            return true;
-                        };
+                        return true;
+                    };
 
-                        Regiontree tree = source.currentzone.Regiontree;
-                        foreach (Character forwardTarget in tree.SearchActors(source, SearchFlags.Characters))
-                        {
-                            SendToCharacter(forwardTarget);                                   
-                        }
-
+                    Regiontree tree = source.currentzone.Regiontree;
+                    foreach (Character forwardTarget in tree.SearchActors(source, SearchFlags.Characters))
+                    {
+                        SendToCharacter(forwardTarget);
+                    }
                 }
             }
             catch (Exception e)
@@ -132,9 +127,8 @@ namespace Common
             }
         }
 
-
         public static bool HasRootSkillPresent(Character target, uint skill)
-        {            
+        {
             //Helper variables
             uint nSkillId = (skill - (skill % 100));
             Predicate<Skill> FindSkill = delegate(Skill match)
@@ -142,33 +136,27 @@ namespace Common
                 return (match.Id - (match.Id % 100)) == nSkillId;
             };
 
-
             //Result
             bool result = target.learnedskills.FindIndex(
                 new Predicate<Skill>(FindSkill)
             ) > -1;
 
-
             //Check wether to check the specialskills
-            if (result == true) 
+            if (result == true)
                 return true;
             else
-                return HasSpecialRootSkillPresent(target,nSkillId);
+                return HasSpecialRootSkillPresent(target, nSkillId);
         }
 
         public static bool HasSpecialSkillPresent(Character target, uint skill)
         {
-
             for (int i = 0; i < 16; i++)
             {
                 Skill specialskill = target.SpecialSkills[i];
-                if(specialskill != null && specialskill.Id == skill) return true;
-            }       
+                if (specialskill != null && specialskill.Id == skill) return true;
+            }
             return false;
         }
-
-
-
 
         /// <summary>
         /// Sends a skill effect to the selected players.
@@ -179,9 +167,8 @@ namespace Common
         /// <param name="amount"></param>
         public static void SendSkillEffect(Actor source, uint addition, byte effect, uint amount)
         {
-            if (source == null) 
+            if (source == null)
                 return;
-
 
             Regiontree tree = source.currentzone.Regiontree;
             foreach (Character target in tree.SearchActors(source, SearchFlags.Characters))
@@ -199,16 +186,15 @@ namespace Common
 
         public static void SendSkillEffect(Character target, Actor source, uint addition, byte effect, uint amount)
         {
-             SMSG_SKILLEFFECT spkt = new SMSG_SKILLEFFECT();
-             spkt.SourceActor = source.id;
-             spkt.Unknown1 = 1;
-             spkt.Unknown2 = addition;
-             spkt.Amount = amount;
-             spkt.Function = effect;
-             spkt.SessionId = target.id;
-             target.client.Send((byte[])spkt);
+            SMSG_SKILLEFFECT spkt = new SMSG_SKILLEFFECT();
+            spkt.SourceActor = source.id;
+            spkt.Unknown1 = 1;
+            spkt.Unknown2 = addition;
+            spkt.Amount = amount;
+            spkt.Function = effect;
+            spkt.SessionId = target.id;
+            target.client.Send((byte[])spkt);
         }
-
 
         public static bool HasAddition(Actor target, uint addition)
         {
@@ -223,7 +209,7 @@ namespace Common
             return result;
         }
 
-        public static void DoAddition(Actor self, object target,  uint addition)
+        public static void DoAddition(Actor self, object target, uint addition)
         {
             Saga.Factory.Additions.Info info;
             if (Singleton.Additions.TryGetAddition(addition, out info))
@@ -240,7 +226,7 @@ namespace Common
         public static void CreateAddition(Actor target, uint addition)
         {
             Saga.Factory.Additions.Info info;
-            if( Singleton.Additions.TryGetAddition( addition, out info))
+            if (Singleton.Additions.TryGetAddition(addition, out info))
             {
                 target._additions._skipcheck = true;
                 Singleton.Additions.ApplyAddition(addition, target);
@@ -261,7 +247,7 @@ namespace Common
         public static void CreateAddition(Actor target, uint addition, uint duration)
         {
             Saga.Factory.Additions.Info info;
-            if( Singleton.Additions.TryGetAddition( addition, out info))
+            if (Singleton.Additions.TryGetAddition(addition, out info))
             {
                 target._additions._skipcheck = true;
                 Singleton.Additions.ApplyAddition(addition, target);
@@ -277,16 +263,15 @@ namespace Common
         /// Deletes a staitc addition
         /// </summary>
         /// <param name="target">Target on which the addition is casted</param>
-        /// <param name="Addition">Addition which is casted</param>       
+        /// <param name="Addition">Addition which is casted</param>
         public static void DeleteAddition(Actor target, uint addition)
         {
-
             Predicate<AdditionState> c = delegate(AdditionState state)
             {
                 return state.Addition == addition;
             };
 
-            target._additions._skipcheck = true; 
+            target._additions._skipcheck = true;
             int index = target._additions.timed_additions.FindIndex(c);
             if (index > -1) //reset lifetime
             {
@@ -301,10 +286,9 @@ namespace Common
         /// Deletes a staitc addition
         /// </summary>
         /// <param name="target">Target on which the addition is casted</param>
-        /// <param name="Addition">Addition which is casted</param>       
+        /// <param name="Addition">Addition which is casted</param>
         public static void DeleteStaticAddition(Actor target, uint addition)
         {
-
             Predicate<AdditionState> c = delegate(AdditionState state)
             {
                 return state.Addition == addition;
@@ -315,7 +299,7 @@ namespace Common
             if (index > -1) //reset lifetime
             {
                 Singleton.Additions.DeapplyAddition(addition, target);
-                target._additions.additions.RemoveAt(index);                
+                target._additions.additions.RemoveAt(index);
                 SendDeleteStatus(target, addition);
             }
             target._additions._skipcheck = false;
@@ -333,7 +317,6 @@ namespace Common
             Saga.Factory.Additions.Info info;
             if (Singleton.Additions.TryGetAddition(addition, out info))
             {
-
                 Predicate<AdditionState> c = delegate(AdditionState state)
                 {
                     return state.Addition == addition;
@@ -357,9 +340,7 @@ namespace Common
                     SendExchangeStatus(target, addition, duration);
                 }
                 target._additions._skipcheck = false;
-
             }
-
         }
 
         /// <summary>
@@ -374,7 +355,6 @@ namespace Common
             Saga.Factory.Additions.Info info;
             if (Singleton.Additions.TryGetAddition(addition, out info))
             {
-
                 Predicate<AdditionState> c = delegate(AdditionState state)
                 {
                     return state.Addition == addition;
@@ -406,13 +386,9 @@ namespace Common
                 //    SendExchangeStatus(target, addition, 0);
                 //}
                 target._additions._skipcheck = false;
-
             }
-
         }
 
-        #endregion
-
-
+        #endregion Public Methods
     }
 }

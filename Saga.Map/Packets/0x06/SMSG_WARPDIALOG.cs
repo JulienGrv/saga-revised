@@ -1,14 +1,13 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet shows a list of warp locations where you can choose 
+    /// This packet shows a list of warp locations where you can choose
     /// where to warp too.
     /// </remarks>
     /// <id>

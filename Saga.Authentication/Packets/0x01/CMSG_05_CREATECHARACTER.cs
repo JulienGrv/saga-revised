@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Network.Packets;
 using Saga.Network;
+using Saga.Network.Packets;
+using System;
 
 namespace Saga.Authentication.Packets
 {
-
     public class CMSG_CREATECHARACTER : RelayPacket
     {
-
         /*
         // This packet is invoked when an client creates an new character
         // with the following details.
@@ -21,7 +17,7 @@ namespace Saga.Authentication.Packets
         // Hair         A byte representing the Hair-style
         // HairColor    A byte representing the Hair-color
         // WeaponName   A string containing the weapon's name
-        // WeaponAffix  A byte representating the weapon-affix 
+        // WeaponAffix  A byte representating the weapon-affix
         //
         // Last updated on Friday 26, okt 2007.
         */
@@ -84,7 +80,7 @@ namespace Saga.Authentication.Packets
         {
             get
             {
-                return SpecialEncoding.Read(ref this.data, 46, 24).TrimEnd('\0');                
+                return SpecialEncoding.Read(ref this.data, 46, 24).TrimEnd('\0');
             }
         }
 
@@ -105,8 +101,8 @@ namespace Saga.Authentication.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -119,6 +115,6 @@ namespace Saga.Authentication.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

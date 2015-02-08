@@ -1,19 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent to the client as an reply indicating if you could 
+    /// This packet is sent to the client as an reply indicating if you could
     /// retrieve the zeny fromthe mail.
     /// </remarks>
     /// <id>

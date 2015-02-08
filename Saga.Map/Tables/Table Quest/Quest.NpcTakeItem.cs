@@ -1,14 +1,13 @@
-using System.Collections.Generic;
 using Saga.Enumarations;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Tasks;
+using System.Collections.Generic;
 
 namespace Saga.Quests
 {
     static partial class QUEST_TABLE
     {
-
         /// <title>Saga.AddStep</title>
         /// <code>
         /// Saga.AddStep(cid, QuestID, StepId, State);
@@ -59,7 +58,6 @@ namespace Saga.Quests
                         spkt.UpdateReason = (byte)ItemUpdateReason.GiveToNpc;
                         spkt.SessionId = Character.id;
                         Character.client.Send((byte[])spkt);
-                        
                     }
                     return true;
                 }

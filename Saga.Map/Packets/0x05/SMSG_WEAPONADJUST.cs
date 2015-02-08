@@ -1,15 +1,14 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Level = 1, Exp = 2, Dura = 3, Activation = 6
     /// </summary>
     /// <remarks>
     /// This packet adjusts the weapon, the weapon can be adjusted for various reasons:
-    /// Exp, durabillity, Weapon. The value is pinpointed in affection of the pinpointed 
+    /// Exp, durabillity, Weapon. The value is pinpointed in affection of the pinpointed
     /// function (reason to upate).
     /// </remarks>
     /// <id>
@@ -36,7 +35,7 @@ namespace Saga.Packets
 
         public uint Value
         {
-            set { Array.Copy(BitConverter.GetBytes(value),0, this.data, 2, 4); }
+            set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 2, 4); }
         }
     }
 }

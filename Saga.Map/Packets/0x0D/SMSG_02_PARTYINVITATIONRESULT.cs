@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent to indicate if the party invivitation is 
+    /// This packet is sent to indicate if the party invivitation is
     /// agreed or denied.
     /// </remarks>
     /// <id>

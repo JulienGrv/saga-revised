@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.Packets;
-using Saga.Managers;
-using Saga.Tasks;
 using Saga.Map;
+using Saga.Packets;
 using Saga.PrimaryTypes;
+using Saga.Tasks;
 
 namespace Saga.Quests.Scenario
 {
@@ -28,14 +23,14 @@ namespace Saga.Quests.Scenario
                 if (Singleton.Quests.TryFindQuests(QID, out value.client.scenarioquest))
                 {
                     if (value.client.scenarioquest.OnStart(value.id) > -1)
-                   {                   
-                       myquest = value.client.scenarioquest;
-                       myquest.QuestId = QID;
-                       result = true;
-                   }
+                    {
+                        myquest = value.client.scenarioquest;
+                        myquest.QuestId = QID;
+                        result = true;
+                    }
                 }
 
-                #endregion
+                #endregion Check Quest
 
                 #region Add to Quest List
 
@@ -47,13 +42,13 @@ namespace Saga.Quests.Scenario
                 spkt.Scenario2 = GetCurrentStep(cid, QID);
                 value.client.Send((byte[])spkt);
 
-                #endregion
+                #endregion Add to Quest List
 
                 #region Check Quest
 
                 //value.client.scenarioquest.CheckQuest(cid);
 
-                #endregion
+                #endregion Check Quest
             }
         }
     }

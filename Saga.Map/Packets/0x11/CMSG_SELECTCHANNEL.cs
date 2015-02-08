@@ -1,14 +1,13 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent to the player when he or she wants to make 
+    /// This packet is sent to the player when he or she wants to make
     /// a screenshot of the game.
     /// </remarks>
     /// <id>
@@ -17,7 +16,7 @@ namespace Saga.Packets
     internal class CMSG_SELECTCHANNEL : RelayPacket
     {
         public CMSG_SELECTCHANNEL()
-        {            
+        {
         }
 
         public byte Channel
@@ -37,8 +36,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -51,6 +50,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

@@ -1,19 +1,16 @@
-﻿using Saga.Shared.Definitions;
-using Saga.Templates;
+﻿using Saga.Enumarations;
 using Saga.PrimaryTypes;
-using Saga.Enumarations;
 using Saga.Structures;
+using Saga.Templates;
 
 namespace Saga.Npc.Functions
 {
-
     /// <summary>
-    /// This is a auctioneer conversation. Include this in a npc to show a 
+    /// This is a auctioneer conversation. Include this in a npc to show a
     /// auctioneer dialog and submenu.
-    /// </summary>    
+    /// </summary>
     public class AuctionConversation : NpcFunction
     {
-
         #region Private Members
 
         /// <summary>
@@ -26,10 +23,9 @@ namespace Saga.Npc.Functions
         /// </summary>
         public uint _AuctionOpen = 4462;
 
-        #endregion
+        #endregion Private Members
 
         #region Protected Methods
-
 
         /// <summary>
         /// Registers all dialogs for the npc.
@@ -40,7 +36,6 @@ namespace Saga.Npc.Functions
             RegisterDialog(npc, DialogType.Market, new FunctionCallback(OnAuction));
             RegisterDialog(npc, DialogType.Market, 21, new FunctionCallback(OnAuctionOpen));
         }
-
 
         /// <summary>
         /// Shows all warp function of the current npc.
@@ -55,7 +50,6 @@ namespace Saga.Npc.Functions
             }
         }
 
-
         /// <summary>
         /// Occurs when the auction button is pressed.
         /// </summary>
@@ -64,12 +58,11 @@ namespace Saga.Npc.Functions
         protected virtual void OnAuction(BaseNPC npc, Character target)
         {
             Common.Actions.OpenSubmenu(target, npc,
-                _Auction,               //Dialog script to show                
+                _Auction,               //Dialog script to show
                 DialogType.Market,      //Button function
                 21                      //Open market
             );
         }
-
 
         /// <summary>
         /// Occurs when subemnu item 'Open market' is pressed.
@@ -88,7 +81,6 @@ namespace Saga.Npc.Functions
             );
         }
 
-        #endregion
-
+        #endregion Protected Methods
     }
 }

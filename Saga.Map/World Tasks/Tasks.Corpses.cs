@@ -1,19 +1,17 @@
-using System;
-using System.Collections.Generic;
 using Saga.Enumarations;
 using Saga.Map;
 using Saga.Packets;
 using Saga.PrimaryTypes;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Tasks
 {
-
     /// <summary>
     /// Task that helps clear all corpses.
     /// </summary>
     public static class Corpses
     {
-
         #region Private Members
 
         /// <summary>
@@ -22,7 +20,7 @@ namespace Saga.Tasks
         private static Queue<Corpse> corpses = new Queue<Corpse>();
 
         /// <summary>
-        /// Sends a corpse delete message to every visible 
+        /// Sends a corpse delete message to every visible
         /// player.
         /// </summary>
         /// <param name="c"></param>
@@ -45,7 +43,7 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
@@ -58,7 +56,7 @@ namespace Saga.Tasks
             corpses.Enqueue(new Corpse(c));
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Internal Members
 
@@ -80,7 +78,7 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
+        #endregion Internal Members
 
         #region Nested Classes
 
@@ -110,8 +108,6 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
-
+        #endregion Nested Classes
     }
-
 }

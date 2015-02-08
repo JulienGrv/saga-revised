@@ -1,44 +1,43 @@
+using Saga.Shared.Definitions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Sockets;
 using System.Threading;
-using Saga.Shared.Definitions;
 
 namespace Saga.Tasks
 {
     public static class LifespanAI
     {
-
         #region Private Members
 
         /// <summary>
         /// List of LifespanThreads where monster objects can be assigned to.
         /// </summary>
-        static List<ThreadState> LifespanThreads = new List<ThreadState>();
+        private static List<ThreadState> LifespanThreads = new List<ThreadState>();
 
         /// <summary>
         /// A zero based index of the next thread where to register with
         /// </summary>
         /// <remarks>
-        /// This is a volatile field containing the next threadstate where 
+        /// This is a volatile field containing the next threadstate where
         /// to register the AI to. Tbe next threadstate will should indicate
         /// that the AI is registered on several lists. Reducing the
         /// error amount.
         /// </remarks>
-        static volatile int NextThreadState = 0;
+        private static volatile int NextThreadState = 0;
 
         /// <summary>
         /// Number representing the number of activated monsters.
         /// </summary>
-        static volatile int NumberSubscribedMobs = 0;
+        private static volatile int NumberSubscribedMobs = 0;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
         /// <summary>
-        /// Subscribes a AI controler for it's lifespan updates. 
+        /// Subscribes a AI controler for it's lifespan updates.
         /// </summary>
         /// <remarks>
         /// The primairy target for this is to make them moveable.
@@ -82,8 +81,7 @@ namespace Saga.Tasks
             return e.Lifespan.IsRegistered;
         }
 
-
-        #endregion
+        #endregion Public Members
 
         #region Constructor / Deconstructor
 
@@ -109,7 +107,7 @@ namespace Saga.Tasks
             LifespanThreads.Clear();
         }
 
-        #endregion
+        #endregion Constructor / Deconstructor
 
         #region Nested Classes/Structures
 
@@ -141,8 +139,8 @@ namespace Saga.Tasks
                 }
                 finally
                 {
-                    if( d != null )
-                    GC.ReRegisterForFinalize(d);
+                    if (d != null)
+                        GC.ReRegisterForFinalize(d);
                 }
             }
 
@@ -154,8 +152,8 @@ namespace Saga.Tasks
             /// <summary>
             /// Indication if the AI is processing.
             /// </summary>
-            volatile bool IsWritting = false;
-            
+            private volatile bool IsWritting = false;
+
             /// <summary>
             /// Registers a AI object
             /// </summary>
@@ -164,11 +162,11 @@ namespace Saga.Tasks
             {
                 try
                 {
-                    IsWritting = true;                    
+                    IsWritting = true;
                     //Add a random delay to make mobs appear they move pure random
                     int rand = Saga.Managers.WorldTasks._random.Next(0, 1000);
-                    c.Lifespan.lasttick = Environment.TickCount + rand ;
-                    ActivatedAI.Add(c);                    
+                    c.Lifespan.lasttick = Environment.TickCount + rand;
+                    ActivatedAI.Add(c);
                 }
                 finally
                 {
@@ -194,7 +192,6 @@ namespace Saga.Tasks
                 }
             }
 
-
             /// <summary>
             /// Processes all threads
             /// </summary>
@@ -204,7 +201,6 @@ namespace Saga.Tasks
                 {
                     try
                     {
-
                         for (int i = 0; i < ActivatedAI.Count; i++)
                         {
                             try
@@ -231,7 +227,7 @@ namespace Saga.Tasks
                     catch (ThreadAbortException)
                     {
                         break;
-                    }                    
+                    }
                 }
             }
         }
@@ -241,9 +237,8 @@ namespace Saga.Tasks
         /// </summary>
         public sealed class Lifespan
         {
-            
             /// <summary>
-            /// Index to which ThreadState object the map 
+            /// Index to which ThreadState object the map
             /// was assigned to
             /// </summary>
             internal int LifespanThread = 0;
@@ -278,12 +273,9 @@ namespace Saga.Tasks
             public void Unsubscribe(IArtificialIntelligence ai)
             {
                 LifespanAI.Unsubscribe(ai);
-            }   
+            }
         }
 
-
-
-        #endregion
-
+        #endregion Nested Classes/Structures
     }
 }

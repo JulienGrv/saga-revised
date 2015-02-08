@@ -1,40 +1,36 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
 using Saga.PrimaryTypes;
+using System;
 
 namespace Saga.Map.Definitions.Misc
 {
     public delegate void TradeHandler(Character target);
 
-    class TradeSession
+    internal class TradeSession
     {
-
-        [Obsolete("Error",true)]
+        [Obsolete("Error", true)]
         public event TradeHandler OnCancel;
+
         [Obsolete("Error", true)]
         public event TradeHandler OnComplete;
+
         public event TradeHandler OnTradeListConfirm;
+
         public event TradeHandler OnTradeInvitationCancel;
+
         public event TradeHandler OnTradeInvitationAccept;
 
         public Character Source;
-        public Character Target;    
+        public Character Target;
         public TradeItem[] SourceItem = new TradeItem[16];
         public TradeItem[] TargetItem = new TradeItem[16];
         public bool SourceHasAgreed = false;
         public bool TargetHasAgreed = true;
 
-
-
         public uint ZenySource;
         public uint ZenyTarget;
 
-        public Character[] characters ;
+        public Character[] characters;
         public bool[] isconfirmed;
-
-
 
         public TradeSession(Character Source, Character Target)
         {
@@ -54,16 +50,15 @@ namespace Saga.Map.Definitions.Misc
             if (target == Source) isconfirmed[0] = true;
             if (target == Target) isconfirmed[1] = true;
 
-
-            if( isconfirmed[0] && isconfirmed[1])
-            if (OnComplete != null)
-            {
-                this.Source.ZENY -= ZenySource;
-                this.Target.ZENY -= ZenyTarget;
-                this.Source.ZENY -= ZenyTarget;
-                this.Target.ZENY -= ZenySource;
-                OnComplete.Invoke(target);
-            }
+            if (isconfirmed[0] && isconfirmed[1])
+                if (OnComplete != null)
+                {
+                    this.Source.ZENY -= ZenySource;
+                    this.Target.ZENY -= ZenyTarget;
+                    this.Source.ZENY -= ZenyTarget;
+                    this.Target.ZENY -= ZenySource;
+                    OnComplete.Invoke(target);
+                }
         }
 
         public void TradeListConfirm(Character target)
@@ -80,7 +75,6 @@ namespace Saga.Map.Definitions.Misc
         {
             if (OnTradeInvitationCancel != null) OnTradeInvitationCancel.Invoke(target);
         }
-
 
         public class TradeItem
         {

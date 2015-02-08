@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Enumarations;
+﻿using Saga.Enumarations;
+using System;
 
 namespace Saga.Structures
 {
-
     [Serializable()]
     public struct AdditionInteger
-    {        
-        int _currentvalue;
-        int _cumv;
+    {
+        private int _currentvalue;
+        private int _cumv;
 
         [System.Diagnostics.DebuggerHidden()]
         public static implicit operator AdditionInteger(int x)
@@ -46,7 +43,6 @@ namespace Saga.Structures
         {
             _cumv = 0;
             _currentvalue = value;
-
         }
 
         [System.Diagnostics.DebuggerHidden()]
@@ -87,9 +83,7 @@ namespace Saga.Structures
         {
             return _currentvalue.ToString();
         }
-
     }
-
 
     public struct AdditionValue
     {
@@ -99,7 +93,4 @@ namespace Saga.Structures
         public object target;
         public AdditionContext context;
     }
-
-
-
 }

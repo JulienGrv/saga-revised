@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// This will sent an skill effect to the client.
     /// </summary>
     /// <remarks>
     /// The skill effect can cause three affects HP, LP, SP. This packet
-    /// is largly still unknown as haven't seen two effects working at the 
+    /// is largly still unknown as haven't seen two effects working at the
     /// same time.
     /// </remarks>
     /// <id>
@@ -58,7 +54,5 @@ namespace Saga.Packets
         {
             set { this.data[14] = value; }
         }
-
-
     }
 }

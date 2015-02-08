@@ -1,14 +1,12 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet updates the current time/weather. This packet should be send for 
+    /// This packet updates the current time/weather. This packet should be send for
     /// on maploading and when the weather changes.
     /// </remarks>
     /// <id>
@@ -25,22 +23,22 @@ namespace Saga.Packets
 
         public byte day
         {
-            set { this.data[0] = value; } 
+            set { this.data[0] = value; }
         }
 
         public byte hour
         {
-            set { this.data[1] = value; } 
+            set { this.data[1] = value; }
         }
 
         public byte min
         {
-            set { this.data[2] = value; } 
+            set { this.data[2] = value; }
         }
 
         public byte weather
         {
-            set { this.data[3] = value; } 
+            set { this.data[3] = value; }
         }
     }
 }

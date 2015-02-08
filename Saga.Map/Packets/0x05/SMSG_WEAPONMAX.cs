@@ -1,11 +1,9 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent to the user to resize the
@@ -39,6 +37,5 @@ namespace Saga.Packets
                 this.data[1] = value;
             }
         }
-
     }
 }

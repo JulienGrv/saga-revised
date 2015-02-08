@@ -1,12 +1,10 @@
-using System;
-
 namespace Saga.Enumarations
 {
     /// <summary>
     /// Structure of item update reasons
     /// </summary>
     /// <remarks>
-    /// This defines wheter the client get 
+    /// This defines wheter the client get
     /// to see player purchased x items.
     /// </remarks>
     public enum ItemUpdateReason

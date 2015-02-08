@@ -1,11 +1,10 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet makes a npc output the requested speech script (dialoge)
@@ -13,7 +12,7 @@ namespace Saga.Packets
     /// <id>
     /// 0605
     /// </id>
-    internal class SMSG_NPCSPEECH: RelayPacket
+    internal class SMSG_NPCSPEECH : RelayPacket
     {
         public SMSG_NPCSPEECH()
         {
@@ -31,6 +30,5 @@ namespace Saga.Packets
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 4, 4); }
         }
-
     }
 }

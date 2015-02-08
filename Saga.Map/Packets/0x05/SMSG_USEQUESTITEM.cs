@@ -1,11 +1,9 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent as a return message on the client rigth after 0x0709 (CMSG_QUESTSTART)

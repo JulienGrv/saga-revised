@@ -2,10 +2,8 @@ using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_INTERNAL_CHARACTERDELETEREPLY : RelayPacket
     {
-
         public SMSG_INTERNAL_CHARACTERDELETEREPLY()
         {
             this.Cmd = 0x0701;
@@ -20,6 +18,5 @@ namespace Saga.Packets
                 this.data[0] = value;
             }
         }
-
     }
 }

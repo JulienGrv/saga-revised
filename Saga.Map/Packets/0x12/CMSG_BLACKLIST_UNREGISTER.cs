@@ -1,18 +1,17 @@
-using System;
 using Saga.Network;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent by the client to indicate he/she wants to 
+    /// This packet is sent by the client to indicate he/she wants to
     /// delete a existing name on the blacklist. The client than waits for
     /// a valid response of SMSG_BLACKLIST_UNREGISTER.
-    /// 
+    ///
     /// Important: the packet is accociated with the characters name
     /// not a characters id and also the client allows you to sent
     /// empty names. The correct approach to handle this is to discard
@@ -20,7 +19,7 @@ namespace Saga.Packets
     /// </remarks>
     /// <id>
     /// 1205
-    /// </id>    
+    /// </id>
     internal class CMSG_BLACKLIST_UNREGISTER : RelayPacket
     {
         public CMSG_BLACKLIST_UNREGISTER()
@@ -42,8 +41,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -56,6 +55,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

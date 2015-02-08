@@ -1,17 +1,14 @@
-
 namespace Saga.Enumarations
 {
-
     /// <summary>
     /// List of trading supply errors.
     /// </summary>
     /// <remarks>
-    /// These errors are beeing used by the trading npc for both coupon 
+    /// These errors are beeing used by the trading npc for both coupon
     /// and normal trading functions.
     /// </remarks>
     public enum TradeSupplyErrors
     {
-
         /// <summary>
         /// Does not show any error message
         /// </summary>

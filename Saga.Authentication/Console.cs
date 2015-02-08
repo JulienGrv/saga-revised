@@ -1,34 +1,30 @@
-using System;
-using Saga.Managers;
-using System.Net;
-using System.Configuration;
-using Saga.Configuration;
-using System.Reflection;
-using System.IO;
-using System.Collections.Generic;
 using Saga.Authentication.Utils.Definitions.Misc;
+using Saga.Configuration;
+using Saga.Managers;
 using Saga.Shared.Definitions;
-using System.Threading;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
-
+using System.IO;
+using System.Net;
+using System.Reflection;
 
 namespace Saga.Authentication
 {
-
     [Serializable()]
-    public class PluginSandbox 
+    public class PluginSandbox
     {
         public List<string> foundPlugins = null;
+
         public static PluginSandbox FindPlugins(Type basetype)
         {
             PluginSandbox c = new PluginSandbox();
             c.foundPlugins = new List<string>();
 
-
             //GET THE CURRENT ASSEMBLY AND PATH
             string file = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string path = Path.GetDirectoryName(file);
-            
 
             //CREATE A SANDBOX TO LOAD ALL PLUGINS FOR EXAMINATION
             AppDomain sandbox = AppDomain.CreateDomain("sandbox");
@@ -38,10 +34,10 @@ namespace Saga.Authentication
                 c.foundPlugins.Add(d);
             }
 
-
             AppDomain.Unload(sandbox);
             return c;
         }
+
         private IEnumerable<string> test(string path, Type checkType)
         {
             List<string> foundPlugins = new List<string>();
@@ -53,7 +49,6 @@ namespace Saga.Authentication
                     Assembly current = Assembly.LoadFile(mfiles[i]);
                     Type[] types = current.GetExportedTypes();
 
-
                     foreach (Type type in current.GetExportedTypes())
                     {
                         TypeFilter b = delegate(Type filterType, object filter)
@@ -64,10 +59,8 @@ namespace Saga.Authentication
                         Type[] arr = type.FindInterfaces(b, null);
                         if (arr.Length > 0)
                         {
-
                             foundPlugins.Add(string.Format("{0}, {1}", type.Assembly.Location, type.FullName));
                         }
-
                     }
                 }
                 catch (TypeLoadException)
@@ -76,7 +69,7 @@ namespace Saga.Authentication
                 }
                 catch (BadImageFormatException)
                 {
-                    //do nothing;                   
+                    //do nothing;
                 }
             }
 
@@ -89,20 +82,19 @@ namespace Saga.Authentication
 
     public static partial class Singleton
     {
-
         #region Private Members
 
         private static Saga.Managers.ConsoleCommands _ConsoleCommands;
         private static Saga.Managers.Database _Database;
         private static Saga.Managers.NetworkService _NetworkService;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
         public static TraceLog generaltracelog = new TraceLog("General", "Entire Application", 4);
 
-        #endregion
+        #endregion Public Members
 
         #region Public Properties
 
@@ -113,6 +105,7 @@ namespace Saga.Authentication
                 return _NetworkService;
             }
         }
+
         public static Saga.Managers.ConsoleCommands ConsoleCommands
         {
             get
@@ -120,6 +113,7 @@ namespace Saga.Authentication
                 return _ConsoleCommands;
             }
         }
+
         public static Saga.Managers.Database Database
         {
             get
@@ -128,7 +122,7 @@ namespace Saga.Authentication
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Constructor
 
@@ -146,11 +140,11 @@ namespace Saga.Authentication
             }
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Entry-point
 
-        static bool CheckConfigExists()
+        private static bool CheckConfigExists()
         {
             //GET THE ASSEMBLY'S DIRECTORY
             string file = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -161,9 +155,8 @@ namespace Saga.Authentication
             return File.Exists(aname) | File.Exists(bname);
         }
 
-        static void FirstRunConfiguration()
+        private static void FirstRunConfiguration()
         {
-
             IPAddress gatewayip = IPAddress.Loopback;
             int gatewayport = 64001;
             IPAddress mapip = IPAddress.Loopback;
@@ -180,12 +173,10 @@ namespace Saga.Authentication
             System.Configuration.Configuration b = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             if (CheckConfigExists() == false)
             {
-
                 Console.WriteLine("First time run-configuration");
                 char key;
 
                 provider = FindPlugin(typeof(IDatabase), "Saga.Authentication.Data.Mysql.dll, Saga.Authentication.Data.Mysql.MysqlProvider");
-
 
             ConfigureGatewayNetwork:
                 Console.WriteLine("Do you wan to configure the authentication-gateway network settings? Y/N");
@@ -225,8 +216,6 @@ namespace Saga.Authentication
                 }
                 else if (key != 'n') goto ConfigureWorldNetwork;
 
-
-
             DatabaseName:
                 Console.WriteLine("Do you wan to configure the database settings? Y/N");
                 key = Console.ReadKey(true).KeyChar;
@@ -251,21 +240,20 @@ namespace Saga.Authentication
                     dbhost = Console.ReadLine();
                 }
                 else if (key != 'n') goto DatabaseName;
-                
+
                 //Adjust network settings
                 NetworkSettings networkSettings = b.Sections["Saga.NetworkSettings"] as NetworkSettings;
                 if (networkSettings == null) networkSettings = new NetworkSettings();
-                
+
                 NetworkFileCollection collection = networkSettings.Connections;
                 collection["public"] = new NetworkElement("public", gatewayip.ToString(), gatewayport);
                 collection["internal"] = new NetworkElement("internal", mapip.ToString(), mapport);
                 b.Sections.Remove("Saga.NetworkSettings");
                 b.Sections.Add("Saga.NetworkSettings", networkSettings);
-                
 
                 //Adjust database settings
                 DatabaseSettings databaseSettings = b.Sections["Saga.Manager.Database"] as DatabaseSettings;
-                if (databaseSettings == null) databaseSettings = new DatabaseSettings();                
+                if (databaseSettings == null) databaseSettings = new DatabaseSettings();
                 databaseSettings.Database = databasename;
                 databaseSettings.Username = databaseusername;
                 databaseSettings.Password = databasepassword;
@@ -273,41 +261,38 @@ namespace Saga.Authentication
                 databaseSettings.Host = dbhost;
                 databaseSettings.DbType = provider;
                 b.Sections.Remove("Saga.Manager.Database");
-                b.Sections.Add("Saga.Manager.Database", databaseSettings);                
+                b.Sections.Add("Saga.Manager.Database", databaseSettings);
                 b.Save();
-                ConfigurationManager.RefreshSection("Saga.NetworkSettings"); 
+                ConfigurationManager.RefreshSection("Saga.NetworkSettings");
                 ConfigurationManager.RefreshSection("Saga.Manager.Database");
                 Console.WriteLine("Everything configured");
             }
         }
 
-        private static string FindPlugin(Type type, string pluginDefault )
+        private static string FindPlugin(Type type, string pluginDefault)
         {
-            PluginSandbox plugins = PluginSandbox.FindPlugins(type);              
+            PluginSandbox plugins = PluginSandbox.FindPlugins(type);
 
             int a = 0;
             foreach (string plugin in plugins.foundPlugins)
             {
-                string[] arr =  plugin.Split(new char[]{ ',' } ,2);
+                string[] arr = plugin.Split(new char[] { ',' }, 2);
                 string assembly = arr[0];
-                string typed = arr[1];                   
+                string typed = arr[1];
                 Console.WriteLine("{0} {1}", ++a, typed);
             }
 
             Console.WriteLine("Enter the number corresponding the plugin");
-            while( !int.TryParse(Console.ReadLine(),out a))               
+            while (!int.TryParse(Console.ReadLine(), out a))
             {
                 Console.WriteLine("Please enter a number");
             }
 
-             
             return (a > 0 && a <= plugins.foundPlugins.Count) ? plugins.foundPlugins[a - 1] : pluginDefault;
-
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
             //Set managers
             ManagerBase2.SetTraceLog(generaltracelog);
 
@@ -337,15 +322,15 @@ namespace Saga.Authentication
 
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
-            FirstRunConfiguration();            
+            FirstRunConfiguration();
             HostContext.Current.Initialize();
             HostContext.Current.BeforeQuerySettings();
             HostContext.Current.AfterQuerySettings();
             HostContext.Current.Load();
-            HostContext.Current.Loaded();           
+            HostContext.Current.Loaded();
         }
 
-        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Trace.WriteLine("#############################################################################");
             Trace.WriteLine("A unhandeld exception was thrown");
@@ -359,18 +344,8 @@ namespace Saga.Authentication
             }
 
             Trace.WriteLine("#############################################################################");
-
         }
 
-        #endregion
+        #endregion Entry-point
     }
 }
-      
-     
-        
-        
-
-
-
-
-

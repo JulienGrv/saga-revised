@@ -2,15 +2,14 @@ using System;
 
 namespace Saga.Enumarations
 {
-
     /// <remarks>
     /// Interally we use this enum to generate a dictornairy of a number with
     /// a vaue. So internally is uses numbers but from the db it uses plain text
     /// or a number.
-    /// 
+    ///
     /// This is a benefitial approach which doesn't require any casting and thus
     /// saves time where not needed.
-    /// </remarks>    
+    /// </remarks>
     [CLSCompliant(false)]
     public enum AdditionsBonus : uint
     {
@@ -79,5 +78,4 @@ namespace Saga.Enumarations
         Def = 645,
         ApplyAddition = 669
     }
-
 }

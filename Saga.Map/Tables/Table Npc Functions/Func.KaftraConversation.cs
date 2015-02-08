@@ -1,21 +1,18 @@
-﻿using Saga.Shared.Definitions;
-using Saga.Templates;
+﻿using Saga.Enumarations;
 using Saga.PrimaryTypes;
-using Saga.Enumarations;
 using Saga.Structures;
+using Saga.Templates;
 
 namespace Saga.Npc.Functions
 {
-
     /// <summary>
-    /// This is a kaftra conversation. Include this in a npc to show a 
+    /// This is a kaftra conversation. Include this in a npc to show a
     /// kaftra dialog and submenu.
     /// </summary>
     public class KaftraConversation : NpcFunction
     {
-
         #region Private Members
-        
+
         /// <summary>
         /// Dialog to say after saved location
         /// </summary>
@@ -26,13 +23,12 @@ namespace Saga.Npc.Functions
         /// </summary>
         public uint _Storage = 823;
 
-
         /// <summary>
         /// Dialog to say after Kaftra service is opened
         /// </summary>
         public uint _KaftraService = 823;
 
-        #endregion
+        #endregion Private Members
 
         #region Protected Methods
 
@@ -67,7 +63,6 @@ namespace Saga.Npc.Functions
             }
         }
 
-
         /// <summary>
         /// Occurs after the Kaftra button is pressed.
         /// </summary>
@@ -100,12 +95,12 @@ namespace Saga.Npc.Functions
         /// <param name="npc">Npc who called the event</param>
         /// <param name="target">Character who requirs interaction</param>
         protected virtual void OnSaveLocation(BaseNPC npc, Character target)
-        {         
+        {
             Common.Actions.OpenMenu(
                 target, npc,
                 _SaveLocation,
                 DialogType.Kaftra,
-                new byte[]{}                
+                new byte[] { }
             );
 
             target.currentzone.SaveLocation(target);
@@ -120,7 +115,6 @@ namespace Saga.Npc.Functions
         /// <param name="target">Character who requirs interaction</param>
         protected virtual void OnWarehouse(BaseNPC npc, Character target)
         {
-
             Common.Actions.OpenMenu(
                 target, npc,
                 _Storage,
@@ -132,8 +126,6 @@ namespace Saga.Npc.Functions
             Common.Actions.ShowStorage(target);
         }
 
-
-        #endregion
-
+        #endregion Protected Methods
     }
 }

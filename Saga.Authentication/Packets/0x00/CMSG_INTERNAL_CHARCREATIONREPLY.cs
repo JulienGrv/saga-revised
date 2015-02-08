@@ -1,20 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Shared.PacketLib.Login
 {
     public class CMSG_INTERNAL_CHARCREATIONREPLY : RelayPacket
     {
-
         public CMSG_INTERNAL_CHARCREATIONREPLY()
         {
             this.Cmd = 0x0701;
             this.Id = 0x0103;
             this.data = new byte[5];
         }
-
 
         public byte Result
         {
@@ -28,7 +24,7 @@ namespace Saga.Shared.PacketLib.Login
         {
             get
             {
-                return BitConverter.ToUInt32(this.data,1);
+                return BitConverter.ToUInt32(this.data, 1);
             }
         }
 
@@ -41,8 +37,8 @@ namespace Saga.Shared.PacketLib.Login
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -55,7 +51,6 @@ namespace Saga.Shared.PacketLib.Login
             return pkt;
         }
 
-        #endregion
-
+        #endregion Conversions
     }
 }

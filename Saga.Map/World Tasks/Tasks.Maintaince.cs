@@ -1,19 +1,17 @@
+using Saga.Packets;
+using Saga.PrimaryTypes;
 using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
-using Saga.Packets;
-using Saga.PrimaryTypes;
 
 namespace Saga.Tasks
 {
-
     /// <summary>
     /// Task that checks for scheduled maintenance appointments.
     /// </summary>
     public static class Maintenance
     {
-
         #region Public Members
 
         /// <summary>
@@ -31,7 +29,7 @@ namespace Saga.Tasks
         /// </summary>
         public static DateTime NextSceduledMaintenance;
 
-        #endregion
+        #endregion Public Members
 
         #region Internal Members
 
@@ -41,7 +39,7 @@ namespace Saga.Tasks
         internal static void Process()
         {
             try
-            {              
+            {
                 if (IsScheduled == true)
                 {
                     TimeSpan span = NextSceduledMaintenance - DateTime.Now;
@@ -56,7 +54,7 @@ namespace Saga.Tasks
                             SMSG_SENDCHAT spkt = new SMSG_SENDCHAT();
                             spkt.Name = "GM";
                             spkt.MessageType = SMSG_SENDCHAT.MESSAGE_TYPE.SYSTEM_MESSAGE_RED;
-                            spkt.Message = String.Format(CultureInfo.InvariantCulture,"Maintenance starting at: {0}", NextSceduledMaintenance.ToShortTimeString());
+                            spkt.Message = String.Format(CultureInfo.InvariantCulture, "Maintenance starting at: {0}", NextSceduledMaintenance.ToShortTimeString());
 
                             //FORWARD THE BROADCAST
                             foreach (Character characterTarget in LifeCycle.Characters)
@@ -103,7 +101,7 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
+        #endregion Internal Members
 
         #region Constructor / Decontructor
 
@@ -114,7 +112,6 @@ namespace Saga.Tasks
             NextSceduledMaintenance = DateTime.Now;
         }
 
-        #endregion
-
+        #endregion Constructor / Decontructor
     }
 }

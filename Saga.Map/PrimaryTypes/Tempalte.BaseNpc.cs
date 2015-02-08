@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using Saga.Enumarations;
 using Saga.IO;
 using Saga.Map;
@@ -9,30 +5,31 @@ using Saga.Npc.Functions;
 using Saga.PrimaryTypes;
 using Saga.Quests;
 using Saga.Structures;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Saga.Templates
 {
-
     public abstract class BaseNPC : BaseMob
-    {      
-
+    {
         #region Base Members
 
         public uint Zeny = int.MaxValue;
         protected internal FunctionState state = new FunctionState();
         protected static TraceLog log = new TraceLog("Scripting", "Provides a scripting tracelog", 3);
 
-        #endregion
+        #endregion Base Members
 
         #region Public Members
 
         public DialogType[] GetDialogButtons(Character target)
         {
-            List<DialogType> types = new List<DialogType>();           
-            types.AddRange( this.state.GetDialogButtons(this, target));
+            List<DialogType> types = new List<DialogType>();
+            types.AddRange(this.state.GetDialogButtons(this, target));
 
             DialogType[] typesa = types.ToArray();
-            return typesa;           
+            return typesa;
         }
 
         public override int ComputeIcon(Character target)
@@ -45,12 +42,12 @@ namespace Saga.Templates
             return (int)(base.ComputeIcon(target) | dialog);
         }
 
-        #endregion
-   
+        #endregion Public Members
+
         #region Virtual Members
 
         /// <summary>
-        /// Spawns the npc. 
+        /// Spawns the npc.
         /// </summary>
         /// <remarks>
         /// This calles Template manger to fill the npc's position.
@@ -68,14 +65,15 @@ namespace Saga.Templates
         }
 
         protected uint _Gossip = 1810;
+
         public virtual void OnGossip(Character target)
-        {           
+        {
             Common.Actions.OpenMenu(
                 target, this,
                 _Gossip,
                 DialogType.None,
                 GetDialogButtons(target)
-            );                
+            );
         }
 
         public virtual void OnRefresh()
@@ -85,7 +83,7 @@ namespace Saga.Templates
 
         public virtual void OnCacheConversations()
         {
-            //HELPER VARABLES 
+            //HELPER VARABLES
             string file = Server.SecurePath("~/dialogtemplates/{0}.xml", this.ModelId);
             if (File.Exists(file))
                 using (DialogReader reader = DialogReader.Open(file))
@@ -122,11 +120,11 @@ namespace Saga.Templates
         /// <summary>
         /// Default callback for recontruction the dialog messages.
         /// </summary>
-        protected virtual void Initialize() {}
+        protected virtual void Initialize()
+        {
+        }
 
-
-
-        #endregion
+        #endregion Virtual Members
 
         #region MapObject Members
 
@@ -155,7 +153,6 @@ namespace Saga.Templates
             //DO NOTHING HERE
         }
 
-        #endregion
-
+        #endregion MapObject Members
     }
 }

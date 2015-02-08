@@ -1,24 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Authentication.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is invoked when an client selects a other character
     /// from the Characterlist
-    /// 
+    ///
     /// CharacterId containts the Unique represented id of the character
     /// Channel contains the selected channel Id
     ///
     /// Last updated on Friday 26, okt 2007.
     /// </remarks>
-    public class CMSG_SELECTCHARACTER: RelayPacket
+    public class CMSG_SELECTCHARACTER : RelayPacket
     {
         public CMSG_SELECTCHARACTER()
         {
@@ -41,7 +38,6 @@ namespace Saga.Authentication.Packets
             }
         }
 
-
         #region Conversions
 
         public static explicit operator CMSG_SELECTCHARACTER(byte[] p)
@@ -51,8 +47,8 @@ namespace Saga.Authentication.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -65,6 +61,6 @@ namespace Saga.Authentication.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

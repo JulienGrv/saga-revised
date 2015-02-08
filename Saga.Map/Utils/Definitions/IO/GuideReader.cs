@@ -1,35 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Xml;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
+using System.Xml;
 
 namespace Saga.IO
 {
-
     public class GuideReader : IDisposable
     {
-
         private Stream _basestream;
-        private XmlTextReader _reader;             
+        private XmlTextReader _reader;
         private string _svalue;
         private string _sattrvalue;
 
-
-        NodeType _type = NodeType.None;
-        float _x = 0;
-        float _y = 0;
-        float _z = 0;
-        uint _item = 0;
-        uint _menu = 0;
-
+        private NodeType _type = NodeType.None;
+        private float _x = 0;
+        private float _y = 0;
+        private float _z = 0;
+        private uint _item = 0;
+        private uint _menu = 0;
 
         #region Constructor / Deconctructor
 
         [DebuggerNonUserCode()]
-        GuideReader(Stream stream)
+        private GuideReader(Stream stream)
         {
             _basestream = stream;
             _reader = new XmlTextReader(stream);
@@ -42,7 +36,7 @@ namespace Saga.IO
             Dispose();
         }
 
-        #endregion
+        #endregion Constructor / Deconctructor
 
         #region Private Methods
 
@@ -52,25 +46,28 @@ namespace Saga.IO
             _type = NodeType.None;
             switch (_reader.NodeType)
             {
-                case XmlNodeType.Element:   
-                    switch( _reader.Name.ToUpperInvariant() )
+                case XmlNodeType.Element:
+                    switch (_reader.Name.ToUpperInvariant())
                     {
                         case "POINT":
                             _svalue = string.Empty;
                             _sattrvalue = string.Empty;
-                            float.TryParse(_reader["x"], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out _x);                        
+                            float.TryParse(_reader["x"], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out _x);
                             float.TryParse(_reader["y"], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out _y);
                             float.TryParse(_reader["z"], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out _z);
                             _sattrvalue = _reader["type"];
                             break;
+
                         case "GUIDE":
-                            uint.TryParse(_reader["menu"], NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out _menu);                        
+                            uint.TryParse(_reader["menu"], NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out _menu);
                             break;
                     }
                     break;
+
                 case XmlNodeType.Text:
-                    _svalue = _reader.Value; 
+                    _svalue = _reader.Value;
                     break;
+
                 case XmlNodeType.EndElement:
                     if (_reader.Name.ToUpperInvariant() == "POINT")
                     {
@@ -82,16 +79,13 @@ namespace Saga.IO
                                 default: _type = NodeType.None; break;
                             }
                     }
-                    break;                      
+                    break;
             }
         }
 
-        
-
-        #endregion
+        #endregion Private Methods
 
         #region Public Properties
-
 
         public uint Menu
         {
@@ -125,7 +119,6 @@ namespace Saga.IO
             }
         }
 
-
         public float Y
         {
             get
@@ -133,7 +126,6 @@ namespace Saga.IO
                 return _y;
             }
         }
-
 
         public float Z
         {
@@ -143,8 +135,7 @@ namespace Saga.IO
             }
         }
 
-
-        #endregion
+        #endregion Public Properties
 
         #region Public Methods
 
@@ -156,7 +147,7 @@ namespace Saga.IO
             return result;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Static Methods
 
@@ -168,7 +159,7 @@ namespace Saga.IO
             return dialog;
         }
 
-        #endregion
+        #endregion Public Static Methods
 
         #region IDisposable Members
 
@@ -177,17 +168,15 @@ namespace Saga.IO
         {
             GC.SuppressFinalize(this);
             if (_reader != null) _reader.Close();
-            if (_basestream != null) _basestream.Dispose();            
+            if (_basestream != null) _basestream.Dispose();
         }
 
-        #endregion
+        #endregion IDisposable Members
 
         #region Nested
 
         public enum NodeType { None, Npc, Position };
 
-        #endregion
-
+        #endregion Nested
     }
-
 }

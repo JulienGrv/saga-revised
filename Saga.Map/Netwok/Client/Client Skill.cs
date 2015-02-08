@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Saga.Enumarations;
 using Saga.Map.Librairies;
 using Saga.Map.Utils.Definitions.Misc;
@@ -8,13 +5,14 @@ using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Structures;
 using Saga.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Saga.Map.Client
 {
     partial class Client
     {
-
-
         /// <summary>
         /// Occurs when casting a skill
         /// </summary>
@@ -25,7 +23,6 @@ namespace Saga.Map.Client
             {
                 try
                 {
-
                     MapObject target;
                     uint skill = cpkt.SkillID;
                     byte skilltype = cpkt.SkillType;
@@ -35,17 +32,17 @@ namespace Saga.Map.Client
                               && this.character._lastcastedskill == 0
                               && ((long)((uint)Environment.TickCount) - this.character._lastcastedtick) > 0
                               && (info.delay == 0 || !this.character.cooldowncollection.IsCoolDown(skill))
-                              && ( info.maximumrange == 0 || info.IsInRangeOf((int)(Vector.GetDistance2D(this.character.Position, target.Position))))
+                              && (info.maximumrange == 0 || info.IsInRangeOf((int)(Vector.GetDistance2D(this.character.Position, target.Position))))
                               && info.requiredWeapons[this.character.weapons.GetCurrentWeaponType()] == 1
-                              && this.character.jlvl >= info.requiredJobs[this.character.job-1]
-                              && this.character.Status.CurrentLp >= (info.requiredlp==6?1:info.requiredlp)
+                              && this.character.jlvl >= info.requiredJobs[this.character.job - 1]
+                              && this.character.Status.CurrentLp >= (info.requiredlp == 6 ? 1 : info.requiredlp)
                               && info.IsTarget(this.character, target);
 
-					if (cancast)
+                    if (cancast)
                     {
                         //Set anti-hack variables
                         this.character._lastcastedskill = skill;
-                        this.character._lastcastedtick = ( Environment.TickCount + (int)info.casttime);
+                        this.character._lastcastedtick = (Environment.TickCount + (int)info.casttime);
                         this.character.cooldowncollection.Update();
 
                         //Notify all actors that cast is in progress
@@ -69,7 +66,7 @@ namespace Saga.Map.Client
                         spkt.SourceActor = this.character.id;
                         spkt.SkillType = cpkt.SkillType;
                         this.Send((byte[])spkt);*/
-                        
+
                         //Skill failed
                         SMSG_OFFENSIVESKILLFAILED spkt = new SMSG_OFFENSIVESKILLFAILED();
                         spkt.SkillID = cpkt.SkillID;
@@ -108,7 +105,6 @@ namespace Saga.Map.Client
                         this.character.cooldowncollection.Update();
                     }
 
-
                     //Notify all actors that cast is in progress
                     Regiontree tree = this.character.currentzone.Regiontree;
                     foreach (Character regionObject in tree.SearchActors(this.character, SearchFlags.Characters))
@@ -121,7 +117,6 @@ namespace Saga.Map.Client
                         spkt.SessionId = this.character.id;
                         regionObject.client.Send((byte[])spkt);
                     }
-
                 }
                 catch (Exception)
                 {
@@ -143,8 +138,8 @@ namespace Saga.Map.Client
                     MapObject target;
                     uint skillid = cpkt.SkillID;
                     byte skilltype = cpkt.SkillType;
-                    SkillUsageEventArgs argument = null; 
-                    
+                    SkillUsageEventArgs argument = null;
+
                     bool cancast = Regiontree.TryFind(cpkt.TargetActor, this.character, out target)
                               && SkillUsageEventArgs.Create(skillid, this.character, target, out argument)
                               && argument.SpellInfo.casttime > -1 && (argument.SpellInfo.casttime == 0 || this.character._lastcastedskill == skillid)
@@ -152,11 +147,11 @@ namespace Saga.Map.Client
                               && (argument.SpellInfo.delay == 0 || !this.character.cooldowncollection.IsCoolDown(skillid))
                               && (argument.SpellInfo.maximumrange == 0 || argument.SpellInfo.IsInRangeOf((int)(Vector.GetDistance2D(this.character.Position, target.Position))))
                               && argument.SpellInfo.requiredWeapons[this.character.weapons.GetCurrentWeaponType()] == 1
-                              && this.character.jlvl >= argument.SpellInfo.requiredJobs[this.character.job-1]
-                              && this.character.Status.CurrentLp >= (argument.SpellInfo.requiredlp==6?1:argument.SpellInfo.requiredlp)
+                              && this.character.jlvl >= argument.SpellInfo.requiredJobs[this.character.job - 1]
+                              && this.character.Status.CurrentLp >= (argument.SpellInfo.requiredlp == 6 ? 1 : argument.SpellInfo.requiredlp)
                               && argument.SpellInfo.IsTarget(this.character, target);
 
-					if (cancast && argument.Use())
+                    if (cancast && argument.Use())
                     {
                         //Clear casted skill
                         this.character._lastcastedskill = 0;
@@ -164,12 +159,12 @@ namespace Saga.Map.Client
 
                         //Set cooldown timer
                         int delay = (int)(argument.SpellInfo.delay - ((character.stats.Dexterity * 2) + (character.stats.Concentration * 2)));
-                        if( delay > 0 ) this.character.cooldowncollection.Add(skillid, delay);
+                        if (delay > 0) this.character.cooldowncollection.Add(skillid, delay);
                         this.character.cooldowncollection.Update();
 
                         //Use required sp points
                         if (argument.SpellInfo.SP > -1)
-                        {                            
+                        {
                             this.character.LASTSP_TICK = Environment.TickCount;
                             this.character.SP = (ushort)(this.character.SP - argument.SpellInfo.SP);
                         }
@@ -181,7 +176,7 @@ namespace Saga.Map.Client
                         }
 
                         //Use required lp points
-                        if(argument.SpellInfo.requiredlp==6)
+                        if (argument.SpellInfo.requiredlp == 6)
                         {
                             this.character._status.CurrentLp = 0;
                             this.character._status.Updates |= 1;
@@ -258,7 +253,7 @@ namespace Saga.Map.Client
                     spkt.SessionId = this.character.id;
                     this.Send((byte[])spkt);
                 }
-            } 
+            }
         }
 
         /// <summary>
@@ -281,7 +276,7 @@ namespace Saga.Map.Client
                               && (argument.SpellInfo.delay == 0 || !this.character.cooldowncollection.IsCoolDown(skillid))
                               && (argument.SpellInfo.maximumrange == 0 || argument.SpellInfo.IsInRangeOf((int)(Vector.GetDistance2D(this.character.Position, this.character.Position))))
                               && argument.SpellInfo.requiredWeapons[this.character.weapons.GetCurrentWeaponType()] == 1
-                              && this.character.jlvl >= argument.SpellInfo.requiredJobs[this.character.job-1]
+                              && this.character.jlvl >= argument.SpellInfo.requiredJobs[this.character.job - 1]
                               && argument.SpellInfo.IsTarget(this.character, this.character);
 
                     if (cancast && argument.Use())
@@ -325,7 +320,6 @@ namespace Saga.Map.Client
                         spkt2.Toggle = true;
                         this.Send((byte[])spkt2);
                     }
-
                 }
                 catch (Exception e)
                 {
@@ -352,7 +346,6 @@ namespace Saga.Map.Client
             {
                 try
                 {
-
                     Rag2Item item = this.character.container[cpkt.Index];
                     MapObject target;
                     uint skillid = cpkt.SkillID;
@@ -366,13 +359,12 @@ namespace Saga.Map.Client
                               && (argument.SpellInfo.delay == 0 || !this.character.cooldowncollection.IsCoolDown(skillid))
                               && (argument.SpellInfo.maximumrange == 0 || argument.SpellInfo.IsInRangeOf((int)(Vector.GetDistance2D(this.character.Position, target.Position))))
                               && argument.SpellInfo.requiredWeapons[this.character.weapons.GetCurrentWeaponType()] == 1
-                              && this.character.jlvl > argument.SpellInfo.requiredJobs[this.character.job-1]
+                              && this.character.jlvl > argument.SpellInfo.requiredJobs[this.character.job - 1]
                               && argument.SpellInfo.IsTarget(this.character, target)
                               && item.count > 0;
-                    
-					if (cancast && argument.Use())
-                    {
 
+                    if (cancast && argument.Use())
+                    {
                         int delay = (int)(argument.SpellInfo.delay - ((character.stats.Dexterity * 2) + (character.stats.Concentration * 2)));
                         if (delay > 0) this.character.cooldowncollection.Add(skillid, delay);
                         this.character.cooldowncollection.Update();
@@ -401,7 +393,6 @@ namespace Saga.Map.Client
                             this.Send((byte[])spkt3);
                         }
 
-
                         //Preprocess packet
                         SMSG_ITEMTOGGLE spkt = new SMSG_ITEMTOGGLE();
                         spkt.Container = cpkt.Container;
@@ -423,11 +414,11 @@ namespace Saga.Map.Client
                         }
                     }
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     Trace.TraceError("Error processing item skill");
                 }
-            }     
+            }
         }
 
         /// <summary>
@@ -439,12 +430,10 @@ namespace Saga.Map.Client
             byte result = 1;
             try
             {
-
                 Saga.Factory.Spells.Info spellinfo;
                 Rag2Item item = character.container[cpkt.Index];
                 if (item != null)
                 {
-
                     //Helpers predicates
                     Predicate<Skill> FindSkill = delegate(Skill skill)
                     {
@@ -492,11 +481,12 @@ namespace Saga.Map.Client
                         {
                             //Passive skill
                             bool canUse = Singleton.SpellManager.CanUse(this.character, spellinfo);
-                            if (spellinfo.skilltype == 2 && canUse){
+                            if (spellinfo.skilltype == 2 && canUse)
+                            {
                                 Singleton.Additions.ApplyAddition(spellinfo.addition, this.character);
 
                                 int ActiveWeaponIndex = (this.character.weapons.ActiveWeaponIndex == 1) ? this.character.weapons.SeconairyWeaponIndex : this.character.weapons.PrimaryWeaponIndex;
-                                if( ActiveWeaponIndex < this.character.weapons.UnlockedWeaponSlots )
+                                if (ActiveWeaponIndex < this.character.weapons.UnlockedWeaponSlots)
                                 {
                                     Weapon weapon = this.character.weapons[ActiveWeaponIndex];
                                     if ((baseskill - 1) == weapon.Info.weapon_skill)
@@ -513,7 +503,6 @@ namespace Saga.Map.Client
                                 }
                             }
 
-
                             Singleton.Database.InsertNewSkill(this.character, item.info.skill, spellinfo.maximumexperience);
                             CurrentSkill = new Skill();
                             CurrentSkill.info = spellinfo;
@@ -524,9 +513,8 @@ namespace Saga.Map.Client
                         //UPDATE A OLD SKILL
                         else
                         {
-
                             //Passive skill
-                            if( spellinfo.skilltype == 2 )
+                            if (spellinfo.skilltype == 2)
                             {
                                 Saga.Factory.Spells.Info oldSpellinfo;
                                 Singleton.SpellManager.TryGetSpell(PreviousSkill.info.skillid, out oldSpellinfo);
@@ -534,12 +522,12 @@ namespace Saga.Map.Client
                                 bool canUseOld = Singleton.SpellManager.CanUse(this.character, oldSpellinfo);
                                 bool canUseNew = Singleton.SpellManager.CanUse(this.character, spellinfo);
 
-                                if ( canUseOld )
+                                if (canUseOld)
                                 {
                                     Singleton.Additions.DeapplyAddition(oldSpellinfo.addition, this.character);
                                 }
 
-                                if ( canUseNew )
+                                if (canUseNew)
                                 {
                                     Singleton.Additions.ApplyAddition(spellinfo.addition, this.character);
                                 }
@@ -551,7 +539,6 @@ namespace Saga.Map.Client
                             PreviousSkill.Id = item.info.skill;
                             PreviousSkill.Experience = spellinfo.maximumexperience;
                         }
-
 
                         SMSG_SKILLADD spkt2 = new SMSG_SKILLADD();
                         spkt2.Slot = 0;
@@ -607,26 +594,23 @@ namespace Saga.Map.Client
             byte result = 1;
             try
             {
-
                 byte slot = cpkt.Slot;
                 byte NearestSlot = (byte)((slot - (slot % 4)) + 4);
                 Saga.Factory.Spells.Info info;
 
-                if( Singleton.SpellManager.TryGetSpell(cpkt.SkillID, out info) )
+                if (Singleton.SpellManager.TryGetSpell(cpkt.SkillID, out info))
                 {
-
                     //Generate skill
                     Skill skill = new Skill();
                     skill.info = info;
                     skill.Id = cpkt.SkillID;
-
 
                     //Skill must be a special skill
                     if (info.special == 0) return;
 
                     //Check if slots don't overlap
                     if (slot + info.special > NearestSlot) return;
-                    
+
                     //Check if slot isn't taken yet
                     for (int i = 0; i < info.special; i++)
                         if (this.character.SpecialSkills[slot + i] != null)
@@ -640,7 +624,7 @@ namespace Saga.Map.Client
 
                     Common.Internal.CheckWeaponary(this.character);
                     result = 0;
-                }                
+                }
             }
             finally
             {
@@ -651,8 +635,6 @@ namespace Saga.Map.Client
                 spkt.SessionId = this.character.id;
                 this.Send((byte[])spkt);
             }
-
-
         }
 
         /// <summary>
@@ -713,6 +695,5 @@ namespace Saga.Map.Client
             spkt.SessionId = this.character.id;
             this.Send((byte[])spkt);
         }
-
     }
 }

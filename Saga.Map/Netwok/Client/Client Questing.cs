@@ -1,15 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Quests;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Saga.Map.Client
 {
     partial class Client
     {
-        uint QuestBaseID = 0;
+        private uint QuestBaseID = 0;
         internal Dictionary<uint, uint> AvailablePersonalRequests = new Dictionary<uint, uint>();
 
         private void OnWantQuestGroupList()
@@ -17,17 +17,16 @@ namespace Saga.Map.Client
             Console.WriteLine("OnWantQuestBaseGroupList");
         }
 
-
         /// <remarks>
         /// Cancels only the QuestBase of it can be canceled.
         /// This is not yet implamented in any QuestBase of kro2, but most likely
         /// in the future there are going to be certain QuestBases that supports that.
-        ///    
-        /// For example a chain of QuestBase events.            
+        ///
+        /// For example a chain of QuestBase events.
         /// </remarks>
         /// <param name="cpkt"></param>
         private void CM_QUESTCONFIRMCANCEL(CMSG_QUESTCONFIRMCANCEL cpkt)
-        {           
+        {
             if (QuestBaseID > 0)
             {
                 try
@@ -35,7 +34,6 @@ namespace Saga.Map.Client
                     QuestBase myQuestBase = this.character.QuestObjectives[QuestBaseID];
                     if (myQuestBase != null)
                     {
-
                         //Removes the quest
                         this.character.QuestObjectives[QuestBaseID] = null;
 
@@ -53,7 +51,7 @@ namespace Saga.Map.Client
                             spkt3.AddQuest(Quest.QuestId, (byte)Steps.Count);
                             for (int i = 0; i < Steps.Count; i++)
                             {
-                                Saga.Quests.Objectives.ObjectiveList.StepInfo currentStep = 
+                                Saga.Quests.Objectives.ObjectiveList.StepInfo currentStep =
                                     Steps[i];
 
                                 uint nextstep = (i + 1 < Steps.Count) ? Steps[i + 1].StepId : 0;
@@ -82,7 +80,7 @@ namespace Saga.Map.Client
             else
             {
                 QuestBaseID = cpkt.QuestID;
-            }            
+            }
         }
 
         /// <summary>
@@ -91,8 +89,8 @@ namespace Saga.Map.Client
         /// <remarks>
         /// Starts a new QuestBase, if the QuestBase isn't started before
         /// otherwise we'll just negiotate it.
-        ///     
-        /// QuestBase_START from our lua file should be used for 
+        ///
+        /// QuestBase_START from our lua file should be used for
         /// inventory checks if the QuestBase gives QuestBase items.
         /// So when the QuestBase fails to give the appropiate items
         /// it should have a fail mechanisme.
@@ -122,7 +120,7 @@ namespace Saga.Map.Client
                     }
                     else
                     {
-                        QuestBase.InvalidateQuest(Quest, this.character);                        
+                        QuestBase.InvalidateQuest(Quest, this.character);
                         //HAX: Add official quest failed error
                         CommonFunctions.Broadcast(this.character, this.character, "quest failed");
                     }
@@ -139,7 +137,7 @@ namespace Saga.Map.Client
         /// </summary>
         /// <remarks>
         /// Completes the current QuestBase. This should invoke our lua file, just as origional
-        /// kRO2 does. This information is distracted from a leaked QuestBase file posted on some             
+        /// kRO2 does. This information is distracted from a leaked QuestBase file posted on some
         /// forum a while ago.
         /// </remarks>
         /// <param name="cpkt"></param>
@@ -151,7 +149,7 @@ namespace Saga.Map.Client
                 SMSG_QUESTREMOVE spkt = new SMSG_QUESTREMOVE();
                 spkt.QuestID = cpkt.QuestID;
                 spkt.SessionId = this.character.id;
-                this.character.Tag = spkt;                
+                this.character.Tag = spkt;
 
                 if (myQuestBase.OnFinish(this.character.id) > -1)
                 {
@@ -172,7 +170,7 @@ namespace Saga.Map.Client
 
                     if (this.character.Tag is SMSG_QUESTREMOVE)
                     {
-                        this.character.Tag = null; 
+                        this.character.Tag = null;
                         this.Send((byte[])spkt);
                     }
                 }
@@ -184,7 +182,7 @@ namespace Saga.Map.Client
             Rag2Item item = this.character.container[cpkt.Index];
             if (item == null) return;
             if (item.info.quest == 0) return;
-            
+
             byte result = 1;
             if (Singleton.Database.IsQuestComplete(this.character, item.info.quest))
             {
@@ -240,7 +238,6 @@ namespace Saga.Map.Client
                 }
             }
 
-
             SMSG_USEQUESTITEM spkt = new SMSG_USEQUESTITEM();
             spkt.Index = cpkt.Index;
             spkt.Result = result;
@@ -248,11 +245,9 @@ namespace Saga.Map.Client
             this.Send((byte[])spkt);
         }
 
-     
         private void OnQuestRewardChoice()
         {
             Console.WriteLine("OnQuestBaseRewardChoice");
         }
-
     }
 }

@@ -1,27 +1,25 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet sets a position and yaw. Probably
-    /// WideMovementStop function? 
+    /// WideMovementStop function?
     /// </remarks>
     /// <id>
     /// 031A
-    /// </id>    
+    /// </id>
     internal class SMSG_WIDEMOVEMENTSTOP : RelayPacket
     {
-
         public SMSG_WIDEMOVEMENTSTOP()
         {
             this.Cmd = 0x0601;
             this.Id = 0x031A;
-            this.data =  new byte[20];
+            this.data = new byte[20];
         }
 
         public uint SourceActorID
@@ -53,6 +51,5 @@ namespace Saga.Packets
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 18, 2); }
         }
-
     }
 }

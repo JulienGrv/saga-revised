@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
-using Saga.Map.Definitions.Misc;
+using System;
+using System.Text;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This shows a 'alert' window with either "player %s participated with the event" or "unable to find player."

@@ -1,9 +1,8 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_SCENARIOSTEPUPDATE : RelayPacket
     {
         public SMSG_SCENARIOSTEPUPDATE()
@@ -16,8 +15,8 @@ namespace Saga.Packets
         public uint Scenario
         {
             set
-            { 
-                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4); 
+            {
+                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4);
             }
         }
 
@@ -29,7 +28,6 @@ namespace Saga.Packets
             }
         }
 
-
         public byte SubStep
         {
             set { this.data[8] = value; }
@@ -39,6 +37,5 @@ namespace Saga.Packets
         {
             set { this.data[9] = value; }
         }
-
     }
 }

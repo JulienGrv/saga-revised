@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Saga.Map.Client
 {
     partial class Client
     {
-
         public void OnAddShortcut()
         {
             Console.WriteLine("OnAddShortcut");
@@ -16,6 +13,5 @@ namespace Saga.Map.Client
         {
             Console.WriteLine("OnDelShortcut");
         }
-
     }
 }

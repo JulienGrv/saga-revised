@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void ENCHANTER_FIREBOLT(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -21,7 +16,7 @@ namespace Saga.Skills
                 SkillUsageEventArgs arguments = (SkillUsageEventArgs)bargument;
                 matrix = arguments.GetDefaultSkillMatrix(asource, atarget);
                 Lvldiff = arguments.GetCappedLevelDifference(matrix);
-                matrix[1, 3] = (int)( matrix[1, 3] * 0.1 + ((double)0.03 * (double)arguments.SkillLevel));
+                matrix[1, 3] = (int)(matrix[1, 3] * 0.1 + ((double)0.03 * (double)arguments.SkillLevel));
                 matrix[1, 3] += 100 + (50 * arguments.SkillLevel);
                 matrix[4, 3] += (Lvldiff * 120);
 
@@ -43,6 +38,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
     }
 }

@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
+using System;
 
 namespace Saga.Structures.Collections
 {
-
     [Serializable()]
     public class WeaponCollection
     {
-
         /// <summary>
         /// Container for the amount of unlocked weapons
         /// </summary>
         private byte unlockedweapon = 1;
-        
+
         /// <summary>
         /// Defines a active weapon index (0 for Left hand, 1 for right hand)
         /// </summary>
@@ -33,8 +29,7 @@ namespace Saga.Structures.Collections
         /// <summary>
         /// Container for the weapons (maximum count is 5)
         /// </summary>
-        Weapon[] weapons = new Weapon[5];
-
+        private Weapon[] weapons = new Weapon[5];
 
         /// <summary>
         /// Get's or Sets a weapon at the specified index
@@ -72,7 +67,7 @@ namespace Saga.Structures.Collections
         /// Get's or set's the index of the primary weapon
         /// </summary>
         /// <remarks>
-        /// Set this value to 255 to use hands. A value between 0 - 5 will 
+        /// Set this value to 255 to use hands. A value between 0 - 5 will
         /// try to get the weapon at the specified index.
         /// </remarks>
         public byte PrimaryWeaponIndex
@@ -91,7 +86,7 @@ namespace Saga.Structures.Collections
         /// Get's or set's the index of the seccondairy weapon
         /// </summary>
         /// <remarks>
-        /// Set this value to 255 to use hands. A value between 0 - 5 will 
+        /// Set this value to 255 to use hands. A value between 0 - 5 will
         /// try to get the weapon at the specified index.
         /// </remarks>
         public byte SeconairyWeaponIndex
@@ -124,7 +119,6 @@ namespace Saga.Structures.Collections
             }
         }
 
-
         /// <summary>
         /// Checks if the supplied weapon slot is the active slot
         /// </summary>
@@ -146,9 +140,6 @@ namespace Saga.Structures.Collections
             }
 
             return 0;
-
         }
-
-
     }
 }

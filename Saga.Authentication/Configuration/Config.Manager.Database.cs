@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Configuration;
-using System.ComponentModel;
-using Saga.Map;
 
 namespace Saga.Configuration
 {
     public class DatabaseSettings : ManagerProviderBaseConfiguration
     {
-
         [ConfigurationProperty("provider", IsRequired = true)]
         public string DbType
         {
@@ -35,7 +29,6 @@ namespace Saga.Configuration
                 this["host"] = value.ToString();
             }
         }
-
 
         [ConfigurationProperty("username", IsRequired = true)]
         public string Username
@@ -76,7 +69,7 @@ namespace Saga.Configuration
             }
         }
 
-        [IntegerValidator(MinValue=1, MaxValue=5)]
+        [IntegerValidator(MinValue = 1, MaxValue = 5)]
         [ConfigurationProperty("pool", IsRequired = false, DefaultValue = 1)]
         public int PooledConnections
         {
@@ -102,6 +95,5 @@ namespace Saga.Configuration
                 this["database"] = value.ToString();
             }
         }
-
     }
 }

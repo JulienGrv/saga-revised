@@ -1,20 +1,19 @@
-using System;
-using System.Collections.Generic;
 using Saga.Enumarations;
 using Saga.Map;
 using Saga.PrimaryTypes;
 using Saga.Structures;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Tasks
 {
     public static class Shipservice
     {
-
         #region Private Members
 
         private static List<DepartureState> states = new List<DepartureState>();
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
@@ -30,15 +29,15 @@ namespace Saga.Tasks
                 states.Add(Departure);
             }
         }
-        
-        public static void Deqeuee(Point a, byte MapId,  byte departuremap)
+
+        public static void Deqeuee(Point a, byte MapId, byte departuremap)
         {
             lock (states)
             {
                 for (int i = 0; i < states.Count; i++)
                 {
                     DepartureState state = states[i];
-                    if (state.detinationmap == MapId && state.zone.CathelayaLocation.map == departuremap &&  state.IsRound())
+                    if (state.detinationmap == MapId && state.zone.CathelayaLocation.map == departuremap && state.IsRound())
                     {
                         List<Character> characters = new List<Character>();
                         foreach (Character character in state.zone.Regiontree.SearchActors(SearchFlags.Characters))
@@ -46,7 +45,6 @@ namespace Saga.Tasks
                             characters.Add(character);
                         }
 
-                      
                         while (characters.Count > 0)
                         {
                             CommonFunctions.Warp(characters[0], state.detinationmap, a);
@@ -60,7 +58,7 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Internal Members
 
@@ -69,7 +67,7 @@ namespace Saga.Tasks
             lock (states)
             {
                 for (int i = 0; i < states.Count; i++)
-                {                    
+                {
                     DepartureState state = states[i];
                     if (state.zone == character.currentzone)
                     {
@@ -81,7 +79,7 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
+        #endregion Internal Members
 
         #region Nested Members
 
@@ -92,11 +90,10 @@ namespace Saga.Tasks
             public int DepartureTime;
             public int MinTime = 0;
 
-            
             public DepartureState(Point departure, byte departuremap, byte detinationmap, int MinTime)
-            {                
+            {
                 Singleton.Zones.TryFindClonedZone(10, out zone);
-                zone.CathelayaLocation = new WorldCoordinate(departure, departuremap); 
+                zone.CathelayaLocation = new WorldCoordinate(departure, departuremap);
                 this.detinationmap = detinationmap;
                 this.DepartureTime = Environment.TickCount;
                 this.MinTime = Environment.TickCount + MinTime;
@@ -106,10 +103,8 @@ namespace Saga.Tasks
             {
                 return this.MinTime - Environment.TickCount < 0;
             }
-
         }
 
-        #endregion
-
+        #endregion Nested Members
     }
 }

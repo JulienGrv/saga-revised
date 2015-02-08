@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.IO;
-using System.Security.Permissions;
+using System.Reflection;
 
 namespace Saga
 {
-
     public delegate bool UnresolvedType(string name, out Type type);
-    
+
     public static class CoreService
     {
-
         #region Private Members
 
         private static event UnresolvedType _OnProbeUnresolvedType;
+
         public static TraceLog log = new TraceLog("General", string.Empty, 4);
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
@@ -40,7 +36,7 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Public Static Methods
 
@@ -88,11 +84,11 @@ namespace Saga
             try
             {
                 ConstructorInfo info = type.GetConstructor(Type.EmptyTypes);
-                typeDefintion = info.Invoke( new Object[] {});
+                typeDefintion = info.Invoke(new Object[] { });
                 return true;
             }
             catch (Exception)
-            {                
+            {
                 return false;
             }
         }
@@ -127,7 +123,7 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Public Static Methods
 
         #region Private Static Methods
 
@@ -153,7 +149,7 @@ namespace Saga
             {
                 log.WriteError("CoreService", ex.Message);
                 type = null;
-                return false;                
+                return false;
             }
         }
 
@@ -163,8 +159,6 @@ namespace Saga
             return names.Length == 2;
         }
 
-        #endregion
-
+        #endregion Private Static Methods
     }
-    
 }

@@ -1,4 +1,13 @@
-﻿using System;
+﻿using Saga.Configuration;
+using Saga.Core;
+using Saga.Map;
+using Saga.Map.Client;
+using Saga.Map.Configuration;
+using Saga.Packets;
+using Saga.PrimaryTypes;
+using Saga.Shared.Definitions;
+using Saga.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
@@ -6,51 +15,40 @@ using System.Globalization;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using Saga.Configuration;
-using Saga.Core;
-using Saga.Map.Client;
-using Saga.Map.Configuration;
-using Saga.Packets;
-using Saga.PrimaryTypes;
-using Saga.Shared.Definitions;
-using Saga.Tasks;
-using Saga.Map;
-using System.Threading;
 
 namespace Saga.Managers
 {
     public class ConsoleCommands : ManagerBase2
     {
-
         #region Ctor/Dtor
 
-        public ConsoleCommands(){ }
+        public ConsoleCommands()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
         //Settings
-        ConsoleReader reader;
+        private ConsoleReader reader;
 
         //Non console GM commands
         private static Dictionary<string, GmCommand> CommandList = new Dictionary<string, GmCommand>();
-        private delegate void GmCommandHandler(Character character, Match arguments);
 
+        private delegate void GmCommandHandler(Character character, Match arguments);
 
         /// <summary>
         /// Used to determine if the changes should reflect of the auth server.
         /// </summary>
         internal static bool isaddisplayed = false;
 
-  
-
         /// <summary>
         /// By default don't kick people with fatal errors
         /// </summary>
         internal static bool DisconnectClientOnException = false;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -114,7 +112,7 @@ namespace Saga.Managers
             */
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -127,7 +125,7 @@ namespace Saga.Managers
         [DebuggerNonUserCode()]
         public void Register(ConsoleCommandHandler handler)
         {
-            reader.Register( handler);
+            reader.Register(handler);
         }
 
         [DebuggerNonUserCode()]
@@ -142,17 +140,15 @@ namespace Saga.Managers
                 }
                 else
                 {
-                    HostContext.AddUnhandeldException( new SystemException(string.Format("Cannot find console command: {0}", path)));
+                    HostContext.AddUnhandeldException(new SystemException(string.Format("Cannot find console command: {0}", path)));
                 }
             }
             catch (Exception e)
             {
                 //do nothing here
                 HostContext.AddUnhandeldException(e);
-
             }
         }
-
 
         [DebuggerNonUserCode()]
         private void Register(GmCommandHandler handler)
@@ -191,7 +187,6 @@ namespace Saga.Managers
             {
                 //do nothing here
                 HostContext.AddUnhandeldException(e);
-
             }
         }
 
@@ -201,7 +196,7 @@ namespace Saga.Managers
             reader.Clear(null);
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Console Commands: Maintenance
 
@@ -212,7 +207,7 @@ namespace Saga.Managers
             Saga.Tasks.Maintenance.NextSceduledMaintenance = DateTime.Now;
         }
 
-        #endregion
+        #endregion Console Commands: Maintenance
 
         #region Console Commands: Misc
 
@@ -224,14 +219,12 @@ namespace Saga.Managers
             Console.WriteLine(myAssemblyName.Version.ToString());
         }
 
-
-        #endregion
+        #endregion Console Commands: Misc
 
         #region Player Console Commands
 
-
         [ConsoleAttribute("shutdown", "Shutdowns the server.")]
-        static void Shutdown(string[] args)
+        private static void Shutdown(string[] args)
         {
             char b;
 
@@ -244,8 +237,7 @@ namespace Saga.Managers
 
             if (b == 'y')
             {
-
-                Tasks.LifespanAI.Stop();            
+                Tasks.LifespanAI.Stop();
                 Tasks.BattleThread.Stop();
                 Singleton.NetworkService.StopServers();
                 Singleton.WorldTasks.Stop();
@@ -288,7 +280,7 @@ namespace Saga.Managers
             {
                 case "-CREATE": __RESTOREPOINTS(args); break;
                 case "-RESTORE": Singleton.Database.Restore(); break;
-                case "-REPAIR": __REPAIR__(args); break;                               
+                case "-REPAIR": __REPAIR__(args); break;
             }
         }
 
@@ -297,7 +289,6 @@ namespace Saga.Managers
             List<string> list = new List<string>();
             foreach (Character character in Tasks.LifeCycle.Characters)
                 list.Add(character.Name);
-
 
             Console.WriteLine("players online detected: {0}", list.Count);
             for (int i = 0; i < list.Count; i++)
@@ -310,22 +301,19 @@ namespace Saga.Managers
                     if (a == 's') i += 20;
                 }
             }
-                
         }
 
         protected void ShowRegionInformation(string[] args)
         {
-
-            Character characterSource;          
+            Character characterSource;
             if (!Tasks.LifeCycle.TryGetByName(args[2], out characterSource)) return;
-
 
             Console.WriteLine("-----------------------------------");
             Console.WriteLine("Generic information");
             Console.WriteLine("-----------------------------------");
-            Console.WriteLine("position.x: {0}",    characterSource.Position.x );
-            Console.WriteLine("position.y: {0}",    characterSource.Position.x);
-            Console.WriteLine("position.z: {0}",    characterSource.Position.x);
+            Console.WriteLine("position.x: {0}", characterSource.Position.x);
+            Console.WriteLine("position.y: {0}", characterSource.Position.x);
+            Console.WriteLine("position.z: {0}", characterSource.Position.x);
             Console.WriteLine("rhash code: {0:X8}", characterSource.region);
             Console.WriteLine("-----------------------------------");
             Console.WriteLine("Region found nearby character");
@@ -419,7 +407,6 @@ namespace Saga.Managers
         {
             try
             {
-
                 if (args.Length < 3)
                 {
                     Console.WriteLine("Wrong argument count");
@@ -432,10 +419,8 @@ namespace Saga.Managers
                     Console.WriteLine("Could not find player with name: '{0}'", args[2]);
                     return;
                 }
-                
 
-
-                Character tempCharacter = new Character(null, playerid, 1);               
+                Character tempCharacter = new Character(null, playerid, 1);
                 if (Singleton.Database.TransLoad(tempCharacter))
                 {
                     Singleton.Database.PostLoad(tempCharacter);
@@ -457,8 +442,6 @@ namespace Saga.Managers
         {
             try
             {
-
-
                 if (args.Length < 3)
                 {
                     Console.WriteLine("Wrong argument count");
@@ -466,13 +449,11 @@ namespace Saga.Managers
                 }
 
                 uint playerid = 0;
-                if(!Singleton.Database.GetCharacterId(args[2], out playerid))
+                if (!Singleton.Database.GetCharacterId(args[2], out playerid))
                 {
                     Console.WriteLine("Could not find player with name: '{0}'", args[2]);
                     return;
                 }
-
-
 
                 Character tempCharacter = new Character(null, playerid, 1);
                 if (Singleton.Database.TransLoad(tempCharacter, true))
@@ -509,7 +490,7 @@ namespace Saga.Managers
             }
         }
 
-        #endregion
+        #endregion Player Console Commands
 
         #region Server Console Commands
 
@@ -565,14 +546,14 @@ namespace Saga.Managers
             Console.WriteLine("Server rates: x{0}, x{1} x{2} x{3}", Singleton.experience.Modifier_Cexp, Singleton.experience.Modifier_Jexp, Singleton.experience.Modifier_Wexp, Singleton.experience.Modifier_Drate);
         }
 
-        #endregion
+        #endregion Server Console Commands
 
         #region Maintenance Console Functions
 
         [ConsoleAttribute("maintenance", "Interacts with the servers ability for maintenance", "maintenance -force -enter\n\t\t maintenance -force -release\n\t\t maintenance -schedule date")]
         protected void Maintenance(string[] args)
         {
-            if( args.Length < 2 )
+            if (args.Length < 2)
             {
                 Console.WriteLine("Wrong argument count");
                 return;
@@ -648,13 +629,13 @@ namespace Saga.Managers
             }
         }
 
-        #endregion
+        #endregion Maintenance Console Functions
 
         #region GM Commands
 
         public static bool IsGMCommand(string identifier)
         {
-            if( identifier.Length > 0 && ( identifier[0] == '!' || identifier[0] == '.' || identifier[0] == '/' ))
+            if (identifier.Length > 0 && (identifier[0] == '!' || identifier[0] == '.' || identifier[0] == '/'))
             {
                 return true;
             }
@@ -666,7 +647,6 @@ namespace Saga.Managers
 
         public static void ParseGMCommand(string command, Character character)
         {
-
             try
             {
                 string[] commands = command.Split(new char[] { ' ' }, 2);
@@ -724,11 +704,11 @@ namespace Saga.Managers
             spkt.MessageType = SMSG_SENDCHAT.MESSAGE_TYPE.SYSTEM_MESSAGE;
             spkt.SessionId = tc.character.id;
             tc.Send((byte[])spkt);
-        }       
-        
-        #endregion
+        }
 
-        #endregion
+        #endregion Command Parsing
+
+        #endregion GM Commands
 
         #region Internal Methods
 
@@ -737,8 +717,7 @@ namespace Saga.Managers
             reader.Start();
         }
 
-
-        #endregion    
+        #endregion Internal Methods
 
         #region Nested Types/Structures
 
@@ -748,8 +727,6 @@ namespace Saga.Managers
             public GmAttribute attribute;
         }
 
-        #endregion
-
+        #endregion Nested Types/Structures
     }
-
 }

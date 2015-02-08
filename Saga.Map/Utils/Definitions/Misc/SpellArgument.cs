@@ -1,28 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
-using Saga.Map;
 using Saga.Enumarations;
+using Saga.Map;
+using Saga.PrimaryTypes;
+using System;
 
 namespace Saga
 {
-
     public abstract class SkillBaseEventArgs : EventArgs
     {
-
         #region Private Members
 
         private MapObject target;
         private MapObject sender;
         private SkillContext context;
-        private ResultType result;       
+        private ResultType result;
         protected bool failed;
         protected Factory.Spells.Info info;
         private uint damage;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
@@ -72,8 +67,8 @@ namespace Saga
             {
                 failed = value;
             }
-        }         
-        
+        }
+
         /// <summary>
         /// Addition information that is lookedup
         /// </summary>
@@ -145,13 +140,13 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Public Methods
 
         public abstract bool Use();
 
-        #endregion
+        #endregion Public Methods
 
         #region Constructor / Deconstructor
 
@@ -167,7 +162,7 @@ namespace Saga
             }
         }
 
-        #endregion       
+        #endregion Constructor / Deconstructor
 
         #region Nested Classes/Structs
 
@@ -175,8 +170,8 @@ namespace Saga
         /// Result type defines what type of message should be shown on the
         /// client.
         /// </summary>
-        public enum ResultType {
-            
+        public enum ResultType
+        {
             /// <summary>
             /// System message: normal attack
             /// </summary>
@@ -210,24 +205,21 @@ namespace Saga
             /// <summary>
             /// System message: no damage
             /// </summary>
-            NoDamage 
+            NoDamage
         }
 
-        #endregion
-
+        #endregion Nested Classes/Structs
     }
-
 
     public sealed class SkillUsageEventArgs : SkillBaseEventArgs
     {
-
         #region Private Members
-     
+
         private bool WeaponDurabillityLoss = true;
-        private bool EquipmentDurabillityLoss = true;       
+        private bool EquipmentDurabillityLoss = true;
         internal bool TargetHasDied = false;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Properties
 
@@ -294,9 +286,7 @@ namespace Saga
             }
         }
 
-
-
-        #endregion
+        #endregion Public Properties
 
         #region Constructors / Deconstructors
 
@@ -320,13 +310,13 @@ namespace Saga
             return argument != null;
         }
 
-        #endregion
+        #endregion Constructors / Deconstructors
 
         #region Public Methods
 
         public override bool Use()
         {
- 	        try
+            try
             {
                 //Always return true
                 this.Failed = false;
@@ -335,12 +325,12 @@ namespace Saga
 
                 //Use the scripted skill
                 if (this.info.skill != null) this.info.skill.Invoke(this);
-                
+
                 //Reset miss corect
                 if (this.Damage == 0 && !(this.Result == ResultType.Heal || this.Result == ResultType.NoDamage || this.Result == ResultType.Item))
                 {
                     Result = ResultType.Miss;
-                    this.failed = false; 
+                    this.failed = false;
                 }
 
                 this.Target.OnSkillUsedByTarget(this.Sender, this);
@@ -354,7 +344,7 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Members
 
@@ -367,10 +357,10 @@ namespace Saga
                 case 3: return GetMagicalSkillMatrix(source, target);
                 default: return GetPhysicalSkillMatrix(source, target);
             }
-       }
+        }
 
         /// <summary>
-        /// Creates a skill matrix which can be used to perform complex 
+        /// Creates a skill matrix which can be used to perform complex
         /// calculations based upon ranged damage.
         /// </summary>
         /// <param name="source">Source who invokes the skill</param>
@@ -406,12 +396,11 @@ namespace Saga
                 matrix.matrix[3, 3] = (int)target._status.BaseRHitrate;
             }
 
-            
             return matrix;
         }
 
         /// <summary>
-        /// Creates a skill matrix which can be used to perform complex 
+        /// Creates a skill matrix which can be used to perform complex
         /// calculations based upon physical damage.
         /// </summary>
         /// <param name="source">Source who invokes the skill</param>
@@ -451,7 +440,7 @@ namespace Saga
         }
 
         /// <summary>
-        /// Creates a skill matrix which can be used to perform complex 
+        /// Creates a skill matrix which can be used to perform complex
         /// calculations based upon magical damage.
         /// </summary>
         /// <param name="source">Source who invokes the skill</param>
@@ -487,7 +476,6 @@ namespace Saga
                 matrix.matrix[3, 3] = (int)target._status.BasePHitrate;
             }
 
-
             return matrix;
         }
 
@@ -499,7 +487,7 @@ namespace Saga
         public bool IsMissed(SkillMatrix matrix)
         {
             int Evasion = Saga.Utils.Generator.Random(500, 1200);
-            if ((Evasion + (matrix[2, 3]) /2) < 50 + matrix[4, 3])
+            if ((Evasion + (matrix[2, 3]) / 2) < 50 + matrix[4, 3])
             {
                 Result = ResultType.Miss;
                 this.failed = false;
@@ -507,10 +495,9 @@ namespace Saga
             }
 
             return false;
-
         }
 
-        public void UpdateCancelAddition( uint addition, uint lifetime, uint cancelAddition, Actor actor)
+        public void UpdateCancelAddition(uint addition, uint lifetime, uint cancelAddition, Actor actor)
         {
             if (Common.Skills.HasAddition(actor, cancelAddition))
                 Common.Skills.DeleteAddition(actor, cancelAddition);
@@ -544,7 +531,7 @@ namespace Saga
         {
             int Block = Saga.Utils.Generator.Random(0, 1000);
             if (Block < 80 + matrix[2, 2])
-            {                
+            {
                 this.Result = ResultType.Critical;
                 this.Damage = (uint)((double)this.Damage * 1.3);
                 this.failed = false;
@@ -566,7 +553,7 @@ namespace Saga
             int min = matrix[0, 0] + matrix[0, 1] + matrix[0, 2] + matrix[0, 3];
             int max = matrix[1, 0] + matrix[1, 1] + matrix[1, 2] + matrix[1, 3];
             int mean = max;
-           
+
             for (int i = 0; i < 4; i++)
             {
                 double deviations = Math.Abs((double)(Saga.Utils.Generator.Random(min, max) - mean));
@@ -605,9 +592,8 @@ namespace Saga
         /// <returns>Level difference</returns>
         public int GetLevelDifference(SkillMatrix matrix)
         {
-            return Math.Abs( matrix[4, 2] - matrix[4, 1]);
+            return Math.Abs(matrix[4, 2] - matrix[4, 1]);
         }
-
 
         /// <summary>
         /// Does a hp effect.
@@ -616,9 +602,8 @@ namespace Saga
         {
             Regiontree tree = source.currentzone.Regiontree;
             foreach (Character current in tree.SearchActors(source, Saga.Enumarations.SearchFlags.Characters))
-                   Common.Skills.SendSkillEffect(current, source, this.info.addition, 1, (uint)value);            
+                Common.Skills.SendSkillEffect(current, source, this.info.addition, 1, (uint)value);
         }
-
 
         /// <summary>
         /// Does a sp effect.
@@ -629,8 +614,6 @@ namespace Saga
             foreach (Character current in tree.SearchActors(source, Saga.Enumarations.SearchFlags.Characters))
                 Common.Skills.SendSkillEffect(current as Character, source, this.info.addition, 2, (uint)value);
         }
-
-
 
         /// <summary>
         /// Does a lp effect.
@@ -646,7 +629,7 @@ namespace Saga
         /// Does a random LP Increase.
         /// </summary>
         /// <param name="source">Actor who's LP to increase</param>
-        public void DoLpIncrease( Actor source)
+        public void DoLpIncrease(Actor source)
         {
             if (source.Status.CurrentLp < 7 && //Check if lp is already full
                     Saga.Utils.Generator.Random(0, 99) < 80) //80% chance to gain one lp point
@@ -655,8 +638,8 @@ namespace Saga
             }
         }
 
-        #endregion
-    
+        #endregion Public Members
+
         #region Nested Classes/Structs
 
         /// <summary>
@@ -665,13 +648,11 @@ namespace Saga
         /// </summary>
         public sealed class SkillMatrix
         {
-
             /// <summary>
             /// 5 by 4 Matrx internal matrix which holds the values
             /// of the specified class.
             /// </summary>
-            public int[,] matrix = new int[5,4];
-
+            public int[,] matrix = new int[5, 4];
 
             /// <summary>
             /// Gets or sets the values in the matrix specified by the Left and Right index.
@@ -692,18 +673,17 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Nested Classes/Structs
     }
 
     public sealed class SkillToggleEventArgs : SkillBaseEventArgs
     {
-
         #region Private Members
 
         private ResultType result;
         private uint damage;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Properties
 
@@ -785,7 +765,7 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Constructors / Deconstructors
 
@@ -809,7 +789,7 @@ namespace Saga
             return argument != null;
         }
 
-        #endregion
+        #endregion Constructors / Deconstructors
 
         #region Public Methods
 
@@ -851,9 +831,9 @@ namespace Saga
                 Common.Skills.CreateAddition(actor, addition);
         }
 
-        #endregion
+        #endregion Public Methods
 
-        #region Public Members  
+        #region Public Members
 
         /// <summary>
         /// Does a hp effect.
@@ -864,7 +844,6 @@ namespace Saga
             foreach (Character current in tree.SearchActors(source, Saga.Enumarations.SearchFlags.Characters))
                 Common.Skills.SendSkillEffect(current, source, this.info.addition, 1, (uint)value);
         }
-
 
         /// <summary>
         /// Does a sp effect.
@@ -899,12 +878,11 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Public Members
     }
 
     public sealed class ItemSkillUsageEventArgs : SkillBaseEventArgs
     {
-
         #region Private Members
 
         private ResultType result;
@@ -912,7 +890,7 @@ namespace Saga
         private Factory.ItemsFactory.ItemInfo iteminfo;
         internal bool TargetHasDied = false;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Methods
 
@@ -920,7 +898,6 @@ namespace Saga
         {
             try
             {
-
                 if (this.info.SP > 0 && MapObject.IsPlayer(this.Sender))
                 {
                     Character sTarget = (Character)this.Sender;
@@ -938,7 +915,6 @@ namespace Saga
                 //Use the scripted skill
                 if (this.info.skill != null) this.info.skill.Invoke(this);
                 this.Target.OnSkillUsedByTarget(this.Sender, this);
-
 
                 //Is damgae skill
                 bool isdamage = this.result == ResultType.Block || this.result == ResultType.Critical || this.result == ResultType.Normal;
@@ -973,7 +949,7 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Properties
 
@@ -1041,8 +1017,7 @@ namespace Saga
             }
         }
 
-
-        #endregion
+        #endregion Public Properties
 
         #region Constructor / Deconstructors
 
@@ -1068,13 +1043,6 @@ namespace Saga
             return argument != null;
         }
 
-        #endregion
-
+        #endregion Constructor / Deconstructors
     }
-
-    
-
 }
-
-
-

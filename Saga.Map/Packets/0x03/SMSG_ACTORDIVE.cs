@@ -1,14 +1,13 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is send by the player as a result of either going to dive 
+    /// This packet is send by the player as a result of either going to dive
     /// underwater or the player was diving and has reached the surface. This
     /// function needs to trigger the rightfull regenarations
     /// </remarks>
@@ -33,8 +32,5 @@ namespace Saga.Packets
         {
             set { this.data[0] = value; }
         }
-
-
-
     }
 }

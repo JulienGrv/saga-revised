@@ -1,16 +1,14 @@
-using System;
-using System.Collections.Generic;
 using Saga.PrimaryTypes;
 using Saga.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Quests
 {
     static partial class QUEST_TABLE
     {
-
         public static void FindPosition(uint cid, uint questid, uint stepid, byte substepid, float x, float y, float z, byte map, uint range)
         {
-
             Character Character;
             if (LifeCycle.TryGetById(cid, out Character))
             {
@@ -34,7 +32,6 @@ namespace Saga.Quests
                         && objective.SubStepId == substepid;
                 };
 
-
                 //Get substep list
                 List<Saga.Quests.Objectives.ObjectiveList.SubStep> Substeps =
                      Character.QuestObjectives.Substeps;
@@ -54,10 +51,7 @@ namespace Saga.Quests
                         Positions.Add(new Saga.Quests.Objectives.ObjectiveList.Position(x, y, z, map, range, questid, stepid, substepid));
                     }
                 }
-
             }
         }
-
-
     }
 }

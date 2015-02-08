@@ -1,7 +1,7 @@
-using System;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Tasks;
+using System;
 
 namespace Saga.Quests
 {
@@ -18,7 +18,7 @@ namespace Saga.Quests
         /// function QUEST_STEP_2(cid)
         ///	    -- Talk to mischa
         ///     local NPCIndex = 1000;
-        ///     local ret = Saga.GetNPCIndex(cid);    
+        ///     local ret = Saga.GetNPCIndex(cid);
         ///
         ///     Saga.AddWaypoint(cid, QuestID, NPCIndex, -12092, -6490, -8284, 1);
         ///     if ret == NPCIndex then
@@ -27,7 +27,7 @@ namespace Saga.Quests
         ///         return  -1;
         ///     end
         ///
-        ///     Saga.ClearWaypoints(cid, QuestID);	
+        ///     Saga.ClearWaypoints(cid, QuestID);
         ///     return 0;
         /// end
         /// </example>
@@ -38,13 +38,13 @@ namespace Saga.Quests
             if (LifeCycle.TryGetById(CID, out value))
             {
                 quest = value.QuestObjectives[QID];
-                Predicate<Saga.Quests.Objectives.ObjectiveList.Waypoint> FindGuidancePoints = 
+                Predicate<Saga.Quests.Objectives.ObjectiveList.Waypoint> FindGuidancePoints =
                     delegate(Saga.Quests.Objectives.ObjectiveList.Waypoint objective)
-                {
-                    return objective.Quest == QID;
-                };
+                    {
+                        return objective.Quest == QID;
+                    };
 
-                if(quest != null ) quest.IsWaypointsCleared = true;
+                if (quest != null) quest.IsWaypointsCleared = true;
                 int count = value.QuestObjectives.GuidancePoints.RemoveAll(FindGuidancePoints);
                 if (count > 0)
                 {

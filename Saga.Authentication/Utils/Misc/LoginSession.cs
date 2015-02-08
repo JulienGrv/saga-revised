@@ -1,17 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Authentication.Network;
+using System.Collections.Generic;
 using System.Net;
 
 namespace Saga.Authentication.Utils
 {
-    static class LoginSessionHandler
+    internal static class LoginSessionHandler
     {
         public static Dictionary<uint, LoginSession> sessions = new Dictionary<uint, LoginSession>();
     }
 
-    class LoginSession
+    internal class LoginSession
     {
         public static int RequiredAge = 30;
         public static bool INTESTMODE = false;

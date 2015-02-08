@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Templates;
+﻿using Saga.Templates;
+using System;
 
 namespace Saga.Scripting.Alfheim
 {
-    class Eglon : BaseNPC
+    internal class Eglon : BaseNPC
     {
-
         /// <summary>
-        /// Overrides the onregiser to these npc's are not seen 
+        /// Overrides the onregiser to these npc's are not seen
         /// as unique npc's
         /// </summary>
         public override void OnRegister()
@@ -26,7 +23,7 @@ namespace Saga.Scripting.Alfheim
         }
 
         /// <summary>
-        /// Overrides the onregiser to these npc's are not seen 
+        /// Overrides the onregiser to these npc's are not seen
         /// as unique npc's
         /// </summary>
         public override void OnDeregister()
@@ -40,8 +37,5 @@ namespace Saga.Scripting.Alfheim
                 HostContext.Current.UnhandeldExceptionList.Add(e);
             }
         }
-
     }
-
-
 }

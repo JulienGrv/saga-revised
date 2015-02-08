@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Templates
 {
-    class Mailbox : MapItem
+    internal class Mailbox : MapItem
     {
-
         public override void OnClick(Character target)
         {
             OnCheckMail(target);

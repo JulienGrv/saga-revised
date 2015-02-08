@@ -1,13 +1,11 @@
-using System;
 using Saga.Network.Packets;
-using Saga.Shared.Definitions;
 using Saga.Structures;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// A wide movement used by ships and trains.
@@ -17,7 +15,6 @@ namespace Saga.Packets
     /// </id>
     internal class SMSG_WIDEMOVEMENTSTART : RelayPacket
     {
-
         public SMSG_WIDEMOVEMENTSTART()
         {
             this.Cmd = 0x0601;
@@ -47,6 +44,5 @@ namespace Saga.Packets
             Array.Copy(BitConverter.GetBytes(yaw.unknown), 0, this.data, offset + 14, 2);
             this.data[7]++;
         }
-
     }
 }

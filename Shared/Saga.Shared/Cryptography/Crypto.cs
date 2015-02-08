@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace Saga.Shared.PacketLib
 {
@@ -34,7 +33,6 @@ namespace Saga.Shared.PacketLib
 
         private static void SwapBytes(byte[] buffer, int len, int c)
         {
-
             for (int i = 0; i < len / 4; i++)
             {
                 buffer[c + i * 4] ^= buffer[c + i * 4 + 3];
@@ -164,7 +162,6 @@ namespace Saga.Shared.PacketLib
 
                 for (j = 0; j < Nk && i < exKeySize; j++, i++)
                 {
-
                     tt = tk[j];
                     if (i < exKeySize - Nk)
                     {
@@ -198,9 +195,8 @@ namespace Saga.Shared.PacketLib
             return expandedKey;
         }
 
-
-        private static byte[] sbox = 
-        {		
+        private static byte[] sbox =
+        {
 	        0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5,
 	        0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
 	        0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0,
@@ -237,12 +233,13 @@ namespace Saga.Shared.PacketLib
 
         private static byte[] rcon =
         {
-	        0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 
-	        0x40, 0x80, 0x1b, 0x36, 0x6c, 0xc0, 
-	        0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc, 
-	        0x63, 0xc6, 0x97, 0x35, 0x6a, 0xd4, 
+	        0x01, 0x02, 0x04, 0x08, 0x10, 0x20,
+	        0x40, 0x80, 0x1b, 0x36, 0x6c, 0xc0,
+	        0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc,
+	        0x63, 0xc6, 0x97, 0x35, 0x6a, 0xd4,
 	        0xb3, 0x7d, 0xfa, 0xef, 0xc5, 0x91
         };
+
         private static UInt32[] imbox =
         {
 	        0x00000000, 0x0e090d0b, 0x1c121a16, 0x121b171d,
@@ -308,9 +305,7 @@ namespace Saga.Shared.PacketLib
 	        0xd731dcca, 0xd938d1c1, 0xcb23c6dc, 0xc52acbd7,
 	        0xef15e8e6, 0xe11ce5ed, 0xf307f2f0, 0xfd0efffb,
 	        0xa779b492, 0xa970b999, 0xbb6bae84, 0xb562a38f,
-	        0x9f5d80be, 0x91548db5, 0x834f9aa8, 0x8d4697a3	
+	        0x9f5d80be, 0x91548db5, 0x834f9aa8, 0x8d4697a3
         };
-
     }
 }
-

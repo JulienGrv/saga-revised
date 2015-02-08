@@ -1,26 +1,23 @@
-using System;
-using System.Collections.Generic;
 using Saga.Map;
 using Saga.Map.Definitions.Misc;
 using Saga.Packets;
 using Saga.Quests;
+using System;
 
 namespace Saga.PrimaryTypes
 {
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public abstract class MapItem : MapObject
     {
-
         #region Public Members
-
 
         /// <summary>
         /// Evemt called when clicking on the item
         /// </summary>
         /// <param name="target">Target who clicks on the object</param>
-        public virtual void OnClicked(Character target){
+        public virtual void OnClicked(Character target)
+        {
             Console.WriteLine(this.ModelId);
-        
         }
 
         /// <summary>
@@ -43,7 +40,7 @@ namespace Saga.PrimaryTypes
             return 0;
         }
 
-        #endregion
+        #endregion Public Members
 
         protected void OnCheckQuest(Character target)
         {
@@ -52,6 +49,7 @@ namespace Saga.PrimaryTypes
                 c.CheckQuest(target);
             }
         }
+
         protected void OnCheckMail(Character target)
         {
             SMSG_MAILLIST spkt = new SMSG_MAILLIST();

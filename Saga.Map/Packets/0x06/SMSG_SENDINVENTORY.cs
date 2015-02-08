@@ -1,19 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
 using Saga.PrimaryTypes;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet sent the drop list of the user. Packet should be 
+    /// This packet sent the drop list of the user. Packet should be
     /// renamed to SMSG_DROPLIST.
     /// </remarks>
     /// <id>
@@ -22,6 +17,7 @@ namespace Saga.Packets
     internal class SMSG_SENDINVENTORY : RelayPacket
     {
         private int offset = 0;
+
         public SMSG_SENDINVENTORY(int items)
         {
             this.Cmd = 0x0601;
@@ -37,7 +33,7 @@ namespace Saga.Packets
 
         public void AddItem(Rag2Item item, int index)
         {
-            Rag2Item.Serialize(item, this.data, 5 +( this.offset * 67));
+            Rag2Item.Serialize(item, this.data, 5 + (this.offset * 67));
             this.data[5 + 66 + (this.offset * 67)] = (byte)index;
             this.offset++;
         }

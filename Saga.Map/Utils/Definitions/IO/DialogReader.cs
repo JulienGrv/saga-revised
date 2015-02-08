@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Xml;
-using System.Globalization;
-using System.Diagnostics;
 
 namespace Saga.IO
 {
-    class DialogReader : IDisposable
+    internal class DialogReader : IDisposable
     {
-
         private Stream _basestream;
         private XmlReader _reader;
         private bool _hasinfo;
@@ -21,7 +18,7 @@ namespace Saga.IO
         #region Constructor / Deconctructor
 
         [DebuggerNonUserCode()]
-        DialogReader(Stream stream)
+        private DialogReader(Stream stream)
         {
             _basestream = stream;
             XmlReaderSettings settings = new XmlReaderSettings();
@@ -36,33 +33,33 @@ namespace Saga.IO
             Dispose();
         }
 
-        #endregion
+        #endregion Constructor / Deconctructor
 
         #region Private Methods
 
         [DebuggerNonUserCode()]
         private void ProcessItem()
-        {   
+        {
             switch (_reader.NodeType)
             {
-                case XmlNodeType.Element: 
+                case XmlNodeType.Element:
                     _svalue = string.Empty;
                     _uvalue = 0;
                     _hasinfo = false;
                     break;
+
                 case XmlNodeType.Text:
-                    _svalue = _reader.Value; 
+                    _svalue = _reader.Value;
                     break;
+
                 case XmlNodeType.EndElement:
                     _name = _reader.Name;
                     _hasinfo = uint.TryParse(_svalue, NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out _uvalue);
-                    break;                        
+                    break;
             }
         }
 
-        
-
-        #endregion
+        #endregion Private Methods
 
         #region Public Properties
 
@@ -90,7 +87,7 @@ namespace Saga.IO
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Public Methods
 
@@ -102,7 +99,7 @@ namespace Saga.IO
             return result;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Static Methods
 
@@ -114,7 +111,7 @@ namespace Saga.IO
             return dialog;
         }
 
-        #endregion
+        #endregion Public Static Methods
 
         #region IDisposable Members
 
@@ -123,9 +120,9 @@ namespace Saga.IO
         {
             GC.SuppressFinalize(this);
             if (_reader != null) _reader.Close();
-            if (_basestream != null) _basestream.Dispose();            
+            if (_basestream != null) _basestream.Dispose();
         }
 
-        #endregion
+        #endregion IDisposable Members
     }
 }

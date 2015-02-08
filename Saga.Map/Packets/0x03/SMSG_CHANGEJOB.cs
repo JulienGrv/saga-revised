@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet contains a list of all posible jobs you are
@@ -29,6 +24,6 @@ namespace Saga.Packets
         public void Add(byte value)
         {
             this.data[++this.data[0]] = value;
-        }        
+        }
     }
 }

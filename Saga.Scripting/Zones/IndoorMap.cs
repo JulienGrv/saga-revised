@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Map;
+﻿using Saga.Map;
+using System;
 
 namespace Saga.Scripting.Zones
 {
-    class IndoorMap : Saga.PrimaryTypes.Zone, ICloneable
+    internal class IndoorMap : Saga.PrimaryTypes.Zone, ICloneable
     {
-
         public override void OnChangeWeather(int Weather)
         {
             //Do not update the weather for indoor maps
@@ -21,7 +18,7 @@ namespace Saga.Scripting.Zones
         {
             IndoorMap b = new IndoorMap();
             b.Map = this.Map;
-            b.ProsmiseLocation = this.ProsmiseLocation;            
+            b.ProsmiseLocation = this.ProsmiseLocation;
             b.CathelayaLocation = this.CathelayaLocation;
             b.RegionCode = this.RegionCode;
             b.Regiontree = new Regiontree();
@@ -29,7 +26,6 @@ namespace Saga.Scripting.Zones
             return b;
         }
 
-        #endregion
-
+        #endregion ICloneable Members
     }
 }

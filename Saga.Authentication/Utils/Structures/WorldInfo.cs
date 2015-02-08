@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Saga.Authentication.Structures
+﻿namespace Saga.Authentication.Structures
 {
     public class WorldInfo
     {

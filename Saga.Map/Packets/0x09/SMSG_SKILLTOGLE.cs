@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Changes from stance
     /// </summary>
@@ -29,7 +25,7 @@ namespace Saga.Packets
 
         public byte SkillType
         {
-            set { this.data[0] = value; } 
+            set { this.data[0] = value; }
         }
 
         public uint SkillID
@@ -39,7 +35,7 @@ namespace Saga.Packets
 
         public bool Toggle
         {
-            set { this.data[5] = (byte)((value) ? 13 : 12 ); }
+            set { this.data[5] = (byte)((value) ? 13 : 12); }
         }
     }
 }

@@ -1,48 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Xml;
-using Saga.Map.Configuration;
-using Saga.Configuration;
-using Saga.Shared.Definitions;
-using Saga.Map.Definitions.Misc;
-using System.Diagnostics;
-using System.Globalization;
-using System.Security.Permissions;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Quests;
-using Saga.Map.Utils.Definitions.Misc;
-using Saga.Structures;
-using Saga.Map;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Factory
 {
-
     public class ItemsDrops : FactoryBase
     {
-
         #region Ctor/Dtor
 
-        public ItemsDrops() { }
+        public ItemsDrops()
+        {
+        }
 
         ~ItemsDrops()
         {
             this.item_drops = null;
         }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
         public Dictionary<uint, DropInfo[]> item_drops;
 
-
-        #endregion
+        #endregion Internal Members
 
         #region Public Methods
 
         private Random random = new Random();
+
         public IEnumerable<Rag2Item> FindItemDropsById(uint id, double droprate)
         {
             foreach (KeyValuePair<uint, Rag2Item> itempair in Common.Special.GetLootList(id))
@@ -58,11 +45,11 @@ namespace Saga.Factory
             int c = b > 2000 ? b : 2000;
 
             int i = random.Next(0, c);
-            int a = i; 
-  
+            int a = i;
+
             if (i < droprate)
-            {                
-                int increment = 4000;                
+            {
+                int increment = 4000;
                 while (item.count < item.info.max_stack)
                 {
                     a += increment;
@@ -86,9 +73,7 @@ namespace Saga.Factory
             }
         }
 
-
-
-        #endregion
+        #endregion Public Methods
 
         #region Protected Properties
 
@@ -118,9 +103,9 @@ namespace Saga.Factory
         protected override string ReadyState
         {
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_ITEMDROPS; }
-        }  
+        }
 
-        #endregion
+        #endregion Protected Properties
 
         #region Nested Classes/Structures
 
@@ -136,7 +121,6 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
-
+        #endregion Nested Classes/Structures
     }
 }

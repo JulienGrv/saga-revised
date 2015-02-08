@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
 using Saga.PrimaryTypes;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_TRADEITEMOTHER : RelayPacket
     {
         public SMSG_TRADEITEMOTHER()
@@ -20,7 +14,7 @@ namespace Saga.Packets
 
         public byte Tradeslot
         {
-            set { this.data[0] = value; }     
+            set { this.data[0] = value; }
         }
 
         public Rag2Item Item

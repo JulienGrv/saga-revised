@@ -1,12 +1,11 @@
-using System;
 using Saga.Network.Packets;
+using System;
 using System.Text;
 
 namespace Saga.Shared.PacketLib.Map
 {
     internal class SMSG_WORLDINSTANCE : RelayPacket
     {
-
         public SMSG_WORLDINSTANCE()
         {
             this.Cmd = 0x0701;

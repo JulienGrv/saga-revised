@@ -1,14 +1,13 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is send by the player as a result of the player using a 
+    /// This packet is send by the player as a result of the player using a
     /// portal. And wished to be warped to a other map.
     /// </remarks>
     /// <id>
@@ -23,7 +22,7 @@ namespace Saga.Packets
 
         public byte PortalID
         {
-            get { return (byte)(this.data[0] - 1);}
+            get { return (byte)(this.data[0] - 1); }
         }
 
         #region Conversions
@@ -35,8 +34,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -49,6 +48,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

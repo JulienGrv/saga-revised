@@ -1,11 +1,10 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This show your characters rebuy list.
@@ -24,17 +23,17 @@ namespace Saga.Packets
 
         public byte Count
         {
-            set 
+            set
             {
                 this.data[0] = value;
                 Array.Resize<byte>(ref this.data, 1 + value * 67);
             }
         }
 
-        public void Add( uint itemID, byte count)
+        public void Add(uint itemID, byte count)
         {
             int index = this.data.Length - 67;
-            Array.Copy( BitConverter.GetBytes(itemID), 0, this.data, index, 4);
+            Array.Copy(BitConverter.GetBytes(itemID), 0, this.data, index, 4);
 
             this.data[index + 4] = 0x3A;
             this.data[index + 5] = 0x95;

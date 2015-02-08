@@ -1,15 +1,13 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet forces your to terminiate conversation with the npc.
-    /// At the moment this is only used in conjunction with the warper npc 
+    /// At the moment this is only used in conjunction with the warper npc
     /// where you need to leave your current npc convo before beeing warped.
     /// </remarks>
     /// <id>

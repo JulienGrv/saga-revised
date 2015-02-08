@@ -1,19 +1,18 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent to send your battle stats. These battlestats consist 
+    /// This packet is sent to send your battle stats. These battlestats consist
     /// out of the resistances, defense, flee.
     /// </remarks>
     /// <id>
     /// 0310
-    /// </id>    
+    /// </id>
     internal class SMSG_BATTLESTATS : RelayPacket
     {
         public SMSG_BATTLESTATS()
@@ -122,6 +121,5 @@ namespace Saga.Packets
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 38, 2); }
         }
-
     }
 }

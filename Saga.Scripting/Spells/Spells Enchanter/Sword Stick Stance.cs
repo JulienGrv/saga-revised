@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void ENCHANTER_SWORDSTICKSTANCE(SkillBaseEventArgs bargument)
         {
             if (bargument.Context == Saga.Enumarations.SkillContext.SkillToggle)
@@ -21,6 +16,5 @@ namespace Saga.Skills
                     Common.Skills.CreateAddition(starget, arguments.Addition);
             }
         }
-
     }
 }

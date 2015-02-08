@@ -1,14 +1,12 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is the result of the weaponmove packet send by the player. 
+    /// This packet is the result of the weaponmove packet send by the player.
     /// It indicates how to change current weapon.
     /// </remarks>
     /// <id>
@@ -46,6 +44,5 @@ namespace Saga.Packets
                 this.data[2] = value;
             }
         }
-
     }
 }

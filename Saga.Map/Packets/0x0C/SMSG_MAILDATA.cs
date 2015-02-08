@@ -1,19 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
-using System.Globalization;
 using Saga.PrimaryTypes;
+using System;
+using System.Globalization;
+using System.Text;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent over the mail data of a inbox item.
@@ -32,7 +26,7 @@ namespace Saga.Packets
 
         public byte Unknown
         {
-            set { this.data[0] = value; } 
+            set { this.data[0] = value; }
         }
 
         public uint Zeny
@@ -42,15 +36,15 @@ namespace Saga.Packets
 
         public string Sender
         {
-            set { Encoding.Unicode.GetBytes(value, 0, Math.Min(value.Length, 16), this.data, 5); } 
+            set { Encoding.Unicode.GetBytes(value, 0, Math.Min(value.Length, 16), this.data, 5); }
         }
 
         public DateTime Date
         {
-            set 
+            set
             {
                 string timestamp = String.Format(CultureInfo.InvariantCulture, "{0}-{1}-{2} {3}:{4}:{5}", value.Day, value.Month, value.Year, value.Hour, value.Minute, value.Second);
-                Encoding.Unicode.GetBytes(timestamp, 0, Math.Min(timestamp.Length, 19), this.data, 39); 
+                Encoding.Unicode.GetBytes(timestamp, 0, Math.Min(timestamp.Length, 19), this.data, 39);
             }
         }
 
@@ -68,8 +62,8 @@ namespace Saga.Packets
         {
             set
             {
-                if(value != null)
-                Rag2Item.Serialize(value, this.data, 523);
+                if (value != null)
+                    Rag2Item.Serialize(value, this.data, 523);
             }
         }
     }

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Map;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Structures
 {
     public class HateCollection
     {
-
         /// <summary>
         /// Private Hateable
         /// </summary>
@@ -64,12 +62,10 @@ namespace Saga.Structures
                 return previoushate;
             }
         }
-
     }
 
     public class DamageCollection
     {
-
         /// <summary>
         /// Private Hateable
         /// </summary>
@@ -127,11 +123,8 @@ namespace Saga.Structures
         /// <param name="maxwexp">Maximum weapon experience to handout</param>
         public void GiveExperienceRewards(Character killer, Monster mob, uint maxcexp, uint maxjexp, uint maxwexp)
         {
-
             lock (DamageTable)
             {
-
-
                 uint HateTowardsOwner = 0;
                 List<KeyValuePair<uint, uint>> PartyInstances = new List<KeyValuePair<uint, uint>>();
                 List<KeyValuePair<uint, uint>> OtherInstances = new List<KeyValuePair<uint, uint>>();
@@ -157,7 +150,6 @@ namespace Saga.Structures
                         HateTowardsOwner += pair.Value;
                     }
                 }
-
 
                 //Handout experience to other people
                 foreach (KeyValuePair<uint, uint> pair in OtherInstances)
@@ -261,31 +253,27 @@ namespace Saga.Structures
 
                 DamageTable.Clear();
             }
-
         }
-
     }
 
     public class CoolDownCollection
     {
-
         private Dictionary<uint, int> cooldowntable = new Dictionary<uint, int>();
 
         public bool IsCoolDown(uint skill)
         {
             uint rootskill = (skill / 100) * 100;
-            
+
             int tick;
             if (cooldowntable.TryGetValue(rootskill, out tick))
-                return (tick - Environment.TickCount ) > 0;
+                return (tick - Environment.TickCount) > 0;
             else
                 return false;
-
         }
 
         public void Add(uint skill, int cooldown)
         {
-            uint rootskill = (skill / 100) * 100;           
+            uint rootskill = (skill / 100) * 100;
             int nexttick = Environment.TickCount + cooldown;
             cooldowntable[rootskill] = nexttick;
         }
@@ -306,7 +294,6 @@ namespace Saga.Structures
                 cooldowntable.Remove(pair);
             }
         }
-
     }
 
     public interface IHateable : IActorid

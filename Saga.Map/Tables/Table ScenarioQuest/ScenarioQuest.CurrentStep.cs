@@ -1,4 +1,3 @@
-
 namespace Saga.Quests.Scenario
 {
     static partial class QUEST_TABLE
@@ -8,11 +7,10 @@ namespace Saga.Quests.Scenario
         /// </summary>
         public static uint GetCurrentStep(uint cid, uint QID)
         {
-
             /*
             Character value;
 
-            if (LifeCycle.TryGetById(cid, out value))            
+            if (LifeCycle.TryGetById(cid, out value))
             if( value.client.scenarioquest != null )
                foreach (StepInfo c in value.client.scenarioquest.listofsteps)
                {
@@ -20,7 +18,6 @@ namespace Saga.Quests.Scenario
                }
             */
             return 0;
-            
         }
     }
 }

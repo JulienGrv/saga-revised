@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Map;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void RECRUIT_FINALBLOW(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -32,7 +27,7 @@ namespace Saga.Skills
                 //Remove all LP
                 asource.Status.CurrentLp = 0;
                 asource.Status.Updates |= 1;
-               
+
                 if (arguments.IsMissed(matrix) || arguments.IsBlocked(matrix))
                 {
                     return;
@@ -53,7 +48,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
-
     }
 }

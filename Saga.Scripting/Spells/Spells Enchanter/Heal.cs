@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Map;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void ENCHANTER_HEAL(SkillBaseEventArgs bargument)
         {
             Actor asource = bargument.Sender as Actor;
@@ -24,6 +19,5 @@ namespace Saga.Skills
                 Singleton.Additions.DeapplyAddition(arguments.Addition, atarget);
             }
         }
-
     }
 }

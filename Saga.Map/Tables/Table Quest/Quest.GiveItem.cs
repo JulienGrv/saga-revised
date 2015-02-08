@@ -8,14 +8,12 @@ namespace Saga.Quests
 {
     static partial class QUEST_TABLE
     {
-
-
         /// <title>Saga.GiveItem</title>
         /// <code>
         /// Saga.GiveItem(cid, RewItem, RewItemCount);
         /// </code>
         /// <description>
-        /// Gives a certain item and with the specified 
+        /// Gives a certain item and with the specified
         /// itemcount as part of a quest reward.
         /// </description>
         /// <example>
@@ -30,16 +28,14 @@ namespace Saga.Quests
         /// </example>
         public static bool GiveItem(uint cid, uint itemid, byte count)
         {
-
             Character value;
             if (LifeCycle.TryGetById(cid, out value))
             {
-
                 Rag2Item item;
-                if( Singleton.Item.TryGetItemWithCount(itemid, count, out item) )                
+                if (Singleton.Item.TryGetItemWithCount(itemid, count, out item))
                 {
                     int index = value.container.Add(item);
-                    if ( index > -1 )
+                    if (index > -1)
                     {
                         SMSG_ADDITEM spkt = new SMSG_ADDITEM();
                         spkt.Container = 2;
@@ -49,7 +45,7 @@ namespace Saga.Quests
                         value.client.Send((byte[])spkt);
                         return true;
                     }
-                }          
+                }
             }
 
             return false;

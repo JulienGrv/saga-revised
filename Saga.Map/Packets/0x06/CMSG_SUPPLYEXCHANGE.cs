@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent when the user confirms to trade
@@ -16,7 +12,7 @@ namespace Saga.Packets
     /// </remarks>
     /// <id>
     /// 060D
-    /// </id>    
+    /// </id>
     internal class CMSG_SUPPLYEXCHANGE : RelayPacket
     {
         public CMSG_SUPPLYEXCHANGE()
@@ -43,8 +39,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -57,6 +53,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

@@ -1,9 +1,8 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_QUESTSUBSTEPUPDATE : RelayPacket
     {
         public SMSG_QUESTSUBSTEPUPDATE()

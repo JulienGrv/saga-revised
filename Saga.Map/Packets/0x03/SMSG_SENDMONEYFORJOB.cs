@@ -1,15 +1,15 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This function returns the required money to transfer jobs. The formulla to change
     /// jobs is something along the lines of:
-    /// 
+    ///
     /// ((joblvl - 5) * 300) + ( nSummedSkillLvl - nSkills  ) * 100
     /// </remarks>
     /// <id>
@@ -26,8 +26,7 @@ namespace Saga.Packets
 
         public uint Zeny
         {
-            set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4); } 
+            set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4); }
         }
-
     }
 }

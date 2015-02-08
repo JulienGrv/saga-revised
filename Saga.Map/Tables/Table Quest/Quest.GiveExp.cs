@@ -5,7 +5,6 @@ namespace Saga.Quests
 {
     static partial class QUEST_TABLE
     {
-
         /// <title>Saga.GiveExp</title>
         /// <code>
         /// Saga.GiveExp(cid, RewCxp, RewJxp, RewWxp);

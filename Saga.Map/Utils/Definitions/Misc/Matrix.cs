@@ -1,7 +1,6 @@
+using Saga.Structures;
 using System;
 using System.Diagnostics;
-using Saga.Shared.Definitions;
-using Saga.Structures;
 
 namespace Saga
 {
@@ -10,7 +9,6 @@ namespace Saga
     /// </summary>
     public class Matrix
     {
-
         #region Protected Members
 
         /// <summary>
@@ -18,7 +16,7 @@ namespace Saga
         /// </summary>
         protected float[,] matrix = new float[3, 3];
 
-        #endregion
+        #endregion Protected Members
 
         #region Public Static Methods
 
@@ -41,7 +39,6 @@ namespace Saga
             matrix.matrix[2, 2] = 1;
             return matrix;
         }
-
 
         /// <summary>
         /// Get's a inversed rotation matrix from the specified yaw.
@@ -87,7 +84,7 @@ namespace Saga
             return temp;
         }
 
-        #endregion        
+        #endregion Public Static Methods
 
         #region Public Properties
 
@@ -106,7 +103,6 @@ namespace Saga
             }
         }
 
-        #endregion
-
+        #endregion Public Properties
     }
 }

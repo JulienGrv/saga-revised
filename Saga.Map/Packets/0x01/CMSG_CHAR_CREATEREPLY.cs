@@ -1,12 +1,10 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Shared.PacketLib.Map
 {
-
     internal class CMSG_CHAR_CREATEREPLY : RelayPacket
     {
-
         public CMSG_CHAR_CREATEREPLY()
         {
             this.data = new byte[4];
@@ -21,7 +19,6 @@ namespace Saga.Shared.PacketLib.Map
             }
         }
 
-        
         #region Conversions
 
         public static explicit operator CMSG_CHAR_CREATEREPLY(byte[] p)
@@ -31,8 +28,8 @@ namespace Saga.Shared.PacketLib.Map
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -45,6 +42,6 @@ namespace Saga.Shared.PacketLib.Map
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

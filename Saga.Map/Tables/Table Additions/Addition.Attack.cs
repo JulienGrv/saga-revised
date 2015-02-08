@@ -1,34 +1,28 @@
-using Saga.Shared.Definitions;
-using System;
-using Saga.PrimaryTypes;
 using Saga.Enumarations;
-using System.Collections.Generic;
 using Saga.Map;
+using Saga.PrimaryTypes;
 using Saga.Structures;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Spells
 {
-
     public static partial class Additions
     {
-                           
-        //539        | P. Short Critical Rate         		    | True                 | True                
-        //540        | P. Ranged Critical Rate       		    | True                 | True                
-        //541        | Magical Critical Rate                    | True                 | True                
-        //542        | P. Short Critical Rate                   | True                 | False               
-        //543        | P. Ranged Critical Rate                  | True                 | False               
+        //539        | P. Short Critical Rate         		    | True                 | True
+        //540        | P. Ranged Critical Rate       		    | True                 | True
+        //541        | Magical Critical Rate                    | True                 | True
+        //542        | P. Short Critical Rate                   | True                 | False
+        //543        | P. Ranged Critical Rate                  | True                 | False
 
-
-        //500        | Min. P. Short Attack        			    | True                 | True                
-        //501        | Min. P. Ranged Attack                    | True                 | True                
-        //502        | Min. Magic Attack                        | True                 | True                
-        //509        | Max. P. Short Attack                     | True                 | True                
-        //510        | Max. P. Ranged Attack                    | True                 | True                
-        //511        | Max. Magic Attack	                    | True                 | True                
+        //500        | Min. P. Short Attack        			    | True                 | True
+        //501        | Min. P. Ranged Attack                    | True                 | True
+        //502        | Min. Magic Attack                        | True                 | True
+        //509        | Max. P. Short Attack                     | True                 | True
+        //510        | Max. P. Ranged Attack                    | True                 | True
+        //511        | Max. Magic Attack	                    | True                 | True
         public static void MINPATTACK(ref AdditionValue aval, int value)
         {
-            
-
             //Memory subfunction
             //Addition 500 - Min. P. Short Attack;
 
@@ -36,10 +30,10 @@ namespace Saga.Spells
             BattleStatus status = character.Status;
             if (aval.context == AdditionContext.Applied)
                 status.MinPAttack += value;
-            else if (aval.context == AdditionContext.Deapplied)            
+            else if (aval.context == AdditionContext.Deapplied)
                 status.MinPAttack -= value;
-
         }
+
         public static void MINRATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -47,12 +41,12 @@ namespace Saga.Spells
 
             Actor character = aval.sender as Actor;
             BattleStatus status = character.Status;
-            if ( aval.context == AdditionContext.Applied)
+            if (aval.context == AdditionContext.Applied)
                 status.MinRAttack += value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.MinRAttack -= value;
-
         }
+
         public static void MINMATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -64,8 +58,8 @@ namespace Saga.Spells
                 status.MinMAttack += value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.MinMAttack -= value;
-
         }
+
         public static void MaxPATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -77,8 +71,8 @@ namespace Saga.Spells
                 status.MaxPAttack += value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.MaxPAttack -= value;
-
         }
+
         public static void MaxRATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -90,8 +84,8 @@ namespace Saga.Spells
                 status.MaxRAttack += value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.MaxRAttack -= value;
-
         }
+
         public static void MaxMATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -103,15 +97,14 @@ namespace Saga.Spells
                 status.MaxMAttack += value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.MaxMAttack -= value;
-
         }
 
-        //518        | Min. Short Weapon Damage                 | True                 | False               
-        //519        | Min. Ranged Weapon Damage     		    | True                 | False               
-        //520        | Min. Magic Weapon Damage          		| True                 | False               
-        //521        | Max. Short Weapon Damage                 | True                 | False               
-        //522        | Max. Ranged Weapon Damage                | True                 | False               
-        //523        | Max. Magic Weapon Damage                 | True                 | False               
+        //518        | Min. Short Weapon Damage                 | True                 | False
+        //519        | Min. Ranged Weapon Damage     		    | True                 | False
+        //520        | Min. Magic Weapon Damage          		| True                 | False
+        //521        | Max. Short Weapon Damage                 | True                 | False
+        //522        | Max. Ranged Weapon Damage                | True                 | False
+        //523        | Max. Magic Weapon Damage                 | True                 | False
         public static void MINWPATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -123,8 +116,8 @@ namespace Saga.Spells
                 status.MinWPAttack += (ushort)value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.MinWPAttack -= (ushort)value;
-
         }
+
         public static void MINWRATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -136,8 +129,8 @@ namespace Saga.Spells
                 status.MinWRAttack += (ushort)value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.MinWRAttack -= (ushort)value;
-
         }
+
         public static void MINWMATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -149,8 +142,8 @@ namespace Saga.Spells
                 status.MinWMAttack += (ushort)value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.MinWMAttack -= (ushort)value;
-
         }
+
         public static void MaxWPATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -162,8 +155,8 @@ namespace Saga.Spells
                 status.MaxWPAttack += (ushort)value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.MaxWPAttack -= (ushort)value;
-
         }
+
         public static void MaxWRATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -175,8 +168,8 @@ namespace Saga.Spells
                 status.MaxWRAttack += (ushort)value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.MaxWRAttack -= (ushort)value;
-
         }
+
         public static void MaxWMATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -188,12 +181,11 @@ namespace Saga.Spells
                 status.MaxWMAttack += (ushort)value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.MaxWMAttack -= (ushort)value;
-
         }
 
-        //524        | P. Short Attack           			    | True                 | True                
-        //525        | P. Ranged Attack                		    | True                 | True                
-        //526        | Magic Attack           			        | True                 | True                
+        //524        | P. Short Attack           			    | True                 | True
+        //525        | P. Ranged Attack                		    | True                 | True
+        //526        | Magic Attack           			        | True                 | True
         public static void PATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -211,6 +203,7 @@ namespace Saga.Spells
                 status.MaxPAttack -= value;
             }
         }
+
         public static void RATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -228,6 +221,7 @@ namespace Saga.Spells
                 status.MaxRAttack -= value;
             }
         }
+
         public static void MATTACK(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -247,9 +241,9 @@ namespace Saga.Spells
             }
         }
 
-        //533        | P. Short Hitrate        			        | True                 | True                
-        //534        | P. Ranged Hitrate          			    | True                 | True                
-        //535        | Magic Hitrate          			        | True                 | True                
+        //533        | P. Short Hitrate        			        | True                 | True
+        //534        | P. Ranged Hitrate          			    | True                 | True
+        //535        | Magic Hitrate          			        | True                 | True
         public static void PHITRATE(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -261,6 +255,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 status.BasePHitrate -= value;
         }
+
         public static void RHITRATE(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -272,6 +267,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 status.BaseRHitrate -= value;
         }
+
         public static void MHITRATE(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -284,9 +280,9 @@ namespace Saga.Spells
                 status.BaseMHitrate -= value;
         }
 
-        //536        | P. Short Evasion Rate              | True                 | True                
-        //537        | P. Ranged Evasion Rate             | True                 | True                
-        //538        | Magical Evasion Rate       		  | True                 | True                
+        //536        | P. Short Evasion Rate              | True                 | True
+        //537        | P. Ranged Evasion Rate             | True                 | True
+        //538        | Magical Evasion Rate       		  | True                 | True
         public static void PEVASIONRATE(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -298,6 +294,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 status.BasePEvasionrate -= value;
         }
+
         public static void REVASIONRATE(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -309,6 +306,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 status.BaseREvasionrate -= value;
         }
+
         public static void MEVASIONRATE(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -321,9 +319,9 @@ namespace Saga.Spells
                 status.BaseMEvasionrate -= value;
         }
 
-        //541        | Magical Critical Rate             | True                 | True                
-        //542        | P. Short Critical Rate            | True                 | False               
-        //543        | P. Ranged Critical Rate           | True                 | False               
+        //541        | Magical Critical Rate             | True                 | True
+        //542        | P. Short Critical Rate            | True                 | False
+        //543        | P. Ranged Critical Rate           | True                 | False
         public static void PCRITICALRATE(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -335,6 +333,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 status.BasePCritrate -= value;
         }
+
         public static void RCRITICALRATE(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -346,6 +345,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 status.BaseRCritrate -= value;
         }
+
         public static void MCRITICALRATE(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -358,11 +358,11 @@ namespace Saga.Spells
                 status.BaseMCritrate -= value;
         }
 
-        //545        | Strength                           | True                 | False               
-        //546        | Dexterity                          | True                 | False               
-        //547        | Intellect                          | True                 | False               
-        //548        | Concentration                      | True                 | False               
-        //549        | Luck                               | True                 | False               
+        //545        | Strength                           | True                 | False
+        //546        | Dexterity                          | True                 | False
+        //547        | Intellect                          | True                 | False
+        //548        | Concentration                      | True                 | False
+        //549        | Luck                               | True                 | False
         public static void ADDITION_STR(ref AdditionValue aval, int value)
         {
             Character character = (Character)aval.sender;
@@ -384,6 +384,7 @@ namespace Saga.Spells
                 character._status.Updates |= 1;
             }
         }
+
         public static void ADDITION_DEX(ref AdditionValue aval, int value)
         {
             Character character = (Character)aval.sender;
@@ -399,6 +400,7 @@ namespace Saga.Spells
                 character.stats.EQUIPMENT.dexterity -= (byte)value;
             }
         }
+
         public static void ADDITION_INT(ref AdditionValue aval, int value)
         {
             Character character = (Character)aval.sender;
@@ -418,6 +420,7 @@ namespace Saga.Spells
                 character.stats.EQUIPMENT.intelligence -= (byte)value;
             }
         }
+
         public static void ADDITION_CON(ref AdditionValue aval, int value)
         {
             Character character = (Character)aval.sender;
@@ -437,6 +440,7 @@ namespace Saga.Spells
                 character.stats.EQUIPMENT.concentration -= (byte)value;
             }
         }
+
         public static void ADDITION_LUK(ref AdditionValue aval, int value)
         {
             Character character = (Character)aval.sender;
@@ -447,8 +451,8 @@ namespace Saga.Spells
                 character.stats.EQUIPMENT.luck -= (byte)value;
         }
 
-        //579        | P. Defence                               | True                 | True                
-        //580        | Magic Defence                            | True                 | False               
+        //579        | P. Defence                               | True                 | True
+        //580        | Magic Defence                            | True                 | False
         public static void ADDITION_PHYSICALDEFENSE(ref AdditionValue aval, int value)
         {
             Actor character = aval.sender as Actor;
@@ -457,6 +461,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 character._status.DefencePhysical -= (byte)value;
         }
+
         public static void ADDITION_MAGICALDEFENSE(ref AdditionValue aval, int value)
         {
             Actor character = aval.sender as Actor;
@@ -466,15 +471,15 @@ namespace Saga.Spells
                 character._status.DefenceMagical -= (ushort)value;
         }
 
-        //550        | Maximum HP                        | True                 | True                
-        //551        | Maximum SP                        | True                 | True                
-        //552        | Maximum Oxygen                    | False                | True                
+        //550        | Maximum HP                        | True                 | True
+        //551        | Maximum SP                        | True                 | True
+        //552        | Maximum Oxygen                    | False                | True
         public static void ADDITION_MHP(ref AdditionValue aval, int value)
         {
             //Memory subfunction
             //Addition 533 -  P. Short Hitrate ;
 
-            Actor character = aval.target as Actor;            
+            Actor character = aval.target as Actor;
             BattleStatus status = character.Status;
             if (aval.context == AdditionContext.Applied)
                 status.MaxHP += value;
@@ -482,6 +487,7 @@ namespace Saga.Spells
                 status.MaxHP -= value;
             character._status.Updates |= 1;
         }
+
         public static void ADDITION_MSP(ref AdditionValue aval, int value)
         {
             //Memory subfunction
@@ -495,6 +501,7 @@ namespace Saga.Spells
                 status.MaxSP -= value;
             character._status.Updates |= 1;
         }
+
         public static void ADDITION_MBREATHCAPACITY(ref AdditionValue aval, int value)
         {
             Actor character = aval.target as Actor;
@@ -505,10 +512,10 @@ namespace Saga.Spells
             character._status.Updates |= 1;
         }
 
-        //553        | Current HP                               | True                 | True                
-        //554        | Current SP                               | True                 | False               
-        //555        | Current Oxygen                           | False                | True                
-        //556        | Current LP                               | True                 | False    
+        //553        | Current HP                               | True                 | True
+        //554        | Current SP                               | True                 | False
+        //555        | Current Oxygen                           | False                | True
+        //556        | Current LP                               | True                 | False
         public static void ADDITION_HP(ref AdditionValue aval, int value)
         {
             Actor character = aval.target as Actor;
@@ -522,6 +529,7 @@ namespace Saga.Spells
                 }
             }
         }
+
         public static void ADDITION_SP(ref AdditionValue aval, int value)
         {
             Actor character = aval.target as Actor;
@@ -535,6 +543,7 @@ namespace Saga.Spells
                 }
             }
         }
+
         public static void ADDITION_BREATH(ref AdditionValue aval, int value)
         {
             Actor character = aval.target as Actor;
@@ -548,6 +557,7 @@ namespace Saga.Spells
                 }
             }
         }
+
         public static void ADDITION_LP(ref AdditionValue aval, int value)
         {
             Actor character = aval.target as Actor;
@@ -560,18 +570,18 @@ namespace Saga.Spells
                     character._status.CurrentLp = 7;
                 }
 
-                //Do lp effect                
-                if( value > 0)
-                Common.Skills.SendSkillEffect(character, aval.additionid, 3, (uint)value);
+                //Do lp effect
+                if (value > 0)
+                    Common.Skills.SendSkillEffect(character, aval.additionid, 3, (uint)value);
             }
         }
 
-        //557        | HP Recovery Amount                       | True                 | False               
-        //558        | SP Recovery Amount                       | True                 | False                
-        //561        | HP Recover Rate		                    | True                 | True                
-        //562        | SP Recover Rate                          | True                 | True                
-        //564        | Block SP Recovery                        | True                 | False               
-        //565        | Block HP Recovery                        | True                 | False               
+        //557        | HP Recovery Amount                       | True                 | False
+        //558        | SP Recovery Amount                       | True                 | False
+        //561        | HP Recover Rate		                    | True                 | True
+        //562        | SP Recover Rate                          | True                 | True
+        //564        | Block SP Recovery                        | True                 | False
+        //565        | Block HP Recovery                        | True                 | False
         public static void ADDITION_HPRECOVERYRATE(ref AdditionValue aval, int value)
         {
             Actor character = aval.sender as Actor;
@@ -580,6 +590,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 character._status.HpRecoveryRate -= (ushort)value;
         }
+
         public static void ADDITION_SPRECOVERYRATE(ref AdditionValue aval, int value)
         {
             Actor character = aval.sender as Actor;
@@ -588,6 +599,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 character._status.SpRecoveryRate -= (ushort)value;
         }
+
         public static void ADDITION_OXYGENRECOVERYRATE(ref AdditionValue aval, int value)
         {
             Actor character = aval.sender as Actor;
@@ -596,6 +608,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 character._status.OxygenRecoveryRate -= (ushort)value;
         }
+
         public static void ADDITION_HPRECOVERQUANTITY(ref AdditionValue aval, int value)
         {
             Actor character = aval.sender as Actor;
@@ -604,6 +617,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 character._status.HpRecoveryQuantity -= (short)value;
         }
+
         public static void ADDITION_SPRECOVERQUANTITY(ref AdditionValue aval, int value)
         {
             Actor character = aval.sender as Actor;
@@ -612,6 +626,7 @@ namespace Saga.Spells
             else if (aval.context == AdditionContext.Deapplied)
                 character._status.SpRecoveryQuantity -= (short)value;
         }
+
         public static void BLOCKHPRECOVERY(ref AdditionValue aval, int value)
         {
             Character starget = aval.sender as Character;
@@ -623,6 +638,7 @@ namespace Saga.Spells
                     starget.blockhprecovery -= (byte)(value ^ 1);
             }
         }
+
         public static void BLOCKSPRECOVERY(ref AdditionValue aval, int value)
         {
             Character starget = aval.sender as Character;
@@ -635,14 +651,10 @@ namespace Saga.Spells
             }
         }
 
-
-
-
         //Addition 586
         public static void ADDITION_DROPRATE(ref AdditionValue aval, int value)
         {
         }
-
 
         // Addition 603
         public static void ADDITION_CANNOTMOVE(ref AdditionValue aval, int value)
@@ -650,7 +662,7 @@ namespace Saga.Spells
             Actor character = aval.sender as Actor;
             if (aval.context == AdditionContext.Applied && value == 0)
                 character._status.CannotMove += 1;
-            else if( aval.context == AdditionContext.Deapplied)
+            else if (aval.context == AdditionContext.Deapplied)
                 character._status.CannotMove -= 1;
         }
 
@@ -670,7 +682,7 @@ namespace Saga.Spells
             Actor starget = aval.sender as Actor;
             if (starget != null)
             {
-                if (aval.context == AdditionContext.Applied )
+                if (aval.context == AdditionContext.Applied)
                     starget._status.ChaseTresshold += (byte)(value ^ 1);
                 else if (aval.context == AdditionContext.Deapplied)
                     starget._status.ChaseTresshold -= (byte)(value ^ 1);
@@ -804,8 +816,6 @@ namespace Saga.Spells
             }
         }
 
-
-
         public static void ADDITION_BLOCKRATE(ref AdditionValue aval, int value)
         {
             Actor character = (Actor)aval.sender;
@@ -830,6 +840,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 2:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -837,6 +848,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 3:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -844,6 +856,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 4:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -851,6 +864,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 5:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -858,6 +872,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 6:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -865,6 +880,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 7:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -872,6 +888,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 8:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -879,6 +896,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 9:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -886,6 +904,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 10:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -893,6 +912,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 11:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -900,6 +920,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 12:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -907,6 +928,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 13:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -914,6 +936,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 14:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -921,6 +944,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 15:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -928,6 +952,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 16:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -935,6 +960,7 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 17:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -942,12 +968,14 @@ namespace Saga.Spells
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 18: Itemlist.Clear();
                         Itemlist.Add(100000);
                         Itemlist.Add(100001);
                         Itemlist.Add(100002);
                         Itemlist.Add(100003);
                         break;
+
                     case 19:
                         Itemlist.Clear();
                         Itemlist.Add(100000);
@@ -956,7 +984,6 @@ namespace Saga.Spells
                         Itemlist.Add(100003);
                         break;
                 }
-
 
                 if (Itemlist.Count == 0) return;
                 int rand = Singleton.WorldTasks.random.Next(0, 100) % Itemlist.Count;
@@ -988,7 +1015,6 @@ namespace Saga.Spells
 
             lock (targeta._status)
             {
-
                 //CHECKS IF WE ARE aval.contextING OR DEaval.contextING
                 if (aval.context == AdditionContext.Applied)
                     targeta._status.FireResistance += (ushort)value;
@@ -1163,10 +1189,6 @@ namespace Saga.Spells
                 status.CastingTime += (ushort)value;
             else if (aval.context == AdditionContext.Deapplied)
                 status.CastingTime -= (ushort)value;
-
         }
-
     }
-
-
 }

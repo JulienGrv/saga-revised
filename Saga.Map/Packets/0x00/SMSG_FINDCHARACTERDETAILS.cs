@@ -1,18 +1,13 @@
-using System;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
 using Saga.PrimaryTypes;
+using System;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_FINDCHARACTERDETAILS : RelayPacket
     {
-
-
         public SMSG_FINDCHARACTERDETAILS()
         {
-
             this.Cmd = 0x0701;
             this.Id = 0x0003;
             this.data = new byte[109];
@@ -167,7 +162,6 @@ namespace Saga.Packets
                 this.data[88] = value.dyecolor;
             }
         }
-
 
         public Rag2Item LeftShield
         {

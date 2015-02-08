@@ -1,18 +1,15 @@
-using System;
-using System.Collections.Generic;
+using Saga.Enumarations;
 using Saga.Map.Definitions.Misc;
 using Saga.Packets;
-using Saga.Shared.Definitions;
 using Saga.PrimaryTypes;
-using Saga.Enumarations;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Map.Client
 {
-
     [CLSCompliant(false)]
     partial class Client
     {
-
         private void CM_SELECTCHANNEL(CMSG_SELECTCHANNEL cpkt)
         {
             Console.WriteLine("Player selects channel {0}", cpkt.Channel);
@@ -26,55 +23,55 @@ namespace Saga.Map.Client
         }
 
         /// <summary>
-        /// This function will initialize the trading.            
+        /// This function will initialize the trading.
         /// First it will check if the desired target is a existing target and fill it
         /// to your characer.target, by using is Character we check if the target is a valid
         /// Character or a other type of actor.
-        ///    
+        ///
         /// If the selected character is a non-character or the target is yourself
         /// we'll send a reason of NO_TARGET. If the selected target already has a tradesession
         /// active we send a TRADE_ACTIVE. IF everything goes according to plans we'll not set
         /// a reason which equals sucess.
         /// </summary>
         /// <param name="cpkt"></param>
-        private void CM_TRADEINVITATION(CMSG_REQUESTTRADE cpkt )
-        {            
+        private void CM_TRADEINVITATION(CMSG_REQUESTTRADE cpkt)
+        {
             if (Regiontree.TryFind(cpkt.TargetActor, this.character, out this.character._target))
-            if (character.Target is Character)
-            {
-                Character Target = this.character.Target as Character;
-                if (Target.TradeSession != null)
+                if (character.Target is Character)
                 {
-                    //CHARACTER CAN'T TRADE, HE IS ALREADY IN A TRADE
-                    SMSG_TRADERESULT spkt = new SMSG_TRADERESULT();
-                    spkt.ActorId = cpkt.TargetActor;
-                    spkt.SessionId = this.character.id;
-                    spkt.Reason = (byte)TradeResult.TargetAlreadyInTrade;
-                    this.Send((byte[])spkt);
+                    Character Target = this.character.Target as Character;
+                    if (Target.TradeSession != null)
+                    {
+                        //CHARACTER CAN'T TRADE, HE IS ALREADY IN A TRADE
+                        SMSG_TRADERESULT spkt = new SMSG_TRADERESULT();
+                        spkt.ActorId = cpkt.TargetActor;
+                        spkt.SessionId = this.character.id;
+                        spkt.Reason = (byte)TradeResult.TargetAlreadyInTrade;
+                        this.Send((byte[])spkt);
+                    }
+                    else
+                    {
+                        //TRADE SESSION ESTABLISHED
+                        TradeSession tradesession = new TradeSession(this.character, Target);
+                        Target.TradeSession = tradesession;
+                        this.character.TradeSession = tradesession;
+
+                        //TRADE INVITATION WAIT FOR CONFIRMATION
+                        SMSG_TRADEINVITATION spkt = new SMSG_TRADEINVITATION();
+                        spkt.SessionId = Target.id;
+                        spkt.ActorId = this.character.id;
+                        Target.client.Send((byte[])spkt);
+                    }
                 }
                 else
                 {
-                    //TRADE SESSION ESTABLISHED
-                    TradeSession tradesession = new TradeSession(this.character, Target);
-                    Target.TradeSession = tradesession;
-                    this.character.TradeSession = tradesession;
-
-                    //TRADE INVITATION WAIT FOR CONFIRMATION
-                    SMSG_TRADEINVITATION spkt = new SMSG_TRADEINVITATION();
-                    spkt.SessionId = Target.id;
-                    spkt.ActorId = this.character.id;
-                    Target.client.Send((byte[])spkt);
+                    //SELECTED TARGET WAS NOT FOUND
+                    SMSG_TRADERESULT spkt = new SMSG_TRADERESULT();
+                    spkt.ActorId = cpkt.TargetActor;
+                    spkt.SessionId = this.character.id;
+                    spkt.Reason = (byte)TradeResult.TargetNotFound;
+                    this.Send((byte[])spkt);
                 }
-            }
-            else
-            {
-                //SELECTED TARGET WAS NOT FOUND
-                SMSG_TRADERESULT spkt = new SMSG_TRADERESULT();
-                spkt.ActorId = cpkt.TargetActor;
-                spkt.SessionId = this.character.id;
-                spkt.Reason = (byte)TradeResult.TargetNotFound;
-                this.Send((byte[])spkt);
-            }            
         }
 
         /// <summary>
@@ -87,10 +84,10 @@ namespace Saga.Map.Client
             if (this.character.TradeSession != null)
             {
                 //OBTAIN THE ORGIN TARGET
-                Character target = (this.character.TradeSession.Source == this.character) ? 
+                Character target = (this.character.TradeSession.Source == this.character) ?
                     this.character.TradeSession.Target :
                     this.character.TradeSession.Source;
-              
+
                 if (cpkt.Zeny > this.character.ZENY)
                 {
                     //NOT ENOUGH MONEY
@@ -114,17 +111,17 @@ namespace Saga.Map.Client
                     target.client.Send((byte[])spkt2);
 
                     //SET THE MONEY
-                    if( this.character == this.character.TradeSession.Source)
-                        this.character.TradeSession.ZenySource = cpkt.Zeny; 
-                    else 
+                    if (this.character == this.character.TradeSession.Source)
+                        this.character.TradeSession.ZenySource = cpkt.Zeny;
+                    else
                         this.character.TradeSession.ZenyTarget = cpkt.Zeny;
-                }                                
+                }
             }
         }
 
         /// <summary>
-        /// This function will notify the people in the tradession they have accepted 
-        /// or refused your request to trade. We invoked the methods on our 
+        /// This function will notify the people in the tradession they have accepted
+        /// or refused your request to trade. We invoked the methods on our
         /// tradesession in a event-based architechture.
         /// </summary>
         /// <param name="cpkt"></param>
@@ -138,23 +135,24 @@ namespace Saga.Map.Client
                     this.character.TradeSession.Source;
 
                 if (this.character.TradeSession != null)
-                switch (cpkt.Result)
-                {
-                    case 0:
-                        SMSG_TRADERESULT spkt = new SMSG_TRADERESULT();
-                        spkt.ActorId = this.character.id;
-                        spkt.SessionId = target.id;
-                        spkt.Reason = (byte)TradeResult.Success;
-                        target.client.Send((byte[])spkt);                                               
-                        break;
-                    case 1:
-                        SMSG_TRADERESULT spkt2 = new SMSG_TRADERESULT();
-                        spkt2.ActorId = target.id;
-                        spkt2.SessionId = target.id;
-                        spkt2.Reason = (byte)TradeResult.TargetCanceled;
-                        target.client.Send((byte[])spkt2);                                                                       
-                        break;
-                }
+                    switch (cpkt.Result)
+                    {
+                        case 0:
+                            SMSG_TRADERESULT spkt = new SMSG_TRADERESULT();
+                            spkt.ActorId = this.character.id;
+                            spkt.SessionId = target.id;
+                            spkt.Reason = (byte)TradeResult.Success;
+                            target.client.Send((byte[])spkt);
+                            break;
+
+                        case 1:
+                            SMSG_TRADERESULT spkt2 = new SMSG_TRADERESULT();
+                            spkt2.ActorId = target.id;
+                            spkt2.SessionId = target.id;
+                            spkt2.Reason = (byte)TradeResult.TargetCanceled;
+                            target.client.Send((byte[])spkt2);
+                            break;
+                    }
             }
         }
 
@@ -163,14 +161,14 @@ namespace Saga.Map.Client
         /// </summary>
         /// <param name="cpkt"></param>
         private void CM_TRADEITEM(CMSG_TRADEITEM cpkt)
-        {            
+        {
             byte status = 1;
             try
             {
                 //OBTAIN THE ORGIN TARGET
                 Character target;
                 TradeSession.TradeItem[] Items;
-                if( this.character.TradeSession.Source == this.character )
+                if (this.character.TradeSession.Source == this.character)
                 {
                     target = this.character.TradeSession.Target;
                     Items = this.character.TradeSession.SourceItem;
@@ -187,7 +185,7 @@ namespace Saga.Map.Client
                     SMSG_TRADERESULT2 spkt = new SMSG_TRADERESULT2();
                     spkt.Reason = (byte)TradeResult.Error;
                     spkt.SessionId = this.character.id;
-                    this.Send((byte[])spkt);                    
+                    this.Send((byte[])spkt);
                 }
                 if (item.tradeable == false)
                 {
@@ -205,7 +203,6 @@ namespace Saga.Map.Client
                 }
                 else
                 {
-
                     TradeSession.TradeItem item2 = new TradeSession.TradeItem();
                     item2.Count = cpkt.Count;
                     item2.Slot = cpkt.Item;
@@ -233,14 +230,14 @@ namespace Saga.Map.Client
         }
 
         /// <summary>
-        /// This function will notify the people in the tradesession you have accepted 
-        /// the contents of the trade. In this context it means: items and/or the amount 
+        /// This function will notify the people in the tradesession you have accepted
+        /// the contents of the trade. In this context it means: items and/or the amount
         /// of money.
         /// </summary>
         private void CM_TRADECONTENTAGREE(CMSG_TRADECONTENTCONFIRM cpkt)
         {
             if (this.character.TradeSession != null)
-            {                
+            {
                 //OBTAIN THE ORGIN TARGET
                 Character target;
                 if (this.character.TradeSession.Source == this.character)
@@ -271,7 +268,7 @@ namespace Saga.Map.Client
             {
                 //OBTAIN THE ORGIN TARGET
                 Character target;
-                TradeSession.TradeItem[] Items;                
+                TradeSession.TradeItem[] Items;
                 if (this.character.TradeSession.Source == this.character)
                 {
                     target = session.Target;
@@ -282,7 +279,6 @@ namespace Saga.Map.Client
                     target = session.Source;
                     Items = session.SourceItem;
                 }
-
 
                 //Calculate required slots
                 int slots = 0;
@@ -323,27 +319,25 @@ namespace Saga.Map.Client
                     }
                 }
 
-
                 if (session.TargetHasAgreed && session.SourceHasAgreed)
                 {
-
                     target.ZENY += session.ZenySource;
                     this.character.ZENY -= session.ZenySource;
 
                     target.ZENY -= session.ZenyTarget;
-                    this.character.ZENY += session.ZenyTarget;    
+                    this.character.ZENY += session.ZenyTarget;
 
                     List<Rag2Item> SourceList = new List<Rag2Item>();
                     List<Rag2Item> TargetList = new List<Rag2Item>();
                     for (int i = 0; i < 16; i++)
                     {
                         TradeSession.TradeItem item = session.SourceItem[i];
-                        if (item == null) continue;   
+                        if (item == null) continue;
 
                         Rag2Item ragitem = this.character.container[item.Slot];
                         if (ragitem.count - item.Count == 0)
-                        {                            
-                            SourceList.Add( ragitem );
+                        {
+                            SourceList.Add(ragitem);
                             this.character.container.RemoveAt(item.Slot);
                             SMSG_DELETEITEM spkt = new SMSG_DELETEITEM();
                             spkt.Container = 2;
@@ -410,9 +404,9 @@ namespace Saga.Map.Client
                     }
 
                     for (int i = 0; i < TargetList.Count; i++)
-                    {                        
+                    {
                         Rag2Item ragitem = TargetList[i];
-                        int index = this.character.container.Add(ragitem); 
+                        int index = this.character.container.Add(ragitem);
                         SMSG_ADDITEM spkt = new SMSG_ADDITEM();
                         spkt.Container = 2;
                         spkt.UpdateReason = (byte)ItemUpdateReason.ReceiveFromTrade;
@@ -420,7 +414,6 @@ namespace Saga.Map.Client
                         spkt.SetItem(ragitem, index);
                         this.Send((byte[])spkt);
                     }
-
 
                     //Update zeny yourself
                     SMSG_SENDZENY spkt4 = new SMSG_SENDZENY();
@@ -432,7 +425,7 @@ namespace Saga.Map.Client
                     SMSG_SENDZENY spkt5 = new SMSG_SENDZENY();
                     spkt5.SessionId = target.id;
                     spkt5.Zeny = target.ZENY;
-                    target.client.Send((byte[])spkt5);    
+                    target.client.Send((byte[])spkt5);
 
                     //Set traderesult to succesfull
                     SMSG_TRADERESULT2 spkt3 = new SMSG_TRADERESULT2();
@@ -447,7 +440,7 @@ namespace Saga.Map.Client
                     //Set the tradesession to null
                     this.character.TradeSession = null;
                     target.TradeSession = null;
-                }              
+                }
             }
         }
 
@@ -462,7 +455,7 @@ namespace Saga.Map.Client
                 Character target = (this.character.TradeSession.Source == this.character) ?
                     this.character.TradeSession.Target :
                     this.character.TradeSession.Source;
-                
+
                 SMSG_TRADERESULT2 spkt = new SMSG_TRADERESULT2();
                 spkt.SessionId = target.id;
                 spkt.Reason = (byte)TradeResult.TargetCanceled;
@@ -472,6 +465,5 @@ namespace Saga.Map.Client
                 this.character.TradeSession = null;
             }
         }
-             
     }
 }

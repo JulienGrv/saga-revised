@@ -1,43 +1,38 @@
-﻿using System;
+﻿using Saga.Configuration;
+using Saga.Map;
+using Saga.Map.Configuration;
+using Saga.PrimaryTypes;
+using Saga.Structures;
+using Saga.Templates;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
-using System.Xml;
-using Saga.Map.Configuration;
-using Saga.Configuration;
-using Saga.Shared.Definitions;
 using System.Globalization;
-using Saga.PrimaryTypes;
-using Saga.Templates;
-using System.Reflection;
-using Saga.Structures;
-using Saga.Map;
+using System.IO;
 using System.Net.Sockets;
-using Saga.Packets;
-using System.Diagnostics;
+using System.Reflection;
 
 namespace Saga.Factory
 {
-
     /// <summary>
     /// Factory to contain spawn information for npc
     /// </summary>
     /// <remarks>
     /// This factory contains spawn information for npc. With ncp both monsters
-    /// as regulair npc's are meant. 
+    /// as regulair npc's are meant.
     /// </remarks>
     public class SpawnTemplate : FactoryBase
     {
-
         #region Ctor/Dtor
-
 
         /// <summary>
         /// Initializes a new SpawnTemplate manager
         /// </summary>
-        public SpawnTemplate() { }
+        public SpawnTemplate()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
@@ -56,7 +51,7 @@ namespace Saga.Factory
         /// </summary>
         public Dictionary<string, ConstructorInfo> constructorinfo;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -64,7 +59,7 @@ namespace Saga.Factory
         /// Initializes all member variables
         /// </summary>
         protected override void Initialize()
-        {            
+        {
             templates = new Dictionary<uint, NpcInfo>();
             itemtemplates = new Dictionary<uint, ConstructorInfo>();
             constructorinfo = new Dictionary<string, ConstructorInfo>();
@@ -148,7 +143,6 @@ namespace Saga.Factory
                         info.Walkspeed = uint.Parse(fields[18], NumberFormatInfo.InvariantInfo);
                         info.Runspeed = uint.Parse(fields[19], NumberFormatInfo.InvariantInfo);
                         info.AIMode = byte.Parse(fields[20], NumberFormatInfo.InvariantInfo);
-       
 
                         if (TryGetConstructorInfo(fields[1], out info.info) == false)
                         {
@@ -182,7 +176,6 @@ namespace Saga.Factory
             }
         }
 
-
         /// <summary>
         /// Get's the constructor info by name.
         /// </summary>
@@ -200,13 +193,13 @@ namespace Saga.Factory
                 info = obj.GetType().GetConstructor(Type.EmptyTypes);
             else
                 WriteError("Type not found {0}", name);
-            
+
             bool isnotempty = info != null;
             if (isnotempty) constructorinfo[name] = info;
             return isnotempty;
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -222,7 +215,6 @@ namespace Saga.Factory
             bool result = templates.TryGetValue(id, out info);
             if (result)
             {
-
                 mob._status = new BattleStatus();
                 mob._status.CurrentHp = info.HP;
                 mob._status.MaxHP = info.HP;
@@ -231,7 +223,7 @@ namespace Saga.Factory
                 mob._level = (byte)info.Level;
                 mob._CEXP = info.CEXP;
                 mob._WEXP = info.WEXP;
-                mob._JEXP = info.JEXP;                
+                mob._JEXP = info.JEXP;
                 mob._SIGHTRANGE = info.Sightrange;
                 mob._status.MaxPAttack = info.AtkMax;
                 mob._status.MinPAttack = info.AtkMin;
@@ -240,15 +232,12 @@ namespace Saga.Factory
                 mob._status.BasePCritrate = info.Cri;
                 mob._status.WalkingSpeed = (ushort)info.Walkspeed;
 
-                
-
-
                 //mob._DEF = info.Def;
                 //mob._FLEE = info.Flee;
                 //mob._ATKMIN = info.AtkMin;
                 //mob._ATKMAX = info.AtkMax;
                 //mob._CRIT = info.Cri;
-                
+
                 mob._ASPD = info.ASPD;
                 mob._SIZE = info.Size;
                 mob._AIMODE = info.AIMode;
@@ -275,7 +264,7 @@ namespace Saga.Factory
                 npc._status.CurrentHp = info.HP;
                 npc._status.MaxHP = info.HP;
                 npc._status.CurrentSp = info.SP;
-                npc._status.MaxSP = info.SP;               
+                npc._status.MaxSP = info.SP;
             }
 
             return result;
@@ -293,7 +282,7 @@ namespace Saga.Factory
         public bool SpawnNpcInstance(uint id, Point position, Rotator yaw, Zone zone, out MapObject regionObject)
         {
             if (CreateInstance(id, 0, out regionObject))
-            {            
+            {
                 regionObject.Position = position;
                 regionObject.Yaw = yaw;
                 regionObject.currentzone = zone;
@@ -301,11 +290,11 @@ namespace Saga.Factory
                 regionObject.OnLoad();
                 regionObject.OnSpawn();
                 regionObject.OnRegister();
-                
+
                 if (regionObject.id > 0)
                 {
-                    Regiontree tree =  regionObject.currentzone.Regiontree;
-                    foreach( Character regionCharacter in tree.SearchActors( regionObject, Saga.Enumarations.SearchFlags.Characters))
+                    Regiontree tree = regionObject.currentzone.Regiontree;
+                    foreach (Character regionCharacter in tree.SearchActors(regionObject, Saga.Enumarations.SearchFlags.Characters))
                     {
                         try
                         {
@@ -327,8 +316,7 @@ namespace Saga.Factory
                 }
             }
 
-
-            return false;            
+            return false;
         }
 
         /// <summary>
@@ -351,7 +339,7 @@ namespace Saga.Factory
                 regionObject.OnInitialize(position);
                 regionObject.OnLoad();
                 regionObject.OnSpawn();
-                regionObject.OnRegister();                
+                regionObject.OnRegister();
 
                 if (regionObject.id > 0)
                 {
@@ -378,10 +366,8 @@ namespace Saga.Factory
                 }
             }
 
-
             return false;
         }
-
 
         /// <summary>
         /// Spawns an instance of an item
@@ -403,7 +389,6 @@ namespace Saga.Factory
                 regionObject.OnLoad();
                 regionObject.OnSpawn();
                 regionObject.OnRegister();
-                
 
                 if (regionObject.id > 0)
                 {
@@ -430,7 +415,6 @@ namespace Saga.Factory
                 }
             }
 
-
             return false;
         }
 
@@ -442,7 +426,7 @@ namespace Saga.Factory
         {
             regionObject.OnDeregister();
             Regiontree tree = regionObject.currentzone.Regiontree;
-            foreach (Character character in tree.SearchActors(regionObject, Saga.Enumarations.SearchFlags.Characters)) 
+            foreach (Character character in tree.SearchActors(regionObject, Saga.Enumarations.SearchFlags.Characters))
             {
                 try
                 {
@@ -450,12 +434,11 @@ namespace Saga.Factory
                     if (character.Target == regionObject) character.Target = null;
                     regionObject.HideObject(character);
                 }
-                catch(SocketException)
+                catch (SocketException)
                 {
                     //Do nothing
                 }
             }
-
         }
 
         /// <summary>
@@ -469,7 +452,6 @@ namespace Saga.Factory
             e = null;
             if (type == 0)
             {
-
                 NpcInfo d;
                 if (templates.TryGetValue(id, out d))
                     e = d.info.Invoke(new object[] { }) as MapObject;
@@ -486,10 +468,9 @@ namespace Saga.Factory
             }
 
             return e != null;
-
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Protected Properties
 
@@ -521,7 +502,7 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_ADDITION; }
         }
 
-        #endregion
+        #endregion Protected Properties
 
         #region Nested Classes/Structures
 
@@ -636,9 +617,8 @@ namespace Saga.Factory
             /// Byte setting of ai modes.
             /// </summary>
             public byte AIMode;
-        }       
+        }
 
-        #endregion
-
+        #endregion Nested Classes/Structures
     }
 }

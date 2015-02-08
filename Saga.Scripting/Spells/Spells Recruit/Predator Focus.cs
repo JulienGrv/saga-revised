@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void RECRUIT_PREDATORFOCUS(SkillBaseEventArgs bargument)
         {
             if (bargument.Context == Saga.Enumarations.SkillContext.SkillUse)
@@ -19,7 +14,5 @@ namespace Saga.Skills
                 Common.Skills.UpdateAddition(arguments.Target as Actor, arguments.Addition, 900000);
             }
         }
-
-
     }
 }

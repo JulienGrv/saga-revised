@@ -1,37 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Xml;
-using Saga.Enumarations;
+﻿using Saga.Enumarations;
 using Saga.Map;
 using Saga.PrimaryTypes;
 using Saga.Shared.Definitions;
 using Saga.Structures;
 using Saga.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Threading;
+using System.Xml;
 
 namespace Saga.Scripting
 {
-
     /// <summary>
     /// AI Class for the ship. Ships are always visible so with the RegionVisibility
     /// attribute we declare them to be be always visible. The RegionVisibility is
     /// inheritable and by default is declared on per region.
-    /// 
+    ///
     /// On subscribing and unsubscribing the object on the regiontree the RegionVisibility
     /// is checked as a result with the easyness of just 1 call to Regiontree.Subscribe
-    /// you can subscribe your object to become visible instead of 1 for always visible and 
+    /// you can subscribe your object to become visible instead of 1 for always visible and
     /// 1 for region-based visible.
     /// </summary>
-    [RegionVisibility(Level=VisibilityLevel.Always)]
-    class Ship : BaseMob, IArtificialIntelligence
+    [RegionVisibility(Level = VisibilityLevel.Always)]
+    internal class Ship : BaseMob, IArtificialIntelligence
     {
         #region Private Members
 
-        Path aipath;
+        private Path aipath;
 
-        #endregion
+        #endregion Private Members
 
         #region Base Members
 
@@ -43,8 +42,8 @@ namespace Saga.Scripting
             if (aipath != null)
             {
                 aipath.Start(this);
-                LifespanAI.Subscribe(this);            
-            }            
+                LifespanAI.Subscribe(this);
+            }
         }
 
         public override void OnDeregister()
@@ -62,36 +61,36 @@ namespace Saga.Scripting
             aipath.Show(this, character);
         }
 
-        #endregion
+        #endregion Base Members
 
         #region IArtificialIntelligence
 
-        void  IArtificialIntelligence.Process()
+        void IArtificialIntelligence.Process()
         {
- 	        //DONOTHING
+            //DONOTHING
             aipath.Check(this);
         }
 
-        bool  IArtificialIntelligence.IsActivatedOnDemand
+        bool IArtificialIntelligence.IsActivatedOnDemand
         {
             get { return false; }
         }
-        Saga.Tasks.LifespanAI.Lifespan lifespan = new Saga.Tasks.LifespanAI.Lifespan();
-        Saga.Tasks.LifespanAI.Lifespan  IArtificialIntelligence.Lifespan
+
+        private Saga.Tasks.LifespanAI.Lifespan lifespan = new Saga.Tasks.LifespanAI.Lifespan();
+
+        Saga.Tasks.LifespanAI.Lifespan IArtificialIntelligence.Lifespan
         {
             get { return lifespan; }
         }
 
-        #endregion
-
+        #endregion IArtificialIntelligence
     }
 
     /// <summary>
     /// OOP Wrapper helper for the Ship AI
     /// </summary>
-    class Path
+    internal class Path
     {
-
         #region Private Members
 
         private List<PathElement> Elements = new List<PathElement>();
@@ -100,17 +99,18 @@ namespace Saga.Scripting
         private int resetpoint;
         private byte state;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
         protected void NextPoint(Ship ship)
         {
             int count = Elements.Count;
-            if( count > 0 )
-            point = (++point % count);
+            if (count > 0)
+                point = (++point % count);
             Elements[point].Start(ship);
         }
+
         public void Check(Ship ship)
         {
             Elements[point].Check(ship);
@@ -133,7 +133,7 @@ namespace Saga.Scripting
             Elements[point].Show(ship, character);
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Public Static
 
@@ -145,12 +145,12 @@ namespace Saga.Scripting
             float lastz = ship.Position.z;
             Rotator lastyaw = ship.Yaw;
             Path path = new Path();
-            using( FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
             using (XmlTextReader reader = new XmlTextReader(fs))
             {
                 while (reader.Read())
                 {
-                    switch( reader.NodeType )
+                    switch (reader.NodeType)
                     {
                         case XmlNodeType.Element:
                             switch (reader.Name.ToUpperInvariant())
@@ -160,9 +160,10 @@ namespace Saga.Scripting
                                     lasty = float.Parse(reader["y"], CultureInfo.InvariantCulture);
                                     lastz = float.Parse(reader["z"], CultureInfo.InvariantCulture);
                                     lastyaw = int.Parse(reader["yaw"], CultureInfo.InvariantCulture);
-                                    PointElement p = new PointElement( path,
+                                    PointElement p = new PointElement(path,
                                         lastx, lasty, lastz, lastyaw);
                                     break;
+
                                 case "RESETPOSITION":
                                     lastx = float.Parse(reader["x"], CultureInfo.InvariantCulture);
                                     lasty = float.Parse(reader["y"], CultureInfo.InvariantCulture);
@@ -171,10 +172,12 @@ namespace Saga.Scripting
                                     ResetElement r = new ResetElement(path,
                                         lastx, lasty, lastz, lastyaw);
                                     break;
+
                                 case "SET":
                                     speed = ushort.Parse(reader["speed"], CultureInfo.InvariantCulture);
-                                    SetElement s = new SetElement(path, speed );
+                                    SetElement s = new SetElement(path, speed);
                                     break;
+
                                 case "SHIPYARD":
                                     ShipYard y = new ShipYard(path,
                                         new Point(lastx, lasty, lastz), lastyaw,
@@ -186,6 +189,7 @@ namespace Saga.Scripting
                                         uint.Parse(reader["shiptime"], CultureInfo.InvariantCulture),
                                         uint.Parse(reader["docktime"], CultureInfo.InvariantCulture));
                                     break;
+
                                 case "START":
                                     ship.Position = new Point(lastx, lasty, lastz);
                                     ship.Yaw = ship.Yaw;
@@ -196,12 +200,12 @@ namespace Saga.Scripting
                             break;
                     }
                 }
-            }            
+            }
 
             return path;
         }
 
-        #endregion
+        #endregion Public Static
 
         #region Nested
 
@@ -218,7 +222,9 @@ namespace Saga.Scripting
             }
 
             public abstract void Start(Ship ship);
+
             public abstract void Check(Ship ship);
+
             public abstract void Show(Ship ship, Character character);
 
             public PathElement(Path owner)
@@ -227,9 +233,11 @@ namespace Saga.Scripting
                 owner.Elements.Add(this);
             }
         }
+
         protected class PointElement : PathElement
-        {           
-            WaypointStructure structure;
+        {
+            private WaypointStructure structure;
+
             public override void Check(Ship ship)
             {
                 int tdiff = Environment.TickCount - Owner.LastTick;
@@ -258,7 +266,7 @@ namespace Saga.Scripting
                 else
                 {
                     if (tdiff > 0)
-                    {                        
+                    {
                         UpdateMovment(tdiff, ship);
                         Regiontree.UpdateRegion(ship, false);
                         int numberofpoints = 0;
@@ -281,8 +289,10 @@ namespace Saga.Scripting
                     }
                 }
             }
-            
-            public override void Start(Ship ship){}
+
+            public override void Start(Ship ship)
+            {
+            }
 
             public double ComputeDistance(Ship ship)
             {
@@ -294,6 +304,7 @@ namespace Saga.Scripting
                 double distance = Math.Sqrt(dx * dx + dy * dy + dz * dz);
                 return distance;
             }
+
             public void UpdateMovment(int tdiff, Ship ship)
             {
                 ushort yaw = Point.CalculateYaw(ship.Position, this.structure.point);
@@ -315,8 +326,6 @@ namespace Saga.Scripting
                 Loc.z = ship.Position.z;
                 return Loc;
             }
-
-
 
             public PointElement(Path owner, float x, float y, float z, Rotator yaw)
                 : base(owner)
@@ -352,6 +361,7 @@ namespace Saga.Scripting
                 }
             }
         }
+
         protected class SetElement : PathElement
         {
             private ushort speed;
@@ -384,7 +394,6 @@ namespace Saga.Scripting
         /// </summary>
         protected class ShipYard : PathElement
         {
-
             private uint docktime = 60000;
             private int TravelTime = 18000;
             public byte DestinationMapId;
@@ -393,7 +402,7 @@ namespace Saga.Scripting
 
             public override void Check(Ship ship)
             {
-                int t_diff = Environment.TickCount - Owner.LastTick;                
+                int t_diff = Environment.TickCount - Owner.LastTick;
                 if (t_diff > 60000)
                 {
                     //Check for players to warp
@@ -423,6 +432,7 @@ namespace Saga.Scripting
                     Owner.LastTick = Environment.TickCount;
                 }
             }
+
             public override void Start(Ship ship)
             {
                 byte zone = ship.currentzone.Map;
@@ -432,7 +442,6 @@ namespace Saga.Scripting
             public ShipYard(Path owner, Point a, Rotator yaw, Point destination, byte destinationmap, uint Traveltime, uint docktime)
                 : base(owner)
             {
-
                 this.box = new BoundingBox
                 (
                     4000,   //Width of the boat
@@ -445,9 +454,7 @@ namespace Saga.Scripting
                 DepartureWarpPosition = destination;
                 DestinationMapId = destinationmap;
                 this.docktime = docktime;
-
             }
-
 
             public override void Show(Ship ship, Character character)
             {
@@ -469,7 +476,7 @@ namespace Saga.Scripting
             }
 
             public override void Start(Ship ship)
-            {                
+            {
                 ship.Position = point;
                 ship.Yaw = yaw;
                 Regiontree.UpdateRegion(ship, false);
@@ -489,12 +496,6 @@ namespace Saga.Scripting
             }
         }
 
-        #endregion
-
+        #endregion Nested
     }
-
-
-
-
-
 }

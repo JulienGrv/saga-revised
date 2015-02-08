@@ -1,19 +1,10 @@
 ﻿using Saga.Packets;
-using Saga.Shared.Definitions;
-using System.Collections.Generic;
-using Saga.Map.Definitions.Misc;
-using System;
-using Saga;
-using Saga.Map;
 using Saga.PrimaryTypes;
 
 namespace Common
 {
-
     public static class Durabillity
     {
-
-
         #region Public Methods
 
         /// <summary>
@@ -58,8 +49,8 @@ namespace Common
         /// over the next equipment set.
         /// </remarks>
         public static void DoEquipment(Character target, uint damage)
-        {        
-            if( target == null ) return;
+        {
+            if (target == null) return;
             bool canupdate = false;
             int NewDurabillity = 0;
             byte Slot = 0;
@@ -80,6 +71,7 @@ namespace Common
                         target.LastEquipmentDuraLoss = 1;
                         canupdate = true;
                         break;
+
                     case 1:     //Shirt
                         Rag2Item shirt = target.Equipment[3];
                         if (shirt == null || shirt.active == 1 || shirt.durabillty == 0) goto case 2;
@@ -89,6 +81,7 @@ namespace Common
                         target.LastEquipmentDuraLoss = 2;
                         canupdate = true;
                         break;
+
                     case 2:     //Pants
                         Rag2Item pants = target.Equipment[4];
                         if (pants == null || pants.active == 1 || pants.durabillty == 0) goto case 3;
@@ -98,6 +91,7 @@ namespace Common
                         target.LastEquipmentDuraLoss = 3;
                         canupdate = true;
                         break;
+
                     case 3:     //Shoes
                         Rag2Item shoes = target.Equipment[5];
                         if (shoes == null || shoes.active == 1 || shoes.durabillty == 0) return;
@@ -122,8 +116,6 @@ namespace Common
             }
         }
 
-        #endregion
-
-
+        #endregion Public Methods
     }
 }

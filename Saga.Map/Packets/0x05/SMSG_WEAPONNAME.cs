@@ -2,9 +2,8 @@ using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet creates a new weapon
@@ -20,6 +19,5 @@ namespace Saga.Packets
             this.Id = 0x0520;
             this.data = new byte[1];
         }
-
     }
 }

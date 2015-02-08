@@ -1,18 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Saga.Enumarations;
 using Saga.Managers;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Saga.Map.Client
 {
     partial class Client
     {
-
-
         /// <summary>
         /// Occurs when a user speaks in general to the given channel
         /// </summary>
@@ -30,7 +28,6 @@ namespace Saga.Map.Client
             }
             else
             {
-
                 SMSG_SENDCHAT spkt = new SMSG_SENDCHAT();
                 spkt.Message = cpkt.Message;
                 spkt.Name = this.character.Name;
@@ -47,6 +44,7 @@ namespace Saga.Map.Client
                             characterTarget.client.Send((byte[])spkt);
                         }
                         break;
+
                     case SMSG_SENDCHAT.MESSAGE_TYPE.NORMAL:
                         foreach (MapObject myObject in this.character.currentzone.GetCharactersInSightRange(this.character))
                         {
@@ -56,6 +54,7 @@ namespace Saga.Map.Client
                             characterTarget.client.Send((byte[])spkt);
                         }
                         break;
+
                     case SMSG_SENDCHAT.MESSAGE_TYPE.PARTY:
                         if (this.character.sessionParty != null)
                         {
@@ -72,6 +71,7 @@ namespace Saga.Map.Client
                             this.Send((byte[])spkt);
                         }
                         break;
+
                     case SMSG_SENDCHAT.MESSAGE_TYPE.YELL:
                         foreach (MapObject myObject in this.character.currentzone.Regiontree.SearchActors(this.character, SearchFlags.Characters))
                         {
@@ -81,6 +81,7 @@ namespace Saga.Map.Client
                             characterTarget.client.Send((byte[])spkt);
                         }
                         break;
+
                     default:
                         Trace.TraceError("Message type not found {0}", cpkt.MessageType);
                         spkt.MessageType2 = 0xFF;
@@ -114,9 +115,9 @@ namespace Saga.Map.Client
             };
 
             //CHECK IF USER IS ONLINE
-            if( LifeCycle.TryGetByName(user, out target))
+            if (LifeCycle.TryGetByName(user, out target))
             {
-                if (target._blacklist.FindIndex(BlacklistFoo) > -1 )
+                if (target._blacklist.FindIndex(BlacklistFoo) > -1)
                     result = 2;
                 else if (this.character._blacklist.FindIndex(BlacklistOwn) > -1)
                     result = 3;
@@ -127,12 +128,12 @@ namespace Saga.Map.Client
             }
 
             //STRUCTURIZE PACKETS
-            if( result > 0)
+            if (result > 0)
             {
                 SMSG_WHISPERERROR spkt = new SMSG_WHISPERERROR();
                 spkt.SessionId = this.character.id;
                 spkt.Result = result;
-                this.Send((byte[])spkt);            
+                this.Send((byte[])spkt);
             }
             else
             {
@@ -148,9 +149,8 @@ namespace Saga.Map.Client
                 spkt2.Name = this.character.Name;
                 spkt2.Message = cpkt.Message;
                 spkt2.Result = 2;
-                target.client.Send( (byte[])spkt2);
+                target.client.Send((byte[])spkt2);
             }
         }
-
     }
 }

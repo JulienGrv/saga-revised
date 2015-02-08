@@ -1,14 +1,13 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Level = 1, EXP = 2, Durability = 3, Amount = 4, Active = 5, Tradable = 7
     /// </summary>
     /// <remarks>
-    /// This function adjust a item, a item could be adjusted for exp, lvl, duration. 
+    /// This function adjust a item, a item could be adjusted for exp, lvl, duration.
     /// This packet is used by repair (blacksmith) functions, and equipment/weaponary
     /// duration loss.
     /// </remarks>
@@ -44,10 +43,9 @@ namespace Saga.Packets
             set { this.data[3] = value; }
         }
 
-
         public uint Value
         {
-            set { Array.Copy(BitConverter.GetBytes(value),0, this.data, 4, 2); }
+            set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 4, 2); }
         }
     }
 }

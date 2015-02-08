@@ -1,24 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Sockets;
 using Saga.Enumarations;
 using Saga.Map;
 using Saga.Packets;
 using Saga.Structures;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Sockets;
 
 namespace Saga.PrimaryTypes
 {
-
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     [Serializable()]
     public class Zone : ICloneable
     {
-
         #region Private Members
 
         private byte map;
-        private ZoneType type;        
+        private ZoneType type;
         private WorldCoordinate cathelaya_location;
         private WorldCoordinate promise_location;
         private uint regioncode;
@@ -30,7 +28,7 @@ namespace Saga.PrimaryTypes
         [NonSerialized()]
         private Regiontree regiontree;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
@@ -45,7 +43,6 @@ namespace Saga.PrimaryTypes
                 regiontree = value;
             }
         }
-
 
         public ZoneType Type
         {
@@ -95,7 +92,6 @@ namespace Saga.PrimaryTypes
             }
         }
 
-
         public HeightMap Heightmap
         {
             get
@@ -108,15 +104,14 @@ namespace Saga.PrimaryTypes
             }
         }
 
-
         /// <summary>
         /// Returns the regioncode for the specified map.
         /// </summary>
         /// <remarks>
         /// Each map is associated with his own unique region code or with a
-        /// shared regioncode. The region code is use by the internal quest 
+        /// shared regioncode. The region code is use by the internal quest
         /// system to filter out official/personal quests.
-        /// 
+        ///
         /// When entering a new zone the personal quest list is filled by personal
         /// quests that are available based upon the regioncode and matches the
         /// criteria for beeing visible.
@@ -144,10 +139,7 @@ namespace Saga.PrimaryTypes
             }
         }
 
-
-
-
-        #endregion
+        #endregion Public Members
 
         #region Public methods
 
@@ -155,7 +147,6 @@ namespace Saga.PrimaryTypes
         {
             lock (this.regiontree)
             {
-
                 List<MapObject> list = new List<MapObject>();
                 list.AddRange(regiontree.Clear());
 
@@ -192,10 +183,8 @@ namespace Saga.PrimaryTypes
                         //Do nothing
                     }
                 }
-
-            }           
+            }
         }
-
 
         /// <summary>
         /// Occurs when entering a zone.
@@ -226,7 +215,7 @@ namespace Saga.PrimaryTypes
                         Character cTarget = (Character)target;
                         if (cTarget != character && cTarget.client.isloaded == true)
                             character.HideObject(cTarget);
-                            target.Disappear(character);
+                        target.Disappear(character);
                     }
                     else
                     {
@@ -236,25 +225,19 @@ namespace Saga.PrimaryTypes
             }
         }
 
-
-
-
-
-
-
         public IEnumerable<MapObject> GetObjectsInRegionalRange(MapObject a)
         {
             /*
              * Returns all objects in the regional sightrange.
-             * 
+             *
              * Usefull for updates that should be spread about amongst
              * multiple regions. For example update player information
-             * 
+             *
              */
 
-            foreach (MapObject c in this.regiontree.SearchActors(a, SearchFlags.DynamicObjects ))
+            foreach (MapObject c in this.regiontree.SearchActors(a, SearchFlags.DynamicObjects))
             {
-                 yield return c;
+                yield return c;
             }
         }
 
@@ -265,17 +248,16 @@ namespace Saga.PrimaryTypes
         /// <returns>a list of objects which can be seen</returns>
         /// <remarks>
         ///  Usefull for updates that should be spread about amongst
-        ///  multiple regions. For example update player information              
+        ///  multiple regions. For example update player information
         /// </remarks>
         public IEnumerable<MapObject> GetObjectsInSightRange(MapObject a)
         {
             foreach (MapObject c in this.regiontree.SearchActors(a, SearchFlags.DynamicObjects))
             {
                 if (IsInSightRangeByRadius(c.Position, a.Position))
-                     yield return c;
+                    yield return c;
             }
         }
-
 
         /// <summary>
         /// Returns all chacters in the regional sightrange.
@@ -284,11 +266,11 @@ namespace Saga.PrimaryTypes
         /// <returns>a list of objects which can be seen</returns>
         /// <remarks>
         ///  Usefull for updates that should be spread about amongst
-        ///  multiple regions. For example update player information              
-        /// </remarks>        
+        ///  multiple regions. For example update player information
+        /// </remarks>
         public IEnumerable<Character> GetCharactersInSightRange(MapObject a)
         {
-            foreach( MapObject c in this.regiontree.SearchActors( a,  SearchFlags.Characters ) )
+            foreach (MapObject c in this.regiontree.SearchActors(a, SearchFlags.Characters))
             {
                 if (MapObject.IsPlayer(c))
                     if (IsInSightRangeByRadius(c.Position, a.Position))
@@ -296,14 +278,13 @@ namespace Saga.PrimaryTypes
             }
         }
 
-
         /// <summary>
         /// Check if a object is in sightrange of eachother
         /// </summary>
         /// <returns>
         /// Checks if position a is in a range of position b.
-        /// This sub function is used to calculate objects we are allowed to 
-        /// see. Applied for 3 axices: X, Y, Z./// 
+        /// This sub function is used to calculate objects we are allowed to
+        /// see. Applied for 3 axices: X, Y, Z.///
         /// </returns>
         public bool IsInSightRangeByRadius(Point A, Point B)
         {
@@ -314,8 +295,7 @@ namespace Saga.PrimaryTypes
             return distance < 10000;
         }
 
-
-        /// <summary>           
+        /// <summary>
         /// </summary>
         /// <returns>True if a object is visible by a square bounds</returns>
         /// <remarks>
@@ -396,7 +376,6 @@ namespace Saga.PrimaryTypes
             }
         }
 
-
         public void UpdateWeather(int Weather)
         {
             this.weather = Weather;
@@ -411,9 +390,9 @@ namespace Saga.PrimaryTypes
         /// </summary>
         /// <remarks>
         /// This method is called when the weather of the zone is supposed to change.
-        /// Our parameter the int weather speciafies the new weather in which it's 
+        /// Our parameter the int weather speciafies the new weather in which it's
         /// supposed to change.
-        /// 
+        ///
         /// Override this method when you need to control which types of weathers
         /// should be allowed for the current map.
         /// </remarks>
@@ -423,7 +402,7 @@ namespace Saga.PrimaryTypes
             UpdateWeather(Weather);
         }
 
-        #endregion
+        #endregion Public methods
 
         #region ICloneable Members
 
@@ -441,9 +420,9 @@ namespace Saga.PrimaryTypes
             b.Type = this.Type;
             b.weather = this.Weather;
             b.map = this.map;
-            return b;            
+            return b;
         }
 
-        #endregion
+        #endregion ICloneable Members
     }
 }

@@ -1,15 +1,14 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is send by the player as a result of he/she attempts to use
-    /// an addmission of weapon item. This increased the maximum count a player 
+    /// an addmission of weapon item. This increased the maximum count a player
     /// can use of weapons.
     /// </remarks>
     /// <id>
@@ -27,7 +26,6 @@ namespace Saga.Packets
             get { return this.data[0]; }
         }
 
-
         #region Conversions
 
         public static explicit operator CMSG_USEWEAPONADMISSION(byte[] p)
@@ -37,8 +35,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -51,6 +49,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

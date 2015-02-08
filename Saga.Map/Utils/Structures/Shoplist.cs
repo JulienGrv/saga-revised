@@ -1,26 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Map.Definitions.Misc;
-using System.Collections.ObjectModel;
+﻿using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Templates;
-using Saga.IO;
-using System.IO;
-using Saga.Packets;
+using System.Collections.Generic;
 
 namespace Saga.Map.Utils.Structures
 {
-
-
     #region Tradinglist
-
-
-   
 
     public class GroupedTradelist : BaseTradelist
     {
-        protected internal List<Tradelist> list = 
+        protected internal List<Tradelist> list =
             new List<Tradelist>();
 
         public Tradelist AddList()
@@ -29,7 +18,7 @@ namespace Saga.Map.Utils.Structures
             list.Add(mlist);
             return mlist;
         }
-        
+
         public override void Open(Character character, BaseNPC basenpc, uint supplyid)
         {
             character.Tag = this;
@@ -52,22 +41,18 @@ namespace Saga.Map.Utils.Structures
 
             character.client.Send((byte[])spkt);
         }
-
-      
     }
 
     public class SingleTradelist : BaseTradelist
     {
-        protected internal Tradelist list 
+        protected internal Tradelist list
             = new Tradelist();
 
         protected internal uint productionzeny;
         protected internal uint supplementzeny;
 
-
         public override void Open(Character character, BaseNPC basenpc, uint supplyid)
         {
-
             character.Tag = this;
             SMSG_SUPPLYLIST spkt2 = new SMSG_SUPPLYLIST();
             spkt2.ActorID = basenpc.id;
@@ -80,16 +65,10 @@ namespace Saga.Map.Utils.Structures
 
             spkt2.SessionId = character.id;
             character.client.Send((byte[])spkt2);
-
         }
-        
-
     }
 
-
-  
-
-    #endregion
+    #endregion Tradinglist
 
     #region Guidepoints
 
@@ -100,12 +79,11 @@ namespace Saga.Map.Utils.Structures
             this.Dialog = Dialog;
         }
 
-        public uint Dialog;        
+        public uint Dialog;
     }
 
     public class GuidePosition : GuidePoint
     {
-
         public GuidePosition(float x, float y, float z, uint Npc, uint Dialog)
             : base(Dialog)
         {
@@ -115,13 +93,11 @@ namespace Saga.Map.Utils.Structures
             this.Npc = Npc;
         }
 
-
         public float x;
         public float y;
         public float z;
         public uint Npc;
     }
-
 
     public class GuideNpc : GuidePoint
     {
@@ -134,7 +110,5 @@ namespace Saga.Map.Utils.Structures
         public uint Map;
     }
 
-    #endregion
-
-
+    #endregion Guidepoints
 }

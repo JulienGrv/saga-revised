@@ -1,32 +1,31 @@
-﻿using System;
+﻿using Saga.Configuration;
+using Saga.Map.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
-using Saga.Configuration;
-using Saga.Map.Configuration;
-using System.Diagnostics;
 
 namespace Saga.Factory
 {
-
     /// <summary>
     /// Warp factory supplies information regarding warp lookups per id.
     /// </summary>
     public class Warps : FactoryBase
     {
-
         #region Ctor/Dtor
 
-        public Warps() { }
+        public Warps()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
         private Dictionary<ushort, Info> warps;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -71,13 +70,12 @@ namespace Saga.Factory
                     info.map = byte.Parse(fields[5], NumberFormatInfo.InvariantInfo);
                     warps.Add(ushort.Parse(fields[0], NumberFormatInfo.InvariantInfo), info);
                 }
-            } 
+            }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
-
 
         /// <summary>
         /// Try to get a warp information based on the warpid
@@ -90,7 +88,7 @@ namespace Saga.Factory
             return warps.TryGetValue(WarpLocation, out WarpInfo);
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Protected Properties
 
@@ -104,16 +102,15 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_WARPS; }
         }
 
-        #endregion
+        #endregion Protected Properties
 
         #region Nested Classes/Structures
 
         /// <summary>
-        /// Contains the warp information. 
+        /// Contains the warp information.
         /// </summary>
         public class Info
         {
-
             /// <summary>
             /// Get's or set's the price you require to warp
             /// </summary>
@@ -140,7 +137,6 @@ namespace Saga.Factory
             public byte map;
         }
 
-        #endregion
-
+        #endregion Nested Classes/Structures
     }
 }

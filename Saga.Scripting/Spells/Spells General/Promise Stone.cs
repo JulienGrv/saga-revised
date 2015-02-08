@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
+﻿using Saga.Enumarations;
 using Saga.PrimaryTypes;
-using Saga.Enumarations;
 using Saga.Structures;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         /// <remarks>
         /// Last time edited: 10-01-2008
-        ///     
-        /// This script is invoked when player x uses his/hers 
+        ///
+        /// This script is invoked when player x uses his/hers
         /// promise stone. Basicly it's used to warp fast to your
         /// save location and warp back.
-        ///      
+        ///
         /// Dungeon -> Village -> Dungeon: goes to dungeon lvl 1
         /// Village -> Village -> Village: stays on the current village
-        /// Map -> Village -> Map: goes to the latest map restore point    
+        /// Map -> Village -> Map: goes to the latest map restore point
         /// </remarks>
         public static void GENERAL_PROMISESTONE(SkillBaseEventArgs bargument)
         {
@@ -54,8 +49,5 @@ namespace Saga.Skills
                 }
             }
         }
-
-
-
     }
 }

@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Configuration;
-using System.ComponentModel;
 
 namespace Saga.Configuration
 {
     internal class NetworkSettings : ConfigurationSection
     {
-
         [ConfigurationProperty("Connections", IsRequired = false)]
         public NetworkFileCollection Connections
         {
@@ -18,8 +13,9 @@ namespace Saga.Configuration
         [ConfigurationProperty("CRCKEY", IsRequired = true)]
         public string Crckey
         {
-            get { 
-                return ((string)(base["CRCKEY"])); 
+            get
+            {
+                return ((string)(base["CRCKEY"]));
             }
             set
             {
@@ -39,6 +35,5 @@ namespace Saga.Configuration
                 base["GUID"] = value;
             }
         }
-
     }
 }

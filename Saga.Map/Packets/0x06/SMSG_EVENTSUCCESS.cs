@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
-using Saga.Map.Definitions.Misc;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This shows a message in the system chat of "you've succesfully participated with the event". 
+    /// This shows a message in the system chat of "you've succesfully participated with the event".
     /// This packet is most likely to be used in conjunction with the SMSG_USERNAME.
     /// </remarks>
     /// <id>

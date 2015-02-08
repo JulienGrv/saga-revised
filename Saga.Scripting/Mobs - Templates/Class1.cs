@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Templates;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
+﻿using Saga.Shared.Definitions;
 using Saga.Structures;
+using Saga.Templates;
+using System;
 
 namespace Saga.Scripting
 {
-    class GoldenThieftBug : RandomizedMonster, IArtificialIntelligence
+    internal class GoldenThieftBug : RandomizedMonster, IArtificialIntelligence
     {
-
         #region Time difference
 
         /// <summary>
@@ -26,8 +22,8 @@ namespace Saga.Scripting
         {
             Lifespan.lasttick = Environment.TickCount;
         }
-       
-        #endregion
+
+        #endregion Time difference
 
         #region Mathematics
 
@@ -45,7 +41,7 @@ namespace Saga.Scripting
             return Math.Abs(distance);
         }
 
-        #endregion
+        #endregion Mathematics
 
         #region OOP-AI
 
@@ -59,14 +55,14 @@ namespace Saga.Scripting
             this.Position = Loc;
         }
 
-
         void IArtificialIntelligence.Process()
-        {            
+        {
             int t_diff = GetUpdateTick();
             if (t_diff > 8000)
             {
                 //System.Console.WriteLine("Update mob");
-                if (IsMoving == true && this._status.CannotMove > 0){
+                if (IsMoving == true && this._status.CannotMove > 0)
+                {
                     UpdatePosition(t_diff);
                 }
 
@@ -79,8 +75,6 @@ namespace Saga.Scripting
             }
         }
 
-
-        #endregion
-
+        #endregion OOP-AI
     }
 }

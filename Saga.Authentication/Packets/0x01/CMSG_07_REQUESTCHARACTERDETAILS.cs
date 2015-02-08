@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Authentication.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is invoked when an client selects a other character
@@ -19,7 +15,6 @@ namespace Saga.Authentication.Packets
     /// </remarks>
     public class CMSG_REQUESTCHARACTERDETAILS : RelayPacket
     {
-
         public CMSG_REQUESTCHARACTERDETAILS()
         {
             this.data = new byte[1];
@@ -46,8 +41,8 @@ namespace Saga.Authentication.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -60,7 +55,6 @@ namespace Saga.Authentication.Packets
             return pkt;
         }
 
-        #endregion
-
+        #endregion Conversions
     }
 }

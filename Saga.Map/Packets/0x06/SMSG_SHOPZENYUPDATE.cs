@@ -1,14 +1,14 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet updates the amount of zeny a shopping npc has. This packet should 
-    /// be send on every item your buy/sell. And should be broadcasted to every player 
+    /// This packet updates the amount of zeny a shopping npc has. This packet should
+    /// be send on every item your buy/sell. And should be broadcasted to every player
     /// who references the shop as a target.
     /// </remarks>
     /// <id>

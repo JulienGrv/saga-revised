@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent to your character to indicate a weaonchange has occured.
@@ -27,7 +23,7 @@ namespace Saga.Packets
 
         public byte Reason
         {
-            set{ this.data[0] = value; }
+            set { this.data[0] = value; }
         }
 
         public uint Auge

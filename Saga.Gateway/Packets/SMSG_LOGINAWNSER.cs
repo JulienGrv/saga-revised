@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Network.Packets;
+﻿using Saga.Network.Packets;
 
 namespace Saga.Gateway.Packets
 {
     public class SMSG_LOGINAWNSER : RelayPacket
     {
-
         public SMSG_LOGINAWNSER()
         {
             this.data = new byte[39];

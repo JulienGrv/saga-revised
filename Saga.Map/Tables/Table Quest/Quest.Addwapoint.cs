@@ -1,33 +1,27 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.Managers;
-using Saga.Packets;
-using Saga.Tasks;
+using Saga.Enumarations;
 using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Enumarations;
+using Saga.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Quests
 {
     static partial class QUEST_TABLE
     {
-
-
         /// <title>Saga.AddWaypoint</title>
         /// <code>
         /// Saga.AddWaypoint(cid, QuestID, StepId, State);
         /// </code>
         /// <description>
-        /// Adds a waypoint to the quest list. 
+        /// Adds a waypoint to the quest list.
         /// (Note it will also activate the npc if it's not yet activated)
         /// </description>
         /// <example>
         /// function QUEST_STEP_2(cid)
         ///	    -- Talk to mischa
         ///     local NPCIndex = 1000;
-        ///     local ret = Saga.GetNPCIndex(cid);    
+        ///     local ret = Saga.GetNPCIndex(cid);
         ///
         ///     Saga.AddWaypoint(cid, QuestID, NPCIndex, -12092, -6490, -8284, 1);
         ///     if ret == NPCIndex then
@@ -36,7 +30,7 @@ namespace Saga.Quests
         ///         return  -1;
         ///     end
         ///
-        ///     Saga.ClearWaypoints(cid, QuestID);	
+        ///     Saga.ClearWaypoints(cid, QuestID);
         ///     return 0;
         /// end
         /// </example>
@@ -89,15 +83,11 @@ namespace Saga.Quests
                             if (a.ModelId == npcType)
                             {
                                 if (mob != null)
-                                Common.Actions.UpdateIcon(Character, mob);   
+                                    Common.Actions.UpdateIcon(Character, mob);
                             }
                         }
                     }
                 }
-
-
-
-              
             }
         }
     }

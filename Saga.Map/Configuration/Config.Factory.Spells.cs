@@ -1,9 +1,8 @@
-using System.Configuration;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
-
     /// <summary>
     /// Spell/Skill factory configuration
     /// </summary>
@@ -80,6 +79,6 @@ namespace Saga.Configuration
             {
                 this["reference"] = value.ToString();
             }
-        }   
+        }
     }
 }

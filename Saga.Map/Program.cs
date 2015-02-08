@@ -1,38 +1,35 @@
 #pragma warning disable 3001
 
-using System;
-using System.Collections.Generic;
-using System.Configuration;
 using Saga.Configuration;
 using Saga.Factory;
 using Saga.Managers;
-using System.IO;
-using System.Reflection;
-using System.Net;
-using Saga.Shared.Definitions;
 using Saga.Map.Configuration;
-using System.Text;
-using System.Security.Cryptography;
+using Saga.Shared.Definitions;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
-
+using System.IO;
+using System.Net;
+using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Saga.Map
 {
-
     [Serializable()]
     public class PluginSandbox
     {
         public List<string> foundPlugins = null;
+
         public static PluginSandbox FindPlugins(Type basetype)
         {
             PluginSandbox c = new PluginSandbox();
             c.foundPlugins = new List<string>();
 
-
             //GET THE CURRENT ASSEMBLY AND PATH
             string file = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string path = Path.GetDirectoryName(file);
-
 
             //CREATE A SANDBOX TO LOAD ALL PLUGINS FOR EXAMINATION
             AppDomain sandbox = AppDomain.CreateDomain("sandbox");
@@ -42,10 +39,10 @@ namespace Saga.Map
                 c.foundPlugins.Add(d);
             }
 
-
             AppDomain.Unload(sandbox);
             return c;
         }
+
         private IEnumerable<string> test(string path, Type checkType)
         {
             List<string> foundPlugins = new List<string>();
@@ -57,10 +54,8 @@ namespace Saga.Map
                     Assembly current = Assembly.LoadFile(mfiles[i]);
                     Type[] types = current.GetExportedTypes();
 
-
                     foreach (Type type in current.GetExportedTypes())
                     {
-
                         if (type.IsSubclassOf(checkType))
                         {
                             foundPlugins.Add(string.Format("{0}, {1}", type.Assembly.Location, type.FullName));
@@ -77,7 +72,6 @@ namespace Saga.Map
                         {
                             foundPlugins.Add(string.Format("{0}, {1}", type.Assembly.Location, type.FullName));
                         }
-
                     }
                 }
                 catch (TypeLoadException)
@@ -86,7 +80,7 @@ namespace Saga.Map
                 }
                 catch (BadImageFormatException)
                 {
-                    //do nothing;                   
+                    //do nothing;
                 }
             }
 
@@ -99,7 +93,6 @@ namespace Saga.Map
 
     public static partial class Singleton
     {
-
         #region Private Members
 
         private static Saga.Factory.ItemsDrops _ItemDrops;
@@ -124,13 +117,13 @@ namespace Saga.Map
         private static Saga.Managers.Quests _Quests;
         private static Dictionary<string, ManagerBase2> _CustomManagers;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
         public static TraceLog generaltracelog = new TraceLog("General", "Entire Application", 4);
 
-        #endregion
+        #endregion Public Members
 
         #region Constructor / Deconstructor
 
@@ -139,7 +132,6 @@ namespace Saga.Map
             try
             {
                 _CustomManagers = new Dictionary<string, ManagerBase2>();
-
             }
             catch (Exception e)
             {
@@ -149,7 +141,7 @@ namespace Saga.Map
             }
         }
 
-        #endregion
+        #endregion Constructor / Deconstructor
 
         #region Built-in Managers
 
@@ -313,11 +305,11 @@ namespace Saga.Map
             }
         }
 
-        #endregion
+        #endregion Built-in Managers
 
         #region Entry-point
 
-        static bool CheckConfigExists()
+        private static bool CheckConfigExists()
         {
             //GET THE ASSEMBLY'S DIRECTORY
             string file = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -328,9 +320,8 @@ namespace Saga.Map
             return File.Exists(aname) | File.Exists(bname);
         }
 
-        static void FirstRunConfiguration()
+        private static void FirstRunConfiguration()
         {
-
             IPAddress gatewayip = IPAddress.Loopback;
             int gatewayport = 64003;
             IPAddress mapip = IPAddress.Loopback;
@@ -359,18 +350,17 @@ namespace Saga.Map
             System.Configuration.Configuration b = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             if (CheckConfigExists() == false)
             {
-
                 Console.WriteLine("First time run-configuration");
                 char key;
 
                 #region Always Configure
-                
+
                 ConfigureRequired("What is the world id of this server?");
                 while (!byte.TryParse(Console.ReadLine(), out worldid))
                 {
                     Console.WriteLine("Incorrect value please use an number between 0–255");
                 }
-               
+
                 ConfigureRequired("What is the player limit of this server?");
                 while (!int.TryParse(Console.ReadLine(), out playerlimit))
                 {
@@ -379,10 +369,10 @@ namespace Saga.Map
 
                 ConfigureRequired("What is the authentication proof of this server?");
                 MD5 md5 = MD5.Create();
-                byte[] block = Encoding.UTF8.GetBytes( Console.ReadLine() );
-                byte[] md5block = md5.ComputeHash( block);
+                byte[] block = Encoding.UTF8.GetBytes(Console.ReadLine());
+                byte[] md5block = md5.ComputeHash(block);
                 StringBuilder builder = new StringBuilder();
-                foreach( byte c in md5block)
+                foreach (byte c in md5block)
                     builder.AppendFormat("{0:X2}", c);
                 proof = builder.ToString();
 
@@ -391,14 +381,14 @@ namespace Saga.Map
                 {
                     Console.WriteLine("Incorrect value please use an between 1 and 20");
                 }
-                cexprates =  Math.Min(20,Math.Max(cexprates, 1 ));
+                cexprates = Math.Min(20, Math.Max(cexprates, 1));
 
                 ConfigureRequired("What are the jexp-rates?");
                 while (!int.TryParse(Console.ReadLine(), out jexprates))
                 {
                     Console.WriteLine("Incorrect value please use an between 1 and 20");
                 }
-                jexprates =  Math.Min(20,Math.Max(jexprates, 1 ));
+                jexprates = Math.Min(20, Math.Max(jexprates, 1));
 
                 ConfigureRequired("What are the wexp-rates?");
                 while (!int.TryParse(Console.ReadLine(), out wexprates))
@@ -414,13 +404,12 @@ namespace Saga.Map
                 }
                 droprates = Math.Min(20, Math.Max(droprates, 1));
 
-
                 ConfigureRequired("Detect database plugin");
                 dbprovider = FindPlugin(typeof(IDatabase), dbprovider);
 
                 ConfigureRequired("Detect quest plugin");
                 questplugin = FindPlugin(typeof(Saga.Quests.IQuest), questplugin);
-                
+
                 ConfigureRequired("Detect scenarion quest plugin");
                 scenarioquestplugin = FindPlugin(typeof(Saga.Quests.ISceneraioQuest), scenarioquestplugin);
 
@@ -433,8 +422,7 @@ namespace Saga.Map
                 ConfigureRequired("Detect event plugin");
                 eventprovider = FindPlugin(typeof(Saga.Factory.EventManager.BaseEventInfo), eventprovider);
 
-
-                #endregion
+                #endregion Always Configure
 
                 #region Network Settings
 
@@ -462,7 +450,7 @@ namespace Saga.Map
             ConfigureWorldNetwork:
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Do you wan to configure the authentication-map network settings? Y/N");
-                Console.ResetColor();                
+                Console.ResetColor();
                 key = Console.ReadKey(true).KeyChar;
                 if (key == 'y')
                 {
@@ -480,18 +468,18 @@ namespace Saga.Map
                 }
                 else if (key != 'n') goto ConfigureWorldNetwork;
 
-                #endregion
+                #endregion Network Settings
 
                 #region Database Settings
 
-            DatabaseName:                
+            DatabaseName:
                 ConfigureOptional("Do you want to configure the database settings? Y/N");
                 key = Console.ReadKey(true).KeyChar;
                 if (key == 'y')
                 {
                     ConfigureRequired("What is the database name?");
                     databasename = Console.ReadLine();
-                   
+
                     ConfigureRequired("What is the database username?");
                     databaseusername = Console.ReadLine();
 
@@ -509,13 +497,9 @@ namespace Saga.Map
                 }
                 else if (key != 'n') goto DatabaseName;
 
-                #endregion
-
-                #region Quest Settings
+                #endregion Database Settings
 
 
-
-                #endregion
 
                 #region Plugin detection
 
@@ -528,16 +512,15 @@ namespace Saga.Map
                 }
                 else if (key != 'n') goto PluginDetection;
 
-                #endregion
-
+                #endregion Plugin detection
 
                 //CONFIGURE SERVER SETTINGS
-                ServerVars serverVarsConfiguration=  new ServerVars();
-                serverVarsConfiguration.DataDirectory = "../Data/";        
+                ServerVars serverVarsConfiguration = new ServerVars();
+                serverVarsConfiguration.DataDirectory = "../Data/";
                 b.Sections.Add("Saga.ServerVars", serverVarsConfiguration);
 
                 //CONFIGURE NETWORK SETTINGS
-                NetworkSettings networkSettings = new NetworkSettings();               
+                NetworkSettings networkSettings = new NetworkSettings();
                 NetworkFileCollection collection = networkSettings.Connections;
                 collection["public"] = new NetworkElement("public", gatewayip.ToString(), gatewayport);
                 collection["internal"] = new NetworkElement("internal", mapip.ToString(), mapport);
@@ -546,35 +529,33 @@ namespace Saga.Map
                 networkSettings.WorldId = worldid;
                 networkSettings.Proof = proof;
                 networkSettings.PlayerLimit = playerlimit;
-                
 
                 //CONFIGURE CONSOLE SETTING
                 ConsoleSettings consoleSettings = new ConsoleSettings();
                 consoleSettings.CommandPrefix = "@";
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Broadcast"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Position"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.ChatMute"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.GmWarptomap"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.PlayerJump"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.PlayerCall"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Speed"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.GarbageCollector"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.ClearNpc"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.KickAll"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Kick"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Time"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.ShowMaintenance"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.ScheduleMaintenance"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.SetGmLevel"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Spawn"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Unspawn"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.GiveItem"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.QStart"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Kill"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Worldload"));
-                consoleSettings.GmCommands.Add( new FactoryFileElement("Saga.Scripting.Console.Gmgo"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.Broadcast"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.Position"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.ChatMute"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.GmWarptomap"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.PlayerJump"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.PlayerCall"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.Speed"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.GarbageCollector"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.ClearNpc"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.KickAll"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.Kick"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.Time"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.ShowMaintenance"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.ScheduleMaintenance"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.SetGmLevel"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.Spawn"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.Unspawn"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.GiveItem"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.QStart"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.Kill"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.Worldload"));
+                consoleSettings.GmCommands.Add(new FactoryFileElement("Saga.Scripting.Console.Gmgo"));
                 b.Sections.Add("Saga.Manager.ConsoleSettings", consoleSettings);
-                
 
                 //PORTALS
                 PortalSettings portalSettings = new PortalSettings();
@@ -587,7 +568,6 @@ namespace Saga.Map
                 characterconfigurationSettings.FolderItems.Add(new FactoryFileElement("~/character-template.csv", "text/csv"));
                 b.Sections.Remove("Saga.Factory.CharacterConfiguration");
                 b.Sections.Add("Saga.Factory.CharacterConfiguration", characterconfigurationSettings);
-                
 
                 //ADDITION
                 AdditionSettings additionSettings = new AdditionSettings();
@@ -611,17 +591,15 @@ namespace Saga.Map
                 statusbylevelSettings.Wexp = wexprates;
                 statusbylevelSettings.Droprate = droprates;
 
-
                 b.Sections.Remove("Saga.Factory.StatusByLevel");
                 b.Sections.Add("Saga.Factory.StatusByLevel", statusbylevelSettings);
-                
 
                 //WARPSETTINGS
                 WarpSettings warpSettings = new WarpSettings();
                 warpSettings.FolderItems.Add(new FactoryFileElement("~/warp_data.csv", "text/csv"));
                 b.Sections.Remove("Saga.Factory.Warps");
                 b.Sections.Add("Saga.Factory.Warps", warpSettings);
-                
+
                 //ZONES
                 ZoneSettings zoneSettings = new ZoneSettings();
                 zoneSettings.FolderItems.Add(new FactoryFileElement("~/zone_data.csv", "text/csv"));
@@ -635,7 +613,6 @@ namespace Saga.Map
                 b.Sections.Remove("Saga.Factory.Items");
                 b.Sections.Add("Saga.Factory.Items", itemSettings);
 
-
                 //WEAPONARY
                 WeaponarySettings weaponarySettings = new WeaponarySettings();
                 weaponarySettings.FolderItems.Add(new FactoryFileElement("~/weapon_data.csv", "text/csv"));
@@ -648,7 +625,6 @@ namespace Saga.Map
                 spawntemplateSettings.FolderItems.Add(new FactoryFileElement("~/item_templates.csv", "text/csv"));
                 b.Sections.Remove("Saga.Factory.SpawnTemplate");
                 b.Sections.Add("Saga.Factory.SpawnTemplate", spawntemplateSettings);
-                
 
                 //SPAWNS NPC & MAP
                 SpawnWorldObjectSettings spawnworldobjectSettings = new SpawnWorldObjectSettings();
@@ -657,7 +633,6 @@ namespace Saga.Map
                 spawnworldobjectSettings.DerivedType = worldspawn;
                 b.Sections.Remove("Saga.Factory.SpawnWorldObjects");
                 b.Sections.Add("Saga.Factory.SpawnWorldObjects", spawnworldobjectSettings);
-                
 
                 //SPAWNS MOBS
                 SpawnMultiWorldObjectSettings spawnmultiworldobjectSettings = new SpawnMultiWorldObjectSettings();
@@ -665,7 +640,6 @@ namespace Saga.Map
                 spawnmultiworldobjectSettings.DerivedType = multiworldspawn;
                 b.Sections.Remove("Saga.Factory.SpawnMultiWorldObjects");
                 b.Sections.Add("Saga.Factory.SpawnMultiWorldObjects", spawnmultiworldobjectSettings);
-                
 
                 //SCRIPTING
                 ScriptingSettings scriptingSettings = new ScriptingSettings();
@@ -675,14 +649,13 @@ namespace Saga.Map
                 scriptingSettings.Assemblies.Add(new FactoryFileElement("System.Xml.dll", "text/csv"));
                 b.Sections.Remove("Saga.Manager.Scripting");
                 b.Sections.Add("Saga.Manager.Scripting", scriptingSettings);
-                
+
                 //EVENTS
                 EventSettings eventSettings = new EventSettings();
                 eventSettings.FolderItems.Add(new FactoryFileElement("~/eventlist.csv", "text/csv"));
                 eventSettings.Provider = eventprovider;
                 b.Sections.Remove("Saga.Factory.Events");
                 b.Sections.Add("Saga.Factory.Events", eventSettings);
-                
 
                 //QUUESTS
                 QuestSettings questSettings = new QuestSettings();
@@ -692,7 +665,7 @@ namespace Saga.Map
                 questSettings.ScenarioProvider = scenarioquestplugin;
                 b.Sections.Remove("Saga.Manager.Quest");
                 b.Sections.Add("Saga.Manager.Quest", questSettings);
-                
+
                 //DATABASE SETTINGS
                 DatabaseSettings databaseSettings = new DatabaseSettings();
                 databaseSettings.Database = databasename;
@@ -703,10 +676,9 @@ namespace Saga.Map
                 databaseSettings.DBType = dbprovider;
                 b.Sections.Remove("Saga.Manager.Database");
                 b.Sections.Add("Saga.Manager.Database", databaseSettings);
-                
+
                 //SAVE CONFIGURATION AND REFRESH ALL SECTIONS
                 b.Save();
-
 
                 //REFRESH ALL SECTIONS
                 ConfigurationManager.RefreshSection("Saga.Factory.SpawnMultiWorldObjects");
@@ -714,7 +686,7 @@ namespace Saga.Map
                 ConfigurationManager.RefreshSection("Saga.Manager.Quest");
                 ConfigurationManager.RefreshSection("Saga.Manager.Scripting");
                 ConfigurationManager.RefreshSection("Saga.Factory.Events");
-                ConfigurationManager.RefreshSection("Saga.Factory.SpawnWorldObject");               
+                ConfigurationManager.RefreshSection("Saga.Factory.SpawnWorldObject");
                 ConfigurationManager.RefreshSection("Saga.ServerVars");
                 ConfigurationManager.RefreshSection("Saga.Manager.NetworkSettings");
                 ConfigurationManager.RefreshSection("Saga.Manager.ConsoleSettings");
@@ -735,16 +707,16 @@ namespace Saga.Map
 
         private static void ConfigureRequired(string title)
         {
-           // Console.ForegroundColor = ConsoleColor.Red;
+            // Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(title);
             //Console.ResetColor();
         }
 
         private static void ConfigureOptional(string title)
         {
-           // Console.ForegroundColor = ConsoleColor.Green;
+            // Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(title);
-           // Console.ResetColor();
+            // Console.ResetColor();
         }
 
         private static string FindPlugin(Type type, string pluginDefault)
@@ -763,11 +735,10 @@ namespace Saga.Map
                 }
 
                 Console.WriteLine("Enter the number corresponding the plugin");
-                while (!int.TryParse(Console.ReadLine(), out a) || a == 0 )
+                while (!int.TryParse(Console.ReadLine(), out a) || a == 0)
                 {
                     Console.WriteLine("Please enter a number");
                 }
-
 
                 return (a > 0 && a <= plugins.foundPlugins.Count) ? plugins.foundPlugins[a - 1] : pluginDefault;
             }
@@ -779,15 +750,14 @@ namespace Saga.Map
         }
 
         [LoaderOptimizationAttribute(LoaderOptimization.SingleDomain)]
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
             //Set managers
             ManagerBase2.SetTraceLog(generaltracelog);
             CoreService.SetTraceLog(generaltracelog);
 
             //GET THE ASSEMBLY'S DIRECTORY
-            string file = System.Reflection.Assembly.GetExecutingAssembly().Location;            
+            string file = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string fname = Path.GetFileNameWithoutExtension(file);
 
             //TRACELOG
@@ -811,12 +781,10 @@ namespace Saga.Map
             Trace.WriteLine("#############################################################################");
 
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
-            
-
 
             //Do initial configuration
             FirstRunConfiguration();
-            
+
             _ConsoleCommands = ManagerBase2.ProvideManager<ConsoleCommands>("Saga.Manager.ConsoleSettings");
             _NetworkService = ManagerBase2.ProvideManager<NetworkService>("Saga.Manager.NetworkSettings");
             _WorldTasks = ManagerBase2.ProvideManager<WorldTasks>("Saga.Manager.WorldTasks");
@@ -866,7 +834,7 @@ namespace Saga.Map
             Console.ReadLine();
         }
 
-        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Trace.WriteLine("#############################################################################");
             Trace.WriteLine("A unhandeld exception was thrown");
@@ -878,7 +846,7 @@ namespace Saga.Map
             {
                 Trace.WriteLine(ex.ToString());
             }
-            Trace.WriteLine("Starting backup procedure");           
+            Trace.WriteLine("Starting backup procedure");
             foreach (Saga.PrimaryTypes.Character tempCharacter in Tasks.LifeCycle.Characters)
             {
                 Trace.WriteLine(string.Format("backup: {0}", tempCharacter.Name));
@@ -888,10 +856,8 @@ namespace Saga.Map
             Trace.WriteLine("backup complete");
             Trace.WriteLine("");
             Trace.WriteLine("#############################################################################");
-            
         }
 
-        #endregion
-
+        #endregion Entry-point
     }
 }

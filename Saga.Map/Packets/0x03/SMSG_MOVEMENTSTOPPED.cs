@@ -1,11 +1,11 @@
-using System;
 using Saga.Network.Packets;
 using Saga.Structures;
+using System;
 
 namespace Saga.Packets
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This function is used to indacte the given actor stopped moving.
@@ -44,9 +44,10 @@ namespace Saga.Packets
 
         public Rotator yaw
         {
-            set {                 
+            set
+            {
                 Array.Copy(BitConverter.GetBytes(value.rotation), 0, this.data, 16, 2);
-                Array.Copy(BitConverter.GetBytes(value.unknown), 0, this.data, 18, 2);             
+                Array.Copy(BitConverter.GetBytes(value.unknown), 0, this.data, 18, 2);
             }
         }
 
@@ -64,6 +65,5 @@ namespace Saga.Packets
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 27, 4); }
         }
-
     }
 }

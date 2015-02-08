@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Map;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void SWORDMAN_QUICKENATTACK(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -23,9 +18,9 @@ namespace Saga.Skills
                 Singleton.Additions.ApplyAddition(arguments.Addition, asource);
                 matrix = arguments.GetDefaultSkillMatrix(asource, atarget);
                 Lvldiff = arguments.GetCappedLevelDifference(matrix);
-                matrix[0, 3] += (5 + ( 5 * arguments.SkillLevel));
+                matrix[0, 3] += (5 + (5 * arguments.SkillLevel));
                 matrix[4, 3] += (Lvldiff * 120);
-                Singleton.Additions.DeapplyAddition(arguments.Addition, asource);  
+                Singleton.Additions.DeapplyAddition(arguments.Addition, asource);
 
                 if (arguments.IsMissed(matrix) || arguments.IsBlocked(matrix))
                 {
@@ -45,8 +40,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
-
-
     }
 }

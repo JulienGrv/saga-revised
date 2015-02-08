@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Saga.Enumarations;
 using Saga.Map.Utils.Definitions.Misc;
 using Saga.Packets;
@@ -9,16 +6,18 @@ using Saga.Quests;
 using Saga.Shared.Definitions;
 using Saga.Structures;
 using Saga.Structures.Collections;
-using Saga.Templates;
 using Saga.Tasks;
+using Saga.Templates;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Saga.Map.Client
 {
     partial class Client
     {
-
         /// <summary>
-        /// This function is used when a player discards item x from either their storage 
+        /// This function is used when a player discards item x from either their storage
         /// or from their inventory. Also here we safely check for any weird stuff.
         /// </summary>
         /// <remarks>
@@ -65,7 +64,7 @@ namespace Saga.Map.Client
                 }
                 else
                 {
-                    if( QuestBase.IsDiscardAble(item.info.item, this.character) )
+                    if (QuestBase.IsDiscardAble(item.info.item, this.character))
                     {
                         Common.Errors.GeneralErrorMessage(
                             this.character,
@@ -84,7 +83,6 @@ namespace Saga.Map.Client
 
                 return;
             }
-            
 
             //VALIDATE ITEM INFORMATION
             if (cpkt.Amount > item.count || cpkt.Amount > item.info.max_stack) return;
@@ -116,7 +114,7 @@ namespace Saga.Map.Client
         }
 
         /// <summary>
-        /// This function occurs when you want to sell a item. The sell price of the item is 
+        /// This function occurs when you want to sell a item. The sell price of the item is
         /// one-fourth of the actual market value.
         /// </summary>
         /// <param name="cpkt"></param>
@@ -132,13 +130,13 @@ namespace Saga.Map.Client
                 Rag2Item item = this.character.container[cpkt.Index];
                 if (item == null || cpkt.Amount > item.count) return;
 
-                #endregion
+                #endregion OBTAIN ITEM FROM INVENTORY
 
                 #region MERCHANDISE - CHECK MERCHANTS MONEY
 
-                //CHECK IF THE MERCHANT HAS ENOUGH MONEY 
+                //CHECK IF THE MERCHANT HAS ENOUGH MONEY
 
-                double durabillity_scalar = ( item.info.max_durability > 0 ) ? item.durabillty / item.info.max_durability : 1;
+                double durabillity_scalar = (item.info.max_durability > 0) ? item.durabillty / item.info.max_durability : 1;
                 uint req_money = (uint)((double)((item.info.price / 4) * cpkt.Amount) * durabillity_scalar);
                 if (npc.Zeny < req_money)
                 {
@@ -146,8 +144,7 @@ namespace Saga.Map.Client
                     return;
                 }
 
-
-                #endregion
+                #endregion MERCHANDISE - CHECK MERCHANTS MONEY
 
                 #region MERCHANDISE - CHECK IF ITEM CAN BE SOLD
 
@@ -158,16 +155,17 @@ namespace Saga.Map.Client
                     return;
                 }
 
-                #endregion
+                #endregion MERCHANDISE - CHECK IF ITEM CAN BE SOLD
 
                 #region MERCHANDISE - UPDATE ZENY
-                
+
                 this.character.ZENY += req_money;
                 npc.Zeny -= req_money;
 
                 CommonFunctions.UpdateZeny(this.character);
                 CommonFunctions.UpdateShopZeny(this.character);
-                #endregion
+
+                #endregion MERCHANDISE - UPDATE ZENY
 
                 #region INVENTORY - ITEM
 
@@ -196,7 +194,8 @@ namespace Saga.Map.Client
                     spkt.Index = cpkt.Index;
                     this.Send((byte[])spkt);
                 }
-                #endregion
+
+                #endregion INVENTORY - ITEM
 
                 #region MERCHANDISE - STACK ON REBUY LIST
 
@@ -208,20 +207,18 @@ namespace Saga.Map.Client
                 if (this.character.REBUY.Count > 16) this.character.REBUY.RemoveAt(0);
                 CommonFunctions.SendRebuylist(this.character);
 
-                #endregion
-
+                #endregion MERCHANDISE - STACK ON REBUY LIST
 
                 #region PLAYER - OPTION
 
-                //Type is used to calc type of item 
+                //Type is used to calc type of item
                 //(21 seems to be used for Applogy Item)
                 if (newItem.info.type == 21)
                 {
                     Common.Skills.DeleteAddition(this.character, newItem.info.option_id);
                 }
 
-                #endregion
-
+                #endregion PLAYER - OPTION
             }
         }
 
@@ -234,9 +231,8 @@ namespace Saga.Map.Client
             BaseNPC npc = this.character.Target as BaseNPC;
             BaseShopCollection list = this.character.Tag as BaseShopCollection;
             if (npc != null && list != null)
-            {                               
-
-                //OBTAIN THE REQUIRED ITEMS FROM THE MERCHANT 
+            {
+                //OBTAIN THE REQUIRED ITEMS FROM THE MERCHANT
                 BaseShopCollection.ShopPair pair = list.list[cpkt.Index];
                 if (pair == null) return;
 
@@ -246,8 +242,8 @@ namespace Saga.Map.Client
                 //REQUIRED DEPENDECIES
                 int req_slots = 1;
                 uint req_money = item.info.price * cpkt.Amount;
-                
-                //CHECK IF PLAYER HAS ENOUGH MONEY                
+
+                //CHECK IF PLAYER HAS ENOUGH MONEY
                 if (this.character.ZENY < req_money)
                 {
                     Common.Errors.GeneralErrorMessage(this.character, 2);
@@ -260,7 +256,7 @@ namespace Saga.Map.Client
                     return;
                 }
                 else
-                {                   
+                {
                     //UPDATE ZENY
                     this.character.ZENY -= req_money;
                     npc.Zeny += req_money;
@@ -268,7 +264,7 @@ namespace Saga.Map.Client
                     CommonFunctions.UpdateZeny(this.character);
                     CommonFunctions.UpdateShopZeny(this.character);
 
-                    //AMOUNT USED IN DECREMENT CALCULATIONS 
+                    //AMOUNT USED IN DECREMENT CALCULATIONS
                     int amount = (int)cpkt.Amount;
                     int index = this.character.container.FindFirstFreeIndex();
 
@@ -283,27 +279,22 @@ namespace Saga.Map.Client
                         spkt.SessionId = this.character.id;
                         this.Send((byte[])spkt);
 
-
-                        //Type is used to calc type of item 
+                        //Type is used to calc type of item
                         //(21 seems to be used for Applogy Item)
                         if (invItem.info.type == 21)
                         {
                             Common.Skills.UpdateAddition(this.character, invItem.info.option_id);
                         }
-
                     }
-
 
                     //If the item has a limited stock
                     if (pair.NoStock == false)
                     {
                         item.count -= (int)cpkt.Amount;
-                        list.Open(this.character, npc);                        
+                        list.Open(this.character, npc);
                     }
                 }
-
-
-            }          
+            }
         }
 
         /// <summary>
@@ -312,15 +303,13 @@ namespace Saga.Map.Client
         /// <param name="cpkt"></param>
         private void CM_NPCINTERACTION_SHOPREBUY(CMSG_NPCREBUY cpkt)
         {
-
             BaseNPC npc = this.character.Target as BaseNPC;
             BaseShopCollection list = this.character.Tag as BaseShopCollection;
             if (npc != null && list != null)
             {
-
                 #region OBTAIN ITEM FROM REBUYLIST
 
-                //OBTAIN THE REQUIRED ITEMS FROM THE MERCHANT 
+                //OBTAIN THE REQUIRED ITEMS FROM THE MERCHANT
                 int Index = cpkt.Index - 1;
 
                 if (Index >= this.character.REBUY.Count) return;
@@ -328,9 +317,10 @@ namespace Saga.Map.Client
                 if (item == null) return;
                 if (cpkt.Amount > item.count) return;
 
-                #endregion
+                #endregion OBTAIN ITEM FROM REBUYLIST
 
                 #region MERCHANDISE - CHECK PLAYER'S MONEY
+
                 double durabillity_scalar = (item.info.max_durability > 0) ? item.durabillty / item.info.max_durability : 1;
                 uint req_zeny = (uint)((double)((item.info.price / 4) * cpkt.Amount) * durabillity_scalar);
 
@@ -340,7 +330,7 @@ namespace Saga.Map.Client
                     return;
                 }
 
-                #endregion
+                #endregion MERCHANDISE - CHECK PLAYER'S MONEY
 
                 #region MERCHANDISE - CHECK INVENTORY
 
@@ -356,7 +346,7 @@ namespace Saga.Map.Client
                     if (invItem.count < item.info.max_stack) update_queue.Add(index);
                 }
 
-                //CALCULATE THE AMOUNT OF NEW SLOTS REQUIRED                
+                //CALCULATE THE AMOUNT OF NEW SLOTS REQUIRED
                 int req_hslot = (int)cpkt.Amount % (int)this.character.container.Capacity;
                 int div_rem = (int)((cpkt.Amount - nstacked) / item.info.max_stack);
                 int div_rem2 = (req_hslot > 0) ? 1 : 0;
@@ -368,7 +358,7 @@ namespace Saga.Map.Client
                     return;
                 }
 
-                #endregion
+                #endregion MERCHANDISE - CHECK INVENTORY
 
                 #region MERCHANDISE - UPDATE ZENY
 
@@ -377,11 +367,12 @@ namespace Saga.Map.Client
 
                 CommonFunctions.UpdateZeny(this.character);
                 CommonFunctions.UpdateShopZeny(this.character);
-                #endregion
+
+                #endregion MERCHANDISE - UPDATE ZENY
 
                 #region PLAYER - INVENTORY ITEMS
 
-                //AMOUNT USED IN DECREMENT CALCULATIONS 
+                //AMOUNT USED IN DECREMENT CALCULATIONS
                 int amount = (int)cpkt.Amount;
 
                 //ITERATE THROUGH ALL AVAILABLE ITEM THAT CAN BE PROCESSED FOR UPDATES
@@ -419,7 +410,7 @@ namespace Saga.Map.Client
                     spkt.SessionId = this.character.id;
                     this.Send((byte[])spkt);
 
-                    //Type is used to calc type of item 
+                    //Type is used to calc type of item
                     //(21 seems to be used for Applogy Item)
                     if (invItem.info.type == 21)
                     {
@@ -427,7 +418,7 @@ namespace Saga.Map.Client
                     }
                 }
 
-                #endregion
+                #endregion PLAYER - INVENTORY ITEMS
 
                 #region MERCHANDISE - REBUYLIST
 
@@ -442,9 +433,8 @@ namespace Saga.Map.Client
                     CommonFunctions.SendRebuylist(this.character);
                 }
 
-                #endregion
-
-           }
+                #endregion MERCHANDISE - REBUYLIST
+            }
         }
 
         /// <summary>
@@ -504,6 +494,7 @@ namespace Saga.Map.Client
                 this.Send((byte[])spkt);
 
                 #region Junk
+
                 /*
                 ILootable target = character.Target as ILootable;
                 bool LootLeader = false;
@@ -537,8 +528,8 @@ namespace Saga.Map.Client
                     this.Send((byte[])spkt);
                 }*/
                 //target.
-                #endregion
 
+                #endregion Junk
             }
             //No right to loot the corpse
             else if (!target.GetLootCollection(this.character, out collection))
@@ -553,7 +544,7 @@ namespace Saga.Map.Client
             else
             {
                 collection.RequestLootLock();
-                collection.Open(this.character, target as MapObject);                
+                collection.Open(this.character, target as MapObject);
             }
         }
 
@@ -563,10 +554,10 @@ namespace Saga.Map.Client
         /// <remarks>
         /// As a programmer would know a byte had eight bits.
         /// Each bit represents a region that can be unhidden.
-        /// These bit's are invered however, so 128 means first 
-        /// region is unhidden. While 255 would mean all eight 
+        /// These bit's are invered however, so 128 means first
+        /// region is unhidden. While 255 would mean all eight
         /// regions are unhiden.
-        /// 
+        ///
         ///  128 = 7 = Region 1
         ///   64 = 6 = Region 2
         ///   32 = 5 = Region 3
@@ -575,7 +566,7 @@ namespace Saga.Map.Client
         ///    4 = 2 = Region 6
         ///    2 = 1 = Region 7
         ///    1 = 0 = Region 8
-        /// 
+        ///
         /// </remarks>
         /// <param name="cpkt"></param>
         private void CM_USEMAPITEM(CMSG_USEMAP cpkt)
@@ -590,10 +581,9 @@ namespace Saga.Map.Client
             {
                 if (item != null)
                 {
-
                     map = (byte)(item.info.skill / 10);
                     zone = (byte)(item.info.skill % 10);
-                    value =  (int)Math.Pow(2, (8 - zone));
+                    value = (int)Math.Pow(2, (8 - zone));
 
                     //ALREADY LEARNED
                     if ((this.character.ZoneInformation[map] & value) == value)
@@ -661,7 +651,6 @@ namespace Saga.Map.Client
 
             try
             {
-
                 //Get the dyeitem
                 dyeitem = this.character.container[cpkt.Index];
 
@@ -673,14 +662,13 @@ namespace Saga.Map.Client
                     case 3: item = this.character.STORAGE[cpkt.Slot]; break;
                 }
 
-
                 //Check if equipment is found
                 if (item == null)
                 {
                     result = (byte)Generalerror.InventoryItemNotFound;
                 }
                 //Check if the dye is found
-                else if( dyeitem == null)
+                else if (dyeitem == null)
                 {
                     result = (byte)Generalerror.InventoryItemNotFound;
                 }
@@ -696,16 +684,16 @@ namespace Saga.Map.Client
                         case 3: item.dyecolor = (byte)Saga.Utils.Generator.Random(17, 17); break;   //Green
                         case 4: item.dyecolor = (byte)Saga.Utils.Generator.Random(21, 21); break;   //Blue
                         case 5: item.dyecolor = (byte)Saga.Utils.Generator.Random(34, 34); break;  //Purple
-                    }                    
+                    }
 
                     //The appearance has changed
                     bool IsEquipment = cpkt.Container == 1;
 
                     Regiontree tree = this.character.currentzone.Regiontree;
-                    foreach (Character target in tree.SearchActors(this.character,SearchFlags.Characters))
+                    foreach (Character target in tree.SearchActors(this.character, SearchFlags.Characters))
                     {
                         if (!Point.IsInSightRangeByRadius(this.character.Position, target.Position)) continue;
-                        if( target.id == this.character.id )
+                        if (target.id == this.character.id)
                         {
                             //Adjust the item
                             SMSG_ITEMADJUST spkt2 = new SMSG_ITEMADJUST();
@@ -716,19 +704,17 @@ namespace Saga.Map.Client
                             spkt2.SessionId = this.character.id;
                             this.Send((byte[])spkt2);
                         }
-                        else if( IsEquipment )
-                        {                          
+                        else if (IsEquipment)
+                        {
                             SMSG_CHANGEEQUIPMENT spkt = new SMSG_CHANGEEQUIPMENT();
                             spkt.ActorID = this.character.id;
                             spkt.ItemID = (item != null) ? item.info.item : 0;
                             spkt.Dye = (item != null) ? (byte)item.dyecolor : (byte)0;
-                            spkt.Slot = cpkt.Slot;                            
+                            spkt.Slot = cpkt.Slot;
                             spkt.SessionId = target.id;
                             target.client.Send((byte[])spkt);
                         }
                     }
-
-
 
                     //Remove item
                     if (dyeitem.count - 1 > 0)
@@ -752,14 +738,13 @@ namespace Saga.Map.Client
                         spkt3.Container = 2;
                         this.Send((byte[])spkt3);
                     }
-
                 }
             }
             finally
             {
                 SMSG_USEDYEITEM spkt = new SMSG_USEDYEITEM();
                 if (dyeitem != null)
-                spkt.ItemId = dyeitem.info.item;
+                    spkt.ItemId = dyeitem.info.item;
                 spkt.Equipment = cpkt.Slot;
                 spkt.Container = cpkt.Container;
                 spkt.Result = result;
@@ -775,13 +760,11 @@ namespace Saga.Map.Client
         /// <param name="cpkt"></param>
         private void CM_USEADMISSIONWEAPON(CMSG_USEWEAPONADMISSION cpkt)
         {
-
             byte error = 0;
             try
             {
-
                 Rag2Item item = this.character.container[cpkt.Index];
-                if( item == null )
+                if (item == null)
                 {
                     error = (byte)Generalerror.InventoryItemNotFound;
                 }
@@ -818,16 +801,12 @@ namespace Saga.Map.Client
             }
             finally
             {
-
-
                 SMSG_WEAPONMAX spkt = new SMSG_WEAPONMAX();
                 spkt.Result = error;
                 spkt.Count = this.character.weapons.UnlockedWeaponSlots;
                 spkt.SessionId = this.character.id;
                 this.Send((byte[])spkt);
-
             }
-
         }
 
         /// <summary>
@@ -842,16 +821,14 @@ namespace Saga.Map.Client
             int slot = cpkt.SlotId - 1;
             byte result = 0;
 
-
             try
             {
-                //CHECK FOR VALID SLOT                
+                //CHECK FOR VALID SLOT
                 if (slot < 5 && target.weapons[slot] != null)
                 {
                     Weapon weapon = target.weapons[slot];
                     byte newLevel = (byte)(weapon._weaponlevel + 1);
                     uint ReqZeny = Singleton.experience.FindUpgradeCosts(weapon._weaponlevel);
-
 
                     //CHECK IF WE HAVEN'T REACHED OUR LEVEL LIMIT
                     if (weapon._weaponlevel == Singleton.experience.MaxWLVL)
@@ -925,7 +902,6 @@ namespace Saga.Map.Client
         /// <param name="cpkt"></param>
         private void CM_WEAPONARY_CHANGESUFFIX(CMSG_WEAPONCHANGESUFFIX cpkt)
         {
-
             //Helper variables
             Character target = this.character;
             byte slot = cpkt.SlotId;
@@ -934,7 +910,6 @@ namespace Saga.Map.Client
 
             try
             {
-
                 //NOT VALID SLOT
                 if (slot >= 5 || target.weapons[slot] == null)
                 {
@@ -975,10 +950,9 @@ namespace Saga.Map.Client
         /// <param name="cpkt"></param>
         private void CM_WEAPONARY_NEWCHANGESUFFIX(CMSG_WEAPONCHANGESUFFIX2 cpkt)
         {
-
             SMSG_WEAPONNEWCHANGESUFFIX spkt = new SMSG_WEAPONNEWCHANGESUFFIX();
             spkt.Result = 1;
-            spkt.SessionId = this.character.id;            
+            spkt.SessionId = this.character.id;
 
             //Helper variables
             Character target = this.character;
@@ -1025,7 +999,7 @@ namespace Saga.Map.Client
             for (int i = 0; i < this.character.container.Capacity; i++)
             {
                 Rag2Item a = character.container[i];
-                if( a == null) continue;
+                if (a == null) continue;
 
                 Predicate<KeyValuePair<byte, Rag2Item>> FindRag2Items = delegate(KeyValuePair<byte, Rag2Item> b)
                 {
@@ -1033,20 +1007,19 @@ namespace Saga.Map.Client
                            b.Value.clvl == a.clvl;
                 };
 
-
                 bool result = false;
                 int count = a.info.max_stack - a.count;
 
                 List<KeyValuePair<byte, Rag2Item>> items = new List<KeyValuePair<byte, Rag2Item>>();
-                foreach( KeyValuePair<byte, Rag2Item> b in this.character.container.GetAllItems(FindRag2Items))
+                foreach (KeyValuePair<byte, Rag2Item> b in this.character.container.GetAllItems(FindRag2Items))
                 {
-                    if( b.Value.count < b.Value.info.max_stack && b.Key != i )
-                    items.Add(b);
+                    if (b.Value.count < b.Value.info.max_stack && b.Key != i)
+                        items.Add(b);
                 }
 
-                foreach(  KeyValuePair<byte, Rag2Item> b in items)
+                foreach (KeyValuePair<byte, Rag2Item> b in items)
                 {
-                    if( b.Value.count > count )
+                    if (b.Value.count > count)
                     {
                         a.count = a.info.max_stack;
                         b.Value.count -= count;
@@ -1090,7 +1063,7 @@ namespace Saga.Map.Client
                     spkt.UpdateReason = 0;
                     this.Send((byte[])spkt);
                 }
-            }          
+            }
         }
 
         /// <summary>
@@ -1110,7 +1083,6 @@ namespace Saga.Map.Client
                            b.Value.tradeable == a.tradeable &&
                            b.Value.clvl == a.clvl;
                 };
-
 
                 bool result = false;
                 int count = a.info.max_stack - a.count;
@@ -1177,7 +1149,7 @@ namespace Saga.Map.Client
         /// <param name="cpkt"></param>
         private void CM_WEAPONAUGE(CMSG_WEAPONAUGE cpkt)
         {
-            Rag2Item item = this.character.container[cpkt.Index];            
+            Rag2Item item = this.character.container[cpkt.Index];
             Weapon wep = this.character.weapons[cpkt.WeaponSlot];
             if (item == null) return;
 
@@ -1325,11 +1297,9 @@ namespace Saga.Map.Client
                 this.character.ZENY -= aprice;
                 foreach (KeyValuePair<byte, byte> pair in list)
                 {
-
                     // Item from weaponary
                     if (pair.Key == 8)
                     {
-
                         Weapon current = this.character.weapons[pair.Value];
                         if (current._durabillity == 0 &&
                             Common.Skills.HasRootSkillPresent(this.character, current.Info.weapon_skill))
@@ -1366,8 +1336,7 @@ namespace Saga.Map.Client
                             spkt2.SessionId = this.character.id;
                             this.Send((byte[])spkt2);
 
-
-                            #warning "Equipment applied"
+#warning "Equipment applied"
                             current.Activate(AdditionContext.Applied, this.character);
                         }
 
@@ -1414,8 +1383,8 @@ namespace Saga.Map.Client
         }
 
         /// <summary>
-        /// This function process all inventory interaction. For example to equip a 
-        /// item or a to switch item from your inventory to the storage. Because this 
+        /// This function process all inventory interaction. For example to equip a
+        /// item or a to switch item from your inventory to the storage. Because this
         /// is populair place to exploit we do some heavy loaded item checking.
         /// </summary>
         /// <param name="cpkt"></param>
@@ -1429,7 +1398,7 @@ namespace Saga.Map.Client
                 Rag2Item[] Equips = this.character.Equipment;
                 Rag2Collection Inventory = this.character.container;
 
-                //PROCESS EQUIPMENT SWAPPING                
+                //PROCESS EQUIPMENT SWAPPING
                 int dest = 255;
                 if (cpkt.DestinationIndex == 255)
                 {
@@ -1438,7 +1407,7 @@ namespace Saga.Map.Client
                     if (dest == -1) { result = 14; goto Notifycation; }
                     Equips[cpkt.SourceIndex] = null;
 
-                    #warning "Equipment deapplied"
+#warning "Equipment deapplied"
                     temp.Activate(AdditionContext.Deapplied, this.character);
                     Tasks.LifeCycle.Update(this.character);
                 }
@@ -1451,12 +1420,11 @@ namespace Saga.Map.Client
                     Equips[cpkt.SourceIndex] = temp2;
                     this.character.container[cpkt.SourceIndex] = temp;
 
-                    #warning "Equipment applied/deapplied"
+#warning "Equipment applied/deapplied"
                     temp.Activate(AdditionContext.Deapplied, this.character);
                     temp2.Activate(AdditionContext.Reapplied, this.character);
                     Tasks.LifeCycle.Update(this.character);
                 }
-
 
                 //MOVE THE ITEM
                 SMSG_MOVEITEM spkt = new SMSG_MOVEITEM();
@@ -1470,21 +1438,18 @@ namespace Saga.Map.Client
                 int SourceIndex = cpkt.SourceIndex;
                 int ShieldIndex = (this.character.weapons.ActiveWeaponIndex == 1) ? 15 : 14;
                 if (SourceIndex < 6 || SourceIndex == 8 || SourceIndex == ShieldIndex)
-                foreach (Character regionObject in tree.SearchActors(SearchFlags.Characters))
-                {
-                    //FORWARD CHANGE TO ALL ACTORS
-                    Rag2Item equip = Equips[cpkt.SourceIndex];
-                    SMSG_CHANGEEQUIPMENT spkt2 = new SMSG_CHANGEEQUIPMENT();
-                    spkt2.Slot = cpkt.SourceIndex;
-                    spkt2.ActorID = this.character.id;
-                    spkt2.ItemID = (equip != null) ? equip.info.item : 0;
-                    spkt2.Dye = (byte)((equip != null) ? equip.dyecolor : 0);
-                    spkt2.SessionId = regionObject.id;
-                    regionObject.client.Send((byte[])spkt2);
-                }
-
-
-
+                    foreach (Character regionObject in tree.SearchActors(SearchFlags.Characters))
+                    {
+                        //FORWARD CHANGE TO ALL ACTORS
+                        Rag2Item equip = Equips[cpkt.SourceIndex];
+                        SMSG_CHANGEEQUIPMENT spkt2 = new SMSG_CHANGEEQUIPMENT();
+                        spkt2.Slot = cpkt.SourceIndex;
+                        spkt2.ActorID = this.character.id;
+                        spkt2.ItemID = (equip != null) ? equip.info.item : 0;
+                        spkt2.Dye = (byte)((equip != null) ? equip.dyecolor : 0);
+                        spkt2.SessionId = regionObject.id;
+                        regionObject.client.Send((byte[])spkt2);
+                    }
 
             Notifycation:
                 //NOTIFY THE USER OF AN ERROR
@@ -1494,7 +1459,7 @@ namespace Saga.Map.Client
                 spkt3.SessionId = this.character.id;
                 this.Send((byte[])spkt3);
 
-                #endregion
+                #endregion EQUIPMENT TO INVENTORY SWAP
             }
             else if (cpkt.MovementType == 2)
             {
@@ -1519,16 +1484,16 @@ namespace Saga.Map.Client
                     goto Notifycation;
                 }
 
-                //CHECK GENDER 
-				if ((InventoryItem.info.req_male + InventoryItem.info.req_female < 2) &&
+                //CHECK GENDER
+                if ((InventoryItem.info.req_male + InventoryItem.info.req_female < 2) &&
                 ((InventoryItem.info.req_male == 1 && this.character.gender == 2) ||
-					(InventoryItem.info.req_female == 1 && this.character.gender == 1)))
+                    (InventoryItem.info.req_female == 1 && this.character.gender == 1)))
                 {
                     result = 2;
                     goto Notifycation;
                 }
 
-                //CHECK RACE 
+                //CHECK RACE
                 if ((this.character.race == 1 && InventoryItem.info.req_norman == 1) ||
                     (this.character.race == 2 && InventoryItem.info.req_ellr == 1) ||
                     (this.character.race == 3 && InventoryItem.info.req_dimago == 1))
@@ -1609,25 +1574,21 @@ namespace Saga.Map.Client
                     Tasks.LifeCycle.Update(this.character);
                 }
 
-
-
                 Regiontree tree = this.character.currentzone.Regiontree;
                 int DestIndex = cpkt.DestinationIndex;
-                int ShieldIndex = (this.character.weapons.ActiveWeaponIndex == 1 ) ? 15 : 14;
-                if( DestIndex < 6 ||  DestIndex == 8 || DestIndex == ShieldIndex )
-                foreach (Character regionObject in tree.SearchActors(SearchFlags.Characters))
-                {
-                    //FORWARD CHANGE TO ALL ACTORS
-                    Rag2Item equip = Equips[cpkt.DestinationIndex];
-                    SMSG_CHANGEEQUIPMENT spkt2 = new SMSG_CHANGEEQUIPMENT();
-                    spkt2.Slot = cpkt.SourceIndex;
-                    spkt2.ActorID = this.character.id;
-                    spkt2.ItemID = (equip != null) ? equip.info.item : 0;
-                    spkt2.Dye = (byte)((equip != null) ? equip.dyecolor : 0);
-                    regionObject.client.Send((byte[])spkt2);
-                }
-
-
+                int ShieldIndex = (this.character.weapons.ActiveWeaponIndex == 1) ? 15 : 14;
+                if (DestIndex < 6 || DestIndex == 8 || DestIndex == ShieldIndex)
+                    foreach (Character regionObject in tree.SearchActors(SearchFlags.Characters))
+                    {
+                        //FORWARD CHANGE TO ALL ACTORS
+                        Rag2Item equip = Equips[cpkt.DestinationIndex];
+                        SMSG_CHANGEEQUIPMENT spkt2 = new SMSG_CHANGEEQUIPMENT();
+                        spkt2.Slot = cpkt.SourceIndex;
+                        spkt2.ActorID = this.character.id;
+                        spkt2.ItemID = (equip != null) ? equip.info.item : 0;
+                        spkt2.Dye = (byte)((equip != null) ? equip.dyecolor : 0);
+                        regionObject.client.Send((byte[])spkt2);
+                    }
 
             Notifycation:
                 //NOTIFY THE USER OF AN ERROR
@@ -1635,15 +1596,15 @@ namespace Saga.Map.Client
                 spkt3.MovementType = cpkt.MovementType;
                 spkt3.Message = result;
                 spkt3.SessionId = this.character.id;
-                this.Send((byte[])spkt3);                
+                this.Send((byte[])spkt3);
 
-                #endregion
+                #endregion INVENTORY TO EQUIPMENT SWAP
             }
             else if (cpkt.MovementType == 3)
             {
                 #region INVENTORY TO STORAGE SWAP
 
-                //STORAGE TO INVENTORY                
+                //STORAGE TO INVENTORY
                 byte result = 0;
 
                 //CHECK STORAGE ITEM
@@ -1682,7 +1643,6 @@ namespace Saga.Map.Client
                     spkt4.UpdateReason = 0;
                     spkt4.SetItem(invenItem, index);
                     this.Send((byte[])spkt4);
-
                 }
                 else
                 {
@@ -1727,17 +1687,14 @@ namespace Saga.Map.Client
                 spkt3.SessionId = this.character.id;
                 this.Send((byte[])spkt3);
 
-
-
-                //Type is used to calc type of item 
+                //Type is used to calc type of item
                 //(21 seems to be used for Applogy Item)
                 if (result == 0 && invenItem.info.type == 21)
                 {
                     Common.Skills.UpdateAddition(this.character, 101);
                 }
 
-
-                #endregion
+                #endregion INVENTORY TO STORAGE SWAP
             }
             else if (cpkt.MovementType == 4)
             {
@@ -1780,7 +1737,6 @@ namespace Saga.Map.Client
                     spkt4.UpdateReason = (byte)ItemUpdateReason.StorageReceived;
                     spkt4.SetItem(invenItem, index);
                     this.Send((byte[])spkt4);
-
                 }
                 else
                 {
@@ -1818,7 +1774,6 @@ namespace Saga.Map.Client
                     this.Send((byte[])spkt2);
                 }
 
-
             Notifycation:
                 SMSG_MOVEREPLY spkt3 = new SMSG_MOVEREPLY();
                 spkt3.MovementType = cpkt.MovementType;
@@ -1826,15 +1781,14 @@ namespace Saga.Map.Client
                 spkt3.SessionId = this.character.id;
                 this.Send((byte[])spkt3);
 
-                //Type is used to calc type of item 
+                //Type is used to calc type of item
                 //(21 seems to be used for Applogy Item)
                 if (result == 0 && invenItem.info.type == 21)
                 {
                     Common.Skills.UpdateAddition(this.character, 101);
                 }
 
-
-                #endregion
+                #endregion STORAGE TO INVENTORY SWAP
             }
         }
 
@@ -1862,17 +1816,16 @@ namespace Saga.Map.Client
                 }
                 else
                 {
-
                     skill = Supplement.info.skill;
 
-                    //If it is a equipment item and activated 
+                    //If it is a equipment item and activated
                     //(active is set to 0 if durabillity is 0 or doesn't meet job criteria)
                     if (IsEquipmentItem && Equipment.active == 1)
                     {
                         uint oldskill = Equipment.Enchantments[cpkt.EnchantmentSlot];
                         if (oldskill > 0)
                         {
-                            #warning "Skill Deapplied"
+#warning "Skill Deapplied"
 
                             Factory.Spells.Info info1;
                             Factory.Additions.Info info2;
@@ -1888,7 +1841,7 @@ namespace Saga.Map.Client
 
                         if (skill > 0)
                         {
-                            #warning "Skill Applied"
+#warning "Skill Applied"
 
                             Factory.Spells.Info info1;
                             Factory.Additions.Info info2;
@@ -1903,8 +1856,6 @@ namespace Saga.Map.Client
                         }
                     }
 
-
-                    
                     Equipment.Enchantments[cpkt.EnchantmentSlot] = skill;
 
                     int newLength = Supplement.count - 1;
@@ -1963,14 +1914,13 @@ namespace Saga.Map.Client
                 //Update stats
                 lock (this.character.stats)
                 {
-
                     Saga.PrimaryTypes.CharacterStats.Stats stats = this.character.stats.CHARACTER;
                     int remaining = stats.concentration
                                   + stats.dexterity
                                   + stats.intelligence
                                   + stats.strength
                                   + this.character.stats.REMAINING;
-                    
+
                     lock (character._status)
                     {
                         //Update strength
@@ -1998,12 +1948,6 @@ namespace Saga.Map.Client
                         this.character.stats.REMAINING = (ushort)remaining;
                     }
                 }
-
-
-
-
-
-
 
                 //Reset stat points
                 SMSG_EXTSTATS spkt = new SMSG_EXTSTATS();
@@ -2095,7 +2039,6 @@ namespace Saga.Map.Client
 
             lock (this.character._status)
             {
-                                
                 int NewWeaponIndex = (this.character.weapons.ActiveWeaponIndex == 1) ? this.character.weapons.SeconairyWeaponIndex : this.character.weapons.PrimaryWeaponIndex;
                 if (NewWeaponIndex < this.character.weapons.UnlockedWeaponSlots)
                 {
@@ -2154,8 +2097,6 @@ namespace Saga.Map.Client
                 }
             }
 
-
-
             //Switch the weapons
             Point oldPos = this.character.Position;
             Regiontree tree = this.character.currentzone.Regiontree;
@@ -2170,7 +2111,6 @@ namespace Saga.Map.Client
                 }
                 else if (Point.IsInSightRangeByRadius(regionObject.Position, oldPos))
                 {
-
                     SMSG_SHOWWEAPON spkt = new SMSG_SHOWWEAPON();
                     spkt.ActorID = this.character.id;
                     spkt.AugeID = this.character.ComputeAugeSkill();
@@ -2189,7 +2129,6 @@ namespace Saga.Map.Client
 
             //Does the switch
             Tasks.LifeCycle.Update(this.character);
-
         }
 
         /// <summary>
@@ -2198,7 +2137,7 @@ namespace Saga.Map.Client
         private void CM_WEAPONMOVE(CMSG_WEAPONMOVE cpkt)
         {
             bool isselectedweapon = cpkt.Slot == this.character.weapons.ActiveWeaponIndex;
-            byte prev_slot = (cpkt.Slot == 1 ) ? this.character.weapons.SeconairyWeaponIndex : this.character.weapons.PrimaryWeaponIndex;
+            byte prev_slot = (cpkt.Slot == 1) ? this.character.weapons.SeconairyWeaponIndex : this.character.weapons.PrimaryWeaponIndex;
             byte next_slot = cpkt.Slot;
             byte prev_weapontype = 0;
             byte next_weapontype = 0;
@@ -2273,7 +2212,7 @@ namespace Saga.Map.Client
 
                     if (prev_weapontype != next_weapontype)
                     {
-                        foreach( Skill skill in this.character.learnedskills )
+                        foreach (Skill skill in this.character.learnedskills)
                         {
                             //If it's a pasive skill
                             if (skill.info.skilltype == 2)
@@ -2283,16 +2222,15 @@ namespace Saga.Map.Client
 
                                 if (PreviousAble == false && NextAble == true)
                                     Singleton.Additions.ApplyAddition(skill.info.addition, this.character);
-                                else if( NextAble == false && PreviousAble == true )
-                                    Singleton.Additions.DeapplyAddition(skill.info.addition, this.character);                                
+                                else if (NextAble == false && PreviousAble == true)
+                                    Singleton.Additions.DeapplyAddition(skill.info.addition, this.character);
                             }
                         }
                     }
                 }
             }
 
-
-           //Switch the weapons
+            //Switch the weapons
             Point oldPos = this.character.Position;
             Regiontree tree = this.character.currentzone.Regiontree;
             foreach (Character regionObject in tree.SearchActors(SearchFlags.Characters))
@@ -2316,8 +2254,7 @@ namespace Saga.Map.Client
                 }
             }
 
-            Tasks.LifeCycle.Update(this.character);          
+            Tasks.LifeCycle.Update(this.character);
         }
-
     }
 }

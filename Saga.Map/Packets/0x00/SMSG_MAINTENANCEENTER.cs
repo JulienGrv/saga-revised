@@ -1,9 +1,7 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_MAINTENANCEENTER : RelayPacket
     {
         public SMSG_MAINTENANCEENTER()

@@ -1,26 +1,22 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
+using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
-using System.Net;
-using System.Diagnostics;
 using System.Threading;
-using System.Globalization;
 
 namespace Saga.Shared.NetworkCore
 {
-    
     public class EncryptedManager<T> where T : EncryptedClient
     {
         private readonly TcpListener listner;
         private bool AmShuttingDown = false;
-        Thread thread;
+        private Thread thread;
 
         public EncryptedManager(string ip, int port)
         {
             this.listner = new TcpListener(IPAddress.Parse(ip), port);
-            this.listner.Start();            
+            this.listner.Start();
             thread = new Thread(new ThreadStart(Loop));
         }
 
@@ -31,7 +27,7 @@ namespace Saga.Shared.NetworkCore
         }
 
         private void Loop()
-        {            
+        {
             this.AmShuttingDown = false;
             while (AmShuttingDown == false)
             {
@@ -59,5 +55,5 @@ namespace Saga.Shared.NetworkCore
             Trace.WriteLine(string.Format("Connection accepted from: {0}", socket.RemoteEndPoint), "Network");
             return myClassObj;
         }
-    }    
+    }
 }

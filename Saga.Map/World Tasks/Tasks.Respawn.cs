@@ -1,16 +1,15 @@
-using System;
-using System.Collections.Generic;
 using Saga.Enumarations;
 using Saga.Map;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Structures;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Tasks
 {
-
     /// <summary>
-    /// Performs a respawn task. 
+    /// Performs a respawn task.
     /// </summary>
     /// <remarks>
     /// A normal monster respawns in approx 3 minutes.
@@ -19,12 +18,11 @@ namespace Saga.Tasks
     /// </remarks>
     public static class Respawns
     {
-
         #region Private Members
 
         /// <summary>
         /// Queue for respawn objects
-        /// </summary>        
+        /// </summary>
         private static Queue<Respawn> respawns = new Queue<Respawn>();
 
         /// <summary>
@@ -46,24 +44,24 @@ namespace Saga.Tasks
             c.OnRegister();
 
             Regiontree tree = c._currentzone.Regiontree;
-            if( isnpc )
-                foreach (Character regionObject in tree.SearchActors( SearchFlags.Characters))
-                {                                    
-                        Actor actor = c as Actor;
-                        actor.stance = (byte)StancePosition.Reborn;
-                        SMSG_NPCINFO spkt2 = new SMSG_NPCINFO(0);
-                        spkt2.ActorID = actor.id;
-                        spkt2.HP = actor.HPMAX;
-                        spkt2.SP = actor.SPMAX;
-                        spkt2.MaxHP = actor.HPMAX;
-                        spkt2.MaxSP = actor.SPMAX;
-                        spkt2.NPCID = actor.ModelId;
-                        spkt2.X = actor.Position.x;
-                        spkt2.Y = actor.Position.y;
-                        spkt2.Z = actor.Position.z;
-                        spkt2.SessionId = regionObject.id;
-                        regionObject.client.Send((byte[])spkt2);
-                        c.Appears(regionObject);
+            if (isnpc)
+                foreach (Character regionObject in tree.SearchActors(SearchFlags.Characters))
+                {
+                    Actor actor = c as Actor;
+                    actor.stance = (byte)StancePosition.Reborn;
+                    SMSG_NPCINFO spkt2 = new SMSG_NPCINFO(0);
+                    spkt2.ActorID = actor.id;
+                    spkt2.HP = actor.HPMAX;
+                    spkt2.SP = actor.SPMAX;
+                    spkt2.MaxHP = actor.HPMAX;
+                    spkt2.MaxSP = actor.SPMAX;
+                    spkt2.NPCID = actor.ModelId;
+                    spkt2.X = actor.Position.x;
+                    spkt2.Y = actor.Position.y;
+                    spkt2.Z = actor.Position.z;
+                    spkt2.SessionId = regionObject.id;
+                    regionObject.client.Send((byte[])spkt2);
+                    c.Appears(regionObject);
                 }
             else if (ismapitem)
                 foreach (Character regionObject in tree.SearchActors(SearchFlags.Characters))
@@ -83,14 +81,12 @@ namespace Saga.Tasks
                 }
         }
 
-
-
         /// <summary>
         /// Forces a full respawn of the player.
         /// </summary>
         /// <param name="c"></param>
         /// <remarks>
-        /// This happens after approx 30 minutes after the 
+        /// This happens after approx 30 minutes after the
         /// player still didn't press the button.
         /// </remarks>
         private static void ForceFullRespawnPlayer(Character c)
@@ -100,7 +96,7 @@ namespace Saga.Tasks
             CommonFunctions.Warp(c, world.map, world.coords);
         }
 
-        #endregion
+        #endregion Private Members
 
         #region Internal Members
 
@@ -133,14 +129,14 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
+        #endregion Internal Members
 
         #region Public Members
 
         public static void Subscribe(MapObject c)
         {
             //IF THE SELECTED OBJECT IS A PLAYER
-            if ( MapObject.IsPlayer(c))
+            if (MapObject.IsPlayer(c))
             {
                 respawns_players.Add(new Respawn(c, c.currentzone));
             }
@@ -160,7 +156,7 @@ namespace Saga.Tasks
             if (MapObject.IsPlayer(c))
             {
                 lock (respawns_players)
-                {                    
+                {
                     for (int i = 0; i < respawns_players.Count; i++)
                     {
                         if (respawns_players[i].Object == c)
@@ -174,7 +170,7 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Nested
 
@@ -188,11 +184,10 @@ namespace Saga.Tasks
             {
                 this.Tick = Environment.TickCount;
                 this.Object = corpse;
-                this.Zone = zone;                
+                this.Zone = zone;
             }
         }
 
-        #endregion
-
+        #endregion Nested
     }
 }

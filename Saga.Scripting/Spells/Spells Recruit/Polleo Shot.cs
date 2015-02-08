@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void RECRUIT_POLLEOSHOT(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -26,17 +21,21 @@ namespace Saga.Skills
                 switch (asource.Status.CurrentLp)
                 {
                     case 1:
-                        matrix.matrix[1,2] += ( 9 + 1 * arguments.SkillLevel);
+                        matrix.matrix[1, 2] += (9 + 1 * arguments.SkillLevel);
                         break;
+
                     case 2:
                         matrix.matrix[1, 2] += (19 + 2 * arguments.SkillLevel);
                         break;
+
                     case 3:
                         matrix.matrix[1, 2] += (30 + 3 * arguments.SkillLevel);
                         break;
+
                     case 4:
                         matrix.matrix[1, 2] += (42 + 4 * arguments.SkillLevel);
                         break;
+
                     case 5:
                         matrix.matrix[1, 2] += (55 + 5 * arguments.SkillLevel);
                         break;
@@ -61,7 +60,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
-
     }
 }

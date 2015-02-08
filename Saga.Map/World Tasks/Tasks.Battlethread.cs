@@ -6,13 +6,12 @@ namespace Saga.Tasks
 {
     public static class BattleThread
     {
-
         #region BattleThread Private Members
 
         /// <summary>
-        /// A list with all thread states. We use multiple thread-states 
-        /// so we can do loadbalacing over threads. In total a average 
-        /// server has 4 cpu's (Quad-Core) therefor 4 threads would be 
+        /// A list with all thread states. We use multiple thread-states
+        /// so we can do loadbalacing over threads. In total a average
+        /// server has 4 cpu's (Quad-Core) therefor 4 threads would be
         /// sufficient for now.
         /// </summary>
         private static List<ThreadState> ThreadStateList = new List<ThreadState>(4);
@@ -52,7 +51,7 @@ namespace Saga.Tasks
                 }
             }
 
-            //Returns the best found AI            
+            //Returns the best found AI
             return index;
         }
 
@@ -73,22 +72,24 @@ namespace Saga.Tasks
         private static void Subscribe(IBattleArtificialIntelligence e, int index)
         {
             if (index < ThreadStateList.Count)
-            {                
+            {
                 ThreadState current = ThreadStateList[index];
                 current.Add(e);
                 e.BattleState.Subscribe(index);
             }
         }
+
         private static void Unsubscribe(IBattleArtificialIntelligence e, int index)
         {
             if (index < ThreadStateList.Count)
             {
-                //Actual ubsubscribement                    
+                //Actual ubsubscribement
                 ThreadState current = ThreadStateList[index];
                 current.Remove(e);
                 e.BattleState.Unsubscribe(index);
             }
         }
+
         private static void AddNewThread()
         {
             //Adds a new threadstate
@@ -104,7 +105,7 @@ namespace Saga.Tasks
             ThreadStateList.Clear();
         }
 
-        #endregion
+        #endregion BattleThread Private Members
 
         #region BattleThread Public Members
 
@@ -117,10 +118,9 @@ namespace Saga.Tasks
         {
             //If the object is subscribed cancel
             if (e.BattleState.IsSubscribed == true) return;
-            int index = FindBestThreadStateToSubscribe();            
+            int index = FindBestThreadStateToSubscribe();
             Subscribe(e, index);
         }
-
 
         /// <summary>
         /// Unsubscribes a IBattleArtificialIntelligence member on one of the designated lists
@@ -131,11 +131,11 @@ namespace Saga.Tasks
         {
             //If the object is not subscribed cancel
             if (e.BattleState.IsSubscribed == false) return;
-            int index = e.BattleState.ThreadIndex;            
+            int index = e.BattleState.ThreadIndex;
             Unsubscribe(e, index);
         }
 
-        #endregion
+        #endregion BattleThread Public Members
 
         #region BattleThread Nested Classes
 
@@ -144,7 +144,6 @@ namespace Saga.Tasks
         /// </summary>
         public interface IBattleArtificialIntelligence
         {
-           
             /// <summary>
             /// Battle state containing whether
             /// </summary>
@@ -158,9 +157,9 @@ namespace Saga.Tasks
 
         public class IBattlestate
         {
-
             private int _listupdate = 0;
             private byte _threadindex;
+
             internal byte ThreadIndex
             {
                 get
@@ -194,19 +193,17 @@ namespace Saga.Tasks
                 if (_threadindex > 0) return;
                 _threadindex = (byte)(threadindex + 1);
                 _listupdate = Environment.TickCount;
-            }            
+            }
 
             internal void Unsubscribe(int threadindex)
             {
                 if (_threadindex == 0) return;
                 _threadindex = 0;
             }
-
-
         }
 
         /// <summary>
-        /// Thread state: a internal helper class containing there own 
+        /// Thread state: a internal helper class containing there own
         /// processing list and thread.
         /// </summary>
         private class ThreadState
@@ -252,7 +249,6 @@ namespace Saga.Tasks
 
                         //Sleep one sec
                         Thread.Sleep(1);
-
                     }
                     catch (ThreadAbortException)
                     {
@@ -261,7 +257,7 @@ namespace Saga.Tasks
                 }
             }
 
-            #endregion
+            #endregion ThreadState Private Members
 
             #region ThreadState Public Members
 
@@ -278,8 +274,8 @@ namespace Saga.Tasks
             }
 
             /// <summary>
-            /// Removes the requested 
-            /// IBattleArtificialIntelligence 
+            /// Removes the requested
+            /// IBattleArtificialIntelligence
             /// </summary>
             /// <param name="e"></param>
             public void Remove(IBattleArtificialIntelligence e)
@@ -291,7 +287,7 @@ namespace Saga.Tasks
             }
 
             /// <summary>
-            /// Checks if a threadstate contains the requested 
+            /// Checks if a threadstate contains the requested
             /// IBattleArtificialIntelligence
             /// </summary>
             /// <param name="e"></param>
@@ -301,7 +297,7 @@ namespace Saga.Tasks
             }
 
             /// <summary>
-            /// Gets the count of AI's that are subscribed 
+            /// Gets the count of AI's that are subscribed
             /// </summary>
             public int Count
             {
@@ -322,7 +318,7 @@ namespace Saga.Tasks
                 }
             }
 
-            #endregion
+            #endregion ThreadState Public Members
 
             #region ThreadState Contructor/Deconstructor
 
@@ -334,9 +330,9 @@ namespace Saga.Tasks
                 //Set new processing list with 20 stack
                 this.processinglist = new List<IBattleArtificialIntelligence>(20);
 
-                //Set the thread                
+                //Set the thread
                 this.ProcessingThread = new Thread(new ThreadStart(Process));
-                this.ProcessingThread.Name = "BattleThread";                
+                this.ProcessingThread.Name = "BattleThread";
                 this.ProcessingThread.Start();
             }
 
@@ -354,7 +350,7 @@ namespace Saga.Tasks
                 finally
                 {
                     if (this.ProcessingThread != null)
-                    GC.ReRegisterForFinalize(this.ProcessingThread);
+                        GC.ReRegisterForFinalize(this.ProcessingThread);
                     ProcessingThread = null;
                     processinglist = null;
                 }
@@ -372,16 +368,15 @@ namespace Saga.Tasks
                 }
                 finally
                 {
-                    if( this.ProcessingThread != null )
-                    GC.ReRegisterForFinalize(this.ProcessingThread);                    
+                    if (this.ProcessingThread != null)
+                        GC.ReRegisterForFinalize(this.ProcessingThread);
                 }
             }
 
-            #endregion
+            #endregion ThreadState Contructor/Deconstructor
         }
 
-
-        #endregion
+        #endregion BattleThread Nested Classes
 
         #region BattleThread Constructor/Descontructor
 
@@ -394,7 +389,6 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
-
+        #endregion BattleThread Constructor/Descontructor
     }
 }

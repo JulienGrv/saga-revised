@@ -1,22 +1,18 @@
+using Saga.Authentication.Structures;
+using Saga.Map.Client;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Net;
-using System.Configuration;
-using Saga.Map.Client;
-using Saga;
-using Saga.Configuration;
-using Saga.Authentication.Structures;
 using System.Threading;
 
 namespace Saga.Authentication
 {
-    class ServerManager2
+    internal class ServerManager2
     {
-
         public Dictionary<byte, ServerInfo2> server = new Dictionary<byte, ServerInfo2>();
 
         private static ServerManager2 instance;
+
         public static ServerManager2 Instance
         {
             get
@@ -25,7 +21,6 @@ namespace Saga.Authentication
                 return instance;
             }
         }
-
 
         private ServerManager2()
         {
@@ -40,7 +35,6 @@ namespace Saga.Authentication
             }
         }
 
-
         private static Thread PingThread;
         private static int LastTick = 0;
 
@@ -51,8 +45,7 @@ namespace Saga.Authentication
             PingThread.Start();
         }
 
-
-        static void PingCallback()
+        private static void PingCallback()
         {
             //Never stop pinging
             while (!Environment.HasShutdownStarted)
@@ -71,8 +64,8 @@ namespace Saga.Authentication
                         }
                     }
                     //catch all exceptions but don't handle them
-                    catch (Exception) 
-                    { 
+                    catch (Exception)
+                    {
                     }
                     //Always update the last tick
                     finally
@@ -84,16 +77,10 @@ namespace Saga.Authentication
                 Thread.Sleep(1);
             }
         }
-        
-
-        
     }
 
     public class ServerInfo2
     {
-
-        
-
         public string proof = string.Empty;
         public string name;
         public IPAddress IP;
@@ -125,14 +112,11 @@ namespace Saga.Authentication
             return true;
         }
 
-        static Random rand = new Random();
+        private static Random rand = new Random();
+
         public void GenerateKey()
         {
             rand.NextBytes(ValidationBytes);
         }
-
-
-
-
     }
 }

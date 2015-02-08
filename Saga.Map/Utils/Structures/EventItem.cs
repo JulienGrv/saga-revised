@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Saga.Structures
+﻿namespace Saga.Structures
 {
-
     /// <summary>
     /// Structure used database provided argument.
     /// </summary>
     public struct EventItem
     {
-
         /// <summary>
         /// Id of the reward
         /// </summary>
@@ -24,6 +18,6 @@ namespace Saga.Structures
         /// <summary>
         /// Number of items of item with specified itemid.
         /// </summary>
-        public byte ItemCount;        
+        public byte ItemCount;
     }
 }

@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent in conjunction with npc note
-    /// this indicates that the following steps are beeing 
+    /// this indicates that the following steps are beeing
     /// logged in a history.
     /// </remarks>
     /// <id>
@@ -35,7 +31,7 @@ namespace Saga.Packets
 
         public byte Unknown
         {
-            set { this.data[4] =  value; }
+            set { this.data[4] = value; }
         }
     }
 }

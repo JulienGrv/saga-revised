@@ -1,5 +1,3 @@
-using System;
-
 namespace Saga.Enumarations
 {
     /// <summary>
@@ -7,7 +5,6 @@ namespace Saga.Enumarations
     /// </summary>
     public enum Generalerror : byte
     {
-
         /// <summary>
         /// No error
         /// </summary>
@@ -110,47 +107,47 @@ namespace Saga.Enumarations
 
         /// <summary>
         /// Item server index is incorrect. (Gamestring 2019)
-        /// </summary> 
+        /// </summary>
         WrongServerIndex,
 
         /// <summary>
         /// Received incorrect ItemID. (Gamestring 2020)
-        /// </summary> 
+        /// </summary>
         WrongItemId,
 
         /// <summary>
         /// Item cannot be discarded. (Gamestring 2021)
-        /// </summary> 
+        /// </summary>
         CannotDiscard,
 
         /// <summary>
         /// Not the same type of item. (Gamestring 2022)
-        /// </summary> 
+        /// </summary>
         ItemtypeNotMatch,
 
         /// <summary>
         /// Moved items have exceeded maximum limit. (Gamestring 2023)
-        /// </summary> 
+        /// </summary>
         MoveItemLimit,
 
         /// <summary>
         /// Current value is lower then the used value. (Gamestring 2024)
-        /// </summary> 
+        /// </summary>
         ValueToLow,
 
         /// <summary>
         /// Unable to equip due to lack of required skills. (Gamestring 2025)
-        /// </summary> 
+        /// </summary>
         LackRequiredSkills,
 
         /// <summary>
         /// Delete selected weapon. (Gamestring 2026)
-        /// </summary>  
+        /// </summary>
         DeleteSelectedWeapon, //This has some werird dialouge and seemed to affect my weapon
 
         /// <summary>
         /// Weapon does not exist. (Gamestring 2027)
-        /// </summary>        
+        /// </summary>
         WeaponNotExists,
 
         /// <summary>
@@ -160,32 +157,32 @@ namespace Saga.Enumarations
 
         /// <summary>
         /// You don't have enough EXP points. (Gamestring 2029)
-        /// </summary> 
+        /// </summary>
         NotEnoughExperience,
 
         /// <summary>
         /// Not enough levels to absorb current weapon. (Gamestring 2030)
-        /// </summary>     
+        /// </summary>
         WeaponAbsorbLowLevel,
 
         /// <summary>
         /// Select equipped weapon. (Gamestring 2031)
-        /// </summary>        
+        /// </summary>
         SelectWeapon,
 
         /// <summary>
         /// You don't have enough money. (Gamestring 2032)
-        /// </summary>   
+        /// </summary>
         NotEnoughMoneyWithDialog, //Same message but with an alert thing
 
         /// <summary>
         /// You don't have enough money to repair. (Gamestring 2033)
-        /// </summary>        
+        /// </summary>
         NotEnoughMoneyToRepair,
 
         /// <summary>
         /// Your Weapon Level is not high enough. (Gamestring 2034)
-        /// </summary>        
+        /// </summary>
         LowWeaponLevel2,
 
         /// <summary>
@@ -223,7 +220,6 @@ namespace Saga.Enumarations
         /// </summary>
         WeaponNotExists2,
 
-
         /// <summary>
         /// Required conditions not met. (Gamestring 2043)
         /// </summary>
@@ -233,7 +229,6 @@ namespace Saga.Enumarations
         /// You don't have enough skill exp points. (Gamestring 2044)
         /// </summary>
         NotEnoughSkillExperience,
-
 
         /// <summary>
         /// No former skill level found. (Gamestring 2045)

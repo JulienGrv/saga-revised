@@ -1,16 +1,15 @@
-using System;
 using Saga.Network.Packets;
 using Saga.Structures;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet updates the yaw of your character. This packet is used
-    /// to notify the surrounding people you have changed your facing 
+    /// to notify the surrounding people you have changed your facing
     /// direction.
     /// </remarks>
     /// <id>
@@ -32,11 +31,11 @@ namespace Saga.Packets
 
         public Rotator Yaw
         {
-            set{
+            set
+            {
                 Array.Copy(BitConverter.GetBytes(value.rotation), 0, this.data, 4, 2);
                 Array.Copy(BitConverter.GetBytes(value.unknown), 0, this.data, 6, 2);
             }
         }
-
     }
 }

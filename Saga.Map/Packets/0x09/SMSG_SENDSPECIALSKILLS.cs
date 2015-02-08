@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
@@ -10,8 +7,8 @@ namespace Saga.Packets
     /// Sends a list of special skills
     /// </summary>
     /// <remarks>
-    /// This packet is sent when the user logs in for the first time 
-    /// (e.d no mapswitching). It's a list of all special skills the 
+    /// This packet is sent when the user logs in for the first time
+    /// (e.d no mapswitching). It's a list of all special skills the
     /// users has previously learned. After this packet all updates
     /// regarding the special skills are incremental.
     /// </remarks>

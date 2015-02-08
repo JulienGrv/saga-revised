@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Saga.Enumarations;
 using Saga.Map;
 using Saga.Packets;
@@ -7,9 +5,9 @@ using Saga.PrimaryTypes;
 using Saga.Quests;
 using Saga.Shared.NetworkCore;
 using Saga.Structures;
-using Saga.Structures.Collections;
-using Saga.Templates;
 using Saga.Tasks;
+using Saga.Templates;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 public static class CommonFunctions
@@ -31,27 +29,24 @@ public static class CommonFunctions
         spkt.Unknown = 1;
         spkt.Actor = c.id;
         spkt.SessionId = target.id;
-        target.client.Send((byte[])spkt);        
+        target.client.Send((byte[])spkt);
     }
 
     public static void ShowWarpOptions(Character target, MapObject source, IEnumerable<ushort> warplocations)
     {
         Saga.Factory.Warps.Info WarpInfo;
         SMSG_WARPDIALOG spkt = new SMSG_WARPDIALOG();
-        spkt.ActorId = source.id;        
+        spkt.ActorId = source.id;
         spkt.SessionId = target.id;
 
-        foreach (ushort i in warplocations) 
-        if( Singleton.Warps.TryFind( i, out WarpInfo))
-            spkt.AddItem(i, WarpInfo.price);
-        
+        foreach (ushort i in warplocations)
+            if (Singleton.Warps.TryFind(i, out WarpInfo))
+                spkt.AddItem(i, WarpInfo.price);
 
         target.client.Send((byte[])spkt);
     }
 
-
-    #endregion
-
+    #endregion NPC: Dialog Scripts
 
     #region Special Operations
 
@@ -86,7 +81,7 @@ public static class CommonFunctions
     {
         BaseNPC targetA = target.Target as BaseNPC;
         if (targetA != null)
-        {            
+        {
             SMSG_SHOPZENYUPDATE spkt = new SMSG_SHOPZENYUPDATE();
             spkt.Actor = target.Target.id;
             spkt.Zeny = targetA.Zeny;
@@ -95,23 +90,20 @@ public static class CommonFunctions
         }
     }
 
-
-
-    #endregion
+    #endregion Special Operations
 
     #region SomeJunk
 
-    private static IEnumerable<uint> CheckQuest(Character target , IEnumerable<uint> id)
+    private static IEnumerable<uint> CheckQuest(Character target, IEnumerable<uint> id)
     {
         foreach (uint c in id)
             if (target.QuestObjectives[c] == null) yield return c;
     }
 
-    
     public static void SendRebuylist(Character target)
     {
         SMSG_REBUYLIST spkt = new SMSG_REBUYLIST();
-        spkt.SessionId = target.id;      
+        spkt.SessionId = target.id;
 
         byte i = 0;
         foreach (Rag2Item item in target.REBUY)
@@ -122,12 +114,10 @@ public static class CommonFunctions
         target.client.Send((byte[])spkt);
     }
 
-    
-    #endregion
+    #endregion SomeJunk
 
     #region More Junk
 
- 
     public static void SendExchangeStatus(Character target, uint addition, uint time)
     {
         SMSG_ADDITIONBEGIN spkt = new SMSG_ADDITIONBEGIN();
@@ -137,7 +127,6 @@ public static class CommonFunctions
         spkt.SessionId = target.id;
         target.client.Send((byte[])spkt);
     }
-
 
     public static void SendDeleteStatus(Character target, uint addition)
     {
@@ -192,8 +181,7 @@ public static class CommonFunctions
         return target.client;
     }
 
- 
-    #endregion
+    #endregion More Junk
 
     #region More Junk
 
@@ -202,21 +190,20 @@ public static class CommonFunctions
         Regiontree tree = target.currentzone.Regiontree;
         foreach (Character regionObject in tree.SearchActors(target, SearchFlags.Characters))
             Common.Actions.UpdateStance(regionObject, target);
-
     }
 
     internal static void SendOxygenTakeDamage(Character c, uint p)
     {
         /*
          * This functions sends a oxygen damage packet
-         * 
+         *
          * Where the damage is already already decided. And take from
-         * the character. 
+         * the character.
          */
 
         SMSG_TAKEDAMAGE spkt = new SMSG_TAKEDAMAGE();
         spkt.Damage = p;
-        spkt.Reason = c.HP > 0 ? (byte)TakeDamageReason.Oxygen : (byte)TakeDamageReason.Suffocated ;
+        spkt.Reason = c.HP > 0 ? (byte)TakeDamageReason.Oxygen : (byte)TakeDamageReason.Suffocated;
         spkt.SessionId = c.id;
         c.client.Send((byte[])spkt);
     }
@@ -224,7 +211,7 @@ public static class CommonFunctions
     public static void UpdateTimeWeather(Character character)
     {
         /*
-         * This function updates the time and Weather for the 
+         * This function updates the time and Weather for the
          * selected player.
          */
 
@@ -237,13 +224,12 @@ public static class CommonFunctions
         character.client.Send((byte[])spkt);
     }
 
-    #endregion
+    #endregion More Junk
 
     public static void RefreshPersonalRequests(Character target)
     {
         if (target != null)
         {
-
             Dictionary<uint, uint> tmp = new Dictionary<uint, uint>();
             QuestBase PersonalQuest = target.QuestObjectives.PersonalQuest;
             uint PersonalQuestId = (PersonalQuest != null) ? PersonalQuest.QuestId : 0;
@@ -254,15 +240,16 @@ public static class CommonFunctions
                 target.client.AvailablePersonalRequests = tmp;
         }
     }
+
     public static void UpdateNpcIcons(Character target)
     {
         foreach (MapObject myObject in target.currentzone.GetObjectsInRegionalRange(target))
         {
             if (MapObject.IsNotMonster(myObject)
-            &&  target.currentzone.IsInSightRangeBySquare(target.Position, myObject.Position))
+            && target.currentzone.IsInSightRangeBySquare(target.Position, myObject.Position))
             {
                 BaseMob temp = myObject as BaseMob;
-                if (temp != null)                    
+                if (temp != null)
                     Common.Actions.UpdateIcon(target, temp);
             }
         }
@@ -283,6 +270,7 @@ public static class CommonFunctions
             target.client.Send((byte[])spkt);
         }
     }
+
     public static void Broadcast(Character sender, Character target, string message)
     {
         SMSG_SENDCHAT spkt = new SMSG_SENDCHAT();
@@ -292,6 +280,7 @@ public static class CommonFunctions
         spkt.SessionId = target.id;
         target.client.Send((byte[])spkt);
     }
+
     public static void SystemMessage(Character sender, string message)
     {
         string nmessage = message != null ? message : string.Empty;
@@ -305,6 +294,7 @@ public static class CommonFunctions
             target.client.Send((byte[])spkt);
         }
     }
+
     public static void SystemMessage(Character sender, Character target, string message)
     {
         SMSG_SENDCHAT spkt = new SMSG_SENDCHAT();
@@ -315,7 +305,7 @@ public static class CommonFunctions
         target.client.Send((byte[])spkt);
     }
 
-    #endregion
+    #endregion Chat - Functions
 
     #region Warp - Functions
 
@@ -323,6 +313,7 @@ public static class CommonFunctions
     {
         return Warp(target, target.savelocation.map, target.savelocation.coords);
     }
+
     public static bool Warp(Character target, byte zone)
     {
         Zone NewZone;
@@ -338,6 +329,7 @@ public static class CommonFunctions
             return false;
         }
     }
+
     public static bool Warp(Character target, byte zone, Point destination)
     {
         Zone NewZone;
@@ -350,6 +342,7 @@ public static class CommonFunctions
             return false;
         }
     }
+
     public static bool Warp(Character target, Point destination, Zone NewZoneInstance)
     {
         if (target.client.isloaded == true)
@@ -418,14 +411,13 @@ public static class CommonFunctions
                     target.client.Send((byte[])spkt);
                     return true;
 
-                    #endregion
+                    #endregion Not the same Zone
                 }
                 else
                 {
-
                     #region Notify People That Actor Disapears
 
-                    Point origin = target.Position;                    
+                    Point origin = target.Position;
 
                     Regiontree tree;
                     tree = target.currentzone.Regiontree;
@@ -433,7 +425,7 @@ public static class CommonFunctions
                     {
                         bool insightrangeold = Point.IsInSightRangeByRadius(origin, c.Position);
                         bool insightrangenew = Point.IsInSightRangeByRadius(destination, c.Position);
-                        if (c.id == target.id ) continue;
+                        if (c.id == target.id) continue;
 
                         //If vible from old postion but not from new position hide
                         if (insightrangeold && !insightrangenew)
@@ -450,25 +442,26 @@ public static class CommonFunctions
                             c.Disappear(target);
                         }
                     }
-                    #endregion
+
+                    #endregion Notify People That Actor Disapears
 
                     #region Update Region
 
                     target.Position = new Point(destination.x, destination.y, destination.z);
                     Regiontree.UpdateRegion(target);
 
-                    #endregion
-                     
+                    #endregion Update Region
+
                     #region Teleport
 
                     SMSG_ACTORTELEPORT spkt = new SMSG_ACTORTELEPORT();
                     spkt.SessionId = target.id;
                     spkt.x = destination.x;
                     spkt.y = destination.y;
-                    spkt.Z = destination.z;                    
+                    spkt.Z = destination.z;
                     target.client.Send((byte[])spkt);
 
-                    #endregion
+                    #endregion Teleport
 
                     #region Reset State
 
@@ -484,7 +477,7 @@ public static class CommonFunctions
                     spkt4.ActorID = target.id;
                     target.client.Send((byte[])spkt4);
 
-                    #endregion
+                    #endregion Reset State
 
                     #region Notify People That the Actor Appears
 
@@ -495,8 +488,6 @@ public static class CommonFunctions
                         bool insightrangenew = Point.IsInSightRangeByRadius(destination, myObject.Position);
 
                         double distance = Point.GetDistance3D(destination, myObject.Position);
-
-
 
                         //If visible from new postion but not from old postion
                         if (insightrangenew && !insightrangeold)
@@ -513,8 +504,7 @@ public static class CommonFunctions
                         }
                     }
 
-
-                    #endregion
+                    #endregion Notify People That the Actor Appears
 
                     #region Notify Party Members
 
@@ -533,8 +523,7 @@ public static class CommonFunctions
                         }
                     }
 
-                    #endregion
-
+                    #endregion Notify Party Members
 
                     return true;
                 }
@@ -551,9 +540,9 @@ public static class CommonFunctions
         }
     }
 
-    #endregion
+    #endregion Warp - Functions
 
-    internal static void SendQuestList(Character target, MapObject source, 
+    internal static void SendQuestList(Character target, MapObject source,
         IEnumerable<uint> iEnumerable)
     {
         SMSG_SENDQUESTLIST spkt = new SMSG_SENDQUESTLIST();
@@ -563,4 +552,3 @@ public static class CommonFunctions
         target.client.Send((byte[])spkt);
     }
 }
-

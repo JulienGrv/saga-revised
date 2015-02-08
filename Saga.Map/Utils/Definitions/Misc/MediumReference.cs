@@ -1,19 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace System.Collections.Generics
 {
-
-
     /// <summary>
     /// Generic version of the Medium Reference
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <remarks>
     /// Medium Refernece used to cache items on a timer based
-    /// activation. The more activation invoked the longer the 
+    /// activation. The more activation invoked the longer the
     /// lifespan will be for disposing.
     /// </remarks>
     public class MediumReference<T> where T : class
@@ -49,7 +44,7 @@ namespace System.Collections.Generics
             _Target = target;
         }
 
-        void timer_Elapsed(object state)
+        private void timer_Elapsed(object state)
         {
             lock (_Target)
             {
@@ -59,7 +54,5 @@ namespace System.Collections.Generics
                 timer = null;
             }
         }
-
     }
-
 }

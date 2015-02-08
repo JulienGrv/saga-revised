@@ -1,17 +1,13 @@
-﻿using System;
+﻿using Saga.Configuration;
+using Saga.Enumarations;
+using Saga.Map;
+using Saga.Map.Configuration;
+using Saga.PrimaryTypes;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
-using System.Xml;
-using Saga.Map.Configuration;
-using Saga.Configuration;
-using Saga.Shared.Definitions;
-using Saga.Map.Definitions.Misc;
 using System.Globalization;
-using Saga.Map;
-using Saga.PrimaryTypes;
-using Saga.Enumarations;
-using System.Diagnostics;
+using System.IO;
 
 namespace Saga.Factory
 {
@@ -20,27 +16,28 @@ namespace Saga.Factory
     /// </summary>
     public class Weaponary : FactoryBase
     {
-
         #region Ctor/Dtor
 
         /// <summary>
         /// Initializes a new weaponary factory
         /// </summary>
-        public Weaponary() { }
+        public Weaponary()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
         /// <summary>
-        /// Lookup table to supply to find weapon information.        
+        /// Lookup table to supply to find weapon information.
         /// </summary>
         /// <remarks>
         /// The values entered are index by weapontype/level
         /// </remarks>
         public Dictionary<uint, Dictionary<uint, Info>> weapons;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -94,7 +91,6 @@ namespace Saga.Factory
                     bool isnew = weapons.TryGetValue(weapontype, out temp);
                     if (isnew == false) temp = new Dictionary<uint, Info>();
 
-
                     uint key = uint.Parse(fields[1], NumberFormatInfo.InvariantInfo);
                     uint maxdura = uint.Parse(fields[2], NumberFormatInfo.InvariantInfo);
                     ushort minshortatk = ushort.Parse(fields[3], NumberFormatInfo.InvariantInfo);
@@ -118,7 +114,7 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -192,26 +188,31 @@ namespace Saga.Factory
                     selectedWeapon._augeskill = 150029;
                     selectedWeapon._weapontype = (byte)WeaponType.Swordstick;
                     break;
+
                 case JobType.Swordsman:
                     selectedWeapon._type = (ushort)WeaponType.LongSword;
                     selectedWeapon._augeskill = 150015;
                     selectedWeapon._weapontype = (byte)WeaponType.LongSword;
                     break;
+
                 case JobType.Thief:
                     selectedWeapon._type = (ushort)WeaponType.ShortSword;
                     selectedWeapon._augeskill = 150001;
                     selectedWeapon._weapontype = (byte)WeaponType.ShortSword;
                     break;
+
                 case JobType.Recruit:
                     selectedWeapon._type = (ushort)WeaponType.Damptflinte;
                     selectedWeapon._augeskill = 150043;
                     selectedWeapon._weapontype = (byte)WeaponType.Damptflinte;
                     break;
+
                 case JobType.Clown:
                     selectedWeapon._type = (ushort)WeaponType.ShortSword;
                     selectedWeapon._augeskill = 150001;
                     selectedWeapon._weapontype = (byte)WeaponType.ShortSword;
                     break;
+
                 case JobType.Novice:
                     selectedWeapon._type = (ushort)WeaponType.ShortSword;
                     selectedWeapon._augeskill = 150001;
@@ -227,8 +228,7 @@ namespace Saga.Factory
             return true;
         }
 
-
-        #endregion
+        #endregion Public Methods
 
         #region Public Properties
 
@@ -243,7 +243,7 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Protected Properties
 
@@ -261,7 +261,6 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_NOTIFYCATION_WEAPONARY; }
         }
 
-
         /// <summary>
         /// Get the readystate string.
         /// </summary>
@@ -276,7 +275,7 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_WEAPONARY; }
         }
 
-        #endregion
+        #endregion Protected Properties
 
         #region Nested Classes/Structures
 
@@ -285,7 +284,6 @@ namespace Saga.Factory
         /// </summary>
         public struct Info
         {
-
             /// <summary>
             /// Maximum durabillity for the weapon
             /// </summary>
@@ -357,7 +355,6 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
-
+        #endregion Nested Classes/Structures
     }
 }

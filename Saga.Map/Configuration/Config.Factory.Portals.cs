@@ -1,9 +1,8 @@
-using System.Configuration;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
-
     /// <summary>
     /// Portal factory configuration
     /// </summary>
@@ -19,7 +18,6 @@ namespace Saga.Configuration
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class PortalSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
         /// Get's or sets a list of files containing portal information
         /// </summary>

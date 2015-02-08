@@ -1,9 +1,8 @@
-using System.Configuration;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
-
     /// <summary>
     /// Mob-template factory configuration
     /// </summary>
@@ -18,7 +17,6 @@ namespace Saga.Configuration
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class SpawntemplateSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
         /// Get's or sets a list of files containing template information for mobs
         /// </summary>
@@ -35,7 +33,5 @@ namespace Saga.Configuration
         {
             get { return ((FactoryFileCollection)(base["Files"])); }
         }
-
-
     }
 }

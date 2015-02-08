@@ -1,12 +1,11 @@
-using System;
 using Saga.Network.Packets;
 using Saga.Structures;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is send by the player as a result of his direction changes.
@@ -20,10 +19,11 @@ namespace Saga.Packets
         {
             this.data = new byte[0];
         }
-       
+
         public Rotator Yaw
         {
-            get {
+            get
+            {
                 return new Rotator(
                     BitConverter.ToUInt16(this.data, 0),
                     BitConverter.ToUInt16(this.data, 2));
@@ -39,8 +39,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -53,6 +53,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

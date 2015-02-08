@@ -1,5 +1,3 @@
-using System;
-
 namespace Saga.Enumarations
 {
     /// <summary>
@@ -35,5 +33,4 @@ namespace Saga.Enumarations
         /// </summary>
         Suffocated
     }
-
 }

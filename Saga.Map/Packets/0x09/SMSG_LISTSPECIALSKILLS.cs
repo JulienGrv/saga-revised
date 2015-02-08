@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Sends a list of special skills to the character
     /// </summary>
     /// <remarks>
-    /// This packet sends a list of all saved special skills to 
+    /// This packet sends a list of all saved special skills to
     /// the character.
     /// </remarks>
     /// <id>

@@ -1,30 +1,28 @@
-﻿using System;
-using Saga.Map;
+﻿using Saga.Map;
 using Saga.Map.Librairies;
 using Saga.PrimaryTypes;
 using Saga.Shared.Definitions;
 using Saga.Structures;
 using Saga.Tasks;
+using System;
 
 namespace Saga.Templates
 {
     public class RandomizedMonster : Monster, IArtificialIntelligence
     {
-
         #region Public Members
 
         public override void OnSpawn()
         {
             lock (this)
             {
-                
                 Lifespan.lasttick = Environment.TickCount;
                 base.OnSpawn();
             }
         }
 
         /// <summary>
-        /// Occurs when the speciafiec character killed 
+        /// Occurs when the speciafiec character killed
         /// our monsters
         /// </summary>
         /// <param name="target"></param>
@@ -35,12 +33,11 @@ namespace Saga.Templates
             lock (this)
             {
                 LifespanAI.Unsubscribe(this);
-                this.stance = 7;                
-            }            
+                this.stance = 7;
+            }
 
             base.OnDie(target);
         }
-
 
         /// <summary>
         /// Subscribes the monsters ai if an the monster is summoned in a crowded
@@ -65,7 +62,6 @@ namespace Saga.Templates
             LifespanAI.Unsubscribe(this);
             base.OnDeregister();
         }
-
 
         /// <summary>
         /// Subscribes the monsters moving ai if an
@@ -99,7 +95,7 @@ namespace Saga.Templates
             base.Disappear(character);
         }
 
-        #endregion
+        #endregion Public Members
 
         #region IArtificialIntelligence
 
@@ -115,17 +111,19 @@ namespace Saga.Templates
             //REquire a minimum of 1 seccond
             int t_diff = Environment.TickCount - Lifespan.lasttick;
             if (t_diff > 1000 && IsMoveable)
-            {                
+            {
                 switch (this.stance)
                 {
                     case 4:
                         OnIdleWalk(t_diff);
                         break;
+
                     case 5:
                         OnChaseTarget(t_diff);
                         break;
+
                     default:
-                        //Stand still for  7 secconds                        
+                        //Stand still for  7 secconds
                         if (this.Target == null)
                         {
                             OnThinkNextAction(t_diff);
@@ -139,7 +137,7 @@ namespace Saga.Templates
             }
         }
 
-        #endregion
+        #endregion IArtificialIntelligence
 
         #region AI Helper Functions
 
@@ -196,7 +194,7 @@ namespace Saga.Templates
                 this.stance = 3;
             }
 
-            //Always walk to taget to minimum attack range                        
+            //Always walk to taget to minimum attack range
             uint minrange = this.skills != null ? this.skills.MinRange : 0;
             this.DestPosition = GetPositionForEnemy(this._target.Position, minrange);
             if (!HasReachedDestination() && this._target != null)
@@ -232,7 +230,7 @@ namespace Saga.Templates
             Lifespan.lasttick = Environment.TickCount;
         }
 
-        #endregion
+        #endregion AI Helper Functions
 
         #region Constructor/Deconstructor
 
@@ -242,8 +240,6 @@ namespace Saga.Templates
             Lifespan = new LifespanAI.Lifespan();
         }
 
-        #endregion
-
-
+        #endregion Constructor/Deconstructor
     }
 }

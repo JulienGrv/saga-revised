@@ -1,20 +1,16 @@
-﻿using System.Collections.Generic;
-using Saga.Map;
+﻿using Saga.Map;
 using Saga.Map.Definitions.Misc;
 using Saga.Shared.Definitions;
 using Saga.Tasks;
 using System;
-using Saga.Enumarations;
+using System.Collections.Generic;
 
 namespace Saga.PrimaryTypes
 {
-
-
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     [Serializable()]
     public abstract class Actor : MapObject, ISelectAble
     {
-
         #region Protected Internal
 
         public byte stance = 3;
@@ -22,13 +18,14 @@ namespace Saga.PrimaryTypes
 
         [NonSerialized()]
         protected internal MapObject _target = null;
+
         [NonSerialized()]
         protected internal uint _targetid = 0;
 
         protected internal Addition _additions = new Addition();
         protected internal BattleStatus _status = new BattleStatus();
-        
-        #endregion
+
+        #endregion Protected Internal
 
         #region Public Properties
 
@@ -76,7 +73,7 @@ namespace Saga.PrimaryTypes
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Internal Methods
 
@@ -115,7 +112,7 @@ namespace Saga.PrimaryTypes
             }
         }
 
-        #endregion
+        #endregion Internal Methods
 
         #region ISelectAble Members
 
@@ -183,7 +180,7 @@ namespace Saga.PrimaryTypes
             }
         }
 
-        #endregion
+        #endregion ISelectAble Members
 
         #region MapObject Members
 
@@ -202,18 +199,17 @@ namespace Saga.PrimaryTypes
             Common.Actions.SelectActor(target, this);
         }
 
-        #endregion
-
+        #endregion MapObject Members
 
         public override void OnSkillUsedByTarget(MapObject source, SkillBaseEventArgs e)
         {
             bool isdamage = e.Result == Saga.SkillBaseEventArgs.ResultType.Block || e.Result == Saga.SkillBaseEventArgs.ResultType.Critical || e.Result == Saga.SkillBaseEventArgs.ResultType.Normal;
-            if (e.Damage > 0 )
-            {                
+            if (e.Damage > 0)
+            {
                 bool HasDied = (isdamage && e.Damage >= this.HP && this.stance != 7);
                 if (HasDied)
                 {
-                    this.HP  = 0;
+                    this.HP = 0;
                     e.Target.OnDie(e.Sender);
                     e.Sender.OnEnemyDie(e.Target);
 
@@ -229,14 +225,12 @@ namespace Saga.PrimaryTypes
                     this.HP -= (ushort)e.Damage;
                 }
             }
- 
 
             base.OnSkillUsedByTarget(source, e);
         }
 
         public override void ShowObject(Character character)
         {
-            
         }
     }
 }

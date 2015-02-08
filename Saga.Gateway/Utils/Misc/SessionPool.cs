@@ -1,16 +1,15 @@
+using Saga.Gateway.Network;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Saga.Gateway.Network;
 
 namespace Saga.Gateway
 {
-    class SessionPool
+    internal class SessionPool
     {
-
         #region SessionPool Singleton
 
         private static SessionPool instance;
+
         public static SessionPool Instance
         {
             get
@@ -20,14 +19,14 @@ namespace Saga.Gateway
             }
         }
 
-        #endregion
+        #endregion SessionPool Singleton
 
         #region SessionPool Public Members
 
         public Queue<GatewayClient> PendingSessionQueuee = new Queue<GatewayClient>();
         public Queue<uint> Sessions = new Queue<uint>();
 
-        #endregion
+        #endregion SessionPool Public Members
 
         #region SessionPool Public Methods
 
@@ -36,8 +35,8 @@ namespace Saga.Gateway
             if (PendingSessionQueuee.Count > 0)
             {
                 GatewayClient client = PendingSessionQueuee.Dequeue();
-                if( client != null)
-                client.SetSessionId(session);
+                if (client != null)
+                    client.SetSessionId(session);
             }
             else
             {
@@ -74,10 +73,10 @@ namespace Saga.Gateway
             }
         }
 
-        #endregion
+        #endregion SessionPool Public Methods
     }
-    
-    class SessionRequestException : Exception
+
+    internal class SessionRequestException : Exception
     {
         public SessionRequestException(string message)
             : base(message)
@@ -88,6 +87,5 @@ namespace Saga.Gateway
             : base(message, innerException)
         {
         }
-
     }
 }

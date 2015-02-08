@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
-using System.Net;
+using System;
 
 namespace Saga.Packets
 {
-
     public class SMSG_RELEASEAUTH : RelayPacket
     {
-
         public SMSG_RELEASEAUTH()
         {
             this.data = new byte[4];
@@ -24,7 +19,6 @@ namespace Saga.Packets
                 Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4);
             }
         }
-
     }
 
     public class SMSG_HEADERTOKEN : RelayPacket
@@ -36,5 +30,4 @@ namespace Saga.Packets
             this.Id = 0xFFFF;
         }
     }
-
 }

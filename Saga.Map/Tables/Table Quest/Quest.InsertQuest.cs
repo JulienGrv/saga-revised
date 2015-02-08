@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Saga.Map;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Saga.Quests
 {
@@ -19,30 +19,25 @@ namespace Saga.Quests
             QuestBase newQuest;
             Character Character;
 
-
             if (LifeCycle.TryGetById(cid, out Character))
             {
-
                 newQuest = Character.QuestObjectives[QID];
                 if (newQuest == null)
 
-
                     if (Singleton.Quests.TryFindQuests(QID, out newQuest))
                     {
-
                         if (slot == 1)
                         {
                             oldQuest = Character.QuestObjectives.OfficialQuest;
                             Character.QuestObjectives.OfficialQuest = newQuest;
                             newQuest.questtype = slot;
                         }
-                        else if( slot == 2)
+                        else if (slot == 2)
                         {
                             oldQuest = Character.QuestObjectives.PersonalQuest;
                             Character.QuestObjectives.PersonalQuest = newQuest;
                             newQuest.questtype = slot;
                         }
-
 
                         List<Saga.Quests.Objectives.ObjectiveList.StepInfo> Steps2 =
                             QuestBase.GetSteps(Character, QID);
@@ -56,7 +51,7 @@ namespace Saga.Quests
                             newQuest.isnew = true;
                             Steps2[0].State = 1;
                         }
-                        
+
                         SMSG_QUESTREMOVE spkt4 = Character.Tag as SMSG_QUESTREMOVE;
                         if (spkt4 != null)
                         {
@@ -74,7 +69,7 @@ namespace Saga.Quests
                             spkt3.AddQuest(Quest.QuestId, (byte)Steps.Count);
                             for (int i = 0; i < Steps.Count; i++)
                             {
-                                Saga.Quests.Objectives.ObjectiveList.StepInfo currentStep 
+                                Saga.Quests.Objectives.ObjectiveList.StepInfo currentStep
                                     = Steps[i];
                                 uint nextstep = (i + 1 < Steps.Count) ? Steps[i + 1].StepId : 0;
                                 spkt3.AddQuestStep(currentStep.StepId, currentStep.State, nextstep, Quest.isnew);
@@ -92,7 +87,6 @@ namespace Saga.Quests
                         spkt2.QuestID = QID;
                         foreach (Saga.Quests.Objectives.ObjectiveList.Waypoint waypoint in QuestBase.UserGetWaypoints(Character, QID))
                         {
-
                             //Predicate to search the npc
                             Predicate<MapObject> IsNpc = delegate(MapObject match)
                             {

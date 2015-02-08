@@ -1,39 +1,35 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net.Sockets;
-using System.Net;
-using Saga.Gateway.Network;
-using Saga.Shared.NetworkCore;
-using System.Diagnostics;
-using System.Threading;
-using Saga;
-using System.Configuration;
-using Saga.Shared.Definitions;
-using System.Reflection;
 using Saga.Configuration;
 using Saga.Core;
+using Saga.Gateway.Network;
+using Saga.Shared.Definitions;
+using Saga.Shared.NetworkCore;
 using Saga.Shared.PacketLib.Other;
+using System;
+using System.Configuration;
+using System.Diagnostics;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Reflection;
+using System.Text;
+using System.Threading;
 
 namespace Saga.Gateway
 {
-    
     public static partial class Program
     {
-
         #region Private Members
 
-        static int gatewayport = 64000;
-        static IPAddress gatewayip = IPAddress.Any;
-        static int authenticationport = 64001;
-        static IPAddress authenticationip = IPAddress.Loopback;
-        static string guidkey = "A928CDC9DBE8751B3BC99EB65AE07E0C849CE739";
-        static string crckey = "ED90AA25AE906FB36308C8523A4737A7E7B1FC6F";
-        static EncryptedManager<GatewayClient> networkManger;
-        static ConsoleReader reader;
+        private static int gatewayport = 64000;
+        private static IPAddress gatewayip = IPAddress.Any;
+        private static int authenticationport = 64001;
+        private static IPAddress authenticationip = IPAddress.Loopback;
+        private static string guidkey = "A928CDC9DBE8751B3BC99EB65AE07E0C849CE739";
+        private static string crckey = "ED90AA25AE906FB36308C8523A4737A7E7B1FC6F";
+        private static EncryptedManager<GatewayClient> networkManger;
+        private static ConsoleReader reader;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Properties
 
@@ -44,6 +40,7 @@ namespace Saga.Gateway
                 return crckey;
             }
         }
+
         public static string GuidKey
         {
             get
@@ -52,11 +49,11 @@ namespace Saga.Gateway
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Others
 
-        static void reader_Initialize(object sender, EventArgs e)
+        private static void reader_Initialize(object sender, EventArgs e)
         {
             //HELPER VARIABLES
             bool success = false;
@@ -74,7 +71,6 @@ namespace Saga.Gateway
                     port = Element.Port;
                 }
             }
-
 
             while (success == false)
             {
@@ -119,7 +115,7 @@ namespace Saga.Gateway
             }
         }
 
-        static bool CheckConfigExists()
+        private static bool CheckConfigExists()
         {
             //GET THE ASSEMBLY'S DIRECTORY
             string file = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -130,10 +126,9 @@ namespace Saga.Gateway
             return File.Exists(aname) | File.Exists(bname);
         }
 
-
         [STAThread()]
         [LoaderOptimizationAttribute(LoaderOptimization.SingleDomain)]
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             reader = new ConsoleReader();
             reader.Title = "Gateway server, type help for commands";
@@ -170,14 +165,11 @@ namespace Saga.Gateway
             Trace.WriteLine(string.Format("OS Bit Version: {0} Bit", IntPtr.Size * 8));
             Trace.WriteLine("#############################################################################");
 
-
-
-            System.Configuration.Configuration b = 
+            System.Configuration.Configuration b =
                 ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
             if (CheckConfigExists() == false)
             {
-
                 Console.WriteLine("First time run-configuration");
                 char key;
 
@@ -254,7 +246,6 @@ namespace Saga.Gateway
                 b.Save();
                 ConfigurationManager.RefreshSection("Saga.NetworkSettings");
 
-
                 Console.WriteLine("Everything configured");
                 LoginClient client;
                 for (int i = 0; i < 3; i++)
@@ -281,23 +272,23 @@ namespace Saga.Gateway
         }
 
         [ConsoleAttribute("shutdown", "Shutdowns the server.")]
-        static void Shutdown(string[] args)
-        {     
+        private static void Shutdown(string[] args)
+        {
             char b;
 
             do
             {
                 Console.WriteLine("This will shutdown the server do you want to contiue y/n");
-                 b = Console.ReadKey(true).KeyChar;
+                b = Console.ReadKey(true).KeyChar;
             }
             while (b != 'y' && b != 'n');
 
-            if (b == 'y') 
+            if (b == 'y')
                 Environment.Exit(1);
         }
 
         [ConsoleAttribute("version", "Shows the version of the assembly.")]
-        static void Version(string[] args)
+        private static void Version(string[] args)
         {
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             AssemblyName myAssemblyName = myAssembly.GetName();
@@ -305,14 +296,14 @@ namespace Saga.Gateway
         }
 
         [ConsoleAttribute("togglecrc", "Enables/Disables crc checking")]
-        static void CrcValidationCheck(string[] args)
+        private static void CrcValidationCheck(string[] args)
         {
             GatewayClient.CheckCrc ^= true;
             Console.WriteLine("Crc check is now {0}", (GatewayClient.CheckCrc) ? "enabled" : "disabled");
         }
 
         [ConsoleAttribute("host", "Checks if the host is available")]
-        static void CheckHost(string[] args)
+        private static void CheckHost(string[] args)
         {
             if (args.Length < 2)
             {
@@ -336,19 +327,23 @@ namespace Saga.Gateway
                             case NetworkManager.NetworkError.InvalidHost:
                                 Console.WriteLine("Host is invalid");
                                 break;
+
                             case NetworkManager.NetworkError.Refused:
                                 Console.WriteLine("Target machine activly refused the connection");
                                 break;
+
                             case NetworkManager.NetworkError.Unknown:
                                 Console.WriteLine("Unknown exception occured");
                                 break;
+
                             case NetworkManager.NetworkError.Unreachable:
                                 Console.WriteLine("Target machin is unreachable");
                                 break;
                         }
                     }
-                    
+
                     break;
+
                 case "-DISCONNECT":
                     if (NetworkManager.TryGetLoginClient(out client))
                     {
@@ -356,12 +351,12 @@ namespace Saga.Gateway
                         Console.WriteLine("Connection to authentication-server is closed");
                     }
                     else
-                        Console.WriteLine("Cannot close connection to authentication-server");    
+                        Console.WriteLine("Cannot close connection to authentication-server");
                     break;
             }
         }
 
-        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Trace.WriteLine("#############################################################################");
             Trace.WriteLine("A unhandeld exception was thrown");
@@ -375,17 +370,14 @@ namespace Saga.Gateway
             }
 
             Trace.WriteLine("#############################################################################");
-
         }
 
-        #endregion
-
+        #endregion Others
     }
-
 
     public class TraceLog : ITrace
     {
-        int errorcount = 0;
+        private int errorcount = 0;
 
         #region ITrace Members
 
@@ -443,7 +435,7 @@ namespace Saga.Gateway
                 __WriteLine(category, _levelVerbose, message, format);
         }
 
-        #endregion
+        #endregion ITrace Members
 
         #region ITrace Members
 
@@ -487,15 +479,15 @@ namespace Saga.Gateway
             WriteLine(category, message, format);
         }
 
-        #endregion
+        #endregion ITrace Members
 
         #region Private Members
 
-        TraceSwitch managers = new TraceSwitch("General", "Entire Application");
-        const string _levelVerbose = "verbose   ";
-        const string _levelWarning = "warning   ";
-        const string _levelError = "error     ";
-        const string _levelInfo = "ïnfo      ";
+        private TraceSwitch managers = new TraceSwitch("General", "Entire Application");
+        private const string _levelVerbose = "verbose   ";
+        private const string _levelWarning = "warning   ";
+        private const string _levelError = "error     ";
+        private const string _levelInfo = "ïnfo      ";
 
         private void __WriteLine(string category, string level, string message)
         {
@@ -520,7 +512,7 @@ namespace Saga.Gateway
             }
         }
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
@@ -540,7 +532,7 @@ namespace Saga.Gateway
             }
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Public Properties
 
@@ -576,7 +568,7 @@ namespace Saga.Gateway
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Constructor
 
@@ -590,27 +582,25 @@ namespace Saga.Gateway
             managers = new TraceSwitch(switchname, description, defaultlevel.ToString(System.Globalization.CultureInfo.InvariantCulture));
         }
 
-        #endregion
+        #endregion Constructor
     }
 
     public interface ITrace
     {
         void WriteInformation(string category, string message);
+
         void WriteInformation(string category, string message, params object[] format);
+
         void WriteWarning(string category, string message);
+
         void WriteWarning(string category, string message, params object[] format);
+
         void WriteError(string category, string message);
+
         void WriteError(string category, string message, params object[] format);
+
         void WriteLine(string category, string message);
+
         void WriteLine(string category, string message, params object[] format);
     }
 }
-      
-     
-        
-        
-
-
-
-
-

@@ -1,19 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
 
 namespace Saga.Structures
 {
-
     /// <summary>
-    /// This class is ported from saga to contain heightmap information 
+    /// This class is ported from saga to contain heightmap information
     /// for our maps.
     /// </summary>
     public class HeightMap
     {
-
         #region Heightmap - Private Members
 
         // PRIVATE VARIABLES
@@ -23,14 +19,14 @@ namespace Saga.Structures
         /// </summary>
         private float[,] HeightData;
 
-        #endregion
+        #endregion Heightmap - Private Members
 
         #region Heightmap - Public Members
 
         //PUBLIC VARIABLES
 
         /// <summary>
-        /// This structure is internally used to compute the z-coords by a given 
+        /// This structure is internally used to compute the z-coords by a given
         /// x and y postion.
         /// </summary>
         public HeightMapInfo info;
@@ -88,7 +84,7 @@ namespace Saga.Structures
             }
             return ret;
         }
-        
+
         /// <summary>
         /// This function computes the z-coord by a given x and y position.
         /// </summary>
@@ -134,7 +130,6 @@ namespace Saga.Structures
                 delta.x = point1.x - x;
                 delta.y = point1.y - y;
 
-
                 if (delta.x >= delta.y) //use 1,2,3
                     z = (float)HeightMap.z(point1.x, point1.y, point1.z, point2.x, point2.y, point2.z, point3.x, point3.y, point3.z, x, y) + z_correction;
                 else //use 1,3,4
@@ -145,17 +140,17 @@ namespace Saga.Structures
             {
                 z = 0;
                 return false;
-            }                
+            }
         }
 
-        #endregion
+        #endregion Heightmap - Public Members
 
         #region Heightmap - Private Static Members
 
-        //PRIVATE VARIABLES 
+        //PRIVATE VARIABLES
 
         /// <summary>
-        /// Used internally for the z-correction on our calculations. 
+        /// Used internally for the z-correction on our calculations.
         /// </summary>
         private static float z_correction = 103.6f;
 
@@ -165,11 +160,10 @@ namespace Saga.Structures
         /// </summary>
         private static Random random = new Random();
 
-
         //PRIVATE METHODS
 
         /// <summary>
-        /// This function calculates the determinate out of the given heightmap. 
+        /// This function calculates the determinate out of the given heightmap.
         /// This will the z-step positions between each milestone of the heightmap by
         /// reading the surrounding coords.
         /// </summary>
@@ -188,7 +182,6 @@ namespace Saga.Structures
             return a * e * i + b * f * g + c * d * h - c * e * g - f * h * a - i * b * d;
         }
 
-
         /// <summary>
         /// This calculates the z-coord by using the determinate.
         /// </summary>
@@ -203,14 +196,14 @@ namespace Saga.Structures
         /// <param name="c3"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        /// <returns></returns>       
+        /// <returns></returns>
         private static double z(double a1, double a2, double a3, double b1, double b2, double b3, double c1, double c2, double c3, double x, double y)
         {
             return (det(a1, b1, c1, a2, b2, c2, a3, b3, c3) - x * det(a2, b2, c2, a3, b3, c3, 1, 1, 1)
             + y * det(a1, b1, c1, a3, b3, c3, 1, 1, 1)) / det(a1, b1, c1, a2, b2, c2, 1, 1, 1);
         }
 
-        #endregion
+        #endregion Heightmap - Private Static Members
 
         #region Heightmap - Public Static Members
 
@@ -223,10 +216,10 @@ namespace Saga.Structures
         /// <param name="info">Heightmap info</param>
         /// <param name="heightmap">out heightmap</param>
         /// <returns>True/False heightmap can be loaded</returns>
-        public static bool LoadFromFile(string filename, HeightMapInfo info,  out HeightMap heightmap)
+        public static bool LoadFromFile(string filename, HeightMapInfo info, out HeightMap heightmap)
         {
             bool result = false;
-            FileStream filestream = null ;
+            FileStream filestream = null;
             try
             {
                 //OPEN THE FILESTREAM
@@ -240,8 +233,8 @@ namespace Saga.Structures
                 //GENERATE MAX X, Y VALUES
                 int MaxX = hmap.info.size;
                 int MaxY = hmap.info.size;
-            
-                //GENERATE X/Y ARRAY FOR 
+
+                //GENERATE X/Y ARRAY FOR
                 hmap.HeightData = new float[MaxX, MaxY];
 
                 //READ ALL Z COORDS
@@ -258,19 +251,19 @@ namespace Saga.Structures
                 reader.Close();
                 filestream.Close();
                 heightmap = hmap;
-                result = true;               
+                result = true;
             }
-            catch ( IOException)
+            catch (IOException)
             {
                 //A IO-EXCEPTION OCCURED
-                Trace.TraceError("Cannot load heightmap from file: {0}", filename );
+                Trace.TraceError("Cannot load heightmap from file: {0}", filename);
                 heightmap = null;
                 result = false;
             }
             catch (OutOfMemoryException)
             {
                 //WE RUN OUT OF MEMORY WHILE LOADING A MAP, THIS CAN BE THE RESULT OF CORRUPT MEMORY
-                Trace.TraceError("Ran out of memory when attempting to load: {0}", filename );                
+                Trace.TraceError("Ran out of memory when attempting to load: {0}", filename);
                 heightmap = null;
                 result = false;
             }
@@ -283,9 +276,9 @@ namespace Saga.Structures
             return result;
         }
 
-        #endregion
+        #endregion Heightmap - Public Static Members
 
-        #region Heightmap - Nested 
+        #region Heightmap - Nested
 
         //NESTED CLASSES
 
@@ -311,7 +304,6 @@ namespace Saga.Structures
         /// </summary>
         public class HeightMapInfo
         {
-
             /// <summary>
             /// Size of the heightmap
             /// </summary>
@@ -320,17 +312,15 @@ namespace Saga.Structures
             /// <summary>
             /// Scale of the heightmap
             /// </summary>
-            public int[] scale  = new int[3];
+            public int[] scale = new int[3];
 
             /// <summary>
             /// Starting location of the heightmap
             /// </summary>
-            public float[] location  = new float[3];
+            public float[] location = new float[3];
         }
 
-        
-
-        #endregion
+        #endregion Heightmap - Nested
 
         #region Heightmap - Constructor/Deconstructor
 
@@ -343,7 +333,6 @@ namespace Saga.Structures
             this.info = new HeightMapInfo();
         }
 
-        #endregion
-
+        #endregion Heightmap - Constructor/Deconstructor
     }
 }

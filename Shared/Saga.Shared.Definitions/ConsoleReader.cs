@@ -1,26 +1,25 @@
+using Saga.Core;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
-using System.Reflection;
-using Saga.Core;
+using System.Text;
 
 namespace Saga.Shared.Definitions
 {
-
     public class SagaTestException : Exception { }
 
     public delegate void ConsoleCommandHandler(string[] args);
+
     public class ConsoleReader
     {
-
         #region Members
 
         public event EventHandler Initialize;
-        private string _Title = "Server instance";
-        SortedDictionary<string, ConsoleCommand> callback = new SortedDictionary<string, ConsoleCommand>();
 
-        #endregion
+        private string _Title = "Server instance";
+        private SortedDictionary<string, ConsoleCommand> callback = new SortedDictionary<string, ConsoleCommand>();
+
+        #endregion Members
 
         #region Constructor / Decontructor
 
@@ -37,7 +36,7 @@ namespace Saga.Shared.Definitions
             }
         }
 
-        #endregion
+        #endregion Constructor / Decontructor
 
         #region Public Properties
 
@@ -56,7 +55,7 @@ namespace Saga.Shared.Definitions
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Public Methods
 
@@ -69,7 +68,7 @@ namespace Saga.Shared.Definitions
                 scommand.description = attribute.Description;
                 scommand.syntax = attribute.Syntax;
                 scommand.mingmlevel = attribute.GmLevel;
-                scommand.handler = handler;        
+                scommand.handler = handler;
             }
 
             return scommand;
@@ -83,7 +82,7 @@ namespace Saga.Shared.Definitions
             if (attribute != null && attribute.Length > 0)
             {
                 scommand = CreateConsoleCommand(attribute[0], handler);
-                callback.Add(attribute[0].Name.ToUpperInvariant(), scommand);                
+                callback.Add(attribute[0].Name.ToUpperInvariant(), scommand);
             }
             else
             {
@@ -93,7 +92,7 @@ namespace Saga.Shared.Definitions
 
         [DebuggerNonUserCode()]
         public void Register(string command, ConsoleCommandHandler handler)
-        {           
+        {
             ConsoleCommand scommand;
             ConsoleAttribute[] attribute = handler.Method.GetCustomAttributes(typeof(ConsoleAttribute), true) as ConsoleAttribute[];
             if (attribute != null && attribute.Length > 0)
@@ -115,7 +114,7 @@ namespace Saga.Shared.Definitions
             if (attribute != null && attribute.Length > 0)
             {
                 scommand = CreateConsoleCommand(attribute[0], handler);
-                scommand.description = (description == null ) ? string.Empty : description;
+                scommand.description = (description == null) ? string.Empty : description;
                 callback.Add(command.ToUpperInvariant(), scommand);
             }
             else
@@ -129,7 +128,7 @@ namespace Saga.Shared.Definitions
         {
             ConsoleCommand scommand;
             ConsoleAttribute[] attribute = handler.Method.GetCustomAttributes(typeof(ConsoleAttribute), true) as ConsoleAttribute[];
-            if (attribute != null && attribute.Length > 0 )
+            if (attribute != null && attribute.Length > 0)
             {
                 scommand = CreateConsoleCommand(attribute[0], handler);
                 scommand.description = (description == null) ? string.Empty : description;
@@ -149,14 +148,13 @@ namespace Saga.Shared.Definitions
             Read();
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Private Methods
 
         [DebuggerNonUserCode()]
         private string[] DelemitedString(string mystring)
         {
-
             List<String> stringlist = new List<string>();
             StringBuilder builder = new StringBuilder();
             bool NextSpecial = false;
@@ -180,12 +178,15 @@ namespace Saga.Shared.Definitions
                                 builder.Append(current);
                             }
                             break;
+
                         case '\\':
                             NextSpecial = true;
                             break;
+
                         case '"':
                             QuoteOpen ^= true;
                             break;
+
                         default:
                             builder.Append(current);
                             break;
@@ -207,9 +208,11 @@ namespace Saga.Shared.Definitions
                                 builder.Append(current);
                             }
                             break;
+
                         case '"':
                             builder.Append(current);
                             break;
+
                         default:
                             builder.Append('\\');
                             builder.Append(current);
@@ -246,28 +249,28 @@ namespace Saga.Shared.Definitions
             ConsoleCommand handler;
             string[] commands = DelemitedString(command);
             if (command.Length > 0 && commands.Length > 0)
-            if (!callback.TryGetValue(commands[0].ToUpperInvariant(), out handler))
-            {
-                Console.WriteLine("Command does not exists");
-            }
-            else
-            {
-                try
+                if (!callback.TryGetValue(commands[0].ToUpperInvariant(), out handler))
                 {
-                    if (handler.handler != null)
-                        handler.handler.Invoke(commands);
+                    Console.WriteLine("Command does not exists");
                 }
-                catch (Exception e)
+                else
                 {
-                    if (e is SagaTestException)
-                        throw e;
-                    Console.WriteLine("Command did not execute it had errors");
-                    System.Diagnostics.Trace.TraceError(e.ToString());
+                    try
+                    {
+                        if (handler.handler != null)
+                            handler.handler.Invoke(commands);
+                    }
+                    catch (Exception e)
+                    {
+                        if (e is SagaTestException)
+                            throw e;
+                        Console.WriteLine("Command did not execute it had errors");
+                        System.Diagnostics.Trace.TraceError(e.ToString());
+                    }
                 }
-            }
         }
 
-        #endregion
+        #endregion Private Methods
 
         #region Nested Classes/Structures
 
@@ -279,7 +282,7 @@ namespace Saga.Shared.Definitions
             public ConsoleCommandHandler handler;
         }
 
-        #endregion
+        #endregion Nested Classes/Structures
 
         #region Built-in
 
@@ -291,7 +294,6 @@ namespace Saga.Shared.Definitions
             Console.WriteLine(Title);
         }
 
-
         [ConsoleAttribute("Help", "Lists all available commands")]
         public void Help(string[] args)
         {
@@ -302,14 +304,12 @@ namespace Saga.Shared.Definitions
                 foreach (string a in callback.Keys)
                 {
                     Console.WriteLine("   {0}", a.ToLower());
-
-                    
                 }
             }
             else if (args.Length == 2)
             {
                 ConsoleCommand command;
-                if (callback.TryGetValue(args[1].Trim(' ','\0').ToUpperInvariant(), out command))
+                if (callback.TryGetValue(args[1].Trim(' ', '\0').ToUpperInvariant(), out command))
                 {
                     Console.WriteLine();
                     Console.WriteLine("Name:            {0}", args[1].ToLower());
@@ -328,7 +328,6 @@ namespace Saga.Shared.Definitions
             }
         }
 
-        #endregion
-
+        #endregion Built-in
     }
 }

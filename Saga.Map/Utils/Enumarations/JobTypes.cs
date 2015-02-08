@@ -1,5 +1,3 @@
-using System;
-
 namespace Saga.Enumarations
 {
     /// <summary>
@@ -7,7 +5,6 @@ namespace Saga.Enumarations
     /// </summary>
     public enum JobType
     {
-
         /// <summary>
         /// Starting profession of your character
         /// </summary>

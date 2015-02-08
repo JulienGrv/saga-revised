@@ -1,12 +1,11 @@
+using Saga.Network.Packets;
 using System;
 using System.Text;
-using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet set the weaponname and suffix
@@ -42,6 +41,5 @@ namespace Saga.Packets
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 26, 2); }
         }
-
     }
 }

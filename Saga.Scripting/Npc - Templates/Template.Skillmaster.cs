@@ -1,11 +1,9 @@
 using Saga.Structures;
 
 namespace Saga.Templates
-{  
-
+{
     public class SkillMaster : BaseNPC
     {
-
         #region Base Members
 
         protected override void Initialize()
@@ -16,15 +14,18 @@ namespace Saga.Templates
             NpcFunction.Create<Saga.Npc.Functions.QuestConversation>(this);
         }
 
-        #endregion
+        #endregion Base Members
 
         #region Constructor/Deconstructor
 
-        ~SkillMaster() { }
-        public SkillMaster() { }
+        ~SkillMaster()
+        {
+        }
 
-        #endregion
+        public SkillMaster()
+        {
+        }
 
+        #endregion Constructor/Deconstructor
     }
-
 }

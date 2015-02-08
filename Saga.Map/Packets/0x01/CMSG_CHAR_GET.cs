@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Shared.PacketLib.Map
 {
     internal class CMSG_CHAR_GET : RelayPacket
     {
-
         /*
         // This packet is invoked when an client selects a other character
         // from the Characterlist
@@ -43,8 +40,8 @@ namespace Saga.Shared.PacketLib.Map
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -57,7 +54,6 @@ namespace Saga.Shared.PacketLib.Map
             return pkt;
         }
 
-        #endregion
-
+        #endregion Conversions
     }
 }

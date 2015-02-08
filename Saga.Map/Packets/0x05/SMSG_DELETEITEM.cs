@@ -1,17 +1,15 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent to specified player to indicate to release 
+    /// This packet is sent to specified player to indicate to release
     /// resources for the associated item-resource on the client. As a result
     /// it deletes the item. The item can be deleted with numerous of reason,
-    /// item traded or sold to a npc 
+    /// item traded or sold to a npc
     /// </remarks>
     /// <id>
     /// 0507

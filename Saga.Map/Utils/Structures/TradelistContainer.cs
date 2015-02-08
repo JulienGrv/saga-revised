@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Saga.IO;
+using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Templates;
-using Saga.IO;
+using System;
+using System.Collections.Generic;
 using System.IO;
-using Saga.Packets;
 
 namespace Saga.Map.Utils.Structures
 {
     public class TradelistContainer
     {
-
         #region Private Members
 
         protected internal uint TradeMenu
@@ -20,7 +18,7 @@ namespace Saga.Map.Utils.Structures
         protected internal Dictionary<uint, BaseTradelist> dict
             = new Dictionary<uint, BaseTradelist>();
 
-        #endregion
+        #endregion Private Members
 
         #region Public Methods
 
@@ -39,12 +37,14 @@ namespace Saga.Map.Utils.Structures
             dict.Add(key, tradelist);
             return tradelist;
         }
+
         public GroupedTradelist AddGroupedContainer(uint key)
         {
             GroupedTradelist tradelist = new GroupedTradelist();
             dict.Add(key, tradelist);
             return tradelist;
         }
+
         public static TradelistContainer FromFile(string filename)
         {
             TradelistContainer _container = new TradelistContainer();
@@ -77,6 +77,7 @@ namespace Saga.Map.Utils.Structures
                             case TraderReader.NodeType.Production:
                                 currentlist.AddProduct(reader.ItemId, reader.ItemCount);
                                 break;
+
                             case TraderReader.NodeType.Supplement:
                                 currentlist.AddSupplement(reader.ItemId, reader.ItemCount);
                                 break;
@@ -86,7 +87,7 @@ namespace Saga.Map.Utils.Structures
             return _container;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Private Methods
 
@@ -105,7 +106,6 @@ namespace Saga.Map.Utils.Structures
         {
             try
             {
-
                 for (int i = l.list.Count; i < Group + 1; i++)
                 {
                     l.AddList();
@@ -117,10 +117,6 @@ namespace Saga.Map.Utils.Structures
             {
                 throw new Exception(string.Format("Error get {0}", Group), ex);
             }
-
-
-
-
         }
 
         /// <summary>
@@ -164,9 +160,6 @@ namespace Saga.Map.Utils.Structures
             }
         }
 
-
-        #endregion
-
-
+        #endregion Private Methods
     }
 }

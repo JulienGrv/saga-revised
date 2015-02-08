@@ -1,18 +1,14 @@
-using System;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
-using Saga.Shared.Definitions;
 using Saga.PrimaryTypes;
+using System;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packets sents a list of items that can be traded. Still need to implament 
+    /// This packets sents a list of items that can be traded. Still need to implament
     /// this so both trading windows can be used.
     /// </remarks>
     /// <id>
@@ -36,13 +32,13 @@ namespace Saga.Packets
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 7, 4); }
         }
-        
+
         public void AddItem(Rag2Item product, Rag2Item supply, Rag2Item supply2)
         {
             int count = this.data[4];
             int newcount = count + 1;
-            if (newcount > 25) return;            
-            
+            if (newcount > 25) return;
+
             if (product != null)
             {
                 Rag2Item.Serialize(product, this.data, 0x6F + count * 66);
@@ -70,8 +66,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -86,9 +82,6 @@ namespace Saga.Packets
             return tmp;
         }
 
-        #endregion
-
-
-
+        #endregion Conversions
     }
 }

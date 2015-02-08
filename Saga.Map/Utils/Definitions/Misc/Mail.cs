@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.PrimaryTypes;
+using System;
 
 namespace Saga.Map.Definitions.Misc
 {
@@ -11,7 +9,7 @@ namespace Saga.Map.Definitions.Misc
         public string Sender;
         public string Topic;
         public string Message;
-        public int Zeny;        
+        public int Zeny;
         public DateTime Time = DateTime.Now;
         public byte IsRead = 0;
         public byte Valid = 0;

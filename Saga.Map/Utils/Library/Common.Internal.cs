@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Packets;
-using Saga.Shared.Definitions;
-using Saga.Map;
-using Saga.Shared.PacketLib;
 using Saga.Map.Definitions.Misc;
+using Saga.Packets;
 using Saga.PrimaryTypes;
+using System;
 
 namespace Common
 {
     internal static class Internal
     {
-
         /// <summary>
         /// Used to generate a CharacterInformation packet.
         /// </summary>
@@ -21,7 +15,7 @@ namespace Common
         [Obsolete("Error", true)]
         public static void GenerateCharacterInfo(Character character, out SMSG_CHARACTERINFO spkt)
         {
-            //HELPER VARIABLES 
+            //HELPER VARIABLES
             Rag2Item item;
 
             //STRUCTIRIZE GENERAL INFORMATION
@@ -34,15 +28,15 @@ namespace Common
             spkt.Z = character.Position.z;
             spkt.ActorID = character.id;
             spkt.face = character.FaceDetails;
-            spkt.AugeSkillID = character.ComputeAugeSkill();            
+            spkt.AugeSkillID = character.ComputeAugeSkill();
             spkt.yaw = character.Yaw;
             spkt.Job = character.job;
             spkt.Stance = character.stance;
 
-            //STRUCTURIZE EQUIPMENT INFORMATION            
+            //STRUCTURIZE EQUIPMENT INFORMATION
             item = character.Equipment[0];
             if (item != null && item.active > 0) spkt.SetHeadTop(item.info.item, item.dyecolor);
- 
+
             item = character.Equipment[1];
             if (item != null && item.active > 0) spkt.SetHeadMiddle(item.info.item, item.dyecolor);
 
@@ -71,15 +65,12 @@ namespace Common
                 spkt.SetWeapon(state.Addition, state.Lifetime);
         }
 
-
-
         [Obsolete("Error", true)]
         public static bool IsWeaponSlotActive(Character character, byte slot)
         {
             int ActiveWeaponIndex = (character.weapons.ActiveWeaponIndex == 1) ? character.weapons.SeconairyWeaponIndex : character.weapons.PrimaryWeaponIndex;
             return ActiveWeaponIndex == slot;
         }
-
 
         /// <summary>
         /// Used interally to see if the HP/SP doesn't overlap their max boundaries.
@@ -95,11 +86,11 @@ namespace Common
         public static void MailArrived(Character character, uint amount)
         {
             SMSG_MAILARRIVED spkt = new SMSG_MAILARRIVED();
-            spkt.Amount =  amount;
+            spkt.Amount = amount;
             spkt.SessionId = character.id;
 
-            if( character.client.isloaded == true )
-            character.client.Send((byte[])spkt);
+            if (character.client.isloaded == true)
+                character.client.Send((byte[])spkt);
         }
 
         public static void AckMenuPressed(Character character, byte button, byte menu)
@@ -110,7 +101,6 @@ namespace Common
             spkt.SessionId = character.id;
             character.client.Send((byte[])spkt);
         }
-
 
         public static void CheckWeaponary(Character character)
         {
@@ -135,6 +125,5 @@ namespace Common
                 character.client.Send((byte[])spkt);
             }
         }
-
     }
 }

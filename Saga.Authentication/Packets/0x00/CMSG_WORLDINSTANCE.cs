@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
-using System.Net;
+using System;
+using System.Text;
 
 namespace Saga.Shared.PacketLib.Map
 {
-
     public class CMSG_WORLDINSTANCE : RelayPacket
     {
-
         public CMSG_WORLDINSTANCE()
         {
             this.data = new byte[0];
@@ -30,12 +26,12 @@ namespace Saga.Shared.PacketLib.Map
                 return this.data[1];
             }
         }
-       
+
         public int MaximumPlayers
         {
             get
             {
-                return BitConverter.ToInt32(this.data,2);
+                return BitConverter.ToInt32(this.data, 2);
             }
         }
 
@@ -72,8 +68,8 @@ namespace Saga.Shared.PacketLib.Map
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -86,7 +82,6 @@ namespace Saga.Shared.PacketLib.Map
             return pkt;
         }
 
-        #endregion
-
+        #endregion Conversions
     }
 }

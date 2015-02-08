@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace Saga.Configuration
 {
     public class ManagerProviderBaseConfiguration : ConfigurationSection
     {
-
         /// <summary>
         /// Get's or sets a list of files containing spawninformaton for mobs
         /// </summary>

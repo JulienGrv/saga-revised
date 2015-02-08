@@ -1,33 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
+﻿using Saga.Enumarations;
 using Saga.IO;
 using Saga.Map.Utils.Structures;
-using Saga.Shared.Definitions;
-using Saga.Templates;
 using Saga.PrimaryTypes;
-using Saga.Enumarations;
 using Saga.Structures;
+using Saga.Templates;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Saga.Npc.Functions
 {
-
     /// <summary>
-    /// This is a location-guard conversation. Include this in a npc to show a 
-    /// location dialog and submenu. 
+    /// This is a location-guard conversation. Include this in a npc to show a
+    /// location dialog and submenu.
     /// </summary>
     /// <remarks>
     /// Location are a new function of kro2 which
-    /// aren't included yet hence the button isn't shown as a proper designed 
+    /// aren't included yet hence the button isn't shown as a proper designed
     /// button.
     /// </remarks>
     public class LocationConversation : NpcFunction
     {
-
-
         #region Private Members
-
 
         /// <summary>
         /// Contains the location-menu id to open.
@@ -35,11 +28,11 @@ namespace Saga.Npc.Functions
         private uint _locmenuid = 0;
 
         /// <summary>
-        /// Contains a list of point locations. 
+        /// Contains a list of point locations.
         /// </summary>
         private List<GuidePoint> _guidelist;
 
-        #endregion
+        #endregion Private Members
 
         #region Protected Methods
 
@@ -62,8 +55,6 @@ namespace Saga.Npc.Functions
             CacheLocations(npc);
         }
 
-
-
         /// <summary>
         /// Loads all dialog dialog information.
         /// </summary>
@@ -79,9 +70,8 @@ namespace Saga.Npc.Functions
             Common.Actions.OpenLocationGuide(target, _locmenuid);
         }
 
-
         /// <summary>
-        /// Caches the location items. 
+        /// Caches the location items.
         /// </summary>
         /// <remarks>
         /// This will load all shop items from the data directory from read from
@@ -102,6 +92,7 @@ namespace Saga.Npc.Functions
                             case GuideReader.NodeType.Npc:
                                 _guidelist.Add(new GuideNpc(reader.Item, 0));
                                 break;
+
                             case GuideReader.NodeType.Position:
                                 _guidelist.Add(new GuidePosition(reader.X, reader.Y, reader.Z, reader.Item, 0));
                                 break;
@@ -109,12 +100,6 @@ namespace Saga.Npc.Functions
                     }
         }
 
-
-
-
-
-        #endregion
-
+        #endregion Protected Methods
     }
-
 }

@@ -1,23 +1,21 @@
-using System;
 using Saga.Network.Packets;
 using Saga.Structures;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is send by the player as result of the player is 
-    /// moving. 
+    /// This packet is send by the player as result of the player is
+    /// moving.
     /// </remarks>
     /// <id>
     /// 0302
     /// </id>
     internal class CMSG_MOVEMENTSTART : RelayPacket
     {
-
         /// <summary>
         /// Creates a new movement start
         /// </summary>
@@ -50,13 +48,12 @@ namespace Saga.Packets
             get { return ArrayToFloat(this.data, 8); }
         }
 
-
         /// <summary>
         /// Get's the acceleration of the x axis
         /// </summary>
         public float AccelerationX
         {
-            get { return ArrayToFloat(this.data, 12); } 
+            get { return ArrayToFloat(this.data, 12); }
         }
 
         /// <summary>
@@ -64,7 +61,7 @@ namespace Saga.Packets
         /// </summary>
         public float AccelerationY
         {
-            get { return ArrayToFloat(this.data, 16); } 
+            get { return ArrayToFloat(this.data, 16); }
         }
 
         /// <summary>
@@ -72,7 +69,7 @@ namespace Saga.Packets
         /// </summary>
         public float AccelerationZ
         {
-            get { return ArrayToFloat(this.data, 20); } 
+            get { return ArrayToFloat(this.data, 20); }
         }
 
         /// <summary>
@@ -99,21 +96,19 @@ namespace Saga.Packets
             get { return BitConverter.ToUInt16(this.data, 26); }
         }
 
-
         /// <summary>
         /// Get's the current yaw rotator
         /// </summary>
         public Rotator Yaw
         {
             get
-            {                             
+            {
                 return new Rotator(
                     BitConverter.ToUInt16(this.data, 28),
                     BitConverter.ToUInt16(this.data, 30)
                 );
             }
         }
-
 
         /// <summary>
         /// Get's the delay time
@@ -148,8 +143,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -162,6 +157,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

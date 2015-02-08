@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
 using Saga.PrimaryTypes;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <remarks>
     /// This will add the specified item to the list of owned items.
     /// </remarks>
@@ -24,7 +18,6 @@ namespace Saga.Packets
             this.Id = 0x1104;
             this.data = new byte[76];
         }
-       
 
         public byte Result
         {
@@ -54,7 +47,7 @@ namespace Saga.Packets
         {
             set
             {
-                this.data[71] = (byte)Math.Max(0,(value - DateTime.Now).TotalHours);
+                this.data[71] = (byte)Math.Max(0, (value - DateTime.Now).TotalHours);
             }
         }
 

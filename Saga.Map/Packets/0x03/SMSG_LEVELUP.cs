@@ -1,16 +1,15 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// This packet idicates when a user has reached a new job-level. This 
+    /// This packet idicates when a user has reached a new job-level. This
     /// triggers a animation on the client that the specified player
     /// has reached a job level up.
     /// </summary>
     /// <remarks>
-    /// LevelType speciafies for what type of level up. 
+    /// LevelType speciafies for what type of level up.
     /// 1 determines a base level up
     /// 2 determines a job level up
     /// </remarks>
@@ -29,7 +28,7 @@ namespace Saga.Packets
         public byte LevelType
         {
             set { this.data[0] = value; }
-        }    
+        }
 
         public uint ActorID
         {
@@ -40,7 +39,5 @@ namespace Saga.Packets
         {
             set { this.data[5] = value; }
         }
-
-
     }
 }

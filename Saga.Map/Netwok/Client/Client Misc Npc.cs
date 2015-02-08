@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Saga.Enumarations;
 using Saga.Map.Utils.Structures;
 using Saga.Packets;
@@ -8,13 +5,14 @@ using Saga.PrimaryTypes;
 using Saga.Quests;
 using Saga.Structures;
 using Saga.Templates;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Saga.Map.Client
 {
     partial class Client
     {
-
-       
         /// <summary>
         /// Occurs after a client displays a personal quest confirmation.
         /// </summary>
@@ -28,7 +26,7 @@ namespace Saga.Map.Client
                 {
                     pendingquest.OnStart(this.character.id);
                     pendingquest.CheckQuest(this.character);
-                    QuestBase.UserTalktoTarget(this.character.Target.ModelId, this.character, pendingquest);                                       
+                    QuestBase.UserTalktoTarget(this.character.Target.ModelId, this.character, pendingquest);
                     CommonFunctions.RefreshPersonalRequests(this.character);
                     CommonFunctions.UpdateNpcIcons(this.character);
                     pendingquest = null;
@@ -100,7 +98,7 @@ namespace Saga.Map.Client
                 GuidePoint point = guidepoints[cpkt.LocationId];
                 GuideNpc npoint = point as GuideNpc;
                 GuidePosition ppoint = point as GuidePosition;
-               
+
                 if (npoint != null)
                 {
                     //Predicated used searching
@@ -112,7 +110,7 @@ namespace Saga.Map.Client
                     List<MapObject> matchingactors = new List<MapObject>();
                     Regiontree tree = this.character.currentzone.Regiontree;
                     matchingactors.AddRange(tree.SearchActors(FindActor, SearchFlags.Npcs));
-                    if (matchingactors.Count > 0 )
+                    if (matchingactors.Count > 0)
                     {
                         MapObject matchingactor = matchingactors[0];
                         SMSG_NPCASKLOCATIONSRC spkt = new SMSG_NPCASKLOCATIONSRC();
@@ -128,7 +126,6 @@ namespace Saga.Map.Client
                 }
                 else if (ppoint != null)
                 {
-
                     SMSG_NPCASKLOCATIONSRC spkt = new SMSG_NPCASKLOCATIONSRC();
                     spkt.SessionId = this.character.id;
                     spkt.Result = 2;
@@ -181,7 +178,6 @@ namespace Saga.Map.Client
             byte result = 5;
             try
             {
-
                 SingleTradelist stradelist = this.character.Tag as SingleTradelist;
                 GroupedTradelist gtradelist = this.character.Tag as GroupedTradelist;
                 List<Rag2Item> Production = null;
@@ -197,7 +193,6 @@ namespace Saga.Map.Client
                     Supplyment = stradelist.list.GetSupplementlist;
                     supplymoney = stradelist.supplementzeny;
                     productionmoney = stradelist.productionzeny;
-
                 }
                 else if (gtradelist != null)
                 {
@@ -210,15 +205,12 @@ namespace Saga.Map.Client
                     return;
                 }
 
-
                 uint reqzeny = productionmoney - supplymoney;
                 if (reqzeny < 0 && this.character.ZENY - reqzeny <= 0)
                 {
                     result = 3;
                     return;
                 }
-
-
 
                 List<byte> ListOfIndexes = new List<byte>();
                 int numdelitems = 0;
@@ -237,13 +229,13 @@ namespace Saga.Map.Client
                                    && item1.count >= item2.count
                                    && item1.clvl == item2.clvl;
 
-                        //Set the to true, keep true if already true;                       
+                        //Set the to true, keep true if already true;
                         if (IsSame == true)
                         {
                             ListOfIndexes.Add(pair.Key);
                             IsFound |= IsSame;
                             int count = item1.count - item2.count;
-                            if (count == 0){ numdelitems++; }
+                            if (count == 0) { numdelitems++; }
                             break;
                         }
                     }
@@ -268,11 +260,11 @@ namespace Saga.Map.Client
                 for (int i = 0; i < ListOfIndexes.Count; i++)
                 {
                     int index = ListOfIndexes[i];
-                    int newcount = this.character.container[index].count - Supplyment[i].count;             
+                    int newcount = this.character.container[index].count - Supplyment[i].count;
                     if (newcount == 0)
                     {
                         this.character.container.RemoveAt(index);
-                        SMSG_DELETEITEM spkt = new SMSG_DELETEITEM();                        
+                        SMSG_DELETEITEM spkt = new SMSG_DELETEITEM();
                         spkt.Index = (byte)index;
                         spkt.Container = 2;
                         spkt.UpdateReason = (byte)ItemUpdateReason.SendToTrader;
@@ -331,7 +323,6 @@ namespace Saga.Map.Client
         {
             try
             {
-                
                 MapObject target = null;
                 Rag2Collection list = null;
                 LootCollection loot = this.character.Tag as LootCollection;
@@ -356,14 +347,12 @@ namespace Saga.Map.Client
                     this.Send((byte[])spkt);
                     return;
                 }
-                else                
+                else
                 {
                     list = loot.Lootlist;
                 }
 
-
-
-                //OBTAIN THE REQUIRED ITEMS FROM THE MERCHANT 
+                //OBTAIN THE REQUIRED ITEMS FROM THE MERCHANT
                 Rag2Item item = list[cpkt.Index];
                 if (item == null) return;
 
@@ -379,7 +368,7 @@ namespace Saga.Map.Client
                     if (invItem.count < item.info.max_stack) update_queue.Add(index);
                 }
 
-                //CALCULATE THE AMOUNT OF NEW SLOTS REQUIRED                
+                //CALCULATE THE AMOUNT OF NEW SLOTS REQUIRED
                 int req_hslot = (int)item.count % (int)this.character.container.Capacity;
                 int req_slots = item.count;
                 //int max_stack = (item.info.max_stack == 0) ? 1 : item.info.max_stack;
@@ -400,8 +389,7 @@ namespace Saga.Map.Client
                     return;
                 }
 
-
-                //AMOUNT USED IN DECREMENT CALCULATIONS 
+                //AMOUNT USED IN DECREMENT CALCULATIONS
                 int amount = (int)item.count;
 
                 //ITERATE THROUGH ALL AVAILABLE ITEM THAT CAN BE PROCESSED FOR UPDATES
@@ -450,18 +438,18 @@ namespace Saga.Map.Client
                 loot.Open(this.character, target);
                 QuestBase.UserObtainedItem(item.info.item, this.character);
 
-                if(this.character.sessionParty != null )
-                for(int i =0; i < this.character.sessionParty._Characters.Count; i++)
-                {
-                    Character partyTarget = this.character.sessionParty._Characters[i];
-                    if (partyTarget.id == this.character.id) continue;                    
-                    SMSG_PARTYMEMBERLOOT spkt2 = new SMSG_PARTYMEMBERLOOT();
-                    spkt2.SessionId = partyTarget.id;
-                    spkt2.Index = (byte)(i + 1);
-                    spkt2.ActorId = this.character.id;
-                    spkt2.ItemId = item.info.item;
-                    partyTarget.client.Send((byte[])spkt2);
-                }
+                if (this.character.sessionParty != null)
+                    for (int i = 0; i < this.character.sessionParty._Characters.Count; i++)
+                    {
+                        Character partyTarget = this.character.sessionParty._Characters[i];
+                        if (partyTarget.id == this.character.id) continue;
+                        SMSG_PARTYMEMBERLOOT spkt2 = new SMSG_PARTYMEMBERLOOT();
+                        spkt2.SessionId = partyTarget.id;
+                        spkt2.Index = (byte)(i + 1);
+                        spkt2.ActorId = this.character.id;
+                        spkt2.ItemId = item.info.item;
+                        partyTarget.client.Send((byte[])spkt2);
+                    }
             }
             //CATCH ALL UNKNOWN ERRORS
             catch (Exception e)
@@ -551,10 +539,10 @@ namespace Saga.Map.Client
                     spkt.Result = 1;
                 }
                 else
-                {                    
+                {
                     Singleton.Database.DeleteEventItemId(cpkt.RewardId);
 
-                    //AMOUNT USED IN DECREMENT CALCULATIONS 
+                    //AMOUNT USED IN DECREMENT CALCULATIONS
                     int index = this.character.container.FindFirstFreeIndex();
 
                     if (index > -1)
@@ -567,14 +555,12 @@ namespace Saga.Map.Client
                         spkt2.SessionId = this.character.id;
                         this.Send((byte[])spkt2);
 
-
-                        //Type is used to calc type of item 
+                        //Type is used to calc type of item
                         //(21 seems to be used for Applogy Item)
                         if (item.info.type == 21)
                         {
                             Common.Skills.UpdateAddition(this.character, item.info.option_id);
                         }
-
                     }
 
                     spkt.Result = 0;
@@ -601,15 +587,15 @@ namespace Saga.Map.Client
         private void CM_NPCCHAT(CMSG_NPCCHAT cpkt)
         {
             if (Regiontree.TryFind(cpkt.ActorID, this.character, out this.character._target))
-            if (character.Target is BaseNPC)
-            {
-                BaseNPC current = character.Target as BaseNPC;
-                current.OnGossip(this.character);
-            }
+                if (character.Target is BaseNPC)
+                {
+                    BaseNPC current = character.Target as BaseNPC;
+                    current.OnGossip(this.character);
+                }
         }
 
         /// <summary>
-        /// Occurs when you click on a object. 
+        /// Occurs when you click on a object.
         /// Mapobject, Character doesn't matter.
         /// </summary>
         /// <param name="cpkt"></param>
@@ -618,17 +604,16 @@ namespace Saga.Map.Client
             MapObject Target;
             if (Regiontree.TryFind(cpkt.ActorID, this.character, out Target))
             {
-                Target.OnClick(this.character);                  
+                Target.OnClick(this.character);
             }
-
 
             //Reset the stance if we're not moving
             if (this.character.stance != 4 && this.character.stance != 5)
             {
                 Regiontree tree = this.character.currentzone.Regiontree;
-                foreach (Character current in tree.SearchActors( this.character, SearchFlags.Characters))
+                foreach (Character current in tree.SearchActors(this.character, SearchFlags.Characters))
                 {
-                    if (current.id == this.character.id || current.client.isloaded == false || !Point.IsInSightRangeByRadius(current.Position, this.character.Position) ) continue;
+                    if (current.id == this.character.id || current.client.isloaded == false || !Point.IsInSightRangeByRadius(current.Position, this.character.Position)) continue;
                     SMSG_ACTORCHANGESTATE spkt2 = new SMSG_ACTORCHANGESTATE();
                     spkt2.ActorID = character.id;
                     spkt2.State = (byte)((character.ISONBATTLE) ? 1 : 0);
@@ -660,7 +645,7 @@ namespace Saga.Map.Client
                 spkt2.TargetActor = character._targetid;
                 spkt2.SessionId = current.id;
                 current.client.Send((byte[])spkt2);
-            } 
+            }
         }
 
         /// <summary>
@@ -684,7 +669,6 @@ namespace Saga.Map.Client
                 {
                     BaseNPC current = character.Target as BaseNPC;
                     current.state.Open(cpkt.ButtonID, cpkt.MenuID, current, character);
-
 
                     SMSG_NPCMENU spkt = new SMSG_NPCMENU();
                     spkt.MenuID = cpkt.MenuID;
@@ -721,4 +705,3 @@ namespace Saga.Map.Client
         }
     }
 }
-

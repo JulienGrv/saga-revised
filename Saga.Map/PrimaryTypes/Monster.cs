@@ -1,44 +1,39 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Saga.Enumarations;
 using Saga.Map;
 using Saga.Map.Librairies;
-using Saga.Packets;
-using Saga.Map.Definitions.Misc;
-using Saga.Tasks;
-using Saga.Quests;
-using Saga.Map.Utils.Definitions.Misc;
-using System.Diagnostics;
-using Saga.Shared.Definitions;
 using Saga.Network.Packets;
+using Saga.Packets;
+using Saga.Shared.Definitions;
 using Saga.Structures;
-using Saga.Enumarations;
+using Saga.Tasks;
+using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace Saga.PrimaryTypes
 {
-
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
-    public abstract class Monster : BaseMob, ILootable, 
+    public abstract class Monster : BaseMob, ILootable,
         Saga.Tasks.BattleThread.IBattleArtificialIntelligence, IHateable, IArtificialIntelligence
-    {        
-
+    {
         //Monster Members
 
         #region Internal Members
-        enum ActionType : byte { Walk = 0, Run = 1, Think = 2 }
 
-         protected internal Point RespawnOrigin;
+        private enum ActionType : byte { Walk = 0, Run = 1, Think = 2 }
+
+        protected internal Point RespawnOrigin;
 
         //MOB-TEMPLATE VARIABLES
         protected internal ushort _LEVEL = 0;
+
         protected internal ushort _CEXP = 0;
         protected internal ushort _JEXP = 0;
         protected internal ushort _WEXP = 0;
         protected internal ushort _ASPD = 0;
         protected internal ushort _SIGHTRANGE = 0;
-        protected internal ushort _SIZE = 0;        
-        protected internal ushort _WALKSPEED = 0;        
+        protected internal ushort _SIZE = 0;
+        protected internal ushort _WALKSPEED = 0;
         protected internal ushort _RUNSPEED = 0;
         protected internal int _AIMODE = 0;
         protected LifespanAI.Lifespan Lifespan = new LifespanAI.Lifespan();
@@ -64,7 +59,7 @@ namespace Saga.PrimaryTypes
         /// </remarks>
         protected DamageCollection damagetable;
 
-        #endregion
+        #endregion Internal Members
 
         #region Properties
 
@@ -136,14 +131,14 @@ namespace Saga.PrimaryTypes
             }
         }
 
-        #endregion
+        #endregion Properties
 
         #region Monster Public Methods
 
         public Point GetPositionForEnemy(Point a, uint minrange)
         {
             Point Loc = a;
-            ushort Yaw = Point.CalculateYaw(a, this.Position);            
+            ushort Yaw = Point.CalculateYaw(a, this.Position);
             double rad = Saga.Structures.Yaw.ToRadiants(Yaw);
 
             Loc.x += (float)((double)(100 + _SIZE + minrange) * Math.Cos(rad));
@@ -154,7 +149,6 @@ namespace Saga.PrimaryTypes
 
         public Point GetRandomCoords()
         {
-
             ushort randYaw = (ushort)Managers.WorldTasks._random.Next(0, ushort.MaxValue);
             int distance = Managers.WorldTasks._random.Next(200, 1000);
             Point Loc = RespawnOrigin;
@@ -194,12 +188,10 @@ namespace Saga.PrimaryTypes
                     spkt.SessionId = character.id;
                     character.client.Send((byte[])spkt);
                 }
-
-
         }
 
         public void StartRunning(Point a)
-        {           
+        {
             //Set is moving to true
             this.stance = 5;
 
@@ -215,7 +207,6 @@ namespace Saga.PrimaryTypes
             spkt.Destination(this.DestPosition);
             //this.Position = NextPosition;
 
-
             //Send over movement start to all characters in neighbourhood
             Regiontree tree = this.currentzone.Regiontree;
             foreach (Character character in tree.SearchActors(this, SearchFlags.Characters))
@@ -223,7 +214,7 @@ namespace Saga.PrimaryTypes
                 {
                     spkt.SessionId = character.id;
                     character.client.Send((byte[])spkt);
-                }            
+                }
         }
 
         public void StopMovement()
@@ -264,7 +255,7 @@ namespace Saga.PrimaryTypes
             Loc.x += (float)(diff * Math.Cos(rad));
             Loc.y += (float)(diff * Math.Sin(rad));
             Loc.z = this.Position.z;
-            this.Position = Loc;         
+            this.Position = Loc;
         }
 
         public bool HasReachedDestination()
@@ -272,20 +263,20 @@ namespace Saga.PrimaryTypes
             return Point.GetDistance3D(this.Position, this.DestPosition) <= (150 + (ushort)Status.WalkingSpeed + _SIZE);
         }
 
-        #endregion
+        #endregion Monster Public Methods
 
         #region Monster Static Members
 
-        private void ForwardToAll(RelayPacket spkt )
+        private void ForwardToAll(RelayPacket spkt)
         {
             //Send over movement start to all characters in neighbourhood
             foreach (MapObject c in this.currentzone.GetObjectsInRegionalRange(this))
-                if ( MapObject.IsPlayer(c))
+                if (MapObject.IsPlayer(c))
                 {
                     spkt.SessionId = c.id;
                     Character character = c as Character;
                     character.client.Send((byte[])spkt);
-                }  
+                }
         }
 
         public void ChangeStance(byte stance)
@@ -296,10 +287,9 @@ namespace Saga.PrimaryTypes
             spkt.TargetActor = (this._target != null) ? this._target.id : 0;
             spkt.State = 1;
             spkt.Stance = stance;
-            ForwardToAll(spkt); 
+            ForwardToAll(spkt);
         }
 
-        
         protected static Random random = new Random();
 
         public float[] GetRandomePosition()
@@ -316,8 +306,7 @@ namespace Saga.PrimaryTypes
             return pos;
         }
 
-
-        #endregion
+        #endregion Monster Static Members
 
         //Base Derived Members
 
@@ -352,7 +341,7 @@ namespace Saga.PrimaryTypes
                         Saga.Tasks.BattleThread.Subscribe(this);
                     }
 
-                    //Been Attacked            
+                    //Been Attacked
                     OnBeenAttacked(source);
                 }
             }
@@ -408,11 +397,11 @@ namespace Saga.PrimaryTypes
         /// Occurs when the actor is spawned
         /// </summary>
         public override void OnSpawn()
-        {         
-            //Get the z coordinate 
+        {
+            //Get the z coordinate
             this.stance = (byte)StancePosition.Reborn;
             this.Position = this.currentzone.GetZ(this.Position);
-           
+
             //Reload battlestatus
             Singleton.Templates.FillByTemplate(this.ModelId, this);
 
@@ -423,8 +412,8 @@ namespace Saga.PrimaryTypes
             damagetable = new DamageCollection();
 
             //Dispose loot windo
-            if( collection != null ) collection.Dispose();
-                collection = null;
+            if (collection != null) collection.Dispose();
+            collection = null;
         }
 
         /// <summary>
@@ -505,16 +494,16 @@ namespace Saga.PrimaryTypes
                 Saga.Tasks.BattleThread.Unsubscribe(this);
                 SwitchSpeed(_WALKSPEED);
                 this.Lifespan.lasttick = Environment.TickCount;
-                this.stance = 3;                
+                this.stance = 3;
             }
         }
 
-        #endregion
+        #endregion MabObject Members
 
         //Monster Events
 
-        #region Events 
-       
+        #region Events
+
         public void Die(Character character)
         {
             lock (this)
@@ -533,11 +522,10 @@ namespace Saga.PrimaryTypes
                 //Elimination Objective killing character
                 //QuestBase.UserEliminateTarget(this.ModelId, character);
 
-                // Subscript myself as a corpse      
+                // Subscript myself as a corpse
                 StopMovement();
             }
         }
-
 
         /// <summary>
         /// Occurs when seeing a enemy
@@ -553,8 +541,6 @@ namespace Saga.PrimaryTypes
             }
         }
 
-    
-       
         /// <summary>
         /// Processes the recieving of damage
         /// </summary>
@@ -590,7 +576,7 @@ namespace Saga.PrimaryTypes
 
         public Character GetLowestEnemy()
         {
-            Character selection = null;            
+            Character selection = null;
             int lowestLevel = -1;
 
             Regiontree tree = this.currentzone.Regiontree;
@@ -620,7 +606,7 @@ namespace Saga.PrimaryTypes
         /// <summary>
         /// Unsubsibes the battle ai if it loses sight
         /// of the player.
-        /// </summary>        
+        /// </summary>
         public bool OnEnemyOutOfRange(Character enemy)
         {
             if (this._target != null && enemy == this._target)
@@ -667,19 +653,19 @@ namespace Saga.PrimaryTypes
             }
         }
 
-        #endregion
-
+        #endregion Events
 
         #region ILootable Members
 
         private LootCollection collection = null;
+
         public bool GetLootCollection(Character target, out LootCollection collection)
         {
             collection = this.collection;
             return (collection != null) ? collection.CanOpen(target) : false;
         }
 
-        #endregion
+        #endregion ILootable Members
 
         #region IHateable Members
 
@@ -688,13 +674,14 @@ namespace Saga.PrimaryTypes
             get { return hatetable; }
         }
 
-        #endregion
+        #endregion IHateable Members
 
         #region IBattleArtificialIntelligence Members
 
         protected SkillRotatorCollection skills;
 
-        private BattleThread.IBattlestate _battlestate = new BattleThread.IBattlestate();        
+        private BattleThread.IBattlestate _battlestate = new BattleThread.IBattlestate();
+
         protected BattleThread.IBattlestate BattleState
         {
             get { return _battlestate; }
@@ -705,9 +692,8 @@ namespace Saga.PrimaryTypes
             get { return _battlestate; }
         }
 
-
         /// <summary>
-        /// Callback function for the IBattleArtificialIntelligence. 
+        /// Callback function for the IBattleArtificialIntelligence.
         /// This is the leading function that processes any attacks for the current movement.
         /// </summary>
         void Saga.Tasks.BattleThread.IBattleArtificialIntelligence.Process()
@@ -742,11 +728,10 @@ namespace Saga.PrimaryTypes
                 {
                     Common.Skills.OffensiveSkillUse(character, this, skill, 3);
                 }
-
-            }            
+            }
         }
 
-        #endregion
+        #endregion IBattleArtificialIntelligence Members
 
         #region IArtificialIntelligence Members
 
@@ -765,13 +750,14 @@ namespace Saga.PrimaryTypes
             //Do nothing
         }
 
-        #endregion
+        #endregion IArtificialIntelligence Members
 
         #region Constructor/Deconstructor
 
-        public Monster(){}
+        public Monster()
+        {
+        }
 
-        #endregion
-
+        #endregion Constructor/Deconstructor
     }
 }

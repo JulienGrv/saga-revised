@@ -1,15 +1,13 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is used to teleport a user to another set of 
-    /// x,y,z coords on the same map. This will result in the client 
+    /// This packet is used to teleport a user to another set of
+    /// x,y,z coords on the same map. This will result in the client
     /// NOT to release all resources but to reuse them.
     /// </remarks>
     /// <id>
@@ -40,6 +38,5 @@ namespace Saga.Packets
         {
             set { FloatToArray(value, this.data, 10); }
         }
-
     }
 }

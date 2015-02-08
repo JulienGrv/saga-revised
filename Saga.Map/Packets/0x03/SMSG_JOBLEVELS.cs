@@ -1,15 +1,13 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This is a test
-    /// 
+    ///
     /// Haha.
     /// </remarks>
     /// <id>
@@ -26,10 +24,10 @@ namespace Saga.Packets
 
         public byte[] jobslevels
         {
-            set 
+            set
             {
                 for (byte i = 0; i < 11; i++)
-                this.data[i] = value[i];
+                    this.data[i] = value[i];
             }
         }
     }

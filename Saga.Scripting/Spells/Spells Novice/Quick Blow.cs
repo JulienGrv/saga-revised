@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
-using Saga.Map;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
-    {        
-
+    {
         public static void NOVICE_QUICKBLOW(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -45,7 +39,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
-
     }
 }

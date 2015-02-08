@@ -1,10 +1,8 @@
-using System.Configuration;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
-
-
     /// <summary>
     /// Warp factory configuration
     /// </summary>
@@ -19,7 +17,6 @@ namespace Saga.Configuration
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class WarpSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
         /// Get's or sets a list of files containing warpinformation
         /// </summary>

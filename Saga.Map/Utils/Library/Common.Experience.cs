@@ -1,36 +1,33 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Saga;
 using Saga.Map;
 using Saga.Network.Packets;
 using Saga.Packets;
 using Saga.PrimaryTypes;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Common
 {
     public static class Experience
     {
-
         [DebuggerNonUserCode()]
         [CLSCompliant(false)]
         public static void GiveWeaponExperience(Character target, uint wexp)
         {
             byte index = target.weapons.ActiveWeaponIndex == 1 ? target.weapons.SeconairyWeaponIndex : target.weapons.PrimaryWeaponIndex;
-            if( index < target.weapons.UnlockedWeaponSlots )
+            if (index < target.weapons.UnlockedWeaponSlots)
             {
                 Weapon weapon = target.weapons[index];
-                if( weapon == null || weapon._weaponlevel >= Singleton.experience.MaxWLVL) return;
-                
+                if (weapon == null || weapon._weaponlevel >= Singleton.experience.MaxWLVL) return;
+
                 //Checks if the weapon is  at already at max experience
                 uint ReqWexp = Singleton.experience.FindRequiredWexp(weapon._weaponlevel + 1);
                 if (weapon._experience == ReqWexp)
                 {
                     return;
                 }
-                
-                
-                //Adds the experience and check if we gain a level                                                                            
+
+                //Adds the experience and check if we gain a level
                 weapon._experience += wexp;
                 if (weapon._experience > ReqWexp)
                 {
@@ -66,9 +63,7 @@ namespace Common
         public static void GiveCharacterExperience(Character target, uint experiencepoints)
         {
             throw new NotImplementedException();
-        }        
-
-
+        }
 
         /// <summary>
         /// Adds a set of exp to your character.
@@ -78,7 +73,6 @@ namespace Common
         /// <param name="jexp"></param>
         public static void Add(Character character, uint cexp, uint jexp, uint wexp)
         {
-
             byte clvl_up = 0;
             byte jlvl_up = 0;
             int result = 0;
@@ -87,7 +81,6 @@ namespace Common
 
             try
             {
-
                 #region Check for character-level
 
                 if (character._level + 1 <= Singleton.experience.MaxCLVL)
@@ -104,7 +97,7 @@ namespace Common
                     cexp = 0;
                 }
 
-                #endregion
+                #endregion Check for character-level
 
                 #region Check for job-level
 
@@ -122,7 +115,7 @@ namespace Common
                     jexp = 0;
                 }
 
-                #endregion
+                #endregion Check for job-level
 
                 #region Quick Lock For updates
 
@@ -136,14 +129,12 @@ namespace Common
                     if ((result & 1) == 1) jlvl_up = Singleton.experience.FindJlvlDifference(character.jlvl, newJexp);
                     if ((result & 16) == 16) clvl_up = Singleton.experience.FindClvlDifference(character._level, newCexp);
 
-
                     //RECALCULATE THE SP / HP ON CLVL UP
                     if (clvl_up > 0)
                     {
                         //CALCULATE BASE MAX HP/SP
                         ushort _HPMAX = Singleton.CharacterConfiguration.CalculateMaximumHP(character);
                         ushort _SPMAX = Singleton.CharacterConfiguration.CalculateMaximumSP(character);
-                        
 
                         //SUBSTRACT FROM CURRENT MAX HP/SP
                         character._status.MaxHP -= _HPMAX;
@@ -165,7 +156,6 @@ namespace Common
                         CommonFunctions.SendExtStats(character);
                         CommonFunctions.SendBattleStatus(character);
 
-
                         if (character.sessionParty != null)
                         {
                             SMSG_PARTYMEMBERCLVL spkt = new SMSG_PARTYMEMBERCLVL();
@@ -184,7 +174,7 @@ namespace Common
                     {
                         character.jlvl += jlvl_up;
                         if (character.sessionParty != null)
-                        {                            
+                        {
                             SMSG_PARTYMEMBERJLVL spkt = new SMSG_PARTYMEMBERJLVL();
                             spkt.Index = 1;
                             spkt.ActorId = character.id;
@@ -212,7 +202,7 @@ namespace Common
                     CommonFunctions.UpdateCharacterInfo(character, (byte)result);
                 }
 
-                #endregion
+                #endregion Quick Lock For updates
 
                 #region Structurize Buffer
 
@@ -236,12 +226,12 @@ namespace Common
                     buffer.Add(spkt);
                 }
 
-                #endregion
+                #endregion Structurize Buffer
 
                 #region Flush all updates
 
                 foreach (MapObject c in character.currentzone.GetObjectsInRegionalRange(character))
-                    if ( MapObject.IsPlayer(c))
+                    if (MapObject.IsPlayer(c))
                     {
                         Character current = c as Character;
                         foreach (RelayPacket buffered_packet in buffer)
@@ -251,13 +241,12 @@ namespace Common
                         }
                     }
 
-                #endregion
-
+                #endregion Flush all updates
             }
             catch (Exception e)
             {
                 Trace.TraceError(e.ToString());
             }
-        }    
+        }
     }
 }

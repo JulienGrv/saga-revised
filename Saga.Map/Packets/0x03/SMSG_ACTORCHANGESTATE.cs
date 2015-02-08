@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is send to every player surrounding the specified player
@@ -34,7 +30,7 @@ namespace Saga.Packets
 
         public byte State
         {
-            set { this.data[4] = value; } 
+            set { this.data[4] = value; }
         }
 
         public byte Stance

@@ -1,11 +1,10 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-    
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is used to set a specified enchantement to
@@ -17,7 +16,6 @@ namespace Saga.Packets
     [CLSCompliant(false)]
     public class SMSG_ENCHANTMENT : RelayPacket
     {
-
         /// <summary>
         /// Initialized a new SMSG_ENCHANTMENT packet
         /// </summary>
@@ -27,7 +25,6 @@ namespace Saga.Packets
             this.Id = 0x050F;
             this.data = new byte[8];
         }
-
 
         /// <summary>
         /// Unknown setting
@@ -69,6 +66,5 @@ namespace Saga.Packets
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 3, 4); }
         }
-
     }
 }

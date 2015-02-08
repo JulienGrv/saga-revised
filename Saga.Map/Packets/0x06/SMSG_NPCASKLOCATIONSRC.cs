@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// No information yet. To be believed to do something related to the old guard functionallity.
@@ -25,9 +21,6 @@ namespace Saga.Packets
             this.Id = 0x0607;
             this.data = new byte[28];
         }
-
-
-
 
         public uint DialogScript
         {
@@ -84,6 +77,5 @@ namespace Saga.Packets
                 this.data[21] = value;
             }
         }
-
     }
 }

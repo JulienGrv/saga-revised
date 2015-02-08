@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
-
         public static void RECRUIT_PIERCINGSHOT(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -24,7 +18,7 @@ namespace Saga.Skills
                 Lvldiff = arguments.GetCappedLevelDifference(matrix);
 
                 //Increase both Maximum and minimum attack of yourself and removes the armor
-                matrix.matrix[0, 0] += matrix[3, 0];                
+                matrix.matrix[0, 0] += matrix[3, 0];
                 matrix.matrix[1, 0] += matrix[3, 0];
                 matrix.matrix[3, 0] = 0;
                 matrix[4, 3] += (Lvldiff * 120);
@@ -45,6 +39,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
     }
 }

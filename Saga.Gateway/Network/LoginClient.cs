@@ -1,49 +1,52 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.NetworkCore;
-using System.Net.Sockets;
-using System.Net;
 using Saga.Gateway.Network;
-using Saga.Shared.PacketLib;
-using Saga.Packets;
-using Saga;
-using System.Configuration;
-using Saga.Shared.PacketLib.Login;
 using Saga.Network.Packets;
-using Saga.Configuration;
-using System.Threading;
+using Saga.Packets;
+using Saga.Shared.NetworkCore;
+using Saga.Shared.PacketLib.Login;
+using System;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Saga.Gateway
 {
     public class LoginClient : Client
     {
         public static TraceLog log = new TraceLog("LoginClient.Packetlog", "Log class to log all packet trafic", 0);
-        internal LoginClient(Socket h) : base(h) { }
-        internal LoginClient(string host, int port) : base(host, port) { }
+
+        internal LoginClient(Socket h)
+            : base(h)
+        {
+        }
+
+        internal LoginClient(string host, int port)
+            : base(host, port)
+        {
+        }
 
         protected override void ProcessPacket(ref byte[] body)
         {
             ushort packetIdentifier = (ushort)(body[7] + (body[6] << 8));
 
-            #if DEBUG
+#if DEBUG
             switch (log.LogLevel)
             {
                 case 1: log.WriteLine("Network debug login", "Packet Recieved: {0:X4}", packetIdentifier);
                     break;
+
                 case 2: log.WriteLine("Network debug login", "Packet Recieved: {0:X4}", packetIdentifier);
                     Console.WriteLine("Packet received: {0:X4} from: {1}", packetIdentifier, "login client");
                     break;
+
                 case 3:
                     log.WriteLine("Network debug login", "Packet Recieved: {0:X4} data {1}", packetIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
                     break;
+
                 case 4:
                     log.WriteLine("Network debug login", "Packet Recieved: {0:X4} data {1}", packetIdentifier, Saga.Shared.PacketLib.Other.Conversions.ByteToHexString(body));
                     Console.WriteLine("Packet received: {0:X4} from: {1}", packetIdentifier, "login client");
                     break;
             }
-            #endif
-
+#endif
 
             switch (packetIdentifier)
             {
@@ -58,12 +61,12 @@ namespace Saga.Gateway
         }
 
         /// <summary>
-        /// Occurs when our login server notifies us we obtained a new 
+        /// Occurs when our login server notifies us we obtained a new
         /// session id we can give away.
         /// </summary>
         private void ObtainedSessionId(CMSG_SESSIONREQUEST cpkt)
         {
-            SessionPool.Instance.Add(cpkt.SessionId);            
+            SessionPool.Instance.Add(cpkt.SessionId);
         }
 
         private void ConnectToWorldServer(CMSG_ESTABLISHWORLDCONNECTION cpkt)
@@ -75,7 +78,6 @@ namespace Saga.Gateway
             {
                 try
                 {
-                   
                     IPAddress address = new IPAddress(cpkt.IPAddres);
                     int port = cpkt.Port;
 
@@ -97,7 +99,6 @@ namespace Saga.Gateway
 
                     Array.Copy(BitConverter.GetBytes(session), 0, buffer2, 2, 4);
                     client.Send(buffer2);
-
                 }
                 catch (Exception)
                 {
@@ -112,7 +113,7 @@ namespace Saga.Gateway
         }
 
         /// <summary>
-        /// This function is invoked by our sessionpool once it claims it 
+        /// This function is invoked by our sessionpool once it claims it
         /// needs more session.
         /// </summary>
         internal void RequestSessionId()
@@ -122,7 +123,7 @@ namespace Saga.Gateway
         }
 
         /// <summary>
-        /// This function is invoked by our sessionpool once it claims it 
+        /// This function is invoked by our sessionpool once it claims it
         /// needs more session.
         /// </summary>
         internal void ReleaseSessionId()
@@ -141,8 +142,6 @@ namespace Saga.Gateway
             this.Send((byte[])spkt);
         }
 
-
-
         //Initialisation Protocol.....
 
         internal void CreateLoginConnection(IPAddress adress)
@@ -150,13 +149,10 @@ namespace Saga.Gateway
             Console.WriteLine("Create login connection: {0}", adress);
         }
 
-
-
-
         //Forwards......
 
         /// <summary>
-        /// Forwards raw packets straight to the associated 
+        /// Forwards raw packets straight to the associated
         /// client.
         /// </summary>
         /// <param name="buffer"></param>
@@ -188,9 +184,8 @@ namespace Saga.Gateway
         private void ForwardToLoginClient(byte[] body)
         {
             LoginClient client;
-            if( NetworkManager.TryGetLoginClient(out client) )           
+            if (NetworkManager.TryGetLoginClient(out client))
                 client.Send(body);
         }
-
     }
 }

@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <remarks>
-    /// This deleted a item from your owners list. This packet is mostly send 
+    /// This deleted a item from your owners list. This packet is mostly send
     /// with SMSG_MARKETMAIL which notify's the user of a new mail. The item which
     /// is deleted is sent over it by mail.
     /// </remarks>

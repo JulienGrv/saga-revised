@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using Saga.Configuration;
+﻿using Saga.Configuration;
 using Saga.Enumarations;
 using Saga.Map;
 using Saga.Map.Librairies;
@@ -14,29 +6,39 @@ using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Quests;
 using Saga.Structures;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Saga.Managers
 {
     public class Quests : ManagerBase2
     {
-
         #region Ctor/Dtor
 
-        public Quests() { }
+        public Quests()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
-        //Settings        
+        //Settings
         private static string directory;
+
         private static string directory2;
         private static Type type = null;
         private static Type type2 = null;
         private static ConstructorInfo info;
         private static ConstructorInfo info2;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -52,7 +54,7 @@ namespace Saga.Managers
                 {
                     if (mytype is QuestBase)
                     {
-                        type = mytype.GetType() ;
+                        type = mytype.GetType();
                         info = type.GetConstructor(new Type[] { });
                     }
                     else
@@ -93,7 +95,7 @@ namespace Saga.Managers
             }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -137,7 +139,7 @@ namespace Saga.Managers
             CommonFunctions.SendQuestList
             (
                 target, item,
-                    FilterActiveQuests( target, Singleton.Database.GetAvailableQuestsByRegion(target, item.ModelId))
+                    FilterActiveQuests(target, Singleton.Database.GetAvailableQuestsByRegion(target, item.ModelId))
             );
         }
 
@@ -147,7 +149,7 @@ namespace Saga.Managers
                 if (target.QuestObjectives[d] == null) yield return d;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Properties
 
@@ -167,16 +169,12 @@ namespace Saga.Managers
             }
         }
 
-
-        #endregion
-
+        #endregion Public Properties
     }
-
 }
 
 namespace Saga.Quests
 {
-
     using ObjectiveList = Saga.Quests.Objectives.ObjectiveList;
 
     /// <summary>
@@ -185,7 +183,6 @@ namespace Saga.Quests
     [Serializable()]
     public abstract class QuestBase : ISerializable
     {
-
         #region QuestBase - Internal Members
 
         protected internal byte questtype = 1;
@@ -194,18 +191,23 @@ namespace Saga.Quests
         protected internal bool isnew = false;
         protected internal bool IsWaypointsCleared = true;
 
-        #endregion
-        
+        #endregion QuestBase - Internal Members
+
         #region QuestBase - Abstract
 
-        public abstract bool Initialize(uint cid, string BaseDirectory);        
+        public abstract bool Initialize(uint cid, string BaseDirectory);
+
         public abstract int OnCheckQuest(uint cid);
+
         public abstract int OnCancel(uint cid);
+
         public abstract int OnFinish(uint cid);
+
         public abstract int OnStart(uint cid);
+
         public abstract int OnVerify(uint cid);
 
-        #endregion
+        #endregion QuestBase - Abstract
 
         #region Public Methods
 
@@ -220,14 +222,13 @@ namespace Saga.Quests
                 spkt2.QuestID = this.QuestId;
                 foreach (ObjectiveList.Waypoint waypoint in QuestBase.UserGetWaypoints(Target, this.QuestId))
                 {
-
                     Predicate<MapObject> IsNpc = delegate(MapObject match)
                     {
                         return match.ModelId == waypoint.NpcId;
                     };
 
                     MapObject myObject = Target.currentzone.Regiontree.SearchActor(IsNpc, SearchFlags.Npcs);
-                    if ( myObject != null)
+                    if (myObject != null)
                     {
                         i++;
                         spkt2.AddPosition(waypoint.NpcId, myObject.Position.x, myObject.Position.y, myObject.Position.z);
@@ -242,10 +243,9 @@ namespace Saga.Quests
             return count;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Static Methods
-
 
         public static bool IsElimintationTarget(uint NpcId, Character Target)
         {
@@ -262,10 +262,10 @@ namespace Saga.Quests
         {
             Predicate<ObjectiveList.Loot2> FindElimintation =
                 delegate(ObjectiveList.Loot2 Objective)
-            {
-                return Objective.ItemId == ItemId;
-            };
-            
+                {
+                    return Objective.ItemId == ItemId;
+                };
+
             return Target.QuestObjectives.NonDiscardableItems.Exists(FindElimintation);
         }
 
@@ -273,21 +273,19 @@ namespace Saga.Quests
         {
             Predicate<ObjectiveList.Activation> FindActionObjective =
                 delegate(ObjectiveList.Activation Objective)
-            {
-                return Objective.NpcId == NpcId;
-            };
+                {
+                    return Objective.NpcId == NpcId;
+                };
 
             return Target.QuestObjectives.ActivatedNpc.Exists(FindActionObjective);
         }
 
         public static bool IsTalkToObjective(uint NpcId, Character Target)
         {
-
             try
             {
-
                 /*
-                Predicate<ObjectiveList.Activation> FindActionObjective = 
+                Predicate<ObjectiveList.Activation> FindActionObjective =
                     delegate(ObjectiveList.Activation Objective)
                 {
                     return Objective.NpcId == NpcId;
@@ -312,13 +310,10 @@ namespace Saga.Quests
 
                         //Returns completed substep
                         return (isActivated && !Target.QuestObjectives.Substeps.Find(FindSubstep).Completed);
-
                     };
-
 
                 //return Target.QuestObjectives.ActivatedNpc.Exists(FindActionObjective);
                 return Target.QuestObjectives.GuidancePoints.Exists(FindWaypoints);
-
             }
             catch (Exception e)
             {
@@ -331,21 +326,20 @@ namespace Saga.Quests
         {
             Predicate<ObjectiveList.Waypoint> FindActionObjective =
                 delegate(ObjectiveList.Waypoint Objective)
-            {
-                return Objective.NpcId == NpcId && Objective.Quest == Qid;
-            };
+                {
+                    return Objective.NpcId == NpcId && Objective.Quest == Qid;
+                };
 
             return Target.QuestObjectives.GuidancePoints.Exists(FindActionObjective);
         }
 
         public static List<byte> QueryTalkObjectivesButtons(uint NpcId, Character Target)
         {
-            Predicate<ObjectiveList.Activation> FindActionObjective = 
+            Predicate<ObjectiveList.Activation> FindActionObjective =
                 delegate(ObjectiveList.Activation Objective)
-            {
-                return Objective.NpcId == NpcId;
-            };
-
+                {
+                    return Objective.NpcId == NpcId;
+                };
 
             List<byte> QueriedItems = new List<byte>();
             List<ObjectiveList.Activation> ActivatedQuests =
@@ -356,14 +350,14 @@ namespace Saga.Quests
 
                 Predicate<ObjectiveList.Activation> Exists =
                     delegate(ObjectiveList.Activation Objective)
-                {
-                    return Objective.Quest == Target.QuestObjectives.Quests[i].QuestId;
-                };
+                    {
+                        return Objective.Quest == Target.QuestObjectives.Quests[i].QuestId;
+                    };
 
                 if (ActivatedQuests.Exists(Exists))
                 {
                     QueriedItems.Add((byte)i);
-                }                
+                }
             }
 
             return QueriedItems;
@@ -373,9 +367,9 @@ namespace Saga.Quests
         {
             Predicate<ObjectiveList.Loot> FindLootObjective =
                 delegate(ObjectiveList.Loot Objective)
-            {
-                return Objective.ItemId == ItemId;
-            };
+                {
+                    return Objective.ItemId == ItemId;
+                };
 
             return Target.QuestObjectives.LootObjectives.Exists(FindLootObjective);
         }
@@ -395,7 +389,6 @@ namespace Saga.Quests
                 ObjectiveList.SubStep Substep = null;
                 if (EliminationObjective != null)
                 {
-
                     //Find Substep
                     Predicate<ObjectiveList.SubStep> SubStepInfo
                         = delegate(ObjectiveList.SubStep Objective)
@@ -407,7 +400,6 @@ namespace Saga.Quests
                     Substep = Target.QuestObjectives.Substeps.Find(SubStepInfo);
                     if (Substep != null && Substep.current < Substep.max)
                     {
-
                         //Send update
                         SMSG_QUESTSUBSTEPUPDATE spkt = new SMSG_QUESTSUBSTEPUPDATE();
                         spkt.Amount = (byte)(++Substep.current);
@@ -435,33 +427,30 @@ namespace Saga.Quests
 
         public static void UserObtainedItem(uint ItemId, Character Target)
         {
-            Predicate<ObjectiveList.Loot> FindLootObjective = 
+            Predicate<ObjectiveList.Loot> FindLootObjective =
                 delegate(ObjectiveList.Loot Objective)
-            {
-                return Objective.ItemId == ItemId;
-            };
+                {
+                    return Objective.ItemId == ItemId;
+                };
 
-
-            ObjectiveList.Loot LootObjective = 
+            ObjectiveList.Loot LootObjective =
                 Target.QuestObjectives.LootObjectives.Find(FindLootObjective);
             ObjectiveList.SubStep Substep =
                 null;
 
             if (LootObjective != null)
             {
-
                 //Find Substep
-                Predicate<ObjectiveList.SubStep> SubStepInfo = 
+                Predicate<ObjectiveList.SubStep> SubStepInfo =
                     delegate(ObjectiveList.SubStep Objective)
-                {
-                    return Objective.StepId == LootObjective.StepId 
-                        && Objective.SubStepId == LootObjective.SubStepId;                           
-                };
+                    {
+                        return Objective.StepId == LootObjective.StepId
+                            && Objective.SubStepId == LootObjective.SubStepId;
+                    };
 
                 Substep = Target.QuestObjectives.Substeps.Find(SubStepInfo);
                 if (Substep != null && Substep.current < Substep.max)
                 {
-
                     //Send update
                     SMSG_QUESTSUBSTEPUPDATE spkt = new SMSG_QUESTSUBSTEPUPDATE();
                     spkt.Amount = (byte)(++Substep.current);
@@ -471,7 +460,7 @@ namespace Saga.Quests
                     spkt.SubStep = (byte)Substep.SubStepId;
                     spkt.Unknown = 1;
                     Target.client.Send((byte[])spkt);
-            
+
                     //Find Objective
                     if (Substep.current >= Substep.max)
                     {
@@ -498,13 +487,12 @@ namespace Saga.Quests
                     };
                     */
 
-
                     //Target.QuestObjectives.ActivatedNpc.RemoveAll(FindActivatedNpc);
                     /*
                     MapObject myObject = Target.currentzone.Regiontree.SearchActor(IsNpc, Target, SearchFlags.Npcs);
                     if (myObject != null)
                     {
-                        BaseMob temp = myObject as BaseMob;                        
+                        BaseMob temp = myObject as BaseMob;
                     }*/
 
                     /**/
@@ -515,11 +503,11 @@ namespace Saga.Quests
                         if (a.ModelId == NpcId)
                         {
                             BaseMob mob = a as BaseMob;
-                            if (mob != null) 
-                            Common.Actions.UpdateIcon(Target, mob);
+                            if (mob != null)
+                                Common.Actions.UpdateIcon(Target, mob);
                         }
                     }
-                    
+
                     return true;
                 }
             }
@@ -527,7 +515,7 @@ namespace Saga.Quests
             {
                 //Do nothing here
                 return false;
-            }          
+            }
         }
 
         public static void UserCheckPosition(Character Target)
@@ -535,12 +523,11 @@ namespace Saga.Quests
             List<uint> QuestsId = new List<uint>();
             Predicate<ObjectiveList.Position> FindLootObjective =
                 delegate(ObjectiveList.Position Objective)
-            {
-                if (Objective.mapid != Target.map) return false;
-                return (!QuestsId.Contains(Objective.Quest) 
-                    &&  Vector.GetDistance2D(Target.Position, Objective.point ) < 2000);
-            };
-
+                {
+                    if (Objective.mapid != Target.map) return false;
+                    return (!QuestsId.Contains(Objective.Quest)
+                        && Vector.GetDistance2D(Target.Position, Objective.point) < 2000);
+                };
 
             //DEFAULT_MANAGER_QUEST.CheckQuest(Target, baseQuest);
             foreach (ObjectiveList.Position Objective in
@@ -548,20 +535,17 @@ namespace Saga.Quests
             {
                 Predicate<ObjectiveList.SubStep> SubStepInfo =
                     delegate(ObjectiveList.SubStep Substep)
-                {
-                    return Substep.Quest == Objective.Quest
-                        && Substep.StepId == Objective.StepId
-                        && Substep.SubStepId == Objective.SubStepId;
-                };
-
+                    {
+                        return Substep.Quest == Objective.Quest
+                            && Substep.StepId == Objective.StepId
+                            && Substep.SubStepId == Objective.SubStepId;
+                    };
 
                 if (Vector.GetDistance3D(Target.Position, Objective.point) < Objective.range)
                 {
-
                     ObjectiveList.SubStep Substep = Target.QuestObjectives.Substeps.Find(SubStepInfo);
                     if (Substep != null && Substep.current < Substep.max)
                     {
-
                         //Send update
                         SMSG_QUESTSUBSTEPUPDATE spkt = new SMSG_QUESTSUBSTEPUPDATE();
                         spkt.Amount = (byte)(++Substep.current);
@@ -579,7 +563,7 @@ namespace Saga.Quests
                             Target.QuestObjectives[Objective.Quest].CheckQuest(Target);
                         }
                     }
-                }                
+                }
             }
 
             foreach (ObjectiveList.Position Objective in
@@ -587,7 +571,6 @@ namespace Saga.Quests
             {
                 Target.QuestObjectives.Quests[3].CheckQuest(Target);
             }
-
         }
 
         internal static IEnumerable<ObjectiveList.Waypoint> UserGetWaypoints(Character Target, uint QuestId)
@@ -602,13 +585,13 @@ namespace Saga.Quests
 
         public static IEnumerable<Rag2Item> UserQuestLoot(uint NpcId, Character Target)
         {
-            Predicate<ObjectiveList.Loot> FindLootObjective = 
+            Predicate<ObjectiveList.Loot> FindLootObjective =
                 delegate(ObjectiveList.Loot Objective)
-            {
-                return Objective.Npc == NpcId;
-            };
+                {
+                    return Objective.Npc == NpcId;
+                };
 
-            List<ObjectiveList.Loot> Loots = 
+            List<ObjectiveList.Loot> Loots =
                 Target.QuestObjectives.LootObjectives.FindAll(FindLootObjective);
             if (Loots != null)
             {
@@ -630,120 +613,113 @@ namespace Saga.Quests
 
         public static void InvalidateStep(uint Quest, uint Step, Character Target)
         {
-            Predicate<ObjectiveList.Elimination> FindElimintation = 
+            Predicate<ObjectiveList.Elimination> FindElimintation =
                 delegate(ObjectiveList.Elimination Objective)
-            {
-                return Objective.Quest == Quest &&
-                        Objective.StepId == Step;
-            };
+                {
+                    return Objective.Quest == Quest &&
+                            Objective.StepId == Step;
+                };
 
-            Predicate<ObjectiveList.Loot> FindLootObjective = 
+            Predicate<ObjectiveList.Loot> FindLootObjective =
                 delegate(ObjectiveList.Loot Objective)
-            {
-                return Objective.Quest == Quest &&
-                        Objective.StepId == Step;
-            };
+                {
+                    return Objective.Quest == Quest &&
+                            Objective.StepId == Step;
+                };
 
-            Predicate<ObjectiveList.Position> FindPoint = 
+            Predicate<ObjectiveList.Position> FindPoint =
                 delegate(ObjectiveList.Position Objective)
-            {
-                return Objective.Quest == Quest &&
-                        Objective.StepId == Step;
-            };
+                {
+                    return Objective.Quest == Quest &&
+                            Objective.StepId == Step;
+                };
 
-            Predicate<ObjectiveList.Activation> ActivatedNpc = 
+            Predicate<ObjectiveList.Activation> ActivatedNpc =
                 delegate(ObjectiveList.Activation Objective)
-            {
-                return Objective.Quest == Quest &&
-                        Objective.StepId == Step;
-            };
+                {
+                    return Objective.Quest == Quest &&
+                            Objective.StepId == Step;
+                };
 
-            Predicate<ObjectiveList.SubStep> FindSubsteps= 
+            Predicate<ObjectiveList.SubStep> FindSubsteps =
                 delegate(ObjectiveList.SubStep Objective)
-            {
-                return Objective.Quest == Quest &&
-                        Objective.StepId == Step;
-            };
+                {
+                    return Objective.Quest == Quest &&
+                            Objective.StepId == Step;
+                };
 
-            Predicate<ObjectiveList.Waypoint> FindGuidancePoints = 
+            Predicate<ObjectiveList.Waypoint> FindGuidancePoints =
                 delegate(ObjectiveList.Waypoint Objective)
-            {
-                return Objective.Quest == Quest &&
-                        Objective.StepId == Step;
-            };
+                {
+                    return Objective.Quest == Quest &&
+                            Objective.StepId == Step;
+                };
 
-            
             Target.QuestObjectives.Elimintations.RemoveAll(FindElimintation);
             Target.QuestObjectives.ActivatedNpc.RemoveAll(ActivatedNpc);
             Target.QuestObjectives.LootObjectives.RemoveAll(FindLootObjective);
             Target.QuestObjectives.Points.RemoveAll(FindPoint);
             Target.QuestObjectives.Substeps.RemoveAll(FindSubsteps);
             Target.QuestObjectives.GuidancePoints.RemoveAll(FindGuidancePoints);
-
         }
 
         public static void InvalidateQuest(QuestBase Quest, Character Target)
         {
             List<ObjectiveList.Waypoint> removedpoints = new List<ObjectiveList.Waypoint>();
 
-            Predicate<ObjectiveList.Elimination> FindElimintation = 
+            Predicate<ObjectiveList.Elimination> FindElimintation =
                 delegate(ObjectiveList.Elimination Objective)
-            {
-                return Objective.Quest == Quest.QuestId;
-            };
+                {
+                    return Objective.Quest == Quest.QuestId;
+                };
 
-            Predicate<ObjectiveList.Loot> FindLootObjective = 
+            Predicate<ObjectiveList.Loot> FindLootObjective =
                 delegate(ObjectiveList.Loot Objective)
-            {
-                return Objective.Quest == Quest.QuestId;
-            };
+                {
+                    return Objective.Quest == Quest.QuestId;
+                };
 
-            Predicate<ObjectiveList.Position> FindPoint = 
+            Predicate<ObjectiveList.Position> FindPoint =
                 delegate(ObjectiveList.Position Objective)
-            {
-                return Objective.Quest == Quest.QuestId;
-            };
+                {
+                    return Objective.Quest == Quest.QuestId;
+                };
 
             Predicate<ObjectiveList.Activation> ActivatedNpc =
                 delegate(ObjectiveList.Activation Objective)
-            {
-                return Objective.Quest == Quest.QuestId;
-            };
+                {
+                    return Objective.Quest == Quest.QuestId;
+                };
 
-            Predicate<ObjectiveList.SubStep> FindSubsteps = 
+            Predicate<ObjectiveList.SubStep> FindSubsteps =
                 delegate(ObjectiveList.SubStep Objective)
-            {
-                return Objective.Quest == Quest.QuestId;
-            };
+                {
+                    return Objective.Quest == Quest.QuestId;
+                };
 
             Predicate<ObjectiveList.Waypoint> FindGuidancePoints =
                 delegate(ObjectiveList.Waypoint Objective)
-            {
-                bool isQuest = Objective.Quest == Quest.QuestId;
-                if (isQuest)                  
-                    removedpoints.Add(Objective);
-                return isQuest;
-            };
+                {
+                    bool isQuest = Objective.Quest == Quest.QuestId;
+                    if (isQuest)
+                        removedpoints.Add(Objective);
+                    return isQuest;
+                };
 
             Predicate<ObjectiveList.Loot2> FindNonDiscardableItems =
                 delegate(ObjectiveList.Loot2 objective)
-            {
-                return objective.Quest == Quest.QuestId;
-            };
+                {
+                    return objective.Quest == Quest.QuestId;
+                };
 
-
-
-
-            
             Target.QuestObjectives.Elimintations.RemoveAll(FindElimintation);
             Target.QuestObjectives.ActivatedNpc.RemoveAll(ActivatedNpc);
             Target.QuestObjectives.LootObjectives.RemoveAll(FindLootObjective);
             Target.QuestObjectives.Points.RemoveAll(FindPoint);
-            Target.QuestObjectives.Substeps.RemoveAll(FindSubsteps);            
-            Target.QuestObjectives.Steps.Remove(Quest.QuestId);            
+            Target.QuestObjectives.Substeps.RemoveAll(FindSubsteps);
+            Target.QuestObjectives.Steps.Remove(Quest.QuestId);
             Target.QuestObjectives.NonDiscardableItems.RemoveAll(FindNonDiscardableItems);
             Target.QuestObjectives.GuidancePoints.RemoveAll(FindGuidancePoints);
-
 
             foreach (ObjectiveList.Waypoint objective in removedpoints)
             {
@@ -752,8 +728,8 @@ namespace Saga.Quests
                 {
                     BaseMob mob = a as BaseMob;
                     if (a.ModelId == objective.NpcId && mob != null)
-                       Common.Actions.UpdateIcon(Target, mob);
-                }                
+                        Common.Actions.UpdateIcon(Target, mob);
+                }
             }
         }
 
@@ -770,15 +746,14 @@ namespace Saga.Quests
                 Target.QuestObjectives.Steps[Quest] = info;
                 return info;
             }
-
         }
 
-        #endregion
+        #endregion Static Methods
 
         #region ISerializable Members
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {            
+        {
             info.AddValue("index", index);
             info.AddValue("isnew", isnew);
             info.AddValue("cleared", IsWaypointsCleared);
@@ -786,8 +761,9 @@ namespace Saga.Quests
             info.AddValue("questtype", questtype);
         }
 
-
-        public QuestBase() { }
+        public QuestBase()
+        {
+        }
 
         protected QuestBase(SerializationInfo info, StreamingContext context)
         {
@@ -795,7 +771,7 @@ namespace Saga.Quests
             isnew = info.GetBoolean("isnew");
             IsWaypointsCleared = info.GetBoolean("cleared");
             QuestId = info.GetUInt32("questid");
-            questtype = info.GetByte("questtype");            
+            questtype = info.GetByte("questtype");
         }
 
         void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
@@ -803,26 +779,21 @@ namespace Saga.Quests
             GetObjectData(info, context);
         }
 
-        #endregion
+        #endregion ISerializable Members
     }
-
 
     internal class QuestFailedException : Exception { }
 
+    public interface ISceneraioQuest { }
 
-    public interface ISceneraioQuest{}
     public interface IQuest { }
-
 }
-
 
 namespace Saga.Quests.Objectives
 {
-    
     [Serializable()]
     public class ObjectiveList : IEnumerable<QuestBase>
     {
-
         #region Internal Members
 
         internal readonly QuestBase[] Quests = new QuestBase[4];
@@ -833,14 +804,13 @@ namespace Saga.Quests.Objectives
         internal readonly List<Loot> LootObjectives = new List<Loot>();
         internal readonly List<SubStep> Substeps = new List<SubStep>();
         internal readonly List<Loot2> NonDiscardableItems = new List<Loot2>();
-        internal readonly Dictionary<uint, List<StepInfo>> Steps = new Dictionary<uint,List<StepInfo>>();
+        internal readonly Dictionary<uint, List<StepInfo>> Steps = new Dictionary<uint, List<StepInfo>>();
         internal readonly Dictionary<uint, List<StepInfo>> ScenarioSteps = new Dictionary<uint, List<StepInfo>>();
         internal readonly List<Position> ScenarioPosition = new List<Position>();
 
-
         internal bool WaypointsCleared = false;
 
-        #endregion
+        #endregion Internal Members
 
         #region Public Members
 
@@ -913,7 +883,6 @@ namespace Saga.Quests.Objectives
 
         public int FindNextSubStep(uint Quest, uint StepId)
         {
-
             //Find the highest stepindex
             int stepindex = -1;
             for (int i = 0; i < Substeps.Count; i++)
@@ -939,19 +908,19 @@ namespace Saga.Quests.Objectives
             return this.Substeps.Exists(FindSubStep);
         }
 
-        #endregion
-        
+        #endregion Public Members
+
         #region Serialisation
 
         public static void Serialize(Stream stream, ObjectiveList list)
-        {            
-            try 
+        {
+            try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                if( list != null )
-                formatter.Serialize(stream, list);
+                if (list != null)
+                    formatter.Serialize(stream, list);
             }
-            catch (SerializationException e) 
+            catch (SerializationException e)
             {
                 Trace.TraceError("Failed to serialize. Reason: " + e.Message);
                 throw;
@@ -959,13 +928,13 @@ namespace Saga.Quests.Objectives
         }
 
         public static void Deserialize(Stream stream, out ObjectiveList list)
-        {            
-            try 
+        {
+            try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 list = formatter.Deserialize(stream) as ObjectiveList;
             }
-            catch (SerializationException e) 
+            catch (SerializationException e)
             {
                 Trace.TraceError("Failed to deserialize. Reason: " + e.Message);
                 list = null;
@@ -973,7 +942,7 @@ namespace Saga.Quests.Objectives
             }
         }
 
-        #endregion
+        #endregion Serialisation
 
         #region Nested Classes
 
@@ -1108,8 +1077,6 @@ namespace Saga.Quests.Objectives
             }
         }
 
-        #endregion
-
-    }    
-
+        #endregion Nested Classes
+    }
 }

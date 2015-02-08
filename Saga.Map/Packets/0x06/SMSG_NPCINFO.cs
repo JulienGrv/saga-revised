@@ -1,15 +1,14 @@
-using System;
 using Saga.Network.Packets;
 using Saga.Structures;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet makes a new npc appear. 
+    /// This packet makes a new npc appear.
     /// Currently there are 1 unknown field.
     /// </remarks>
     /// <id>
@@ -17,7 +16,7 @@ namespace Saga.Packets
     /// </id>
     internal class SMSG_NPCINFO : RelayPacket
     {
-        public SMSG_NPCINFO( uint count)
+        public SMSG_NPCINFO(uint count)
         {
             this.Cmd = 0x0601;
             this.Id = 0x060B;
@@ -93,8 +92,6 @@ namespace Saga.Packets
         {
             set { this.data[34] = value; }
         }
-
-
 
         [Obsolete("Use icon", true)]
         public void SetAdditionalStatus(params byte[] aStats)

@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent to the client as an reply indicating if you sent
@@ -20,7 +13,7 @@ namespace Saga.Packets
     /// 0C02
     /// </id>
     internal class SMSG_MAILSENDAWNSER : RelayPacket
-    {       
+    {
         public SMSG_MAILSENDAWNSER()
         {
             this.Cmd = 0x0601;
@@ -30,7 +23,7 @@ namespace Saga.Packets
 
         public byte Result
         {
-            set 
+            set
             {
                 this.data[0] = value;
             }

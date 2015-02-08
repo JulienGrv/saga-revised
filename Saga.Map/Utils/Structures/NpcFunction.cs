@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Templates;
+﻿using Saga.Enumarations;
 using Saga.PrimaryTypes;
-using Saga.Enumarations;
-using System.Diagnostics;
+using Saga.Templates;
+using System;
 
 namespace Saga.Structures
 {
-
     /// <summary>
     /// Base class for all npc functions.
     /// </summary>
     public class NpcFunction
     {
-
         #region Public Members
 
         /// <summary>
@@ -32,7 +27,7 @@ namespace Saga.Structures
             return myfunc;
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Protected Internal Methods
 
@@ -40,13 +35,17 @@ namespace Saga.Structures
         /// Event method called when registering the npcfunction on the npc
         /// </summary>
         /// <param name="npc">Npc on who to register the function</param>
-        protected internal virtual void OnRegister(BaseNPC npc) { }
+        protected internal virtual void OnRegister(BaseNPC npc)
+        {
+        }
 
         /// <summary>
         /// Event method called when refreshing the npcfunction on the npc
         /// </summary>
         /// <param name="npc">Npc on who to refresh the function</param>
-        protected internal virtual void OnRefresh(BaseNPC npc) { }
+        protected internal virtual void OnRefresh(BaseNPC npc)
+        {
+        }
 
         /// <summary>
         /// Event method called when cashing dialog information
@@ -54,7 +53,9 @@ namespace Saga.Structures
         /// <param name="npc">Npc on who to cache the function</param>
         /// <param name="name">Propertyname of the associated value</param>
         /// <param name="value">Value of the associated propertyname</param>
-        protected internal virtual void OnCacheDialogInfo(BaseNPC npc, string name, uint value) { }
+        protected internal virtual void OnCacheDialogInfo(BaseNPC npc, string name, uint value)
+        {
+        }
 
         /// <summary>
         /// Event method called when checking if a button should be visible
@@ -63,9 +64,12 @@ namespace Saga.Structures
         /// <param name="dialog">DialogId to check (as in defined in DialogTypes)</param>
         /// <param name="target">Target who to check</param>
         /// <returns>True if the button should be visible</returns>
-        protected internal virtual bool OnCheckDialogIsVisible(BaseNPC npc, DialogType dialog, Character target) { return true; }
+        protected internal virtual bool OnCheckDialogIsVisible(BaseNPC npc, DialogType dialog, Character target)
+        {
+            return true;
+        }
 
-        #endregion
+        #endregion Protected Internal Methods
 
         #region Protected Internal Delegates
 
@@ -76,7 +80,7 @@ namespace Saga.Structures
         /// <param name="target">Target actor who invoked the npc</param>
         protected internal delegate void FunctionCallback(BaseNPC npc, Character target);
 
-        #endregion
+        #endregion Protected Internal Delegates
 
         #region Protected Methods
 
@@ -123,8 +127,6 @@ namespace Saga.Structures
             }
         }
 
-        #endregion
-
-
+        #endregion Protected Methods
     }
 }

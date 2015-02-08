@@ -1,20 +1,19 @@
-using System;
 using Saga.Enumarations;
 using Saga.Map.Definitions.Misc;
 using Saga.Map.Utils.Definitions.Misc;
 using Saga.Packets;
 using Saga.PrimaryTypes;
-
+using System;
 
 #pragma warning disable 0436
+
 namespace Saga.Map.Client
 {
     partial class Client
     {
-
         /// <summary>
         /// Occurs when requesting to refresh the inbox list with mail items.
-        /// </summary>        
+        /// </summary>
         private void CM_REQUESTINBOXMAILLIST(CMSG_REQUESTINOX cpkt)
         {
             SMSG_MAILLIST spkt = new SMSG_MAILLIST();
@@ -27,7 +26,7 @@ namespace Saga.Map.Client
 
         /// <summary>
         /// Occurs when requesting to refresh the outbox list with mail items.
-        /// </summary>        
+        /// </summary>
         private void CM_REQUESTOUTBOXMAILLIST(CMSG_REQUESTOUTBOX cpkt)
         {
             SMSG_MAILLISTOUTBOX spkt = new SMSG_MAILLISTOUTBOX();
@@ -53,7 +52,6 @@ namespace Saga.Map.Client
             mailmessage.Topic = cpkt.Topic;
             mailmessage.item = item;
 
-
             if ((cpkt.HasItem & 2) == 2)
             {
                 item = this.character.container[cpkt.Slot];
@@ -62,17 +60,15 @@ namespace Saga.Map.Client
                     req_zeny = 10;
                     mailmessage.item = item.Clone(cpkt.StackCount);
                 }
-            } 
+            }
             if ((cpkt.HasItem & 1) == 1)
             {
                 req_zeny = 10 + cpkt.Zeny;
                 mailmessage.Zeny = cpkt.Zeny;
             }
-                    
-            
+
             try
             {
-
                 //RECIEVER DOES NOT EXISTS
                 if (!Singleton.Database.VerifyNameExists(mailmessage.Recieptent))
                 {
@@ -157,8 +153,8 @@ namespace Saga.Map.Client
         /// </summary>
         /// <notes>
         /// Gamestring errors doesn't seem to be supported yet?
-        /// Or perhaps in a different packet. The unknown field is most 
-        /// likely going to be the error field so i pretended it is the 
+        /// Or perhaps in a different packet. The unknown field is most
+        /// likely going to be the error field so i pretended it is the
         /// error field for now.
         /// </notes>
         private void CM_INBOXMAILITEM(CMSG_GETMAIL cpkt)
@@ -183,11 +179,11 @@ namespace Saga.Map.Client
                 SMSG_MAILDATA spkt = new SMSG_MAILDATA();
                 spkt.Unknown = result;
                 spkt.SessionId = this.character.id;
-                
+
                 if (item != null)
                 {
                     spkt.Sender = item.Recieptent;
-                    spkt.Date = item.Timestamp;                    
+                    spkt.Date = item.Timestamp;
                     spkt.Topic = item.Topic;
                     spkt.Content = item.Content;
                     spkt.Zeny = item.Zeny;
@@ -195,7 +191,6 @@ namespace Saga.Map.Client
                 }
 
                 this.Send((byte[])spkt);
-
             }
         }
 
@@ -207,7 +202,7 @@ namespace Saga.Map.Client
         {
             byte result = 0;
             try
-            {    
+            {
                 Rag2Item item = Singleton.Database.GetItemAttachment(cpkt.MailId);
 
                 //No attachment
@@ -258,7 +253,7 @@ namespace Saga.Map.Client
         /// This gives you the zeny from your mail. However
         /// in the case that your new zeny overlaps the maximum
         /// value of a uint. (The data type used to send over a zeny).
-        /// We'll simply not give you the money and send a fail 
+        /// We'll simply not give you the money and send a fail
         /// message in return.
         /// </remarks>
         private void CM_RETRIEVEZENYATTACHMENT(CMSG_GETZENYATTACHMENT cpkt)
@@ -268,9 +263,9 @@ namespace Saga.Map.Client
 
             //TRY TO GET THE ZENY
             try
-            {            
+            {
                 uint zeny = Singleton.Database.GetZenyAttachment(cpkt.MailId);
-                
+
                 //VERIFY CLIENT GIVEN VALUE IS CORRECT
                 if (cpkt.Zeny > zeny)
                 {
@@ -333,7 +328,6 @@ namespace Saga.Map.Client
             try
             {
                 result = (Singleton.Database.DeleteMailFromOutbox(cpkt.MailId)) ? 0 : 1;
-                
             }
             finally
             {
@@ -350,12 +344,11 @@ namespace Saga.Map.Client
         /// <param name="cpkt"></param>
         private void CM_MAILCLEAR(CMSG_MAILCLEAR cpkt)
         {
-            int result = 1;         
+            int result = 1;
             try
             {
-
                 MailItem item = Singleton.Database.GetMailItemById(cpkt.MailId);
-                if( item == null )
+                if (item == null)
                 {
                     result = 1;
                 }
@@ -365,10 +358,10 @@ namespace Saga.Map.Client
                     item.Content = "Cleared";
                     item.Recieptent = this.character.Name;
                     item.Timestamp = DateTime.Now;
-                                       
+
                     result = (Singleton.Database.DeleteMailFromOutbox(cpkt.MailId)) ? 0 : 1;
-                    if( result == 0 )
-                    Singleton.Database.InsertNewMailItem(null, item);
+                    if (result == 0)
+                        Singleton.Database.InsertNewMailItem(null, item);
                 }
             }
             finally
@@ -416,10 +409,9 @@ namespace Saga.Map.Client
                 }
 
                 this.Send((byte[])spkt);
-
             }
         }
-
     }
 }
+
 #pragma warning restore 0436

@@ -1,20 +1,19 @@
-using System;
-using System.Collections.Generic;
 using Saga.PrimaryTypes;
 using Saga.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Quests
 {
     static partial class QUEST_TABLE
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static int ObjectiveElemenation(uint cid, uint QID, uint stepid, uint ModelId, byte Count, uint substepid)
         {
             try
             {
-
                 substepid--;
 
                 //HELPER VARIABLES
@@ -22,26 +21,25 @@ namespace Saga.Quests
 
                 Predicate<Saga.Quests.Objectives.ObjectiveList.Elimination> callback =
                     delegate(Saga.Quests.Objectives.ObjectiveList.Elimination objective)
-                {
-                    return objective.NpcId == ModelId &&
-                           objective.StepId == stepid &&
-                           objective.SubStepId == substepid;
-                };
+                    {
+                        return objective.NpcId == ModelId &&
+                               objective.StepId == stepid &&
+                               objective.SubStepId == substepid;
+                    };
 
-                Predicate<Saga.Quests.Objectives.ObjectiveList.SubStep> FindSubstep = 
+                Predicate<Saga.Quests.Objectives.ObjectiveList.SubStep> FindSubstep =
                     delegate(Saga.Quests.Objectives.ObjectiveList.SubStep objective)
-                {
-                    return objective.Quest == QID                         
-                        &&  objective.StepId == stepid
-                        &&  objective.SubStepId == substepid; 
-                };
-
+                    {
+                        return objective.Quest == QID
+                            && objective.StepId == stepid
+                            && objective.SubStepId == substepid;
+                    };
 
                 if (LifeCycle.TryGetById(cid, out value))
                 {
                     List<Saga.Quests.Objectives.ObjectiveList.Elimination> Elimination =
                         value.QuestObjectives.Elimintations;
-                    List<Saga.Quests.Objectives.ObjectiveList.SubStep> Substeps = 
+                    List<Saga.Quests.Objectives.ObjectiveList.SubStep> Substeps =
                         value.QuestObjectives.Substeps;
                     int index = Elimination.FindIndex(callback);
 
@@ -50,12 +48,11 @@ namespace Saga.Quests
                         Elimination.Add(
                             new Saga.Quests.Objectives.ObjectiveList.Elimination(
                                 ModelId,    //Model to eliminate
-                                QID,        //Quest                  
+                                QID,        //Quest
                                 stepid,     //Step of the quest
                                 (int)substepid   //Substep of the quest (is needed for number of items)
                             )
                         );
-
 
                         int index2 = Substeps.FindIndex(FindSubstep);
                         if (index2 == -1)
@@ -74,9 +71,9 @@ namespace Saga.Quests
                             return 0;
                         }
                         else
-                        {                            
+                        {
                             return Substeps[index2].current;
-                        }                        
+                        }
                     }
                     else
                     {

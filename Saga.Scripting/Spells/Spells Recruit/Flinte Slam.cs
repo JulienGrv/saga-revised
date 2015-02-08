@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Map;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
-
         public static void RECRUIT_FLINTESLAM(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -45,7 +39,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
-
     }
 }

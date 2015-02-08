@@ -2,10 +2,8 @@ using Saga.Structures;
 
 namespace Saga.Templates
 {
-
     public class Kaftra : BaseNPC
     {
-
         #region Base Members
 
         protected override void Initialize()
@@ -16,15 +14,18 @@ namespace Saga.Templates
             NpcFunction.Create<Saga.Npc.Functions.QuestConversation>(this);
         }
 
-        #endregion
+        #endregion Base Members
 
         #region Constructor/Deconstructor
 
-        ~Kaftra() { }
-        public Kaftra() { }
+        ~Kaftra()
+        {
+        }
 
-        #endregion
+        public Kaftra()
+        {
+        }
 
+        #endregion Constructor/Deconstructor
     }
-
 }

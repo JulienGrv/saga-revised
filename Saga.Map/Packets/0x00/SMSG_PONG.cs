@@ -1,4 +1,3 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets

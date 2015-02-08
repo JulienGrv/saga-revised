@@ -1,19 +1,17 @@
-using System;
-using System.Diagnostics;
 using Saga.Map;
 using Saga.Packets;
 using Saga.Structures;
+using System;
+using System.Diagnostics;
 
 namespace Saga.PrimaryTypes
 {
-
     /// <summary>
     /// Base object all actors inherit.
     /// </summary>
     [Serializable()]
     public abstract class MapObject : IActorid
     {
-
         #region Private Members
 
         /// <summary>
@@ -41,7 +39,7 @@ namespace Saga.PrimaryTypes
         /// </summary>
         private bool _canrespawn = true;
 
-        #endregion
+        #endregion Private Members
 
         #region Protected Internal Members
 
@@ -56,11 +54,9 @@ namespace Saga.PrimaryTypes
         /// </summary>
         internal Zone _currentzone;
 
-
-        #endregion
+        #endregion Protected Internal Members
 
         #region Public Members
-
 
         /// <summary>
         /// Get's the zone of the mapobject
@@ -76,7 +72,6 @@ namespace Saga.PrimaryTypes
                 _currentzone = value;
             }
         }
-
 
         /// <summary>
         /// Get's the yaw of the mapobject
@@ -138,7 +133,6 @@ namespace Saga.PrimaryTypes
             }
         }
 
-
         /// <summary>
         /// Get's whether the mob can respawn
         /// </summary>
@@ -153,7 +147,6 @@ namespace Saga.PrimaryTypes
                 _canrespawn = value;
             }
         }
-
 
         /// <summary>
         /// Get's or set's position of the object
@@ -170,9 +163,9 @@ namespace Saga.PrimaryTypes
             }
         }
 
-        #endregion
+        #endregion Public Members
 
-        #region Public Methods 
+        #region Public Methods
 
         /// <summary>
         /// Internal function to show the object
@@ -203,7 +196,7 @@ namespace Saga.PrimaryTypes
         /// <summary>
         /// Registers a charcter on the associated actor manager
         /// </summary>
-        public virtual void OnRegister() 
+        public virtual void OnRegister()
         {
             this.currentzone.Regiontree.Subscribe(this);
             Trace.WriteLine("DEBUG", string.Format("MapObject registered: {0:X8} {1}", this.region, this.ToString()));
@@ -212,76 +205,83 @@ namespace Saga.PrimaryTypes
         /// <summary>
         /// Deregisters a character to the associated actor manager
         /// </summary>
-        public virtual void OnDeregister()         
+        public virtual void OnDeregister()
         {
             this.currentzone.Regiontree.Unsubscribe(this);
         }
-        
 
         /// <summary>
         /// Event called when a actor appears
         /// </summary>
         /// <param name="character"></param>
-        public virtual void Appears(Character character){}
+        public virtual void Appears(Character character)
+        {
+        }
 
         /// <summary>
         /// Event called when a actor disappears
         /// </summary>
-        public virtual void Disappear(Character character){}
+        public virtual void Disappear(Character character)
+        {
+        }
 
         /// <summary>
-        /// Event called when spawning the actor 
+        /// Event called when spawning the actor
         /// </summary>
-        public virtual void OnSpawn() { }
-
+        public virtual void OnSpawn()
+        {
+        }
 
         /// <summary>
         /// Event called when casting a spell
         /// </summary>
         /// <param name="source">Source actor using the skill</param>
         /// <param name="e">Spell argument</param>
-        public virtual void OnSkillUsedByTarget(MapObject source, SkillBaseEventArgs e) { }
+        public virtual void OnSkillUsedByTarget(MapObject source, SkillBaseEventArgs e)
+        {
+        }
 
         /// <summary>
         /// Event called when actor dies
         /// </summary>
         /// <param name="d">Actor who's responsible for the death</param>
-        public virtual void OnDie(MapObject d){}
+        public virtual void OnDie(MapObject d)
+        {
+        }
 
         /// <summary>
         /// Occurs when seeing a enemy die
         /// </summary>
         /// <param name="enemy"></param>
-        public virtual void OnEnemyDie(MapObject enemy){}
+        public virtual void OnEnemyDie(MapObject enemy)
+        {
+        }
 
         /// <summary>
         /// Event called when the actor is beeing clicked
         /// </summary>
-        public virtual void OnClick(Character target) { }
+        public virtual void OnClick(Character target)
+        {
+        }
 
         /// <summary>
         /// Event called when the actor is loaded
         /// </summary>
-        public virtual void OnLoad() { }
-
+        public virtual void OnLoad()
+        {
+        }
 
         /// <summary>
         /// Event called when the actor is initialized
         /// </summary>
         /// <param name="startpoint"></param>
-        public virtual void OnInitialize(Point startpoint) 
+        public virtual void OnInitialize(Point startpoint)
         {
             this.position = startpoint;
             this.position.z += 15;
         }
 
-
-
-        
-
-
-
-        #endregion
+        #endregion Public Methods
 
         #region Public Static Methods
 
@@ -335,28 +335,33 @@ namespace Saga.PrimaryTypes
             return IsNpc(instance) && (instance.ModelId < Regiontree.NpcIndexBorder);
         }
 
-
-        #endregion
+        #endregion Public Static Methods
 
         #region Updates
 
         /// <summary>
         /// Event for locking updates for the current object
         /// </summary>
-        public virtual void Lock() { }
+        public virtual void Lock()
+        {
+        }
 
         /// <summary>
         /// Event for releasing updates for the current object
         /// </summary>
-        public virtual void Release() { }
+        public virtual void Release()
+        {
+        }
 
         /// <summary>
         /// Event for sending updates to the specified character
         /// </summary>
         /// <param name="character"></param>
-        public virtual void Flush(Character character) { }
+        public virtual void Flush(Character character)
+        {
+        }
 
-        #endregion
+        #endregion Updates
 
         #region IActorid Members
 
@@ -365,12 +370,11 @@ namespace Saga.PrimaryTypes
             get { return this._id; }
         }
 
-        #endregion
+        #endregion IActorid Members
 
         public override string ToString()
         {
             return string.Format("MapObject id:{0}", this.ModelId);
         }
-
     }
 }

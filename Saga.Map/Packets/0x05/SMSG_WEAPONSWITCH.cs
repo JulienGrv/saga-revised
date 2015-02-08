@@ -1,9 +1,7 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Switches between weapon
     /// </summary>
@@ -14,7 +12,7 @@ namespace Saga.Packets
     /// </remarks>
     /// <id>
     /// 050A
-    /// </id>    
+    /// </id>
     internal class SMSG_WEAPONSWITCH : RelayPacket
     {
         public SMSG_WEAPONSWITCH()
@@ -32,5 +30,4 @@ namespace Saga.Packets
             }
         }
     }
-   
 }

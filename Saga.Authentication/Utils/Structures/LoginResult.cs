@@ -1,5 +1,5 @@
-﻿
-using System;
+﻿using System;
+
 public struct LoginResult
 {
     public uint userid;

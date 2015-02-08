@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Network.Packets;
 using Saga.Network;
+using Saga.Network.Packets;
+using System;
 
 namespace Saga.Authentication.Packets
 {
-
     public class CMSG_DELETECHARACTER : RelayPacket
     {
-
         /*
         // This packet is invoked when an client deletes the specified
-        // character on. 
+        // character on.
         //
         // Index contains an zero-based offset that specifies the character
         // Name speciafies the name of the character.
@@ -52,8 +48,8 @@ namespace Saga.Authentication.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -66,6 +62,6 @@ namespace Saga.Authentication.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

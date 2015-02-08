@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.Map;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
+using Saga.Shared.Definitions;
 using Saga.Tasks;
-using Saga.Structures;
+using System;
 
 namespace Saga.Templates
 {
-    class FrozenMonster : Monster, IArtificialIntelligence
+    internal class FrozenMonster : Monster, IArtificialIntelligence
     {
-
         #region Public Members
 
         public override void OnSpawn()
@@ -20,18 +16,17 @@ namespace Saga.Templates
         }
 
         /// <summary>
-        /// Occurs when the speciafiec character killed 
+        /// Occurs when the speciafiec character killed
         /// our monsters
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
         public override void OnDie(MapObject target)
         {
-            //Stop movement            
+            //Stop movement
             LifespanAI.Unsubscribe(this);
             base.OnDie(target);
         }
-
 
         /// <summary>
         /// Subscribes the monsters ai if an the monster is summoned in a crowded
@@ -54,7 +49,6 @@ namespace Saga.Templates
             LifespanAI.Unsubscribe(this);
             base.OnDeregister();
         }
-
 
         /// <summary>
         /// Subscribes the monsters moving ai if an
@@ -88,7 +82,7 @@ namespace Saga.Templates
             base.Disappear(character);
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Private Members
 
@@ -97,7 +91,7 @@ namespace Saga.Templates
             UpdateAdditions();
         }
 
-        #endregion
+        #endregion Private Members
 
         #region Constructor/Deconstructo
 
@@ -106,7 +100,6 @@ namespace Saga.Templates
             Lifespan = new LifespanAI.Lifespan();
         }
 
-        #endregion
-
+        #endregion Constructor/Deconstructo
     }
 }

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Configuration;
+﻿using Saga.Configuration;
+using System;
 using System.Configuration;
 using System.Diagnostics;
+using System.Text;
 
 namespace Saga
 {
     public class ManagerBase2
     {
-        static TraceLog managers = new TraceLog("General", "Entire Application", 4);
+        private static TraceLog managers = new TraceLog("General", "Entire Application", 4);
 
         #region Ctor/Dtor
 
@@ -23,7 +22,6 @@ namespace Saga
                 }
                 catch
                 {
-
                 }
                 if (OnInitialize != null)
                 {
@@ -58,7 +56,6 @@ namespace Saga
                 }
             };
 
-
             HostContext.Current.OnAfterQuerySettings += delegate(object sender, EventArgs a)
             {
                 if (OnAfterQuerySettings != null)
@@ -72,7 +69,6 @@ namespace Saga
                     }
                 }
             };
-
 
             HostContext.Current.OnLoad += delegate(object sender, EventArgs a)
             {
@@ -97,7 +93,6 @@ namespace Saga
 
             HostContext.Current.OnLoad += delegate(object sender, EventArgs a)
             {
-
                 try
                 {
                     FinishedLoading();
@@ -118,26 +113,41 @@ namespace Saga
             };
         }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Events
 
         public event EventHandler OnInitialize;
+
         public event EventHandler OnBeforeQuerySettings;
+
         public event EventHandler OnAfterQuerySettings;
+
         public event EventHandler OnLoad;
+
         public event EventHandler OnFinishedLoad;
 
-        #endregion
+        #endregion Events
 
         #region Methods
 
-        protected virtual void Load() { }
-        protected virtual void FinishedLoading() { }
-        protected virtual void QuerySettings() { }
-        protected virtual void Initialize() { }
+        protected virtual void Load()
+        {
+        }
 
-        #endregion
+        protected virtual void FinishedLoading()
+        {
+        }
+
+        protected virtual void QuerySettings()
+        {
+        }
+
+        protected virtual void Initialize()
+        {
+        }
+
+        #endregion Methods
 
         #region ITrace Members
 
@@ -181,7 +191,7 @@ namespace Saga
             managers.WriteLine(category, message, format);
         }
 
-        #endregion
+        #endregion ITrace Members
 
         #region Properties
 
@@ -193,7 +203,7 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Properties
 
         #region Static Methods
 
@@ -239,19 +249,18 @@ namespace Saga
             return myObject;
         }
 
-        #endregion
-
+        #endregion Static Methods
     }
 
     public class TraceLog : ITrace
     {
-        int errorcount = 0;
+        private int errorcount = 0;
 
         #region ITrace Members
 
         public void WriteInformation(string category, string message)
         {
-            if( managers.TraceInfo )
+            if (managers.TraceInfo)
                 __WriteLine(category, _levelInfo, message);
         }
 
@@ -300,10 +309,10 @@ namespace Saga
         public void WriteLine(string category, string message, params object[] format)
         {
             if (managers.TraceVerbose)
-                __WriteLine(category, _levelVerbose, message, format);                
+                __WriteLine(category, _levelVerbose, message, format);
         }
 
-        #endregion
+        #endregion ITrace Members
 
         #region ITrace Members
 
@@ -347,28 +356,28 @@ namespace Saga
             WriteLine(category, message, format);
         }
 
-        #endregion
+        #endregion ITrace Members
 
         #region Private Members
 
-        TraceSwitch managers = new TraceSwitch("General", "Entire Application");
-        const string _levelVerbose = "verbose   ";
-        const string _levelWarning = "warning   ";
-        const string _levelError   = "error     ";
-        const string _levelInfo    = "ïnfo      ";
+        private TraceSwitch managers = new TraceSwitch("General", "Entire Application");
+        private const string _levelVerbose = "verbose   ";
+        private const string _levelWarning = "warning   ";
+        private const string _levelError = "error     ";
+        private const string _levelInfo = "ïnfo      ";
 
         private void __WriteLine(string category, string level, string message)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(level);
-            builder.Append(message);           
+            builder.Append(message);
             System.Diagnostics.Trace.WriteLine(builder.ToString(), category);
         }
 
         private void __WriteLine(string category, string level, string message, params object[] format)
         {
             try
-            {             
+            {
                 StringBuilder builder = new StringBuilder();
                 builder.Append(level);
                 builder.AppendFormat(message, format);
@@ -380,7 +389,7 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
@@ -392,7 +401,7 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Public Properties
 
@@ -436,7 +445,7 @@ namespace Saga
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Constructor
 
@@ -450,19 +459,25 @@ namespace Saga
             managers = new TraceSwitch(switchname, description, defaultlevel.ToString(System.Globalization.CultureInfo.InvariantCulture));
         }
 
-        #endregion
+        #endregion Constructor
     }
 
     public interface ITrace
     {
         void WriteInformation(string category, string message);
+
         void WriteInformation(string category, string message, params object[] format);
+
         void WriteWarning(string category, string message);
+
         void WriteWarning(string category, string message, params object[] format);
+
         void WriteError(string category, string message);
+
         void WriteError(string category, string message, params object[] format);
+
         void WriteLine(string category, string message);
+
         void WriteLine(string category, string message, params object[] format);
     }
-
 }

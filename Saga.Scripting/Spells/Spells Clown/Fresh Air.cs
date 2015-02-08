@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void CLOWN_FRESHAIR(SkillBaseEventArgs bargument)
         {
             if (bargument.Context == Saga.Enumarations.SkillContext.SkillUse)
@@ -20,9 +15,7 @@ namespace Saga.Skills
                 Common.Skills.UpdateAddition(bargument.Target as Actor, arguments.Addition, 600000);
                 //Do lp effect
                 Common.Skills.DoAddition(bargument.Sender as Actor, bargument.Target as Actor, 1003301);
-
             }
         }
-
     }
 }

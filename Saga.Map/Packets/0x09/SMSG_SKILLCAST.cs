@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// This will sent an skill effect to the client.
     /// </summary>
     /// <remarks>
     /// This packet is sent to all surrounding characters to indicate
-    /// the mob or character is in casting stage. 
+    /// the mob or character is in casting stage.
     /// </remarks>
     /// <id>
     /// 0904
@@ -28,7 +24,7 @@ namespace Saga.Packets
 
         public byte SkillType
         {
-            set { this.data[0] = value; } 
+            set { this.data[0] = value; }
         }
 
         public uint SkillID
@@ -50,7 +46,5 @@ namespace Saga.Packets
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 13, 2); }
         }
-
-
     }
 }

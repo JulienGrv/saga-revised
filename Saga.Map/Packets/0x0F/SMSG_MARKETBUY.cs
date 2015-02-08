@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
@@ -13,7 +8,7 @@ namespace Saga.Packets
     /// </remarks>
     /// <id>
     /// 1102
-    /// </id>    
+    /// </id>
     internal class SMSG_MARKETBUY : RelayPacket
     {
         public SMSG_MARKETBUY()

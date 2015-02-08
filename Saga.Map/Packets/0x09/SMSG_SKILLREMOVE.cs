@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Changes from stance
     /// </summary>
@@ -16,7 +12,7 @@ namespace Saga.Packets
     /// </remarks>
     /// <id>
     /// 0902
-    /// </id>   
+    /// </id>
     internal class SMSG_SKILLREMOVE : RelayPacket
     {
         public SMSG_SKILLREMOVE()

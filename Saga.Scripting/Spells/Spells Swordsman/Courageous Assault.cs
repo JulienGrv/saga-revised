@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
-    {       
-
+    {
         public static void SWORDMAN_COURAGEOUSASSAULT(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -37,17 +32,21 @@ namespace Saga.Skills
                     switch (asource.Status.CurrentLp)
                     {
                         case 1:
-                            arguments.Damage += (uint)( 7 + arguments.SkillLevel);
+                            arguments.Damage += (uint)(7 + arguments.SkillLevel);
                             break;
+
                         case 2:
                             arguments.Damage += (uint)(13 + arguments.SkillLevel * 2);
                             break;
+
                         case 3:
                             arguments.Damage += (uint)(21 + arguments.SkillLevel * 3);
                             break;
+
                         case 4:
                             arguments.Damage += (uint)(29 + arguments.SkillLevel * 4);
                             break;
+
                         case 5:
                             arguments.Damage += (uint)(37 + arguments.SkillLevel * 5);
                             break;
@@ -63,8 +62,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
-
-
     }
 }

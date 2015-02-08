@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet updates a actionobject (read as mapobject). They are used in conjunction with 
+    /// This packet updates a actionobject (read as mapobject). They are used in conjunction with
     /// quests to activate a object once the quest is activated.
     /// </remarks>
     /// <id>
@@ -33,7 +29,7 @@ namespace Saga.Packets
 
         public byte Active
         {
-            set { this.data[4] = value;  }
+            set { this.data[4] = value; }
         }
 
         public byte Active1

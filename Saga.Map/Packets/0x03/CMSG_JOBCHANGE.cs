@@ -1,13 +1,13 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is send by the player as a request to change jobs. 
+    /// This packet is send by the player as a request to change jobs.
     /// It describes information like which weapon to change on what slot.
     /// How to rename the weapon, if to change the weapon, to which job you
     /// want to change.
@@ -17,7 +17,6 @@ namespace Saga.Packets
     /// </id>
     internal class CMSG_CHANGEJOB : RelayPacket
     {
-
         public CMSG_CHANGEJOB()
         {
             this.data = new byte[5];
@@ -43,7 +42,6 @@ namespace Saga.Packets
             get { return BitConverter.ToUInt16(this.data, 3); }
         }
 
-
         #region Conversions
 
         public static explicit operator CMSG_CHANGEJOB(byte[] p)
@@ -53,8 +51,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -67,6 +65,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

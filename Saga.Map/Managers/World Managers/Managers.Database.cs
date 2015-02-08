@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Data;
-using System.IO;
-using System.IO.Compression;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using Saga.Configuration;
+﻿using Saga.Configuration;
 using Saga.Data;
-using Saga.Enumarations;
 using Saga.Map;
 using Saga.Map.Definitions.Misc;
 using Saga.Map.Utils.Definitions.Misc;
@@ -17,29 +7,35 @@ using Saga.PrimaryTypes;
 using Saga.Quests.Objectives;
 using Saga.Structures;
 using Saga.Structures.Collections;
-using System.Text;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Data;
 using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 
 namespace Saga.Managers
 {
     public class Database : ManagerBase2
     {
-
         #region Ctor/Dtor
 
-        FileStream writeStream;
-        FileStream readStream;
+        private FileStream writeStream;
+        private FileStream readStream;
 
-        public Database() 
+        public Database()
         {
             try
             {
-
                 string filename = Server.SecurePath("~/restores/{0}.bak", Server.AssemblyName);
                 string directory = Path.GetDirectoryName(filename);
                 Directory.CreateDirectory(directory);
 
-                
                 writeStream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
                 if (writeStream.Length == 0)
                 {
@@ -57,6 +53,7 @@ namespace Saga.Managers
                 WriteError("DatabaseManager", "Failed to initialize restore-point system");
             }
         }
+
         ~Database()
         {
             if (writeStream != null)
@@ -65,15 +62,16 @@ namespace Saga.Managers
                 readStream.Close();
         }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
         //Settings
         internal IDatabase InternalDatabaseProvider;
-        ConnectionInfo info;
 
-        #endregion
+        private ConnectionInfo info;
+
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -82,7 +80,6 @@ namespace Saga.Managers
             info = new ConnectionInfo();
             try
             {
-
                 //CONTRUCT CONNECTION INFO
                 DatabaseSettings section = (DatabaseSettings)ConfigurationManager.GetSection("Saga.Manager.Database");
                 info.host = section.Host;
@@ -121,7 +118,6 @@ namespace Saga.Managers
                     WriteError("DatabaseManager", "Cannot initialize manager");
                 }
                 //InternalDatabaseProvider = new MysqlBackend();
-
             }
             catch (Exception)
             {
@@ -153,7 +149,7 @@ namespace Saga.Managers
             }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -176,14 +172,13 @@ namespace Saga.Managers
             {
                 Console.WriteLine(ex);
                 return null;
-            } 
+            }
         }
 
         public bool TransSave(Character character)
         {
             try
             {
-
                 if (character != null)
                 {
                     DBQProvider dbq = new DBQProvider(character);
@@ -199,6 +194,7 @@ namespace Saga.Managers
                 return false;
             }
         }
+
         public bool TransLoad(Character character)
         {
             try
@@ -218,6 +214,7 @@ namespace Saga.Managers
                 return false;
             }
         }
+
         public bool TransLoad(Character character, bool continueOnError)
         {
             try
@@ -237,6 +234,7 @@ namespace Saga.Managers
                 return false;
             }
         }
+
         public bool TransRepair(Character character)
         {
             try
@@ -256,6 +254,7 @@ namespace Saga.Managers
                 return false;
             }
         }
+
         public bool TransactionInsert(Character character, uint owner)
         {
             try
@@ -276,6 +275,7 @@ namespace Saga.Managers
                 return false;
             }
         }
+
         public void PostLoad(Character character)
         {
             //Apply character configuration
@@ -310,88 +310,95 @@ namespace Saga.Managers
             int WeaponIndex = (character.weapons.ActiveWeaponIndex == 1) ? character.weapons.SeconairyWeaponIndex : character.weapons.PrimaryWeaponIndex;
             if (WeaponIndex < character.weapons.UnlockedWeaponSlots)
             {
-                Weapon CurrentWeapon = character.weapons[WeaponIndex];  
-           
-                if( CurrentWeapon != null )
-                if ( character.FindRequiredRootSkill(CurrentWeapon.Info.weapon_skill))
-                {
-                    //Default battle additions
-                    character._status.MaxWMAttack += (ushort)CurrentWeapon.Info.max_magic_attack;
-                    character._status.MinWMAttack += (ushort)CurrentWeapon.Info.min_magic_attack;
-                    character._status.MaxWPAttack += (ushort)CurrentWeapon.Info.max_short_attack;
-                    character._status.MinWPAttack += (ushort)CurrentWeapon.Info.min_short_attack;
-                    character._status.MaxWRAttack += (ushort)CurrentWeapon.Info.max_range_attack;
-                    character._status.MinWRAttack += (ushort)CurrentWeapon.Info.min_range_attack;
+                Weapon CurrentWeapon = character.weapons[WeaponIndex];
 
-                    //Reapplies alterstone additions
-                    for (int i = 0; i < 8; i++)
+                if (CurrentWeapon != null)
+                    if (character.FindRequiredRootSkill(CurrentWeapon.Info.weapon_skill))
                     {
-                        uint addition = CurrentWeapon.Slots[i];
-                        if (addition > 0)
-                        {
-                            Singleton.Additions.ApplyAddition(addition, character);
-                        }
-                    }
+                        //Default battle additions
+                        character._status.MaxWMAttack += (ushort)CurrentWeapon.Info.max_magic_attack;
+                        character._status.MinWMAttack += (ushort)CurrentWeapon.Info.min_magic_attack;
+                        character._status.MaxWPAttack += (ushort)CurrentWeapon.Info.max_short_attack;
+                        character._status.MinWPAttack += (ushort)CurrentWeapon.Info.min_short_attack;
+                        character._status.MaxWRAttack += (ushort)CurrentWeapon.Info.max_range_attack;
+                        character._status.MinWRAttack += (ushort)CurrentWeapon.Info.min_range_attack;
 
-                    CurrentWeapon._active = 1;
-                }
-                else
-                {
-                    CurrentWeapon._active = 0;
-                }
+                        //Reapplies alterstone additions
+                        for (int i = 0; i < 8; i++)
+                        {
+                            uint addition = CurrentWeapon.Slots[i];
+                            if (addition > 0)
+                            {
+                                Singleton.Additions.ApplyAddition(addition, character);
+                            }
+                        }
+
+                        CurrentWeapon._active = 1;
+                    }
+                    else
+                    {
+                        CurrentWeapon._active = 0;
+                    }
             }
 
-            Common.Internal.CharacterCheckCapacities(character);    
+            Common.Internal.CharacterCheckCapacities(character);
         }
 
-     
-
-        #endregion
+        #endregion Public Methods
 
         #region Backup & Restore utillities
-
 
         private void CopyTo(byte[] buffer, int index, bool value)
         {
             Array.Copy(BitConverter.GetBytes(value), 0, buffer, index, 4);
         }
+
         private void CopyTo(byte[] buffer, int index, byte value)
         {
             Array.Copy(BitConverter.GetBytes(value), 0, buffer, index, 1);
         }
+
         private void CopyTo(byte[] buffer, int index, sbyte value)
         {
             Array.Copy(BitConverter.GetBytes(value), 0, buffer, index, 1);
         }
+
         private void CopyTo(byte[] buffer, int index, short value)
         {
             Array.Copy(BitConverter.GetBytes(value), 0, buffer, index, 2);
         }
+
         private void CopyTo(byte[] buffer, int index, ushort value)
         {
             Array.Copy(BitConverter.GetBytes(value), 0, buffer, index, 2);
         }
+
         private void CopyTo(byte[] buffer, int index, int value)
         {
             Array.Copy(BitConverter.GetBytes(value), 0, buffer, index, 4);
         }
+
         private void CopyTo(byte[] buffer, int index, uint value)
         {
             Array.Copy(BitConverter.GetBytes(value), 0, buffer, index, 4);
         }
+
         private void CopyTo(byte[] buffer, int index, long value)
         {
             Array.Copy(BitConverter.GetBytes(value), 0, buffer, index, 8);
         }
+
         private void CopyTo(byte[] buffer, int index, ulong value)
         {
             Array.Copy(BitConverter.GetBytes(value), 0, buffer, index, 8);
         }
+
         private void CopyTo(byte[] buffer, int index, string name, int minSize)
         {
             minSize = Math.Min(minSize, name.Length);
             Encoding.Unicode.GetBytes(name, 0, minSize, buffer, 32);
         }
+
         private void CopyTo(byte[] buffer, int index, DateTime value)
         {
             Array.Copy(BitConverter.GetBytes(value.ToBinary()), 0, buffer, index, 8);
@@ -401,47 +408,58 @@ namespace Saga.Managers
         {
             return BitConverter.ToBoolean(buffer, index);
         }
+
         private byte ReadAsByte(byte[] buffer, int index)
         {
             return buffer[index];
         }
+
         private sbyte ReadAsSByte(byte[] buffer, int index)
         {
             return (sbyte)buffer[index];
         }
+
         private short ReadAsInt16(byte[] buffer, int index)
         {
             return BitConverter.ToInt16(buffer, index);
         }
+
         private ushort ReadAsUint16(byte[] buffer, int index)
         {
             return BitConverter.ToUInt16(buffer, index);
         }
+
         private int ReadAsInt32(byte[] buffer, int index)
         {
             return BitConverter.ToInt32(buffer, index);
         }
+
         private uint ReadAsUint32(byte[] buffer, int index)
         {
             return BitConverter.ToUInt32(buffer, index);
         }
+
         private long ReadAsInt64(byte[] buffer, int index)
         {
             return BitConverter.ToInt64(buffer, index);
         }
+
         private ulong ReadAsUint64(byte[] buffer, int index)
         {
             return BitConverter.ToUInt64(buffer, index);
         }
+
         private string ReadAsString(byte[] buffer, int index, int minSize)
         {
             return Encoding.Unicode.GetString(buffer, index, minSize);
         }
+
         private DateTime ReadAsDate(byte[] buffer, int index)
         {
             long date = BitConverter.ToInt64(buffer, index);
             return DateTime.FromBinary(date);
         }
+
         public bool GetCharacterId(string name, out uint charId)
         {
             return InternalDatabaseProvider.GetCharacterId(name, out charId);
@@ -456,18 +474,16 @@ namespace Saga.Managers
 
                 byte[] buffer = new byte[4];                                  //Container for header size
                 readStream.Read(buffer, 0, 4);                                //Read header size
-                uint numRecords = BitConverter.ToUInt32(buffer, 0);           //Get header count 
+                uint numRecords = BitConverter.ToUInt32(buffer, 0);           //Get header count
 
                 Console.WriteLine("Welcome to the manual restore utility.");
                 Console.WriteLine("Restore-points detected: {0}", numRecords);
                 if (numRecords == 0) return;
-  
-                
+
                 Console.WriteLine("Press (s) to skip");
                 Console.WriteLine("Press (r) to restore");
 
-
-                byte[] headingBuffer = new byte[64];                          //buffer container                
+                byte[] headingBuffer = new byte[64];                          //buffer container
                 while (numRecords > 0)
                 {
                     numRecords--;
@@ -481,7 +497,6 @@ namespace Saga.Managers
                     string name = ReadAsString(headingBuffer, 32, 32);        //read name
 
                     Console.WriteLine("Segment found {0} {1} {2} {3} {4}", name, date, countA.ToString().PadLeft(5), countB.ToString().PadLeft(5), countC.ToString().PadLeft(5));
-
 
                 Listen:
                     char key = Console.ReadKey(true).KeyChar;
@@ -509,7 +524,6 @@ namespace Saga.Managers
                                 Console.WriteLine("restore failed");
                                 WriteWarning("RestorePointCentre", "segement {0} {1} failed to save", name, date);
 
-
                                 //Go back the size of data
                                 readStream.Seek(posStart, SeekOrigin.Begin);
                                 CopyTo(headingBuffer, 16, ++countA);
@@ -519,22 +533,18 @@ namespace Saga.Managers
                             }
                             else
                             {
-
-
                                 //Go back the size of data
                                 readStream.Seek(posStart, SeekOrigin.Begin);
                                 CopyTo(headingBuffer, 20, ++countB);
                                 //Adjust header for success
                                 readStream.Write(headingBuffer, 0, 64);
                                 readStream.Seek(size, SeekOrigin.Current);
-
                             }
                         }
                         catch (Exception e)
                         {
                             Console.WriteLine("Failed to deserialize character information. You need to restore the restore points with the same version that created the restorepoint.");
                             WriteWarning("RestorePointCentre", "segement {0} {1} failed to deserialize reason: {2}", name, date, e.Message);
-
 
                             //Go back the size of data
                             readStream.Seek(posStart, SeekOrigin.Begin);
@@ -546,20 +556,20 @@ namespace Saga.Managers
                         finally
                         {
                             if (stream != null) stream.Dispose();
-                        }                        
-
+                        }
                     }
                     else if (key == 's')
                     {
                         readStream.Seek(size, SeekOrigin.Current);                //skip rest of data
                         continue;
                     }
-                    else goto Listen;         
+                    else goto Listen;
                 }
 
                 Console.WriteLine("Manual restore utility has finished");
             }
         }
+
         public void AutoRestore()
         {
             if (readStream == null) return;
@@ -569,7 +579,7 @@ namespace Saga.Managers
 
                 byte[] buffer = new byte[4];                                  //Container for header size
                 readStream.Read(buffer, 0, 4);                                //Read header size
-                uint numRecords = BitConverter.ToUInt32(buffer, 0);           //Get header count 
+                uint numRecords = BitConverter.ToUInt32(buffer, 0);           //Get header count
 
                 if (numRecords == 0) return;                                  //Stop processing if count is 0
 
@@ -579,8 +589,7 @@ namespace Saga.Managers
 
                 BooleanSwitch mswitch2 = new BooleanSwitch("SkipPreviousHandledRestorePoints", "Skips restore points that have been treated earlier", "1");
 
-
-                byte[] headingBuffer = new byte[64];                          //buffer container                
+                byte[] headingBuffer = new byte[64];                          //buffer container
                 while (numRecords > 0)
                 {
                     numRecords--;
@@ -592,7 +601,6 @@ namespace Saga.Managers
                     int countB = ReadAsInt32(headingBuffer, 20);              //read succeeded
                     int countC = ReadAsInt32(headingBuffer, 24);              //read exceptions
                     string name = ReadAsString(headingBuffer, 32, 32);        //read name
-
 
                     if (countA > 10)
                     {
@@ -634,7 +642,6 @@ namespace Saga.Managers
                         {
                             WriteWarning("RestorePointCentre", "segement {0} {1} failed to save", name, date);
 
-
                             //Go back the size of data
                             readStream.Seek(posStart, SeekOrigin.Begin);
                             CopyTo(headingBuffer, 16, ++countA);
@@ -652,14 +659,12 @@ namespace Saga.Managers
                             //Adjust header for success
                             readStream.Write(headingBuffer, 0, 64);
                             readStream.Seek(size, SeekOrigin.Current);
-
                         }
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine("Failed for unknown reason.");
                         WriteWarning("RestorePointCentre", "segement {0} {1} failed to deserialize reason: {2}", name, date, e.Message);
-
 
                         //Go back the size of data
                         readStream.Seek(posStart, SeekOrigin.Begin);
@@ -679,8 +684,8 @@ namespace Saga.Managers
             if (mswitch.Enabled) reopenRestorePoints();
         }
 
-        void reopenRestorePoints()
-        {            
+        private void reopenRestorePoints()
+        {
             try
             {
                 string filename2 = Server.SecurePath("~/restores/{0:X2}.{1}.bak", DateTime.Now.ToBinary(), Server.AssemblyName);
@@ -689,8 +694,6 @@ namespace Saga.Managers
                 writeStream.Close();             //Close stream
                 File.Copy(filename, filename2);  //Copy file
                 WriteInformation("RestorePointCentre", "Moving current restore-point file to: {0}", filename2);
-                
-
 
                 writeStream = new FileStream(filename, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
                 if (writeStream.Length == 0)
@@ -708,8 +711,8 @@ namespace Saga.Managers
             {
                 WriteError("DatabaseManager", "Failed to reopen restore-point system");
             }
-
         }
+
         public bool CreateRestorePoint(Character character)
         {
             try
@@ -724,22 +727,22 @@ namespace Saga.Managers
                 return false;
             }
         }
+
         public void WriteBytes(string name, uint uniqueid, byte[] value)
         {
             if (writeStream == null) return;
             lock (writeStream)
             {
-
                 writeStream.Seek(0, SeekOrigin.End);                            //Seek to end
 
                 //Write data segments
-                byte[] headingBuffer = new byte[64];                            //buffer container                
+                byte[] headingBuffer = new byte[64];                            //buffer container
                 CopyTo(headingBuffer, 0, (uint)value.LongLength);               //Offset 00 -  4 - Size of data
-                CopyTo(headingBuffer, 4, DateTime.Now);                         //Offset  4 - 12 - Date time  
+                CopyTo(headingBuffer, 4, DateTime.Now);                         //Offset  4 - 12 - Date time
                 CopyTo(headingBuffer, 12, uniqueid);                            //Offset 12 - 16 - Size of data
-                                                                                //Offset 16 - 32 - Resevered             
-                CopyTo(headingBuffer, 32, name, 16);                            //Offset 32 - 64 - Name      
-                writeStream.Write(headingBuffer,0,64);                          //Write unbuffered data to stream
+                //Offset 16 - 32 - Resevered
+                CopyTo(headingBuffer, 32, name, 16);                            //Offset 32 - 64 - Name
+                writeStream.Write(headingBuffer, 0, 64);                          //Write unbuffered data to stream
                 writeStream.Flush();                                            //Flush data
                 writeStream.Write(value, 0, value.Length);                      //Write unbuffered data to stream
                 writeStream.Flush();                                            //Flush data
@@ -750,27 +753,25 @@ namespace Saga.Managers
                 writeStream.Read(buffer, 0, 4);                                 //Read header size
                 writeStream.Seek(0, SeekOrigin.Begin);                          //Seek to start
 
-                uint numRecords = BitConverter.ToUInt32(buffer, 0);             //Get header count  
+                uint numRecords = BitConverter.ToUInt32(buffer, 0);             //Get header count
                 numRecords++;                                                   //Increment number with 1
                 buffer = BitConverter.GetBytes(numRecords);                     //Get new header count
                 writeStream.Write(buffer, 0, 4);                                //Write new header
                 writeStream.Flush();                                            //Write unbuffered data to stream
                 writeStream.Seek(0, SeekOrigin.End);                            //Seek to end
-
             }
         }
 
-
-        #endregion
+        #endregion Backup & Restore utillities
 
         #region Private Methods
 
         /// <summary>
-        /// Helper method that reappplies the weapon's effects.        
+        /// Helper method that reappplies the weapon's effects.
         /// </summary>
         /// <remarks>
         /// Because this requires the skills to be loaded this
-        /// method should be loaded after the character has finished 
+        /// method should be loaded after the character has finished
         /// loading.
         /// </remarks>
         /// <param name="character"></param>
@@ -809,7 +810,7 @@ namespace Saga.Managers
             }
         }
 
-        #endregion
+        #endregion Private Methods
 
         #region Wrapped Members
 
@@ -818,12 +819,10 @@ namespace Saga.Managers
             return InternalDatabaseProvider.IsQuestComplete(character.ModelId, QuestId);
         }
 
-
         public bool MarkAsReadMailItem(uint id)
         {
             return InternalDatabaseProvider.MarkAsReadMailItem(id);
         }
-
 
         public void LoadSkills(Character character)
         {
@@ -859,12 +858,6 @@ namespace Saga.Managers
         {
             return InternalDatabaseProvider.UpgradeSkill(target, OldSkillId, NewSkillId, Experience);
         }
-
-
-
-
-
-
 
         #region Mails
 
@@ -918,14 +911,13 @@ namespace Saga.Managers
             return InternalDatabaseProvider.UpdateZenyAttachment(Id, Zeny);
         }
 
-
         public IEnumerable<KeyValuePair<string, uint>> GetPendingMails()
         {
             return InternalDatabaseProvider.GetPendingMails();
         }
 
         /// <summary>
-        /// Returns the number of emails found in the inbox of 
+        /// Returns the number of emails found in the inbox of
         /// </summary>
         /// <param name="character"></param>
         /// <returns></returns>
@@ -954,7 +946,7 @@ namespace Saga.Managers
             return InternalDatabaseProvider.DeleteMailFromOutbox(id);
         }
 
-        #endregion
+        #endregion Mails
 
         #region Market
 
@@ -977,7 +969,6 @@ namespace Saga.Managers
             return InternalDatabaseProvider.SearchMarketForOwner(target);
         }
 
-
         /// <summary>
         /// Registers a new market item
         /// </summary>
@@ -988,7 +979,6 @@ namespace Saga.Managers
             return InternalDatabaseProvider.RegisterNewMarketItem(target, arg);
         }
 
-
         /// <summary>
         /// Deregister a new market item
         /// </summary>
@@ -998,7 +988,6 @@ namespace Saga.Managers
         {
             return InternalDatabaseProvider.UnregisterMarketItem(id);
         }
-
 
         /// <summary>
         /// Find a comment by a given player id
@@ -1020,7 +1009,6 @@ namespace Saga.Managers
             return InternalDatabaseProvider.FindCommentById(id);
         }
 
-
         /// <summary>
         /// Update the current comment of a given characterid
         /// </summary>
@@ -1032,7 +1020,6 @@ namespace Saga.Managers
             return InternalDatabaseProvider.UpdateCommentByPlayerId(id, message);
         }
 
-
         /// <summary>
         /// Returns the number of registered items by the character
         /// </summary>
@@ -1043,9 +1030,7 @@ namespace Saga.Managers
             return InternalDatabaseProvider.GetOwnerItemCount(target);
         }
 
-        #endregion
-
-
+        #endregion Market
 
         /// <summary>
         /// Finds a list of characters per given playerid
@@ -1091,7 +1076,6 @@ namespace Saga.Managers
             return InternalDatabaseProvider.DeleteCharacterById(id);
         }
 
-
         public bool GiveItemReward(string name, uint itemid, byte count)
         {
             uint playerid = 0;
@@ -1102,7 +1086,6 @@ namespace Saga.Managers
 
             return false;
         }
-
 
         #region Quests
 
@@ -1117,8 +1100,6 @@ namespace Saga.Managers
             return InternalDatabaseProvider.GetAvailableQuestsByRegion(target, modelid);
         }
 
-
-
         /// <summary>
         /// Gets a list of personal requests.
         /// </summary>
@@ -1131,7 +1112,6 @@ namespace Saga.Managers
             return InternalDatabaseProvider.GetPersonalAvailableQuestsByRegion(target, region, CurrentPersonalQuest);
         }
 
-
         /// <summary>
         /// Completes a quest directly into the database.
         /// </summary>
@@ -1143,15 +1123,9 @@ namespace Saga.Managers
             return InternalDatabaseProvider.QuestComplete(charId, QuestId);
         }
 
-
-
-
-
-
-        #endregion
+        #endregion Quests
 
         #region Blacklist
-
 
         /// <summary>
         /// Adds a certain character name on the friendlist.
@@ -1164,7 +1138,6 @@ namespace Saga.Managers
             return InternalDatabaseProvider.InsertAsFriend(charId, friend);
         }
 
-
         /// <summary>
         /// Deletes a certain character name from the friendlist
         /// </summary>
@@ -1175,7 +1148,6 @@ namespace Saga.Managers
         {
             return InternalDatabaseProvider.DeleteFriend(charId, friend);
         }
-
 
         /// <summary>
         /// Inserts a certain character on the blacklist
@@ -1200,13 +1172,8 @@ namespace Saga.Managers
             return InternalDatabaseProvider.DeleteBlacklist(charId, friend);
         }
 
-        #endregion
+        #endregion Blacklist
 
-
-
-    
-
-       
         #region SQL Provider
 
         public IDataReader ExecuteDataReader(IQueryProvider query)
@@ -1229,14 +1196,12 @@ namespace Saga.Managers
             return InternalDatabaseProvider.GetQueryProvider();
         }
 
-        #endregion
+        #endregion SQL Provider
 
         #region Junk
 
-
-
         /// <summary>
-        /// Retrieves a list of item rewards that were given by 
+        /// Retrieves a list of item rewards that were given by
         /// to the specified character
         /// </summary>
         /// <param name="target">Character instance to retrieve</param>
@@ -1267,10 +1232,9 @@ namespace Saga.Managers
             return InternalDatabaseProvider.DeleteEventItemId(RewardId);
         }
 
-        #endregion
+        #endregion Junk
 
-
-        #endregion
+        #endregion Wrapped Members
 
         #region Nested Types
 
@@ -1279,80 +1243,92 @@ namespace Saga.Managers
         {
             #region Private Members
 
-            private uint owner; 
+            private uint owner;
             private Character character;
 
-            #endregion
+            #endregion Private Members
 
             #region IInfoProvider2 Members
 
             IDataWeaponCollection IInfoProvider2.createWeaponCollection()
             {
                 DataWeapon dataweapons = new DataWeapon(character);
-                return dataweapons;             
+                return dataweapons;
             }
+
             IDataCharacter IInfoProvider2.createDataCharacter()
             {
                 DataCharacter collection = new DataCharacter(character);
                 return collection;
             }
+
             IDataAdditionCollection IInfoProvider2.createAdditionCollection()
             {
                 DataAdditionsCollection collection = new DataAdditionsCollection(character);
                 return collection;
             }
+
             IDataSortableItemCollection IInfoProvider2.createInventoryCollection()
             {
                 DataInventoryCollection collection = new DataInventoryCollection(character);
                 return collection;
             }
+
             IDataSortableItemCollection IInfoProvider2.createStorageCollection()
             {
                 DataStorageCollection collection = new DataStorageCollection(character);
                 return collection;
             }
+
             IDataJobinformationCollection IInfoProvider2.createJobCollection()
             {
                 DataJobCollection jobCollection = new DataJobCollection(character);
-                return jobCollection;            
+                return jobCollection;
             }
+
             IDataZoneInformationCollection IInfoProvider2.createDataZoneCollection()
             {
                 DataZoneCollection zoneInformation = new DataZoneCollection(character);
                 return zoneInformation;
             }
+
             IDataEquipmentCollection IInfoProvider2.createEquipmentCollection()
             {
                 DataEquipmentCollection collection = new DataEquipmentCollection(character);
                 return collection;
             }
+
             IDataSkillCollection IInfoProvider2.createSkillCollection()
             {
                 DataSkillCollection collection = new DataSkillCollection(character);
                 return collection;
             }
+
             IDatabaseQuestStream IInfoProvider2.createDatabaseQuestStream()
             {
                 DatabaseQuestStream collection = new DatabaseQuestStream(character);
                 return collection;
             }
+
             IDataSpecialSkillCollection IInfoProvider2.createDatabaseSpecialSkillCollection()
             {
                 DataSpecialSkillCollection collection = new DataSpecialSkillCollection(character);
                 return collection;
             }
-            IDatabaseFriendList  IInfoProvider2.createDatabaseFriendList()
+
+            IDatabaseFriendList IInfoProvider2.createDatabaseFriendList()
             {
- 	            DataFriendlistCollection collection = new DataFriendlistCollection(character);
-                return collection;
-            }
-            IDatabaseBlacklist  IInfoProvider2.createDatabaseBlacklist()
-            {
- 	            DataBlacklist collection = new DataBlacklist(character);
+                DataFriendlistCollection collection = new DataFriendlistCollection(character);
                 return collection;
             }
 
-            #endregion
+            IDatabaseBlacklist IInfoProvider2.createDatabaseBlacklist()
+            {
+                DataBlacklist collection = new DataBlacklist(character);
+                return collection;
+            }
+
+            #endregion IInfoProvider2 Members
 
             #region Constructor
 
@@ -1370,12 +1346,11 @@ namespace Saga.Managers
                 }
                 set
                 {
-                    if( owner > 0 )
-                    throw new NotImplementedException();
+                    if (owner > 0)
+                        throw new NotImplementedException();
                     owner = value;
                 }
             }
-
 
             public uint OwnerId
             {
@@ -1391,8 +1366,7 @@ namespace Saga.Managers
                 }
             }
 
-            #endregion
-
+            #endregion Constructor
         }
 
         protected sealed class DatabaseQuestStream : IDatabaseQuestStream
@@ -1401,7 +1375,7 @@ namespace Saga.Managers
 
             private Character owner;
 
-            #endregion
+            #endregion Private Members
 
             #region IDatabaseQuestStream Members
 
@@ -1428,7 +1402,7 @@ namespace Saga.Managers
                     catch (SerializationException)
                     {
                         return null;
-                    } 
+                    }
                 }
                 set
                 {
@@ -1454,7 +1428,7 @@ namespace Saga.Managers
                 }
             }
 
-            #endregion
+            #endregion IDatabaseQuestStream Members
 
             #region Constructor
 
@@ -1463,11 +1437,11 @@ namespace Saga.Managers
                 owner = target;
             }
 
-            #endregion
+            #endregion Constructor
         }
+
         protected sealed class DataWeapon : IDataWeaponCollection
         {
-
             #region Private Members
 
             /// <summary>
@@ -1480,7 +1454,7 @@ namespace Saga.Managers
             /// </summary>
             private WeaponCollection collection;
 
-            #endregion
+            #endregion Private Members
 
             #region Public Members
 
@@ -1492,7 +1466,7 @@ namespace Saga.Managers
                 }
             }
 
-            #endregion
+            #endregion Public Members
 
             #region IDataWeaponCollection  Members
 
@@ -1561,7 +1535,7 @@ namespace Saga.Managers
                 }
             }
 
-            #endregion
+            #endregion IDataWeaponCollection  Members
 
             #region Constructor
 
@@ -1583,16 +1557,16 @@ namespace Saga.Managers
                 collection = weapons;
             }
 
-            #endregion
-
+            #endregion Constructor
         }
+
         protected sealed class DataCharacter : IDataCharacter
         {
             #region Private Members
 
             private Character owner;
 
-            #endregion
+            #endregion Private Members
 
             #region IDataCharacter Members
 
@@ -1629,7 +1603,7 @@ namespace Saga.Managers
                     return owner.Cexp;
                 }
                 set
-                {                   
+                {
                     int prev = Singleton.CharacterConfiguration.CalculateMaximumHP(owner);
                     owner._status.MaxHP -= prev;
                     owner._level = Singleton.experience.FindClvlByCexp(value);
@@ -1648,7 +1622,7 @@ namespace Saga.Managers
                 set
                 {
                     owner.jlvl = Singleton.experience.FindJlvlByJexp(value);
-                    owner.Jexp = value;                    
+                    owner.Jexp = value;
                 }
             }
 
@@ -1660,12 +1634,11 @@ namespace Saga.Managers
                 }
                 set
                 {
-
                     int prev = Singleton.CharacterConfiguration.CalculateMaximumSP(owner);
                     owner._status.MaxSP -= prev;
                     owner.job = value;
                     int curr = Singleton.CharacterConfiguration.CalculateMaximumSP(owner);
-                    owner._status.MaxSP += curr;                                        
+                    owner._status.MaxSP += curr;
                 }
             }
 
@@ -1716,8 +1689,6 @@ namespace Saga.Managers
                     owner._status.CurrentOxygen = value;
                 }
             }
-
-          
 
             WorldCoordinate IDataCharacter.Position
             {
@@ -1784,7 +1755,6 @@ namespace Saga.Managers
                 }
             }
 
-          
             ushort IDataCharacter.Strength
             {
                 get
@@ -1902,7 +1872,7 @@ namespace Saga.Managers
                 }
             }
 
-            #endregion
+            #endregion IDataCharacter Members
 
             #region Constructor
 
@@ -1913,21 +1883,20 @@ namespace Saga.Managers
 
             public DataCharacter(uint characterid)
             {
-                owner = new Character(null, characterid, 0);                
+                owner = new Character(null, characterid, 0);
             }
 
-            #endregion
-
+            #endregion Constructor
         }
+
         protected sealed class DataAdditionsCollection : IDataAdditionCollection
         {
-
             #region Private Members
 
             private uint owner;
             private Addition additions;
 
-            #endregion
+            #endregion Private Members
 
             #region IDataAdditionCollection Members
 
@@ -1938,7 +1907,6 @@ namespace Saga.Managers
 
             bool IDataAdditionCollection.Create(uint addition, uint duration)
             {
-
                 Saga.Factory.Additions.Info info;
                 if (Singleton.Additions.TryGetAddition(addition, out info))
                 {
@@ -1965,11 +1933,11 @@ namespace Saga.Managers
                 get
                 {
                     foreach (AdditionState state in additions)
-                        yield return state;    
+                        yield return state;
                 }
             }
 
-            #endregion
+            #endregion IDataAdditionCollection Members
 
             #region Constructor
 
@@ -1985,18 +1953,18 @@ namespace Saga.Managers
                 this.additions = new Addition();
             }
 
-            #endregion
+            #endregion Constructor
         }
+
         protected sealed class DataInventoryCollection : IDataSortableItemCollection
         {
-
             #region Private Members
 
             private Rag2Collection collection;
             private uint owner;
             private byte sortmode;
 
-            #endregion
+            #endregion Private Members
 
             #region IDataSortableItemCollection Members
 
@@ -2022,7 +1990,7 @@ namespace Saga.Managers
                 get { return collection; }
             }
 
-            #endregion
+            #endregion IDataSortableItemCollection Members
 
             #region Constructor
 
@@ -2039,18 +2007,18 @@ namespace Saga.Managers
                 collection = container;
             }
 
-            #endregion
+            #endregion Constructor
         }
+
         protected sealed class DataStorageCollection : IDataSortableItemCollection
         {
-
             #region Private Members
 
             private Rag2Collection collection;
             private uint owner;
             private byte sortmode;
 
-            #endregion
+            #endregion Private Members
 
             #region IDataSortableItemCollection Members
 
@@ -2076,7 +2044,7 @@ namespace Saga.Managers
                 get { return collection; }
             }
 
-            #endregion
+            #endregion IDataSortableItemCollection Members
 
             #region Constructor
 
@@ -2093,17 +2061,17 @@ namespace Saga.Managers
                 collection = new Rag2Collection();
             }
 
-            #endregion
+            #endregion Constructor
         }
+
         protected sealed class DataJobCollection : IDataJobinformationCollection
         {
-
             #region Private Members
 
             private uint owner;
-            byte[] jobinfo;
+            private byte[] jobinfo;
 
-            #endregion
+            #endregion Private Members
 
             #region IDataJobinformationCollection Members
 
@@ -2117,7 +2085,7 @@ namespace Saga.Managers
                 get { return jobinfo; }
             }
 
-            #endregion
+            #endregion IDataJobinformationCollection Members
 
             #region Constructor
 
@@ -2133,18 +2101,17 @@ namespace Saga.Managers
                 jobinfo = jobInfo;
             }
 
-            #endregion
-
+            #endregion Constructor
         }
+
         protected sealed class DataZoneCollection : IDataZoneInformationCollection
         {
-
             #region Private Members
 
             private uint owner;
-            byte[] zoneinfo;
+            private byte[] zoneinfo;
 
-            #endregion
+            #endregion Private Members
 
             #region IDateZoneInformationCollection Members
 
@@ -2158,7 +2125,7 @@ namespace Saga.Managers
                 get { return zoneinfo; }
             }
 
-            #endregion
+            #endregion IDateZoneInformationCollection Members
 
             #region Constructor
 
@@ -2166,29 +2133,25 @@ namespace Saga.Managers
             {
                 owner = target.ModelId;
                 zoneinfo = target.ZoneInformation;
-
             }
 
             public DataZoneCollection(uint characterId, byte[] zoneInfo)
             {
                 owner = characterId;
                 zoneinfo = zoneInfo;
-
             }
 
-
-            #endregion
-
+            #endregion Constructor
         }
+
         protected sealed class DataEquipmentCollection : IDataEquipmentCollection
         {
-
             #region Private Members
 
             private uint owner;
             private Rag2Item[] equips;
 
-            #endregion
+            #endregion Private Members
 
             #region IDataEquipmentCollection Members
 
@@ -2202,7 +2165,7 @@ namespace Saga.Managers
                 get { return equips; }
             }
 
-            #endregion
+            #endregion IDataEquipmentCollection Members
 
             #region Constructor
 
@@ -2210,28 +2173,26 @@ namespace Saga.Managers
             {
                 owner = target.ModelId;
                 equips = target.Equipment;
-
             }
 
             public DataEquipmentCollection(uint characterId, Rag2Item[] equipment)
             {
                 owner = characterId;
                 equips = equipment;
-
             }
 
-            #endregion
+            #endregion Constructor
         }
+
         protected sealed class DataSkillCollection : IDataSkillCollection
         {
-
             #region Private Members
 
             private uint owner;
             private byte job;
             private List<Skill> skills;
 
-            #endregion
+            #endregion Private Members
 
             #region IDataSkillCollection Members
 
@@ -2250,7 +2211,7 @@ namespace Saga.Managers
                 get { return skills; }
             }
 
-            #endregion
+            #endregion IDataSkillCollection Members
 
             #region Constructor
 
@@ -2261,18 +2222,17 @@ namespace Saga.Managers
                 job = target.job;
             }
 
-            #endregion
-
+            #endregion Constructor
         }
+
         protected sealed class DataSpecialSkillCollection : IDataSpecialSkillCollection
         {
-
             #region Private Members
 
             private uint owner;
             private Skill[] skills;
 
-            #endregion
+            #endregion Private Members
 
             #region IDataSpecialSkillCollection Members
 
@@ -2286,7 +2246,7 @@ namespace Saga.Managers
                 get { return skills; }
             }
 
-            #endregion
+            #endregion IDataSpecialSkillCollection Members
 
             #region Constructor
 
@@ -2294,20 +2254,19 @@ namespace Saga.Managers
             {
                 owner = target.ModelId;
                 skills = target.SpecialSkills;
-
             }
 
-            #endregion
+            #endregion Constructor
         }
+
         protected sealed class DataFriendlistCollection : IDatabaseFriendList
         {
-
             #region Private Members
 
             private uint owner;
             private List<string> friends;
 
-            #endregion           
+            #endregion Private Members
 
             #region IDatabaseFriendList Members
 
@@ -2321,7 +2280,7 @@ namespace Saga.Managers
                 get { return friends; }
             }
 
-            #endregion
+            #endregion IDatabaseFriendList Members
 
             #region Constructor
 
@@ -2331,18 +2290,17 @@ namespace Saga.Managers
                 friends = target._friendlist;
             }
 
-            #endregion
-
+            #endregion Constructor
         }
+
         protected sealed class DataBlacklist : IDatabaseBlacklist
         {
-
             #region Private Members
 
             private uint owner;
-            List<KeyValuePair<string, byte>> blacklist;
+            private List<KeyValuePair<string, byte>> blacklist;
 
-            #endregion
+            #endregion Private Members
 
             #region IDatabaseBlacklist Members
 
@@ -2356,7 +2314,7 @@ namespace Saga.Managers
                 get { return blacklist; }
             }
 
-            #endregion
+            #endregion IDatabaseBlacklist Members
 
             #region Constructor
 
@@ -2366,21 +2324,15 @@ namespace Saga.Managers
                 blacklist = target._blacklist;
             }
 
-            #endregion
-
+            #endregion Constructor
         }
 
-        #endregion
-
-
-
+        #endregion Nested Types
     }
-
 }
 
 namespace Saga.Data
 {
-
     /// <example>
     /// This is a example that shows how the element is configured
     /// <code>
@@ -2465,5 +2417,4 @@ namespace Saga.Data
         /// </summary>
         public int pooledconnections;
     }
-
 }

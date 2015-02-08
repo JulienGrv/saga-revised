@@ -1,17 +1,15 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet indactes the respawn maps for when you die/use the promise stone.
-    /// The IsSaveLocationSet indicate if the user can be warped to their save 
+    /// The IsSaveLocationSet indicate if the user can be warped to their save
     /// locations when they die.
-    /// 
+    ///
     /// The from map indicates the save-position.
     /// The to-map indicates the catheleya-position.
     /// </remarks>
@@ -29,7 +27,7 @@ namespace Saga.Packets
 
         public byte IsSaveLocationSet
         {
-            set { this.data[0] = value;  }
+            set { this.data[0] = value; }
         }
 
         public byte FromMap
@@ -41,6 +39,5 @@ namespace Saga.Packets
         {
             set { this.data[2] = value; }
         }
-
     }
 }

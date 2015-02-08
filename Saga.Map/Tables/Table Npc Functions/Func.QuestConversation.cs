@@ -1,19 +1,15 @@
-﻿using Saga.Map;
-using Saga.Quests;
-using Saga.Shared.Definitions;
-using Saga.Templates;
+﻿using Saga.Enumarations;
+using Saga.Map;
 using Saga.PrimaryTypes;
-using System;
-using Saga.Enumarations;
+using Saga.Quests;
 using Saga.Structures;
+using Saga.Templates;
 
 namespace Saga.Npc.Functions
 {
-
-
     /// <summary>
-    /// This is a quest conversation. Include this in a npc to show a 
-    /// quest dialog and make it sensitive for quests. Every npc should 
+    /// This is a quest conversation. Include this in a npc to show a
+    /// quest dialog and make it sensitive for quests. Every npc should
     /// include this to embed seamlessly with the quests subsystem.
     /// </summary>
     /// <remarks>
@@ -21,7 +17,6 @@ namespace Saga.Npc.Functions
     /// </remarks>
     public sealed class QuestConversation : NpcFunction
     {
-
         #region Protected Methods
 
         /// <summary>
@@ -35,7 +30,6 @@ namespace Saga.Npc.Functions
             RegisterDialog(npc, DialogType.ScenarioQuest, new FunctionCallback(OnScenarioQuest));
             RegisterDialog(npc, DialogType.AcceptPersonalRequest, new FunctionCallback(OnAcceptPersonalRequest));
         }
-
 
         /// <summary>
         /// Checks if certain buttons should be visible.
@@ -60,7 +54,7 @@ namespace Saga.Npc.Functions
                     switch (baseQ.questtype)
                     {
                         case 1: OfficialQuest = true; break;
-                        case 2: PersonalQuest = true; break;                        
+                        case 2: PersonalQuest = true; break;
                         case 3: ScenarioQuest = true;break;
                     }
                 return true;
@@ -95,7 +89,6 @@ namespace Saga.Npc.Functions
                 }
             };
 
-            
             uint val = 0;
             //target.QuestObjectives.ActivatedNpc.Find(pred);
             target.QuestObjectives.GuidancePoints.Find(FindActivatedQuests);
@@ -103,19 +96,22 @@ namespace Saga.Npc.Functions
             {
                 case DialogType.PersonalQuest:
                     return PersonalQuest;
+
                 case DialogType.OfficialQuest:
                     return OfficialQuest;
+
                 case DialogType.ScenarioQuest:
                     return ScenarioQuest;
+
                 case DialogType.AcceptPersonalRequest:
                     return target.client.AvailablePersonalRequests.TryGetValue(npc.ModelId, out val);
+
                 default:
                     return true;
             }
         }
 
-
-        #endregion
+        #endregion Protected Methods
 
         #region Private Methods
 
@@ -176,7 +172,6 @@ namespace Saga.Npc.Functions
             }
         }
 
-        #endregion
-
+        #endregion Private Methods
     }
 }

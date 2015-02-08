@@ -2,10 +2,8 @@ using Saga.Structures;
 
 namespace Saga.Templates
 {
-
     public class Shop : BaseNPC
     {
-
         #region Base Members
 
         protected override void Initialize()
@@ -16,15 +14,18 @@ namespace Saga.Templates
             NpcFunction.Create<Saga.Npc.Functions.QuestConversation>(this);
         }
 
-        #endregion
+        #endregion Base Members
 
         #region Constructor/Deconstructor
 
-        ~Shop() { }
-        public Shop() { }
+        ~Shop()
+        {
+        }
 
-        #endregion
+        public Shop()
+        {
+        }
 
+        #endregion Constructor/Deconstructor
     }
-
 }

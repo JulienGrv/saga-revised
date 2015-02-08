@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Saga.Map.Definitions.Misc;
 using Saga.Packets;
+using Saga.PrimaryTypes;
 using Saga.Shared.PacketLib.Map;
 using Saga.Structures;
-using Saga.PrimaryTypes;
-using Saga.Structures.Collections;
+using System;
 
 namespace Saga.Map.Client
 {
     partial class InternalClient
     {
-
         public void WORLD_NOTIFYCATION()
         {
             SMSG_WORLDINSTANCE spkt = new SMSG_WORLDINSTANCE();
@@ -48,13 +43,12 @@ namespace Saga.Map.Client
             this.Send((byte[])spkt);
         }
 
-        #endregion
+        #endregion Test
 
         #region Useless
 
         private void CHARACTER_CREATE(CMSG_INTERNAL_CHARACTERCREATE cpkt)
-        {            
-
+        {
             //Argument with creation data given by the authentication server
             CharCreationArgument argument = new CharCreationArgument();
             argument.CharName = cpkt.Name;
@@ -65,25 +59,24 @@ namespace Saga.Map.Client
 
             //Only normans are supported by this time
             Character character = null;
-            Saga.Factory.CharacterConfiguration.IDefaultCharacterSettings settings = 
+            Saga.Factory.CharacterConfiguration.IDefaultCharacterSettings settings =
                 Singleton.CharacterConfiguration.Normans;
-            
+
             try
             {
-
                 //CHECK IF NAME ALREADY EXISTS
                 if (Singleton.Database.VerifyNameExists(cpkt.Name.ToUpperInvariant()))
                 {
                     SMSG_CHAR_CREATE spkt = new SMSG_CHAR_CREATE();
-                    spkt.Result = 0xA;                    
+                    spkt.Result = 0xA;
                     spkt.SessionId = cpkt.SessionId;
                     this.Send((byte[])spkt);
                 }
                 //CREATE CHARACTER AND IF FAILED SENT ERROR MESSAGE
-                else if ( !settings.create(out character, argument))
+                else if (!settings.create(out character, argument))
                 {
                     SMSG_CHAR_CREATE spkt = new SMSG_CHAR_CREATE();
-                    spkt.Result = 0x4;                    
+                    spkt.Result = 0x4;
                     spkt.SessionId = cpkt.SessionId;
                     this.Send((byte[])spkt);
                 }
@@ -95,7 +88,6 @@ namespace Saga.Map.Client
                     spkt.SessionId = cpkt.SessionId;
                     this.Send((byte[])spkt);
                 }
-
             }
             //DATABASE ERROR
             catch (Exception e)
@@ -111,7 +103,6 @@ namespace Saga.Map.Client
 
         private void DELETE_CHARACTER(CMSG_INTERNAL_CHARACTERDELETE cpkt)
         {
-
             SMSG_INTERNAL_CHARACTERDELETEREPLY spkt = new SMSG_INTERNAL_CHARACTERDELETEREPLY();
             spkt.SessionId = cpkt.SessionId;
 
@@ -134,8 +125,7 @@ namespace Saga.Map.Client
         {
             //HELPER VARIABLES
             Character newCharacter = new Character(cpkt.CharacterId);
-                
-            
+
             //SEND OVER ALL CHARACTER DETAILS
             SMSG_FINDCHARACTERDETAILS spkt = new SMSG_FINDCHARACTERDETAILS();
             spkt.CharacterId = cpkt.CharacterId;
@@ -143,13 +133,12 @@ namespace Saga.Map.Client
 
             //WeaponCollection weapon = new WeaponCollection();
             //Rag2Item[] Equipment = new Rag2Item[20];
-            if (Singleton.Database.TransLoad(newCharacter) || (Singleton.Database.TransRepair(newCharacter) && Singleton.Database.TransLoad(newCharacter)) )
+            if (Singleton.Database.TransLoad(newCharacter) || (Singleton.Database.TransRepair(newCharacter) && Singleton.Database.TransLoad(newCharacter)))
             {
                 //Singleton.Database.LoadEquipment(cpkt.CharacterId, Equipment);
                 //Singleton.Database.LoadWeaponary(cpkt.CharacterId, weapon);
                 int index = newCharacter.weapons.ActiveWeaponIndex == 1 ? newCharacter.weapons.SeconairyWeaponIndex : newCharacter.weapons.PrimaryWeaponIndex;
                 spkt.FaceDetails = newCharacter.FaceDetails;
-
 
                 if (newCharacter.Equipment[0] != null)
                     spkt.HeadTop = newCharacter.Equipment[0];
@@ -182,8 +171,8 @@ namespace Saga.Map.Client
                 if (newCharacter.Equipment[14] != null)
                     spkt.LeftShield = newCharacter.Equipment[14];
                 if (newCharacter.Equipment[15] != null)
-                    spkt.RightShield = newCharacter.Equipment[15];                
-                if( index < newCharacter.weapons.UnlockedWeaponSlots && newCharacter.weapons[index] != null && newCharacter.weapons[index]._active == 1)
+                    spkt.RightShield = newCharacter.Equipment[15];
+                if (index < newCharacter.weapons.UnlockedWeaponSlots && newCharacter.weapons[index] != null && newCharacter.weapons[index]._active == 1)
                     spkt.AugeSkill = newCharacter.weapons[index]._augeskill;
 
                 spkt.SaveMap = newCharacter.map;
@@ -212,12 +201,6 @@ namespace Saga.Map.Client
             }
         }
 
-        #endregion
-
-
-
-
-
-
+        #endregion Useless
     }
 }

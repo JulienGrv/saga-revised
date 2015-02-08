@@ -15,9 +15,9 @@ namespace Saga.Quests
         /// </description>
         /// <example>
         /// function QUEST_STEP_3(cid)
-	    ///     -- Complete quest
-        ///     Saga.QuestComplete(cid, QuestID);	
-        ///     return 0; 
+        ///     -- Complete quest
+        ///     Saga.QuestComplete(cid, QuestID);
+        ///     return 0;
         /// end
         /// </example>
         public static void QuestComplete(uint CID, uint QID)

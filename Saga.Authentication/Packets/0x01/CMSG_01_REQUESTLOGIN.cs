@@ -1,16 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Network.Packets;
 using Saga.Network;
+using Saga.Network.Packets;
+using System;
 
 namespace Saga.Authentication.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
-    /// <remarks>   
+    /// <remarks>
     /// This packet is invoked by the client when he/she
     /// Tries to authenticate with the server.
     ///
@@ -19,7 +16,6 @@ namespace Saga.Authentication.Packets
     /// </remarks>
     public class CMSG_REQUESTLOGIN : Packet
     {
-
         public CMSG_REQUESTLOGIN()
         {
             this.data = new byte[100];
@@ -37,7 +33,7 @@ namespace Saga.Authentication.Packets
         {
             get
             {
-                return SpecialEncoding.Read(ref this.data, 38, Math.Max(0,this.data.Length - 38));                
+                return SpecialEncoding.Read(ref this.data, 38, Math.Max(0, this.data.Length - 38));
             }
         }
 
@@ -60,9 +56,5 @@ namespace Saga.Authentication.Packets
             Array.Copy(p, 10, pkt.data, 0, p.Length - 10);
             return pkt;
         }
-
-
-        
-
     }
 }

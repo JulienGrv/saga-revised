@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Saga.Utils
 {
-    static class Generator
+    internal static class Generator
     {
-
         private static Random rand = null;
 
         static Generator()
@@ -18,7 +15,5 @@ namespace Saga.Utils
         {
             return rand.Next(min, max);
         }
-
-
     }
 }

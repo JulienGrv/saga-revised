@@ -1,21 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Packets;
-using Saga.Shared.Definitions;
-using Saga.Tasks;
-
 namespace Saga.Quests.Scenario
 {
     static partial class QUEST_TABLE
     {
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static void StepComplete(uint cid, uint QID, uint StepID)
         {
-
             /*
             QuestBase myQuest;
             Character value;
@@ -24,7 +15,6 @@ namespace Saga.Quests.Scenario
             {
                 return objective.StepID == StepID;
             };
-
 
             if (LifeCycle.TryGetById(cid, out value))
             {

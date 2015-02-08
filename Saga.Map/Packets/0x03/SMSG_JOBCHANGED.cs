@@ -1,11 +1,10 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is used to indicate the given actor has changed their jobs. This
@@ -37,6 +36,6 @@ namespace Saga.Packets
         public uint SourceActor
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 2, 4); }
-        }        
+        }
     }
 }

@@ -1,10 +1,10 @@
 using Saga.Packets;
 using Saga.PrimaryTypes;
+
 namespace Common
 {
     public static class Errors
     {
-
         /// <summary>
         /// General error message
         /// </summary>
@@ -18,7 +18,6 @@ namespace Common
             target.client.Send((byte[])spkt);
         }
 
-
         public static void CatheleyaHealError(Character target, byte error)
         {
             SMSG_HEALRESULT spkt = new SMSG_HEALRESULT();
@@ -26,6 +25,5 @@ namespace Common
             spkt.Result = error;
             target.client.Send((byte[])spkt);
         }
-
     }
 }

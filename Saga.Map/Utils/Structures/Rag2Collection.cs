@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Saga.PrimaryTypes;
+using System;
 using System.Collections;
-using Saga.PrimaryTypes;
+using System.Collections.Generic;
 
 namespace Saga.Structures
 {
-
     /// <summary>
     /// Collection for Rag2Items
     /// </summary>
     [Serializable()]
     public class Rag2Collection : IEnumerable
     {
-
         #region Private Members
 
         /// <summary>
@@ -26,7 +23,7 @@ namespace Saga.Structures
         /// </summary>
         private byte capacity = 50;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
@@ -116,7 +113,6 @@ namespace Saga.Structures
                 this.capacity = (byte)value;
             }
         }
-
 
         /// <summary>
         /// Locates the first free index.
@@ -226,7 +222,7 @@ namespace Saga.Structures
             return count;
         }
 
-        #endregion
+        #endregion Public Members
 
         #region IEnumerable<Rag2Item> Members
 
@@ -240,7 +236,7 @@ namespace Saga.Structures
                 yield return item.Value;
         }
 
-        #endregion
+        #endregion IEnumerable<Rag2Item> Members
 
         #region IEnumerable Members
 
@@ -253,7 +249,6 @@ namespace Saga.Structures
             return GetEnumerator();
         }
 
-        #endregion
-
+        #endregion IEnumerable Members
     }
 }

@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Shared.PacketLib.Login
 {
-
     public class CMSG_RELEASESESSION : RelayPacket
     {
-
         public CMSG_RELEASESESSION()
         {
             this.Cmd = 0x0701;
@@ -24,7 +20,6 @@ namespace Saga.Shared.PacketLib.Login
             }
         }
 
-
         #region Conversions
 
         public static explicit operator CMSG_RELEASESESSION(byte[] p)
@@ -34,8 +29,8 @@ namespace Saga.Shared.PacketLib.Login
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -48,7 +43,6 @@ namespace Saga.Shared.PacketLib.Login
             return pkt;
         }
 
-        #endregion
-
+        #endregion Conversions
     }
 }

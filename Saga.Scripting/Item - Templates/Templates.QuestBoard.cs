@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
-using Saga.Map;
 
 namespace Saga.Templates
 {
-    class Questboard : MapItem
+    internal class Questboard : MapItem
     {
-
         public override void OnClick(Character target)
         {
             Singleton.Quests.OpenQuest(target, this);

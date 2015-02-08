@@ -1,12 +1,11 @@
-﻿using System.IO;
-using Saga.IO;
+﻿using Saga.IO;
 using Saga.Packets;
+using System.IO;
 
 namespace Saga.Structures.Collections
 {
-
     /// <summary>
-    /// Collection of Rag2Items used to open a bookstore window where 
+    /// Collection of Rag2Items used to open a bookstore window where
     /// actord can buy items.
     /// </summary>
     public class BookstoreCollection : BaseShopCollection

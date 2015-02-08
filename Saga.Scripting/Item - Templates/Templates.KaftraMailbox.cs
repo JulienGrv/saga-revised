@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Templates
 {
-    class KaftraMailbox : MapItem
+    internal class KaftraMailbox : MapItem
     {
-
         public override void OnClick(Character target)
         {
             OnCheckQuest(target);

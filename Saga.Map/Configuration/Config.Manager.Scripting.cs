@@ -1,9 +1,8 @@
-using System.Configuration;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
-
     /// <summary>
     /// Quest manager configuration
     /// </summary>
@@ -22,7 +21,6 @@ namespace Saga.Configuration
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class ScriptingSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
         /// Get's or set's the directory that contains scripts to be compiled
         /// </summary>
@@ -41,12 +39,12 @@ namespace Saga.Configuration
         /// <remarks>
         /// This scripting directory contains a bunch of .cs files which are assumed to be
         /// c-sharp (c#) code files. These files are compiled on runtime into a assembly which
-        /// is stored on the disk as 'SAGA.SCRIPTING'. 
-        /// 
+        /// is stored on the disk as 'SAGA.SCRIPTING'.
+        ///
         /// We store this assembly on the disk to ensure people can debug their skills/
         /// npc templates.
         /// </remarks>
-        [ConfigurationProperty("directory", DefaultValue="Quest", IsRequired = false)]
+        [ConfigurationProperty("directory", DefaultValue = "Quest", IsRequired = false)]
         public string Directory
         {
             get
@@ -60,8 +58,8 @@ namespace Saga.Configuration
         }
 
         /// <summary>
-        /// Get's or set's the assemblies that should be added as reference to the 
-        /// scripting section. 
+        /// Get's or set's the assemblies that should be added as reference to the
+        /// scripting section.
         /// </summary>
         /// <example>
         /// <![CDATA[
@@ -76,7 +74,7 @@ namespace Saga.Configuration
         /// </Saga.Manager.Scripting> ]]></code>
         /// </example>
         /// <remarks>
-        /// By default only the current calling assembly is added. This means that you 
+        /// By default only the current calling assembly is added. This means that you
         /// have a complete empty compile if you don't add any references such as System.Data,
         /// System.Xml etc.
         /// </remarks>
@@ -85,6 +83,5 @@ namespace Saga.Configuration
         {
             get { return ((FactoryFileCollection)(base["Assemblies"])); }
         }
-
     }
 }

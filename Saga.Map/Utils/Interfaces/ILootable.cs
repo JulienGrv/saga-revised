@@ -1,21 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Map.Definitions.Misc;
 using Saga.PrimaryTypes;
-using Saga.Structures;
 
 namespace Saga.Shared.Definitions
 {
-
     /// <summary>
     /// Interface for object which should have be considered lootable.
     /// </summary>
     /// <remarks>
-    /// Make your object inherit from this interfact if you wish to add 
-    /// the posibility to make the object lootable. Without this inheriting 
+    /// Make your object inherit from this interfact if you wish to add
+    /// the posibility to make the object lootable. Without this inheriting
     /// from this interface the system will fail to find the actor.
-    /// 
+    ///
     /// If you wish to directly open the loot collection you can use collection.Open()
     /// Internally the system uses the "CanOpen" method to check wether a collection
     /// can be opened with checking the party settings.

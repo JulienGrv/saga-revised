@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Managers;
 using System.Text.RegularExpressions;
 
 namespace Saga.Shared.Definitions
@@ -18,11 +15,9 @@ namespace Saga.Shared.Definitions
         }
     }
 
-
     [AttributeUsage(AttributeTargets.Method)]
     public class GmAttribute : Attribute
     {
-
         public GmAttribute(string name, byte gmlevel, string regex)
         {
             this._name = name;
@@ -64,6 +59,5 @@ namespace Saga.Shared.Definitions
                 return _regex;
             }
         }
-
     }
 }

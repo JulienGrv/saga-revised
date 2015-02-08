@@ -1,21 +1,14 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
-using Saga.Map.Utils.Structures;
-using Saga.Shared.Definitions;
-using Saga.Templates;
-using Saga.IO;
+﻿using Saga.Enumarations;
 using Saga.PrimaryTypes;
 using Saga.Structures;
 using Saga.Structures.Collections;
-using Saga.Enumarations;
+using Saga.Templates;
+using System;
 
 namespace Saga.Npc.Functions
 {
-
-
     /// <summary>
-    /// This is a cathelya conversation. Include this in a npc to show a 
+    /// This is a cathelya conversation. Include this in a npc to show a
     /// catheleya dialog and submenu.
     /// </summary>
     /// <remarks>
@@ -23,13 +16,10 @@ namespace Saga.Npc.Functions
     /// shops/cathelya.xml by default. The shoplist is a list of items
     /// which is set to the tag property of the character. Our core system
     /// will handle all error checking based upon that item.
-    /// </remarks>  
+    /// </remarks>
     public class CatheleyaConversation : NpcFunction
     {
-
-
         #region Private Members
-
 
         /// <summary>
         /// Contains a list of items used for buying/selling.
@@ -51,7 +41,7 @@ namespace Saga.Npc.Functions
         /// </summary>
         public uint _Heal = 823;
 
-        #endregion
+        #endregion Private Members
 
         #region Protected Methods
 
@@ -66,7 +56,6 @@ namespace Saga.Npc.Functions
             RegisterDialog(npc, DialogType.BookStore, 34, new FunctionCallback(OnShop));
             OnCacheShop(npc);
         }
-
 
         /// <summary>
         /// Loads all dialog dialog information.
@@ -96,7 +85,6 @@ namespace Saga.Npc.Functions
             OnCacheShop(npc);
         }
 
-
         /// <summary>
         /// Calculates the heal costs to heal the
         /// selected character.
@@ -107,7 +95,6 @@ namespace Saga.Npc.Functions
         {
             return 8 + (Math.Max(target._level - 5, 0) * 8);
         }
-
 
         /// <summary>
         /// Performs a heal on the selectected character.
@@ -146,7 +133,6 @@ namespace Saga.Npc.Functions
             }
         }
 
-
         /// <summary>
         /// Occurs when the catheleya subemnu should be opened
         /// </summary>
@@ -155,13 +141,12 @@ namespace Saga.Npc.Functions
         protected virtual void OnBookStore(BaseNPC npc, Character target)
         {
             Common.Actions.OpenSubmenu(target, npc,
-                _BookStore,             //Dialog script to show                
+                _BookStore,             //Dialog script to show
                 DialogType.BookStore,   //Button function
                 30,                     //Repair
                 34                      //Change Type
             );
         }
-
 
         /// <summary>
         /// Occurs after heal has been performed.
@@ -184,9 +169,9 @@ namespace Saga.Npc.Functions
         /// <param name="npc">Npc who opens the shop</param>
         /// <param name="target">Character who should see the shop</param>
         protected virtual void OnShop(BaseNPC npc, Character target)
-        {            
+        {
             //Show dialog
-            Common.Actions.OpenMenu( target, npc,
+            Common.Actions.OpenMenu(target, npc,
                 _Shop,
                 DialogType.EverydayConversation,
                 new byte[] { }
@@ -196,9 +181,8 @@ namespace Saga.Npc.Functions
             _shoplist.Open(target, npc);
         }
 
-
         /// <summary>
-        /// Caches the shop items. 
+        /// Caches the shop items.
         /// </summary>
         /// <remarks>
         /// This will load all shop items from the data directory from read from
@@ -211,9 +195,6 @@ namespace Saga.Npc.Functions
             _shoplist = ShopCollection.FromFile(filename);
         }
 
-        #endregion
-
-
+        #endregion Protected Methods
     }
-
 }

@@ -1,16 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent to delete the addition icon for a given player. The deletion 
+    /// This packet is sent to delete the addition icon for a given player. The deletion
     /// of this icon may occur due the additions active time expired.
     /// </remarks>
     /// <id>
@@ -32,7 +29,7 @@ namespace Saga.Packets
 
         public uint StatusID
         {
-            set { Array.Copy(BitConverter.GetBytes(value), 0,  this.data, 4, 4); }
+            set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 4, 4); }
         }
     }
 }

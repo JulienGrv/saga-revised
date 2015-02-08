@@ -1,19 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet sent by the user to indicate he or she wants to cancel sending the pending 
-    /// and retrieve the items. The items are sended back using a new mail item towards the 
+    /// This packet sent by the user to indicate he or she wants to cancel sending the pending
+    /// and retrieve the items. The items are sended back using a new mail item towards the
     /// user.
     /// </remarks>
     /// <id>
@@ -40,8 +35,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -54,6 +49,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

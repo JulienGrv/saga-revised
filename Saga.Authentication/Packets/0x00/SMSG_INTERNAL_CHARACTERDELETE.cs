@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Shared.PacketLib.Login
 {
-
     public class SMSG_INTERNAL_CHARACTERDELETE : RelayPacket
     {
-
         public SMSG_INTERNAL_CHARACTERDELETE()
         {
             this.Cmd = 0x0501;
@@ -23,6 +19,5 @@ namespace Saga.Shared.PacketLib.Login
                 Array.Copy(BitConverter.GetBytes(value), 0, this.data, 0, 4);
             }
         }
-
     }
 }

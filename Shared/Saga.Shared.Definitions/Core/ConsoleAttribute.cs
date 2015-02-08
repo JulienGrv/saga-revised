@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Reflection;
-using System.IO;
-using System.Xml;
-using System.Collections.Specialized;
-using System.Collections.Generic;
-using System.Configuration;
-using System.ComponentModel;
 
 namespace Saga.Core
 {
-
-
     [AttributeUsage(AttributeTargets.Method)]
     public class ConsoleAttribute : Attribute
     {
-
         #region Private Members
 
         private string name;
@@ -22,7 +12,7 @@ namespace Saga.Core
         private string syntax;
         private int gmlevel;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Properties
 
@@ -58,7 +48,7 @@ namespace Saga.Core
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Constructor / Deconstructor
 
@@ -107,8 +97,6 @@ namespace Saga.Core
             this.syntax = syntax;
         }
 
-        #endregion
-
+        #endregion Constructor / Deconstructor
     }
-
 }

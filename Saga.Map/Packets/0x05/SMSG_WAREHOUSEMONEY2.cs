@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet creates a new weapon
@@ -24,6 +19,5 @@ namespace Saga.Packets
             this.Id = 0x051A;
             this.data = new byte[4];
         }
-
     }
 }

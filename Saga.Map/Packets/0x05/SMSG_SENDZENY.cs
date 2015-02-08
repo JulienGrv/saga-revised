@@ -1,15 +1,14 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent by the client to set the amount of zeny. Note
-    /// that the specified value is a absolute value and not a incremental 
+    /// that the specified value is a absolute value and not a incremental
     /// value.
     /// </remarks>
     /// <id>
@@ -29,6 +28,5 @@ namespace Saga.Packets
             set { Array.Copy(BitConverter.GetBytes(value), this.data, 4); }
             get { return BitConverter.ToUInt32(this.data, 4); }
         }
-
     }
 }

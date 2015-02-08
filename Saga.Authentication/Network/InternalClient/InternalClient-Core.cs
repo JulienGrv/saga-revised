@@ -1,16 +1,14 @@
-using System;
-using System.Net.Sockets;
 using Saga.Authentication;
+using Saga.Packets;
 using Saga.Shared.PacketLib.Login;
 using Saga.Shared.PacketLib.Map;
-using Saga.Packets;
+using System;
 using System.Threading;
 
 namespace Saga.Map.Client
 {
     public partial class InternalClient : Saga.Shared.NetworkCore.Client
     {
-
         #region Constructor / Deconstructor
 
         public InternalClient()
@@ -43,15 +41,14 @@ namespace Saga.Map.Client
                 }
             };
 
-            ThreadPool.QueueUserWorkItem(callback);            
-
+            ThreadPool.QueueUserWorkItem(callback);
         }
 
-        #endregion
+        #endregion Constructor / Deconstructor
 
         #region Events
 
-        void InternalClient_OnClose(object sender, EventArgs e)
+        private void InternalClient_OnClose(object sender, EventArgs e)
         {
             ServerInfo2 info;
             if (ServerManager2.Instance.server.TryGetValue(WorldId, out info))
@@ -63,7 +60,7 @@ namespace Saga.Map.Client
             }
         }
 
-        #endregion
+        #endregion Events
 
         protected override void ProcessPacket(ref byte[] body)
         {
@@ -74,17 +71,15 @@ namespace Saga.Map.Client
                 case 0x000A: CM_PONG((CMSG_PONG)body); return;
                 case 0x000B: CM_RELEASESESSION((CMSG_RELEASESESSION)body); return;
                 case 0x000E: CM_MAINTAINCELEAVE(); return;
-                case 0x000F: CM_MAINTAINCEENTER(); return;                
+                case 0x000F: CM_MAINTAINCEENTER(); return;
                 case 0x0002: CM_SELECT_CHARACTERS((Saga.Shared.PacketLib.Login.CMSG_FINDCHARACTERS)body); return;
                 case 0x0003: CM_SELECT_CHARACTER((Saga.Shared.PacketLib.Login.CMSG_FINDCHARACTERDETAILS)body); return;
                 case 0x0103: CM_CHARACTER_CREATE((CMSG_INTERNAL_CHARCREATIONREPLY)body); return;
                 case 0x0106: CM_DELETE_CHARACTER((CMSG_INTERNAL_DELETIONREPLY)body); return;
-                case 0xFF02: CM_CHARACTERLOGINREPLY((CMSG_CHARACTERLOGINREPLY)body); return;                
+                case 0xFF02: CM_CHARACTERLOGINREPLY((CMSG_CHARACTERLOGINREPLY)body); return;
                 //case 0x0105: CHARACTER_CREATE(body); return;
             }
             return;
         }
-
-
     }
 }

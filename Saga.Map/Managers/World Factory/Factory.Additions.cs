@@ -1,35 +1,36 @@
-﻿using System;
+﻿using Saga.Configuration;
+using Saga.Enumarations;
+using Saga.Map.Configuration;
+using Saga.PrimaryTypes;
+using Saga.Structures;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Xml;
-using Saga.Configuration;
-using Saga.Map.Configuration;
-using Saga.PrimaryTypes;
-using Saga.Enumarations;
-using System.Reflection;
-using Saga.Structures;
 
 namespace Saga.Factory
 {
-
     /// <summary>
     /// Factory that interacts with applying and deapplying additions.
     /// </summary>
     /// <remarks>
-    /// This factory compiles the additions to ILCode which can be recollected 
+    /// This factory compiles the additions to ILCode which can be recollected
     /// to the garbage collector in time when reloading.
     /// </remarks>
     public class Additions : FactoryBase
     {
-        protected static BooleanSwitch refenceWarningsAsErrors = new BooleanSwitch("AdditionReferenceWarningsAsErrors","Treat warnings as errors in the refence files", "0");
+        protected static BooleanSwitch refenceWarningsAsErrors = new BooleanSwitch("AdditionReferenceWarningsAsErrors", "Treat warnings as errors in the refence files", "0");
 
         #region Ctor/Dtor
 
-        public Additions() { }
+        public Additions()
+        {
+        }
 
         ~Additions()
         {
@@ -37,7 +38,7 @@ namespace Saga.Factory
             this.addition_table = null;
         }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
@@ -51,7 +52,7 @@ namespace Saga.Factory
         /// </summary>
         protected Dictionary<uint, MethodInfo> addition_table;
 
-        #endregion
+        #endregion Internal Members
 
         #region Private Methods
 
@@ -66,7 +67,7 @@ namespace Saga.Factory
             addition.Do(target, target, apply);
         }
 
-        #endregion
+        #endregion Private Methods
 
         #region Protected Methods
 
@@ -118,29 +119,27 @@ namespace Saga.Factory
 
         protected virtual void ParseReferenceAsCsvStream(System.IO.Stream stream)
         {
-
             using (StreamReader c = new StreamReader(stream))
             {
                 c.ReadLine();
                 while (c.Peek() > 0)
                 {
-                    
-                    CommaDelimitedString fields = CommaDelimitedString.Parse(c.ReadLine());                                  
-                    uint AdditionId = 0;                    
+                    CommaDelimitedString fields = CommaDelimitedString.Parse(c.ReadLine());
+                    uint AdditionId = 0;
                     try
                     {
-                        string field = fields[1].Trim('\0',' ');
+                        string field = fields[1].Trim('\0', ' ');
                         bool IsValidInteger = uint.TryParse(fields[0], System.Globalization.NumberStyles.Integer, System.Globalization.NumberFormatInfo.InvariantInfo, out AdditionId);
                         AdditionHandler Handler = CoreService.Find<AdditionHandler>(field);
 
-                        if (!IsValidInteger )
+                        if (!IsValidInteger)
                         {
                             if (refenceWarningsAsErrors.Enabled)
                                 WriteError("AdditionFactory", "Not a valid integer {0}", field);
-                            else 
+                            else
                                 WriteWarning("AdditionFactory", "Not a valid integer {0}", field);
                         }
-                        else if( Handler == null || Handler.Method == null)
+                        else if (Handler == null || Handler.Method == null)
                         {
                             if (refenceWarningsAsErrors.Enabled)
                                 WriteError("AdditionFactory", "Method not found {0}", field);
@@ -151,7 +150,7 @@ namespace Saga.Factory
                         {
                             MethodInfo info = Handler.Method;
                             GC.SuppressFinalize(info);
-                            this.addition_table.Add(AdditionId, info);   
+                            this.addition_table.Add(AdditionId, info);
                         }
                     }
                     catch (Exception e)
@@ -166,7 +165,6 @@ namespace Saga.Factory
         {
             using (StreamReader c = new StreamReader(stream))
             {
-
                 c.ReadLine();
                 while (c.Peek() > 0)
                 {
@@ -175,25 +173,22 @@ namespace Saga.Factory
                     String[] fields = row.Split(',');
                     Type additiontype = typeof(AdditionsBonus);
 
-
                     uint AdditionId = uint.Parse(fields[0], NumberFormatInfo.InvariantInfo);
                     uint[] Functions = new uint[] { (uint)Enum.Parse( additiontype, fields[1] ), (uint)Enum.Parse( additiontype, fields[2] ), (uint)Enum.Parse( additiontype, fields[3] ),
                                                     (uint)Enum.Parse( additiontype, fields[4] ), (uint)Enum.Parse( additiontype, fields[5] ), (uint)Enum.Parse( additiontype, fields[6] ),
                                                     (uint)Enum.Parse( additiontype, fields[7] ), (uint)Enum.Parse( additiontype, fields[8] ), (uint)Enum.Parse( additiontype, fields[9] ),
                                                     (uint)Enum.Parse( additiontype, fields[10] )};
 
-                    int[] Values     = new int[] {  int.Parse( fields[11],  NumberFormatInfo.InvariantInfo ), 
-                                                    int.Parse( fields[12], NumberFormatInfo.InvariantInfo ), 
+                    int[] Values = new int[] {  int.Parse( fields[11],  NumberFormatInfo.InvariantInfo ),
+                                                    int.Parse( fields[12], NumberFormatInfo.InvariantInfo ),
                                                     int.Parse( fields[13], NumberFormatInfo.InvariantInfo ),
                                                     int.Parse( fields[14],  NumberFormatInfo.InvariantInfo),
-                                                    int.Parse( fields[15],  NumberFormatInfo.InvariantInfo ), 
+                                                    int.Parse( fields[15],  NumberFormatInfo.InvariantInfo ),
                                                     int.Parse( fields[16], NumberFormatInfo.InvariantInfo),
                                                     int.Parse( fields[17],  NumberFormatInfo.InvariantInfo ),
                                                     int.Parse( fields[18], NumberFormatInfo.InvariantInfo),
                                                     int.Parse( fields[19], NumberFormatInfo.InvariantInfo),
                                                     int.Parse( fields[20], NumberFormatInfo.InvariantInfo)};
-
-
 
                     Info info = Info.From(addition_table, Functions, Values);
                     if (info != null)
@@ -217,7 +212,6 @@ namespace Saga.Factory
                 int[] Values = null;
                 String[] fields = null;
                 Type additiontype = typeof(AdditionsBonus);
-                
 
                 while (reader.Read())
                 {
@@ -236,9 +230,11 @@ namespace Saga.Factory
                                 EffectDuration = 0;
                             }
                             break;
+
                         case XmlNodeType.Text:
                             value = reader.Value;
                             break;
+
                         case XmlNodeType.EndElement:
                             switch (reader.Name.ToUpperInvariant())
                             {
@@ -260,17 +256,18 @@ namespace Saga.Factory
                                                     (uint)Enum.Parse( additiontype, fields[4] ),
                                                     (uint)Enum.Parse( additiontype, fields[5] ),
                                                     (uint)Enum.Parse( additiontype, fields[6] ),
-                                                    (uint)Enum.Parse( additiontype, fields[7] ), 
+                                                    (uint)Enum.Parse( additiontype, fields[7] ),
                                                     (uint)Enum.Parse( additiontype, fields[8] ),
                                                     (uint)Enum.Parse( additiontype, fields[9])};
                                     break;
+
                                 case "VALUE":
                                     fields = value.Split(',');
-                                    Values = new int[] {  int.Parse( fields[0],  NumberFormatInfo.InvariantInfo ), 
-                                                    int.Parse( fields[1], NumberFormatInfo.InvariantInfo), 
+                                    Values = new int[] {  int.Parse( fields[0],  NumberFormatInfo.InvariantInfo ),
+                                                    int.Parse( fields[1], NumberFormatInfo.InvariantInfo),
                                                     int.Parse( fields[2], NumberFormatInfo.InvariantInfo),
                                                     int.Parse( fields[3], NumberFormatInfo.InvariantInfo),
-                                                    int.Parse( fields[4], NumberFormatInfo.InvariantInfo), 
+                                                    int.Parse( fields[4], NumberFormatInfo.InvariantInfo),
                                                     int.Parse( fields[5], NumberFormatInfo.InvariantInfo),
                                                     int.Parse( fields[6], NumberFormatInfo.InvariantInfo),
                                                     int.Parse( fields[7], NumberFormatInfo.InvariantInfo),
@@ -291,7 +288,6 @@ namespace Saga.Factory
                             info.Interval = Interval;
                             info.EffectDuration = EffectDuration;
                             _additions.Add(AdditionId, info);
-
                         }
                     }
                     catch (ArgumentException)
@@ -299,16 +295,17 @@ namespace Saga.Factory
                         WriteError("AdditionFactory", "Duplicate id detected: {0}", AdditionId);
                         return;
                     }
-                    
+
                     continue;
                 }
             }
         }
 
+        protected virtual void Initialize_AdditionTable()
+        {
+        }
 
-        protected virtual void Initialize_AdditionTable(){                   }
-
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -333,7 +330,6 @@ namespace Saga.Factory
             return this._additions.TryGetValue(id, out addition);
         }
 
-
         /// <summary>
         /// Applies the addition to the specified actor
         /// </summary>
@@ -347,7 +343,6 @@ namespace Saga.Factory
                 DoAddition(ref AdditionEffects, target, AdditionContext.Applied);
             }
         }
-
 
         /// <summary>
         /// Deapplies the addition to the specified actor
@@ -363,8 +358,7 @@ namespace Saga.Factory
             }
         }
 
-
-        #endregion
+        #endregion Public Methods
 
         #region Protected Properties
 
@@ -396,7 +390,7 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_ADDITION; }
         }
 
-        #endregion
+        #endregion Protected Properties
 
         #region Nested Classes/Structures
 
@@ -405,7 +399,6 @@ namespace Saga.Factory
         /// </summary>
         public class Info
         {
-
             #region Private Members
 
             /// <summary>
@@ -428,7 +421,7 @@ namespace Saga.Factory
             /// </summary>
             private uint effectDuration = 0;
 
-            #endregion
+            #endregion Private Members
 
             #region Constructor / Deconstructor
 
@@ -441,7 +434,7 @@ namespace Saga.Factory
                 this.del = (ByRefDelegate)method.CreateDelegate(typeof(ByRefDelegate));
             }
 
-            #endregion
+            #endregion Constructor / Deconstructor
 
             #region Internal Methods
 
@@ -490,7 +483,6 @@ namespace Saga.Factory
                 }
             }
 
-            
             /// <summary>
             /// Applies the addition
             /// </summary>
@@ -514,7 +506,7 @@ namespace Saga.Factory
                 }
             }
 
-            #endregion
+            #endregion Internal Methods
 
             #region Public Properties
 
@@ -563,18 +555,14 @@ namespace Saga.Factory
                 }
             }
 
-            #endregion
-
+            #endregion Public Properties
         }
-
-
 
         /// <summary>
         /// Exception thrown when a skill is not found
         /// </summary>
         [Serializable()]
         public class AdditionNotFoundException : Exception { }
-        
 
         /// <summary>
         /// Delegate to match addition subfunctions
@@ -585,10 +573,8 @@ namespace Saga.Factory
         /// <param name="apply">Bool saying to apply or deapply the addition</param>
         public delegate void AdditionHandler(ref AdditionValue state, int value);
 
-
         public delegate void ByRefDelegate(ref AdditionValue a);
 
-        #endregion
-
+        #endregion Nested Classes/Structures
     }
 }

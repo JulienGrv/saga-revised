@@ -1,13 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Saga.Library.Mathemetics
 {
-    static class Yaw
+    internal static class Yaw
     {
-
-
         /// <summary>
         /// Converts yaw to gradians
         /// </summary>
@@ -15,9 +11,9 @@ namespace Saga.Library.Mathemetics
         /// <returns></returns>
         /// <remarks>
         /// This converts Yaw to degrees
-        ///     
+        ///
         /// yaw is specified as the maximum value of a ushort
-        /// which is 65535. Therefor Degrees = Yaw / Max_Yaw * Max_degrees             
+        /// which is 65535. Therefor Degrees = Yaw / Max_Yaw * Max_degrees
         /// </remarks>
         public static int YawToDegrees(int yaw)
         {
@@ -27,27 +23,24 @@ namespace Saga.Library.Mathemetics
             return Convert.ToInt32(float_yaw);
         }
 
-
         /// <summary>
         /// Converts gradians to yaw
         /// </summary>
         /// <param name="degrees"></param>
         /// <returns></returns>
-        /// <remarks>       
+        /// <remarks>
         /// This converts Degrees to Yaw
-        ///    
+        ///
         /// Degrees are specified with the maximum value of 360.
-        /// Therefor Yaw = Degrees / Max_Degrees * Max_Yaw; 
+        /// Therefor Yaw = Degrees / Max_Degrees * Max_Yaw;
         /// </remarks>
         public static int YawFromDegrees(int degrees)
         {
-
             float float_degrees = Convert.ToSingle(degrees) % 360F;
             float_degrees /= 360F;
             float_degrees *= 65535F;
             return Convert.ToInt32(float_degrees);
         }
-
 
         /// <summary>
         /// Checks if Yaw is in range of
@@ -58,7 +51,7 @@ namespace Saga.Library.Mathemetics
         /// <returns></returns>
         /// <remarks>
         /// This function checks if Yaw 1 is in range of Yaw 2 by the range
-        /// measured in yaw units.              
+        /// measured in yaw units.
         /// </remarks>
         public static bool IsYawInRangeOf(int yaw1, int yaw2, int range)
         {

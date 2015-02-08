@@ -1,35 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using Saga.Configuration;
+using Saga.Map.Configuration;
+using Saga.PrimaryTypes;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Xml;
-using Saga.Configuration;
-using Saga.Map.Configuration;
-using Saga.PrimaryTypes;
-using System.Diagnostics;
-using System;
 
 namespace Saga.Factory
 {
     public class ItemsFactory : FactoryBase
     {
-
         #region Ctor/Dtor
 
-        public ItemsFactory() { }
+        public ItemsFactory()
+        {
+        }
 
         ~ItemsFactory()
         {
             this.item_drops = null;
         }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
         public Dictionary<uint, ItemInfo> item_drops;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -74,9 +74,11 @@ namespace Saga.Factory
                                 default: value = null; break;
                             }
                             break;
+
                         case XmlNodeType.Text:
                             value = reader.Value;
                             break;
+
                         case XmlNodeType.EndElement:
                             switch (reader.Name.ToUpperInvariant())
                             {
@@ -108,7 +110,7 @@ namespace Saga.Factory
                                 case "JOBREQUIREMENT":
                                     string[] values = value.Split(',');
                                     item.JobRequirement = new byte[]
-                                    { 
+                                    {
                                         byte.Parse(values[0],  NumberFormatInfo.InvariantInfo),  //NOVICE
                                         byte.Parse(values[1],  NumberFormatInfo.InvariantInfo),  //SWORDSMAN
                                         byte.Parse(values[3],  NumberFormatInfo.InvariantInfo),  //RECRUIT
@@ -121,11 +123,12 @@ namespace Saga.Factory
                                         byte.Parse(values[9],  NumberFormatInfo.InvariantInfo),  //SAGE
                                         byte.Parse(values[10],  NumberFormatInfo.InvariantInfo), //GAMBLER
                                         byte.Parse(values[11],  NumberFormatInfo.InvariantInfo), //FALCATA
-                                        byte.Parse(values[12],  NumberFormatInfo.InvariantInfo), //FPRSYTHIE 
-                                        byte.Parse(values[13],  NumberFormatInfo.InvariantInfo), //NEMOPHILA 
-                                        byte.Parse(values[14],  NumberFormatInfo.InvariantInfo)  //VEILCHENBLAU                                     
+                                        byte.Parse(values[12],  NumberFormatInfo.InvariantInfo), //FPRSYTHIE
+                                        byte.Parse(values[13],  NumberFormatInfo.InvariantInfo), //NEMOPHILA
+                                        byte.Parse(values[14],  NumberFormatInfo.InvariantInfo)  //VEILCHENBLAU
                                     };
                                     break;
+
                                 case "ROW": goto Add;
                             }
                             break;
@@ -138,10 +141,9 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
-
 
         public bool TryGetStackcount(uint id, out byte stackcount)
         {
@@ -153,7 +155,6 @@ namespace Saga.Factory
                 stackcount = info.max_stack;
             return isfound;
         }
-
 
         public bool TryGetItem(uint id, out ItemInfo item)
         {
@@ -195,7 +196,7 @@ namespace Saga.Factory
             return result;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Protected Properties
 
@@ -227,14 +228,13 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_ITEM; }
         }
 
-        #endregion
+        #endregion Protected Properties
 
         #region Nested Classes/Structures
 
         [Serializable()]
         public class ItemInfo
         {
-
             /// <summary>
             /// Id of the item
             /// </summary>
@@ -366,7 +366,7 @@ namespace Saga.Factory
             public uint max_durability;
 
             /// <summary>
-            /// Addition to call when you have this item in your 
+            /// Addition to call when you have this item in your
             /// inventory/equipment slot
             /// </summary>
             public uint option_id;
@@ -382,8 +382,6 @@ namespace Saga.Factory
             public uint categorie;
         }
 
-
-        #endregion
-
+        #endregion Nested Classes/Structures
     }
 }

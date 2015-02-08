@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is broadcasted to all players in a party whenever he/she obtains a 
+    /// This packet is broadcasted to all players in a party whenever he/she obtains a
     /// item he/she looted.
     /// </remarks>
     /// <id>

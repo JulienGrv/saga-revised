@@ -1,9 +1,8 @@
-using System.Configuration;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
-
     /// <summary>
     /// Status by level factory configuration
     /// </summary>
@@ -17,14 +16,13 @@ namespace Saga.Configuration
     /// </example>
     /// <remarks>
     /// This modifies the character experience droprate. Setting this to a value
-    /// above one will make the cexp be based on xx times the normal cexp. 
+    /// above one will make the cexp be based on xx times the normal cexp.
     /// </remarks>
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class StatusByLevelSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
-        /// Get's or sets a the cexp modifier. 
+        /// Get's or sets a the cexp modifier.
         /// </summary>
         /// <example>
         /// This is a example that shows how the element is configured
@@ -36,9 +34,9 @@ namespace Saga.Configuration
         /// </example>
         /// <remarks>
         /// This modifies the character experience droprate. Setting this to a value
-        /// above one will make the cexp be based on xx times the normal cexp. 
+        /// above one will make the cexp be based on xx times the normal cexp.
         /// </remarks>
-        [ConfigurationProperty("cexp", DefaultValue = 1, IsRequired = false)]      
+        [ConfigurationProperty("cexp", DefaultValue = 1, IsRequired = false)]
         [IntegerValidator(MinValue = 1, MaxValue = 20, ExcludeRange = false)]
         public int Cexp
         {
@@ -53,7 +51,7 @@ namespace Saga.Configuration
         }
 
         /// <summary>
-        /// Get's or sets a the jexp modifier. 
+        /// Get's or sets a the jexp modifier.
         /// </summary>
         /// <example>
         /// This is a example that shows how the element is configured
@@ -65,7 +63,7 @@ namespace Saga.Configuration
         /// </example>
         /// <remarks>
         /// This modifies the job experience droprate. Setting this to a value
-        /// above one will make the jexp be based on xx times the normal jexp. 
+        /// above one will make the jexp be based on xx times the normal jexp.
         /// </remarks>
         [ConfigurationProperty("jexp", DefaultValue = 1, IsRequired = false)]
         [IntegerValidator(MinValue = 1, MaxValue = 20, ExcludeRange = false)]
@@ -82,7 +80,7 @@ namespace Saga.Configuration
         }
 
         /// <summary>
-        /// Get's or sets a the wexp modifier. 
+        /// Get's or sets a the wexp modifier.
         /// </summary>
         /// <example>
         /// This is a example that shows how the element is configured
@@ -94,7 +92,7 @@ namespace Saga.Configuration
         /// </example>
         /// <remarks>
         /// This modifies the weapon experience droprate. Setting this to a value
-        /// above one will make the wexp be based on xx times the normal wexp. 
+        /// above one will make the wexp be based on xx times the normal wexp.
         /// </remarks>
         [ConfigurationProperty("wexp", DefaultValue = 1, IsRequired = false)]
         [IntegerValidator(MinValue = 1, MaxValue = 20, ExcludeRange = false)]
@@ -111,7 +109,7 @@ namespace Saga.Configuration
         }
 
         /// <summary>
-        /// Get's or sets a the drate modifier. 
+        /// Get's or sets a the drate modifier.
         /// </summary>
         /// <example>
         /// This is a example that shows how the element is configured

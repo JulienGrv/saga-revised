@@ -1,7 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
+using System.Text;
 
 namespace Saga.Authentication.Packets
 {
@@ -32,7 +31,7 @@ namespace Saga.Authentication.Packets
 
         public byte CountAllServer
         {
-            set { this.data[35] = value; } 
+            set { this.data[35] = value; }
         }
 
         public byte CountAllSurrentServer
@@ -51,7 +50,7 @@ namespace Saga.Authentication.Packets
             UnicodeEncoding.Unicode.GetBytes(charName, 0, Math.Min(16, charName.Length), this.data, offset + 4);
 
             Array.Copy(BitConverter.GetBytes(cExp), 0, this.data, offset + 39, 4);  //CEXP
-            this.data[offset + 43] = job; //JOB            
+            this.data[offset + 43] = job; //JOB
             this.data[offset + 44] = pendingDeletion; //ACTIVE
             this.data[offset + 45] = map; //ZONE
         }

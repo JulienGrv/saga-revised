@@ -2,9 +2,8 @@ using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent when portal information could not be found.
@@ -26,6 +25,5 @@ namespace Saga.Packets
         {
             set { this.data[0] = value; }
         }
-
     }
 }

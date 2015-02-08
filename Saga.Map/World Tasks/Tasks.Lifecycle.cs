@@ -1,30 +1,28 @@
-using System.Collections.Generic;
 using Saga.Enumarations;
 using Saga.PrimaryTypes;
+using System.Collections.Generic;
 
 namespace Saga.Tasks
 {
-
     /// <summary>
     /// LifeCycle taks processes all regeneration attributes. That contributes to
     /// the users in game experience.
     /// </summary>
     public static class LifeCycle
     {
-
         #region Private Members
 
         /// <summary>
         /// List of users associated by their username
         /// </summary>
         private static Dictionary<string, Character> ListOfUsersByName = new Dictionary<string, Character>();
-                
+
         /// <summary>
         /// List of users associated by their session id.
-        /// </summary>        
+        /// </summary>
         private static Dictionary<uint, Character> ListOfUsers = new Dictionary<uint, Character>(30);
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
@@ -56,7 +54,7 @@ namespace Saga.Tasks
 
         /// <summary>
         /// Get character by name
-        /// </summary>        
+        /// </summary>
         /// <returns></returns>
         public static bool TryGetByName(string name, out Character character)
         {
@@ -88,16 +86,15 @@ namespace Saga.Tasks
                     {
                         ListOfUsersByName.Add(character.Name.ToUpperInvariant(), character);
                     }
-      
+
                     ListOfUsers.Add(character.id, character);
                 }
             }
         }
 
-
         /// <summary>
         /// This function unsubscribes a character from the list of users
-        /// indexed by their session id. (Is the same as the character id.                    
+        /// indexed by their session id. (Is the same as the character id.
         /// </summary>
         /// <param name="character"></param>
         public static void Unsubscribe(Character character)
@@ -113,7 +110,7 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Intenernal Members
 
@@ -123,16 +120,16 @@ namespace Saga.Tasks
         /// </summary>
         /// <remarks>
         /// This function proccessed all characters in the specified for the list.
-        /// regeneration of both HP and SP. We need to process them both here to 
+        /// regeneration of both HP and SP. We need to process them both here to
         /// prevent duplicate packets.
-        /// 
+        ///
         /// For example when we would have used a timer apprpoach here we'ld have to set
         /// two sepperate timers for both SP and HP. Both can have their own recovery rates.
-        /// 
-        /// Note: When a player's state is seen as dead, no packets are processed. So only 
+        ///
+        /// Note: When a player's state is seen as dead, no packets are processed. So only
         /// process thsses packets when players stance ! 7 (where 7 resembles death)
-        /// 
-        /// To prevent duplicate packets we'll set UPDATE to true once 1 on the functions, read 
+        ///
+        /// To prevent duplicate packets we'll set UPDATE to true once 1 on the functions, read
         /// SPRECOVERY or HPRECOVERY is processed in the same scope. Once we're finished with
         /// processing send the character updates.
         /// </remarks>
@@ -154,8 +151,8 @@ namespace Saga.Tasks
 
                     //PROCESS UPDATES
                     if (result > 0 || result2 == true)
-                         Update(c.Value);
-                     c.Value.UpdateAdditions();
+                        Update(c.Value);
+                    c.Value.UpdateAdditions();
                 }
             }
         }
@@ -180,8 +177,8 @@ namespace Saga.Tasks
                         foreach (Character target in character.sessionParty._Characters)
                         {
                             if (target.id == character.id) continue;
-                            Common.Actions.UpdateMemberHp(target, character);                            
-                            Common.Actions.UpdateMemberSp(target, character);                           
+                            Common.Actions.UpdateMemberHp(target, character);
+                            Common.Actions.UpdateMemberSp(target, character);
                         }
                     }
                 }
@@ -198,7 +195,6 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
-
+        #endregion Intenernal Members
     }
 }

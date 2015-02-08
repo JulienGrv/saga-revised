@@ -1,37 +1,36 @@
+using Saga.Map;
+using Saga.PrimaryTypes;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using Saga.Map;
-using Saga.PrimaryTypes;
 
 namespace Saga.Tasks
 {
     internal static class MailService
     {
-
         #region Private Members
 
         /// <summary>
         /// List of AI pending for deletion
         /// </summary>
-        static Queue<KeyValuePair<string, uint>> ProcessingQueuee = new Queue<KeyValuePair<string, uint>>();
+        private static Queue<KeyValuePair<string, uint>> ProcessingQueuee = new Queue<KeyValuePair<string, uint>>();
 
         /// <summary>
         /// Last tickcount when the MailService was refreshed
         /// </summary>
-        static int LastRefreshTick = Environment.TickCount;
+        private static int LastRefreshTick = Environment.TickCount;
 
         /// <summary>
         /// Object to synclock all items
         /// </summary>
-        static object synclock = new object();
+        private static object synclock = new object();
 
-        #endregion
+        #endregion Private Members
 
         #region Internal Members
 
         /// <summary>
-        /// Processes all AI threads. 
+        /// Processes all AI threads.
         /// </summary>
         /// <remarks>
         /// If the qeuee get's to big reprioritize the
@@ -39,7 +38,6 @@ namespace Saga.Tasks
         /// </remarks>
         internal static void Process()
         {
-
             try
             {
                 //SET PRIORITY OF THE THREAD
@@ -51,7 +49,6 @@ namespace Saga.Tasks
                     else if (count > 20)
                         Thread.CurrentThread.Priority = ThreadPriority.Lowest;
                 }
-
 
                 int i = 0;
                 while (ProcessingQueuee.Count > 0)
@@ -72,7 +69,6 @@ namespace Saga.Tasks
                     if (i > 10000) break;
                 }
 
-
                 //REFRESHES THE MAILING QUEUEE
                 if (Environment.TickCount - LastRefreshTick > 6000)
                 {
@@ -82,7 +78,6 @@ namespace Saga.Tasks
                     foreach (KeyValuePair<string, uint> pair in Singleton.Database.GetPendingMails())
                         ProcessingQueuee.Enqueue(pair);
                 }
-
             }
             catch (ThreadAbortException ex)
             {
@@ -94,7 +89,6 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
-
+        #endregion Internal Members
     }
 }

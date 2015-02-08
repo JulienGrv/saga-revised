@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
+using System.Text;
 
 namespace Saga.Shared.PacketLib.Login
 {
-
     public class SMSG_INTERNAL_CHARACTERCREATE : RelayPacket
     {
-
         public SMSG_INTERNAL_CHARACTERCREATE()
         {
             this.Cmd = 0x0501;
@@ -84,9 +81,8 @@ namespace Saga.Shared.PacketLib.Login
         {
             set
             {
-                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 74, 2);                
+                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 74, 2);
             }
         }
-
     }
 }

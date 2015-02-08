@@ -1,18 +1,12 @@
+using Saga.PrimaryTypes;
+using Saga.Tasks;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.Managers;
-using Saga.Map.Definitions.Misc;
-using Saga.Tasks;
-using Saga.Quests.Objectives;
-using Saga.PrimaryTypes;
 
 namespace Saga.Quests
 {
     static partial class QUEST_TABLE
     {
-
         /// <title>Saga.FindQuestItem</title>
         /// <code>
         /// Saga.FindQuestItem(QuestId, NPCId, ItemId, Ratio);
@@ -21,24 +15,22 @@ namespace Saga.Quests
         /// Returns the number of item occurences of the specified item.
         /// </description>
         /// <example>
-        /// local ItemCount = 
+        /// local ItemCount =
         /// Saga.FindQuestItem(cid, QuestId, 101, 10026, 2630, 1000);
         /// Saga.FindQuestItem(cid, QuestId, 101, 10027, 2630, 1000);
         /// Saga.FindQuestItem(cid, QuestId, 101, 10028, 2630, 1000);
         /// Saga.FindQuestItem(cid, QuestId, 101, 10029, 2630, 1000);
         /// if ItemCount > 6
-	    ///     Saga.CompleteStep(cid, QuestID, 101);
+        ///     Saga.CompleteStep(cid, QuestID, 101);
         /// else
-	    ///     return -1;
+        ///     return -1;
         /// end
         /// return 0;
         /// </example>
         public static int FindQuestItem(uint cid, uint QID, uint stepid, uint npcid, uint itemid, uint rate, uint count, uint substepid)
         {
-
             try
             {
-
                 substepid--;
 
                 //HELPER VARIABLES
@@ -68,7 +60,7 @@ namespace Saga.Quests
                                 itemid,     //item to get
                                 rate,       //rate at which it drops
                                 npcid,      //the npc which drops it
-                                QID,        //Quest                  
+                                QID,        //Quest
                                 stepid,     //Step of the quest
                                 (int)substepid   //Substep of the quest (is needed for number of items)
                             )
@@ -88,7 +80,6 @@ namespace Saga.Quests
                                 )
                             );
                         }
-
                     }
 
                     List<Saga.Quests.Objectives.ObjectiveList.Loot2> NonDiscardable = value.QuestObjectives.NonDiscardableItems;

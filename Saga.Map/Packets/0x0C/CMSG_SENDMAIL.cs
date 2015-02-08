@@ -1,12 +1,11 @@
-using System;
 using Saga.Network;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet sent by the user to indicate he or she wants
@@ -20,7 +19,6 @@ namespace Saga.Packets
         public CMSG_SENDMAIL()
         {
         }
-
 
         public string Name
         {
@@ -36,7 +34,7 @@ namespace Saga.Packets
             {
                 return this.data[34];
             }
-        }       
+        }
 
         public byte Slot
         {
@@ -56,9 +54,9 @@ namespace Saga.Packets
 
         public uint Zeny
         {
-            get 
+            get
             {
-                return BitConverter.ToUInt32(this.data, 40); 
+                return BitConverter.ToUInt32(this.data, 40);
             }
         }
 
@@ -87,8 +85,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -101,6 +99,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

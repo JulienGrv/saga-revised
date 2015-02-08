@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
 using Saga.Structures;
+using System;
 
 namespace Saga.Map.Librairies
 {
     public static class Vector
     {
-        
         /// <summary>
         /// Internally used to generate random values.
         /// </summary>
@@ -43,9 +39,6 @@ namespace Saga.Map.Librairies
             return Math.Abs(distance);
         }
 
-
-
-
         public static float[] GetRandomPos2(float x, float y, float range)
         {
             float[] pos = new float[3];
@@ -61,7 +54,6 @@ namespace Saga.Map.Librairies
             return pos;
         }
 
-        
         [Obsolete("Old saga", false)]
         public static float[] GetRandomPos(float x, float y, float range)
         {
@@ -80,7 +72,7 @@ namespace Saga.Map.Librairies
         {
             float[] univec = new float[3];
             int rand = new Random().Next(0, 360);
-                        
+
             if (rand % 90 == 0)
             {
                 switch (rand)
@@ -138,7 +130,6 @@ namespace Saga.Map.Librairies
             return res;
         }
 
-
         [Obsolete("Old saga", false)]
         public static int[] ScalarProduct(int[] src, int scalar)
         {
@@ -158,6 +149,5 @@ namespace Saga.Map.Librairies
             dst[2] = v1[2] + v2[2];
             return dst;
         }
-
     }
 }

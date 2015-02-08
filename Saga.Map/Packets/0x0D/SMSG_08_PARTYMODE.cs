@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet appears is broadcasted to all players in a party to
@@ -41,7 +36,6 @@ namespace Saga.Packets
         {
             set { this.data[2] = value; }
         }
-
 
         public uint LootMaster
         {

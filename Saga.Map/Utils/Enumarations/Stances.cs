@@ -1,4 +1,3 @@
-
 namespace Saga.Enumarations
 {
     /// <summary>
@@ -6,7 +5,6 @@ namespace Saga.Enumarations
     /// </summary>
     public enum StancePosition : byte
     {
-
         /// <summary>
         /// No stance (default is stand 3)
         /// </summary>
@@ -77,6 +75,5 @@ namespace Saga.Enumarations
         /// Renders the actor dancing.
         /// </summary>
         Dances = 12
-
     };
 }

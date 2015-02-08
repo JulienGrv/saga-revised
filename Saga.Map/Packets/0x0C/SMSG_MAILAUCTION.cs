@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent to the client as an reply on the auction house causing a new mail 
+    /// This packet is sent to the client as an reply on the auction house causing a new mail
     /// item to be added to your maillist. Note that this packet is incremental.
     /// </remarks>
     /// <id>

@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
 using Saga.Structures;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Sends a new item actor to the character
     /// </summary>
     /// <remarks>
-    /// This packet adds a new action object with a known. 
+    /// This packet adds a new action object with a known.
     /// Still quite a lot is unknown.
     /// </remarks>
     /// <id>

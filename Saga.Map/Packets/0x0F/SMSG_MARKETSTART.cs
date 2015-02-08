@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
     /// <remarks>
     /// This packet will invoke the client to show the market dialog. Where you
-    /// can register items and or buy new ones. When the market is started the 
+    /// can register items and or buy new ones. When the market is started the
     /// items are not automaticly displayed.
     /// </remarks>
     /// <id>
@@ -26,7 +22,7 @@ namespace Saga.Packets
 
         public byte Unknown
         {
-            set { this.data[0] = value; } 
+            set { this.data[0] = value; }
         }
 
         public uint Actor

@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Configuration;
-using System.ComponentModel;
-using Saga.Map;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
@@ -22,7 +17,6 @@ namespace Saga.Configuration
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class EventSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
         /// Get's or sets a list of files containing the experience information
         /// </summary>
@@ -39,7 +33,6 @@ namespace Saga.Configuration
         {
             get { return ((FactoryFileCollection)(base["Files"])); }
         }
-
 
         /// <summary>
         /// Get's or sets the plugin provider to use
@@ -69,7 +62,5 @@ namespace Saga.Configuration
                 this["provider"] = value.ToString();
             }
         }
-
-
     }
 }

@@ -1,21 +1,19 @@
-using System;
-using System.Collections.Generic;
 using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Map.Client
 {
     partial class Client
     {
-
         /// <summary>
         /// Registers a new friend to your friendlist.
         /// </summary>
         /// <param name="cpkt"></param>
         private void CM_FRIENDLIST_REGISTER(CMSG_FRIENDLIST_REGISTER cpkt)
         {
-
             //HELPER VARIABLES
             byte result = 0;
             byte clvl = 0;
@@ -71,9 +69,8 @@ namespace Saga.Map.Client
             spkt.Map = map;
             spkt.SessionId = cpkt.SessionId;
             spkt.Reason = result;
-            this.Send((byte[])spkt);     
+            this.Send((byte[])spkt);
         }
-
 
         /// <summary>
         /// Unregisters a friend from the friend list.
@@ -86,7 +83,6 @@ namespace Saga.Map.Client
             string nname = cpkt.Name;
             string name = cpkt.Name.ToUpperInvariant();
 
-
             //CHECK IF A PLAYER IS SELECTED
             if (name.Length == 0)
             {
@@ -97,7 +93,7 @@ namespace Saga.Map.Client
             else if (!character._friendlist.Remove(nname))
             {
                 result = 5;
-            }          
+            }
             //EVERYTHING IS OKAY
             else
             {
@@ -112,7 +108,6 @@ namespace Saga.Map.Client
             this.Send((byte[])spkt);
         }
 
-
         /// <summary>
         /// Refreshes the friendlist.
         /// </summary>
@@ -121,7 +116,6 @@ namespace Saga.Map.Client
         {
             //HELPER VARIABLES
             Character character = this.character;
-
 
             //GENERATE A NEW FRIENDLIST PACKET
             SMSG_FRIENDLIST_REFRESH spkt = new SMSG_FRIENDLIST_REFRESH();
@@ -141,7 +135,6 @@ namespace Saga.Map.Client
             this.Send((byte[])spkt);
         }
 
-
         /// <summary>
         /// Registers a new person to your blacklist.
         /// </summary>
@@ -151,14 +144,13 @@ namespace Saga.Map.Client
             //HELPER VARIABLES
             byte result = 0;
             byte reason = cpkt.Reason;
-            string nname = cpkt.Name;            
-            string name = cpkt.Name.ToUpperInvariant();            
+            string nname = cpkt.Name;
+            string name = cpkt.Name.ToUpperInvariant();
 
             Predicate<KeyValuePair<string, byte>> searchQuery = delegate(KeyValuePair<string, byte> pair)
             {
                 return pair.Key.ToUpperInvariant() == name;
             };
-
 
             //CHECK IF YOU CHOOSE YOURSELF
             if (character.Name.ToUpperInvariant() == name)
@@ -198,7 +190,6 @@ namespace Saga.Map.Client
             this.Send((byte[])spkt);
         }
 
-
         /// <summary>
         /// Unregisters a existing person from your blacklist.
         /// </summary>
@@ -215,7 +206,6 @@ namespace Saga.Map.Client
             {
                 return pair.Key.ToUpperInvariant() == name;
             };
-
 
             //CHECK IF A PLAYER IS SELECTED
             if (name.Length == 0)
@@ -242,7 +232,6 @@ namespace Saga.Map.Client
             this.Send((byte[])spkt);
         }
 
-
         /// <summary>
         /// Refreshes the blacklist.
         /// </summary>
@@ -254,10 +243,8 @@ namespace Saga.Map.Client
             SMSG_BLACKLIST_REFRESH spkt = new SMSG_BLACKLIST_REFRESH();
             spkt.SessionId = cpkt.SessionId;
             foreach (KeyValuePair<string, byte> s in character._blacklist)
-            spkt.Add(s.Key, s.Value);
+                spkt.Add(s.Key, s.Value);
             this.Send((byte[])spkt);
         }
-
-
     }
 }

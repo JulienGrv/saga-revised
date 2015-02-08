@@ -1,14 +1,14 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent by the client when the click on a job in the available
-    /// job-list when changing. It then calculates the costs to change to the 
+    /// job-list when changing. It then calculates the costs to change to the
     /// given job and returns the costs with packet.
     /// </remarks>
     /// <id>
@@ -23,7 +23,7 @@ namespace Saga.Packets
 
         public byte Job
         {
-            get { return this.data[0];}
+            get { return this.data[0]; }
         }
 
         #region Conversions
@@ -35,8 +35,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -49,6 +49,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

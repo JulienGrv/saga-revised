@@ -1,15 +1,11 @@
 using System.Configuration;
-using Saga.Map.Configuration;
 
 namespace Saga.Configuration
 {
-
-
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class ServerVars : ConfigurationSection
     {
-
-        [ConfigurationProperty("datadir", DefaultValue="", IsRequired = true)]
+        [ConfigurationProperty("datadir", DefaultValue = "", IsRequired = true)]
         public string DataDirectory
         {
             get
@@ -20,14 +16,12 @@ namespace Saga.Configuration
             {
                 this["datadir"] = value.ToString();
             }
-        }        
-
+        }
     }
 
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class ConsoleVars : ConfigurationSection
     {
-
         [ConfigurationProperty("commandprefix", IsRequired = true)]
         public string CommandPrefix
         {
@@ -53,6 +47,5 @@ namespace Saga.Configuration
                 this["outputcommand"] = value.ToString(System.Globalization.CultureInfo.InvariantCulture);
             }
         }
-
     }
 }

@@ -1,12 +1,9 @@
-using Saga.Npc.Functions;
 using Saga.Structures;
 
 namespace Saga.Templates
 {
-
     public class Warper : BaseNPC
     {
-
         #region Base Members
 
         protected override void Initialize()
@@ -17,15 +14,18 @@ namespace Saga.Templates
             NpcFunction.Create<Saga.Npc.Functions.QuestConversation>(this);
         }
 
-        #endregion
+        #endregion Base Members
 
         #region Constructor/Deconstructor
 
-        ~Warper() { }
-        public Warper() { }
+        ~Warper()
+        {
+        }
 
-        #endregion
+        public Warper()
+        {
+        }
 
+        #endregion Constructor/Deconstructor
     }
-
 }

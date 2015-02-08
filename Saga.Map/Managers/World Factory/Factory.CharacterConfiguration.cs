@@ -1,30 +1,30 @@
-﻿using System;
+﻿using Saga.Configuration;
+using Saga.Map;
+using Saga.Map.Configuration;
+using Saga.PrimaryTypes;
+using Saga.Structures;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
-using Saga.Configuration;
-using Saga.Map;
-using Saga.Map.Configuration;
-using Saga.PrimaryTypes;
-using System.Diagnostics;
-using Saga.Structures;
 
 namespace Saga.Factory
 {
     public class CharacterConfiguration : FactoryBase
     {
-
         #region Ctor/Dtor
 
-        public CharacterConfiguration() { }
+        public CharacterConfiguration()
+        {
+        }
 
         ~CharacterConfiguration()
         {
             this.maps = null;
         }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
@@ -36,17 +36,15 @@ namespace Saga.Factory
         //Contains all startup information for norman race
         private NormanDefaultConfiguration normanConfiguration = new NormanDefaultConfiguration();
 
-        //Contains all startup information for ellr race 
+        //Contains all startup information for ellr race
         //Note: Ellr are currently not supported but future references
         private IDefaultCharacterSettings ellrConfiguration;
 
-        //Contains all startup information for dimago race 
+        //Contains all startup information for dimago race
         //Note: Dimago are currently not supported but future references
         private IDefaultCharacterSettings dimagoConfiguration;
 
-        #endregion
-
-
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -79,12 +77,10 @@ namespace Saga.Factory
                 c.ReadLine();
                 while (c.Peek() > 0)
                 {
-                    
                     //REPORT PROGRESS
                     ProgressReport.Invoke();
                     String row = c.ReadLine();
                     String[] fields = row.Split(',');
-                    
 
                     maps.Add(
 
@@ -96,18 +92,18 @@ namespace Saga.Factory
                         (
                             ushort.Parse(fields[2], NumberFormatInfo.InvariantInfo),
                             ushort.Parse(fields[3], NumberFormatInfo.InvariantInfo),
-                            ushort.Parse(fields[4], NumberFormatInfo.InvariantInfo)                        
-                        )                    
+                            ushort.Parse(fields[4], NumberFormatInfo.InvariantInfo)
+                        )
                     );
                 }
             }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
-           /// <summary>
+        /// <summary>
         /// Checks if the specified character-configuration is hosted by the server.
         /// </summary>
         /// <param name="id">Job of the character</param>
@@ -128,12 +124,11 @@ namespace Saga.Factory
             return maps.TryGetValue(id, out configuration);
         }
 
-
         /// <summary>
         /// Appplies the character configuration to the specified character.
         /// </summary>
         /// <remarks>
-        /// Character configuration is job based. So we need to determine the 
+        /// Character configuration is job based. So we need to determine the
         /// base stats.
         /// </remarks>
         /// <param name="character"></param>
@@ -148,7 +143,7 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Methods
 
@@ -176,7 +171,7 @@ namespace Saga.Factory
             return result;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Properties
 
@@ -192,7 +187,7 @@ namespace Saga.Factory
         }
 
         ///<summary>
-        ///Contains all startup information for ellr race 
+        ///Contains all startup information for ellr race
         ///</summary>
         ///<remarks>
         ///Note: Ellr are currently not supported but future references
@@ -206,7 +201,7 @@ namespace Saga.Factory
         }
 
         ///<summary>
-        ///Contains all startup information for Dimago race 
+        ///Contains all startup information for Dimago race
         ///</summary>
         ///<remarks>
         ///Note: Dimago are currently not supported but future references
@@ -219,7 +214,7 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Protected Properties
 
@@ -251,16 +246,15 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_CHARACTERCONFIGURATION; }
         }
 
-        #endregion
+        #endregion Protected Properties
 
         #region Nested Classes/Structures
 
         /// <summary>
-        /// Contains the character configuration 
+        /// Contains the character configuration
         /// </summary>
         public class Info
         {
-
             /// <summary>
             /// Maximum Physical Attack
             /// </summary>
@@ -275,7 +269,6 @@ namespace Saga.Factory
             /// Maximum Magical Attack
             /// </summary>
             public ushort MagicalAttack = 0;
-
 
             /// <summary>
             /// Creates a new information entry
@@ -294,13 +287,14 @@ namespace Saga.Factory
         public interface IDefaultCharacterSettings
         {
             WorldCoordinate DefaultLocation { get; }
+
             WorldCoordinate DefaultSaveLocation { get; }
+
             bool create(out Character c, CharCreationArgument e);
         }
 
         private class NormanDefaultConfiguration : IDefaultCharacterSettings
         {
-
             public WorldCoordinate DefaultLocation
             {
                 get
@@ -325,6 +319,7 @@ namespace Saga.Factory
                     return DefaultLocation;
                 }
             }
+
             WorldCoordinate IDefaultCharacterSettings.DefaultSaveLocation
             {
                 get
@@ -332,6 +327,7 @@ namespace Saga.Factory
                     return DefaultSaveLocation;
                 }
             }
+
             bool IDefaultCharacterSettings.create(out Character character, CharCreationArgument e)
             {
                 //---------------------------------------------------------------------------
@@ -401,7 +397,6 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
-
+        #endregion Nested Classes/Structures
     }
 }

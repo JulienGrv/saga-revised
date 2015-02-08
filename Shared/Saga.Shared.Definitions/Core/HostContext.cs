@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
 
 namespace Saga
 {
     public sealed class HostContext
     {
-
-        static TraceLog managers = new TraceLog("General", "Entire Application", 4);
+        private static TraceLog managers = new TraceLog("General", "Entire Application", 4);
 
         #region Ctor/Dtor
 
-        HostContext()
+        private HostContext()
         {
         }
 
@@ -22,7 +19,7 @@ namespace Saga
                 OnClose.Invoke(this, EventArgs.Empty);
         }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Methods
 
@@ -68,25 +65,30 @@ namespace Saga
                 OnLoad.Invoke(this, EventArgs.Empty);
         }
 
-        #endregion
+        #endregion Internal Methods
 
         #region Private Static Members
 
         private static HostContext _current = null;
         private static List<Exception> _exceptionlist = new List<Exception>();
 
-        #endregion
+        #endregion Private Static Members
 
         #region Public Events
 
         public event EventHandler OnInitialize;
+
         public event EventHandler OnBeforeQuerySettings;
+
         public event EventHandler OnAfterQuerySettings;
+
         public event EventHandler OnLoad;
+
         public event EventHandler OnLoaded;
+
         public event EventHandler OnClose;
 
-        #endregion
+        #endregion Public Events
 
         #region Public Properties
 
@@ -98,8 +100,7 @@ namespace Saga
             }
         }
 
-
-        #endregion
+        #endregion Public Properties
 
         #region Public Methods
 
@@ -113,7 +114,7 @@ namespace Saga
             _exceptionlist.Clear();
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Static Methods
 
@@ -133,7 +134,6 @@ namespace Saga
             }
         }
 
-        #endregion
-
+        #endregion Public Static Methods
     }
 }

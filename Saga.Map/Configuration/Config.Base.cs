@@ -11,7 +11,7 @@ namespace Saga.Map.Configuration
     {
         public void Add(FactoryFileElement element)
         {
-            BaseAdd(element,false);
+            BaseAdd(element, false);
         }
 
         /// <summary>
@@ -104,19 +104,23 @@ namespace Saga.Map.Configuration
         }
     }
 
-
     /// <summary>
     /// Configuration element speciafiing a file and it's fileformat.
     /// </summary>
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class FactoryFileElement : ConfigurationElement
     {
+        public FactoryFileElement()
+        {
+        }
 
-        public FactoryFileElement() { }
-        public FactoryFileElement(string path) {
+        public FactoryFileElement(string path)
+        {
             this.Path = path;
         }
-        public FactoryFileElement(string path, string format) {
+
+        public FactoryFileElement(string path, string format)
+        {
             this.Path = path;
             this.Reader = format;
         }
@@ -160,8 +164,10 @@ namespace Saga.Map.Configuration
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class NetworkElement : ConfigurationElement
     {
+        public NetworkElement()
+        {
+        }
 
-        public NetworkElement() { }
         public NetworkElement(string connection, string host, int port)
         {
             base["connection"] = connection;

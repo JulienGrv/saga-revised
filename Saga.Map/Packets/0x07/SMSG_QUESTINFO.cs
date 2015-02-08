@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_QUESTINFO : RelayPacket
     {
         public SMSG_QUESTINFO()
@@ -18,10 +14,11 @@ namespace Saga.Packets
 
         public byte count
         {
-            set { this.data[0] = value; }     
+            set { this.data[0] = value; }
         }
 
-        int questindex = 0;
+        private int questindex = 0;
+
         public void AddQuest(uint QuestId, byte QuestSteps)
         {
             Array.Copy(BitConverter.GetBytes(QuestId), 0, this.data, 1 + (4 * questindex), 4);
@@ -30,7 +27,8 @@ namespace Saga.Packets
             this.data[0] = (byte)++questindex;
         }
 
-        int offset = 87;
+        private int offset = 87;
+
         public void AddQuestStep(uint StepID, byte Status, uint NextStep, bool isnew)
         {
             Array.Copy(BitConverter.GetBytes(StepID), 0, this.data, offset + 0, 4);

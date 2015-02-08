@@ -1,7 +1,5 @@
-
 namespace Saga.Enumarations
 {
-
     /// <summary>
     /// List of trading results
     /// </summary>
@@ -11,7 +9,6 @@ namespace Saga.Enumarations
     /// </remarks>
     public enum TradeResult
     {
-
         /// <summary>
         /// Doesn't show a message
         /// </summary>
@@ -21,7 +18,7 @@ namespace Saga.Enumarations
         /// Shows a message that the target actor wasn't found
         /// </summary>
         TargetNotFound = 1,
-        
+
         /// <summary>
         /// Shows a message that the target has canceled the trade
         /// </summary>
@@ -62,5 +59,4 @@ namespace Saga.Enumarations
         /// </summary>
         Error = 9,
     }
-
 }

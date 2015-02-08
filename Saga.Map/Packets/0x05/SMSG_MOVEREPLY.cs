@@ -1,15 +1,13 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent as a reply to indicate the movement is sucessfull 
-    /// or has some errors. The client after the request to move the item will 
+    /// This packet is sent as a reply to indicate the movement is sucessfull
+    /// or has some errors. The client after the request to move the item will
     /// block all other packets untill he/she has attained this packet.
     /// </remarks>
     /// <id>
@@ -26,7 +24,7 @@ namespace Saga.Packets
 
         public byte Index
         {
-            set { this.data[0] = value;  }
+            set { this.data[0] = value; }
         }
 
         public byte MovementType

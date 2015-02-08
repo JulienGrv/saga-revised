@@ -3,37 +3,35 @@ using System.Globalization;
 
 namespace Saga.Configuration
 {
-
     /// <summary>
     /// Database manager configuration
     /// </summary>
     /// <example>
     /// This is a example that shows how the element is configured
     /// <code>
-    /// <![CDATA[<Saga.Manager.Database 
-    ///     username="root" 
-    ///     password="root" 
-    ///     port="3306" 
-    ///     database="saga1" 
-    ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"  
+    /// <![CDATA[<Saga.Manager.Database
+    ///     username="root"
+    ///     password="root"
+    ///     port="3306"
+    ///     database="saga1"
+    ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"
     /// />]]></code>
     /// </example>
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class DatabaseSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
         /// Get's or set's the provider to for the database management.
         /// </summary>
         /// <example>
         /// This is a example that shows how the element is configured
         /// <code>
-        /// <![CDATA[<Saga.Manager.Database 
-        ///     username="root" 
-        ///     password="root" 
-        ///     port="3306" 
-        ///     database="saga1" 
-        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"  
+        /// <![CDATA[<Saga.Manager.Database
+        ///     username="root"
+        ///     password="root"
+        ///     port="3306"
+        ///     database="saga1"
+        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"
         /// />]]></code>
         /// </example>
         /// <remarks>
@@ -54,19 +52,18 @@ namespace Saga.Configuration
             }
         }
 
-
         /// <summary>
         /// Get's or set's the host to connect to.
         /// </summary>
         /// <example>
         /// This is a example that shows how the element is configured
         /// <code>
-        /// <![CDATA[<Saga.Manager.Database 
-        ///     username="root" 
-        ///     password="root" 
-        ///     port="3306" 
-        ///     database="saga1" 
-        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"  
+        /// <![CDATA[<Saga.Manager.Database
+        ///     username="root"
+        ///     password="root"
+        ///     port="3306"
+        ///     database="saga1"
+        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"
         /// />]]></code>
         /// </example>
         /// <remarks>
@@ -91,12 +88,12 @@ namespace Saga.Configuration
         /// <example>
         /// This is a example that shows how the element is configured
         /// <code>
-        /// <![CDATA[<Saga.Manager.Database 
-        ///     username="root" 
-        ///     password="root" 
-        ///     port="3306" 
-        ///     database="saga1" 
-        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"  
+        /// <![CDATA[<Saga.Manager.Database
+        ///     username="root"
+        ///     password="root"
+        ///     port="3306"
+        ///     database="saga1"
+        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"
         /// />]]></code>
         /// </example>
         /// <remarks>
@@ -121,12 +118,12 @@ namespace Saga.Configuration
         /// <example>
         /// This is a example that shows how the element is configured
         /// <code>
-        /// <![CDATA[<Saga.Manager.Database 
-        ///     username="root" 
-        ///     password="root" 
-        ///     port="3306" 
-        ///     database="saga1" 
-        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"  
+        /// <![CDATA[<Saga.Manager.Database
+        ///     username="root"
+        ///     password="root"
+        ///     port="3306"
+        ///     database="saga1"
+        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"
         /// />]]></code>
         /// </example>
         /// <remarks>
@@ -151,12 +148,12 @@ namespace Saga.Configuration
         /// <example>
         /// This is a example that shows how the element is configured
         /// <code>
-        /// <![CDATA[<Saga.Manager.Database 
-        ///     username="root" 
-        ///     password="root" 
-        ///     port="3306" 
-        ///     database="saga1" 
-        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"  
+        /// <![CDATA[<Saga.Manager.Database
+        ///     username="root"
+        ///     password="root"
+        ///     port="3306"
+        ///     database="saga1"
+        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"
         /// />]]></code>
         /// </example>
         /// <remarks>
@@ -181,12 +178,12 @@ namespace Saga.Configuration
         /// <example>
         /// This is a example that shows how the element is configured
         /// <code>
-        /// <![CDATA[<Saga.Manager.Database 
-        ///     username="root" 
-        ///     password="root" 
-        ///     port="3306" 
-        ///     database="saga1" 
-        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"  
+        /// <![CDATA[<Saga.Manager.Database
+        ///     username="root"
+        ///     password="root"
+        ///     port="3306"
+        ///     database="saga1"
+        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"
         /// />]]></code>
         /// </example>
         /// <remarks>
@@ -208,19 +205,18 @@ namespace Saga.Configuration
             }
         }
 
-
         /// <summary>
         /// Get's or set's the database to connect to
         /// </summary>
         /// <example>
         /// This is a example that shows how the element is configured
         /// <code>
-        /// <![CDATA[<Saga.Manager.Database 
-        ///     username="root" 
-        ///     password="root" 
-        ///     port="3306" 
-        ///     database="saga1" 
-        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"  
+        /// <![CDATA[<Saga.Manager.Database
+        ///     username="root"
+        ///     password="root"
+        ///     port="3306"
+        ///     database="saga1"
+        ///     provider="Saga.Map.Data.Mysql.dll, Saga.Map.Data.Mysql.MysqlProvider"
         /// />]]></code>
         /// </example>
         /// <remarks>
@@ -238,6 +234,5 @@ namespace Saga.Configuration
                 this["database"] = value.ToString(CultureInfo.InvariantCulture);
             }
         }
-
     }
 }

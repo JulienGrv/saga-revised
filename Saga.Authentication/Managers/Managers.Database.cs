@@ -1,31 +1,32 @@
-﻿using System;
+﻿using Saga.Authentication.Structures;
+using Saga.Authentication.Utils.Definitions.Misc;
+using Saga.Configuration;
+using Saga.Data;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
-using Saga.Authentication.Utils.Definitions.Misc;
-using Saga.Data;
-using Saga.Configuration;
-using Saga.Authentication.Structures;
 using System.Net;
 
 namespace Saga.Managers
 {
     public class Database : ManagerBase2
     {
-
         #region Ctor/Dtor
 
-        public Database() { }
+        public Database()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
         //Settings
         internal IDatabase InternalDatabaseProvider;
-        ConnectionInfo info;
 
-        #endregion
+        private ConnectionInfo info;
+
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -34,7 +35,6 @@ namespace Saga.Managers
             info = new ConnectionInfo();
             try
             {
-
                 //CONTRUCT CONNECTION INFO
                 DatabaseSettings section = (DatabaseSettings)ConfigurationManager.GetSection("Saga.Manager.Database");
                 info.host = section.Host;
@@ -73,7 +73,6 @@ namespace Saga.Managers
                     WriteError("DatabaseManager", "Cannot initialize manager");
                 }
                 //InternalDatabaseProvider = new MysqlBackend();
-
             }
             catch (Exception)
             {
@@ -105,7 +104,7 @@ namespace Saga.Managers
             }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Wrapped Methods
 
@@ -116,7 +115,7 @@ namespace Saga.Managers
 
         public bool RemoveWorld(string name)
         {
-            return InternalDatabaseProvider.RemoveWorld( name);
+            return InternalDatabaseProvider.RemoveWorld(name);
         }
 
         public bool RenameWorld(string name, string newname)
@@ -128,6 +127,7 @@ namespace Saga.Managers
         {
             return InternalDatabaseProvider.GetWorldInformation();
         }
+
         public bool Login(string username, out LoginResult result)
         {
             return InternalDatabaseProvider.Login(username, out result);
@@ -223,15 +223,12 @@ namespace Saga.Managers
             return InternalDatabaseProvider.GetAllCharactersOnline();
         }
 
-        #endregion
-
+        #endregion Wrapped Methods
     }
-
 }
 
 namespace Saga.Data
 {
-
     public sealed class ConnectionInfo
     {
         public string host;
@@ -241,5 +238,4 @@ namespace Saga.Data
         public uint port;
         public int pooledconnections;
     }
-
 }

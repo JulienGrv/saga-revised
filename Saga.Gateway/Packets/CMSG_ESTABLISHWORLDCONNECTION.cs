@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is send by the player as result of the player is 
-    /// moving. 
+    /// This packet is send by the player as result of the player is
+    /// moving.
     /// </remarks>
     /// <id>
     /// 0302
@@ -35,7 +31,7 @@ namespace Saga.Packets
 
         public int Port
         {
-            get 
+            get
             {
                 return BitConverter.ToInt32(this.data, 6);
             }
@@ -50,8 +46,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -64,6 +60,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

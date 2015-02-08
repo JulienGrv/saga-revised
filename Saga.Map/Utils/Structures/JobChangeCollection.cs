@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Saga.Packets;
 using Saga.PrimaryTypes;
-using Saga.Packets;
+using System.Collections.Generic;
 
 namespace Saga.Map.Utils.Structures
 {
     public class JobChangeCollection
     {
-
-        List<byte> availablejobs;
-        List<uint> transferfee;
+        private List<byte> availablejobs;
+        private List<uint> transferfee;
 
         public static JobChangeCollection Create(Character target)
         {
@@ -23,7 +20,7 @@ namespace Saga.Map.Utils.Structures
                 if (target.jlvl >= 5)
                 {
                     collection.availablejobs.Add(i);
-                    collection.transferfee.Add(collection.ComputeTransferFee( target, i));
+                    collection.transferfee.Add(collection.ComputeTransferFee(target, i));
                 }
             }
 
@@ -81,6 +78,5 @@ namespace Saga.Map.Utils.Structures
             target.Tag = this;
             target.client.Send((byte[])spkt);
         }
-
     }
 }

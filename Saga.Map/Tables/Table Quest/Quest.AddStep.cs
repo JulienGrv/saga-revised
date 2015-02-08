@@ -1,12 +1,11 @@
-using System.Collections.Generic;
 using Saga.PrimaryTypes;
 using Saga.Tasks;
+using System.Collections.Generic;
 
 namespace Saga.Quests
 {
     public static partial class QUEST_TABLE
     {
-
         /// <title>Saga.AddStep</title>
         /// <code>
         /// Saga.AddStep(cid, QuestID, StepId, State);
@@ -38,7 +37,6 @@ namespace Saga.Quests
             }
         }
 
-
         public static void SendEmptyInventory(uint cid)
         {
             Character character;
@@ -46,7 +44,7 @@ namespace Saga.Quests
             {
                 //Show low inventory space
                 Common.Errors.GeneralErrorMessage(character,
-                    (uint)Enumarations.Generalerror.LowIventorySpace);   
+                    (uint)Enumarations.Generalerror.LowIventorySpace);
             }
         }
 
@@ -60,8 +58,5 @@ namespace Saga.Quests
                     (uint)Enumarations.Generalerror.InventoryItemNotFound);
             }
         }
-
-
-
     }
 }

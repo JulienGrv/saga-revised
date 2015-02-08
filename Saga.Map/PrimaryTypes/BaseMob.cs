@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
-using Saga.Shared.Definitions;
+using Saga.Enumarations;
+using Saga.Packets;
 using Saga.PrimaryTypes;
 using Saga.Structures;
-using Saga.Packets;
-using Saga.Enumarations;
 
 namespace Saga.Map
 {
     public abstract class BaseMob : Actor
     {
-
         #region Appearance
 
         public virtual int ComputeIcon(Character character)
         {
-            return  ( stance == 7 ) ?  4 : 0;
+            return (stance == 7) ? 4 : 0;
         }
 
         public virtual int ComputeIsAggresive(Character character)
@@ -23,18 +19,18 @@ namespace Saga.Map
             return 0;
         }
 
-        #endregion
+        #endregion Appearance
 
         #region Position
 
-        public void WideMovement( params WaypointStructure[] waypoints)
+        public void WideMovement(params WaypointStructure[] waypoints)
         {
             SMSG_WIDEMOVEMENTSTART spkt = new SMSG_WIDEMOVEMENTSTART();
             spkt.SourceActorID = this.id;
             spkt.Speed = (ushort)this.Status.WalkingSpeed;
             for (int i = 0; i < waypoints.Length; i++)
                 spkt.AddWaypoint(waypoints[i].point, waypoints[i].rotation);
-                                    
+
             Regiontree tree = this.currentzone.Regiontree;
             foreach (Character character in tree.SearchActors(SearchFlags.Characters))
             {
@@ -55,7 +51,7 @@ namespace Saga.Map
             character.client.Send((byte[])spkt);
         }
 
-        #endregion
+        #endregion Position
 
         #region Base Members
 
@@ -91,7 +87,6 @@ namespace Saga.Map
             character.client.Send((byte[])spkt2);
         }
 
-        #endregion
-
+        #endregion Base Members
     }
 }

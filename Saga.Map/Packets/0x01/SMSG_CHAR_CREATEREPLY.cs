@@ -1,9 +1,8 @@
-using System;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Shared.PacketLib.Map
 {
-
     internal class SMSG_CHAR_CREATE : RelayPacket
     {
         public SMSG_CHAR_CREATE()

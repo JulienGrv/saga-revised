@@ -1,9 +1,8 @@
-using System.Configuration;
 using Saga.Map.Configuration;
+using System.Configuration;
 
 namespace Saga.Configuration
 {
-
     /// <summary>
     /// World spawn configuration
     /// </summary>
@@ -20,7 +19,6 @@ namespace Saga.Configuration
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class SpawnWorldObjectSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
         /// Get's or sets a list of files containing spawninformaton for npc's and mapitems
         /// </summary>
@@ -39,6 +37,5 @@ namespace Saga.Configuration
         {
             get { return ((FactoryFileCollection)(base["Files"])); }
         }
-
     }
 }

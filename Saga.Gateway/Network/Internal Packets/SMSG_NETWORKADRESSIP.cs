@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 using System.Net;
 
 namespace Saga.Packets
 {
-
     public class SMSG_NETWORKADRESSIP : RelayPacket
     {
-
         public SMSG_NETWORKADRESSIP()
         {
             this.data = new byte[4];
@@ -24,9 +20,5 @@ namespace Saga.Packets
                 Array.Copy(value.GetAddressBytes(), 0, this.data, 0, 4);
             }
         }
-
     }
-
-    
-
 }

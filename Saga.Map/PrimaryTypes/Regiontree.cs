@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Saga.Enumarations;
+﻿using Saga.Enumarations;
 using Saga.PrimaryTypes;
 using Saga.Structures;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.Map
 {
     public sealed class Regiontree
     {
-
         #region Private Members
 
         /// <summary>
@@ -35,9 +34,8 @@ namespace Saga.Map
         /// Generates a region code from the current X,Y,Z cooords
         /// </summary>
         /// <returns>Squared regioncode</returns>
-        public static uint GetRegionCode(MapObject regionobject )
+        public static uint GetRegionCode(MapObject regionobject)
         {
-            
             Point pos = regionobject.Position;
             /*
             float x = pos.x;
@@ -46,10 +44,9 @@ namespace Saga.Map
             bool nx = false;
             bool ny = false;
 
-
             short hx = (short)(ux / REGION_DIAMETER);
             short hy = (short)(uy / REGION_DIAMETER);
-             * 
+             *
             if (x < 0) { x = x - (2 * x); nx = true; }
             if (y < 0) { y = y - (2 * y); ny = true; }
 
@@ -111,14 +108,14 @@ namespace Saga.Map
         }
 
         /// <summary>
-        /// Find all near regions near the mapobect. 
+        /// Find all near regions near the mapobect.
         /// The current region is always selected first as optimalisation.
         /// </summary>
         /// <param name="region">RegionCode</param>
-        /// <returns>Enumaration of regions</returns>       
+        /// <returns>Enumaration of regions</returns>
         private IEnumerable<Region> GetNearRegions(uint region)
-        {            
-            Region fregion;            
+        {
+            Region fregion;
             if (regions.TryGetValue(region, out fregion))
                 yield return fregion;
             /*
@@ -132,12 +129,12 @@ namespace Saga.Map
             short by = (short)(region >> 16);
             short bx = (short)(region & 0x0000FFFF);
             for (int y = -1; y <= 1; y++) for (int x = -1; x <= 1; x++)
-            {
-                if (y == 0 && x == 0) continue;
-                uint value = (((uint)(by + y) & 0x0000FFFF) << 16) | ((uint)(bx + x) & 0x0000FFFF);
-                if (regions.TryGetValue(value, out fregion))
-                    yield return fregion;                
-            }
+                {
+                    if (y == 0 && x == 0) continue;
+                    uint value = (((uint)(by + y) & 0x0000FFFF) << 16) | ((uint)(bx + x) & 0x0000FFFF);
+                    if (regions.TryGetValue(value, out fregion))
+                        yield return fregion;
+                }
         }
 
         public IEnumerable<uint> GetNearRegionCodes(uint region)
@@ -145,10 +142,10 @@ namespace Saga.Map
             short by = (short)(region >> 16);
             short bx = (short)(region & 0x0000FFFF);
             for (int y = -1; y <= 1; y++) for (int x = -1; x <= 1; x++)
-            {
-                uint value = (((uint)(by + y) & 0x0000FFFF) << 16) | ((uint)(bx + x) & 0x0000FFFF);
-                yield return value;                
-            }
+                {
+                    uint value = (((uint)(by + y) & 0x0000FFFF) << 16) | ((uint)(bx + x) & 0x0000FFFF);
+                    yield return value;
+                }
         }
 
         /// <summary>
@@ -188,7 +185,7 @@ namespace Saga.Map
             }
         }
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
 
@@ -211,7 +208,7 @@ namespace Saga.Map
         /// Updates the region of the character
         /// </summary>
         public static void UpdateRegion(MapObject regionobject)
-        {        
+        {
             //Calculate new regioncode
             uint oldregion = regionobject.region;
             uint newregion = GetRegionCode(regionobject);
@@ -228,6 +225,7 @@ namespace Saga.Map
                 }
             }
         }
+
         public static void UpdateRegion(MapObject regionobject, bool forceUpdates)
         {
             //Calculate new regioncode
@@ -250,22 +248,21 @@ namespace Saga.Map
             }
         }
 
-  
         public static bool TryFind(uint instanceid, MapObject e, out MapObject b)
-        {           
-            Predicate<MapObject> FindActor = delegate( MapObject match )
+        {
+            Predicate<MapObject> FindActor = delegate(MapObject match)
             {
                 return match.id == instanceid;
             };
 
             Regiontree tree = e.currentzone.Regiontree;
-            b = tree.SearchActor(FindActor, e, SearchFlags.DynamicObjects | SearchFlags.StaticObjects);           
-            if (b == null) 
+            b = tree.SearchActor(FindActor, e, SearchFlags.DynamicObjects | SearchFlags.StaticObjects);
+            if (b == null)
                 b = tree.SearchActor(FindActor, SearchFlags.DynamicObjects);
             return b != null;
         }
 
-        public static bool TryFind<T>(uint instanceid, MapObject e, out T b) 
+        public static bool TryFind<T>(uint instanceid, MapObject e, out T b)
             where T : class
         {
             MapObject target;
@@ -276,7 +273,6 @@ namespace Saga.Map
 
         public IEnumerable<MapObject> Clear()
         {
-
             foreach (KeyValuePair<uint, Region> pair in regions)
             {
                 Region fregion = pair.Value;
@@ -295,16 +291,15 @@ namespace Saga.Map
 
             for (int i = 0; i < alwaysvisible.Count; i++)
             {
-                yield return alwaysvisible[i];               
+                yield return alwaysvisible[i];
             }
 
             alwaysvisible = new List<MapObject>();
 
             //Reset the actor id's
-            MapItemID = 0x40000000;     
-            MapNPCID = 0x80000000;            
+            MapItemID = 0x40000000;
+            MapNPCID = 0x80000000;
         }
-
 
         public IEnumerable<MapObject> SearchActors(SearchFlags flags)
         {
@@ -332,6 +327,7 @@ namespace Saga.Map
                 for (int i = 0; i < alwaysvisible.Count; i++)
                     yield return alwaysvisible[i];
         }
+
         public IEnumerable<MapObject> SearchActors(MapObject instance, SearchFlags flags)
         {
             bool includeCharacter = (flags & SearchFlags.Characters) == SearchFlags.Characters;
@@ -372,19 +368,19 @@ namespace Saga.Map
                 short by = (short)(instance.region >> 16);
                 short bx = (short)(instance.region & 0x0000FFFF);
                 for (int y = -1; y <= 1; y++) for (int x = -1; x <= 1; x++)
-                {
-                   uint value = (((uint)(by + y) & 0x0000FFFF) << 16) | ((uint)(bx + x) & 0x0000FFFF);
-                   if (!list.Contains(value)) list.Add(value);
-                }
+                    {
+                        uint value = (((uint)(by + y) & 0x0000FFFF) << 16) | ((uint)(bx + x) & 0x0000FFFF);
+                        if (!list.Contains(value)) list.Add(value);
+                    }
 
                 uint region = GetRegionCode(positionNew);
                 by = (short)(region >> 16);
                 bx = (short)(region & 0x0000FFFF);
                 for (int y = -1; y <= 1; y++) for (int x = -1; x <= 1; x++)
-                {
-                   uint value = (((uint)(by + y) & 0x0000FFFF) << 16) | ((uint)(bx + x) & 0x0000FFFF);
-                   if (!list.Contains(value)) list.Add(value);
-                }
+                    {
+                        uint value = (((uint)(by + y) & 0x0000FFFF) << 16) | ((uint)(bx + x) & 0x0000FFFF);
+                        if (!list.Contains(value)) list.Add(value);
+                    }
 
                 for (int a = 0, maxCount = list.Count; a < maxCount; a++)
                 {
@@ -399,9 +395,9 @@ namespace Saga.Map
                                 yield return fregion.characters[i];
                         if (includeNpc == true)
                             for (int i = 0; i < fregion.npc.Count; i++)
-                                yield return fregion.npc[i];                       
+                                yield return fregion.npc[i];
                     }
-                }                
+                }
             }
 
             if (includeAlwaysVisible == true)
@@ -438,6 +434,7 @@ namespace Saga.Map
                     if (match.Invoke(alwaysvisible[i]))
                         yield return alwaysvisible[i];
         }
+
         public IEnumerable<MapObject> SearchActors(Predicate<MapObject> match, SearchFlags flags)
         {
             bool includeCharacter = (flags & SearchFlags.Characters) == SearchFlags.Characters;
@@ -455,7 +452,7 @@ namespace Saga.Map
                                 yield return fregion.mapItems[i];
                     if (includeCharacter == true)
                         for (int i = 0; i < fregion.characters.Count; i++)
-                            if( match.Invoke(fregion.characters[i]) )
+                            if (match.Invoke(fregion.characters[i]))
                                 yield return fregion.characters[i];
                     if (includeNpc == true)
                         for (int i = 0; i < fregion.npc.Count; i++)
@@ -465,9 +462,10 @@ namespace Saga.Map
 
             if (includeAlwaysVisible == true)
                 for (int i = 0; i < alwaysvisible.Count; i++)
-                    if( match.Invoke(alwaysvisible[i] ))
+                    if (match.Invoke(alwaysvisible[i]))
                         yield return alwaysvisible[i];
         }
+
         public MapObject SearchActor(Predicate<MapObject> match, SearchFlags flags)
         {
             bool includeCharacter = (flags & SearchFlags.Characters) == SearchFlags.Characters;
@@ -500,13 +498,13 @@ namespace Saga.Map
 
             return null;
         }
+
         public MapObject SearchActor(Predicate<MapObject> match, MapObject target, SearchFlags flags)
         {
             bool includeCharacter = (flags & SearchFlags.Characters) == SearchFlags.Characters;
             bool includeMapitems = (flags & SearchFlags.MapItems) == SearchFlags.MapItems;
             bool includeNpc = (flags & SearchFlags.Npcs) == SearchFlags.Npcs;
             bool includeAlwaysVisible = (flags & SearchFlags.StaticObjects) == SearchFlags.StaticObjects;
-
 
             if (includeCharacter | includeMapitems | includeNpc == true)
                 foreach (Region fregion in GetNearRegions(target.region))
@@ -533,7 +531,6 @@ namespace Saga.Map
             return null;
         }
 
-        
         public static int GetCharacterCount(MapObject instance)
         {
             Region region;
@@ -546,6 +543,7 @@ namespace Saga.Map
 
             return 0;
         }
+
         public static int GetCharacterCount(MapObject instance, uint regionCode)
         {
             Region region;
@@ -559,7 +557,7 @@ namespace Saga.Map
             return 0;
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Public Subscriptions: Always Visible
 
@@ -595,7 +593,7 @@ namespace Saga.Map
             }
         }
 
-        #endregion
+        #endregion Public Subscriptions: Always Visible
 
         #region Public Subscriptions: Locally Visible
 
@@ -616,7 +614,7 @@ namespace Saga.Map
                 if (regionobject.id > 0)
                 {
                     //Calculate new regioncode
-                    uint newregion = GetRegionCode(regionobject);                    
+                    uint newregion = GetRegionCode(regionobject);
                     tree.Unsubscribe(regionobject, regionobject.region);
                     tree.Subscribe(regionobject, newregion);
                     regionobject.region = newregion;
@@ -640,7 +638,7 @@ namespace Saga.Map
 
             Regiontree tree = regionobject.currentzone.Regiontree;
             if (isalwaysVisible == false)
-            {                               
+            {
                 uint newregion = GetRegionCode(regionobject);
                 bool result = tree.Unsubscribe(regionobject, regionobject.region);
                 regionobject.region = newregion;
@@ -653,13 +651,12 @@ namespace Saga.Map
             }
         }
 
-        #endregion
+        #endregion Public Subscriptions: Locally Visible
 
         #region Nested Classes/Structures
 
         private class Region
         {
-
             #region Internal Members
 
             /// <summary>
@@ -677,7 +674,7 @@ namespace Saga.Map
             /// </summary>
             internal List<MapObject> mapItems;
 
-            #endregion
+            #endregion Internal Members
 
             #region Internal Methods
 
@@ -745,7 +742,7 @@ namespace Saga.Map
                 }
             }
 
-            #endregion
+            #endregion Internal Methods
 
             #region Constructor
 
@@ -756,11 +753,10 @@ namespace Saga.Map
                 this.npc = new List<MapObject>();
             }
 
-            #endregion
-
+            #endregion Constructor
         }
 
-        #endregion
+        #endregion Nested Classes/Structures
 
         #region Constructor
 
@@ -770,8 +766,7 @@ namespace Saga.Map
             this.alwaysvisible = new List<MapObject>();
         }
 
-        #endregion
-
+        #endregion Constructor
     }
 
     [AttributeUsage(AttributeTargets.Class, Inherited = true, AllowMultiple = false)]
@@ -789,29 +784,22 @@ namespace Saga.Map
             {
                 this.isregionalvisible = value;
             }
-        }        
+        }
     }
 
     /// <summary>
     /// Defines the how the mapitem is shown visible
     /// </summary>
-    public enum VisibilityLevel     
+    public enum VisibilityLevel
     {
-        
         /// <summary>
         /// Item is always visible
         /// </summary>
-        Always = 1, 
-        
-        
+        Always = 1,
+
         /// <summary>
         /// Item is region based visible
         /// </summary>
         Region = 2
-    
     }
-
-
-
-
 }

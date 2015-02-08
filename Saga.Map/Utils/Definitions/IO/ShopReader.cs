@@ -1,30 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Xml;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
+using System.Xml;
 
 namespace Saga.IO
 {
-
     public class ShopReader : IDisposable
     {
-
         private Stream _basestream;
         private XmlTextReader _reader;
-        private bool _hasinfo;               
+        private bool _hasinfo;
         private string _svalue;
         private string _sattrvalue;
         private uint _itemid;
         private byte _count;
 
-
         #region Constructor / Deconctructor
 
         [DebuggerNonUserCode()]
-        ShopReader(Stream stream)
+        private ShopReader(Stream stream)
         {
             _basestream = stream;
             _reader = new XmlTextReader(stream);
@@ -37,7 +32,7 @@ namespace Saga.IO
             Dispose();
         }
 
-        #endregion
+        #endregion Constructor / Deconctructor
 
         #region Private Methods
 
@@ -48,7 +43,7 @@ namespace Saga.IO
             switch (_reader.NodeType)
             {
                 case XmlNodeType.Element:
-                    if( _reader.Name.ToUpperInvariant() == "ITEM")
+                    if (_reader.Name.ToUpperInvariant() == "ITEM")
                     {
                         _svalue = string.Empty;
                         _sattrvalue = string.Empty;
@@ -57,27 +52,29 @@ namespace Saga.IO
                         _sattrvalue = _reader["count"];
                     }
                     break;
+
                 case XmlNodeType.Text:
-                    _svalue = _reader.Value; 
+                    _svalue = _reader.Value;
                     break;
+
                 case XmlNodeType.EndElement:
-                    if( _reader.Name.ToUpperInvariant() == "ITEM")
+                    if (_reader.Name.ToUpperInvariant() == "ITEM")
                     {
                         _hasinfo = uint.TryParse(_svalue, NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out _itemid);
                         byte.TryParse(_sattrvalue, NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out _count);
                     }
                     break;
+
                 case XmlNodeType.Whitespace:
                     break;
+
                 default:
                     _hasinfo = false;
-                    break;                        
+                    break;
             }
         }
 
-        
-
-        #endregion
+        #endregion Private Methods
 
         #region Public Properties
 
@@ -105,7 +102,7 @@ namespace Saga.IO
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Public Methods
 
@@ -117,7 +114,7 @@ namespace Saga.IO
             return result;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Static Methods
 
@@ -129,7 +126,7 @@ namespace Saga.IO
             return dialog;
         }
 
-        #endregion
+        #endregion Public Static Methods
 
         #region IDisposable Members
 
@@ -138,11 +135,9 @@ namespace Saga.IO
         {
             GC.SuppressFinalize(this);
             if (_reader != null) _reader.Close();
-            if (_basestream != null) _basestream.Dispose();            
+            if (_basestream != null) _basestream.Dispose();
         }
 
-        #endregion
-
+        #endregion IDisposable Members
     }
-
 }

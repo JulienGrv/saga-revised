@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.Managers;
-using Saga.Tasks;
-using Saga.Quests.Objectives;
-using Saga.Packets;
+﻿using Saga.Packets;
 using Saga.PrimaryTypes;
+using Saga.Tasks;
+using System;
 
 namespace Saga.Events
 {
     public static partial class EventTable
     {
-
         public static void Participate(uint CID, byte EventId)
         {
             Character character;
@@ -29,9 +23,8 @@ namespace Saga.Events
                     spkt.SessionId = character.id;
                     character.client.Send((byte[])spkt);
                     character.ParticipatedEvents.Add(EventId);
-                }  
+                }
             }
         }
-
     }
 }

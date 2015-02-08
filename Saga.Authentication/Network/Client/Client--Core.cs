@@ -1,17 +1,16 @@
-using System;
-using System.Diagnostics;
+using Saga.Authentication.Packets;
 using Saga.Authentication.Utils;
 using Saga.Network.Packets;
-using Saga.Shared.PacketLib.Login;
-using Saga.Authentication.Packets;
 using Saga.Packets;
+using Saga.Shared.PacketLib.Login;
+using System;
+using System.Diagnostics;
 using System.Threading;
 
 namespace Saga.Authentication.Network
 {
-
     partial class LogonClient : Shared.NetworkCore.Client
-    {               
+    {
         public LogonClient()
         {
             Trace.TraceInformation("Client create starting timeout session");
@@ -23,7 +22,7 @@ namespace Saga.Authentication.Network
                 //Forces to receive the header in 10 secconds if not kill the connection.
                 while (securityToken == 0)
                 {
-                    if ( Environment.TickCount - LastTick > 10000)
+                    if (Environment.TickCount - LastTick > 10000)
                     {
                         Timeout = true;
                         break;
@@ -45,7 +44,8 @@ namespace Saga.Authentication.Network
             ThreadPool.QueueUserWorkItem(callback);
             this.OnClose += new EventHandler(LogonClient_OnClose);
         }
-        void LogonClient_OnClose(object sender, EventArgs e)
+
+        private void LogonClient_OnClose(object sender, EventArgs e)
         {
             if (securityToken == 1)
             {
@@ -58,19 +58,19 @@ namespace Saga.Authentication.Network
             try
             {
                 //Only allow listening for the the initial header handshake
-                if ( securityToken == 0)
+                if (securityToken == 0)
                 {
-                   //Skip this packet if it's not orginated from 0401
-                   ushort packetIdentifier = (ushort)(body[7] + (body[6] << 8));
-                   if (packetIdentifier != 0x0401) return;
+                    //Skip this packet if it's not orginated from 0401
+                    ushort packetIdentifier = (ushort)(body[7] + (body[6] << 8));
+                    if (packetIdentifier != 0x0401) return;
 
-                   //Check for header handshake
-                   ushort subpacketIdentifier = (ushort)(body[13] + (body[12] << 8));
-                   switch (subpacketIdentifier)
-                   {
+                    //Check for header handshake
+                    ushort subpacketIdentifier = (ushort)(body[13] + (body[12] << 8));
+                    switch (subpacketIdentifier)
+                    {
                         case 0xFFFF: HEADERRETRIEVED(); return;
                         default: Trace.TraceWarning("Unsupported packet found with id: {0:X4}", subpacketIdentifier); break;
-                   }
+                    }
                 }
                 else
                 {
@@ -102,7 +102,6 @@ namespace Saga.Authentication.Network
             {
                 Console.WriteLine(e);
             }
-           
         }
 
         private void OnSetSession(byte[] body)
@@ -131,29 +130,31 @@ namespace Saga.Authentication.Network
             }
         }
 
-
         private void OnNetworkExchange(CMSG_NETWORKADRESSIP cpkt)
         {
-            //TRY TO ESTABLISH A CONNECTION TO OUR BACKEND            
+            //TRY TO ESTABLISH A CONNECTION TO OUR BACKEND
             LoginSession session;
-            if (LoginSessionHandler.sessions.TryGetValue(cpkt.SessionId, out session)){
+            if (LoginSessionHandler.sessions.TryGetValue(cpkt.SessionId, out session))
+            {
                 session.Adress = cpkt.ConnectionFrom;
-            }else{
+            }
+            else
+            {
                 Trace.TraceError("Session was not found: {0}", cpkt.SessionId);
             }
         }
 
         private byte securityToken = 0;
+
         private void HEADERRETRIEVED()
         {
-           securityToken = 1;
-           Console.WriteLine("Gateway connection accepted from {0}", this.socket.RemoteEndPoint);
+            securityToken = 1;
+            Console.WriteLine("Gateway connection accepted from {0}", this.socket.RemoteEndPoint);
         }
-
 
         private void OnReleaseResources(CMSG_RELEASERESOURCES cpkt)
         {
-            lock( LoginSessionHandler.sessions )
+            lock (LoginSessionHandler.sessions)
             {
                 if (!LoginSessionHandler.sessions.Remove(cpkt.Session))
                     Trace.TraceInformation("Resources are not found: {0}", cpkt.Session);
@@ -164,19 +165,18 @@ namespace Saga.Authentication.Network
         {
             LoginSession session;
             if (LoginSessionHandler.sessions.TryGetValue(cpkt.SessionId, out session))
-            {                
+            {
                 ServerInfo2 info;
-                if( !ServerManager2.Instance.server.TryGetValue(session.World, out info))
+                if (!ServerManager2.Instance.server.TryGetValue(session.World, out info))
                 {
                     Trace.TraceError(string.Format("Server not found: {0}", session.World));
                 }
-                else if( info.client == null || info.client.IsConnected == false)
+                else if (info.client == null || info.client.IsConnected == false)
                 {
                     Trace.TraceError(string.Format("World server not connected: {0}", session.World));
                 }
                 else
                 {
-
                     Singleton.Database.UpdateSession(session.playerid, cpkt.SessionId);
                     Singleton.Database.UpdateLastplayerWorld(session.playerid, session.World);
                     info.Players++;
@@ -185,9 +185,8 @@ namespace Saga.Authentication.Network
                     spkt.GmLevel = session.GmLevel;
                     spkt.Gender = (byte)session.Gender;
                     spkt.CharacterId = session.characterid;
-                    spkt.SessionId = cpkt.SessionId;               
-                    this.Send((byte[])spkt);                    
-
+                    spkt.SessionId = cpkt.SessionId;
+                    this.Send((byte[])spkt);
 
                     //Send login packet to world
                     /*
@@ -196,12 +195,7 @@ namespace Saga.Authentication.Network
                     spkt2.SessionId = cpkt.SessionId;
                     spkt2.Session = cpkt.SessionId;
                     info.client.Send((byte[])spkt2);*/
-
-                    
                 }
-                
-
-
             }
         }
     }

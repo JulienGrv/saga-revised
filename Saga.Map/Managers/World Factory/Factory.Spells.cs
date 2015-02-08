@@ -1,44 +1,45 @@
-﻿using System;
+﻿using Saga.Configuration;
+using Saga.Map.Configuration;
+using Saga.PrimaryTypes;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Xml;
-using Saga.Configuration;
-using Saga.Map.Configuration;
-using Saga.PrimaryTypes;
-using System.Diagnostics;
 
 namespace Saga.Factory
 {
     public class Spells : FactoryBase
     {
-
         protected static BooleanSwitch refenceWarningsAsErrors = new BooleanSwitch("SkillReferenceWarningsAsErrors", "Treat warnings as errors in the refence files", "1");
 
         #region Ctor/Dtor
 
-        public Spells() { }
+        public Spells()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
-        Dictionary<uint, SkillHandler> methods = new Dictionary<uint, SkillHandler>();
+        private Dictionary<uint, SkillHandler> methods = new Dictionary<uint, SkillHandler>();
         public Dictionary<uint, Info> spells;
-                
+
         internal SkillHandler PhysicalAttack;
         internal SkillHandler MagicalAttack;
         internal SkillHandler RangedAttack;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
 
         protected override void Initialize()
         {
             methods = new Dictionary<uint, SkillHandler>();
-            spells = new Dictionary<uint, Info>();           
+            spells = new Dictionary<uint, Info>();
             PhysicalAttack = new SkillHandler(BasePhysicalAttack);
             MagicalAttack = new SkillHandler(MagicalAttack);
             RangedAttack = new SkillHandler(RangedAttack);
@@ -52,11 +53,10 @@ namespace Saga.Factory
                 try
                 {
                     string file = Saga.Structures.Server.SecurePath(section.Reference);
-                    if ( File.Exists(file))
+                    if (File.Exists(file))
                         ParseReferenceAsCsvStream(File.OpenRead(file));
                     else
                         WriteError("SpellFactory", "Missing reference file: {0}", section.Reference);
-
                 }
                 catch (IOException e)
                 {
@@ -70,7 +70,7 @@ namespace Saga.Factory
                 foreach (FactoryFileElement element in section.FolderItems)
                 {
                     WriteLine("SpellFactory", "Loading spell information from: {0} using format {1}", element.Path, element.Reader);
-                    LoadParameterizedStreamContent( Saga.Structures.Server.SecurePath(element.Path), element.Reader);
+                    LoadParameterizedStreamContent(Saga.Structures.Server.SecurePath(element.Path), element.Reader);
                 }
 
                 WriteLine("SpellFactory", "Clear method lookup table");
@@ -90,10 +90,8 @@ namespace Saga.Factory
                 string value = null;
                 while (reader.Read())
                 {
-
                     try
                     {
-
                         ProgressReport.Invoke();
                         switch (reader.NodeType)
                         {
@@ -101,9 +99,11 @@ namespace Saga.Factory
                                 if (reader.Name.ToUpperInvariant() == "SKILL") current = new Info();
                                 value = null;
                                 break;
+
                             case XmlNodeType.Text:
                                 value = reader.Value;
                                 break;
+
                             case XmlNodeType.EndElement:
                                 string[] values;
                                 switch (reader.Name.ToUpperInvariant())
@@ -124,29 +124,30 @@ namespace Saga.Factory
                                     case "RACE": current.race = byte.Parse(value, NumberFormatInfo.InvariantInfo); break;
                                     case "STANCE": current.stance = ConsoleUtils.ParseToUintArray(value); break;
                                     case "ADDITION": current.addition = uint.Parse(value, NumberFormatInfo.InvariantInfo); break;
-                                    case "HATEONCAST": current.requiredlp = byte.Parse(value, NumberFormatInfo.InvariantInfo); break;                                    
+                                    case "HATEONCAST": current.requiredlp = byte.Parse(value, NumberFormatInfo.InvariantInfo); break;
                                     case "HATE": current.hate = short.Parse(value, NumberFormatInfo.InvariantInfo); break;
                                     case "ATTACKTYPE": current.attacktype = byte.Parse(value, NumberFormatInfo.InvariantInfo); break;
-                                    case "ELEMENTTYPE": current.elementtype = byte.Parse(value, NumberFormatInfo.InvariantInfo); break;                                        
+                                    case "ELEMENTTYPE": current.elementtype = byte.Parse(value, NumberFormatInfo.InvariantInfo); break;
                                     case "WEAPONREQUIREMENT":
                                         values = value.Split(',');
                                         current.requiredWeapons = new byte[]
-                                    { 
-                                        byte.Parse(values[0], NumberFormatInfo.InvariantInfo),  //HAND          
-                                        byte.Parse(values[1], NumberFormatInfo.InvariantInfo),  //SHORTSWORD    
-                                        byte.Parse(values[2], NumberFormatInfo.InvariantInfo),  //LONGSWORD     
-                                        byte.Parse(values[3], NumberFormatInfo.InvariantInfo),  //SWORDSTICK    
-                                        byte.Parse(values[4], NumberFormatInfo.InvariantInfo),  //DAMPTFLINTE   
-                                        byte.Parse(values[5], NumberFormatInfo.InvariantInfo),  //BOW               
-                                        byte.Parse(values[6], NumberFormatInfo.InvariantInfo),  //DAMPTSCHWERTZ     
-                                        byte.Parse(values[7], NumberFormatInfo.InvariantInfo),  //KATANA            
-                                        byte.Parse(values[8], NumberFormatInfo.InvariantInfo),  //SPECIALIST                                                                                
+                                    {
+                                        byte.Parse(values[0], NumberFormatInfo.InvariantInfo),  //HAND
+                                        byte.Parse(values[1], NumberFormatInfo.InvariantInfo),  //SHORTSWORD
+                                        byte.Parse(values[2], NumberFormatInfo.InvariantInfo),  //LONGSWORD
+                                        byte.Parse(values[3], NumberFormatInfo.InvariantInfo),  //SWORDSTICK
+                                        byte.Parse(values[4], NumberFormatInfo.InvariantInfo),  //DAMPTFLINTE
+                                        byte.Parse(values[5], NumberFormatInfo.InvariantInfo),  //BOW
+                                        byte.Parse(values[6], NumberFormatInfo.InvariantInfo),  //DAMPTSCHWERTZ
+                                        byte.Parse(values[7], NumberFormatInfo.InvariantInfo),  //KATANA
+                                        byte.Parse(values[8], NumberFormatInfo.InvariantInfo),  //SPECIALIST
                                     };
                                         break;
+
                                     case "JOBREQUIREMENT":
                                         values = value.Split(',');
                                         current.requiredJobs = new byte[]
-                                    { 
+                                    {
                                         byte.Parse(values[0], NumberFormatInfo.InvariantInfo),  //NOVICE
                                         byte.Parse(values[1], NumberFormatInfo.InvariantInfo),  //SWORDSMAN
                                         byte.Parse(values[3], NumberFormatInfo.InvariantInfo),  //RECRUIT
@@ -159,15 +160,14 @@ namespace Saga.Factory
                                         byte.Parse(values[9], NumberFormatInfo.InvariantInfo),  //SAGE
                                         byte.Parse(values[10], NumberFormatInfo.InvariantInfo), //GAMBLER
                                         byte.Parse(values[11], NumberFormatInfo.InvariantInfo), //FALCATA
-                                        byte.Parse(values[12], NumberFormatInfo.InvariantInfo), //FPRSYTHIE 
-                                        byte.Parse(values[13], NumberFormatInfo.InvariantInfo), //NEMOPHILA 
-                                        byte.Parse(values[14], NumberFormatInfo.InvariantInfo)  //VEILCHENBLAU                                     
+                                        byte.Parse(values[12], NumberFormatInfo.InvariantInfo), //FPRSYTHIE
+                                        byte.Parse(values[13], NumberFormatInfo.InvariantInfo), //NEMOPHILA
+                                        byte.Parse(values[14], NumberFormatInfo.InvariantInfo)  //VEILCHENBLAU
                                     };
                                         break;
                                 }
                                 break;
                         }
-
                     }
                     catch (Exception e)
                     {
@@ -188,7 +188,6 @@ namespace Saga.Factory
             }
         }
 
-
         protected virtual void ParseReferenceAsCsvStream(System.IO.Stream stream)
         {
             using (StreamReader c = new StreamReader(stream))
@@ -196,7 +195,6 @@ namespace Saga.Factory
                 c.ReadLine();
                 while (c.Peek() > 0)
                 {
-
                     CommaDelimitedString fields = CommaDelimitedString.Parse(c.ReadLine());
 
                     uint SkillId = 0;
@@ -227,9 +225,8 @@ namespace Saga.Factory
             }
         }
 
-
         /// <summary>
-        /// This function performs a lookup against the skilltable to find the instanted 
+        /// This function performs a lookup against the skilltable to find the instanted
         /// callback if no additional callback is found a reference to the default skill
         /// is returned.
         /// </summary>
@@ -249,9 +246,11 @@ namespace Saga.Factory
             }
         }
 
-        protected virtual void Default(SkillBaseEventArgs arguments){}
+        protected virtual void Default(SkillBaseEventArgs arguments)
+        {
+        }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -291,23 +290,21 @@ namespace Saga.Factory
         /// <returns>True if skill can be used</returns>
         public bool CanUse(Character character, Info info)
         {
-           
             int WeaponType = 0;
-            int Job = character.job - 1;            
+            int Job = character.job - 1;
 
             int WeaponIndex = (character.weapons.ActiveWeaponIndex == 1) ? character.weapons.SeconairyWeaponIndex : character.weapons.PrimaryWeaponIndex;
-            if( WeaponIndex < character.weapons.UnlockedWeaponSlots )
+            if (WeaponIndex < character.weapons.UnlockedWeaponSlots)
             {
                 WeaponType = character.weapons[WeaponIndex]._weapontype;
             }
-
 
             bool jobAble = info.requiredJobs[Job] == 1;
             bool weaponAble = info.requiredWeapons[WeaponType] == 1;
             return jobAble && weaponAble;
         }
-    
-        #endregion
+
+        #endregion Public Methods
 
         #region Protected Properties
 
@@ -321,7 +318,7 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_SPELLS; }
         }
 
-        #endregion
+        #endregion Protected Properties
 
         #region Nested Classes/Structures
 
@@ -369,13 +366,10 @@ namespace Saga.Factory
                 if ((this.target & 2) == 2)
                     result |= MapObject.IsMonster(target) || MapObject.IsMapItem(target);
                 if ((this.target & 4) == 4)
-                    result |= MapObject.IsNotMonster(target)  || MapObject.IsMonster(target) || MapObject.IsPlayer(target);
+                    result |= MapObject.IsNotMonster(target) || MapObject.IsMonster(target) || MapObject.IsPlayer(target);
                 return result;
-
-
             }
         }
-
 
         /// <summary>
         /// Delegate containing the method signature to invoke a spell.
@@ -383,9 +377,9 @@ namespace Saga.Factory
         /// <param name="sender">Source who calls the spell</param>
         /// <param name="target">Target who the spell is casted on</param>
         /// <param name="arguments">Arguments</param>
-        protected internal delegate void SkillHandler(SkillBaseEventArgs arguments );
+        protected internal delegate void SkillHandler(SkillBaseEventArgs arguments);
 
-        #endregion
+        #endregion Nested Classes/Structures
 
         #region Nested Skills
 
@@ -422,6 +416,7 @@ namespace Saga.Factory
                 bargument.Failed = true;
             }
         }
+
         private static void BaseRangedAttack(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -455,6 +450,7 @@ namespace Saga.Factory
                 bargument.Failed = true;
             }
         }
+
         private static void BaseMagicalAttack(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -489,7 +485,6 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
-
+        #endregion Nested Skills
     }
 }

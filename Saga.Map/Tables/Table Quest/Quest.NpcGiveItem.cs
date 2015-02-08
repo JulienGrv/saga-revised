@@ -8,7 +8,6 @@ namespace Saga.Quests
 {
     static partial class QUEST_TABLE
     {
-
         /// <title>Saga.AddStep</title>
         /// <code>
         /// Saga.AddStep(cid, QuestID, StepId, State);

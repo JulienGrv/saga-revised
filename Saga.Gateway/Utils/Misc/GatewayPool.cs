@@ -1,16 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Gateway.Network;
+using System.Collections.Generic;
 
 namespace Saga.Gateway
 {
-    class GatewayPool
+    internal class GatewayPool
     {
-
         #region GatewayPool Singleton
 
         private static GatewayPool instance;
+
         public static GatewayPool Instance
         {
             get
@@ -20,18 +18,24 @@ namespace Saga.Gateway
             }
         }
 
-        #endregion
+        #endregion GatewayPool Singleton
 
         #region GatewayPool Public Members
+
         public Dictionary<uint, GatewayClient> lookup = new Dictionary<uint, GatewayClient>();
-        #endregion
+
+        #endregion GatewayPool Public Members
 
         #region Constructor / Deconstructor
 
-        ~GatewayPool() { }
-        private GatewayPool(){ }
+        ~GatewayPool()
+        {
+        }
 
-        #endregion
+        private GatewayPool()
+        {
+        }
 
+        #endregion Constructor / Deconstructor
     }
 }

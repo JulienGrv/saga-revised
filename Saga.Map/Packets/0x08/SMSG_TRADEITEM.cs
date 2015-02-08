@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_TRADEITEM : RelayPacket
     {
         public SMSG_TRADEITEM()
@@ -18,7 +13,7 @@ namespace Saga.Packets
 
         public byte Tradeslot
         {
-            set { this.data[0] = value; }     
+            set { this.data[0] = value; }
         }
 
         public byte ItemSlot

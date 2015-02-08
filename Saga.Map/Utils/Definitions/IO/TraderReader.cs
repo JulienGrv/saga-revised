@@ -6,14 +6,13 @@ using System.Xml;
 
 namespace Saga.IO
 {
-    class TraderReader : IDisposable
+    internal class TraderReader : IDisposable
     {
         #region Private Members
 
         private Stream _basestream;
         private XmlTextReader _reader;
         private string _svalue;
-
 
         /// <summary>
         /// List of node options
@@ -56,12 +55,12 @@ namespace Saga.IO
         /// </summary>
         public uint _item = 0;
 
-        #endregion
+        #endregion Private Members
 
         #region Constructor / Deconctructor
 
         [DebuggerNonUserCode()]
-        TraderReader(Stream stream)
+        private TraderReader(Stream stream)
         {
             _basestream = stream;
             _reader = new XmlTextReader(stream);
@@ -74,10 +73,9 @@ namespace Saga.IO
             Dispose();
         }
 
-        #endregion
+        #endregion Constructor / Deconctructor
 
         #region Private Methods
-
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults", MessageId = "System.UInt32.TryParse(System.String,System.UInt32@)"), DebuggerNonUserCode()]
         private void ProcessHeader()
@@ -87,7 +85,6 @@ namespace Saga.IO
             string refund = string.Empty;
             string val = string.Empty;
             NodeOption option;
-
 
             do
             {
@@ -100,6 +97,7 @@ namespace Saga.IO
                             case "TRADES":
                                 uint.TryParse(_reader["id"], out  _menuid);
                                 break;
+
                             case "TRADE":
                                 type = _reader["type"];
                                 fee = _reader["fee"];
@@ -108,9 +106,11 @@ namespace Saga.IO
                                 break;
                         }
                         break;
+
                     case XmlNodeType.Text:
                         val = _reader.Value;
                         break;
+
                     case XmlNodeType.EndElement:
                         switch (_reader.Name.ToUpperInvariant())
                         {
@@ -126,6 +126,7 @@ namespace Saga.IO
                                     option.node = NodeTypeSpeciafier.Grouped;
                                 nodeoptions[menu] = option;
                                 break;
+
                             case "TRADES":
                                 part = 1;
                                 break;
@@ -154,9 +155,11 @@ namespace Saga.IO
                             break;
                     }
                     break;
+
                 case XmlNodeType.Text:
                     _svalue = _reader.Value;
                     break;
+
                 case XmlNodeType.EndElement:
                     switch (_reader.Name.ToUpperInvariant())
                     {
@@ -171,19 +174,17 @@ namespace Saga.IO
                                     _nodetype = NodeType.Supplement;
                                 }
                             break;
+
                         case "PRODUCTION":
                             part = 2;
                             break;
                     }
 
-
                     break;
             }
         }
 
-
-
-        #endregion
+        #endregion Private Methods
 
         #region Public Properties
 
@@ -213,7 +214,6 @@ namespace Saga.IO
             }
         }
 
-
         public uint Trade
         {
             get
@@ -229,7 +229,6 @@ namespace Saga.IO
                 return (int)_group;
             }
         }
-
 
         public byte ItemCount
         {
@@ -247,7 +246,7 @@ namespace Saga.IO
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Public Methods
 
@@ -259,7 +258,7 @@ namespace Saga.IO
             return result;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Static Methods
 
@@ -271,7 +270,7 @@ namespace Saga.IO
             return dialog;
         }
 
-        #endregion
+        #endregion Public Static Methods
 
         #region IDisposable Members
 
@@ -283,7 +282,7 @@ namespace Saga.IO
             if (_basestream != null) _basestream.Dispose();
         }
 
-        #endregion
+        #endregion IDisposable Members
 
         #region Nested
 
@@ -298,6 +297,6 @@ namespace Saga.IO
             public uint refund;
         }
 
-        #endregion
+        #endregion Nested
     }
 }

@@ -1,16 +1,15 @@
-using System;
-using System.Collections.Generic;
 using Saga.Map;
 using Saga.Packets;
 using Saga.Quests;
 using Saga.Structures;
+using System;
+using System.Collections.Generic;
 
 namespace Saga.PrimaryTypes
 {
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class LootCollection : IDisposable
     {
-
         #region Private Properties
 
         private bool isdisposed;
@@ -18,7 +17,7 @@ namespace Saga.PrimaryTypes
         private uint lootleader;
         private Rag2Collection lootlist;
 
-        #endregion
+        #endregion Private Properties
 
         #region Public Properties
 
@@ -27,7 +26,7 @@ namespace Saga.PrimaryTypes
             get
             {
                 return lootlist;
-            }           
+            }
         }
 
         public bool CanLoot
@@ -58,7 +57,7 @@ namespace Saga.PrimaryTypes
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Public Methods
 
@@ -90,7 +89,7 @@ namespace Saga.PrimaryTypes
 
         public void Open(Character character, MapObject owner)
         {
-            character.Tag = this;            
+            character.Tag = this;
             SMSG_SENDINVENTORY spkt = new SMSG_SENDINVENTORY(lootlist.Count);
             foreach (KeyValuePair<byte, Rag2Item> c in lootlist.GetAllItems())
                 spkt.AddItem(c.Value, c.Key);
@@ -109,7 +108,7 @@ namespace Saga.PrimaryTypes
             this.islooting = true;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Static
 
@@ -125,7 +124,7 @@ namespace Saga.PrimaryTypes
 
             LootCollection collection = new LootCollection();
             PartySession party = character.sessionParty;
- 
+
             if (party == null)
             {
                 collection.LootLeader = character.id;
@@ -139,7 +138,6 @@ namespace Saga.PrimaryTypes
             {
                 collection.LootLeader = character.id;
             }
-
 
             // Generate loot from base mobs
             foreach (Rag2Item c in Singleton.Itemdrops.FindItemDropsById(mapobject.ModelId, character._DropRate))
@@ -156,8 +154,7 @@ namespace Saga.PrimaryTypes
             return collection;
         }
 
-
-        #endregion
+        #endregion Public Static
 
         #region Constructor / Deconstructor
 
@@ -172,7 +169,7 @@ namespace Saga.PrimaryTypes
             this.isdisposed = true;
         }
 
-        #endregion
+        #endregion Constructor / Deconstructor
 
         #region IDisposable Members
 
@@ -189,7 +186,6 @@ namespace Saga.PrimaryTypes
             lootlist = null;
         }
 
-        #endregion
-
+        #endregion IDisposable Members
     }
 }

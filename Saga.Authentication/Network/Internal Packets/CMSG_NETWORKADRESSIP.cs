@@ -1,12 +1,11 @@
-﻿using System;
-using Saga.Network.Packets;
+﻿using Saga.Network.Packets;
+using System;
 using System.Net;
 
 namespace Saga.Packets
 {
     public class CMSG_NETWORKADRESSIP : RelayPacket
     {
-
         public CMSG_NETWORKADRESSIP()
         {
             this.Cmd = 0x0701;
@@ -30,8 +29,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -44,7 +43,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
-
+        #endregion Conversions
     }
 }

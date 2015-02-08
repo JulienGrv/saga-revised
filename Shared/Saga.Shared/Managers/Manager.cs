@@ -1,21 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net.Sockets;
-using System.Reflection;
-using System.Net;
 using System.Diagnostics;
+using System.Net;
+using System.Net.Sockets;
 using System.Threading;
-using System.Globalization;
 
 namespace Saga.Shared.NetworkCore
 {
-
     public class Manager<T> where T : Client, new()
     {
         private readonly TcpListener listner;
         private bool AmShuttingDown = false;
-        Thread thread;
+        private Thread thread;
 
         public Manager(string ip, int port)
         {
@@ -34,7 +29,7 @@ namespace Saga.Shared.NetworkCore
         }
 
         private void Loop()
-        {                        
+        {
             while (AmShuttingDown == false || Environment.HasShutdownStarted == true)
             {
                 for (int i = 0; this.listner.Pending() && i < 25; i++)
@@ -69,11 +64,9 @@ namespace Saga.Shared.NetworkCore
             return obj;
         }
     }
-    
 
     public class Manager2<T> where T : Client, new()
     {
-
         private readonly TcpListener listner;
         private bool AmShuttingDown = false;
 

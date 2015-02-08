@@ -1,21 +1,14 @@
-using System;
-using System.Collections.Generic;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
-using Saga.Shared.Definitions;
-using Saga.Structures;
 using Saga.PrimaryTypes;
-
+using System;
 
 namespace Saga.Packets
 {
-
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet shows a equipment trading list. This is a single list of where multiple items can 
+    /// This packet shows a equipment trading list. This is a single list of where multiple items can
     /// be gained in contradiction with our other list which is only 1 item.
     /// </remarks>
     /// <id>
@@ -42,7 +35,7 @@ namespace Saga.Packets
 
         public void SetProducts(Rag2Item list)
         {
-            int offset = 119 + (this.data[17] * 66);            
+            int offset = 119 + (this.data[17] * 66);
             Rag2Item.Serialize(list, this.data, offset);
             this.data[17]++;
         }
@@ -53,6 +46,5 @@ namespace Saga.Packets
             Rag2Item.Serialize(list, this.data, offset);
             this.data[18]++;
         }
-
     }
 }

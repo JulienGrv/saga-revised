@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net.Sockets;
-using System.Reflection;
-using System.Net;
-using System.Diagnostics;
 using Saga.Shared.PacketLib;
+using System;
+using System.Diagnostics;
+using System.Net.Sockets;
 using System.Threading;
 
 namespace Saga.Shared.NetworkCore
 {
-
     public abstract class EncryptedClient
     {
-
         public Socket socket;
+
         public event EventHandler OnClose;
+
         public byte[] clientKey = new byte[16];
         public byte[] serverKey = new byte[16];
 
@@ -23,12 +19,12 @@ namespace Saga.Shared.NetworkCore
         {
             Encryption.StaticKey.CopyTo(this.clientKey, 0);
             Encryption.StaticKey.CopyTo(this.serverKey, 0);
-            if(socket.Connected == true)
-            {                                
+            if (socket.Connected == true)
+            {
                 this.socket = socket;
-                byte[] buffer = new byte[2];                
+                byte[] buffer = new byte[2];
                 this.socket.BeginReceive(buffer, 0, 2, SocketFlags.Peek, new AsyncCallback(OnRead), buffer);
-            }            
+            }
         }
 
         private void OnRead(IAsyncResult asyn)
@@ -47,7 +43,7 @@ namespace Saga.Shared.NetworkCore
                     this.Close();
                 }
 
-                #endregion
+                #endregion Basic-buffer check
 
                 return;
             ProcessPacket:
@@ -61,7 +57,7 @@ namespace Saga.Shared.NetworkCore
                 if (packet_length < 10)
                 {
                     Trace.TraceError("Packet was less than 10 bytes. Disconnecting client.");
-                    this.Close();                   
+                    this.Close();
                 }
                 else
                 {
@@ -86,7 +82,8 @@ namespace Saga.Shared.NetworkCore
                         ThreadPool.QueueUserWorkItem(callback);
                     }
                 }
-                #endregion
+
+                #endregion Packet-processing
             }
             catch (ObjectDisposedException)
             {
@@ -128,7 +125,6 @@ namespace Saga.Shared.NetworkCore
                 }
             }
         }
-
 
         public void Send(byte[] buffer)
         {

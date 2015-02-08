@@ -1,17 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Saga.Data
 {
-
     /// <summary>
     /// Parameter collection passed on to our database settings to query
     /// the database.
     /// </summary>
     public class QueryParameterCollection : IEnumerable<KeyValuePair<string, object>>
     {
-
         #region Private Members
 
         /// <summary>
@@ -20,26 +17,25 @@ namespace Saga.Data
         private Dictionary<string, object> dict
             = new Dictionary<string, object>();
 
-        #endregion
+        #endregion Private Members
 
         #region Public  Methods
-
 
         /// <summary>
         /// Adds a parameter to the parameter collection
         /// </summary>
         /// <param name="name">Name of the parameter</param>
-        /// <param name="value">Value of the parameter</param>        
+        /// <param name="value">Value of the parameter</param>
         public void AddWithValue(string name, object value)
         {
             if (name == null) throw new NullReferenceException("Parameter name cannot be null");
-            if( value != null) 
+            if (value != null)
                 dict[name] = value;
             else
                 dict.Remove(name);
         }
 
-        #endregion
+        #endregion Public  Methods
 
         #region IEnumerable<KeyValuePair<string,object>> Members
 
@@ -55,7 +51,7 @@ namespace Saga.Data
             }
         }
 
-        #endregion
+        #endregion IEnumerable<KeyValuePair<string,object>> Members
 
         #region IEnumerable Members
 
@@ -68,8 +64,6 @@ namespace Saga.Data
             return this.GetEnumerator();
         }
 
-        #endregion
-
+        #endregion IEnumerable Members
     }
-
 }

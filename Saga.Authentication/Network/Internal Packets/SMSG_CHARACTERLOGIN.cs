@@ -1,10 +1,8 @@
-using System;
-using System.Net;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     public class SMSG_CHARACTERLOGIN : RelayPacket
     {
         public SMSG_CHARACTERLOGIN()
@@ -29,6 +27,5 @@ namespace Saga.Packets
                 Array.Copy(BitConverter.GetBytes(value), 0, this.data, 4, 4);
             }
         }
-
     }
 }

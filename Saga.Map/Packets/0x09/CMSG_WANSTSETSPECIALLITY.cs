@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet indicates that the user should has added a new 
-    /// special skill. When adding a special skill to your list it 
-    /// requires you to have 250 rufi. 
+    /// This packet indicates that the user should has added a new
+    /// special skill. When adding a special skill to your list it
+    /// requires you to have 250 rufi.
     ///
-    /// If you do not have it your request will be denied using the 
+    /// If you do not have it your request will be denied using the
     /// responding packt.
     /// </remarks>
     /// <id>
@@ -47,8 +43,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -61,6 +57,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

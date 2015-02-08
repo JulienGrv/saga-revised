@@ -1,12 +1,10 @@
-using System;
-using Saga.Map.Definitions.Misc;
 using Saga.Network.Packets;
-using Saga.Structures;
 using Saga.PrimaryTypes;
+using Saga.Structures;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <remarks>
     /// This contains a list of items used to be owned by the current user.
     /// </remarks>
@@ -29,8 +27,8 @@ namespace Saga.Packets
 
         public void Add(MarketItemArgument item)
         {
-            int index = this.data.Length;            
-            Array.Resize<byte>(ref this.data, 2 + (++this.data[1] * 75));           
+            int index = this.data.Length;
+            Array.Resize<byte>(ref this.data, 2 + (++this.data[1] * 75));
             Rag2Item.Serialize(item.item, this.data, index + 0);
             Array.Copy(BitConverter.GetBytes(item.price), 0, this.data, index + 66, 4);
             this.data[index + 70] = (byte)Math.Max(0, (item.expires - DateTime.Now).TotalHours);

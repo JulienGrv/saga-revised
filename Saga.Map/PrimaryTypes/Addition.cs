@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Saga.Map.Definitions.Misc;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Saga.Map.Definitions.Misc;
 
 namespace Saga.PrimaryTypes
 {
@@ -11,6 +10,7 @@ namespace Saga.PrimaryTypes
     {
         [NonSerialized()]
         protected internal volatile bool _skipcheck = false;
+
         public List<AdditionState> additions = new List<AdditionState>();
         public List<AdditionState> timed_additions = new List<AdditionState>();
 
@@ -28,7 +28,7 @@ namespace Saga.PrimaryTypes
             }
         }
 
-        #endregion
+        #endregion IEnumerable<AdditionState> Members
 
         #region IEnumerable Members
 
@@ -37,6 +37,6 @@ namespace Saga.PrimaryTypes
             return GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable Members
     }
 }

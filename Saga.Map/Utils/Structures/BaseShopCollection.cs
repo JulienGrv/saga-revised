@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using Saga.Map;
+﻿using Saga.Map;
 using Saga.PrimaryTypes;
 using Saga.Templates;
+using System.Collections.Generic;
 
 namespace Saga.Structures.Collections
 {
-
     /// <summary>
     /// Abstract class servers a base shop collection. This class
     /// is not intented to be overriden by other classes outside this
@@ -13,7 +12,6 @@ namespace Saga.Structures.Collections
     /// </summary>
     public abstract class BaseShopCollection
     {
-
         /// <summary>
         /// List of Shoppairs
         /// </summary>
@@ -61,7 +59,6 @@ namespace Saga.Structures.Collections
         /// </summary>
         protected internal sealed class ShopPair
         {
-
             /// <summary>
             /// Creates a new shoppair
             /// </summary>
@@ -89,8 +86,8 @@ namespace Saga.Structures.Collections
         /// </summary>
         /// <param name="character">Character to open the list</param>
         /// <param name="basenpc">Npc who shows the list</param>
-        public virtual void Open(Character character, BaseNPC basenpc) { }
-
-
+        public virtual void Open(Character character, BaseNPC basenpc)
+        {
+        }
     }
 }

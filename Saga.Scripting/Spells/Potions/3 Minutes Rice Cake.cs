@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
-using Saga.Scripting.Interfaces;
-using Saga.Factory;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {

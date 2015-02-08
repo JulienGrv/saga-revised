@@ -1,12 +1,9 @@
+using Saga.Network.Packets;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_SENDQUESTLIST : RelayPacket
     {
         public SMSG_SENDQUESTLIST()
@@ -34,11 +31,11 @@ namespace Saga.Packets
             }
         }
 
-        public void SetQuests( IEnumerable<uint> ID)
+        public void SetQuests(IEnumerable<uint> ID)
         {
             int i = 0;
             int a = 0;
-            foreach(uint c in ID)
+            foreach (uint c in ID)
             {
                 Array.Resize<byte>(ref this.data, this.data.Length + 4);
                 Array.Copy(BitConverter.GetBytes(c), 0, this.data, 5 + i, 4);
@@ -47,6 +44,5 @@ namespace Saga.Packets
             }
             this.data[0] = (byte)a;
         }
-
     }
 }

@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet appears to be broadcasted when you switch a nap/zone.
@@ -25,7 +20,6 @@ namespace Saga.Packets
             this.Id = 0x0D14;
             this.data = new byte[8];
         }
-
 
         public byte Index
         {

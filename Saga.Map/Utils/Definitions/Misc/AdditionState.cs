@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Globalization;
-using Saga.Factory;
 using Saga.Enumarations;
+using Saga.Factory;
+using System;
+using System.Globalization;
 
 namespace Saga.Map.Definitions.Misc
 {
-
     [Serializable()]
     public class AdditionState
     {
@@ -35,7 +32,7 @@ namespace Saga.Map.Definitions.Misc
                 return (uint)Duration;
             }
             set
-            {                
+            {
                 LastUpdate = Environment.TickCount;
                 LastIntervalTick = Environment.TickCount;
                 Duration = (int)value;
@@ -62,21 +59,19 @@ namespace Saga.Map.Definitions.Misc
         {
             int tick = Environment.TickCount - LastUpdate;
             int tick2 = Environment.TickCount - LastIntervalTick;
-            
 
             if (tick > 1000)
-            {                
+            {
                 Duration -= tick;
                 LastUpdate = Environment.TickCount;
             }
 
-            if( info.Interval > 0 && tick2 > info.Interval )
+            if (info.Interval > 0 && tick2 > info.Interval)
             {
-                info.Do(sender, target, AdditionContext.Reapplied );
+                info.Do(sender, target, AdditionContext.Reapplied);
                 LastIntervalTick = Environment.TickCount;
             }
         }
-
 
         public override bool Equals(object obj)
         {
@@ -88,7 +83,7 @@ namespace Saga.Map.Definitions.Misc
             else if (obj is uint)
             {
                 return this.Addition == Convert.ToUInt32(obj, NumberFormatInfo.InvariantInfo);
-            }   return false;
+            } return false;
         }
 
         public override int GetHashCode()

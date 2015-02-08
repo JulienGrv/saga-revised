@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Notifies that the skill failed
     /// </summary>
@@ -29,7 +25,7 @@ namespace Saga.Packets
 
         public byte SkillType
         {
-            set { this.data[0] = value; } 
+            set { this.data[0] = value; }
         }
 
         public uint SkillID

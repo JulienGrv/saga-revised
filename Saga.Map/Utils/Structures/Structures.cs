@@ -1,16 +1,15 @@
-﻿using Saga.Map.Definitions.Misc;
-using System;
-using Saga.PrimaryTypes;
-using System.Collections.Generic;
-using System.Xml;
+﻿using Saga.Configuration;
 using Saga.Map;
-using System.IO;
-using System.Diagnostics;
-using Saga.Configuration;
+using Saga.PrimaryTypes;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
+using System.IO;
+using System.Xml;
+
 namespace Saga.Structures
 {
-
     public struct CharDetails
     {
         public uint Jexp;
@@ -49,7 +48,6 @@ namespace Saga.Structures
         public DateTime expires = DateTime.Now;
     }
 
-
     [Serializable()]
     public struct WorldCoordinate
     {
@@ -69,6 +67,7 @@ namespace Saga.Structures
                 return coords.x;
             }
         }
+
         public float y
         {
             get
@@ -76,6 +75,7 @@ namespace Saga.Structures
                 return coords.y;
             }
         }
+
         public float z
         {
             get
@@ -85,10 +85,8 @@ namespace Saga.Structures
         }
     }
 
-
     public class SkillRotatorCollection
     {
-
         private static Random random = new Random();
         private List<Factory.Spells.Info> skillinfo;
         private List<uint> probabillity;
@@ -123,7 +121,7 @@ namespace Saga.Structures
 
         public uint MaxRangeE2
         {
-            get 
+            get
             {
                 return pmax_range;
             }
@@ -137,7 +135,7 @@ namespace Saga.Structures
 
         public static SkillRotatorCollection Empty
         {
-            get 
+            get
             {
                 return new SkillRotatorCollection();
             }
@@ -148,7 +146,7 @@ namespace Saga.Structures
             SkillRotatorCollection collection = new SkillRotatorCollection();
             using (XmlReader reader = new XmlTextReader(file))
             {
-                string value= string.Empty;
+                string value = string.Empty;
                 uint skill = 0;
                 uint prob = 0;
                 while (reader.Read())
@@ -161,9 +159,11 @@ namespace Saga.Structures
                                 case "SKILL": uint.TryParse(reader["probability"], out prob); break;
                             }
                             break;
+
                         case XmlNodeType.Text:
                             value = reader.Value;
                             break;
+
                         case XmlNodeType.EndElement:
                             switch (reader.Name.ToUpperInvariant())
                             {
@@ -188,7 +188,7 @@ namespace Saga.Structures
                 probabillity.Add(prob);
 
                 if (info.minimumrange < min_range)
-                {                    
+                {
                     min_range = info.minimumrange;
                     pmin_range = min_range * min_range;
                 }
@@ -197,8 +197,7 @@ namespace Saga.Structures
                     max_range = info.maximumrange;
                     pmax_range = max_range * max_range;
                 }
-
-            }          
+            }
         }
 
         public bool FindSkillForRange(double distance, out uint skill)
@@ -219,14 +218,10 @@ namespace Saga.Structures
             skill = 0;
             return false;
         }
-
-
     }
-
 
     public static class Server
     {
-
         static Server()
         {
             try
@@ -242,8 +237,6 @@ namespace Saga.Structures
                 Trace.WriteLine(x.ToString());
             }
         }
-
-
 
         public static string AssemblyName
         {
@@ -269,7 +262,7 @@ namespace Saga.Structures
         }
 
         public static string SecurePath(string format, params object[] objects)
-        {            
+        {
             string path = string.Format(format, objects);
             string newpath = path;
             if (path.Length > 1 && path[0] == '~' && path[1] == '/')
@@ -279,8 +272,5 @@ namespace Saga.Structures
 
             return newpath;
         }
-
-
     }
-
 }

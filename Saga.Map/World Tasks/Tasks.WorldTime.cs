@@ -7,7 +7,6 @@ namespace Saga.Tasks
     /// </summary>
     public static class WorldTime
     {
-
         #region Contructor / Decontructor
 
         /// <summary>
@@ -18,24 +17,23 @@ namespace Saga.Tasks
             LastTick = Environment.TickCount;
         }
 
-        #endregion
+        #endregion Contructor / Decontructor
 
         #region Private Members
 
         /// <summary>
         /// Contains the GameTime
         /// </summary>
-        static volatile byte[] gameTime = new byte[3];
+        private static volatile byte[] gameTime = new byte[3];
 
         /// <summary>
         /// Last updated tick
         /// </summary>
-        static int LastTick;
+        private static int LastTick;
 
-        #endregion
+        #endregion Private Members
 
         #region Public Members
-
 
         /// <summary>
         /// Gets the world time in bytes
@@ -48,12 +46,12 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
+        #endregion Public Members
 
         #region Internal Members
 
         /// <summary>
-        /// Processes all AI threads. 
+        /// Processes all AI threads.
         /// </summary>
         /// <remarks>
         /// If the qeuee get's to big reprioritize the
@@ -90,7 +88,6 @@ namespace Saga.Tasks
             }
         }
 
-        #endregion
-
+        #endregion Internal Members
     }
 }

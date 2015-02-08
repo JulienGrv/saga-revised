@@ -1,6 +1,5 @@
 ﻿public struct ServerInfo
 {
-
     public ServerInfo(byte Index, string Name, byte playercount, byte ping)
     {
         this.Index = Index;

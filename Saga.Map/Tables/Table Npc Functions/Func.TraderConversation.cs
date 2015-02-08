@@ -1,27 +1,18 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
-using Saga.IO;
+﻿using Saga.Enumarations;
 using Saga.Map.Utils.Structures;
-using Saga.Shared.Definitions;
-using Saga.Templates;
 using Saga.PrimaryTypes;
-using Saga.Enumarations;
 using Saga.Structures;
+using Saga.Templates;
 
 namespace Saga.Npc.Functions
 {
-
-
     /// <summary>
-    /// This is a trader conversation. Include this in a npc to show a 
-    /// trader dialog and submenus. 
+    /// This is a trader conversation. Include this in a npc to show a
+    /// trader dialog and submenus.
     /// </summary>
     public class TraderConversation : NpcFunction
     {
-
         #region Private Members
-
 
         /// <summary>
         /// Container for trade items.
@@ -32,13 +23,12 @@ namespace Saga.Npc.Functions
         /// </remarks>
         protected TradelistContainer _container;
 
-
         /// <summary>
         /// Dialog to show when opening the trader conversation
         /// </summary>
         protected uint _TradeDialog = 823;
 
-        #endregion
+        #endregion Private Members
 
         #region Protected Methods
 
@@ -60,7 +50,6 @@ namespace Saga.Npc.Functions
         {
             OnCacheTrader(npc);
         }
-
 
         /// <summary>
         /// Loads all dialog dialog information.
@@ -85,7 +74,7 @@ namespace Saga.Npc.Functions
         /// <param name="npc"></param>
         /// <param name="target"></param>
         protected virtual void OnTradeDialog(BaseNPC npc, Character target)
-        {                      
+        {
             Common.Actions.OpenMenu(
                 target, npc,
                 _TradeDialog,
@@ -104,12 +93,8 @@ namespace Saga.Npc.Functions
         {
             string filename = Server.SecurePath("~/traders/{0}.xml", npc.ModelId);
             _container = TradelistContainer.FromFile(filename);
-     
         }
 
-        #endregion
-
-   
-
+        #endregion Protected Methods
     }
 }

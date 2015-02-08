@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// Invokes an skill.
     /// </summary>
@@ -29,7 +25,7 @@ namespace Saga.Packets
 
         public byte SkillType
         {
-            set { this.data[0] = value; } 
+            set { this.data[0] = value; }
         }
 
         public byte IsCritical
@@ -66,6 +62,5 @@ namespace Saga.Packets
         {
             set { this.data[20] = value; }
         }
-
     }
 }

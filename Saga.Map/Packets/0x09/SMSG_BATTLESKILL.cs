@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
     /// List of ailable skills
     /// </summary>
@@ -17,7 +13,7 @@ namespace Saga.Packets
     /// <id>
     /// 090A
     /// </id>
-    internal class SMSG_BATTLESKILL: RelayPacket
+    internal class SMSG_BATTLESKILL : RelayPacket
     {
         public SMSG_BATTLESKILL(int NumberOfSkills)
         {
@@ -28,12 +24,13 @@ namespace Saga.Packets
         }
 
         public byte current = 0;
+
         public void AddSkill(uint skillid, uint skillexp)
         {
             int offset = 1 + (current * 9);
             Array.Copy(BitConverter.GetBytes(skillid), 0, this.data, offset, 4);
             Array.Copy(BitConverter.GetBytes(skillexp), 0, this.data, offset + 4, 4);
-            this.data[offset + 8] = current;            
+            this.data[offset + 8] = current;
             current++;
         }
     }

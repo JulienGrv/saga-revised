@@ -1,24 +1,22 @@
-﻿using System;
+﻿using Saga.Configuration;
+using Saga.Map.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
-using System.Xml;
-using Saga.Map.Configuration;
-using Saga.Configuration;
-using Saga.Shared.Definitions;
 using System.Globalization;
-using System.Diagnostics;
+using System.IO;
 
 namespace Saga.Factory
 {
     public class StatusByLevel : FactoryBase
     {
-
         #region Ctor/Dtor
 
-        public StatusByLevel() { }
+        public StatusByLevel()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Internal Members
 
@@ -32,7 +30,7 @@ namespace Saga.Factory
         private uint _MaxWLVL = 99;
         public Dictionary<byte, Info> levelTable;
 
-        #endregion
+        #endregion Internal Members
 
         #region Protected Methods
 
@@ -46,12 +44,11 @@ namespace Saga.Factory
             StatusByLevelSettings section = (StatusByLevelSettings)ConfigurationManager.GetSection("Saga.Factory.StatusByLevel");
             if (section != null)
             {
-
                 Modifier_Cexp = (float)section.Cexp;
                 Modifier_Jexp = (float)section.Jexp;
                 Modifier_Wexp = (float)section.Wexp;
                 Modifier_Drate = (float)section.Droprate;
-                
+
                 foreach (FactoryFileElement element in section.FolderItems)
                 {
                     WriteLine("StatusByLevelFactory", "Loading statusbylevel information from: {0} using format {1}", element.Path, element.Reader);
@@ -67,7 +64,7 @@ namespace Saga.Factory
         protected override void ParseAsCsvStream(Stream stream, FactoryBase.ReportProgress ProgressReport)
         {
             using (StreamReader c = new StreamReader(stream))
-            {                
+            {
                 c.ReadLine();
                 while (c.Peek() > 0)
                 {
@@ -85,7 +82,7 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -172,15 +169,17 @@ namespace Saga.Factory
             return (byte)a;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Public Properties
 
         public uint MaxCLVL { get { return this._MaxCLVL; } }
+
         public uint MaxJLVL { get { return this._MaxJLVL; } }
+
         public uint MaxWLVL { get { return this._MaxWLVL; } }
 
-        #endregion
+        #endregion Public Properties
 
         #region Protected Properties
 
@@ -194,7 +193,7 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_EXPTABLE; }
         }
 
-        #endregion
+        #endregion Protected Properties
 
         #region Nested Classes/Structures
 
@@ -216,7 +215,6 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
-
+        #endregion Nested Classes/Structures
     }
 }

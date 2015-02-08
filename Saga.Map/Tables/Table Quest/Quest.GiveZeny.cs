@@ -5,13 +5,12 @@ namespace Saga.Quests
 {
     static partial class QUEST_TABLE
     {
-
         /// <title>Saga.GiveZeny</title>
         /// <code>
         /// Saga.GiveZeny(cid, Zeny);
         /// </code>
         /// <description>
-        /// Gives a certain amount of money as part of beeing 
+        /// Gives a certain amount of money as part of beeing
         /// a quest reward.
         /// </description>
         /// <example>

@@ -4,7 +4,7 @@
       <html>
         <head>
           <title>
-            <xsl:value-of select="title"/>
+            <xsl:value-of select="title" />
           </title>
           <style>
             BODY {
@@ -63,23 +63,20 @@
             font-size:13px;
             line-height:1.3em;
             }
-
-
           </style>
         </head>
         <body>
-          <xsl:apply-templates/>
+          <xsl:apply-templates />
         </body>
       </html>
     </xsl:template>
 
-
   <xsl:template match="title">
     <h1>
-      <xsl:value-of select="."/>
+      <xsl:value-of select="." />
     </h1>
   </xsl:template>
- 
+
   <xsl:template match="errorlog">
     <p>
 
@@ -93,7 +90,7 @@
       <p>
         <ol>
           <xsl:for-each select="/page/errorlog/error">
-          <xsl:sort select="name"/>
+          <xsl:sort select="name" />
             <li>
               <a href="#{name}"><xsl:value-of select="name" /></a>
             </li>
@@ -108,7 +105,7 @@
       </h2>
       <div class="paragraph">
         <!-- Full error-->
-        <code><pre><xsl:value-of select="example"/></pre></code>
+        <code><pre><xsl:value-of select="example" /></pre></code>
       </div>
     </xsl:for-each>
   </xsl:template>

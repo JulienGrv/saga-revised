@@ -1,34 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Xml;
-using Saga.Map.Configuration;
-using Saga.Configuration;
-using Saga.Shared.Definitions;
+﻿using Saga.Configuration;
 using Saga.Map;
-using System.Diagnostics;
-using System.Globalization;
+using Saga.Map.Configuration;
 using Saga.PrimaryTypes;
 using Saga.Structures;
+using System;
+using System.Configuration;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
 
 namespace Saga.Factory
 {
     public class SpawnMultiWorldObjects : FactoryBase
     {
-
         #region Ctor/Dtor
 
-        public SpawnMultiWorldObjects() { }
+        public SpawnMultiWorldObjects()
+        {
+        }
 
-        #endregion
+        #endregion Ctor/Dtor
 
         #region Protected Members
 
         protected bool SendSpawnPacket = false;
         protected BooleanSwitch mobspawnsaswarnings = new BooleanSwitch("MobSpawnsAsWarnings", "Forces to detect npc spawns as warnings instead of errors", "0");
 
-        #endregion
+        #endregion Protected Members
 
         #region Protected Methods
 
@@ -64,7 +62,6 @@ namespace Saga.Factory
                     {
                         for (int i = 0; i < count; i++)
                         {
-
                             float x = float.Parse(fields[2], System.Globalization.NumberFormatInfo.InvariantInfo);
                             float y = float.Parse(fields[3], System.Globalization.NumberFormatInfo.InvariantInfo);
                             float z = float.Parse(fields[4], System.Globalization.NumberFormatInfo.InvariantInfo);
@@ -80,7 +77,6 @@ namespace Saga.Factory
                                     WriteWarning("WorldObjectsFactory (multi)", "Cannot initialize {1} {0}", fields[0], "npc");
                                 else
                                     WriteError("WorldObjectsFactory (multi)", "Cannot initialize {1} {0}", fields[0], "npc");
-
                             }
                         }
                     }
@@ -88,10 +84,10 @@ namespace Saga.Factory
             }
         }
 
-        static Random rand = new Random();
+        private static Random rand = new Random();
+
         protected Point GeneratePointInRange(Point startpoint, int mrange)
         {
-
             if (mrange > 0)
             {
                 float range = (float)rand.Next(0, mrange);
@@ -110,8 +106,7 @@ namespace Saga.Factory
             }
         }
 
-        #endregion
-
+        #endregion Protected Methods
 
         #region Public Methods
 
@@ -130,10 +125,10 @@ namespace Saga.Factory
             HostContext.UnhandeldExceptionList.Clear();
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Protected Properties
-       
+
         /// <summary>
         /// Get the notification string.
         /// </summary>
@@ -162,7 +157,6 @@ namespace Saga.Factory
             get { return Saga.Map.Utils.Resources.SingletonNotificationStrings.FACTORY_READYSTATE_MOBSPAWNS; }
         }
 
-        #endregion
-
+        #endregion Protected Properties
     }
 }

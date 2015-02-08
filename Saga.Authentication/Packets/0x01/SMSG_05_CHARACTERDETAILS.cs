@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Authentication.Packets
 {
-
     public class SMSG_CHARACTERDETAILS : RelayPacket
     {
         public SMSG_CHARACTERDETAILS()
@@ -14,7 +11,6 @@ namespace Saga.Authentication.Packets
             this.Cmd = 0x0401;
             this.Id = 0x0105;
         }
-
 
         #region Face-informations
 
@@ -57,8 +53,8 @@ namespace Saga.Authentication.Packets
                 this.data[8] = value;
             }
         }
-      
-        #endregion
+
+        #endregion Face-informations
 
         #region Equipment
 
@@ -190,7 +186,7 @@ namespace Saga.Authentication.Packets
             }
         }
 
-        #endregion
+        #endregion Equipment
 
         #region Misc
 
@@ -198,7 +194,6 @@ namespace Saga.Authentication.Packets
         {
             Array.Copy(buffer, this.data, 105);
         }
-
 
         public uint JobExperience
         {
@@ -212,7 +207,7 @@ namespace Saga.Authentication.Packets
         {
             set
             {
-                Array.Copy( BitConverter.GetBytes(value), 0, this.data, 100, 4);
+                Array.Copy(BitConverter.GetBytes(value), 0, this.data, 100, 4);
             }
         }
 
@@ -224,7 +219,6 @@ namespace Saga.Authentication.Packets
             }
         }
 
-        #endregion
-
+        #endregion Misc
     }
 }

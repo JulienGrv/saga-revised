@@ -1,14 +1,12 @@
-using System;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This show a fail/succes message if the trade is sucessfully. 
+    /// This show a fail/succes message if the trade is sucessfully.
     /// </remarks>
     /// <id>
     /// 0618
@@ -24,8 +22,9 @@ namespace Saga.Packets
 
         public byte Reason1
         {
-            set {
-                this.data[0] = value;            
+            set
+            {
+                this.data[0] = value;
             }
         }
 

@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// This packet is sent to player who used be able to see the specified
@@ -20,7 +16,6 @@ namespace Saga.Packets
     /// </id>
     internal class SMSG_ACTORDELETE : RelayPacket
     {
-
         /// <summary>
         /// Initialized a new SMSG_ACTORDELETE packet.
         /// </summary>
@@ -30,7 +25,6 @@ namespace Saga.Packets
             this.Id = 0x0304;
             this.data = new byte[4];
         }
-
 
         /// <summary>
         /// ActorId to delete

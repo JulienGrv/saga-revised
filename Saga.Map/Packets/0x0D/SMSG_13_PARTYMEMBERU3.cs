@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
-using System.IO;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
     /// Some packet related target
@@ -44,6 +39,6 @@ namespace Saga.Packets
         public uint TargetId
         {
             set { Array.Copy(BitConverter.GetBytes(value), 0, this.data, 6, 4); }
-        }       
+        }
     }
 }

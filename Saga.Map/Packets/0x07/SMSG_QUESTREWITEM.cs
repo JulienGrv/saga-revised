@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
 
 namespace Saga.Packets
 {
-
     internal class SMSG_QUESTREWITEM : RelayPacket
     {
         public SMSG_QUESTREWITEM()

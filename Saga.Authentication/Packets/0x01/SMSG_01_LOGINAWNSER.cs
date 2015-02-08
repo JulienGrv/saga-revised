@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Saga.Network.Packets;
+using System;
+using System.Text;
 
 namespace Saga.Authentication.Packets
-{ 
+{
     public class SMSG_LOGINAWNSER : RelayPacket
     {
-
         public SMSG_LOGINAWNSER()
         {
             this.data = new byte[39];
@@ -36,7 +34,7 @@ namespace Saga.Authentication.Packets
             set
             {
                 string s = value.ToShortDateString();
-                Encoding.Unicode.GetBytes(s, 0, Math.Min(16,s.Length), this.data, 2);
+                Encoding.Unicode.GetBytes(s, 0, Math.Min(16, s.Length), this.data, 2);
             }
         }
 

@@ -6,12 +6,12 @@ namespace Saga.Map.Client
 {
     partial class Client
     {
-
         /// <summary>
         /// Container for the scenario quest. There can only be 1 quest active
         /// at the same time.
         /// </summary>
         internal QuestBase scenarioquest = null;
+
         internal uint ScenarioQuestStep = 0;
 
         /// <summary>
@@ -19,14 +19,14 @@ namespace Saga.Map.Client
         /// the dialogs occured.
         /// </summary>
         /// <param name="buffer"></param>
-        void CM_SCENARIO_EVENTEND(byte[] buffer)
-        {        
+        private void CM_SCENARIO_EVENTEND(byte[] buffer)
+        {
             //CHECK THE QUEST
             this.character._Event = 0;
 
             //BROADCAST TO EVERYBODY EVENT HAS ENDED
             SMSG_SCENARIOEVENTEND spkt = new SMSG_SCENARIOEVENTEND();
-            spkt.ActorId = this.character.id;                        
+            spkt.ActorId = this.character.id;
             foreach (MapObject myObject in this.character.currentzone.GetObjectsInRegionalRange(this.character))
             {
                 if (this.character.currentzone.IsInSightRangeByRadius(this.character.Position, myObject.Position))
@@ -38,6 +38,5 @@ namespace Saga.Map.Client
                     }
             }
         }
-
     }
 }

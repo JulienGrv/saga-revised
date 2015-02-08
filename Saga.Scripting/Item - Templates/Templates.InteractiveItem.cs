@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Quests;
-using Saga.PrimaryTypes;
-using Saga.Scripting.Interfaces;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Templates
 {
-
-    class InteractiveItem : MapItem
+    internal class InteractiveItem : MapItem
     {
-
         public override void OnClick(Character target)
         {
             //OnCheckMail(target);

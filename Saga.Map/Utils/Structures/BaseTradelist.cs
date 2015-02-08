@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 using Saga.Templates;
+using System.Collections.Generic;
 
 namespace Saga.Map.Utils.Structures
 {
@@ -10,7 +8,9 @@ namespace Saga.Map.Utils.Structures
     {
         protected internal byte clvl;
 
-        public virtual void Open(Character character, BaseNPC basenpc, uint buttonId) { }
+        public virtual void Open(Character character, BaseNPC basenpc, uint buttonId)
+        {
+        }
     };
 
     public class Tradelist
@@ -48,7 +48,5 @@ namespace Saga.Map.Utils.Structures
                 GetProductionlist.Add(item);
             }
         }
-
-
     }
 }

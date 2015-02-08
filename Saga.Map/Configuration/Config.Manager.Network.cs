@@ -1,10 +1,9 @@
+using Saga.Map.Configuration;
 using System.Configuration;
 using System.Globalization;
-using Saga.Map.Configuration;
 
 namespace Saga.Configuration
 {
-
     /// <summary>
     /// Network manager configuration
     /// </summary>
@@ -21,7 +20,6 @@ namespace Saga.Configuration
     [System.Reflection.Obfuscation(Exclude = true, StripAfterObfuscation = true)]
     public class NetworkSettings : ManagerProviderBaseConfiguration
     {
-
         /// <summary>
         /// Get's or sets the adresses to configure for the network interface.
         /// </summary>
@@ -36,17 +34,16 @@ namespace Saga.Configuration
         /// ]]></code>
         /// </example>
         /// <remarks>
-        /// The public interface is for the connections that are established between gateway 
+        /// The public interface is for the connections that are established between gateway
         /// and map server this is binding interface which means that it will listen on the
         /// specified port for pending connections. The internal interface is a fixed established
-        /// connection between map and authentication server. 
+        /// connection between map and authentication server.
         /// </remarks>
         [ConfigurationProperty("Connections", IsRequired = false)]
         public NetworkFileCollection Connections
         {
             get { return ((NetworkFileCollection)(base["Connections"])); }
         }
-
 
         /// <summary>
         /// Get's or sets the world id to loging with
@@ -143,7 +140,7 @@ namespace Saga.Configuration
         /// The proof is similair to password which is associated with the worldid. Using a proof concept it requirs
         /// you to know the credentionals and cannot simply state that worldid x is yours.
         /// </remarks>
-        [ConfigurationProperty("proof",  DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty("proof", DefaultValue = "", IsRequired = true)]
         public string Proof
         {
             get
@@ -155,6 +152,5 @@ namespace Saga.Configuration
                 this["proof"] = value.ToString(CultureInfo.InvariantCulture);
             }
         }
-
     }
 }

@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.PacketLib;
 using Saga.Network.Packets;
+using System;
 
 namespace Saga.Packets
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <remarks>
-    /// This packet is sent by the client when he/she requests his/hers own 
+    /// This packet is sent by the client when he/she requests his/hers own
     /// comment in the auction house.
-    /// search. 
+    /// search.
     /// </remarks>
     /// <id>
     /// 0F08
@@ -23,7 +19,7 @@ namespace Saga.Packets
         public CMSG_MARKETOWNERCOMMENT()
         {
             this.data = new byte[0];
-        }     
+        }
 
         #region Conversions
 
@@ -34,8 +30,8 @@ namespace Saga.Packets
             // plus 4. The first size bytes are used like
             // [PacketSize][PacketId][PacketBody]
             //
-            // Where Packet Size equals the length of the 
-            // Packet body, Packet Identifier, Packet Size 
+            // Where Packet Size equals the length of the
+            // Packet body, Packet Identifier, Packet Size
             // Container.
             */
 
@@ -48,6 +44,6 @@ namespace Saga.Packets
             return pkt;
         }
 
-        #endregion
+        #endregion Conversions
     }
 }

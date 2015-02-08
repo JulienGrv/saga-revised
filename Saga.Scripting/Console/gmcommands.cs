@@ -1,29 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Core;
-using Saga.PrimaryTypes;
-using Saga.Shared.Definitions;
-using System.Text.RegularExpressions;
-using System.Globalization;
+﻿using Saga.Enumarations;
 using Saga.Map;
-using System.Threading;
-using Saga.Structures;
-using Saga.Managers;
-using Saga.Tasks;
+using Saga.PrimaryTypes;
 using Saga.Quests;
-using Saga.Enumarations;
+using Saga.Shared.Definitions;
+using Saga.Structures;
+using Saga.Tasks;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-
+using System.Globalization;
+using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Saga.Scripting
 {
     public static partial class Console
     {
-
-
-
-
         /// <summary>
         /// Warps yourself to a specified map
         /// </summary>
@@ -45,12 +37,11 @@ namespace Saga.Scripting
         /// <example>!worldload</example>
         [GmAttribute("who", 0, "(.*?)")]
         public static void Worldload(Character character, Match match)
-        {            
+        {
             //Return the character's position
             string message = string.Format(CultureInfo.InvariantCulture, "{0} Personnes connectées ", Tasks.LifeCycle.Count);
             CommonFunctions.Broadcast(character, character, message);
         }
-
 
         /// <summary>
         /// Warps yourself to the specified map
@@ -75,7 +66,7 @@ namespace Saga.Scripting
         public static void Gmgo(Character character, Match match)
         {
             Point coord;
-            switch (Convert.ToInt16 (match.Groups[1].Value))
+            switch (Convert.ToInt16(match.Groups[1].Value))
             {
                 case 1:
                     coord.x = -12955f;
@@ -88,7 +79,6 @@ namespace Saga.Scripting
                 default:
                     break;
             }
-            
         }
 
         /// <summary>
@@ -103,12 +93,12 @@ namespace Saga.Scripting
             Character characterTarget;
             if (Tasks.LifeCycle.TryGetByName(match.Groups[1].Value, out characterTarget))
             {
-               CommonFunctions.Warp
-               (
-                   character,
-                   characterTarget.Position,
-                   characterTarget.currentzone
-               );
+                CommonFunctions.Warp
+                (
+                    character,
+                    characterTarget.Position,
+                    characterTarget.currentzone
+                );
             }
             else
             {
@@ -169,7 +159,6 @@ namespace Saga.Scripting
                 Tasks.WorldTime.Time[2] = byte.Parse(match.Groups[3].Value, CultureInfo.InvariantCulture);
             }
 
-
             ThreadStart AsyncOperation = delegate()
             {
                 //Resend npc to actor
@@ -223,18 +212,19 @@ namespace Saga.Scripting
          * This command kills the current monster if it is a monster.
          * </summary>
          */
+
         [GmAttribute("kill", 30, "(.*?)")]
         public static void Kill(Character character, Match match)
         {
             Regiontree tree = character.currentzone.Regiontree;
             MapObject regionObject;
-            if( character.SelectedTarget > 0 &&  Regiontree.TryFind(character.SelectedTarget, character, out regionObject ) && regionObject is Monster )
+            if (character.SelectedTarget > 0 && Regiontree.TryFind(character.SelectedTarget, character, out regionObject) && regionObject is Monster)
             {
                 /*****
                 //Make the Object die
                 *****/
                 Actor btarget = regionObject as Actor;
-                btarget.Status.CurrentHp = 0;                
+                btarget.Status.CurrentHp = 0;
                 btarget.OnDie(character);
                 character.OnEnemyDie(regionObject);
                 btarget.stance = 7;
@@ -291,6 +281,7 @@ namespace Saga.Scripting
          * This command forces to start a quest. This is purely for debugging purposes.
          * </summary>
          */
+
         [GmAttribute("qstart", 30, "^\\d*$")]
         public static void QStart(Character character, Match match)
         {
@@ -338,7 +329,7 @@ namespace Saga.Scripting
 
                 //if (Singleton.Templates.SpawnNpcInstance(model, character.Position, character.Yaw, character.currentzone, false, out instance))
                 //{
-                    //QueedTask timer = new QueedTask(callback, instance, 300000);
+                //QueedTask timer = new QueedTask(callback, instance, 300000);
                 //}
 
                 if (nb > 0)
@@ -361,8 +352,6 @@ namespace Saga.Scripting
             {
                 CommonFunctions.Broadcast(character, character, "Invalid argument");
             }
-
-
         }
 
         /// <summary>
@@ -377,7 +366,6 @@ namespace Saga.Scripting
             uint model = uint.Parse(match.Groups[2].Value);
             byte b = byte.Parse(match.Groups[1].Value);
 
-
             if (character.Target != null && !(character.Target is Character))
             {
                 Singleton.Templates.UnspawnInstance(character.Target);
@@ -386,8 +374,6 @@ namespace Saga.Scripting
             {
                 CommonFunctions.Broadcast(character, character, "No actor selected or actor is a player");
             }
-
-
         }
 
         /// <summary>
@@ -521,7 +507,6 @@ namespace Saga.Scripting
                         }
                     }
                 }
-
             };
 
             Thread thread = new Thread(AsyncOperation);
@@ -542,7 +527,7 @@ namespace Saga.Scripting
                 //Resend npc to actor
 
                 List<Character> characters = new List<Character>();
-                characters.AddRange( Tasks.LifeCycle.Characters );
+                characters.AddRange(Tasks.LifeCycle.Characters);
                 foreach (Character mcharacter in characters)
                 {
                     if (mcharacter.id == character.id) continue;
@@ -553,7 +538,6 @@ namespace Saga.Scripting
             Thread thread = new Thread(AsyncOperation);
             thread.Start();
         }
-
 
         /// <summary>
         /// Schedules the next maintaince. Use a date in the past to cancel it.
@@ -579,8 +563,6 @@ namespace Saga.Scripting
                 Tasks.Maintenance.NextSceduledMaintenance = newdate;
                 CommonFunctions.SystemMessage(character, character, message);
             }
-
-
         }
 
         /// <summary>
@@ -594,19 +576,5 @@ namespace Saga.Scripting
         {
             GC.Collect(0);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

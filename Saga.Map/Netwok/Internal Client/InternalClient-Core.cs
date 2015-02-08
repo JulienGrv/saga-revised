@@ -1,19 +1,23 @@
-using System;
-using System.Net.Sockets;
 using Saga.Packets;
 using Saga.PrimaryTypes;
-using System.Diagnostics;
-using System.Threading;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace Saga.Map.Client
 {
     public partial class InternalClient : Saga.Shared.NetworkCore.Client
     {
+        ~InternalClient()
+        {
+        }
 
-        ~InternalClient() { }
-        public InternalClient(Socket h) : base(h) { }
-
+        public InternalClient(Socket h)
+            : base(h)
+        {
+        }
 
         protected override void OnConnect()
         {
@@ -21,9 +25,8 @@ namespace Saga.Map.Client
             base.OnConnect();
         }
 
-        void InternalClient_OnClose(object sender, EventArgs e)
+        private void InternalClient_OnClose(object sender, EventArgs e)
         {
-
             GC.SuppressFinalize(this);
             Trace.WriteLine("Authentication server disconnected", "Network");
             while (base.IsConnected == false)
@@ -49,9 +52,6 @@ namespace Saga.Map.Client
             }
 
             GC.ReRegisterForFinalize(this);
-
-
-
         }
 
         protected override void ProcessPacket(ref byte[] body)
@@ -61,20 +61,20 @@ namespace Saga.Map.Client
             {
                 case 0x0001: CM_WORLDINSTANCEACK((CMSG_WORLDINSTANCEACK)body); return;
                 case 0x0004: CM_KILLSESSION((CMSG_KILLSESSION)body); return;
-                case 0x000E: CM_PING((CMSG_PING)body); return;                                               
+                case 0x000E: CM_PING((CMSG_PING)body); return;
                 case 0x0106: DELETE_CHARACTER((CMSG_INTERNAL_CHARACTERDELETE)body); return;
-                case 0x0105: CHARACTER_CREATE((CMSG_INTERNAL_CHARACTERCREATE)body); return;                
+                case 0x0105: CHARACTER_CREATE((CMSG_INTERNAL_CHARACTERCREATE)body); return;
                 case 0x0002: SELECT_CHARACTERS((CMSG_FINDCHARACTERS)body); return;
                 case 0x0003: SELECT_CHARACTER((CMSG_FINDCHARACTERDETAILS)body); return;
                 case 0xFF02: CM_LOADCHARACTER((CMSG_CHARACTERLOGIN)body); return;
-                case 0xFF03: CM_SETRATES((CMSG_SETRATES)body); return;                
+                case 0xFF03: CM_SETRATES((CMSG_SETRATES)body); return;
                 default: Console.WriteLine("Packet received {0:X4}", subpacketIdentifier); return;
             }
-
         }
 
         private static byte[] NextProof = new byte[16];
-        private void CM_WORLDINSTANCEACK( CMSG_WORLDINSTANCEACK cpkt )
+
+        private void CM_WORLDINSTANCEACK(CMSG_WORLDINSTANCEACK cpkt)
         {
             if (cpkt.Reason == 0)
             {
@@ -126,7 +126,7 @@ namespace Saga.Map.Client
                 {
                     //WorldConnectionError();
                     //LifeCycle.Unsubscribe(this.character);
-                    
+
                     SMSG_CHARACTERLOGINREPLY spkt = new SMSG_CHARACTERLOGINREPLY();
                     spkt.SessionId = cpkt.Session;
                     spkt.Result = 1;
@@ -141,16 +141,13 @@ namespace Saga.Map.Client
                 //WorldConnectionError();
                 //LifeCycle.Unsubscribe(this.character);
                 Trace.TraceWarning(e.ToString());
- 
+
                 SMSG_CHARACTERLOGINREPLY spkt = new SMSG_CHARACTERLOGINREPLY();
                 spkt.SessionId = cpkt.Session;
                 spkt.Result = 2;
                 this.Send((byte[])spkt);
             }
-
-
         }
-
 
         private void CM_SETRATES(CMSG_SETRATES cpkt)
         {
@@ -172,7 +169,6 @@ namespace Saga.Map.Client
                 Managers.ConsoleCommands.isaddisplayed = false;
                 Trace.TraceInformation("Deapply increased stats stat settings");
             }
-
         }
 
         private void CM_PING(CMSG_PING cpkt)
@@ -182,8 +178,9 @@ namespace Saga.Map.Client
             this.Send((byte[])spkt);
         }
 
-        static Queue<uint> ReleasedSessions = new Queue<uint>();
-        internal void SM_RELEASESESSION( uint session)
+        private static Queue<uint> ReleasedSessions = new Queue<uint>();
+
+        internal void SM_RELEASESESSION(uint session)
         {
             Console.WriteLine("Release session");
 
@@ -199,8 +196,5 @@ namespace Saga.Map.Client
                 ReleasedSessions.Enqueue(session);
             }
         }
-        
-
-        
     }
 }

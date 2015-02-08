@@ -1,25 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
 using Saga.Structures;
 
 namespace Saga
 {
-
     /// <summary>
-    /// Creates a bouding box used to check collisions. 
+    /// Creates a bouding box used to check collisions.
     /// </summary>
     /// <remarks>
-    /// This bounding box pre-transforms it's coords by it's own rotation. This assures 
-    /// we will align our box model on a horizontal/vertical axis. When checking of a 
-    /// character is in the box we rotate the characters world coords with the box's 
+    /// This bounding box pre-transforms it's coords by it's own rotation. This assures
+    /// we will align our box model on a horizontal/vertical axis. When checking of a
+    /// character is in the box we rotate the characters world coords with the box's
     /// rotation.
-    /// 
+    ///
     /// <![CDATA[
     /// When doing this we can simple check if x > point && point < x &&
     /// y > point && point < y.]]>
-    /// 
+    ///
     /// Best practice is to precache this box for a prefixed position and check
     /// if character x is in the position.
     /// </remarks>
@@ -30,40 +25,39 @@ namespace Saga
         /// <summary>
         /// Minimal x coord
         /// </summary>
-        float min_x = 0;
+        private float min_x = 0;
 
         /// <summary>
         /// Minimal y coord
         /// </summary>
-        float min_y = 0;
+        private float min_y = 0;
 
         /// <summary>
         /// Maximal x coord
         /// </summary>
-        float max_x = 0;
+        private float max_x = 0;
 
         /// <summary>
         /// Maximal y coord
         /// </summary>
-        float max_y = 0;
+        private float max_y = 0;
 
         /// <summary>
         /// Minimal z coord
         /// </summary>
-        float min_z = 0;
+        private float min_z = 0;
 
         /// <summary>
         /// Maximal z coord
         /// </summary>
-        float max_z = 0;
+        private float max_z = 0;
 
         /// <summary>
         /// Yaw also known as direction
         /// </summary>
-        ushort yaw = 0;
+        private ushort yaw = 0;
 
-
-        #endregion 
+        #endregion Private Members
 
         #region Constructor/Deconstructor
 
@@ -90,7 +84,7 @@ namespace Saga
             this.yaw = yaw;
         }
 
-        #endregion
+        #endregion Constructor/Deconstructor
 
         #region Private Methods
 
@@ -129,8 +123,7 @@ namespace Saga
             return z >= min_z && z <= max_z;
         }
 
-
-        #endregion
+        #endregion Private Methods
 
         #region Public Methods
 
@@ -146,7 +139,7 @@ namespace Saga
             Matrix m = Matrix.GetFromInverseRotation(yaw);
             Point b = Matrix.WorldTransform(point, m);
 
-            if ( BetweenCoordX(b.x) && BetweenCoordY(b.y) && BetweenCoordZ(b.z))
+            if (BetweenCoordX(b.x) && BetweenCoordY(b.y) && BetweenCoordZ(b.z))
             {
                 return true;
             }
@@ -156,7 +149,6 @@ namespace Saga
             }
         }
 
-        #endregion
-
+        #endregion Public Methods
     }
 }

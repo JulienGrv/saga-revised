@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Saga.Shared.Definitions;
-using Saga.PrimaryTypes;
+﻿using Saga.PrimaryTypes;
 
 namespace Saga.Skills
 {
     static partial class Spelltable
     {
-
         public static void RECRUIT_ROTATINGFIRESHOT(SkillBaseEventArgs bargument)
         {
             int Lvldiff;
@@ -41,6 +36,5 @@ namespace Saga.Skills
                 bargument.Failed = true;
             }
         }
-
     }
 }
