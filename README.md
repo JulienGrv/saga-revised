@@ -11,7 +11,7 @@ You need to install [.NET Framework 3.5](http://www.microsoft.com/en-us/download
 Download [MySQL Installer](http://dev.mysql.com/downloads/windows/installer/) and install at least MySQL Server and MySQL Workbench. Then start MySQL Workbench and check in `startup / shutdown` if the MySQL Server is running.
 
 ### Create the database
-In MySQL Workbench, create a new schema called "saga", open it and run all SQL scripts in the directory `Database\Mysql` of the emulator. This will added each of them as a table in your schema.
+In MySQL Workbench, create a new schema called "saga", open it and run all SQL scripts in the directory `Database\Mysql` of the emulator. This will add each of them as a table in your schema.
 
 ## Setting up the emulator
 
@@ -53,8 +53,8 @@ Now you're done, you can launch the server.
 * Launch the game with a batch file using the command : `"System\RagII.exe" ServerIP=127.0.0.1 ServerPort=64000`
 
 ## Some tips
-* Some time the `build.bat` doesn't work, check the path to `MSBuild.exe` and/or try with administrator privileges.
-* If you are stuck at the login screen for no reason, restart the server and before trying to connect into the game type `host -connect` in the Saga.Gateway console. You don't have to do that each time you want to connect, just one time after launching the server.
+* Sometimes the `build.bat` doesn't work, check the path to `MSBuild.exe` and/or try with administrator privileges.
+* If you are stuck at the login screen for no reason, restart the server and before trying to connect into the game type `host -connect` in the Saga.Gateway console. You don't have to do that each time you want to connect, just once after launching the server.
 
 ## Full Client
 We use the latest [DiviniaRO2 full client](https://mega.co.nz/#!yZhlkB5S!j6zia8kE_uLZ65WaJavDS-nVvq7-vyDgtGfRIbcmm9E).
