@@ -1149,12 +1149,9 @@ namespace Saga.Map.Data.Mysql
                     skill.Experience = reader.GetUInt32(1);
                     if (Singleton.SpellManager.TryGetSpell(skill.Id, out skill.info) && skill.info.requiredJobs[collection.Job - 1] == 1 )
                         collection.Skills.Add(skill);
-
-                        return true;
                 }
 
-                __dbtracelog.WriteError("Database", "player skill-data of player with id {0} is missing", collection.CharacterId);
-                return continueOnError;
+                return true;
             }
             catch (Exception e)
             {
