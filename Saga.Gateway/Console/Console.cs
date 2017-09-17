@@ -247,37 +247,36 @@ namespace Saga.Gateway
                 ConfigurationManager.RefreshSection("Saga.NetworkSettings");
 
                 Console.WriteLine("Everything configured");
-                LoginClient client;
-                for (int i = 0; i < 3; i++)
-                {
-                    if (NetworkManager.TryGetLoginClient(out client))
-                    {
-                        Console.WriteLine("Test connection created");
-                        client.Close();
-                        break;
-                    }
-                    else
-                    {
-                        Thread.Sleep(3000);
-                        Console.WriteLine("Test connection failed retrying in 3 secconds");
-                    }
-                }
             }
             else
             {
                 Console.WriteLine("Configuration file exists");
-                Console.WriteLine("Waiting for servers...");
-                Thread.Sleep(13000);
-                LoginClient client;
-                if (NetworkManager.TryGetLoginClient(out client)) {
-                    client.ExchangeIpAdress(IPAddress.Loopback);
-                    Console.WriteLine("Connection to authentication-server established!");
-                    Console.WriteLine("Saga is online and ready to use!");
-                } else {
-                    Console.WriteLine("Can't connect to authentication, try again with: 'host -connect'");
-                }
             }
 
+            // Try to establish connection to authentication-server [Daniel4rt]
+            LoginClient client;
+            for (int i = 0; i < 3; i++)
+            {
+                if (NetworkManager.TryGetLoginClient(out client))
+                {
+                    client.ExchangeIpAdress(IPAddress.Loopback);
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Test connection failed retrying in 3 seconds");
+                    Thread.Sleep(3000);
+                }
+            }
+            if (NetworkManager.TryGetLoginClient(out client))
+            {
+                Console.WriteLine("Connection to authentication-server created");
+            }
+            else
+            {
+                Console.WriteLine("Can't connect to authentication, try again manually with the command 'host -connect'");
+            }
+            
             reader.Start();
         }
 
@@ -328,7 +327,7 @@ namespace Saga.Gateway
                     if (NetworkManager.TryGetLoginClient(out client))
                     {
                         client.ExchangeIpAdress(IPAddress.Loopback);
-                        Console.WriteLine("Connection to authentication-server is create");
+                        Console.WriteLine("Connection to authentication-server created");
                     }
                     else
                     {
