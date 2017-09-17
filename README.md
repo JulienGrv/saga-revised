@@ -99,8 +99,10 @@ If you can't login to your player account, restart the server and before trying 
 * phr34k, Zenzija, and all original SagaRevised contributors
 * [kalel60](https://www.assembla.com/profile/kalel60), [Sebda](https://www.assembla.com/profile/Sebda), and all [SIN](https://app.assembla.com/spaces/stilleinnorden) contributors
 * **Darkin** - *Developer* - [JulienGrv](https://github.com/JulienGrv)
-* [All Contributors](https://github.com/Darkin47/SagaRevised/graphs/contributors)
+* [All Contributors](https://github.com/JulienGrv/saga-revised/contributors)
 
 ### License
 
-This project is licensed under the Creative Commons Public License (CC BY-NC-SA 4.0) - see the [LICENSE](https://github.com/JulienGrv/SagaRevised/blob/master/LICENSE) for details.
+This project is licensed under the Creative Commons Public License (CC BY-NC-SA 4.0) - see the [LICENSE](https://github.com/JulienGrv/saga-revised/blob/master/LICENSE) for details.
+
+**[Back to top](#table-of-contents)**
