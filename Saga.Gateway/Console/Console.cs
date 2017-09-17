@@ -187,7 +187,7 @@ namespace Saga.Gateway
                     Console.WriteLine("What port should the gateway server listen to?");
                     while (!int.TryParse(Console.ReadLine(), out gatewayport))
                     {
-                        Console.WriteLine("Incorrect value please use an number between 1024–49151, recommended 64000");
+                        Console.WriteLine("Incorrect value please use an number between 1024â€“49151, recommended 64000");
                     }
                 }
                 else if (key != 'n') goto ConfigureGatewayNetwork;
@@ -206,7 +206,7 @@ namespace Saga.Gateway
                     Console.WriteLine("On what port is the authentication server listening");
                     while (!int.TryParse(Console.ReadLine(), out authenticationport))
                     {
-                        Console.WriteLine("Incorrect value please use an number between 1024–49151, recommended 64000");
+                        Console.WriteLine("Incorrect value please use an number between 1024â€“49151, recommended 64000");
                     }
                 }
                 else if (key != 'n') goto ConfigureAuthenticationNetwork;
@@ -266,6 +266,16 @@ namespace Saga.Gateway
             else
             {
                 Console.WriteLine("Configuration file exists");
+                Console.WriteLine("Waiting for servers...");
+                Thread.Sleep(13000);
+                LoginClient client;
+                if (NetworkManager.TryGetLoginClient(out client)) {
+                    client.ExchangeIpAdress(IPAddress.Loopback);
+                    Console.WriteLine("Connection to authentication-server established!");
+                    Console.WriteLine("Saga is online and ready to use!");
+                } else {
+                    Console.WriteLine("Can't connect to authentication, try again with: 'host -connect'");
+                }
             }
 
             reader.Start();
@@ -487,7 +497,7 @@ namespace Saga.Gateway
         private const string _levelVerbose = "verbose   ";
         private const string _levelWarning = "warning   ";
         private const string _levelError = "error     ";
-        private const string _levelInfo = "ïnfo      ";
+        private const string _levelInfo = "Ã¯nfo      ";
 
         private void __WriteLine(string category, string level, string message)
         {
