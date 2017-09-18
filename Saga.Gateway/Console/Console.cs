@@ -187,7 +187,7 @@ namespace Saga.Gateway
                     Console.WriteLine("What port should the gateway server listen to?");
                     while (!int.TryParse(Console.ReadLine(), out gatewayport))
                     {
-                        Console.WriteLine("Incorrect value please use an number between 1024–49151, recommended 64000");
+                        Console.WriteLine("Incorrect value please use an number between 1024â€“49151, recommended 64000");
                     }
                 }
                 else if (key != 'n') goto ConfigureGatewayNetwork;
@@ -206,7 +206,7 @@ namespace Saga.Gateway
                     Console.WriteLine("On what port is the authentication server listening");
                     while (!int.TryParse(Console.ReadLine(), out authenticationport))
                     {
-                        Console.WriteLine("Incorrect value please use an number between 1024–49151, recommended 64000");
+                        Console.WriteLine("Incorrect value please use an number between 1024â€“49151, recommended 64000");
                     }
                 }
                 else if (key != 'n') goto ConfigureAuthenticationNetwork;
@@ -247,25 +247,34 @@ namespace Saga.Gateway
                 ConfigurationManager.RefreshSection("Saga.NetworkSettings");
 
                 Console.WriteLine("Everything configured");
-                LoginClient client;
-                for (int i = 0; i < 3; i++)
-                {
-                    if (NetworkManager.TryGetLoginClient(out client))
-                    {
-                        Console.WriteLine("Test connection created");
-                        client.Close();
-                        break;
-                    }
-                    else
-                    {
-                        Thread.Sleep(3000);
-                        Console.WriteLine("Test connection failed retrying in 3 secconds");
-                    }
-                }
             }
             else
             {
                 Console.WriteLine("Configuration file exists");
+            }
+
+            // Try to establish connection to authentication-server [Daniel4rt]
+            LoginClient client;
+            for (int i = 0; i < 3; i++)
+            {
+                if (NetworkManager.TryGetLoginClient(out client))
+                {
+                    client.ExchangeIpAdress(IPAddress.Loopback);
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Test connection failed retrying in 3 seconds");
+                    Thread.Sleep(3000);
+                }
+            }
+            if (NetworkManager.TryGetLoginClient(out client))
+            {
+                Console.WriteLine("Connection to authentication-server created");
+            }
+            else
+            {
+                Console.WriteLine("Can't connect to authentication, try again manually with the command 'host -connect'");
             }
 
             reader.Start();
@@ -318,7 +327,7 @@ namespace Saga.Gateway
                     if (NetworkManager.TryGetLoginClient(out client))
                     {
                         client.ExchangeIpAdress(IPAddress.Loopback);
-                        Console.WriteLine("Connection to authentication-server is create");
+                        Console.WriteLine("Connection to authentication-server created");
                     }
                     else
                     {
@@ -487,7 +496,7 @@ namespace Saga.Gateway
         private const string _levelVerbose = "verbose   ";
         private const string _levelWarning = "warning   ";
         private const string _levelError = "error     ";
-        private const string _levelInfo = "ïnfo      ";
+        private const string _levelInfo = "Ã¯nfo      ";
 
         private void __WriteLine(string category, string level, string message)
         {
