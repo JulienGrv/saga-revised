@@ -36,7 +36,7 @@ namespace Saga.Map.Data.LuaQuest
             catch (LuaException e)
             {
                 __dbtracelog.WriteError("quest", "In quest {0} a error occured in 'start': {1}", this.QuestId, e.Message);
-				__dbtracelog.WriteError("Missing: function QUEST_START, on Quests/{0}.xml", this.QuestId);
+                __dbtracelog.WriteError("Missing: function QUEST_START, on Quests/{0}.xml", this.QuestId);
                 if (__dbtracelog.TraceVerbose)
                     Console.WriteLine("Error in quest {0}, see tracelog", this.QuestId);
                 return -1;
@@ -69,7 +69,7 @@ namespace Saga.Map.Data.LuaQuest
             catch (LuaException e)
             {
                 __dbtracelog.WriteError("quest", "In quest {0} a error occured in 'finish': {1}", this.QuestId, e.Message);
-				__dbtracelog.WriteError("Missing: function QUEST_FINISH, on Quests/{0}.xml", this.QuestId);
+                __dbtracelog.WriteError("Missing: function QUEST_FINISH, on Quests/{0}.xml", this.QuestId);
                 if (__dbtracelog.TraceVerbose)
                     Console.WriteLine("Error in quest {0}, see tracelog", this.QuestId);
                 return -1;
@@ -101,7 +101,7 @@ namespace Saga.Map.Data.LuaQuest
             catch (LuaException e)
             {
                 __dbtracelog.WriteError("quest", "In quest {0} a error occured in 'cancel': {1}", this.QuestId, e.Message);
-				__dbtracelog.WriteError("Missing: function QUEST_CANCEL, on Quests/{0}.xml", this.QuestId);
+                __dbtracelog.WriteError("Missing: function QUEST_CANCEL, on Quests/{0}.xml", this.QuestId);
                 if (__dbtracelog.TraceVerbose)
                     Console.WriteLine("Error in quest {0}, see tracelog", this.QuestId);
                 return -1;
@@ -132,7 +132,7 @@ namespace Saga.Map.Data.LuaQuest
             catch (LuaException e)
             {
                 __dbtracelog.WriteError("quest", "In quest {0} a error occured in 'verify': {1}", this.QuestId, e.Message);
-				__dbtracelog.WriteError("Missing: function QUEST_VERIFY, on Quests/{0}.xml", this.QuestId);
+                __dbtracelog.WriteError("Missing: function QUEST_VERIFY, on Quests/{0}.xml", this.QuestId);
                 if (__dbtracelog.TraceVerbose)
                     Console.WriteLine("Error in quest {0}, see tracelog", this.QuestId);
                 return -1;
@@ -162,7 +162,7 @@ namespace Saga.Map.Data.LuaQuest
             catch (LuaException e)
             {
                 __dbtracelog.WriteError("quest", "In quest {0} a error occured in 'check': {1}", this.QuestId, e.Message);
-				__dbtracelog.WriteError("Missing: function QUEST_CHECK, on Quests/{0}.xml", this.QuestId);
+                __dbtracelog.WriteError("Missing: function QUEST_CHECK, on Quests/{0}.xml", this.QuestId);
                 if (__dbtracelog.TraceVerbose)
                     Console.WriteLine("Error in quest {0}, see tracelog", this.QuestId);
                 return -1;
