@@ -18,6 +18,11 @@ local StepID = 0;
 
 -- Modify steps below for gameplay
 
+function QUEST_VERIFY(cid)
+	Saga.GeneralDialog(cid, 178);
+	return 0;
+end
+
 function QUEST_START(cid)
 	-- Initialize all quest steps
 	Saga.AddStep(cid, QuestID, 25301);
@@ -85,24 +90,6 @@ function QUEST_STEP_2(cid, StepID)
 	Saga.StepComplete(cid, QuestID, StepID);
 	Saga.QuestComplete(cid, QuestID);
 	return -1;
-end
-
-function QUEST_VERIFY(cid)
-	local CurStepID = Saga.GetStepIndex(cid, QuestID);
-	local StepID = CurStepID;
-	local ret = -1;
-
-	if CurStepID == 25301 then
-		ret = QUEST_STEP_1(cid, StepID);
-	elseif CurStepID == 25302 then
-		ret = QUEST_STEP_2(cid, StepID);
-	end
-
-	if ret == 0 then
-		QUEST_CHECK(cid);
-	end
-
-	return ret;
 end
 
 function QUEST_CHECK(cid)

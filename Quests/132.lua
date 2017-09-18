@@ -15,6 +15,10 @@ local RewItem2 = 16118;
 local RewItemCount1 = 1;
 local RewItemCount2 = 1;
 
+function QUEST_VERIFY(cid)
+	return 0;
+end
+
 -- Modify steps below for gameplay
 
 function QUEST_START(cid)
