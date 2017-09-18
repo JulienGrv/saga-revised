@@ -87,6 +87,24 @@ function QUEST_STEP_2(cid, StepID)
 	return -1;
 end
 
+function QUEST_VERIFY(cid)
+	local CurStepID = Saga.GetStepIndex(cid, QuestID);
+	local StepID = CurStepID;
+	local ret = -1;
+
+	if CurStepID == 25301 then
+		ret = QUEST_STEP_1(cid, StepID);
+	elseif CurStepID == 25302 then
+		ret = QUEST_STEP_2(cid, StepID);
+	end
+
+	if ret == 0 then
+		QUEST_CHECK(cid);
+	end
+
+	return ret;
+end
+
 function QUEST_CHECK(cid)
 	local CurStepID = Saga.GetStepIndex(cid, QuestID);
 	local StepID = CurStepID;
