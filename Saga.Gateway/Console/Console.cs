@@ -276,7 +276,7 @@ namespace Saga.Gateway
             {
                 Console.WriteLine("Can't connect to authentication, try again manually with the command 'host -connect'");
             }
-            
+
             reader.Start();
         }
 
