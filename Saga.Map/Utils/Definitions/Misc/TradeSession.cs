@@ -7,10 +7,10 @@ namespace Saga.Map.Definitions.Misc
 
     internal class TradeSession
     {
-        [Obsolete("Error", true)]
+        [Obsolete("Error")]
         public event TradeHandler OnCancel;
 
-        [Obsolete("Error", true)]
+        [Obsolete("Error")]
         public event TradeHandler OnComplete;
 
         public event TradeHandler OnTradeListConfirm;
