@@ -17,6 +17,11 @@ local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
+function QUEST_VERIFY(cid)
+	return 0;
+end
+
+
 function QUEST_START(cid)
 	-- Initialize all quest steps
 	-- Initialize all starting navigation points

@@ -18,6 +18,9 @@ local StepID = 0;
 
 -- Modify steps below for gameplay
 
+function QUEST_VERIFY(cid)
+	return 0;
+end
 function QUEST_START(cid)
 	Saga.AddStep(cid, QuestID, 42401);
 	Saga.AddStep(cid, QuestID, 42402);

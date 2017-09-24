@@ -17,6 +17,10 @@ local RewItemCount2 = 0;
 
 -- Modify steps below for gameplay
 
+function QUEST_VERIFY(cid)
+	return 0;
+end
+
 function QUEST_START(cid)
 	--Saga.AddStep(cid, QuestID, 13301);
 	Saga.AddStep(cid, QuestID, 13302);
