@@ -98,7 +98,7 @@ namespace Saga.Packets
         {
             set
             {
-                this.data[16] = value;
+                this.data[16] = Math.Min(value, (byte) 5);
             }
         }
 

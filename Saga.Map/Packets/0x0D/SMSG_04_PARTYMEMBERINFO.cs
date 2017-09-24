@@ -94,7 +94,7 @@ namespace Saga.Packets
                 Array.Copy(BitConverter.GetBytes(character.HP), 0, this.data, offset + 44, 2);
                 Array.Copy(BitConverter.GetBytes(character.SPMAX), 0, this.data, offset + 46, 2);
                 Array.Copy(BitConverter.GetBytes(character.SP), 0, this.data, offset + 48, 2);
-                this.data[offset + 50] = character._status.CurrentLp;
+                this.data[offset + 50] = Math.Min(character._status.CurrentLp, (byte) 5);
                 this.data[offset + 51] = character._level;
                 this.data[offset + 52] = character.job;
                 this.data[offset + 53] = character.jlvl;
@@ -117,7 +117,7 @@ namespace Saga.Packets
                 Array.Copy(BitConverter.GetBytes(character.HP), 0, this.data, offset + 44, 2);
                 Array.Copy(BitConverter.GetBytes(character.SPMAX), 0, this.data, offset + 46, 2);
                 Array.Copy(BitConverter.GetBytes(character.SP), 0, this.data, offset + 48, 2);
-                this.data[offset + 50] = character._status.CurrentLp;
+                this.data[offset + 50] = Math.Min(character._status.CurrentLp, (byte) 5);
                 this.data[offset + 51] = character._level;
                 this.data[offset + 52] = character.job;
                 this.data[offset + 53] = character.jlvl;
