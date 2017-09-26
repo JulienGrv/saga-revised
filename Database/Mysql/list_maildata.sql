@@ -3,7 +3,7 @@
 -- Table structure for table `list_maildata`
 --
 
-
+SET sql_mode = 'STRICT_TRANS_TABLES';
 
 CREATE TABLE IF NOT EXISTS `list_maildata` (
   `MailId` int(10) unsigned NOT NULL AUTO_INCREMENT,
