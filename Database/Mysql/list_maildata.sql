@@ -3,7 +3,7 @@
 -- Table structure for table `list_maildata`
 --
 
-
+SET sql_mode = 'STRICT_TRANS_TABLES';
 
 CREATE TABLE IF NOT EXISTS `list_maildata` (
   `MailId` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `list_maildata` (
   `Message` text,
   `Attachment` tinyblob,
   `Zeny` int(10) unsigned NOT NULL DEFAULT '0',
-  `DateRead` datetime DEFAULT CURRENT_TIMESTAMP,
+  `DateRead` datetime DEFAULT '0000-00-00 00:00:00',
   `IsOutbox` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `IsInbox` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `IsPending` tinyint(3) unsigned NOT NULL DEFAULT '1',
